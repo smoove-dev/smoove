@@ -1,0 +1,281 @@
+import Konva from "konva";
+import { type Emitter, createEmitter } from "./emitter.js";
+import { type ReadonlySignal, type Signal, createSignal, derived } from "./signal.js";
+
+export type CompositionOptions = Konva.StageConfig & {
+  id: string;
+  fps: number;
+  durationInFrames: number;
+  loop?: boolean;
+};
+
+export type SequenceOptions = Konva.LayerConfig & {
+  from: number;
+  durationInFrames: number;
+};
+
+export type CompositionEvent = {
+  frame: number;
+  durationInFrames: number;
+};
+
+export type CompositionEventMap = {
+  play: CompositionEvent;
+  stop: CompositionEvent;
+  time: CompositionEvent;
+};
+
+export type CompositionEventName = keyof CompositionEventMap;
+
+export type Updater = (localFrame: number) => void;
+
+const COMP_EVENTS: ReadonlySet<string> = new Set(["play", "stop", "time"]);
+const isCompositionEvent = (e: string): e is CompositionEventName => COMP_EVENTS.has(e);
+
+const raf: ((cb: (now: number) => void) => number) | null =
+  typeof globalThis.requestAnimationFrame === "function"
+    ? globalThis.requestAnimationFrame.bind(globalThis)
+    : null;
+const caf: ((id: number) => void) | null =
+  typeof globalThis.cancelAnimationFrame === "function"
+    ? globalThis.cancelAnimationFrame.bind(globalThis)
+    : null;
+const wallNow = (): number =>
+  typeof globalThis.performance?.now === "function" ? globalThis.performance.now() : Date.now();
+
+type CompositionMarker = { __KonvaMotionComposition?: Composition };
+
+export function getComposition(stage: Konva.Stage): Composition | null {
+  return (stage as Konva.Stage & CompositionMarker).__KonvaMotionComposition ?? null;
+}
+
+export class Composition extends Konva.Stage {
+  readonly fps: number;
+  readonly frame: ReadonlySignal<number>;
+  readonly isPlaying: ReadonlySignal<boolean>;
+  readonly durationInFrames: ReadonlySignal<number>;
+  readonly isStopped: ReadonlySignal<boolean>;
+  readonly isPaused: ReadonlySignal<boolean>;
+  readonly loop: ReadonlySignal<boolean>;
+
+  private readonly _frame: Signal<number>;
+  private readonly _isPlaying: Signal<boolean>;
+  private readonly _durationInFrames: Signal<number>;
+  private readonly _loop: Signal<boolean>;
+  private readonly _emitter: Emitter<CompositionEventMap>;
+
+  private _rafId: number | null = null;
+  private _startWallMs = 0;
+  private _startFrame = 0;
+
+  constructor(opts: CompositionOptions) {
+    if (!opts.id) throw new Error("Composition: id is required");
+    if (!Number.isFinite(opts.fps) || opts.fps <= 0) {
+      throw new Error("Composition: fps must be a positive number");
+    }
+    if (!Number.isInteger(opts.durationInFrames) || opts.durationInFrames <= 0) {
+      throw new Error("Composition: durationInFrames must be a positive integer");
+    }
+
+    const { fps, durationInFrames, loop = false, ...stageOpts } = opts;
+    super(stageOpts);
+
+    const marker = this as Konva.Stage & CompositionMarker;
+    if (marker.__KonvaMotionComposition) {
+      throw new Error("A Composition is already attached to this Stage.");
+    }
+    marker.__KonvaMotionComposition = this;
+
+    this.fps = fps;
+
+    this._frame = createSignal(0);
+    this._isPlaying = createSignal(false);
+    this._durationInFrames = createSignal(durationInFrames);
+    this._loop = createSignal(loop);
+
+    this.frame = this._frame;
+    this.isPlaying = this._isPlaying;
+    this.durationInFrames = this._durationInFrames;
+    this.loop = this._loop;
+
+    this.isStopped = derived(
+      [this._isPlaying, this._frame],
+      () => !this._isPlaying.get() && this._frame.get() === 0,
+    );
+    this.isPaused = derived(
+      [this._isPlaying, this._frame],
+      () => !this._isPlaying.get() && this._frame.get() > 0,
+    );
+
+    this._emitter = createEmitter<CompositionEventMap>();
+  }
+
+  // biome-ignore lint/suspicious/noExplicitAny: bridges Konva's typed event API with our composition events.
+  override on(evtStr: any, handler: any): any {
+    if (typeof evtStr === "string" && isCompositionEvent(evtStr)) {
+      return this._emitter.on(evtStr, handler);
+    }
+    return super.on(evtStr, handler);
+  }
+
+  // biome-ignore lint/suspicious/noExplicitAny: see on() above.
+  override off(evtStr?: any, handler?: any): any {
+    if (typeof evtStr === "string" && isCompositionEvent(evtStr)) {
+      if (handler) this._emitter.off(evtStr, handler);
+      return this;
+    }
+    return super.off(evtStr, handler);
+  }
+
+  play(): void {
+    if (!raf || !caf) {
+      throw new Error(
+        "Composition.play() requires requestAnimationFrame. In non-browser environments, drive playback with setFrame() instead.",
+      );
+    }
+    if (this._isPlaying.get()) return;
+
+    this._isPlaying.set(true);
+    this._startFrame = this._frame.get();
+    this._startWallMs = wallNow();
+
+    this._applyFrame(this._frame.get(), false);
+    this._emitter.emit("play", this._event());
+    this._scheduleTick();
+  }
+
+  override destroy(): this {
+    this._cancelTick();
+    this._isPlaying.set(false);
+    return super.destroy();
+  }
+
+  pause(): void {
+    if (!this._isPlaying.get()) return;
+    this._cancelTick();
+    this._isPlaying.set(false);
+  }
+
+  stop(): void {
+    this._cancelTick();
+    if (this._isPlaying.get()) this._isPlaying.set(false);
+    this._frame.set(0);
+    this._applyFrame(0, false);
+    this._emitter.emit("stop", this._event());
+  }
+
+  setLoop(value: boolean): void {
+    this._loop.set(value);
+  }
+
+  setFrame(target: number): void {
+    const clamped = Math.max(0, Math.min(this._durationInFrames.get() - 1, Math.floor(target)));
+    if (clamped === this._frame.get()) return;
+    this._frame.set(clamped);
+    if (this._isPlaying.get()) {
+      this._startFrame = clamped;
+      this._startWallMs = wallNow();
+    }
+    this._applyFrame(clamped, true);
+  }
+
+  private _event(): CompositionEvent {
+    return {
+      frame: this._frame.get(),
+      durationInFrames: this._durationInFrames.get(),
+    };
+  }
+
+  private _applyFrame(frame: number, emit: boolean): void {
+    for (const child of this.getChildren()) {
+      if (child instanceof Sequence) child._apply(frame);
+    }
+    if (emit) this._emitter.emit("time", this._event());
+  }
+
+  private _scheduleTick(): void {
+    if (!raf) return;
+    this._rafId = raf(this._tick);
+  }
+
+  private _cancelTick(): void {
+    if (this._rafId !== null && caf) {
+      caf(this._rafId);
+      this._rafId = null;
+    }
+  }
+
+  private _tick = (now: number): void => {
+    if (!this._isPlaying.get()) return;
+    const elapsedMs = now - this._startWallMs;
+    const advance = Math.floor((elapsedMs / 1000) * this.fps);
+    const lastFrame = this._durationInFrames.get() - 1;
+    const target = Math.min(lastFrame, this._startFrame + advance);
+
+    if (target !== this._frame.get()) {
+      this._frame.set(target);
+      this._applyFrame(target, true);
+    }
+
+    if (target >= lastFrame) {
+      if (this._loop.get()) {
+        this._startFrame = 0;
+        this._startWallMs = now;
+        this._frame.set(0);
+        this._applyFrame(0, true);
+        this._scheduleTick();
+        return;
+      }
+      this._cancelTick();
+      this._isPlaying.set(false);
+      return;
+    }
+
+    this._scheduleTick();
+  };
+}
+
+export class Sequence extends Konva.Layer {
+  readonly from: number;
+  readonly durationInFrames: number;
+  private readonly _updaters = new Set<Updater>();
+  private _active = false;
+
+  constructor(opts: SequenceOptions) {
+    if (!Number.isInteger(opts.from) || opts.from < 0) {
+      throw new Error("Sequence: from must be a non-negative integer");
+    }
+    if (!Number.isInteger(opts.durationInFrames) || opts.durationInFrames <= 0) {
+      throw new Error("Sequence: durationInFrames must be a positive integer");
+    }
+    const { from, durationInFrames, ...layerOpts } = opts;
+    super({ ...layerOpts, visible: false });
+    this.from = from;
+    this.durationInFrames = durationInFrames;
+  }
+
+  register(updater: Updater): () => void {
+    this._updaters.add(updater);
+    return () => {
+      this._updaters.delete(updater);
+    };
+  }
+
+  /** Internal — called by Composition on each frame change. */
+  _apply(frame: number): void {
+    const inRange = frame >= this.from && frame < this.from + this.durationInFrames;
+    if (inRange) {
+      if (!this._active) {
+        this.visible(true);
+        this._active = true;
+      }
+      const local = frame - this.from;
+      for (const u of this._updaters) u(local);
+      this.batchDraw();
+    } else if (this._active) {
+      this.visible(false);
+      this.batchDraw();
+      this._active = false;
+    }
+  }
+}

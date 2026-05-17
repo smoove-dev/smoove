@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>konva-motion demo</title>
+    <style>
+      :root {
+        --bg: #0d1117;
+        --panel: #161b22;
+        --border: #30363d;
+        --text: #e6edf3;
+        --muted: #7d8590;
+        --accent: #4ea1ff;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; height: 100%; background: var(--bg); color: var(--text);
+        font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px;
+      }
+      #app { display: grid; grid-template-columns: 240px 1fr; height: 100vh; }
+      #sidebar {
+        background: var(--panel); border-right: 1px solid var(--border);
+        padding: 16px; display: flex; flex-direction: column; gap: 4px;
+      }
+      #sidebar h1 { font-size: 12px; margin: 0 0 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+      .demo-btn {
+        background: transparent; border: 1px solid transparent; color: var(--text);
+        padding: 8px 12px; text-align: left; cursor: pointer; border-radius: 6px;
+        font-size: 14px; font-family: inherit;
+      }
+      .demo-btn:hover { background: rgba(255,255,255,0.05); }
+      .demo-btn.active { background: rgba(78,161,255,0.15); border-color: var(--accent); color: var(--accent); }
+      #stage-wrap { display: flex; flex-direction: column; min-width: 0; }
+      #stage { flex: 1; min-height: 0; overflow: hidden; }
+      #scrubber {
+        border-top: 1px solid var(--border); background: var(--panel);
+        padding: 12px 16px; display: flex; flex-direction: column; gap: 8px;
+      }
+      #scrubber .row { display: flex; align-items: center; gap: 12px; }
+      #scrubber button {
+        background: var(--bg); border: 1px solid var(--border); color: var(--text);
+        padding: 6px 12px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px;
+      }
+      #scrubber button:hover { border-color: var(--accent); color: var(--accent); }
+      #scrubber input[type=range] { flex: 1; accent-color: var(--accent); }
+      #scrubber .frame-label { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 110px; }
+      #scrubber label.loop { display: flex; align-items: center; gap: 6px; color: var(--muted); cursor: pointer; user-select: none; }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <aside id="sidebar">
+        <h1>Demos</h1>
+        <div id="demo-list"></div>
+      </aside>
+      <main id="stage-wrap">
+        <div id="stage"></div>
+        <div id="scrubber"></div>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

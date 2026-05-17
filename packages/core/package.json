@@ -1,0 +1,28 @@
+{
+  "name": "@konva-motion/core",
+  "version": "0.0.0",
+  "description": "Agnostic timeline-driven animation engine. Runs in browser or server; integrates with any render target (e.g. Konva).",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "bezier-easing": "^2.1.0"
+  },
+  "peerDependencies": {
+    "konva": ">=9"
+  }
+}

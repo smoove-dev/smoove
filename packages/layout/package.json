@@ -1,0 +1,36 @@
+{
+  "name": "@konva-motion/layout",
+  "version": "0.0.0",
+  "description": "Flexbox (Yoga) layout for Konva groups, with optional Sequence integration.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./sequence": {
+      "types": "./dist/sequence.d.ts",
+      "import": "./dist/sequence.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "yoga-layout": "^3.2.1"
+  },
+  "peerDependencies": {
+    "konva": ">=9",
+    "@konva-motion/core": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@konva-motion/core": { "optional": true }
+  }
+}

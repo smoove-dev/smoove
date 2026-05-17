@@ -1,0 +1,18 @@
+{
+  "name": "konva-motion",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Remotion-style timeline-driven animation for Konva.",
+  "license": "MIT",
+  "packageManager": "pnpm@10.33.4",
+  "scripts": {
+    "build": "pnpm -r --filter \"./packages/*\" run build",
+    "dev": "pnpm --filter demo run dev",
+    "check": "biome check .",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "typescript": "^5.6.3"
+  }
+}
