@@ -44,13 +44,13 @@ export const staggeredDemo: DemoDef = {
         shadowOpacity: 0.4,
       });
       seq.add(card);
-      comp.add(seq);
       seq.register((local) => {
         const fade = Math.min(1, local / fadeDuration);
         const eased = fade * fade * (3 - 2 * fade);
         card.opacity(eased);
         card.y(height / 2 - 60 + (1 - eased) * 40);
       });
+      comp.add(seq);
     });
 
     return comp;

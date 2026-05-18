@@ -1,5 +1,6 @@
 import Konva from "konva";
 import { type Emitter, createEmitter } from "./emitter.js";
+import { Flex } from "./flex.js";
 import { type ReadonlySignal, type Signal, createSignal, derived } from "./signal.js";
 
 export type CompositionOptions = Konva.StageConfig & {
@@ -125,6 +126,15 @@ export class Composition extends Konva.Stage {
       return this;
     }
     return super.off(evtStr, handler);
+  }
+
+  override add(layer: Konva.Layer, ...rest: Konva.Layer[]): this {
+    super.add(layer, ...rest);
+    const frame = this._frame.get();
+    for (const l of [layer, ...rest]) {
+      if (l instanceof Sequence) l._apply(frame);
+    }
+    return this;
   }
 
   play(): void {
@@ -265,16 +275,23 @@ export class Sequence extends Konva.Layer {
   _apply(frame: number): void {
     const inRange = frame >= this.from && frame < this.from + this.durationInFrames;
     if (inRange) {
-      if (!this._active) {
+      const becameActive = !this._active;
+      if (becameActive) {
         this.visible(true);
         this._active = true;
       }
       const local = frame - this.from;
       for (const u of this._updaters) u(local);
-      this.batchDraw();
+      for (const c of this.getChildren()) {
+        if (c instanceof Flex) c.computeLayout();
+      }
+      // Draw synchronously the frame in which a sequence becomes visible — this
+      // ensures fresh pixels are on the canvas before the browser paints the
+      // newly-displayed layer (avoids a one-frame flash of stale content).
+      if (becameActive) this.draw();
+      else this.batchDraw();
     } else if (this._active) {
       this.visible(false);
-      this.batchDraw();
       this._active = false;
     }
   }

@@ -1,0 +1,186 @@
+import Konva from "konva";
+import { normalizeEdges, parseSize } from "./flex-engine.js";
+import type {
+  BackgroundValue,
+  BlockConfig,
+  EdgeColor,
+  GradientBackground,
+  ShadowProps,
+  SizeValue,
+} from "./flex-types.js";
+
+const BLOCK_KEYS = [
+  "flexDirection",
+  "justifyContent",
+  "alignItems",
+  "gap",
+  "padding",
+  "flexGrow",
+  "flexShrink",
+  "flexBasis",
+  "alignSelf",
+  "margin",
+  "borderSize",
+  "borderColor",
+  "borderStyle",
+  "shadow",
+  "background",
+] as const;
+
+function pickKonvaConfig(config: BlockConfig): Konva.GroupConfig {
+  const out: Record<string, unknown> = { ...config };
+  for (const k of BLOCK_KEYS) delete out[k];
+  const w = parseSize(config.width as SizeValue | undefined);
+  const h = parseSize(config.height as SizeValue | undefined);
+  out.width = w?.kind === "px" ? w.value : undefined;
+  out.height = h?.kind === "px" ? h.value : undefined;
+  out.cornerRadius = undefined;
+  return out as Konva.GroupConfig;
+}
+
+function firstColor(c: EdgeColor | undefined): string | undefined {
+  if (c === undefined) return undefined;
+  if (typeof c === "string") return c;
+  if (Array.isArray(c)) return c[0];
+  return c.top ?? c.right ?? c.bottom ?? c.left;
+}
+
+export class Block extends Konva.Group {
+  private readonly _bg: Konva.Rect;
+
+  constructor(config: BlockConfig) {
+    super(pickKonvaConfig(config));
+
+    this._bg = new Konva.Rect({
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+      listening: false,
+      cornerRadius: config.cornerRadius,
+    });
+    this._bg.setAttr("__blockBg", true);
+    super.add(this._bg);
+
+    this.setAttrs({
+      flexDirection: config.flexDirection,
+      justifyContent: config.justifyContent,
+      alignItems: config.alignItems,
+      gap: config.gap,
+      padding: config.padding,
+      flexGrow: config.flexGrow,
+      flexShrink: config.flexShrink,
+      flexBasis: config.flexBasis,
+      alignSelf: config.alignSelf,
+      margin: config.margin,
+      borderSize: config.borderSize,
+      borderColor: config.borderColor,
+      borderStyle: config.borderStyle ?? "solid",
+      shadow: config.shadow,
+      background: config.background,
+      cornerRadius: config.cornerRadius,
+      flexWidth: config.width,
+      flexHeight: config.height,
+    });
+
+    this.on("widthChange heightChange", () => this._layoutBackground());
+    this._layoutBackground();
+  }
+
+  /** @internal */
+  _layoutBackground(): void {
+    const w = this.width();
+    const h = this.height();
+    this._bg.x(0);
+    this._bg.y(0);
+    this._bg.width(w);
+    this._bg.height(h);
+
+    applyBackground(this._bg, this.attrs.background as BackgroundValue | undefined, w, h);
+    applyBorder(
+      this._bg,
+      normalizeEdges(this.attrs.borderSize),
+      this.attrs.borderColor as EdgeColor | undefined,
+      this.attrs.borderStyle as "solid" | "dashed" | undefined,
+    );
+    applyShadow(this._bg, this.attrs.shadow as ShadowProps | undefined);
+    this._bg.cornerRadius(this.attrs.cornerRadius ?? 0);
+    this._bg.moveToBottom();
+  }
+}
+
+function applyBackground(
+  rect: Konva.Rect,
+  bg: BackgroundValue | undefined,
+  w: number,
+  h: number,
+): void {
+  rect.fill("");
+  rect.fillLinearGradientColorStops([]);
+  rect.fillRadialGradientColorStops([]);
+  if (bg === undefined) return;
+  if (typeof bg === "string") {
+    rect.fill(bg);
+    return;
+  }
+  const g = (bg as GradientBackground).gradient;
+  if (!g) return;
+  const stops: (number | string)[] = [];
+  for (const [pos, color] of g.stops) {
+    stops.push(pos, color);
+  }
+  if (g.type === "linear") {
+    const angle = ((g.angle ?? 0) * Math.PI) / 180;
+    const cx = w / 2;
+    const cy = h / 2;
+    const r = Math.max(w, h);
+    const dx = (Math.cos(angle) * r) / 2;
+    const dy = (Math.sin(angle) * r) / 2;
+    rect.fillLinearGradientStartPoint({ x: cx - dx, y: cy - dy });
+    rect.fillLinearGradientEndPoint({ x: cx + dx, y: cy + dy });
+    rect.fillLinearGradientColorStops(stops);
+  } else {
+    rect.fillRadialGradientStartPoint({ x: w / 2, y: h / 2 });
+    rect.fillRadialGradientEndPoint({ x: w / 2, y: h / 2 });
+    rect.fillRadialGradientStartRadius(0);
+    rect.fillRadialGradientEndRadius(Math.max(w, h) / 2);
+    rect.fillRadialGradientColorStops(stops);
+  }
+}
+
+function applyBorder(
+  rect: Konva.Rect,
+  edges: [number, number, number, number] | null,
+  color: EdgeColor | undefined,
+  style: "solid" | "dashed" | undefined,
+): void {
+  if (!edges) {
+    rect.strokeWidth(0);
+    rect.stroke("");
+    rect.dashEnabled(false);
+    return;
+  }
+  const width = Math.max(...edges);
+  rect.strokeWidth(width);
+  rect.stroke(firstColor(color) ?? "#000");
+  if (style === "dashed") {
+    rect.dash([Math.max(2, width * 2), Math.max(2, width * 1.5)]);
+    rect.dashEnabled(true);
+  } else {
+    rect.dashEnabled(false);
+  }
+}
+
+function applyShadow(rect: Konva.Rect, shadow: ShadowProps | undefined): void {
+  if (!shadow) {
+    rect.shadowEnabled(false);
+    return;
+  }
+  rect.shadowEnabled(true);
+  if (shadow.color !== undefined) rect.shadowColor(shadow.color);
+  if (shadow.blur !== undefined) rect.shadowBlur(shadow.blur);
+  if (shadow.offsetX !== undefined || shadow.offsetY !== undefined) {
+    rect.shadowOffset({ x: shadow.offsetX ?? 0, y: shadow.offsetY ?? 0 });
+  }
+  if (shadow.opacity !== undefined) rect.shadowOpacity(shadow.opacity);
+}

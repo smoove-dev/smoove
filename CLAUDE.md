@@ -15,7 +15,7 @@ composition walks its child sequences, runs their updaters, and issues one
 ## Layout
 
 ```
-packages/core       @konva-motion/core — engine. Composition + Sequence. konva is a peerDep.
+packages/core       @konva-motion/core — engine + layout. Composition, Sequence, Flex, Block, Image. konva is a peerDep; flexily is a regular dep.
 packages/timeline   @konva-motion/timeline — planned React UI components (scrubber, play button). Placeholder.
 demo                Vite + TS app, imports both via `workspace:*`
 doc                 short design + usage docs
@@ -29,9 +29,13 @@ Top-level `tsconfig.json` is a solution file; per-package `tsconfig.json` uses
 - **pnpm workspaces.** Cross-package deps use `workspace:*`. Don't add a
   package outside `packages/*` or `demo/` without updating `pnpm-workspace.yaml`.
 - **`core` extends Konva classes.** `Composition extends Konva.Stage`,
-  `Sequence extends Konva.Layer`. `konva` is a peer dep of `core`, not a
-  regular dep — consumers pin the version. The demo pins a real `konva`
-  version.
+  `Sequence extends Konva.Layer`, `Flex`/`Block`/`Image` extend `Konva.Group`.
+  `konva` is a peer dep of `core`, not a regular dep — consumers pin the
+  version. The demo pins a real `konva` version.
+- **Layout is built in.** `Flex`/`Block`/`Image` use flexily (synchronous JS
+  flexbox; no WASM/async init). `Sequence._apply` recomputes layout on any
+  top-level `Flex` child each tick, so animated sizes/gaps reflow without
+  user wiring.
 - **Agnostic runtime.** `core` reads `requestAnimationFrame` /
   `cancelAnimationFrame` / `performance.now()` off `globalThis` with
   fallbacks — importing in Node is safe. `play()` throws in non-browser;

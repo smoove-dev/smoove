@@ -4,9 +4,14 @@ import { bouncingDemo } from "./demos/bouncing.js";
 import { colorsDemo } from "./demos/colors.js";
 import { easingsDemo } from "./demos/easings.js";
 import { flexLayoutDemo } from "./demos/flex-layout.js";
+import { flexRowGrowDemo } from "./demos/flex-row-grow.js";
+import { flexShowcaseDemo } from "./demos/flex-showcase.js";
+import { flexTypewriterDemo } from "./demos/flex-typewriter.js";
+import { igStoryDemo } from "./demos/ig-story.js";
 import { imageClipDemo } from "./demos/image-clip.js";
 import { imageFadeDemo } from "./demos/image-fade.js";
 import { imageSliderDemo } from "./demos/image-slider.js";
+import { journeyDemo } from "./demos/journey.js";
 import { keyframesDemo } from "./demos/keyframes.js";
 import { staggeredDemo } from "./demos/staggered.js";
 import { transformsDemo } from "./demos/transforms.js";
@@ -15,6 +20,8 @@ import { typewriterDemo } from "./demos/typewriter.js";
 import { mountScrubber } from "./scrubber.js";
 
 const DEMOS: DemoDef[] = [
+  igStoryDemo,
+  journeyDemo,
   basicDemo,
   bouncingDemo,
   staggeredDemo,
@@ -27,6 +34,9 @@ const DEMOS: DemoDef[] = [
   imageClipDemo,
   typewriterDemo,
   flexLayoutDemo,
+  flexTypewriterDemo,
+  flexRowGrowDemo,
+  flexShowcaseDemo,
 ];
 
 const stageHost = document.getElementById("stage");
@@ -54,10 +64,12 @@ const mountDemo = (demo: DemoDef, buttonEl: HTMLButtonElement) => {
   stageHost.id = "stage";
   const slot = document.createElement("div");
   slot.id = `stage-${demo.id}`;
-  slot.style.width = "100%";
-  slot.style.height = "100%";
   stageHost.appendChild(slot);
-  const { width, height } = stageHost.getBoundingClientRect();
+  const cs = getComputedStyle(stageHost);
+  const padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+  const padY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+  const width = stageHost.clientWidth - padX;
+  const height = stageHost.clientHeight - padY;
   const comp = demo.build(slot.id, Math.max(320, width | 0), Math.max(200, height | 0));
   const disposeScrubber = mountScrubber(scrubberHost, comp);
   buttonEl.classList.add("active");

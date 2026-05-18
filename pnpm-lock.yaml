@@ -20,9 +20,6 @@ importers:
       '@konva-motion/core':
         specifier: workspace:*
         version: link:../packages/core
-      '@konva-motion/layout':
-        specifier: workspace:*
-        version: link:../packages/layout
       '@konva-motion/timeline':
         specifier: workspace:*
         version: link:../packages/timeline
@@ -42,21 +39,12 @@ importers:
       bezier-easing:
         specifier: ^2.1.0
         version: 2.1.0
+      flexily:
+        specifier: ^0.7.1
+        version: 0.7.1
       konva:
         specifier: '>=9'
         version: 9.3.22
-
-  packages/layout:
-    dependencies:
-      '@konva-motion/core':
-        specifier: workspace:*
-        version: link:../core
-      konva:
-        specifier: '>=9'
-        version: 9.3.22
-      yoga-layout:
-        specifier: ^3.2.1
-        version: 3.2.1
 
   packages/timeline: {}
 
@@ -406,6 +394,10 @@ packages:
     engines: {node: '>=12'}
     hasBin: true
 
+  flexily@0.7.1:
+    resolution: {integrity: sha512-IaDk1VUoPlp1oJUyB+smoKFsik98Rmls8oYsVWlmKxiM3eU47vF9Qvxm9t1vWs9VIW/2KQxBARPya0SYzRrxkA==}
+    engines: {bun: '>=1.0', node: '>=18.0.0'}
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -470,9 +462,6 @@ packages:
         optional: true
       terser:
         optional: true
-
-  yoga-layout@3.2.1:
-    resolution: {integrity: sha512-0LPOt3AxKqMdFBZA3HBAt/t/8vIKq7VaQYbuA8WxCgung+p9TVyKRYdpvCb80HcdTN2NkbIKbhNwKUfm3tQywQ==}
 
 snapshots:
 
@@ -685,6 +674,8 @@ snapshots:
       '@esbuild/win32-ia32': 0.21.5
       '@esbuild/win32-x64': 0.21.5
 
+  flexily@0.7.1: {}
+
   fsevents@2.3.3:
     optional: true
 
@@ -742,5 +733,3 @@ snapshots:
       rollup: 4.60.4
     optionalDependencies:
       fsevents: 2.3.3
-
-  yoga-layout@3.2.1: {}

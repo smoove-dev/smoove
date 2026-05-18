@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>konva-motion demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;600&family=Caveat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --bg: #0d1117;
@@ -31,11 +37,17 @@
       }
       .demo-btn:hover { background: rgba(255,255,255,0.05); }
       .demo-btn.active { background: rgba(78,161,255,0.15); border-color: var(--accent); color: var(--accent); }
-      #stage-wrap { display: flex; flex-direction: column; min-width: 0; }
-      #stage { flex: 1; min-height: 0; overflow: hidden; }
+      #stage-wrap { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+      #stage {
+        flex: 1; min-height: 0; overflow: hidden;
+        display: flex; align-items: center; justify-content: center;
+        padding: 32px;
+      }
+      #stage > div { box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
       #scrubber {
         border-top: 1px solid var(--border); background: var(--panel);
         padding: 12px 16px; display: flex; flex-direction: column; gap: 8px;
+        min-height: 96px;
       }
       #scrubber .row { display: flex; align-items: center; gap: 12px; }
       #scrubber button {
