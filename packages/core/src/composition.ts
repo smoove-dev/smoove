@@ -1,5 +1,6 @@
 import Konva from "konva";
 import { type Emitter, createEmitter } from "./emitter.js";
+import { type Environment, type EnvironmentMode, detectEnvironment } from "./environment.js";
 import { Flex } from "./flex.js";
 import { type ReadonlySignal, type Signal, createSignal, derived } from "./signal.js";
 
@@ -8,6 +9,8 @@ export type CompositionOptions = Konva.StageConfig & {
   fps: number;
   durationInFrames: number;
   loop?: boolean;
+  /** Force the runtime environment. Defaults to ambient detection (see `detectEnvironment`). */
+  mode?: EnvironmentMode;
 };
 
 export type SequenceOptions = Konva.LayerConfig & {
@@ -52,6 +55,7 @@ export function getComposition(stage: Konva.Stage): Composition | null {
 
 export class Composition extends Konva.Stage {
   readonly fps: number;
+  readonly environment: Environment;
   readonly frame: ReadonlySignal<number>;
   readonly isPlaying: ReadonlySignal<boolean>;
   readonly durationInFrames: ReadonlySignal<number>;
@@ -69,6 +73,12 @@ export class Composition extends Konva.Stage {
   private _startWallMs = 0;
   private _startFrame = 0;
 
+  // delayRender/continueRender gate — outstanding async work that must complete
+  // before a rendered frame is captured (Remotion's delayRender model).
+  private readonly _renderHandles = new Set<number>();
+  private _nextHandle = 0;
+  private _renderWaiters: Array<() => void> = [];
+
   constructor(opts: CompositionOptions) {
     if (!opts.id) throw new Error("Composition: id is required");
     if (!Number.isFinite(opts.fps) || opts.fps <= 0) {
@@ -78,7 +88,7 @@ export class Composition extends Konva.Stage {
       throw new Error("Composition: durationInFrames must be a positive integer");
     }
 
-    const { fps, durationInFrames, loop = false, ...stageOpts } = opts;
+    const { fps, durationInFrames, loop = false, mode, ...stageOpts } = opts;
     super(stageOpts);
 
     const marker = this as Konva.Stage & CompositionMarker;
@@ -88,6 +98,7 @@ export class Composition extends Konva.Stage {
     marker.__KonvaMotionComposition = this;
 
     this.fps = fps;
+    this.environment = detectEnvironment(mode);
 
     this._frame = createSignal(0);
     this._isPlaying = createSignal(false);
@@ -189,6 +200,42 @@ export class Composition extends Konva.Stage {
     this._applyFrame(clamped, true);
   }
 
+  /**
+   * Register an outstanding async task that must finish before the current
+   * frame is considered fully rendered — Remotion's `delayRender`. Returns a
+   * handle to clear with {@link continueRender}.
+   */
+  delayRender(_label?: string): number {
+    const handle = this._nextHandle++;
+    this._renderHandles.add(handle);
+    return handle;
+  }
+
+  /** Clear a {@link delayRender} handle; resolves `renderFrame()` once all clear. */
+  continueRender(handle: number): void {
+    if (!this._renderHandles.delete(handle)) return;
+    if (this._renderHandles.size === 0) {
+      const waiters = this._renderWaiters;
+      this._renderWaiters = [];
+      for (const resolve of waiters) resolve();
+    }
+  }
+
+  /**
+   * Apply a frame and wait until all {@link delayRender} handles registered
+   * during that application clear. This is the offline / server render
+   * entrypoint — e.g. `for (f) { await comp.renderFrame(f); capture(); }`.
+   */
+  async renderFrame(target: number): Promise<void> {
+    const clamped = Math.max(0, Math.min(this._durationInFrames.get() - 1, Math.floor(target)));
+    this._frame.set(clamped);
+    this._applyFrame(clamped, true);
+    if (this._renderHandles.size === 0) return;
+    await new Promise<void>((resolve) => {
+      this._renderWaiters.push(resolve);
+    });
+  }
+
   private _event(): CompositionEvent {
     return {
       frame: this._frame.get(),
@@ -245,11 +292,18 @@ export class Composition extends Konva.Stage {
   };
 }
 
+/** Video nodes are discovered by marker attr to keep this file independent of `video/`. */
+type VideoNode = Konva.Node & {
+  _kmTick?: (localFrame: number) => void;
+  _kmDeactivate?: () => void;
+};
+
 export class Sequence extends Konva.Layer {
   readonly from: number;
   readonly durationInFrames: number;
   private readonly _updaters = new Set<Updater>();
   private _active = false;
+  private _videos: VideoNode[] = [];
 
   constructor(opts: SequenceOptions) {
     if (!Number.isInteger(opts.from) || opts.from < 0) {
@@ -279,12 +333,17 @@ export class Sequence extends Konva.Layer {
       if (becameActive) {
         this.visible(true);
         this._active = true;
+        // Cache tickable videos once per activation — avoids a subtree walk every frame.
+        this._videos = this.find(
+          (n: Konva.Node) => n.getAttr("__kmIsVideo") === true,
+        ) as VideoNode[];
       }
       const local = frame - this.from;
       for (const u of this._updaters) u(local);
       for (const c of this.getChildren()) {
         if (c instanceof Flex) c.computeLayout();
       }
+      for (const v of this._videos) v._kmTick?.(local);
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the
       // newly-displayed layer (avoids a one-frame flash of stale content).
@@ -293,6 +352,7 @@ export class Sequence extends Konva.Layer {
     } else if (this._active) {
       this.visible(false);
       this._active = false;
+      for (const v of this._videos) v._kmDeactivate?.();
     }
   }
 }

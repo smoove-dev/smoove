@@ -17,9 +17,11 @@ import { staggeredDemo } from "./demos/staggered.js";
 import { transformsDemo } from "./demos/transforms.js";
 import type { DemoDef } from "./demos/types.js";
 import { typewriterDemo } from "./demos/typewriter.js";
+import { videoSyncDemo } from "./demos/video-sync.js";
 import { mountScrubber } from "./scrubber.js";
 
 const DEMOS: DemoDef[] = [
+  videoSyncDemo,
   igStoryDemo,
   journeyDemo,
   basicDemo,

@@ -20,6 +20,16 @@ export { Easing } from "./easing.js";
 export { Flex } from "./flex.js";
 export { Block } from "./block.js";
 export { Image } from "./image.js";
+export { Video, isVideoNode } from "./video/index.js";
+export type { VideoConfig } from "./video/types.js";
+export type { VideoSource, VideoSourceFactory } from "./video/video-source.js";
+export { BrowserVideoSource } from "./video/video-source-browser.js";
+export {
+  type Environment,
+  type EnvironmentMode,
+  detectEnvironment,
+  getEnvironment,
+} from "./environment.js";
 export type {
   Align,
   AlignSelf,
