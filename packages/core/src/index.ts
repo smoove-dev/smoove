@@ -20,6 +20,7 @@ export { Easing } from "./easing.js";
 export { Flex } from "./flex.js";
 export { Block } from "./block.js";
 export { Image } from "./image.js";
+export { AudioMixer, type AudioChannel } from "./audio/mixer.js";
 export { Video, isVideoNode } from "./video/index.js";
 export type { VideoConfig } from "./video/types.js";
 export type { VideoSource, VideoSourceFactory } from "./video/video-source.js";

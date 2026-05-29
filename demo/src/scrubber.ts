@@ -37,12 +37,43 @@ export function mountScrubber(host: HTMLElement, comp: Composition): () => void 
   slider.value = "0";
   sliderRow.append(slider);
 
-  host.append(topRow, sliderRow);
+  // ---- Audio mixer: master volume + master mute. ----
+  const audioRow = document.createElement("div");
+  audioRow.className = "row";
+
+  const muteLabel = document.createElement("label");
+  muteLabel.className = "loop";
+  const muteCheckbox = document.createElement("input");
+  muteCheckbox.type = "checkbox";
+  muteCheckbox.checked = comp.mixer.muted.get();
+  muteLabel.append(muteCheckbox, document.createTextNode(" mute"));
+
+  const volIcon = document.createElement("span");
+  volIcon.textContent = "🔊";
+
+  const volSlider = document.createElement("input");
+  volSlider.type = "range";
+  volSlider.min = "0";
+  volSlider.max = "100";
+  volSlider.step = "1";
+  volSlider.value = String(Math.round(comp.mixer.volume.get() * 100));
+
+  const volLabel = document.createElement("span");
+  volLabel.className = "frame-label";
+
+  audioRow.append(muteLabel, volIcon, volSlider, volLabel);
+
+  host.append(topRow, sliderRow, audioRow);
 
   const setLabel = (f: number) => {
     frameLabel.textContent = `frame ${f} / ${total - 1}`;
   };
   setLabel(0);
+
+  const setVolLabel = (v: number) => {
+    volLabel.textContent = `${Math.round(v * 100)}%`;
+  };
+  setVolLabel(comp.mixer.volume.get());
 
   let scrubbing = false;
 
@@ -64,6 +95,11 @@ export function mountScrubber(host: HTMLElement, comp: Composition): () => void 
     comp.setFrame(Number(slider.value));
   });
 
+  volSlider.addEventListener("input", () => {
+    comp.mixer.setVolume(Number(volSlider.value) / 100);
+  });
+  muteCheckbox.onchange = () => comp.mixer.setMuted(muteCheckbox.checked);
+
   const unsubFrame = comp.frame.subscribe((f) => {
     setLabel(f);
     if (!scrubbing) slider.value = String(f);
@@ -71,10 +107,19 @@ export function mountScrubber(host: HTMLElement, comp: Composition): () => void 
   const unsubLoop = comp.loop.subscribe((v) => {
     loopCheckbox.checked = v;
   });
+  const unsubVolume = comp.mixer.volume.subscribe((v) => {
+    setVolLabel(v);
+    volSlider.value = String(Math.round(v * 100));
+  });
+  const unsubMuted = comp.mixer.muted.subscribe((m) => {
+    muteCheckbox.checked = m;
+  });
 
   return () => {
     unsubFrame();
     unsubLoop();
+    unsubVolume();
+    unsubMuted();
     host.innerHTML = "";
   };
 }

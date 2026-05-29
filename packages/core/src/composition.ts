@@ -1,4 +1,5 @@
 import Konva from "konva";
+import { type AudioChannel, AudioMixer } from "./audio/mixer.js";
 import { type Emitter, createEmitter } from "./emitter.js";
 import { type Environment, type EnvironmentMode, detectEnvironment } from "./environment.js";
 import { Flex } from "./flex.js";
@@ -56,6 +57,8 @@ export function getComposition(stage: Konva.Stage): Composition | null {
 export class Composition extends Konva.Stage {
   readonly fps: number;
   readonly environment: Environment;
+  /** Composition-level audio bus — master volume/mute scaling every Video. */
+  readonly mixer = new AudioMixer();
   readonly frame: ReadonlySignal<number>;
   readonly isPlaying: ReadonlySignal<boolean>;
   readonly durationInFrames: ReadonlySignal<number>;
@@ -143,7 +146,14 @@ export class Composition extends Konva.Stage {
     super.add(layer, ...rest);
     const frame = this._frame.get();
     for (const l of [layer, ...rest]) {
-      if (l instanceof Sequence) l._apply(frame);
+      if (l instanceof Sequence) {
+        // Register the sequence's videos eagerly so mixer channels exist before
+        // playback (lazy fallback lives in Video._ensureDriver).
+        for (const v of l.find((n: Konva.Node) => n.getAttr("__kmIsVideo") === true)) {
+          this.mixer.register(v as unknown as AudioChannel);
+        }
+        l._apply(frame);
+      }
     }
     return this;
   }

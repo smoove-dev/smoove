@@ -1,6 +1,7 @@
 import type { Composition } from "@konva-motion/core";
 import { basicDemo } from "./demos/basic.js";
 import { bouncingDemo } from "./demos/bouncing.js";
+import { cohabitDemo } from "./demos/cohabit.js";
 import { colorsDemo } from "./demos/colors.js";
 import { easingsDemo } from "./demos/easings.js";
 import { flexLayoutDemo } from "./demos/flex-layout.js";
@@ -21,6 +22,7 @@ import { videoSyncDemo } from "./demos/video-sync.js";
 import { mountScrubber } from "./scrubber.js";
 
 const DEMOS: DemoDef[] = [
+  cohabitDemo,
   videoSyncDemo,
   igStoryDemo,
   journeyDemo,
@@ -68,8 +70,8 @@ const mountDemo = (demo: DemoDef, buttonEl: HTMLButtonElement) => {
   slot.id = `stage-${demo.id}`;
   stageHost.appendChild(slot);
   const cs = getComputedStyle(stageHost);
-  const padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
-  const padY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+  const padX = Number.parseFloat(cs.paddingLeft) + Number.parseFloat(cs.paddingRight);
+  const padY = Number.parseFloat(cs.paddingTop) + Number.parseFloat(cs.paddingBottom);
   const width = stageHost.clientWidth - padX;
   const height = stageHost.clientHeight - padY;
   const comp = demo.build(slot.id, Math.max(320, width | 0), Math.max(200, height | 0));

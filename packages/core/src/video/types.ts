@@ -12,6 +12,8 @@ export type VideoConfig = Omit<Konva.GroupConfig, "width" | "height"> &
     width?: SizeValue;
     height?: SizeValue;
     src: string;
+    /** Human label for the audio mixer channel / UIs. Defaults to {@link src}. */
+    name?: string;
     objectFit?: ObjectFit;
     objectPosition?: ObjectPosition;
     cornerRadius?: number | number[];

@@ -1,8 +1,10 @@
 import Konva from "konva";
+import type { AudioChannel, AudioMixer } from "../audio/mixer.js";
 import { getComposition } from "../composition.js";
 import { detectEnvironment, getEnvironment } from "../environment.js";
 import { parseSize } from "../flex-engine.js";
 import type { ObjectFit, ObjectPosition, SizeValue } from "../flex-types.js";
+import { type ReadonlySignal, type Signal, createSignal } from "../signal.js";
 import type { VideoDriver, VideoDriverContext, VideoTiming } from "./driver.js";
 import type { VideoConfig } from "./types.js";
 import { PreviewVideoDriver } from "./video-for-preview.js";
@@ -50,13 +52,22 @@ const VIDEO_MARK = "__kmIsVideo";
  * driven by the composition's frame clock. Picks a {@link RenderingVideoDriver}
  * or {@link PreviewVideoDriver} based on the composition's {@link Environment}.
  */
-export class Video extends Konva.Group {
+export class Video extends Konva.Group implements AudioChannel {
+  /** Human label for mixer UIs — `config.name`, falling back to `config.src`. */
+  readonly label: string;
+  /** Intrinsic audio level, 0..1 — scaled by the composition mixer's master. */
+  readonly volume: ReadonlySignal<number>;
+  readonly muted: ReadonlySignal<boolean>;
+
   private readonly _img: Konva.Image;
   private readonly _source: VideoSource;
   private readonly _trimBefore: number;
   private readonly _trimAfter?: number;
   private readonly _loop: boolean;
   private readonly _playbackRate: number;
+  private readonly _volume: Signal<number>;
+  private readonly _muted: Signal<boolean>;
+  private _mixer: AudioMixer | null = null;
   private _driver: VideoDriver | null = null;
 
   constructor(config: VideoConfig) {
@@ -67,6 +78,12 @@ export class Video extends Konva.Group {
     this._trimAfter = config.trimAfter ?? config.endAt;
     this._loop = config.loop ?? false;
     this._playbackRate = config.playbackRate ?? 1;
+
+    this.label = config.name ?? config.src;
+    this._volume = createSignal(config.volume ?? 1);
+    this._muted = createSignal(config.muted ?? false);
+    this.volume = this._volume;
+    this.muted = this._muted;
 
     this._img = new Konva.Image({ image: undefined, listening: false });
     super.add(this._img);
@@ -96,8 +113,7 @@ export class Video extends Konva.Group {
     const env = detectEnvironment();
     const factory = config.sourceFactory ?? (() => new BrowserVideoSource());
     this._source = factory(env);
-    this._source.setMuted(config.muted ?? false);
-    this._source.setVolume(config.volume ?? 1);
+    this._applyAudio(); // honor config volume/muted before a mixer is attached
     this._source.setPlaybackRate(this._playbackRate);
     this._source.onReady(() => {
       const el = this._source.element;
@@ -133,6 +149,9 @@ export class Video extends Konva.Group {
     const comp = getComposition(stage);
     if (!comp) return null;
 
+    // Lazy fallback for videos added after their sequence was registered.
+    comp.mixer.register(this);
+
     const timing: VideoTiming = {
       fps: comp.fps,
       trimBefore: this._trimBefore,
@@ -156,11 +175,28 @@ export class Video extends Konva.Group {
   }
 
   setMuted(muted: boolean): void {
-    this._source.setMuted(muted);
+    this._muted.set(muted);
+    this._applyAudio();
   }
 
   setVolume(volume: number): void {
-    this._source.setVolume(volume);
+    this._volume.set(Math.max(0, Math.min(1, volume)));
+    this._applyAudio();
+  }
+
+  /** @internal — {@link AudioMixer} hands us the bus (or null on unregister). */
+  _bindMixer(mixer: AudioMixer | null): void {
+    this._mixer = mixer;
+    this._applyAudio();
+  }
+
+  /** @internal — push effective level (master × intrinsic) to the source. */
+  _applyAudio(): void {
+    const m = this._mixer;
+    const master = m ? m.volume.get() : 1;
+    const masterMuted = m ? m.muted.get() : false;
+    this._source.setVolume(master * this._volume.get());
+    this._source.setMuted(masterMuted || this._muted.get());
   }
 
   setPlaybackRate(rate: number): void {
@@ -168,6 +204,8 @@ export class Video extends Konva.Group {
   }
 
   override destroy(): this {
+    this._mixer?.unregister(this);
+    this._mixer = null;
     this._driver?.dispose();
     this._driver = null;
     this._source.destroy();
