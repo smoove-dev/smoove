@@ -11,3 +11,9 @@ export const MEDIA_MARK = "__kmIsMedia";
 export const VIDEO_MARK = "__kmIsVideo";
 /** Additionally set by {@link Audio} — backs `isAudioNode`. */
 export const AUDIO_MARK = "__kmIsAudio";
+/**
+ * Set by non-media nodes that still want a per-frame `_kmTick` callback (e.g.
+ * {@link Text}'s typewriter). Discovered by `Sequence` alongside media, but
+ * NOT registered with the audio mixer.
+ */
+export const TICK_MARK = "__kmIsTick";

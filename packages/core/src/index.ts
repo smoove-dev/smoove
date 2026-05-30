@@ -20,6 +20,7 @@ export { Easing } from "./easing.js";
 export { Flex } from "./flex.js";
 export { Block } from "./block.js";
 export { Image } from "./image.js";
+export { Text } from "./text.js";
 export { AudioMixer, type AudioChannel } from "./audio/mixer.js";
 export { Audio, isAudioNode } from "./audio/index.js";
 export type { AudioConfig } from "./audio/types.js";
@@ -44,16 +45,21 @@ export type {
   BlockConfig,
   EdgeColor,
   EdgeValue,
+  FitConfig,
   FlexChildProps,
   FlexConfig,
   FlexDirection,
   FlexProps,
   GradientBackground,
   GradientStop,
+  HighlightConfig,
   ImageConfig,
   Justify,
   ObjectFit,
   ObjectPosition,
   ShadowProps,
   SizeValue,
+  TextAlign,
+  TextConfig,
+  TypewriterConfig,
 } from "./flex-types.js";

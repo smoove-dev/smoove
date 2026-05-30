@@ -16,6 +16,9 @@ import { imageSliderDemo } from "./demos/image-slider.js";
 import { journeyDemo } from "./demos/journey.js";
 import { keyframesDemo } from "./demos/keyframes.js";
 import { staggeredDemo } from "./demos/staggered.js";
+import { textFitDemo } from "./demos/text-fit.js";
+import { textHighlightDemo } from "./demos/text-highlight.js";
+import { textTypewriterDemo } from "./demos/text-typewriter.js";
 import { transformsDemo } from "./demos/transforms.js";
 import type { DemoDef } from "./demos/types.js";
 import { typewriterDemo } from "./demos/typewriter.js";
@@ -23,6 +26,9 @@ import { videoSyncDemo } from "./demos/video-sync.js";
 import { mountScrubber } from "./scrubber.js";
 
 const DEMOS: DemoDef[] = [
+  textFitDemo,
+  textTypewriterDemo,
+  textHighlightDemo,
   audioMixerDemo,
   cohabitDemo,
   videoSyncDemo,

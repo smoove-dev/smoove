@@ -187,6 +187,35 @@ export function setTextMeasure(node: FlexilyNode, text: Konva.Text, parentIsColu
   });
 }
 
+/**
+ * Structural view of the `Text` wrapper — typed here (rather than imported)
+ * so this leaf module stays free of a cycle through `text.ts`.
+ */
+type TextWrapper = {
+  _measureForFlex: (avail: number) => { width: number; height: number };
+};
+
+export function setTextWrapperMeasure(
+  node: FlexilyNode,
+  wrapper: TextWrapper,
+  parentIsColumn: boolean,
+): void {
+  node.setMeasureFunc((arg0, _wMode, arg2) => {
+    // Same flexily arg quirk as setTextMeasure: for a column parent the wrap
+    // width is the cross-axis (third) arg.
+    const widthCandidates = parentIsColumn ? [arg2, arg0] : [arg0, arg2];
+    let avail = 0;
+    for (const c of widthCandidates) {
+      if (Number.isFinite(c) && c > 0) {
+        avail = c;
+        break;
+      }
+    }
+    const { width, height } = wrapper._measureForFlex(avail > 0 ? avail : 1e9);
+    return { width: avail > 0 ? Math.min(width, avail) : width, height };
+  });
+}
+
 export function setImageMeasure(node: FlexilyNode, image: Konva.Image): void {
   const src = image.image() as HTMLImageElement | HTMLCanvasElement | undefined;
   let w = 0;

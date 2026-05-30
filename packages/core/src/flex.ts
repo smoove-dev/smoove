@@ -9,9 +9,11 @@ import {
   parseSize,
   setImageMeasure,
   setTextMeasure,
+  setTextWrapperMeasure,
 } from "./flex-engine.js";
 import type { FlexChildProps, FlexConfig, FlexProps, SizeValue } from "./flex-types.js";
 import { Image as KMImage } from "./image.js";
+import { Text as KMText } from "./text.js";
 
 const FLEX_KEYS = [
   "flexDirection",
@@ -107,7 +109,10 @@ export function buildChildren(
   pairs: Pair[],
   parentDirection = "row",
 ): void {
-  const laidOut = children.filter((c) => !c.attrs.__blockBg);
+  // Skip the Block background rect and any hidden child (display:none semantics —
+  // an invisible node takes no layout space, so staggered/toggled children don't
+  // leave gaps).
+  const laidOut = children.filter((c) => !c.attrs.__blockBg && c.visible() !== false);
   const parentIsColumn = parentDirection.startsWith("column");
   laidOut.forEach((child, i) => {
     const node = FlexilyNode.create();
@@ -121,6 +126,19 @@ export function buildChildren(
       pairs.push({ konva: child, flex: node, isContainer: true });
     } else if (child instanceof KMImage) {
       applySize(node, child.attrs.flexWidth, child.attrs.flexHeight);
+      pairs.push({ konva: child, flex: node, isContainer: true });
+    } else if (child instanceof KMText) {
+      // Wrapper text: intrinsic size comes from measuring (fit/clamp aware).
+      if (
+        child.attrs.flexWidth === undefined &&
+        child.attrs.maxWidth === undefined &&
+        parentIsColumn
+      ) {
+        node.setWidthPercent(100);
+      } else {
+        applySize(node, child.attrs.flexWidth, undefined);
+      }
+      setTextWrapperMeasure(node, child, parentIsColumn);
       pairs.push({ konva: child, flex: node, isContainer: true });
     } else if (child instanceof Konva.Text) {
       if (child.attrs.flexWidth === undefined && parentIsColumn) node.setWidthPercent(100);
@@ -156,6 +174,7 @@ export function writeBack(pairs: Pair[]): void {
       konva.height(h);
       if (konva instanceof Block) konva._layoutBackground();
       else if (konva instanceof KMImage) konva._layoutImage();
+      else if (konva instanceof KMText) konva._layoutText();
     } else if (konva instanceof Konva.Text) {
       if (konva.attrs.wrap === undefined) konva.wrap("word");
       konva.width(w);

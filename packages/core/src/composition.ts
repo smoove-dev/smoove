@@ -5,7 +5,7 @@ import { Block } from "./block.js";
 import { type Emitter, createEmitter } from "./emitter.js";
 import { type Environment, type EnvironmentMode, detectEnvironment } from "./environment.js";
 import { Flex } from "./flex.js";
-import { MEDIA_MARK } from "./media-marker.js";
+import { MEDIA_MARK, TICK_MARK } from "./media-marker.js";
 import { type ReadonlySignal, type Signal, createSignal, derived } from "./signal.js";
 
 export type CompositionOptions = Konva.StageConfig & {
@@ -369,15 +369,21 @@ export class Sequence extends Konva.Layer {
       if (becameActive) {
         this.visible(true);
         this._active = true;
-        // Cache tickable media once per activation — avoids a subtree walk every frame.
-        this._media = this.find((n: Konva.Node) => n.getAttr(MEDIA_MARK) === true) as MediaNode[];
+        // Cache tickable nodes once per activation — avoids a subtree walk every
+        // frame. Includes media (video/audio) plus non-media tickers (Text typewriter).
+        this._media = this.find(
+          (n: Konva.Node) => n.getAttr(MEDIA_MARK) === true || n.getAttr(TICK_MARK) === true,
+        ) as MediaNode[];
       }
       const local = frame - this.from;
       for (const u of this._updaters) u(local);
+      // Tick BEFORE layout: a ticked node may change its measured size (e.g. a
+      // Text typewriter revealing another line), and the flex pass must see the
+      // up-to-date size this frame rather than lagging one behind.
+      for (const v of this._media) v._kmTick?.(local);
       for (const c of this.getChildren()) {
         if (c instanceof Flex || c instanceof Block) c.computeLayout();
       }
-      for (const v of this._media) v._kmTick?.(local);
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the
       // newly-displayed layer (avoids a one-frame flash of stale content).
