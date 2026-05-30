@@ -8,6 +8,7 @@ import type {
   ShadowProps,
   SizeValue,
 } from "./flex-types.js";
+import { layoutRoot } from "./flex.js";
 
 const BLOCK_KEYS = [
   "flexDirection",
@@ -84,6 +85,17 @@ export class Block extends Konva.Group {
     });
 
     this.on("widthChange heightChange", () => this._layoutBackground());
+    this._layoutBackground();
+  }
+
+  /**
+   * Lay this Block out as a standalone Flexily root, sizing it to its children
+   * (hug) or to its explicit width/height, then restyle the background. Called
+   * by Sequence each frame for direct-child Blocks; nested Blocks are laid out
+   * by their parent Flex instead.
+   */
+  computeLayout(): void {
+    layoutRoot(this, true);
     this._layoutBackground();
   }
 

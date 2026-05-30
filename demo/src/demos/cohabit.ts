@@ -1,4 +1,13 @@
-import { Audio, Composition, Easing, Sequence, Video, interpolate } from "@konva-motion/core";
+import {
+  Audio,
+  Block,
+  Composition,
+  Easing,
+  Sequence,
+  type ShadowProps,
+  Video,
+  interpolate,
+} from "@konva-motion/core";
 import Konva from "konva";
 import vo1Url from "../files/film/VO1.wav";
 import vo2Url from "../files/film/VO2.wav";
@@ -308,36 +317,69 @@ function addCaption(
   });
 }
 
+/**
+ * A "bubble": a single core `Block` whose background hugs (or, with `width`,
+ * wraps) a `Konva.Text` child — CSS-style text + box in one element. The Block
+ * lays itself out each frame once added to a Sequence, so the background tracks
+ * the wrapped text automatically.
+ */
+function makeBubble(
+  text: string,
+  opts: {
+    fontSize?: number;
+    weight?: string;
+    color?: string;
+    background?: string;
+    width?: number;
+    padX?: number;
+    padY?: number;
+    lineHeight?: number;
+    cornerRadius?: number | number[];
+    shadow?: ShadowProps;
+  } = {},
+): Block {
+  const padX = opts.padX ?? 30;
+  const padY = opts.padY ?? 20;
+  const txt = new Konva.Text({
+    text,
+    fontFamily: FONT,
+    fontSize: opts.fontSize ?? 34,
+    fontStyle: opts.weight ?? "500",
+    fill: opts.color ?? "#5b6472",
+    lineHeight: opts.lineHeight ?? 1.2,
+  });
+  // Column direction routes the text through the engine's wrap path (text gets
+  // width:100% of the content box). With an explicit `width` the text wraps to
+  // it and the Block height hugs the wrapped lines; without one, hug the text's
+  // natural single-line width (+epsilon avoids an off-by-one re-wrap).
+  const width = opts.width ?? Math.ceil(txt.width()) + padX * 2 + 2;
+  const bubble = new Block({
+    width,
+    flexDirection: "column",
+    padding: [padY, padX],
+    background: opts.background,
+    cornerRadius: opts.cornerRadius,
+    shadow: opts.shadow,
+  });
+  bubble.add(txt);
+  return bubble;
+}
+
 /** A rounded accent "chip" with white text, sized to its label. */
-function makeChip(label: string, size = 44): { group: Konva.Group; width: number } {
+function makeChip(label: string, size = 44): { group: Block; width: number } {
   const padX = 40;
   const padY = 24;
-  const txt = new Konva.Text({
-    text: label,
-    fontFamily: FONT,
+  const group = makeBubble(label, {
     fontSize: size,
-    fontStyle: "600",
-    fill: WHITE,
+    weight: "600",
+    color: WHITE,
+    background: ACCENT,
+    padX,
+    padY,
+    cornerRadius: (size + padY * 2) / 2,
+    shadow: { color: ACCENT_DARK, blur: 30, opacity: 0.5, offsetY: 10 },
   });
-  const w = txt.width() + padX * 2;
-  const h = size + padY * 2;
-  const group = new Konva.Group();
-  const rect = new Konva.Rect({
-    x: 0,
-    y: 0,
-    width: w,
-    height: h,
-    cornerRadius: h / 2,
-    fill: ACCENT,
-    shadowColor: ACCENT_DARK,
-    shadowBlur: 30,
-    shadowOpacity: 0.5,
-    shadowOffset: { x: 0, y: 10 },
-  });
-  txt.x(padX);
-  txt.y(padY);
-  group.add(rect, txt);
-  return { group, width: w };
+  return { group, width: group.width() };
 }
 
 // ── Logo (typographic wordmark + simple building mark) ─────────────────────
@@ -474,50 +516,34 @@ export const cohabitDemo: DemoDef = {
 
     // s1b overwhelm: floating chat bubbles drifting up + fading.
     {
-      const bubbles: { text: string; x: number; y: number; delay: number }[] = [
+      const bubbles: { text: string; x: number; y: number; delay: number; width?: number }[] = [
         { text: "Dues?", x: 0.18, y: 0.55, delay: 6 },
         { text: "Leak again", x: 0.36, y: 0.68, delay: 18 },
         { text: "Meeting?", x: 0.6, y: 0.5, delay: 30 },
-        { text: "Who's paying?", x: 0.5, y: 0.74, delay: 42 },
+        { text: "Who's paying for\nthe plumber?", x: 0.46, y: 0.82, delay: 42 },
       ];
       const dur = S1C - S1B;
       for (const b of bubbles) {
-        const txt = new Konva.Text({
-          text: b.text,
-          fontFamily: FONT,
-          fontSize: 34,
-          fontStyle: "500",
-          fill: "#5b6472",
+        // One core Block per bubble: background hugs the text, or wraps it when
+        // a width is given (the long one below breaks onto multiple lines).
+        const bubble = makeBubble(b.text, {
+          width: b.width,
+          background: "rgba(255,255,255,0.92)",
+          cornerRadius: [34, 34, 34, 6],
+          shadow: { color: "#000", blur: 20, opacity: 0.18, offsetY: 6 },
         });
-        const padX = 30;
-        const padY = 20;
-        const bw = txt.width() + padX * 2;
-        const bh = 34 + padY * 2;
-        const group = new Konva.Group({ x: b.x * W, y: b.y * H });
-        const rect = new Konva.Rect({
-          width: bw,
-          height: bh,
-          cornerRadius: [bh / 2, bh / 2, bh / 2, 6],
-          fill: WHITE,
-          opacity: 0.88,
-          shadowColor: "#000",
-          shadowBlur: 20,
-          shadowOpacity: 0.18,
-          shadowOffset: { x: 0, y: 6 },
-        });
-        txt.x(padX);
-        txt.y(padY);
-        group.add(rect, txt);
-        s1bSeq.add(group);
-        const baseY = group.y();
+        bubble.x(b.x * W);
+        bubble.y(b.y * H);
+        s1bSeq.add(bubble);
+        const baseY = bubble.y();
         s1bSeq.register((f) => {
           const t = clamp01((f - b.delay) / (dur - b.delay));
           const e = easeOut(t);
           // drift up ~120px over its life, fade in then out.
-          group.y(baseY - e * 120);
+          bubble.y(baseY - e * 120);
           const fadeIn = clamp01((f - b.delay) / 12);
           const fadeOut = 1 - clamp01((f - (dur - 18)) / 18);
-          group.opacity(fadeIn * fadeOut);
+          bubble.opacity(fadeIn * fadeOut);
         });
       }
     }

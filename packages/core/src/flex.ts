@@ -56,24 +56,37 @@ export class Flex extends Konva.Group {
   }
 
   computeLayout(): void {
-    const w = readPixelSize(this.attrs.flexWidth, this.width());
-    const h = readPixelSize(this.attrs.flexHeight, this.height());
-
-    const root = FlexilyNode.create();
-    applyContainerProps(root, this.attrs as FlexProps);
-    if (w > 0) root.setWidth(w);
-    if (h > 0) root.setHeight(h);
-
-    const pairs: Pair[] = [];
-    buildChildren(this.getChildren(), root, pairs, this.attrs.flexDirection ?? "row");
-
-    root.calculateLayout(w > 0 ? w : undefined, h > 0 ? h : undefined, DIRECTION_LTR);
-
-    if (w > 0) this.width(root.getComputedWidth());
-    if (h > 0) this.height(root.getComputedHeight());
-    writeBack(pairs);
-    root.freeRecursive();
+    layoutRoot(this, false);
   }
+}
+
+/**
+ * Lay out a Konva.Group as a Flexily root: build the layout tree from the
+ * group's attrs + children, compute, and write positions/sizes back.
+ *
+ * When `alwaysSetSize` is true the group's own width/height are always pulled
+ * from the computed content size — needed for a hug-content root that draws a
+ * background (Block) so the background isn't 0×0. Flex passes false, preserving
+ * its behavior of only writing self-size when an explicit px size is given.
+ */
+export function layoutRoot(group: Konva.Group, alwaysSetSize: boolean): void {
+  const w = readPixelSize(group.attrs.flexWidth, group.width());
+  const h = readPixelSize(group.attrs.flexHeight, group.height());
+
+  const root = FlexilyNode.create();
+  applyContainerProps(root, group.attrs as FlexProps);
+  if (w > 0) root.setWidth(w);
+  if (h > 0) root.setHeight(h);
+
+  const pairs: Pair[] = [];
+  buildChildren(group.getChildren(), root, pairs, group.attrs.flexDirection ?? "row");
+
+  root.calculateLayout(w > 0 ? w : undefined, h > 0 ? h : undefined, DIRECTION_LTR);
+
+  if (alwaysSetSize || w > 0) group.width(root.getComputedWidth());
+  if (alwaysSetSize || h > 0) group.height(root.getComputedHeight());
+  writeBack(pairs);
+  root.freeRecursive();
 }
 
 type Pair = {

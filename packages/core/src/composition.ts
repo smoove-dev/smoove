@@ -1,6 +1,7 @@
 import Konva from "konva";
 import type { AudioAsset } from "./audio/asset.js";
 import { type AudioChannel, AudioMixer } from "./audio/mixer.js";
+import { Block } from "./block.js";
 import { type Emitter, createEmitter } from "./emitter.js";
 import { type Environment, type EnvironmentMode, detectEnvironment } from "./environment.js";
 import { Flex } from "./flex.js";
@@ -374,7 +375,7 @@ export class Sequence extends Konva.Layer {
       const local = frame - this.from;
       for (const u of this._updaters) u(local);
       for (const c of this.getChildren()) {
-        if (c instanceof Flex) c.computeLayout();
+        if (c instanceof Flex || c instanceof Block) c.computeLayout();
       }
       for (const v of this._media) v._kmTick?.(local);
       // Draw synchronously the frame in which a sequence becomes visible — this
