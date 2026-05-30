@@ -1,11 +1,4 @@
-import {
-  Block,
-  Composition,
-  Easing,
-  Image,
-  Sequence,
-  interpolate,
-} from "@konva-motion/core";
+import { Block, Composition, Easing, Image, Sequence, interpolate } from "@konva-motion/core";
 import Konva from "konva";
 import type { DemoDef } from "./types.js";
 
@@ -144,9 +137,7 @@ const SCENES: Scene[] = [
     heroOpacity: 0.55,
     layout: "stack",
     topLabel: { text: "INHALE · EXHALE", font: F_MONO, color: "#a7f3d0" },
-    words: [
-      { text: "breathe", color: "#fff", font: F_SERIF, size: 120, italic: true },
-    ],
+    words: [{ text: "breathe", color: "#fff", font: F_SERIF, size: 120, italic: true }],
     caption: { text: "you're doing amazing sweetie", font: F_HAND, color: "#a7f3d0", size: 30 },
     stickers: [
       { emoji: "🌿", x: 0.12, y: 0.22, size: 64, rot: -20 },
@@ -185,7 +176,12 @@ const SCENES: Scene[] = [
       { text: "NIGHT", color: "#fff", font: F_DISPLAY, size: 130 },
       { text: "MODE", color: "#fbbf24", font: F_DISPLAY, size: 130, italic: true },
     ],
-    caption: { text: "city lights · headphones · thoughts", font: F_HAND, color: "#a5b4fc", size: 26 },
+    caption: {
+      text: "city lights · headphones · thoughts",
+      font: F_HAND,
+      color: "#a5b4fc",
+      size: 26,
+    },
     stickers: [
       { emoji: "🌙", x: 0.85, y: 0.15, size: 72, rot: 12 },
       { emoji: "⭐", x: 0.15, y: 0.2, size: 50, rot: -15 },
@@ -390,10 +386,19 @@ const buildScene = (
       const s = interpolate(f, [0, SCENE], [1.04, 1.18], { easing: easeInOut });
       heroNode.scaleX(s);
       heroNode.scaleY(s);
-      const heroA = (scene.heroOpacity ?? 0.5) *
+      const heroA =
+        (scene.heroOpacity ?? 0.5) *
         Math.min(
-          interpolate(f, [0, 18], [0, 1], { easing: easeOut, extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
-          interpolate(f, [SCENE - 24, SCENE], [1, 0], { easing: easeIn, extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+          interpolate(f, [0, 18], [0, 1], {
+            easing: easeOut,
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          }),
+          interpolate(f, [SCENE - 24, SCENE], [1, 0], {
+            easing: easeIn,
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          }),
         );
       heroNode.opacity(heroA);
     }
@@ -410,7 +415,11 @@ const buildScene = (
       topLabelNode.text(full.slice(0, n));
       const labelA = Math.min(
         interpolate(f, [6, 30], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
-        interpolate(f, [SCENE - 24, SCENE], [1, 0], { easing: easeIn, extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+        interpolate(f, [SCENE - 24, SCENE], [1, 0], {
+          easing: easeIn,
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        }),
       );
       topLabelNode.opacity(labelA);
     }
@@ -504,10 +513,7 @@ const buildScene = (
       node.offsetX(width / 2);
       node.offsetY(baseSize / 2);
       const baseX = width / 2 + dx;
-      const baseY =
-        node.y() === 0
-          ? height / 2
-          : node.y();
+      const baseY = node.y() === 0 ? height / 2 : node.y();
       // Compute baseY once from stored attribute on node.
       const storedY = (node as Konva.Text & { _baseY?: number })._baseY;
       const by = storedY ?? node.y();
@@ -530,8 +536,16 @@ const buildScene = (
     // Caption.
     if (captionNode) {
       const a = Math.min(
-        interpolate(f, [60, 100], [0, 1], { easing: easeOut, extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
-        interpolate(f, [SCENE - 30, SCENE], [1, 0], { easing: easeIn, extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+        interpolate(f, [60, 100], [0, 1], {
+          easing: easeOut,
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        }),
+        interpolate(f, [SCENE - 30, SCENE], [1, 0], {
+          easing: easeIn,
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        }),
       );
       captionNode.opacity(a);
       const bob = Math.sin((f / SCENE) * Math.PI * 8) * 4;

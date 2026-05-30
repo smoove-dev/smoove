@@ -1,11 +1,4 @@
-import {
-  Block,
-  Composition,
-  Easing,
-  Image,
-  Sequence,
-  interpolate,
-} from "@konva-motion/core";
+import { Block, Composition, Easing, Image, Sequence, interpolate } from "@konva-motion/core";
 import Konva from "konva";
 import type { DemoDef } from "./types.js";
 
@@ -439,25 +432,17 @@ export const journeyDemo: DemoDef = {
         extrapolateLeft: "clamp",
         extrapolateRight: "clamp",
       });
-      const barOut = interpolate(
-        frame,
-        [TOTAL_DURATION - 30, TOTAL_DURATION],
-        [0, letterboxH],
-        {
-          easing: Easing.in(Easing.cubic),
-          extrapolateLeft: "clamp",
-          extrapolateRight: "clamp",
-        },
-      );
+      const barOut = interpolate(frame, [TOTAL_DURATION - 30, TOTAL_DURATION], [0, letterboxH], {
+        easing: Easing.in(Easing.cubic),
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      });
       const off = Math.max(barIn, barOut);
       topBar.y(-off);
       bottomBar.y(height - letterboxH + off);
 
       timecode.text(formatTimecode(frame, comp.fps, TOTAL_DURATION));
-      const chapterIdx = Math.min(
-        CHAPTERS.length - 1,
-        Math.floor(frame / CHAPTER_DURATION),
-      );
+      const chapterIdx = Math.min(CHAPTERS.length - 1, Math.floor(frame / CHAPTER_DURATION));
       chapterReadout.text(
         `${String(chapterIdx + 1).padStart(2, "0")} / ${String(CHAPTERS.length).padStart(2, "0")}`,
       );

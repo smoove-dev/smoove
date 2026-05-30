@@ -1,22 +1,32 @@
-import { Composition, Easing, Sequence, Video, interpolate } from "@konva-motion/core";
+import { Audio, Composition, Easing, Sequence, Video, interpolate } from "@konva-motion/core";
 import Konva from "konva";
+import vo1Url from "../files/film/VO1.wav";
+import vo2Url from "../files/film/VO2.wav";
+import vo3Url from "../files/film/VO3.wav";
+import vo4Url from "../files/film/VO4.wav";
+import s1Music from "../files/film/s1-audio.mp3";
 import s1aUrl from "../files/film/s1a.mp4";
 import s1bUrl from "../files/film/s1b.mp4";
 import s1cUrl from "../files/film/s1c.mp4";
+import s2Music from "../files/film/s2-audio.mp3";
 import s2aUrl from "../files/film/s2a.mp4";
 import s2bUrl from "../files/film/s2b.mp4";
 import s2cUrl from "../files/film/s2c.mp4";
 import s3aUrl from "../files/film/s3a.mp4";
 import s3bUrl from "../files/film/s3b.mp4";
 import s3cUrl from "../files/film/s3c.mp4";
+import s4Music from "../files/film/s4-audio.mp3";
 import s4aUrl from "../files/film/s4a.mp4";
 import s4bUrl from "../files/film/s4b.mp4";
 import s4cUrl from "../files/film/s4c.mp4";
+import whooshAUrl from "../files/film/whoosh-a.mp3";
+import whooshBUrl from "../files/film/whoosh-b.mp3";
 import type { DemoDef } from "./types.js";
 
 // ─────────────────────────────────────────────────────────────────────────
-// Cohabit — Director's Edit Brief. 1920×1080, 30fps, ~32s.
-// Intro logo → Scene 1 (problem) → 2 (solution) → 3 (in action) → 4 (payoff).
+// Cohabit — Director's Edit Brief. 1920×1080, 30fps, ~34s.
+// COLD OPEN on Scene 1 (problem) → 2 (solution) → 3 (in action) →
+// 4 (payoff) + relocated logo reveal as the END CARD. No intro logo.
 // ─────────────────────────────────────────────────────────────────────────
 
 const FPS = 30;
@@ -37,33 +47,62 @@ const SAFE_X = 150;
 const LT_Y = Math.round(H * 0.72);
 
 // ── Timeline (frames) ──────────────────────────────────────────────────────
-const INTRO = sec(2); // 0..60
+// Cold open — no intro. Scene 1 starts on frame 0.
 // Scene 1 — 8s, three clips
-const S1A = INTRO; // 60
-const S1B = S1A + sec(2.67); // 140
-const S1C = S1B + sec(2.67); // 220
-const S1_END = S1C + sec(2.66); // 300
+const S1A = 0; // 0
+const S1B = S1A + sec(2.67); // 80
+const S1C = S1B + sec(2.67); // 160
+const S1_END = sec(8); // 240
 // Scene 2 — 8s
-const S2A = S1_END; // 300
-const S2B = S2A + sec(2.67); // 380
-const S2C = S2B + sec(2.67); // 460
-const S2_END = S2C + sec(2.66); // 540
+const S2A = S1_END; // 240
+const S2B = S2A + sec(2.67); // 320
+const S2C = S2B + sec(2.67); // 400
+const S2_END = sec(16); // 480
 // Scene 3 — 8s, faster cuts
-const S3A = S2_END; // 540
-const S3B = S3A + sec(2.67); // 620
-const S3C = S3B + sec(2.67); // 700
-const S3_END = S3C + sec(2.66); // 780
-// Scene 4 — 6s
-const S4A = S3_END; // 780
-const S4B = S4A + sec(1.8); // 834
-const S4C = S4B + sec(1.8); // 888
-const TOTAL = sec(32); // 960
+const S3A = S2_END; // 480
+const S3B = S3A + sec(2.67); // 560
+const S3C = S3B + sec(2.67); // 640
+const S3_END = sec(24); // 720
+// Scene 4 + outro — ~10s (the relocated logo reveal lands on s4c)
+const S4A = S3_END; // 720
+const S4B = S4A + sec(2.5); // 795
+const S4C = S4B + sec(2.5); // 870
+const TOTAL = S4C + sec(5); // 1020 — 1.5s logo reveal + 2s hold + 1.5s fade
+
+// ── Audio levels ─────────────────────────────────────────────────────────
+// dB → linear gain. The brief specs everything in dB; convert once here.
+const db = (d: number) => 10 ** (d / 20);
+const CLIP_18 = db(-2); // s1/s4 clip audio — room-tone texture only
+const CLIP_12 = db(-4); // s3 clip audio — good-vibe chatter sells the energy
+const DUCK_6 = db(-6); // anything under a live VO line
+const DUCK_3 = db(-3); // music dip so the big whoosh-a hit lands
+const MUSIC_BASE = 0.75; // music bed nominal level (pre-duck)
+
+// VO windows (global frames). Sized from the real clip lengths.
+const VO = {
+  v1: { from: 15, to: 15 + sec(6.44) }, // over s1a/s1b
+  v2: { from: 325, to: 325 + sec(4.24) }, // over s2b/s2c
+  v3: { from: 500, to: 500 + sec(6.48) }, // across scene 3
+  v4: { from: 792, to: 792 + sec(4.16) }, // over s4b
+} as const;
+
+const voActive = (f: number) => Object.values(VO).some((w) => f >= w.from && f < w.to);
+/** −6 dB under any live VO line. */
+const voDuck = (f: number) => (voActive(f) ? DUCK_3 : 1);
+/** Music also dips −3 dB across the whoosh-a peak on the s1c→s2a hit. */
+const whooshDip = (f: number) =>
+  interpolate(f, [S2A - 8, S2A - 2, S2A + 10], [1, DUCK_3, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+const musicDuck = (f: number) => Math.min(voDuck(f), whooshDip(f));
 
 const easeOut = Easing.out(Easing.cubic);
 const easeInOut = Easing.inOut(Easing.cubic);
 const easeBack = Easing.out(Easing.back(1.6));
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+const CLAMP = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 /** Fade + rise: enters fading up from `rise`px below, exits fading out. */
 function fadeRise(
@@ -123,12 +162,15 @@ type ClipOpts = {
   fadeOut?: number;
   /** Slow push-in for a touch of life. */
   kenBurns?: boolean;
+  /** Original clip-audio level (linear). Omit → muted. Ducks −6 dB under VO. */
+  clipVol?: number;
 };
 
 function addClip(comp: Composition, o: ClipOpts): Sequence {
   const dur = o.to - o.from;
   const seq = new Sequence({ from: o.from, durationInFrames: dur });
 
+  const muted = o.clipVol === undefined;
   const group = new Konva.Group({ x: 0, y: 0 });
   const video = new Video({
     src: o.src,
@@ -139,7 +181,8 @@ function addClip(comp: Composition, o: ClipOpts): Sequence {
     height: H,
     objectFit: "cover",
     objectPosition: "center",
-    muted: false,
+    muted,
+    volume: o.clipVol ?? 0,
   });
   group.add(video);
   seq.add(group);
@@ -156,6 +199,9 @@ function addClip(comp: Composition, o: ClipOpts): Sequence {
     }
     seq.opacity(alpha);
 
+    // Clip audio is background texture — duck it whenever a VO line speaks.
+    if (!muted) video.setVolume((o.clipVol ?? 0) * voDuck(o.from + f));
+
     if (o.kenBurns) {
       const s = interpolate(f, [0, dur], [1.06, 1.14], { easing: easeInOut });
       group.scaleX(s);
@@ -167,6 +213,65 @@ function addClip(comp: Composition, o: ClipOpts): Sequence {
 
   comp.add(seq);
   return seq;
+}
+
+// ── Audio helpers ──────────────────────────────────────────────────────────
+/** A music stem with per-frame volume automation (crossfades + ducking). */
+function addMusic(
+  comp: Composition,
+  o: {
+    src: string;
+    name: string;
+    from: number;
+    to: number;
+    trimBefore?: number;
+    curve: (g: number) => number;
+  },
+): void {
+  const seq = new Sequence({ from: o.from, durationInFrames: o.to - o.from });
+  const music = new Audio({
+    id: o.name,
+    name: o.name,
+    src: o.src,
+    trimBefore: o.trimBefore,
+    volume: 0,
+  });
+  seq.add(music);
+  seq.register((f) => {
+    const g = o.from + f;
+    music.setVolume(o.curve(g) * musicDuck(g));
+  });
+  comp.add(seq);
+}
+
+/** A one-shot SFX hit at a fixed level. */
+function addSfx(
+  comp: Composition,
+  o: { src: string; name: string; from: number; dur: number; volume: number },
+): void {
+  const seq = new Sequence({ from: o.from, durationInFrames: o.dur });
+  seq.add(new Audio({ id: `${o.name}-${o.from}`, name: o.name, src: o.src, volume: o.volume }));
+  comp.add(seq);
+}
+
+/** A voiceover line — top of the mix, with short fades at its edges. */
+function addVo(
+  comp: Composition,
+  o: { src: string; name: string; from: number; to: number },
+): void {
+  const dur = o.to - o.from;
+  const seq = new Sequence({ from: o.from, durationInFrames: dur });
+  const vo = new Audio({ id: o.name, name: o.name, src: o.src, volume: 0 });
+  seq.add(vo);
+  seq.register((f) => {
+    vo.setVolume(
+      interpolate(f, [0, 5, dur - 8, dur], [0, 1, 1, 0], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      }),
+    );
+  });
+  comp.add(seq);
 }
 
 // ── Text helpers ─────────────────────────────────────────────────────────
@@ -308,7 +413,7 @@ function makeLogo(scale = 1, wordColor: string = INK): Konva.Group {
 // ── Build ──────────────────────────────────────────────────────────────────
 export const cohabitDemo: DemoDef = {
   id: "cohabit",
-  name: "Cohabit · 32s",
+  name: "Cohabit · 34s",
   build(container, width, height) {
     const comp = new Composition({
       id: "cohabit",
@@ -329,15 +434,32 @@ export const cohabitDemo: DemoDef = {
     }
 
     // ── Scene 1 — The Problem (cool, desaturated "before") ──
-    addClip(comp, { from: S1A, to: S1B, src: s1aUrl, name: "s1a", grade: "cool", kenBurns: true });
+    // Clip audio kept at −18 dB: ambient texture under VO + music.
+    addClip(comp, {
+      from: S1A,
+      to: S1B,
+      src: s1aUrl,
+      name: "s1a",
+      grade: "cool",
+      kenBurns: true,
+      clipVol: CLIP_18,
+    });
     const s1bSeq = addClip(comp, {
       from: S1B,
       to: S1C,
       src: s1bUrl,
       name: "s1b",
       grade: "cool",
+      clipVol: CLIP_18,
     });
-    addClip(comp, { from: S1C, to: S1_END, src: s1cUrl, name: "s1c", grade: "cool" });
+    addClip(comp, {
+      from: S1C,
+      to: S1_END,
+      src: s1cUrl,
+      name: "s1c",
+      grade: "cool",
+      clipVol: CLIP_18,
+    });
 
     // s1a headline.
     {
@@ -402,6 +524,7 @@ export const cohabitDemo: DemoDef = {
     // s1c: no text — let the sigh breathe.
 
     // ── Scene 2 — The Solution (bright/warm relief) ──
+    // ALL clip audio MUTED (omit clipVol) — only music + VO carry this scene.
     addClip(comp, {
       from: S2A,
       to: S2B,
@@ -501,9 +624,31 @@ export const cohabitDemo: DemoDef = {
     }
 
     // ── Scene 3 — In Action (warm, golden, lively) ──
-    addClip(comp, { from: S3A, to: S3B, src: s3aUrl, name: "s3a", grade: "warm" });
-    addClip(comp, { from: S3B, to: S3C, src: s3bUrl, name: "s3b", grade: "warm" });
-    addClip(comp, { from: S3C, to: S3_END, src: s3cUrl, name: "s3c", grade: "warm" });
+    // Clip audio kept at −12 dB: the good-vibe chatter adds life and energy.
+    addClip(comp, {
+      from: S3A,
+      to: S3B,
+      src: s3aUrl,
+      name: "s3a",
+      grade: "warm",
+      clipVol: CLIP_12,
+    });
+    addClip(comp, {
+      from: S3B,
+      to: S3C,
+      src: s3bUrl,
+      name: "s3b",
+      grade: "warm",
+      clipVol: CLIP_12,
+    });
+    addClip(comp, {
+      from: S3C,
+      to: S3_END,
+      src: s3cUrl,
+      name: "s3c",
+      grade: "warm",
+      clipVol: CLIP_12,
+    });
 
     // Benefit chips — same screen position, slide up from bottom + fade.
     const chips = [
@@ -540,9 +685,24 @@ export const cohabitDemo: DemoDef = {
       grade: "bright",
       fadeIn: XF,
       kenBurns: true,
+      clipVol: CLIP_18,
     });
-    addClip(comp, { from: S4B, to: S4C, src: s4bUrl, name: "s4b", grade: "bright" });
-    addClip(comp, { from: S4C, to: TOTAL, src: s4cUrl, name: "s4c", grade: "bright" });
+    addClip(comp, {
+      from: S4B,
+      to: S4C,
+      src: s4bUrl,
+      name: "s4b",
+      grade: "bright",
+      clipVol: CLIP_18,
+    });
+    addClip(comp, {
+      from: S4C,
+      to: TOTAL,
+      src: s4cUrl,
+      name: "s4c",
+      grade: "bright",
+      clipVol: 0,
+    });
 
     // s4b: soft tagline.
     {
@@ -577,6 +737,20 @@ export const cohabitDemo: DemoDef = {
       logo.x(W / 2);
       logo.y(Math.round(H * 0.3));
       seq.add(logo);
+
+      // Accent line drawing left-to-right under the logo — the original intro
+      // animation, now landing here as the final beat.
+      const lineFull = 420;
+      const lineY = Math.round(H * 0.3) + 96;
+      const line = new Konva.Rect({
+        x: W / 2 - lineFull / 2,
+        y: lineY,
+        width: 0,
+        height: 5,
+        cornerRadius: 3,
+        fill: ACCENT,
+      });
+      seq.add(line);
 
       const tagline = new Konva.Text({
         x: 0,
@@ -632,6 +806,16 @@ export const cohabitDemo: DemoDef = {
         logo.scaleY(s);
         logo.opacity(e);
 
+        // line draws once the logo has settled (frames 18..40).
+        const lw = interpolate(f, [18, 40], [0, lineFull], {
+          easing: easeOut,
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        });
+        line.width(lw);
+        line.x(W / 2 - lw / 2);
+        line.opacity(e);
+
         const tag = fadeRise(f, 14, 9999, { rise: 8 });
         tagline.opacity(tag.alpha);
         tagline.y(tagBaseY + tag.dy);
@@ -643,53 +827,73 @@ export const cohabitDemo: DemoDef = {
       comp.add(seq);
     }
 
-    // ── INTRO logo (cold open) — added before global FX so FX flashes sit on top ──
-    {
-      const seq = new Sequence({ from: 0, durationInFrames: INTRO });
-      const bg = new Konva.Rect({ x: 0, y: 0, width: W, height: H, fill: "#0b1220" });
-      seq.add(bg);
+    // ── Audio: music stems ──────────────────────────────────────────────────
+    // Bottom of the stack. 0.5s crossfades at each scene boundary; the curves
+    // overlap so a rising stem meets a falling one.
+    const XFM = sec(0.5);
+    addMusic(comp, {
+      src: s1Music,
+      name: "Music · S1",
+      from: 0,
+      to: S1_END,
+      // From 0:00, fades to near-silence by the end of s1c.
+      curve: (g) =>
+        interpolate(g, [0, 12, 180, S1_END], [0, MUSIC_BASE, MUSIC_BASE * 0.6, 0.06], CLAMP),
+    });
+    addMusic(comp, {
+      src: s2Music,
+      name: "Music · S2",
+      from: S2A - XFM,
+      to: S2_END,
+      // From 0:00, rises in over the relief.
+      curve: (g) =>
+        interpolate(
+          g,
+          [S2A - XFM, S2A + 30, S2_END - XFM, S2_END],
+          [0, MUSIC_BASE, MUSIC_BASE, 0.1],
+          CLAMP,
+        ),
+    });
+    // One bed (s4-audio, from 1:05) carries Scenes 3 + 4 — rises in over the
+    // action, builds to resolve on the logo, then fades out over the final 1.5s.
+    addMusic(comp, {
+      src: s4Music,
+      name: "Music · S3+S4",
+      from: S3A - XFM,
+      to: TOTAL,
+      trimBefore: sec(75), // use from 1:05
+      curve: (g) =>
+        interpolate(
+          g,
+          [S3A - XFM, S3A + 20, S4A, S4C + 30, TOTAL - sec(1.5), TOTAL],
+          [0, MUSIC_BASE * 0.85, MUSIC_BASE * 0.85, MUSIC_BASE, MUSIC_BASE, 0],
+          CLAMP,
+        ),
+    });
 
-      const logo = makeLogo(1.1, WHITE);
-      logo.x(W / 2);
-      logo.y(H / 2 - 20);
-      seq.add(logo);
+    // ── Audio: voiceover (top of the mix — ducks everything below −6 dB) ──────
+    addVo(comp, { src: vo1Url, name: "VO1", from: VO.v1.from, to: VO.v1.to });
+    addVo(comp, { src: vo2Url, name: "VO2", from: VO.v2.from, to: VO.v2.to });
+    addVo(comp, { src: vo3Url, name: "VO3", from: VO.v3.from, to: VO.v3.to });
+    addVo(comp, { src: vo4Url, name: "VO4", from: VO.v4.from, to: VO.v4.to });
 
-      // Accent line that draws underneath the logo.
-      const lineFull = 420;
-      const lineY = H / 2 + 90;
-      const line = new Konva.Rect({
-        x: W / 2 - lineFull / 2,
-        y: lineY,
-        width: 0,
-        height: 5,
-        cornerRadius: 3,
-        fill: ACCENT,
-      });
-      seq.add(line);
-
-      seq.register((f) => {
-        // logo scales 95→100 + fades up over 8..30
-        const e = easeOut(
-          interpolate(f, [8, 30], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
-        );
-        const s = 0.95 + 0.05 * e;
-        logo.scaleX(s);
-        logo.scaleY(s);
-        // line draws 24..44; everything fades out 50..60 as s1a begins.
-        const lw = interpolate(f, [24, 44], [0, lineFull], {
-          easing: easeOut,
-          extrapolateLeft: "clamp",
-          extrapolateRight: "clamp",
-        });
-        line.width(lw);
-        line.x(W / 2 - lw / 2);
-        const out = 1 - clamp01((f - 50) / 10);
-        logo.opacity(e * out);
-        line.opacity(out);
-        bg.opacity(out); // reveal s1a underneath as the black clears
-      });
-      comp.add(seq);
-    }
+    // ── Audio: SFX — whooshes on the 4 transition/reveal points ───────────────
+    // whoosh-a (biggest hit) on the s1c→s2a white flash.
+    addSfx(comp, { src: whooshAUrl, name: "whoosh-a", from: S2A - 10, dur: sec(2.1), volume: 0.6 });
+    // whoosh-b on the two fast scene-3 cuts.
+    addSfx(comp, { src: whooshBUrl, name: "whoosh-b", from: S3B - 6, dur: sec(1), volume: 0.45 });
+    addSfx(comp, { src: whooshBUrl, name: "whoosh-b", from: S3C - 6, dur: sec(1), volume: 0.45 });
+    // whoosh-a again on the s3→s4 crossfade — softer, pulls the energy down.
+    addSfx(comp, {
+      src: whooshAUrl,
+      name: "whoosh-a",
+      from: S4A - XF,
+      dur: sec(2.1),
+      volume: 0.38,
+    });
+    // whoosh-b (soft) on the logo reveal. (A dedicated logo-chime SFX would sit
+    // here too — no asset shipped for it yet.)
+    addSfx(comp, { src: whooshBUrl, name: "whoosh-b", from: S4C, dur: sec(2), volume: 0.3 });
 
     // ── Global FX overlay (top-most): fade-from-black, white flash, end fade ──
     {
@@ -724,14 +928,14 @@ export const cohabitDemo: DemoDef = {
       seq.add(black, flash, endFade);
 
       seq.register((f) => {
-        // Fade up from black over the first 0.5s.
-        black.opacity(1 - clamp01(f / sec(0.5)));
+        // Cold open: short 0.3s fade up from black.
+        black.opacity(1 - clamp01(f / sec(0.3)));
         // White flash on the S1→S2 cut (the relief moment).
         const flashIn = clamp01((f - (S2A - 6)) / 6);
         const flashOut = 1 - clamp01((f - S2A) / 12);
         flash.opacity(flashIn * flashOut * 0.9);
-        // Resolve to a clean white frame on the final note.
-        endFade.opacity(clamp01((f - (TOTAL - 14)) / 14));
+        // Frame out over the final 1.5s as the music resolves.
+        endFade.opacity(clamp01((f - (TOTAL - sec(1.5))) / sec(1.5)));
       });
       comp.add(seq);
     }
