@@ -1,8 +1,10 @@
 import Konva from "konva";
+import type { AudioAsset } from "./audio/asset.js";
 import { type AudioChannel, AudioMixer } from "./audio/mixer.js";
 import { type Emitter, createEmitter } from "./emitter.js";
 import { type Environment, type EnvironmentMode, detectEnvironment } from "./environment.js";
 import { Flex } from "./flex.js";
+import { MEDIA_MARK } from "./media-marker.js";
 import { type ReadonlySignal, type Signal, createSignal, derived } from "./signal.js";
 
 export type CompositionOptions = Konva.StageConfig & {
@@ -57,7 +59,7 @@ export function getComposition(stage: Konva.Stage): Composition | null {
 export class Composition extends Konva.Stage {
   readonly fps: number;
   readonly environment: Environment;
-  /** Composition-level audio bus — master volume/mute scaling every Video. */
+  /** Composition-level audio bus — master volume/mute scaling every Video and Audio. */
   readonly mixer = new AudioMixer();
   readonly frame: ReadonlySignal<number>;
   readonly isPlaying: ReadonlySignal<boolean>;
@@ -81,6 +83,10 @@ export class Composition extends Konva.Stage {
   private readonly _renderHandles = new Set<number>();
   private _nextHandle = 0;
   private _renderWaiters: Array<() => void> = [];
+
+  // Audio samples collected during offline rendering (one per Audio per frame),
+  // for an external audio-mux pass. Empty during preview.
+  private _audioAssets: AudioAsset[] = [];
 
   constructor(opts: CompositionOptions) {
     if (!opts.id) throw new Error("Composition: id is required");
@@ -147,9 +153,9 @@ export class Composition extends Konva.Stage {
     const frame = this._frame.get();
     for (const l of [layer, ...rest]) {
       if (l instanceof Sequence) {
-        // Register the sequence's videos eagerly so mixer channels exist before
-        // playback (lazy fallback lives in Video._ensureDriver).
-        for (const v of l.find((n: Konva.Node) => n.getAttr("__kmIsVideo") === true)) {
+        // Register the sequence's media (video + audio) eagerly so mixer channels
+        // exist before playback (lazy fallback lives in each node's _ensureDriver).
+        for (const v of l.find((n: Konva.Node) => n.getAttr(MEDIA_MARK) === true)) {
           this.mixer.register(v as unknown as AudioChannel);
         }
         l._apply(frame);
@@ -246,6 +252,25 @@ export class Composition extends Konva.Stage {
     });
   }
 
+  /** @internal — {@link RenderingAudioDriver} records one sample per audio per frame. */
+  _collectAudioAsset(asset: AudioAsset): void {
+    this._audioAssets.push(asset);
+  }
+
+  /**
+   * Audio samples collected during offline rendering — one per {@link Audio}
+   * per rendered frame. Feed these to an external mux pass (e.g. ffmpeg) to
+   * assemble the audio track. Empty during preview.
+   */
+  getAudioAssets(): AudioAsset[] {
+    return [...this._audioAssets];
+  }
+
+  /** Reset the collected audio samples — call before re-rendering a range. */
+  clearAudioAssets(): void {
+    this._audioAssets = [];
+  }
+
   private _event(): CompositionEvent {
     return {
       frame: this._frame.get(),
@@ -302,8 +327,8 @@ export class Composition extends Konva.Stage {
   };
 }
 
-/** Video nodes are discovered by marker attr to keep this file independent of `video/`. */
-type VideoNode = Konva.Node & {
+/** Media nodes (video/audio) are discovered by marker attr to keep this file independent of `video/`+`audio/`. */
+type MediaNode = Konva.Node & {
   _kmTick?: (localFrame: number) => void;
   _kmDeactivate?: () => void;
 };
@@ -313,7 +338,7 @@ export class Sequence extends Konva.Layer {
   readonly durationInFrames: number;
   private readonly _updaters = new Set<Updater>();
   private _active = false;
-  private _videos: VideoNode[] = [];
+  private _media: MediaNode[] = [];
 
   constructor(opts: SequenceOptions) {
     if (!Number.isInteger(opts.from) || opts.from < 0) {
@@ -343,17 +368,15 @@ export class Sequence extends Konva.Layer {
       if (becameActive) {
         this.visible(true);
         this._active = true;
-        // Cache tickable videos once per activation — avoids a subtree walk every frame.
-        this._videos = this.find(
-          (n: Konva.Node) => n.getAttr("__kmIsVideo") === true,
-        ) as VideoNode[];
+        // Cache tickable media once per activation — avoids a subtree walk every frame.
+        this._media = this.find((n: Konva.Node) => n.getAttr(MEDIA_MARK) === true) as MediaNode[];
       }
       const local = frame - this.from;
       for (const u of this._updaters) u(local);
       for (const c of this.getChildren()) {
         if (c instanceof Flex) c.computeLayout();
       }
-      for (const v of this._videos) v._kmTick?.(local);
+      for (const v of this._media) v._kmTick?.(local);
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the
       // newly-displayed layer (avoids a one-frame flash of stale content).
@@ -362,7 +385,7 @@ export class Sequence extends Konva.Layer {
     } else if (this._active) {
       this.visible(false);
       this._active = false;
-      for (const v of this._videos) v._kmDeactivate?.();
+      for (const v of this._media) v._kmDeactivate?.();
     }
   }
 }

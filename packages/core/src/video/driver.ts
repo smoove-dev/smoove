@@ -1,16 +1,12 @@
 import type { Composition } from "../composition.js";
+import { getMediaTime } from "../media-time.js";
+import type { MediaTiming } from "../media-time.js";
 import type { VideoSource } from "./video-source.js";
 
-/** Resolved per-video timing, derived from VideoConfig + composition fps. */
-export type VideoTiming = {
-  fps: number;
-  /** Frames trimmed from the start of the media. */
-  trimBefore: number;
-  /** Exclusive frame bound, or undefined to play to the media's natural end. */
-  trimAfter?: number;
-  loop: boolean;
-  playbackRate: number;
-};
+/** Resolved per-video timing — alias of the shared {@link MediaTiming}. */
+export type VideoTiming = MediaTiming;
+
+export { getMediaTime };
 
 /**
  * What a driver needs from the host {@link Video}: the media source, the
@@ -35,21 +31,4 @@ export interface VideoDriver {
   deactivate(): void;
   /** Release any subscriptions; called on `Video.destroy()`. */
   dispose(): void;
-}
-
-/**
- * Convert a local frame to a media time in seconds — Remotion's `getMediaTime`,
- * extended with `loop` wrap-around. Without `loop`, the media freezes on its
- * last in-range frame (Remotion's default behavior).
- */
-export function getMediaTime(localFrame: number, timing: VideoTiming): number {
-  const { fps, trimBefore, trimAfter, loop, playbackRate } = timing;
-  const advanced = localFrame * playbackRate;
-  if (trimAfter === undefined) {
-    // No explicit end bound: play forward; loop has no length to wrap to.
-    return (trimBefore + advanced) / fps;
-  }
-  const loopLen = Math.max(1, trimAfter - trimBefore);
-  const eff = loop ? ((advanced % loopLen) + loopLen) % loopLen : Math.min(advanced, loopLen - 1);
-  return (trimBefore + eff) / fps;
 }

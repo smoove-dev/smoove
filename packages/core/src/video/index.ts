@@ -4,6 +4,7 @@ import { getComposition } from "../composition.js";
 import { detectEnvironment, getEnvironment } from "../environment.js";
 import { parseSize } from "../flex-engine.js";
 import type { ObjectFit, ObjectPosition, SizeValue } from "../flex-types.js";
+import { MEDIA_MARK, VIDEO_MARK } from "../media-marker.js";
 import { type ReadonlySignal, type Signal, createSignal } from "../signal.js";
 import type { VideoDriver, VideoDriverContext, VideoTiming } from "./driver.js";
 import type { VideoConfig } from "./types.js";
@@ -43,9 +44,6 @@ function pickKonvaConfig(config: VideoConfig): Konva.GroupConfig {
   return out as Konva.GroupConfig;
 }
 
-/** Marker attr inspected by Sequence to discover tickable videos. */
-const VIDEO_MARK = "__kmIsVideo";
-
 /**
  * Timeline-driven video. API mirrors {@link Image} (`new Video({src, ...ImageProps})`)
  * but the frame source is a runtime-agnostic {@link VideoSource} and playback is
@@ -72,6 +70,7 @@ export class Video extends Konva.Group implements AudioChannel {
 
   constructor(config: VideoConfig) {
     super(pickKonvaConfig(config));
+    this.setAttr(MEDIA_MARK, true);
     this.setAttr(VIDEO_MARK, true);
 
     this._trimBefore = config.trimBefore ?? config.startFrom ?? 0;

@@ -1,4 +1,5 @@
 import type { Composition } from "@konva-motion/core";
+import { audioMixerDemo } from "./demos/audio-mixer.js";
 import { basicDemo } from "./demos/basic.js";
 import { bouncingDemo } from "./demos/bouncing.js";
 import { cohabitDemo } from "./demos/cohabit.js";
@@ -22,6 +23,7 @@ import { videoSyncDemo } from "./demos/video-sync.js";
 import { mountScrubber } from "./scrubber.js";
 
 const DEMOS: DemoDef[] = [
+  audioMixerDemo,
   cohabitDemo,
   videoSyncDemo,
   igStoryDemo,
