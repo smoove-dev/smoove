@@ -30,6 +30,7 @@ import s4bUrl from "../files/film/s4b.mp4";
 import s4cUrl from "../files/film/s4c.mp4";
 import whooshAUrl from "../files/film/whoosh-a.mp3";
 import whooshBUrl from "../files/film/whoosh-b.mp3";
+import { type KmInfer, kf } from "../studio/kf.js";
 import type { DemoDef } from "./types.js";
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -383,8 +384,15 @@ function makeChip(label: string, size = 44): { group: Block; width: number } {
 }
 
 // ── Logo (typographic wordmark + simple building mark) ─────────────────────
-/** Returns a centered group; its internal origin is (0,0) at center. */
-function makeLogo(scale = 1, wordColor: string = INK): Konva.Group {
+/**
+ * Returns a centered group (origin (0,0) at center) plus its recolorable nodes
+ * so callers can live-update the accent (mark) and word color from props.
+ */
+function makeLogo(
+  scale = 1,
+  wordColor: string = INK,
+  accent: string = ACCENT,
+): { group: Konva.Group; mark: Konva.Rect; word: Konva.Text } {
   const g = new Konva.Group();
 
   const markSize = 84 * scale;
@@ -395,7 +403,7 @@ function makeLogo(scale = 1, wordColor: string = INK): Konva.Group {
     width: markSize,
     height: markSize,
     cornerRadius: markSize * 0.26,
-    fill: ACCENT,
+    fill: accent,
   });
   const winW = markSize * 0.16;
   const winH = markSize * 0.16;
@@ -449,14 +457,101 @@ function makeLogo(scale = 1, wordColor: string = INK): Konva.Group {
   // Center the group's origin so callers can scale around the middle.
   g.offsetX(totalW / 2);
   g.offsetY(totalH / 2);
-  return g;
+  return { group: g, mark, word };
 }
+
+// ── Props (Zod auto-form) ───────────────────────────────────────────────────
+const cohabitSchema = kf.object({
+  fields: {
+    d0: kf.divider({ label: "Branding" }),
+    accent: kf.color({
+      label: "Accent color",
+      default: ACCENT,
+      description: "Brand teal — drives the Scene 2 subtitle, the end-card line and the logo mark.",
+    }),
+    appName: kf.text({
+      label: "App name",
+      default: "Cohabit",
+      description: "The Scene 2 hero caption.",
+    }),
+    d1: kf.divider({ label: "Scene 1 — the problem" }),
+    headline: kf.multiline({
+      label: "Opening headline",
+      rows: 2,
+      default: "Managing a building\nshouldn't feel like this.",
+      description: "The cold-open lower third. Newlines are honored.",
+    }),
+    bubbleSize: kf.number({
+      label: "Bubble text size",
+      default: 34,
+      min: 24,
+      max: 52,
+      step: 2,
+      unit: "px",
+    }),
+    bubbles: kf.array({
+      label: "Chat bubbles",
+      itemLabel: "Bubble",
+      addLabel: "Add bubble",
+      min: 1,
+      description: "The overwhelming chat noise that drifts up and fades in Scene 1.",
+      of: kf.object({
+        fields: {
+          text: kf.text({ label: "Message", default: "New message" }),
+          wide: kf.boolean({
+            label: "Wrap wide",
+            default: false,
+            description: "Constrain the width so long text wraps onto multiple lines.",
+          }),
+        },
+      }),
+      default: [
+        { text: "Dues?", wide: false },
+        { text: "Leak again", wide: false },
+        { text: "Meeting?", wide: false },
+        { text: "Who's paying for\nthe plumber?", wide: true },
+      ],
+    }),
+    d2: kf.divider({ label: "End card" }),
+    logoWord: kf.select({
+      label: "Logo wordmark",
+      default: "ink",
+      options: [
+        { value: "ink", label: "Ink (dark)" },
+        { value: "white", label: "White" },
+      ],
+    }),
+    endCard: kf.object({
+      label: "End card",
+      description: "The final payoff card — tagline, CTA and accent line.",
+      fields: {
+        tagline: kf.text({ label: "Tagline", default: "Your building, handled." }),
+        ctaLabel: kf.text({ label: "CTA label", default: "Start free →" }),
+        ctaColor: kf.color({ label: "CTA color", default: ACCENT }),
+        showAccentLine: kf.boolean({
+          label: "Show accent line",
+          default: true,
+          description: "The line that draws left-to-right under the logo.",
+        }),
+      },
+    }),
+  },
+});
+
+// Props type is inferred straight from the schema — no hand-written shape.
+type CohabitProps = KmInfer<typeof cohabitSchema>;
 
 // ── Build ──────────────────────────────────────────────────────────────────
 export const cohabitDemo: DemoDef = {
   id: "cohabit",
   name: "Cohabit · 34s",
-  build(container, width, height) {
+  schema: cohabitSchema,
+  build(container, width, height, props) {
+    // Read live prop values with the getter. That's the whole contract: the
+    // studio re-renders the current frame automatically whenever props change
+    // (see `comp.refresh()` wiring), so updaters just read `p()` — no manual
+    // subscription or sequence bookkeeping here.
+    const p = () => props.get() as CohabitProps;
     const comp = new Composition({
       id: "cohabit",
       fps: FPS,
@@ -503,49 +598,93 @@ export const cohabitDemo: DemoDef = {
       clipVol: CLIP_18,
     });
 
-    // s1a headline.
+    // s1a headline — text is prop-driven (multiline).
     {
       const seq = new Sequence({ from: S1A, durationInFrames: S1B - S1A });
-      addCaption(seq, "Managing a building\nshouldn't feel like this.", 20, S1B - S1A - 16, {
-        size: 64,
-        weight: "700",
+      const outStart = S1B - S1A - 16;
+      const node = new Konva.Text({
+        x: SAFE_X,
         y: Math.round(H * 0.62),
+        width: Math.round(W * 0.62),
+        text: p().headline,
+        fontFamily: FONT,
+        fontSize: 64,
+        fontStyle: "700",
+        fill: WHITE,
+        lineHeight: 1.15,
+        shadowColor: "#000",
+        shadowBlur: 24,
+        shadowOpacity: 0.35,
+        shadowOffset: { x: 0, y: 2 },
+        opacity: 0,
+      });
+      const baseY = node.y();
+      seq.add(node);
+      seq.register((f) => {
+        node.text(p().headline);
+        const { alpha, dy } = fadeRise(f, 20, outStart);
+        node.opacity(alpha);
+        node.y(baseY + dy);
       });
       comp.add(seq);
     }
 
-    // s1b overwhelm: floating chat bubbles drifting up + fading.
+    // s1b overwhelm: floating chat bubbles drifting up + fading. The set is
+    // prop-driven (array of objects) — bubbles rebuild when the array changes,
+    // and animate from anchor positions staggered by index.
     {
-      const bubbles: { text: string; x: number; y: number; delay: number; width?: number }[] = [
-        { text: "Dues?", x: 0.18, y: 0.55, delay: 6 },
-        { text: "Leak again", x: 0.36, y: 0.68, delay: 18 },
-        { text: "Meeting?", x: 0.6, y: 0.5, delay: 30 },
-        { text: "Who's paying for\nthe plumber?", x: 0.46, y: 0.82, delay: 42 },
-      ];
       const dur = S1C - S1B;
-      for (const b of bubbles) {
-        // One core Block per bubble: background hugs the text, or wraps it when
-        // a width is given (the long one below breaks onto multiple lines).
-        const bubble = makeBubble(b.text, {
-          width: b.width,
-          background: "rgba(255,255,255,0.92)",
-          cornerRadius: [34, 34, 34, 6],
-          shadow: { color: "#000", blur: 20, opacity: 0.18, offsetY: 6 },
+      const ANCHORS = [
+        { x: 0.18, y: 0.55 },
+        { x: 0.36, y: 0.68 },
+        { x: 0.6, y: 0.5 },
+        { x: 0.46, y: 0.82 },
+        { x: 0.7, y: 0.64 },
+        { x: 0.24, y: 0.78 },
+      ];
+      type LiveBubble = { block: Block; baseY: number; delay: number };
+      let nodes: LiveBubble[] = [];
+      const signature = () => {
+        const pp = p();
+        return `${pp.bubbleSize}|${pp.bubbles.map((b) => `${b.text}:${b.wide}`).join("§")}`;
+      };
+      const rebuild = () => {
+        for (const n of nodes) n.block.destroy();
+        nodes = [];
+        const pp = p();
+        pp.bubbles.forEach((b, i) => {
+          const a = ANCHORS[i % ANCHORS.length] ?? { x: 0.5, y: 0.6 };
+          const block = makeBubble(b.text, {
+            fontSize: pp.bubbleSize,
+            width: b.wide ? 360 : undefined,
+            background: "rgba(255,255,255,0.92)",
+            cornerRadius: [34, 34, 34, 6],
+            shadow: { color: "#000", blur: 20, opacity: 0.18, offsetY: 6 },
+          });
+          block.x(a.x * W);
+          block.y(a.y * H);
+          s1bSeq.add(block);
+          nodes.push({ block, baseY: block.y(), delay: i * 12 });
         });
-        bubble.x(b.x * W);
-        bubble.y(b.y * H);
-        s1bSeq.add(bubble);
-        const baseY = bubble.y();
-        s1bSeq.register((f) => {
-          const t = clamp01((f - b.delay) / (dur - b.delay));
+      };
+      let sig = signature();
+      rebuild();
+      s1bSeq.register((f) => {
+        const next = signature();
+        if (next !== sig) {
+          rebuild();
+          sig = next;
+        }
+        for (const { block, baseY, delay } of nodes) {
+          const t = clamp01((f - delay) / (dur - delay));
           const e = easeOut(t);
           // drift up ~120px over its life, fade in then out.
-          bubble.y(baseY - e * 120);
-          const fadeIn = clamp01((f - b.delay) / 12);
+          block.y(baseY - e * 120);
+          const fadeIn = clamp01((f - delay) / 12);
           const fadeOut = 1 - clamp01((f - (dur - 18)) / 18);
-          bubble.opacity(fadeIn * fadeOut);
-        });
-      }
+          block.opacity(fadeIn * fadeOut);
+        }
+      });
     }
     // s1c: no text — let the sigh breathe.
 
@@ -562,21 +701,42 @@ export const cohabitDemo: DemoDef = {
     addClip(comp, { from: S2B, to: S2C, src: s2bUrl, name: "s2b", grade: "bright" });
     addClip(comp, { from: S2C, to: S2_END, src: s2cUrl, name: "s2c", grade: "bright" });
 
-    // s2b: app name slides up beside the action.
+    // s2b: app name (prop) slides up; subtitle picks up the accent color.
     {
       const seq = new Sequence({ from: S2B, durationInFrames: S2C - S2B });
       const dur = S2C - S2B;
-      addCaption(seq, "Cohabit", 8, dur - 14, {
-        size: 92,
-        weight: "800",
-        color: WHITE,
-        y: Math.round(H * 0.6),
-      });
-      addCaption(seq, "Your building, handled.", 20, dur - 14, {
-        size: 40,
-        weight: "500",
-        color: ACCENT,
-        y: Math.round(H * 0.6) + 110,
+      const heroY = Math.round(H * 0.6);
+      const mkLT = (y: number, size: number, weight: string, fill: string, text: string) =>
+        new Konva.Text({
+          x: SAFE_X,
+          y,
+          width: Math.round(W * 0.62),
+          text,
+          fontFamily: FONT,
+          fontSize: size,
+          fontStyle: weight,
+          fill,
+          lineHeight: 1.15,
+          shadowColor: "#000",
+          shadowBlur: 24,
+          shadowOpacity: 0.35,
+          shadowOffset: { x: 0, y: 2 },
+          opacity: 0,
+        });
+      const hero = mkLT(heroY, 92, "800", WHITE, p().appName);
+      const sub = mkLT(heroY + 110, 40, "500", p().accent, "Your building, handled.");
+      const heroBaseY = hero.y();
+      const subBaseY = sub.y();
+      seq.add(hero, sub);
+      seq.register((f) => {
+        hero.text(p().appName);
+        sub.fill(p().accent);
+        const a1 = fadeRise(f, 8, dur - 14);
+        hero.opacity(a1.alpha);
+        hero.y(heroBaseY + a1.dy);
+        const a2 = fadeRise(f, 20, dur - 14);
+        sub.opacity(a2.alpha);
+        sub.y(subBaseY + a2.dy);
       });
       comp.add(seq);
     }
@@ -759,7 +919,11 @@ export const cohabitDemo: DemoDef = {
       });
       seq.add(scrim);
 
-      const logo = makeLogo(1);
+      const {
+        group: logo,
+        mark: logoMark,
+        word: logoWordNode,
+      } = makeLogo(1, p().logoWord === "white" ? WHITE : INK, p().accent);
       logo.x(W / 2);
       logo.y(Math.round(H * 0.3));
       seq.add(logo);
@@ -774,7 +938,7 @@ export const cohabitDemo: DemoDef = {
         width: 0,
         height: 5,
         cornerRadius: 3,
-        fill: ACCENT,
+        fill: p().accent,
       });
       seq.add(line);
 
@@ -783,7 +947,7 @@ export const cohabitDemo: DemoDef = {
         y: Math.round(H * 0.46),
         width: W,
         align: "center",
-        text: "Your building, handled.",
+        text: p().endCard.tagline,
         fontFamily: FONT,
         fontSize: 44,
         fontStyle: "500",
@@ -793,7 +957,7 @@ export const cohabitDemo: DemoDef = {
       seq.add(tagline);
 
       // CTA accent pill button.
-      const ctaLabel = "Start free →";
+      const ctaLabel = p().endCard.ctaLabel;
       const ctaTxt = new Konva.Text({
         text: ctaLabel,
         fontFamily: FONT,
@@ -810,7 +974,7 @@ export const cohabitDemo: DemoDef = {
         width: cw,
         height: ch,
         cornerRadius: ch / 2,
-        fill: ACCENT,
+        fill: p().endCard.ctaColor,
         shadowColor: ACCENT_DARK,
         shadowBlur: 36,
         shadowOpacity: 0.55,
@@ -825,6 +989,19 @@ export const cohabitDemo: DemoDef = {
       const tagBaseY = tagline.y();
       const ctaBaseY = cta.y();
       seq.register((f) => {
+        // ── live prop application (text / colors / visibility) ──
+        const pp = p();
+        logoMark.fill(pp.accent);
+        logoWordNode.fill(pp.logoWord === "white" ? WHITE : INK);
+        tagline.text(pp.endCard.tagline);
+        // CTA label can change width → re-measure, re-center, recolor.
+        ctaTxt.text(pp.endCard.ctaLabel);
+        const cwNow = ctaTxt.width() + cpadX * 2;
+        ctaBg.width(cwNow);
+        ctaBg.fill(pp.endCard.ctaColor);
+        ctaTxt.x(cpadX);
+        cta.x(W / 2 - cwNow / 2);
+
         // logo scales 95→100 + fade.
         const e = easeOut(clamp01(f / 16));
         const s = (0.95 + 0.05 * e) * logoBaseScale;
@@ -833,6 +1010,8 @@ export const cohabitDemo: DemoDef = {
         logo.opacity(e);
 
         // line draws once the logo has settled (frames 18..40).
+        line.visible(pp.endCard.showAccentLine);
+        line.fill(pp.accent);
         const lw = interpolate(f, [18, 40], [0, lineFull], {
           easing: easeOut,
           extrapolateLeft: "clamp",

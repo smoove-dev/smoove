@@ -218,6 +218,17 @@ export class Composition extends Konva.Stage {
   }
 
   /**
+   * Re-apply the **current** frame to every sequence without advancing the
+   * playhead — the engine's "re-render" hook. Call this after mutating external
+   * state that updaters read (e.g. live-edited props) so the change shows
+   * immediately while paused. Updaters re-run, `Flex`/`Block` re-layout, and
+   * active sequences `batchDraw` — exactly like a normal tick at the same frame.
+   */
+  refresh(): void {
+    this._applyFrame(this._frame.get(), false);
+  }
+
+  /**
    * Register an outstanding async task that must finish before the current
    * frame is considered fully rendered — Remotion's `delayRender`. Returns a
    * handle to clear with {@link continueRender}.

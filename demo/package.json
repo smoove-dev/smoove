@@ -11,9 +11,16 @@
   "dependencies": {
     "@konva-motion/core": "workspace:*",
     "@konva-motion/timeline": "workspace:*",
-    "konva": "^9.3.16"
+    "konva": "^9.3.16",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
     "typescript": "^5.6.3",
     "vite": "^5.4.10"
   }

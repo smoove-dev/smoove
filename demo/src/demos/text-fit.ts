@@ -33,8 +33,6 @@ export const textFitDemo: DemoDef = {
       loop: true,
     });
 
-    
-
     const main = new Sequence({ from: 0, durationInFrames: duration });
     main.add(new Konva.Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 
