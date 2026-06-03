@@ -180,7 +180,11 @@ export function setTextMeasure(node: FlexilyNode, text: Konva.Text, parentIsColu
     const lineHeight = text.lineHeight();
     const padding = text.padding() ?? 0;
     const longest = ti.textArr.reduce((m, l) => Math.max(m, l.width), 0);
-    const measuredW = longest + padding * 2;
+    // Konva's per-line width (a sum of word widths) can fall a subpixel short of
+    // the width actually needed to render that line without wrapping. Writing the
+    // measured width back verbatim would then force a spurious extra wrap (e.g. a
+    // short label spilling its last word onto a second line), so round up.
+    const measuredW = Math.ceil(longest) + padding * 2 + 1;
     const measuredH = lines * fontSize * lineHeight + padding * 2;
     text.setAttr("width", prevWidth);
     return { width: Math.min(measuredW, w), height: measuredH };
