@@ -1,0 +1,677 @@
+{
+  "name": "konva-motion",
+  "description": "Remotion-style timeline-driven animation for Konva. A Composition (Konva.Stage) owns a frame clock and walks range-gated Sequence layers each tick, with built-in flexbox layout via flexily.",
+  "languages": [
+    "css",
+    "html",
+    "json",
+    "markdown",
+    "typescript",
+    "yaml"
+  ],
+  "frameworks": [
+    "React",
+    "Vite",
+    "Zod"
+  ],
+  "files": [
+    {
+      "path": ".claude/launch.json",
+      "language": "json",
+      "sizeLines": 6,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".claude/settings.json",
+      "language": "json",
+      "sizeLines": 5,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".npmrc",
+      "language": "unknown",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "biome.json",
+      "language": "json",
+      "sizeLines": 25,
+      "fileCategory": "config"
+    },
+    {
+      "path": "CLAUDE.md",
+      "language": "markdown",
+      "sizeLines": 73,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "demo/index.html",
+      "language": "html",
+      "sizeLines": 18,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "demo/package.json",
+      "language": "json",
+      "sizeLines": 27,
+      "fileCategory": "config"
+    },
+    {
+      "path": "demo/src/assets.d.ts",
+      "language": "typescript",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/audio-mixer.ts",
+      "language": "typescript",
+      "sizeLines": 343,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/basic.ts",
+      "language": "typescript",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/bouncing.ts",
+      "language": "typescript",
+      "sizeLines": 60,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/cohabit.ts",
+      "language": "typescript",
+      "sizeLines": 1150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/colors.ts",
+      "language": "typescript",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/easings.ts",
+      "language": "typescript",
+      "sizeLines": 88,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/flex-layout.ts",
+      "language": "typescript",
+      "sizeLines": 101,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/flex-row-grow.ts",
+      "language": "typescript",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/flex-showcase.ts",
+      "language": "typescript",
+      "sizeLines": 160,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/flex-typewriter.ts",
+      "language": "typescript",
+      "sizeLines": 75,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/ig-story.ts",
+      "language": "typescript",
+      "sizeLines": 622,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/image-clip.ts",
+      "language": "typescript",
+      "sizeLines": 113,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/image-fade.ts",
+      "language": "typescript",
+      "sizeLines": 85,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/image-slider.ts",
+      "language": "typescript",
+      "sizeLines": 88,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/journey.ts",
+      "language": "typescript",
+      "sizeLines": 455,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/keyframes.ts",
+      "language": "typescript",
+      "sizeLines": 99,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/staggered.ts",
+      "language": "typescript",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/text-fit.ts",
+      "language": "typescript",
+      "sizeLines": 182,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/text-highlight.ts",
+      "language": "typescript",
+      "sizeLines": 198,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/text-typewriter.ts",
+      "language": "typescript",
+      "sizeLines": 162,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/transforms.ts",
+      "language": "typescript",
+      "sizeLines": 72,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/types.ts",
+      "language": "typescript",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/typewriter.ts",
+      "language": "typescript",
+      "sizeLines": 109,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/demos/video-sync.ts",
+      "language": "typescript",
+      "sizeLines": 127,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/main.tsx",
+      "language": "typescript",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/node-module-shim.ts",
+      "language": "typescript",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/App.tsx",
+      "language": "typescript",
+      "sizeLines": 187,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/catalog.ts",
+      "language": "typescript",
+      "sizeLines": 366,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/Icon.tsx",
+      "language": "typescript",
+      "sizeLines": 149,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/kf.ts",
+      "language": "typescript",
+      "sizeLines": 325,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/Player.tsx",
+      "language": "typescript",
+      "sizeLines": 173,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/RightPanel.tsx",
+      "language": "typescript",
+      "sizeLines": 200,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/SchemaForm.tsx",
+      "language": "typescript",
+      "sizeLines": 547,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/Sidebar.tsx",
+      "language": "typescript",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/styles.css",
+      "language": "css",
+      "sizeLines": 1608,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "demo/src/studio/useComposition.ts",
+      "language": "typescript",
+      "sizeLines": 85,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/useSignal.ts",
+      "language": "typescript",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/src/studio/ZoomControl.tsx",
+      "language": "typescript",
+      "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "demo/tsconfig.json",
+      "language": "json",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    },
+    {
+      "path": "demo/vite.config.ts",
+      "language": "typescript",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "doc/architecture.md",
+      "language": "markdown",
+      "sizeLines": 80,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "doc/contributing.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "doc/README.md",
+      "language": "markdown",
+      "sizeLines": 634,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/core/package.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/core/src/audio/asset.ts",
+      "language": "typescript",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/audio/audio-driver.ts",
+      "language": "typescript",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/audio/audio-for-preview.ts",
+      "language": "typescript",
+      "sizeLines": 72,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/audio/audio-for-rendering.ts",
+      "language": "typescript",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/audio/audio-source-browser.ts",
+      "language": "typescript",
+      "sizeLines": 158,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/audio/audio-source.ts",
+      "language": "typescript",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/audio/index.ts",
+      "language": "typescript",
+      "sizeLines": 162,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/audio/mixer.ts",
+      "language": "typescript",
+      "sizeLines": 74,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/audio/types.ts",
+      "language": "typescript",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/block.ts",
+      "language": "typescript",
+      "sizeLines": 198,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/composition.ts",
+      "language": "typescript",
+      "sizeLines": 409,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/easing.ts",
+      "language": "typescript",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/emitter.ts",
+      "language": "typescript",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/environment.ts",
+      "language": "typescript",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/flex-engine.ts",
+      "language": "typescript",
+      "sizeLines": 235,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/flex-types.ts",
+      "language": "typescript",
+      "sizeLines": 209,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/flex.ts",
+      "language": "typescript",
+      "sizeLines": 189,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/image.ts",
+      "language": "typescript",
+      "sizeLines": 172,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "language": "typescript",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/interpolate-colors.ts",
+      "language": "typescript",
+      "sizeLines": 281,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/interpolate.ts",
+      "language": "typescript",
+      "sizeLines": 97,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/media-marker.ts",
+      "language": "typescript",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/media-time.ts",
+      "language": "typescript",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/signal.ts",
+      "language": "typescript",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/text.ts",
+      "language": "typescript",
+      "sizeLines": 783,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/video/driver.ts",
+      "language": "typescript",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/video/index.ts",
+      "language": "typescript",
+      "sizeLines": 307,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/video/types.ts",
+      "language": "typescript",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/video/video-for-preview.ts",
+      "language": "typescript",
+      "sizeLines": 75,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/video/video-for-rendering.ts",
+      "language": "typescript",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/video/video-source-browser.ts",
+      "language": "typescript",
+      "sizeLines": 194,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/src/video/video-source.ts",
+      "language": "typescript",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/core/tsconfig.json",
+      "language": "json",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/timeline/package.json",
+      "language": "json",
+      "sizeLines": 22,
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/timeline/src/index.ts",
+      "language": "typescript",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/timeline/tsconfig.json",
+      "language": "json",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "language": "yaml",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 63,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tsconfig.base.json",
+      "language": "json",
+      "sizeLines": 20,
+      "fileCategory": "config"
+    },
+    {
+      "path": "tsconfig.json",
+      "language": "json",
+      "sizeLines": 9,
+      "fileCategory": "config"
+    }
+  ],
+  "totalFiles": 93,
+  "filteredByIgnore": 11,
+  "estimatedComplexity": "moderate",
+  "importMap": {
+    ".claude/launch.json": [],
+    ".claude/settings.json": [],
+    ".npmrc": [],
+    "biome.json": [],
+    "CLAUDE.md": [],
+    "demo/index.html": [],
+    "demo/package.json": [],
+    "demo/src/assets.d.ts": [],
+    "demo/src/demos/audio-mixer.ts": [],
+    "demo/src/demos/basic.ts": [],
+    "demo/src/demos/bouncing.ts": [],
+    "demo/src/demos/cohabit.ts": [],
+    "demo/src/demos/colors.ts": [],
+    "demo/src/demos/easings.ts": [],
+    "demo/src/demos/flex-layout.ts": [],
+    "demo/src/demos/flex-row-grow.ts": [],
+    "demo/src/demos/flex-showcase.ts": [],
+    "demo/src/demos/flex-typewriter.ts": [],
+    "demo/src/demos/ig-story.ts": [],
+    "demo/src/demos/image-clip.ts": [],
+    "demo/src/demos/image-fade.ts": [],
+    "demo/src/demos/image-slider.ts": [],
+    "demo/src/demos/journey.ts": [],
+    "demo/src/demos/keyframes.ts": [],
+    "demo/src/demos/staggered.ts": [],
+    "demo/src/demos/text-fit.ts": [],
+    "demo/src/demos/text-highlight.ts": [],
+    "demo/src/demos/text-typewriter.ts": [],
+    "demo/src/demos/transforms.ts": [],
+    "demo/src/demos/types.ts": [],
+    "demo/src/demos/typewriter.ts": [],
+    "demo/src/demos/video-sync.ts": [],
+    "demo/src/main.tsx": [
+      "demo/src/studio/styles.css"
+    ],
+    "demo/src/node-module-shim.ts": [],
+    "demo/src/studio/App.tsx": [],
+    "demo/src/studio/catalog.ts": [],
+    "demo/src/studio/Icon.tsx": [],
+    "demo/src/studio/kf.ts": [],
+    "demo/src/studio/Player.tsx": [],
+    "demo/src/studio/RightPanel.tsx": [],
+    "demo/src/studio/SchemaForm.tsx": [],
+    "demo/src/studio/Sidebar.tsx": [],
+    "demo/src/studio/styles.css": [],
+    "demo/src/studio/useComposition.ts": [],
+    "demo/src/studio/useSignal.ts": [],
+    "demo/src/studio/ZoomControl.tsx": [],
+    "demo/tsconfig.json": [],
+    "demo/vite.config.ts": [],
+    "doc/architecture.md": [],
+    "doc/contributing.md": [],
+    "doc/README.md": [],
+    "package.json": [],
+    "packages/core/package.json": [],
+    "packages/core/src/audio/asset.ts": [],
+    "packages/core/src/audio/audio-driver.ts": [],
+    "packages/core/src/audio/audio-for-preview.ts": [],
+    "packages/core/src/audio/audio-for-rendering.ts": [],
+    "packages/core/src/audio/audio-source-browser.ts": [],
+    "packages/core/src/audio/audio-source.ts": [],
+    "packages/core/src/audio/index.ts": [],
+    "packages/core/src/audio/mixer.ts": [],
+    "packages/core/src/audio/types.ts": [],
+    "packages/core/src/block.ts": [],
+    "packages/core/src/composition.ts": [],
+    "packages/core/src/easing.ts": [],
+    "packages/core/src/emitter.ts": [],
+    "packages/core/src/environment.ts": [],
+    "packages/core/src/flex-engine.ts": [],
+    "packages/core/src/flex-types.ts": [],
+    "packages/core/src/flex.ts": [],
+    "packages/core/src/image.ts": [],
+    "packages/core/src/index.ts": [],
+    "packages/core/src/interpolate-colors.ts": [],
+    "packages/core/src/interpolate.ts": [],
+    "packages/core/src/media-marker.ts": [],
+    "packages/core/src/media-time.ts": [],
+    "packages/core/src/signal.ts": [],
+    "packages/core/src/text.ts": [],
+    "packages/core/src/video/driver.ts": [],
+    "packages/core/src/video/index.ts": [],
+    "packages/core/src/video/types.ts": [],
+    "packages/core/src/video/video-for-preview.ts": [],
+    "packages/core/src/video/video-for-rendering.ts": [],
+    "packages/core/src/video/video-source-browser.ts": [],
+    "packages/core/src/video/video-source.ts": [],
+    "packages/core/tsconfig.json": [],
+    "packages/timeline/package.json": [],
+    "packages/timeline/src/index.ts": [],
+    "packages/timeline/tsconfig.json": [],
+    "pnpm-workspace.yaml": [],
+    "README.md": [],
+    "tsconfig.base.json": [],
+    "tsconfig.json": []
+  }
+}

@@ -72,8 +72,8 @@ export class Flex extends Konva.Group {
  * its behavior of only writing self-size when an explicit px size is given.
  */
 export function layoutRoot(group: Konva.Group, alwaysSetSize: boolean): void {
-  const w = readPixelSize(group.attrs.flexWidth, group.width());
-  const h = readPixelSize(group.attrs.flexHeight, group.height());
+  const w = readPixelSize(group.attrs.flexWidth);
+  const h = readPixelSize(group.attrs.flexHeight);
 
   const root = FlexilyNode.create();
   applyContainerProps(root, group.attrs as FlexProps);
@@ -97,10 +97,13 @@ type Pair = {
   isContainer: boolean;
 };
 
-function readPixelSize(sizeAttr: SizeValue | undefined, konvaSize: number): number {
+function readPixelSize(sizeAttr: SizeValue | undefined): number {
   const parsed = parseSize(sizeAttr);
   if (parsed?.kind === "px") return parsed.value;
-  return konvaSize;
+  // No explicit px size → hug content. Return 0 (not the node's current Konva
+  // size): falling back to the last-computed size would pin a hug-content root
+  // to its first-tick height and stop it re-growing as children change size.
+  return 0;
 }
 
 export function buildChildren(
