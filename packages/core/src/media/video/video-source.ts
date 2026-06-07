@@ -1,4 +1,4 @@
-import type { Environment } from "../environment.js";
+import type { Environment } from "../../engine/environment.js";
 
 /** Seek precision: exact frame ("precise", default) vs. snappy nearest-keyframe ("fast", for scrubbing). */
 export type SeekMode = "precise" | "fast";

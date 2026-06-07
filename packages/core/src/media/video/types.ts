@@ -1,5 +1,6 @@
 import type Konva from "konva";
-import type { FlexChildProps, ObjectFit, ObjectPosition, SizeValue } from "../flex-types.js";
+import type { FlexChildProps, SizeValue } from "../../layout/flex/types.js";
+import type { ObjectFit, ObjectPosition } from "../../layout/image.js";
 import type { VideoSourceFactory } from "./video-source.js";
 
 /**

@@ -1,9 +1,9 @@
 import Konva from "konva";
-import { getComposition } from "../composition.js";
-import { detectEnvironment, getEnvironment } from "../environment.js";
+import { getComposition } from "../../engine/composition.js";
+import { detectEnvironment, getEnvironment } from "../../engine/environment.js";
+import { type ReadonlySignal, type Signal, createSignal } from "../../engine/signal.js";
 import { AUDIO_MARK, MEDIA_MARK } from "../media-marker.js";
 import type { MediaTiming } from "../media-time.js";
-import { type ReadonlySignal, type Signal, createSignal } from "../signal.js";
 import type { AudioDriver, AudioDriverContext } from "./audio-driver.js";
 import { PreviewAudioDriver } from "./audio-for-preview.js";
 import { RenderingAudioDriver } from "./audio-for-rendering.js";

@@ -1,4 +1,4 @@
-import type { Environment } from "../environment.js";
+import type { Environment } from "../../engine/environment.js";
 import type { SeekMode } from "../video/video-source.js";
 
 export type { SeekMode };

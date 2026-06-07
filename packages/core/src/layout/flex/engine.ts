@@ -31,7 +31,7 @@ import type {
   FlexProps,
   Justify,
   SizeValue,
-} from "./flex-types.js";
+} from "./types.js";
 
 export type Edges = [number, number, number, number];
 

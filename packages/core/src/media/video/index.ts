@@ -1,11 +1,12 @@
 import Konva from "konva";
+import { getComposition } from "../../engine/composition.js";
+import { detectEnvironment, getEnvironment } from "../../engine/environment.js";
+import { type ReadonlySignal, type Signal, createSignal } from "../../engine/signal.js";
+import { parseSize } from "../../layout/flex/engine.js";
+import type { SizeValue } from "../../layout/flex/types.js";
+import type { ObjectFit, ObjectPosition } from "../../layout/image.js";
 import type { AudioChannel, AudioMixer } from "../audio/mixer.js";
-import { getComposition } from "../composition.js";
-import { detectEnvironment, getEnvironment } from "../environment.js";
-import { parseSize } from "../flex-engine.js";
-import type { ObjectFit, ObjectPosition, SizeValue } from "../flex-types.js";
 import { MEDIA_MARK, VIDEO_MARK } from "../media-marker.js";
-import { type ReadonlySignal, type Signal, createSignal } from "../signal.js";
 import type { VideoDriver, VideoDriverContext, VideoTiming } from "./driver.js";
 import type { VideoConfig } from "./types.js";
 import { PreviewVideoDriver } from "./video-for-preview.js";

@@ -1,6 +1,8 @@
 import { DIRECTION_LTR } from "flexily/classic";
 import Konva from "konva";
-import { Block } from "./block.js";
+import { Block } from "../block.js";
+import { Image as KMImage } from "../image.js";
+import { Text as KMText } from "../text/text.js";
 import {
   FlexilyNode,
   applyChildProps,
@@ -10,10 +12,8 @@ import {
   setImageMeasure,
   setTextMeasure,
   setTextWrapperMeasure,
-} from "./flex-engine.js";
-import type { FlexChildProps, FlexConfig, FlexProps, SizeValue } from "./flex-types.js";
-import { Image as KMImage } from "./image.js";
-import { Text as KMText } from "./text.js";
+} from "./engine.js";
+import type { FlexChildProps, FlexConfig, FlexProps, SizeValue } from "./types.js";
 
 const FLEX_KEYS = [
   "flexDirection",

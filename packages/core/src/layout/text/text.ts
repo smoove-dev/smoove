@@ -1,15 +1,23 @@
 import Konva from "konva";
 import { stringToArray } from "konva/lib/shapes/Text.js";
-import { parseSize } from "./flex-engine.js";
+import { TICK_MARK } from "../../media/media-marker.js";
+import { parseSize } from "../flex/engine.js";
+import type { SizeValue } from "../flex/types.js";
+import {
+  type Geometry,
+  type LineRange,
+  buildWordIndex,
+  clamp,
+  pickKonvaConfig,
+  snapToWord,
+} from "./geometry.js";
 import type {
   FitConfig,
   HighlightConfig,
-  SizeValue,
   TextAlign,
   TextConfig,
   TypewriterConfig,
-} from "./flex-types.js";
-import { TICK_MARK } from "./media-marker.js";
+} from "./types.js";
 
 const ELLIPSIS = "…";
 const BIG = 1e9;
@@ -19,56 +27,6 @@ type KonvaTextInternal = Konva.Text & {
   _setTextData: () => void;
   _getTextWidth: (s: string) => number;
   textArr: { text: string; width: number; lastInParagraph: boolean }[];
-};
-
-/** Keys consumed by the wrapper; everything else is forwarded to the Group. */
-const TEXT_KEYS = [
-  "text",
-  "maxWidth",
-  "maxHeight",
-  "fontSize",
-  "fontFamily",
-  "fontStyle",
-  "fill",
-  "align",
-  "lineHeight",
-  "letterSpacing",
-  "padding",
-  "wrap",
-  "ellipsis",
-  "fitText",
-  "maxLines",
-  "trimBy",
-  "typewriter",
-  "highlights",
-  "flexGrow",
-  "flexShrink",
-  "flexBasis",
-  "alignSelf",
-  "margin",
-] as const;
-
-function pickKonvaConfig(config: TextConfig): Konva.GroupConfig {
-  const out: Record<string, unknown> = { ...config };
-  for (const k of TEXT_KEYS) delete out[k];
-  const w = parseSize(config.width as SizeValue | undefined);
-  const h = parseSize(config.height as SizeValue | undefined);
-  out.width = w?.kind === "px" ? w.value : undefined;
-  out.height = h?.kind === "px" ? h.value : undefined;
-  return out as Konva.GroupConfig;
-}
-
-/** Per-line slice of the displayed text, with char offsets and rendered width. */
-type LineRange = { start: number; end: number; width: number };
-
-/** Cached layout used by highlight/cursor/fade positioning. */
-type Geometry = {
-  chars: string[];
-  ranges: LineRange[];
-  lineH: number;
-  pad: number;
-  textAreaW: number;
-  align: TextAlign;
 };
 
 /**
@@ -737,47 +695,4 @@ export class Text extends Konva.Group {
       this._charWidth(geo.chars.slice(r.start, localEnd).join(""));
     return { x, y: geo.pad + li * geo.lineH };
   }
-}
-
-// ----- helpers ------------------------------------------------------------
-
-function clamp(v: number, lo: number, hi: number): number {
-  return v < lo ? lo : v > hi ? hi : v;
-}
-
-/** Pull back index `k` to the end of the previous word (last whitespace). */
-function snapToWord(chars: string[], k: number): number {
-  for (let i = k - 1; i > 0; i--) {
-    if (chars[i] === " " || chars[i] === "\n") return i;
-  }
-  return k;
-}
-
-/**
- * Word boundaries over `chars`: `wordEnds[j]` is the char index just past word
- * j (== start of word j+1, trailing whitespace included), and `charWord[k]` is
- * the word index char k belongs to.
- */
-function buildWordIndex(chars: string[]): { wordEnds: number[]; charWord: number[] } {
-  const wordEnds: number[] = [];
-  const charWord: number[] = new Array(chars.length).fill(0);
-  let word = 0;
-  let inWord = false;
-  for (let i = 0; i < chars.length; i++) {
-    const c = chars[i];
-    const space = c === " " || c === "\n" || c === "\t";
-    charWord[i] = word;
-    if (!space) {
-      inWord = true;
-    } else if (inWord && space) {
-      // End the word at the first trailing space; absorb the run into it.
-      wordEnds.push(i + 1);
-      word++;
-      inWord = false;
-    } else {
-      // Leading/extra whitespace stays with the upcoming word.
-    }
-  }
-  if (inWord) wordEnds.push(chars.length);
-  return { wordEnds, charWord };
 }

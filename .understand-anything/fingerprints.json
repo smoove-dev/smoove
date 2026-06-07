@@ -89,51 +89,37 @@
       "functions": [
         {
           "name": "pad2",
-          "params": [
-            "n"
-          ],
+          "params": ["n"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "timecode",
-          "params": [
-            "frame"
-          ],
+          "params": ["frame"],
           "exported": false,
           "lineCount": 5
         },
         {
           "name": "volA",
-          "params": [
-            "f"
-          ],
+          "params": ["f"],
           "exported": false,
           "lineCount": 7
         },
         {
           "name": "volB",
-          "params": [
-            "f"
-          ],
+          "params": ["f"],
           "exported": false,
           "lineCount": 2
         },
         {
           "name": "volV",
-          "params": [
-            "f"
-          ],
+          "params": ["f"],
           "exported": false,
           "lineCount": 2
         },
         {
           "name": "inRange",
-          "params": [
-            "f",
-            "from",
-            "end"
-          ],
+          "params": ["f", "from", "end"],
           "exported": false,
           "lineCount": 1
         }
@@ -153,50 +139,34 @@
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "../files/sound/music-a.mp3",
-          "specifiers": [
-            "musicAUrl"
-          ]
+          "specifiers": ["musicAUrl"]
         },
         {
           "source": "../files/sound/music-b.mp3",
-          "specifiers": [
-            "musicBUrl"
-          ]
+          "specifiers": ["musicBUrl"]
         },
         {
           "source": "../files/sound/voice.wav",
-          "specifiers": [
-            "voiceUrl"
-          ]
+          "specifiers": ["voiceUrl"]
         },
         {
           "source": "../files/sound/whoosh-a.mp3",
-          "specifiers": [
-            "whooshAUrl"
-          ]
+          "specifiers": ["whooshAUrl"]
         },
         {
           "source": "../files/sound/whoosh-b.mp3",
-          "specifiers": [
-            "whooshBUrl"
-          ]
+          "specifiers": ["whooshBUrl"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "audioMixerDemo"
-      ],
+      "exports": ["audioMixerDemo"],
       "totalLines": 344,
       "hasStructuralAnalysis": true
     },
@@ -208,27 +178,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Sequence"
-          ]
+          "specifiers": ["Composition", "Sequence"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "basicDemo"
-      ],
+      "exports": ["basicDemo"],
       "totalLines": 51,
       "hasStructuralAnalysis": true
     },
@@ -240,27 +201,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Sequence"
-          ]
+          "specifiers": ["Composition", "Sequence"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "bouncingDemo"
-      ],
+      "exports": ["bouncingDemo"],
       "totalLines": 61,
       "hasStructuralAnalysis": true
     },
@@ -270,162 +222,112 @@
       "functions": [
         {
           "name": "sec",
-          "params": [
-            "s"
-          ],
+          "params": ["s"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "db",
-          "params": [
-            "d"
-          ],
+          "params": ["d"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "voActive",
-          "params": [
-            "f"
-          ],
+          "params": ["f"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "voDuck",
-          "params": [
-            "f"
-          ],
+          "params": ["f"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "whooshDip",
-          "params": [
-            "f"
-          ],
+          "params": ["f"],
           "exported": false,
           "lineCount": 5
         },
         {
           "name": "musicDuck",
-          "params": [
-            "f"
-          ],
+          "params": ["f"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "clamp01",
-          "params": [
-            "v"
-          ],
+          "params": ["v"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "fadeRise",
-          "params": [
-            "f",
-            "inStart",
-            "outStart",
-            "opts"
-          ],
+          "params": ["f", "inStart", "outStart", "opts"],
           "returnType": "{ alpha: number; dy: number }",
           "exported": false,
           "lineCount": 12
         },
         {
           "name": "applyGrade",
-          "params": [
-            "seq",
-            "grade"
-          ],
+          "params": ["seq", "grade"],
           "returnType": "void",
           "exported": false,
           "lineCount": 27
         },
         {
           "name": "addClip",
-          "params": [
-            "comp",
-            "o"
-          ],
+          "params": ["comp", "o"],
           "returnType": "Sequence",
           "exported": false,
           "lineCount": 48
         },
         {
           "name": "addMusic",
-          "params": [
-            "comp",
-            "o"
-          ],
+          "params": ["comp", "o"],
           "returnType": "void",
           "exported": false,
           "lineCount": 26
         },
         {
           "name": "addSfx",
-          "params": [
-            "comp",
-            "o"
-          ],
+          "params": ["comp", "o"],
           "returnType": "void",
           "exported": false,
           "lineCount": 8
         },
         {
           "name": "addVo",
-          "params": [
-            "comp",
-            "o"
-          ],
+          "params": ["comp", "o"],
           "returnType": "void",
           "exported": false,
           "lineCount": 18
         },
         {
           "name": "addCaption",
-          "params": [
-            "seq",
-            "text",
-            "inStart",
-            "outStart",
-            "opts"
-          ],
+          "params": ["seq", "text", "inStart", "outStart", "opts"],
           "returnType": "void",
           "exported": false,
           "lineCount": 31
         },
         {
           "name": "makeBubble",
-          "params": [
-            "text",
-            "opts"
-          ],
+          "params": ["text", "opts"],
           "returnType": "Block",
           "exported": false,
           "lineCount": 41
         },
         {
           "name": "makeChip",
-          "params": [
-            "label",
-            "size"
-          ],
+          "params": ["label", "size"],
           "returnType": "{ group: Block; width: number }",
           "exported": false,
           "lineCount": 15
         },
         {
           "name": "makeLogo",
-          "params": [
-            "scale",
-            "wordColor",
-            "accent"
-          ],
+          "params": ["scale", "wordColor", "accent"],
           "returnType": "{ group: Konva.Group; mark: Konva.Rect; word: Konva.Text }",
           "exported": false,
           "lineCount": 71
@@ -448,153 +350,102 @@
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "../files/film/VO1.wav",
-          "specifiers": [
-            "vo1Url"
-          ]
+          "specifiers": ["vo1Url"]
         },
         {
           "source": "../files/film/VO2.wav",
-          "specifiers": [
-            "vo2Url"
-          ]
+          "specifiers": ["vo2Url"]
         },
         {
           "source": "../files/film/VO3.wav",
-          "specifiers": [
-            "vo3Url"
-          ]
+          "specifiers": ["vo3Url"]
         },
         {
           "source": "../files/film/VO4.wav",
-          "specifiers": [
-            "vo4Url"
-          ]
+          "specifiers": ["vo4Url"]
         },
         {
           "source": "../files/film/s1-audio.mp3",
-          "specifiers": [
-            "s1Music"
-          ]
+          "specifiers": ["s1Music"]
         },
         {
           "source": "../files/film/s1a.mp4",
-          "specifiers": [
-            "s1aUrl"
-          ]
+          "specifiers": ["s1aUrl"]
         },
         {
           "source": "../files/film/s1b.mp4",
-          "specifiers": [
-            "s1bUrl"
-          ]
+          "specifiers": ["s1bUrl"]
         },
         {
           "source": "../files/film/s1c.mp4",
-          "specifiers": [
-            "s1cUrl"
-          ]
+          "specifiers": ["s1cUrl"]
         },
         {
           "source": "../files/film/s2-audio.mp3",
-          "specifiers": [
-            "s2Music"
-          ]
+          "specifiers": ["s2Music"]
         },
         {
           "source": "../files/film/s2a.mp4",
-          "specifiers": [
-            "s2aUrl"
-          ]
+          "specifiers": ["s2aUrl"]
         },
         {
           "source": "../files/film/s2b.mp4",
-          "specifiers": [
-            "s2bUrl"
-          ]
+          "specifiers": ["s2bUrl"]
         },
         {
           "source": "../files/film/s2c.mp4",
-          "specifiers": [
-            "s2cUrl"
-          ]
+          "specifiers": ["s2cUrl"]
         },
         {
           "source": "../files/film/s3a.mp4",
-          "specifiers": [
-            "s3aUrl"
-          ]
+          "specifiers": ["s3aUrl"]
         },
         {
           "source": "../files/film/s3b.mp4",
-          "specifiers": [
-            "s3bUrl"
-          ]
+          "specifiers": ["s3bUrl"]
         },
         {
           "source": "../files/film/s3c.mp4",
-          "specifiers": [
-            "s3cUrl"
-          ]
+          "specifiers": ["s3cUrl"]
         },
         {
           "source": "../files/film/s4-audio.mp3",
-          "specifiers": [
-            "s4Music"
-          ]
+          "specifiers": ["s4Music"]
         },
         {
           "source": "../files/film/s4a.mp4",
-          "specifiers": [
-            "s4aUrl"
-          ]
+          "specifiers": ["s4aUrl"]
         },
         {
           "source": "../files/film/s4b.mp4",
-          "specifiers": [
-            "s4bUrl"
-          ]
+          "specifiers": ["s4bUrl"]
         },
         {
           "source": "../files/film/s4c.mp4",
-          "specifiers": [
-            "s4cUrl"
-          ]
+          "specifiers": ["s4cUrl"]
         },
         {
           "source": "../files/film/whoosh-a.mp3",
-          "specifiers": [
-            "whooshAUrl"
-          ]
+          "specifiers": ["whooshAUrl"]
         },
         {
           "source": "../files/film/whoosh-b.mp3",
-          "specifiers": [
-            "whooshBUrl"
-          ]
+          "specifiers": ["whooshBUrl"]
         },
         {
           "source": "../studio/kf.js",
-          "specifiers": [
-            "KmInfer",
-            "kf"
-          ]
+          "specifiers": ["KmInfer", "kf"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "cohabitDemo"
-      ],
+      "exports": ["cohabitDemo"],
       "totalLines": 1151,
       "hasStructuralAnalysis": true
     },
@@ -606,30 +457,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Easing",
-            "Sequence",
-            "interpolate",
-            "interpolateColors"
-          ]
+          "specifiers": ["Composition", "Easing", "Sequence", "interpolate", "interpolateColors"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "colorsDemo"
-      ],
+      "exports": ["colorsDemo"],
       "totalLines": 83,
       "hasStructuralAnalysis": true
     },
@@ -641,29 +480,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Easing",
-            "Sequence",
-            "interpolate"
-          ]
+          "specifiers": ["Composition", "Easing", "Sequence", "interpolate"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "easingsDemo"
-      ],
+      "exports": ["easingsDemo"],
       "totalLines": 89,
       "hasStructuralAnalysis": true
     },
@@ -687,20 +515,14 @@
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "flexLayoutDemo"
-      ],
+      "exports": ["flexLayoutDemo"],
       "totalLines": 102,
       "hasStructuralAnalysis": true
     },
@@ -712,31 +534,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Easing",
-            "Flex",
-            "Image",
-            "Sequence",
-            "interpolate"
-          ]
+          "specifiers": ["Composition", "Easing", "Flex", "Image", "Sequence", "interpolate"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "flexRowGrowDemo"
-      ],
+      "exports": ["flexRowGrowDemo"],
       "totalLines": 65,
       "hasStructuralAnalysis": true
     },
@@ -746,11 +555,7 @@
       "functions": [
         {
           "name": "swatch",
-          "params": [
-            "color",
-            "extra",
-            "size"
-          ],
+          "params": ["color", "extra", "size"],
           "exported": false,
           "lineCount": 12
         }
@@ -759,31 +564,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Block",
-            "Composition",
-            "Easing",
-            "Flex",
-            "Sequence",
-            "interpolate"
-          ]
+          "specifiers": ["Block", "Composition", "Easing", "Flex", "Sequence", "interpolate"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "flexShowcaseDemo"
-      ],
+      "exports": ["flexShowcaseDemo"],
       "totalLines": 161,
       "hasStructuralAnalysis": true
     },
@@ -795,30 +587,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Block",
-            "Composition",
-            "Flex",
-            "Image",
-            "Sequence"
-          ]
+          "specifiers": ["Block", "Composition", "Flex", "Image", "Sequence"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "flexTypewriterDemo"
-      ],
+      "exports": ["flexTypewriterDemo"],
       "totalLines": 76,
       "hasStructuralAnalysis": true
     },
@@ -828,23 +608,13 @@
       "functions": [
         {
           "name": "clamp",
-          "params": [
-            "v",
-            "lo",
-            "hi"
-          ],
+          "params": ["v", "lo", "hi"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "buildScene",
-          "params": [
-            "comp",
-            "scene",
-            "index",
-            "width",
-            "height"
-          ],
+          "params": ["comp", "scene", "index", "width", "height"],
           "exported": false,
           "lineCount": 358
         }
@@ -853,31 +623,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Block",
-            "Composition",
-            "Easing",
-            "Image",
-            "Sequence",
-            "interpolate"
-          ]
+          "specifiers": ["Block", "Composition", "Easing", "Image", "Sequence", "interpolate"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "igStoryDemo"
-      ],
+      "exports": ["igStoryDemo"],
       "totalLines": 623,
       "hasStructuralAnalysis": true
     },
@@ -887,9 +644,7 @@
       "functions": [
         {
           "name": "loadImage",
-          "params": [
-            "url"
-          ],
+          "params": ["url"],
           "returnType": "HTMLImageElement",
           "exported": false,
           "lineCount": 6
@@ -899,29 +654,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Easing",
-            "Sequence",
-            "interpolate"
-          ]
+          "specifiers": ["Composition", "Easing", "Sequence", "interpolate"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "imageClipDemo"
-      ],
+      "exports": ["imageClipDemo"],
       "totalLines": 114,
       "hasStructuralAnalysis": true
     },
@@ -931,9 +675,7 @@
       "functions": [
         {
           "name": "loadImage",
-          "params": [
-            "url"
-          ],
+          "params": ["url"],
           "returnType": "HTMLImageElement",
           "exported": false,
           "lineCount": 6
@@ -943,29 +685,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Easing",
-            "Sequence",
-            "interpolate"
-          ]
+          "specifiers": ["Composition", "Easing", "Sequence", "interpolate"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "imageFadeDemo"
-      ],
+      "exports": ["imageFadeDemo"],
       "totalLines": 86,
       "hasStructuralAnalysis": true
     },
@@ -975,9 +706,7 @@
       "functions": [
         {
           "name": "loadImage",
-          "params": [
-            "url"
-          ],
+          "params": ["url"],
           "returnType": "HTMLImageElement",
           "exported": false,
           "lineCount": 6
@@ -987,29 +716,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Easing",
-            "Sequence",
-            "interpolate"
-          ]
+          "specifiers": ["Composition", "Easing", "Sequence", "interpolate"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "imageSliderDemo"
-      ],
+      "exports": ["imageSliderDemo"],
       "totalLines": 89,
       "hasStructuralAnalysis": true
     },
@@ -1019,11 +737,7 @@
       "functions": [
         {
           "name": "formatTimecode",
-          "params": [
-            "frame",
-            "fps",
-            "total"
-          ],
+          "params": ["frame", "fps", "total"],
           "returnType": "string",
           "exported": false,
           "lineCount": 10
@@ -1033,31 +747,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Block",
-            "Composition",
-            "Easing",
-            "Image",
-            "Sequence",
-            "interpolate"
-          ]
+          "specifiers": ["Block", "Composition", "Easing", "Image", "Sequence", "interpolate"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "journeyDemo"
-      ],
+      "exports": ["journeyDemo"],
       "totalLines": 456,
       "hasStructuralAnalysis": true
     },
@@ -1069,30 +770,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Easing",
-            "Sequence",
-            "interpolate",
-            "interpolateColors"
-          ]
+          "specifiers": ["Composition", "Easing", "Sequence", "interpolate", "interpolateColors"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "keyframesDemo"
-      ],
+      "exports": ["keyframesDemo"],
       "totalLines": 100,
       "hasStructuralAnalysis": true
     },
@@ -1104,27 +793,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Sequence"
-          ]
+          "specifiers": ["Composition", "Sequence"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "staggeredDemo"
-      ],
+      "exports": ["staggeredDemo"],
       "totalLines": 59,
       "hasStructuralAnalysis": true
     },
@@ -1134,11 +814,7 @@
       "functions": [
         {
           "name": "label",
-          "params": [
-            "text",
-            "x",
-            "y"
-          ],
+          "params": ["text", "x", "y"],
           "returnType": "Konva.Text",
           "exported": false,
           "lineCount": 3
@@ -1148,31 +824,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Block",
-            "Composition",
-            "Easing",
-            "Sequence",
-            "Text",
-            "interpolate"
-          ]
+          "specifiers": ["Block", "Composition", "Easing", "Sequence", "Text", "interpolate"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "textFitDemo"
-      ],
+      "exports": ["textFitDemo"],
       "totalLines": 183,
       "hasStructuralAnalysis": true
     },
@@ -1182,21 +845,14 @@
       "functions": [
         {
           "name": "label",
-          "params": [
-            "text",
-            "x",
-            "y"
-          ],
+          "params": ["text", "x", "y"],
           "returnType": "Konva.Text",
           "exported": false,
           "lineCount": 3
         },
         {
           "name": "range",
-          "params": [
-            "haystack",
-            "needle"
-          ],
+          "params": ["haystack", "needle"],
           "returnType": "{ start: number; end: number }",
           "exported": false,
           "lineCount": 4
@@ -1206,37 +862,22 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Block",
-            "Composition",
-            "Easing",
-            "Sequence",
-            "Text",
-            "interpolate"
-          ]
+          "specifiers": ["Block", "Composition", "Easing", "Sequence", "Text", "interpolate"]
         },
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "HighlightConfig"
-          ]
+          "specifiers": ["HighlightConfig"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "textHighlightDemo"
-      ],
+      "exports": ["textHighlightDemo"],
       "totalLines": 199,
       "hasStructuralAnalysis": true
     },
@@ -1246,11 +887,7 @@
       "functions": [
         {
           "name": "label",
-          "params": [
-            "text",
-            "x",
-            "y"
-          ],
+          "params": ["text", "x", "y"],
           "returnType": "Konva.Text",
           "exported": false,
           "lineCount": 3
@@ -1260,37 +897,22 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Block",
-            "Composition",
-            "Easing",
-            "Sequence",
-            "Text",
-            "interpolate"
-          ]
+          "specifiers": ["Block", "Composition", "Easing", "Sequence", "Text", "interpolate"]
         },
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "HighlightConfig"
-          ]
+          "specifiers": ["HighlightConfig"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "textTypewriterDemo"
-      ],
+      "exports": ["textTypewriterDemo"],
       "totalLines": 163,
       "hasStructuralAnalysis": true
     },
@@ -1302,27 +924,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Sequence"
-          ]
+          "specifiers": ["Composition", "Sequence"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "transformsDemo"
-      ],
+      "exports": ["transformsDemo"],
       "totalLines": 73,
       "hasStructuralAnalysis": true
     },
@@ -1334,16 +947,11 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "ReadonlySignal"
-          ]
+          "specifiers": ["Composition", "ReadonlySignal"]
         },
         {
           "source": "../studio/kf.js",
-          "specifiers": [
-            "KmSchema"
-          ]
+          "specifiers": ["KmSchema"]
         }
       ],
       "exports": [],
@@ -1358,30 +966,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Block",
-            "Composition",
-            "Flex",
-            "Sequence",
-            "Text"
-          ]
+          "specifiers": ["Block", "Composition", "Flex", "Sequence", "Text"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "typewriterDemo"
-      ],
+      "exports": ["typewriterDemo"],
       "totalLines": 110,
       "hasStructuralAnalysis": true
     },
@@ -1393,40 +989,26 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "Sequence",
-            "Video"
-          ]
+          "specifiers": ["Composition", "Sequence", "Video"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "../files/sync-test-1.mp4",
-          "specifiers": [
-            "clip1Url"
-          ]
+          "specifiers": ["clip1Url"]
         },
         {
           "source": "../files/sync-test-2.mp4",
-          "specifiers": [
-            "clip2Url"
-          ]
+          "specifiers": ["clip2Url"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         }
       ],
-      "exports": [
-        "videoSyncDemo"
-      ],
+      "exports": ["videoSyncDemo"],
       "totalLines": 128,
       "hasStructuralAnalysis": true
     },
@@ -1438,21 +1020,15 @@
       "imports": [
         {
           "source": "react-dom/client",
-          "specifiers": [
-            "createRoot"
-          ]
+          "specifiers": ["createRoot"]
         },
         {
           "source": "react-router-dom",
-          "specifiers": [
-            "HashRouter"
-          ]
+          "specifiers": ["HashRouter"]
         },
         {
           "source": "./studio/App.js",
-          "specifiers": [
-            "App"
-          ]
+          "specifiers": ["App"]
         },
         {
           "source": "./studio/styles.css",
@@ -1469,9 +1045,7 @@
       "functions": [
         {
           "name": "createRequire",
-          "params": [
-            "_url"
-          ],
+          "params": ["_url"],
           "returnType": "(id: string) => unknown",
           "exported": true,
           "lineCount": 5
@@ -1479,9 +1053,7 @@
       ],
       "classes": [],
       "imports": [],
-      "exports": [
-        "createRequire"
-      ],
+      "exports": ["createRequire"],
       "totalLines": 6,
       "hasStructuralAnalysis": true
     },
@@ -1491,17 +1063,13 @@
       "functions": [
         {
           "name": "StageStatus",
-          "params": [
-            "{\n  comp,\n  title,\n  w,\n  h,\n}"
-          ],
+          "params": ["{\n  comp,\n  title,\n  w,\n  h,\n}"],
           "exported": false,
           "lineCount": 23
         },
         {
           "name": "Studio",
-          "params": [
-            "{ demo }"
-          ],
+          "params": ["{ demo }"],
           "exported": false,
           "lineCount": 129
         },
@@ -1522,80 +1090,46 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition"
-          ]
+          "specifiers": ["Composition"]
         },
         {
           "source": "react",
-          "specifiers": [
-            "useEffect",
-            "useRef",
-            "useState"
-          ]
+          "specifiers": ["useEffect", "useRef", "useState"]
         },
         {
           "source": "react-router-dom",
-          "specifiers": [
-            "Navigate",
-            "Route",
-            "Routes",
-            "useNavigate",
-            "useParams"
-          ]
+          "specifiers": ["Navigate", "Route", "Routes", "useNavigate", "useParams"]
         },
         {
           "source": "./Player.js",
-          "specifiers": [
-            "Player"
-          ]
+          "specifiers": ["Player"]
         },
         {
           "source": "./RightPanel.js",
-          "specifiers": [
-            "PanelHandle",
-            "PanelTab",
-            "RightPanel"
-          ]
+          "specifiers": ["PanelHandle", "PanelTab", "RightPanel"]
         },
         {
           "source": "./Sidebar.js",
-          "specifiers": [
-            "Sidebar"
-          ]
+          "specifiers": ["Sidebar"]
         },
         {
           "source": "./ZoomControl.js",
-          "specifiers": [
-            "ZoomControl",
-            "ZoomMode"
-          ]
+          "specifiers": ["ZoomControl", "ZoomMode"]
         },
         {
           "source": "./catalog.js",
-          "specifiers": [
-            "FIRST_DEMO_ID",
-            "KM_FLAT",
-            "StudioDemo",
-            "findDemo"
-          ]
+          "specifiers": ["FIRST_DEMO_ID", "KM_FLAT", "StudioDemo", "findDemo"]
         },
         {
           "source": "./useComposition.js",
-          "specifiers": [
-            "useComposition"
-          ]
+          "specifiers": ["useComposition"]
         },
         {
           "source": "./useSignal.js",
-          "specifiers": [
-            "useSignal"
-          ]
+          "specifiers": ["useSignal"]
         }
       ],
-      "exports": [
-        "App"
-      ],
+      "exports": ["App"],
       "totalLines": 188,
       "hasStructuralAnalysis": true
     },
@@ -1605,19 +1139,14 @@
       "functions": [
         {
           "name": "entry",
-          "params": [
-            "demo",
-            "meta"
-          ],
+          "params": ["demo", "meta"],
           "returnType": "Entry",
           "exported": false,
           "lineCount": 20
         },
         {
           "name": "findDemo",
-          "params": [
-            "id"
-          ],
+          "params": ["id"],
           "returnType": "StudioDemo | undefined",
           "exported": true,
           "lineCount": 2
@@ -1627,163 +1156,106 @@
       "imports": [
         {
           "source": "../demos/audio-mixer.js",
-          "specifiers": [
-            "audioMixerDemo"
-          ]
+          "specifiers": ["audioMixerDemo"]
         },
         {
           "source": "../demos/basic.js",
-          "specifiers": [
-            "basicDemo"
-          ]
+          "specifiers": ["basicDemo"]
         },
         {
           "source": "../demos/bouncing.js",
-          "specifiers": [
-            "bouncingDemo"
-          ]
+          "specifiers": ["bouncingDemo"]
         },
         {
           "source": "../demos/cohabit.js",
-          "specifiers": [
-            "cohabitDemo"
-          ]
+          "specifiers": ["cohabitDemo"]
         },
         {
           "source": "../demos/colors.js",
-          "specifiers": [
-            "colorsDemo"
-          ]
+          "specifiers": ["colorsDemo"]
         },
         {
           "source": "../demos/easings.js",
-          "specifiers": [
-            "easingsDemo"
-          ]
+          "specifiers": ["easingsDemo"]
         },
         {
           "source": "../demos/flex-layout.js",
-          "specifiers": [
-            "flexLayoutDemo"
-          ]
+          "specifiers": ["flexLayoutDemo"]
         },
         {
           "source": "../demos/flex-row-grow.js",
-          "specifiers": [
-            "flexRowGrowDemo"
-          ]
+          "specifiers": ["flexRowGrowDemo"]
         },
         {
           "source": "../demos/flex-showcase.js",
-          "specifiers": [
-            "flexShowcaseDemo"
-          ]
+          "specifiers": ["flexShowcaseDemo"]
         },
         {
           "source": "../demos/flex-typewriter.js",
-          "specifiers": [
-            "flexTypewriterDemo"
-          ]
+          "specifiers": ["flexTypewriterDemo"]
         },
         {
           "source": "../demos/ig-story.js",
-          "specifiers": [
-            "igStoryDemo"
-          ]
+          "specifiers": ["igStoryDemo"]
         },
         {
           "source": "../demos/image-clip.js",
-          "specifiers": [
-            "imageClipDemo"
-          ]
+          "specifiers": ["imageClipDemo"]
         },
         {
           "source": "../demos/image-fade.js",
-          "specifiers": [
-            "imageFadeDemo"
-          ]
+          "specifiers": ["imageFadeDemo"]
         },
         {
           "source": "../demos/image-slider.js",
-          "specifiers": [
-            "imageSliderDemo"
-          ]
+          "specifiers": ["imageSliderDemo"]
         },
         {
           "source": "../demos/journey.js",
-          "specifiers": [
-            "journeyDemo"
-          ]
+          "specifiers": ["journeyDemo"]
         },
         {
           "source": "../demos/keyframes.js",
-          "specifiers": [
-            "keyframesDemo"
-          ]
+          "specifiers": ["keyframesDemo"]
         },
         {
           "source": "../demos/staggered.js",
-          "specifiers": [
-            "staggeredDemo"
-          ]
+          "specifiers": ["staggeredDemo"]
         },
         {
           "source": "../demos/text-fit.js",
-          "specifiers": [
-            "textFitDemo"
-          ]
+          "specifiers": ["textFitDemo"]
         },
         {
           "source": "../demos/text-highlight.js",
-          "specifiers": [
-            "textHighlightDemo"
-          ]
+          "specifiers": ["textHighlightDemo"]
         },
         {
           "source": "../demos/text-typewriter.js",
-          "specifiers": [
-            "textTypewriterDemo"
-          ]
+          "specifiers": ["textTypewriterDemo"]
         },
         {
           "source": "../demos/transforms.js",
-          "specifiers": [
-            "transformsDemo"
-          ]
+          "specifiers": ["transformsDemo"]
         },
         {
           "source": "../demos/types.js",
-          "specifiers": [
-            "DemoDef"
-          ]
+          "specifiers": ["DemoDef"]
         },
         {
           "source": "../demos/typewriter.js",
-          "specifiers": [
-            "typewriterDemo"
-          ]
+          "specifiers": ["typewriterDemo"]
         },
         {
           "source": "../demos/video-sync.js",
-          "specifiers": [
-            "videoSyncDemo"
-          ]
+          "specifiers": ["videoSyncDemo"]
         },
         {
           "source": "./kf.js",
-          "specifiers": [
-            "KmSchema",
-            "kmDefault",
-            "kmMerge"
-          ]
+          "specifiers": ["KmSchema", "kmDefault", "kmMerge"]
         }
       ],
-      "exports": [
-        "KM_DEMOS",
-        "KM_FLAT",
-        "FIRST_DEMO_ID",
-        "findDemo"
-      ],
+      "exports": ["KM_DEMOS", "KM_FLAT", "FIRST_DEMO_ID", "findDemo"],
       "totalLines": 367,
       "hasStructuralAnalysis": true
     },
@@ -1793,9 +1265,7 @@
       "functions": [
         {
           "name": "Icon",
-          "params": [
-            "{\n  name,\n  size = 16,\n  style,\n}"
-          ],
+          "params": ["{\n  name,\n  size = 16,\n  style,\n}"],
           "exported": true,
           "lineCount": 21
         }
@@ -1804,15 +1274,10 @@
       "imports": [
         {
           "source": "react",
-          "specifiers": [
-            "CSSProperties",
-            "ReactNode"
-          ]
+          "specifiers": ["CSSProperties", "ReactNode"]
         }
       ],
-      "exports": [
-        "Icon"
-      ],
+      "exports": ["Icon"],
       "totalLines": 150,
       "hasStructuralAnalysis": true
     },
@@ -1822,47 +1287,35 @@
       "functions": [
         {
           "name": "tag",
-          "params": [
-            "schema",
-            "meta"
-          ],
+          "params": ["schema", "meta"],
           "returnType": "KmSchema",
           "exported": false,
           "lineCount": 10
         },
         {
           "name": "normOpts",
-          "params": [
-            "options"
-          ],
+          "params": ["options"],
           "returnType": "KmOption[]",
           "exported": false,
           "lineCount": 7
         },
         {
           "name": "kmDefault",
-          "params": [
-            "schema"
-          ],
+          "params": ["schema"],
           "returnType": "unknown",
           "exported": true,
           "lineCount": 21
         },
         {
           "name": "kmItemDefault",
-          "params": [
-            "itemSchema"
-          ],
+          "params": ["itemSchema"],
           "returnType": "unknown",
           "exported": true,
           "lineCount": 4
         },
         {
           "name": "kmMerge",
-          "params": [
-            "base",
-            "over"
-          ],
+          "params": ["base", "over"],
           "returnType": "unknown",
           "exported": true,
           "lineCount": 14
@@ -1872,18 +1325,10 @@
       "imports": [
         {
           "source": "zod",
-          "specifiers": [
-            "z"
-          ]
+          "specifiers": ["z"]
         }
       ],
-      "exports": [
-        "KM_COLORS",
-        "kf",
-        "kmDefault",
-        "kmItemDefault",
-        "kmMerge"
-      ],
+      "exports": ["KM_COLORS", "kf", "kmDefault", "kmItemDefault", "kmMerge"],
       "totalLines": 326,
       "hasStructuralAnalysis": true
     },
@@ -1893,25 +1338,19 @@
       "functions": [
         {
           "name": "clamp01",
-          "params": [
-            "x"
-          ],
+          "params": ["x"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "fmt",
-          "params": [
-            "s"
-          ],
+          "params": ["s"],
           "exported": false,
           "lineCount": 6
         },
         {
           "name": "Player",
-          "params": [
-            "{\n  comp,\n  fs,\n  onFs,\n}"
-          ],
+          "params": ["{\n  comp,\n  fs,\n  onFs,\n}"],
           "exported": true,
           "lineCount": 159
         }
@@ -1920,34 +1359,22 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition"
-          ]
+          "specifiers": ["Composition"]
         },
         {
           "source": "react",
-          "specifiers": [
-            "useEffect",
-            "useRef",
-            "useState"
-          ]
+          "specifiers": ["useEffect", "useRef", "useState"]
         },
         {
           "source": "./Icon.js",
-          "specifiers": [
-            "Icon"
-          ]
+          "specifiers": ["Icon"]
         },
         {
           "source": "./useSignal.js",
-          "specifiers": [
-            "useSignal"
-          ]
+          "specifiers": ["useSignal"]
         }
       ],
-      "exports": [
-        "Player"
-      ],
+      "exports": ["Player"],
       "totalLines": 174,
       "hasStructuralAnalysis": true
     },
@@ -1957,25 +1384,19 @@
       "functions": [
         {
           "name": "PropsTab",
-          "params": [
-            "{\n  demo,\n  value,\n  onChange,\n  onReset,\n}"
-          ],
+          "params": ["{\n  demo,\n  value,\n  onChange,\n  onReset,\n}"],
           "exported": false,
           "lineCount": 47
         },
         {
           "name": "InfoTab",
-          "params": [
-            "{ demo }"
-          ],
+          "params": ["{ demo }"],
           "exported": false,
           "lineCount": 41
         },
         {
           "name": "CodeTab",
-          "params": [
-            "{ demo }"
-          ],
+          "params": ["{ demo }"],
           "exported": false,
           "lineCount": 34
         },
@@ -1989,9 +1410,7 @@
         },
         {
           "name": "PanelHandle",
-          "params": [
-            "{ onOpen }"
-          ],
+          "params": ["{ onOpen }"],
           "exported": true,
           "lineCount": 12
         }
@@ -2000,27 +1419,18 @@
       "imports": [
         {
           "source": "./Icon.js",
-          "specifiers": [
-            "Icon"
-          ]
+          "specifiers": ["Icon"]
         },
         {
           "source": "./SchemaForm.js",
-          "specifiers": [
-            "SchemaForm"
-          ]
+          "specifiers": ["SchemaForm"]
         },
         {
           "source": "./catalog.js",
-          "specifiers": [
-            "StudioDemo"
-          ]
+          "specifiers": ["StudioDemo"]
         }
       ],
-      "exports": [
-        "RightPanel",
-        "PanelHandle"
-      ],
+      "exports": ["RightPanel", "PanelHandle"],
       "totalLines": 201,
       "hasStructuralAnalysis": true
     },
@@ -2030,115 +1440,86 @@
       "functions": [
         {
           "name": "desc",
-          "params": [
-            "schema",
-            "m"
-          ],
+          "params": ["schema", "m"],
           "returnType": "string | null",
           "exported": false,
           "lineCount": 2
         },
         {
           "name": "Dropdown",
-          "params": [
-            "{\n  value,\n  options,\n  onChange,\n  placeholder,\n}"
-          ],
+          "params": ["{\n  value,\n  options,\n  onChange,\n  placeholder,\n}"],
           "exported": false,
           "lineCount": 57
         },
         {
           "name": "FieldShell",
-          "params": [
-            "{\n  label,\n  description,\n  children,\n}"
-          ],
+          "params": ["{\n  label,\n  description,\n  children,\n}"],
           "exported": false,
           "lineCount": 19
         },
         {
           "name": "KText",
-          "params": [
-            "{ schema, m, value, onChange }"
-          ],
+          "params": ["{ schema, m, value, onChange }"],
           "exported": false,
           "lineCount": 13
         },
         {
           "name": "KMultiline",
-          "params": [
-            "{ schema, m, value, onChange }"
-          ],
+          "params": ["{ schema, m, value, onChange }"],
           "exported": false,
           "lineCount": 13
         },
         {
           "name": "KNumber",
-          "params": [
-            "{ schema, m, value, onChange }"
-          ],
+          "params": ["{ schema, m, value, onChange }"],
           "exported": false,
           "lineCount": 22
         },
         {
           "name": "KColor",
-          "params": [
-            "{ schema, m, value, onChange }"
-          ],
+          "params": ["{ schema, m, value, onChange }"],
           "exported": false,
           "lineCount": 41
         },
         {
           "name": "KBool",
-          "params": [
-            "{ schema, m, value, onChange }"
-          ],
+          "params": ["{ schema, m, value, onChange }"],
           "exported": false,
           "lineCount": 22
         },
         {
           "name": "KSelect",
-          "params": [
-            "{ schema, m, value, onChange }"
-          ],
+          "params": ["{ schema, m, value, onChange }"],
           "exported": false,
           "lineCount": 7
         },
         {
           "name": "KMultiselect",
-          "params": [
-            "{ schema, m, value, onChange }"
-          ],
+          "params": ["{ schema, m, value, onChange }"],
           "exported": false,
           "lineCount": 29
         },
         {
           "name": "KDivider",
-          "params": [
-            "{ m }"
-          ],
+          "params": ["{ m }"],
           "exported": false,
           "lineCount": 11
         },
         {
           "name": "KObject",
-          "params": [
-            "{\n  schema,\n  m,\n  value,\n  onChange,\n  depth,\n  root,\n}"
-          ],
+          "params": ["{\n  schema,\n  m,\n  value,\n  onChange,\n  depth,\n  root,\n}"],
           "exported": false,
           "lineCount": 51
         },
         {
           "name": "KArray",
-          "params": [
-            "{ schema, m, value, onChange, depth }"
-          ],
+          "params": ["{ schema, m, value, onChange, depth }"],
           "exported": false,
           "lineCount": 129
         },
         {
           "name": "InlineColor",
-          "params": [
-            "{ m, value, onChange }"
-          ],
+          "params": ["{ m, value, onChange }"],
           "exported": false,
           "lineCount": 24
         },
@@ -2152,9 +1533,7 @@
         },
         {
           "name": "SchemaForm",
-          "params": [
-            "{\n  schema,\n  value,\n  onChange,\n}"
-          ],
+          "params": ["{\n  schema,\n  value,\n  onChange,\n}"],
           "exported": true,
           "lineCount": 16
         }
@@ -2163,32 +1542,18 @@
       "imports": [
         {
           "source": "react",
-          "specifiers": [
-            "ReactNode",
-            "useEffect",
-            "useRef",
-            "useState"
-          ]
+          "specifiers": ["ReactNode", "useEffect", "useRef", "useState"]
         },
         {
           "source": "./Icon.js",
-          "specifiers": [
-            "Icon"
-          ]
+          "specifiers": ["Icon"]
         },
         {
           "source": "./kf.js",
-          "specifiers": [
-            "KmMeta",
-            "KmOption",
-            "KmSchema",
-            "kmItemDefault"
-          ]
+          "specifiers": ["KmMeta", "KmOption", "KmSchema", "kmItemDefault"]
         }
       ],
-      "exports": [
-        "SchemaForm"
-      ],
+      "exports": ["SchemaForm"],
       "totalLines": 548,
       "hasStructuralAnalysis": true
     },
@@ -2198,9 +1563,7 @@
       "functions": [
         {
           "name": "Sidebar",
-          "params": [
-            "{\n  activeId,\n  onSelect,\n}"
-          ],
+          "params": ["{\n  activeId,\n  onSelect,\n}"],
           "exported": true,
           "lineCount": 91
         }
@@ -2209,26 +1572,18 @@
       "imports": [
         {
           "source": "react",
-          "specifiers": [
-            "useState"
-          ]
+          "specifiers": ["useState"]
         },
         {
           "source": "./Icon.js",
-          "specifiers": [
-            "Icon"
-          ]
+          "specifiers": ["Icon"]
         },
         {
           "source": "./catalog.js",
-          "specifiers": [
-            "KM_DEMOS"
-          ]
+          "specifiers": ["KM_DEMOS"]
         }
       ],
-      "exports": [
-        "Sidebar"
-      ],
+      "exports": ["Sidebar"],
       "totalLines": 96,
       "hasStructuralAnalysis": true
     },
@@ -2248,19 +1603,14 @@
       "functions": [
         {
           "name": "createSignal",
-          "params": [
-            "initial"
-          ],
+          "params": ["initial"],
           "returnType": "Signal<T>",
           "exported": false,
           "lineCount": 15
         },
         {
           "name": "useComposition",
-          "params": [
-            "demo",
-            "values"
-          ],
+          "params": ["demo", "values"],
           "returnType": "{\n  containerRef: React.RefObject<HTMLDivElement>;\n  comp: Composition | null;\n  applyProps: (next: Record<string, unknown>) => void;\n}",
           "exported": true,
           "lineCount": 52
@@ -2270,30 +1620,18 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "Composition",
-            "ReadonlySignal"
-          ]
+          "specifiers": ["Composition", "ReadonlySignal"]
         },
         {
           "source": "react",
-          "specifiers": [
-            "useCallback",
-            "useEffect",
-            "useRef",
-            "useState"
-          ]
+          "specifiers": ["useCallback", "useEffect", "useRef", "useState"]
         },
         {
           "source": "./catalog.js",
-          "specifiers": [
-            "StudioDemo"
-          ]
+          "specifiers": ["StudioDemo"]
         }
       ],
-      "exports": [
-        "useComposition"
-      ],
+      "exports": ["useComposition"],
       "totalLines": 86,
       "hasStructuralAnalysis": true
     },
@@ -2303,9 +1641,7 @@
       "functions": [
         {
           "name": "useSignal",
-          "params": [
-            "signal"
-          ],
+          "params": ["signal"],
           "returnType": "T",
           "exported": true,
           "lineCount": 6
@@ -2315,20 +1651,14 @@
       "imports": [
         {
           "source": "@konva-motion/core",
-          "specifiers": [
-            "ReadonlySignal"
-          ]
+          "specifiers": ["ReadonlySignal"]
         },
         {
           "source": "react",
-          "specifiers": [
-            "useSyncExternalStore"
-          ]
+          "specifiers": ["useSyncExternalStore"]
         }
       ],
-      "exports": [
-        "useSignal"
-      ],
+      "exports": ["useSignal"],
       "totalLines": 15,
       "hasStructuralAnalysis": true
     },
@@ -2338,9 +1668,7 @@
       "functions": [
         {
           "name": "ZoomControl",
-          "params": [
-            "{\n  mode,\n  fitPct,\n  onSet,\n}"
-          ],
+          "params": ["{\n  mode,\n  fitPct,\n  onSet,\n}"],
           "exported": true,
           "lineCount": 71
         }
@@ -2349,23 +1677,14 @@
       "imports": [
         {
           "source": "react",
-          "specifiers": [
-            "useEffect",
-            "useRef",
-            "useState"
-          ]
+          "specifiers": ["useEffect", "useRef", "useState"]
         },
         {
           "source": "./Icon.js",
-          "specifiers": [
-            "Icon"
-          ]
+          "specifiers": ["Icon"]
         }
       ],
-      "exports": [
-        "ZOOM_STEPS",
-        "ZoomControl"
-      ],
+      "exports": ["ZOOM_STEPS", "ZoomControl"],
       "totalLines": 79,
       "hasStructuralAnalysis": true
     },
@@ -2387,15 +1706,11 @@
       "imports": [
         {
           "source": "@vitejs/plugin-react",
-          "specifiers": [
-            "react"
-          ]
+          "specifiers": ["react"]
         },
         {
           "source": "vite",
-          "specifiers": [
-            "defineConfig"
-          ]
+          "specifiers": ["defineConfig"]
         }
       ],
       "exports": [],
@@ -2470,21 +1785,15 @@
       "imports": [
         {
           "source": "../composition.js",
-          "specifiers": [
-            "Composition"
-          ]
+          "specifiers": ["Composition"]
         },
         {
           "source": "../media-time.js",
-          "specifiers": [
-            "MediaTiming"
-          ]
+          "specifiers": ["MediaTiming"]
         },
         {
           "source": "./audio-source.js",
-          "specifiers": [
-            "AudioSource"
-          ]
+          "specifiers": ["AudioSource"]
         }
       ],
       "exports": [],
@@ -2498,17 +1807,8 @@
       "classes": [
         {
           "name": "PreviewAudioDriver",
-          "methods": [
-            "constructor",
-            "tick",
-            "deactivate",
-            "dispose"
-          ],
-          "properties": [
-            "_wasActive",
-            "_lastLocalFrame",
-            "_unsub"
-          ],
+          "methods": ["constructor", "tick", "deactivate", "dispose"],
+          "properties": ["_wasActive", "_lastLocalFrame", "_unsub"],
           "exported": true,
           "lineCount": 60
         }
@@ -2516,21 +1816,14 @@
       "imports": [
         {
           "source": "../media-time.js",
-          "specifiers": [
-            "getMediaTime"
-          ]
+          "specifiers": ["getMediaTime"]
         },
         {
           "source": "./audio-driver.js",
-          "specifiers": [
-            "AudioDriver",
-            "AudioDriverContext"
-          ]
+          "specifiers": ["AudioDriver", "AudioDriverContext"]
         }
       ],
-      "exports": [
-        "PreviewAudioDriver"
-      ],
+      "exports": ["PreviewAudioDriver"],
       "totalLines": 73,
       "hasStructuralAnalysis": true
     },
@@ -2541,12 +1834,7 @@
       "classes": [
         {
           "name": "RenderingAudioDriver",
-          "methods": [
-            "constructor",
-            "tick",
-            "deactivate",
-            "dispose"
-          ],
+          "methods": ["constructor", "tick", "deactivate", "dispose"],
           "properties": [],
           "exported": true,
           "lineCount": 24
@@ -2555,21 +1843,14 @@
       "imports": [
         {
           "source": "../media-time.js",
-          "specifiers": [
-            "getMediaTime"
-          ]
+          "specifiers": ["getMediaTime"]
         },
         {
           "source": "./audio-driver.js",
-          "specifiers": [
-            "AudioDriver",
-            "AudioDriverContext"
-          ]
+          "specifiers": ["AudioDriver", "AudioDriverContext"]
         }
       ],
-      "exports": [
-        "RenderingAudioDriver"
-      ],
+      "exports": ["RenderingAudioDriver"],
       "totalLines": 35,
       "hasStructuralAnalysis": true
     },
@@ -2596,13 +1877,7 @@
             "onReady",
             "destroy"
           ],
-          "properties": [
-            "_el",
-            "_ready",
-            "_readyCbs",
-            "_seeking",
-            "_pending"
-          ],
+          "properties": ["_el", "_ready", "_readyCbs", "_seeking", "_pending"],
           "exported": true,
           "lineCount": 146
         }
@@ -2610,15 +1885,10 @@
       "imports": [
         {
           "source": "./audio-source.js",
-          "specifiers": [
-            "AudioSource",
-            "SeekMode"
-          ]
+          "specifiers": ["AudioSource", "SeekMode"]
         }
       ],
-      "exports": [
-        "BrowserAudioSource"
-      ],
+      "exports": ["BrowserAudioSource"],
       "totalLines": 159,
       "hasStructuralAnalysis": true
     },
@@ -2630,20 +1900,14 @@
       "imports": [
         {
           "source": "../environment.js",
-          "specifiers": [
-            "Environment"
-          ]
+          "specifiers": ["Environment"]
         },
         {
           "source": "../video/video-source.js",
-          "specifiers": [
-            "SeekMode"
-          ]
+          "specifiers": ["SeekMode"]
         }
       ],
-      "exports": [
-        "SeekMode"
-      ],
+      "exports": ["SeekMode"],
       "totalLines": 41,
       "hasStructuralAnalysis": true
     },
@@ -2653,9 +1917,7 @@
       "functions": [
         {
           "name": "isAudioNode",
-          "params": [
-            "node"
-          ],
+          "params": ["node"],
           "exported": true,
           "lineCount": 3
         }
@@ -2697,93 +1959,58 @@
       "imports": [
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "../composition.js",
-          "specifiers": [
-            "getComposition"
-          ]
+          "specifiers": ["getComposition"]
         },
         {
           "source": "../environment.js",
-          "specifiers": [
-            "detectEnvironment",
-            "getEnvironment"
-          ]
+          "specifiers": ["detectEnvironment", "getEnvironment"]
         },
         {
           "source": "../media-marker.js",
-          "specifiers": [
-            "AUDIO_MARK",
-            "MEDIA_MARK"
-          ]
+          "specifiers": ["AUDIO_MARK", "MEDIA_MARK"]
         },
         {
           "source": "../media-time.js",
-          "specifiers": [
-            "MediaTiming"
-          ]
+          "specifiers": ["MediaTiming"]
         },
         {
           "source": "../signal.js",
-          "specifiers": [
-            "ReadonlySignal",
-            "Signal",
-            "createSignal"
-          ]
+          "specifiers": ["ReadonlySignal", "Signal", "createSignal"]
         },
         {
           "source": "./audio-driver.js",
-          "specifiers": [
-            "AudioDriver",
-            "AudioDriverContext"
-          ]
+          "specifiers": ["AudioDriver", "AudioDriverContext"]
         },
         {
           "source": "./audio-for-preview.js",
-          "specifiers": [
-            "PreviewAudioDriver"
-          ]
+          "specifiers": ["PreviewAudioDriver"]
         },
         {
           "source": "./audio-for-rendering.js",
-          "specifiers": [
-            "RenderingAudioDriver"
-          ]
+          "specifiers": ["RenderingAudioDriver"]
         },
         {
           "source": "./audio-source-browser.js",
-          "specifiers": [
-            "BrowserAudioSource"
-          ]
+          "specifiers": ["BrowserAudioSource"]
         },
         {
           "source": "./audio-source.js",
-          "specifiers": [
-            "AudioSource"
-          ]
+          "specifiers": ["AudioSource"]
         },
         {
           "source": "./mixer.js",
-          "specifiers": [
-            "AudioChannel",
-            "AudioMixer"
-          ]
+          "specifiers": ["AudioChannel", "AudioMixer"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "AudioConfig"
-          ]
+          "specifiers": ["AudioConfig"]
         }
       ],
-      "exports": [
-        "Audio",
-        "isAudioNode"
-      ],
+      "exports": ["Audio", "isAudioNode"],
       "totalLines": 163,
       "hasStructuralAnalysis": true
     },
@@ -2803,13 +2030,7 @@
             "channels",
             "_reapplyAll"
           ],
-          "properties": [
-            "volume",
-            "muted",
-            "_volume",
-            "_muted",
-            "_channels"
-          ],
+          "properties": ["volume", "muted", "_volume", "_muted", "_channels"],
           "exported": true,
           "lineCount": 47
         }
@@ -2817,16 +2038,10 @@
       "imports": [
         {
           "source": "../signal.js",
-          "specifiers": [
-            "ReadonlySignal",
-            "Signal",
-            "createSignal"
-          ]
+          "specifiers": ["ReadonlySignal", "Signal", "createSignal"]
         }
       ],
-      "exports": [
-        "AudioMixer"
-      ],
+      "exports": ["AudioMixer"],
       "totalLines": 75,
       "hasStructuralAnalysis": true
     },
@@ -2838,9 +2053,7 @@
       "imports": [
         {
           "source": "./audio-source.js",
-          "specifiers": [
-            "AudioSourceFactory"
-          ]
+          "specifiers": ["AudioSourceFactory"]
         }
       ],
       "exports": [],
@@ -2853,52 +2066,35 @@
       "functions": [
         {
           "name": "pickKonvaConfig",
-          "params": [
-            "config"
-          ],
+          "params": ["config"],
           "returnType": "Konva.GroupConfig",
           "exported": false,
           "lineCount": 10
         },
         {
           "name": "firstColor",
-          "params": [
-            "c"
-          ],
+          "params": ["c"],
           "returnType": "string | undefined",
           "exported": false,
           "lineCount": 6
         },
         {
           "name": "applyBackground",
-          "params": [
-            "rect",
-            "bg",
-            "w",
-            "h"
-          ],
+          "params": ["rect", "bg", "w", "h"],
           "returnType": "void",
           "exported": false,
           "lineCount": 38
         },
         {
           "name": "applyBorder",
-          "params": [
-            "rect",
-            "edges",
-            "color",
-            "style"
-          ],
+          "params": ["rect", "edges", "color", "style"],
           "returnType": "void",
           "exported": false,
           "lineCount": 22
         },
         {
           "name": "applyShadow",
-          "params": [
-            "rect",
-            "shadow"
-          ],
+          "params": ["rect", "shadow"],
           "returnType": "void",
           "exported": false,
           "lineCount": 13
@@ -2907,14 +2103,8 @@
       "classes": [
         {
           "name": "Block",
-          "methods": [
-            "constructor",
-            "computeLayout",
-            "_layoutBackground"
-          ],
-          "properties": [
-            "_bg"
-          ],
+          "methods": ["constructor", "computeLayout", "_layoutBackground"],
+          "properties": ["_bg"],
           "exported": true,
           "lineCount": 74
         }
@@ -2922,16 +2112,11 @@
       "imports": [
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./flex-engine.js",
-          "specifiers": [
-            "normalizeEdges",
-            "parseSize"
-          ]
+          "specifiers": ["normalizeEdges", "parseSize"]
         },
         {
           "source": "./flex-types.js",
@@ -2946,14 +2131,10 @@
         },
         {
           "source": "./flex.js",
-          "specifiers": [
-            "layoutRoot"
-          ]
+          "specifiers": ["layoutRoot"]
         }
       ],
-      "exports": [
-        "Block"
-      ],
+      "exports": ["Block"],
       "totalLines": 199,
       "hasStructuralAnalysis": true
     },
@@ -2963,9 +2144,7 @@
       "functions": [
         {
           "name": "isCompositionEvent",
-          "params": [
-            "e"
-          ],
+          "params": ["e"],
           "exported": false,
           "lineCount": 1
         },
@@ -2978,9 +2157,7 @@
         },
         {
           "name": "getComposition",
-          "params": [
-            "stage"
-          ],
+          "params": ["stage"],
           "returnType": "Composition | null",
           "exported": true,
           "lineCount": 3
@@ -3041,18 +2218,8 @@
         },
         {
           "name": "Sequence",
-          "methods": [
-            "constructor",
-            "register",
-            "_apply"
-          ],
-          "properties": [
-            "from",
-            "durationInFrames",
-            "_updaters",
-            "_active",
-            "_media"
-          ],
+          "methods": ["constructor", "register", "_apply"],
+          "properties": ["from", "durationInFrames", "_updaters", "_active", "_media"],
           "exported": true,
           "lineCount": 62
         }
@@ -3060,72 +2227,42 @@
       "imports": [
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./audio/asset.js",
-          "specifiers": [
-            "AudioAsset"
-          ]
+          "specifiers": ["AudioAsset"]
         },
         {
           "source": "./audio/mixer.js",
-          "specifiers": [
-            "AudioChannel",
-            "AudioMixer"
-          ]
+          "specifiers": ["AudioChannel", "AudioMixer"]
         },
         {
           "source": "./block.js",
-          "specifiers": [
-            "Block"
-          ]
+          "specifiers": ["Block"]
         },
         {
           "source": "./emitter.js",
-          "specifiers": [
-            "Emitter",
-            "createEmitter"
-          ]
+          "specifiers": ["Emitter", "createEmitter"]
         },
         {
           "source": "./environment.js",
-          "specifiers": [
-            "Environment",
-            "EnvironmentMode",
-            "detectEnvironment"
-          ]
+          "specifiers": ["Environment", "EnvironmentMode", "detectEnvironment"]
         },
         {
           "source": "./flex.js",
-          "specifiers": [
-            "Flex"
-          ]
+          "specifiers": ["Flex"]
         },
         {
           "source": "./media-marker.js",
-          "specifiers": [
-            "MEDIA_MARK",
-            "TICK_MARK"
-          ]
+          "specifiers": ["MEDIA_MARK", "TICK_MARK"]
         },
         {
           "source": "./signal.js",
-          "specifiers": [
-            "ReadonlySignal",
-            "Signal",
-            "createSignal",
-            "derived"
-          ]
+          "specifiers": ["ReadonlySignal", "Signal", "createSignal", "derived"]
         }
       ],
-      "exports": [
-        "getComposition",
-        "Composition",
-        "Sequence"
-      ],
+      "exports": ["getComposition", "Composition", "Sequence"],
       "totalLines": 410,
       "hasStructuralAnalysis": true
     },
@@ -3135,138 +2272,103 @@
       "functions": [
         {
           "name": "linear",
-          "params": [
-            "t"
-          ],
+          "params": ["t"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "quad",
-          "params": [
-            "t"
-          ],
+          "params": ["t"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "cubic",
-          "params": [
-            "t"
-          ],
+          "params": ["t"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "poly",
-          "params": [
-            "n"
-          ],
+          "params": ["n"],
           "returnType": "EasingFn",
           "exported": false,
           "lineCount": 4
         },
         {
           "name": "sin",
-          "params": [
-            "t"
-          ],
+          "params": ["t"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "circle",
-          "params": [
-            "t"
-          ],
+          "params": ["t"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "exp",
-          "params": [
-            "t"
-          ],
+          "params": ["t"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "elastic",
-          "params": [
-            "bounciness"
-          ],
+          "params": ["bounciness"],
           "returnType": "EasingFn",
           "exported": false,
           "lineCount": 6
         },
         {
           "name": "back",
-          "params": [
-            "s"
-          ],
+          "params": ["s"],
           "returnType": "EasingFn",
           "exported": false,
           "lineCount": 4
         },
         {
           "name": "bounce",
-          "params": [
-            "t"
-          ],
+          "params": ["t"],
           "exported": false,
           "lineCount": 13
         },
         {
           "name": "bezier",
-          "params": [
-            "x1",
-            "y1",
-            "x2",
-            "y2"
-          ],
+          "params": ["x1", "y1", "x2", "y2"],
           "returnType": "EasingFn",
           "exported": false,
           "lineCount": 2
         },
         {
           "name": "step0",
-          "params": [
-            "t"
-          ],
+          "params": ["t"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "step1",
-          "params": [
-            "t"
-          ],
+          "params": ["t"],
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "inEasing",
-          "params": [
-            "easing"
-          ],
+          "params": ["easing"],
           "returnType": "EasingFn",
           "exported": false,
           "lineCount": 1
         },
         {
           "name": "out",
-          "params": [
-            "easing"
-          ],
+          "params": ["easing"],
           "returnType": "EasingFn",
           "exported": false,
           "lineCount": 4
         },
         {
           "name": "inOut",
-          "params": [
-            "easing"
-          ],
+          "params": ["easing"],
           "returnType": "EasingFn",
           "exported": false,
           "lineCount": 6
@@ -3276,14 +2378,10 @@
       "imports": [
         {
           "source": "bezier-easing",
-          "specifiers": [
-            "BezierEasing"
-          ]
+          "specifiers": ["BezierEasing"]
         }
       ],
-      "exports": [
-        "Easing"
-      ],
+      "exports": ["Easing"],
       "totalLines": 90,
       "hasStructuralAnalysis": true
     },
@@ -3301,9 +2399,7 @@
       ],
       "classes": [],
       "imports": [],
-      "exports": [
-        "createEmitter"
-      ],
+      "exports": ["createEmitter"],
       "totalLines": 35,
       "hasStructuralAnalysis": true
     },
@@ -3313,18 +2409,14 @@
       "functions": [
         {
           "name": "detectEnvironment",
-          "params": [
-            "override"
-          ],
+          "params": ["override"],
           "returnType": "Environment",
           "exported": true,
           "lineCount": 11
         },
         {
           "name": "getEnvironment",
-          "params": [
-            "stage"
-          ],
+          "params": ["stage"],
           "returnType": "Environment",
           "exported": true,
           "lineCount": 5
@@ -3334,15 +2426,10 @@
       "imports": [
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         }
       ],
-      "exports": [
-        "detectEnvironment",
-        "getEnvironment"
-      ],
+      "exports": ["detectEnvironment", "getEnvironment"],
       "totalLines": 55,
       "hasStructuralAnalysis": true
     },
@@ -3352,128 +2439,91 @@
       "functions": [
         {
           "name": "normalizeEdges",
-          "params": [
-            "v"
-          ],
+          "params": ["v"],
           "returnType": "Edges | null",
           "exported": true,
           "lineCount": 11
         },
         {
           "name": "parseSize",
-          "params": [
-            "v"
-          ],
+          "params": ["v"],
           "returnType": "{ kind: \"px\"; value: number } | { kind: \"pct\"; value: number } | null",
           "exported": true,
           "lineCount": 9
         },
         {
           "name": "flexDirection",
-          "params": [
-            "v"
-          ],
+          "params": ["v"],
           "returnType": "number",
           "exported": false,
           "lineCount": 12
         },
         {
           "name": "justifyContent",
-          "params": [
-            "v"
-          ],
+          "params": ["v"],
           "returnType": "number",
           "exported": false,
           "lineCount": 16
         },
         {
           "name": "alignItems",
-          "params": [
-            "v"
-          ],
+          "params": ["v"],
           "returnType": "number",
           "exported": false,
           "lineCount": 12
         },
         {
           "name": "alignSelfValue",
-          "params": [
-            "v"
-          ],
+          "params": ["v"],
           "returnType": "number",
           "exported": false,
           "lineCount": 3
         },
         {
           "name": "applyEdges",
-          "params": [
-            "node",
-            "edges",
-            "setter"
-          ],
+          "params": ["node", "edges", "setter"],
           "returnType": "void",
           "exported": true,
           "lineCount": 12
         },
         {
           "name": "applySize",
-          "params": [
-            "node",
-            "w",
-            "h"
-          ],
+          "params": ["node", "w", "h"],
           "returnType": "void",
           "exported": true,
           "lineCount": 16
         },
         {
           "name": "applyContainerProps",
-          "params": [
-            "node",
-            "props"
-          ],
+          "params": ["node", "props"],
           "returnType": "void",
           "exported": true,
           "lineCount": 7
         },
         {
           "name": "applyChildProps",
-          "params": [
-            "node",
-            "props"
-          ],
+          "params": ["node", "props"],
           "returnType": "void",
           "exported": true,
           "lineCount": 7
         },
         {
           "name": "setTextMeasure",
-          "params": [
-            "node",
-            "text",
-            "parentIsColumn"
-          ],
+          "params": ["node", "text", "parentIsColumn"],
           "returnType": "void",
           "exported": true,
           "lineCount": 29
         },
         {
           "name": "setTextWrapperMeasure",
-          "params": [
-            "node",
-            "wrapper",
-            "parentIsColumn"
-          ],
+          "params": ["node", "wrapper", "parentIsColumn"],
           "returnType": "void",
           "exported": true,
           "lineCount": 20
         },
         {
           "name": "setImageMeasure",
-          "params": [
-            "node",
-            "image"
-          ],
+          "params": ["node", "image"],
           "returnType": "void",
           "exported": true,
           "lineCount": 15
@@ -3509,9 +2559,7 @@
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./flex-types.js",
@@ -3550,9 +2598,7 @@
       "imports": [
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         }
       ],
       "exports": [],
@@ -3565,50 +2611,35 @@
       "functions": [
         {
           "name": "pickKonvaConfig",
-          "params": [
-            "config"
-          ],
+          "params": ["config"],
           "returnType": "Konva.GroupConfig",
           "exported": false,
           "lineCount": 9
         },
         {
           "name": "layoutRoot",
-          "params": [
-            "group",
-            "alwaysSetSize"
-          ],
+          "params": ["group", "alwaysSetSize"],
           "returnType": "void",
           "exported": true,
           "lineCount": 19
         },
         {
           "name": "readPixelSize",
-          "params": [
-            "sizeAttr",
-            "konvaSize"
-          ],
+          "params": ["sizeAttr", "konvaSize"],
           "returnType": "number",
           "exported": false,
           "lineCount": 5
         },
         {
           "name": "buildChildren",
-          "params": [
-            "children",
-            "parentFlex",
-            "pairs",
-            "parentDirection"
-          ],
+          "params": ["children", "parentFlex", "pairs", "parentDirection"],
           "returnType": "void",
           "exported": true,
           "lineCount": 59
         },
         {
           "name": "writeBack",
-          "params": [
-            "pairs"
-          ],
+          "params": ["pairs"],
           "returnType": "void",
           "exported": true,
           "lineCount": 24
@@ -3617,10 +2648,7 @@
       "classes": [
         {
           "name": "Flex",
-          "methods": [
-            "constructor",
-            "computeLayout"
-          ],
+          "methods": ["constructor", "computeLayout"],
           "properties": [],
           "exported": true,
           "lineCount": 23
@@ -3629,21 +2657,15 @@
       "imports": [
         {
           "source": "flexily/classic",
-          "specifiers": [
-            "DIRECTION_LTR"
-          ]
+          "specifiers": ["DIRECTION_LTR"]
         },
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./block.js",
-          "specifiers": [
-            "Block"
-          ]
+          "specifiers": ["Block"]
         },
         {
           "source": "./flex-engine.js",
@@ -3660,32 +2682,18 @@
         },
         {
           "source": "./flex-types.js",
-          "specifiers": [
-            "FlexChildProps",
-            "FlexConfig",
-            "FlexProps",
-            "SizeValue"
-          ]
+          "specifiers": ["FlexChildProps", "FlexConfig", "FlexProps", "SizeValue"]
         },
         {
           "source": "./image.js",
-          "specifiers": [
-            "KMImage"
-          ]
+          "specifiers": ["KMImage"]
         },
         {
           "source": "./text.js",
-          "specifiers": [
-            "KMText"
-          ]
+          "specifiers": ["KMText"]
         }
       ],
-      "exports": [
-        "Flex",
-        "layoutRoot",
-        "buildChildren",
-        "writeBack"
-      ],
+      "exports": ["Flex", "layoutRoot", "buildChildren", "writeBack"],
       "totalLines": 190,
       "hasStructuralAnalysis": true
     },
@@ -3695,52 +2703,35 @@
       "functions": [
         {
           "name": "pickKonvaConfig",
-          "params": [
-            "config"
-          ],
+          "params": ["config"],
           "returnType": "Konva.GroupConfig",
           "exported": false,
           "lineCount": 10
         },
         {
           "name": "loadImage",
-          "params": [
-            "src"
-          ],
+          "params": ["src"],
           "returnType": "Promise<HTMLImageElement>",
           "exported": false,
           "lineCount": 9
         },
         {
           "name": "positionOffset",
-          "params": [
-            "pos",
-            "freeX",
-            "freeY"
-          ],
+          "params": ["pos", "freeX", "freeY"],
           "returnType": "{ x: number; y: number }",
           "exported": false,
           "lineCount": 17
         },
         {
           "name": "normalizeCorners",
-          "params": [
-            "c"
-          ],
+          "params": ["c"],
           "returnType": "number[]",
           "exported": false,
           "lineCount": 6
         },
         {
           "name": "roundRectPath",
-          "params": [
-            "ctx",
-            "x",
-            "y",
-            "w",
-            "h",
-            "r"
-          ],
+          "params": ["ctx", "x", "y", "w", "h", "r"],
           "returnType": "void",
           "exported": false,
           "lineCount": 21
@@ -3749,14 +2740,8 @@
       "classes": [
         {
           "name": "Image",
-          "methods": [
-            "constructor",
-            "_layoutImage"
-          ],
-          "properties": [
-            "_img",
-            "_source"
-          ],
+          "methods": ["constructor", "_layoutImage"],
+          "properties": ["_img", "_source"],
           "exported": true,
           "lineCount": 89
         }
@@ -3764,29 +2749,18 @@
       "imports": [
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "./flex-engine.js",
-          "specifiers": [
-            "parseSize"
-          ]
+          "specifiers": ["parseSize"]
         },
         {
           "source": "./flex-types.js",
-          "specifiers": [
-            "ImageConfig",
-            "ObjectFit",
-            "ObjectPosition",
-            "SizeValue"
-          ]
+          "specifiers": ["ImageConfig", "ObjectFit", "ObjectPosition", "SizeValue"]
         }
       ],
-      "exports": [
-        "Image"
-      ],
+      "exports": ["Image"],
       "totalLines": 173,
       "hasStructuralAnalysis": true
     },
@@ -3870,42 +2844,28 @@
       "functions": [
         {
           "name": "hueToRgb",
-          "params": [
-            "p",
-            "q",
-            "t"
-          ],
+          "params": ["p", "q", "t"],
           "returnType": "number",
           "exported": false,
           "lineCount": 9
         },
         {
           "name": "hslToRgb",
-          "params": [
-            "h",
-            "s",
-            "l"
-          ],
+          "params": ["h", "s", "l"],
           "returnType": "[number, number, number]",
           "exported": false,
           "lineCount": 13
         },
         {
           "name": "parseColor",
-          "params": [
-            "input"
-          ],
+          "params": ["input"],
           "returnType": "RGBA",
           "exported": false,
           "lineCount": 50
         },
         {
           "name": "interpolateColors",
-          "params": [
-            "input",
-            "inputRange",
-            "outputRange"
-          ],
+          "params": ["input", "inputRange", "outputRange"],
           "returnType": "string",
           "exported": true,
           "lineCount": 44
@@ -3915,14 +2875,10 @@
       "imports": [
         {
           "source": "./interpolate.js",
-          "specifiers": [
-            "interpolate"
-          ]
+          "specifiers": ["interpolate"]
         }
       ],
-      "exports": [
-        "interpolateColors"
-      ],
+      "exports": ["interpolateColors"],
       "totalLines": 282,
       "hasStructuralAnalysis": true
     },
@@ -3932,10 +2888,7 @@
       "functions": [
         {
           "name": "findRange",
-          "params": [
-            "input",
-            "inputRange"
-          ],
+          "params": ["input", "inputRange"],
           "returnType": "number",
           "exported": false,
           "lineCount": 7
@@ -3958,12 +2911,7 @@
         },
         {
           "name": "interpolate",
-          "params": [
-            "input",
-            "inputRange",
-            "outputRange",
-            "options"
-          ],
+          "params": ["input", "inputRange", "outputRange", "options"],
           "returnType": "number",
           "exported": true,
           "lineCount": 39
@@ -3971,9 +2919,7 @@
       ],
       "classes": [],
       "imports": [],
-      "exports": [
-        "interpolate"
-      ],
+      "exports": ["interpolate"],
       "totalLines": 98,
       "hasStructuralAnalysis": true
     },
@@ -3983,12 +2929,7 @@
       "functions": [],
       "classes": [],
       "imports": [],
-      "exports": [
-        "MEDIA_MARK",
-        "VIDEO_MARK",
-        "AUDIO_MARK",
-        "TICK_MARK"
-      ],
+      "exports": ["MEDIA_MARK", "VIDEO_MARK", "AUDIO_MARK", "TICK_MARK"],
       "totalLines": 20,
       "hasStructuralAnalysis": true
     },
@@ -3998,10 +2939,7 @@
       "functions": [
         {
           "name": "getMediaTime",
-          "params": [
-            "localFrame",
-            "timing"
-          ],
+          "params": ["localFrame", "timing"],
           "returnType": "number",
           "exported": true,
           "lineCount": 11
@@ -4009,9 +2947,7 @@
       ],
       "classes": [],
       "imports": [],
-      "exports": [
-        "getMediaTime"
-      ],
+      "exports": ["getMediaTime"],
       "totalLines": 28,
       "hasStructuralAnalysis": true
     },
@@ -4021,19 +2957,14 @@
       "functions": [
         {
           "name": "createSignal",
-          "params": [
-            "initial"
-          ],
+          "params": ["initial"],
           "returnType": "Signal<T>",
           "exported": true,
           "lineCount": 16
         },
         {
           "name": "derived",
-          "params": [
-            "sources",
-            "compute"
-          ],
+          "params": ["sources", "compute"],
           "returnType": "ReadonlySignal<T>",
           "exported": true,
           "lineCount": 21
@@ -4041,10 +2972,7 @@
       ],
       "classes": [],
       "imports": [],
-      "exports": [
-        "createSignal",
-        "derived"
-      ],
+      "exports": ["createSignal", "derived"],
       "totalLines": 48,
       "hasStructuralAnalysis": true
     },
@@ -4054,39 +2982,28 @@
       "functions": [
         {
           "name": "pickKonvaConfig",
-          "params": [
-            "config"
-          ],
+          "params": ["config"],
           "returnType": "Konva.GroupConfig",
           "exported": false,
           "lineCount": 9
         },
         {
           "name": "clamp",
-          "params": [
-            "v",
-            "lo",
-            "hi"
-          ],
+          "params": ["v", "lo", "hi"],
           "returnType": "number",
           "exported": false,
           "lineCount": 3
         },
         {
           "name": "snapToWord",
-          "params": [
-            "chars",
-            "k"
-          ],
+          "params": ["chars", "k"],
           "returnType": "number",
           "exported": false,
           "lineCount": 6
         },
         {
           "name": "buildWordIndex",
-          "params": [
-            "chars"
-          ],
+          "params": ["chars"],
           "returnType": "{ wordEnds: number[]; charWord: number[] }",
           "exported": false,
           "lineCount": 23
@@ -4147,21 +3064,15 @@
       "imports": [
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "konva/lib/shapes/Text.js",
-          "specifiers": [
-            "stringToArray"
-          ]
+          "specifiers": ["stringToArray"]
         },
         {
           "source": "./flex-engine.js",
-          "specifiers": [
-            "parseSize"
-          ]
+          "specifiers": ["parseSize"]
         },
         {
           "source": "./flex-types.js",
@@ -4176,14 +3087,10 @@
         },
         {
           "source": "./media-marker.js",
-          "specifiers": [
-            "TICK_MARK"
-          ]
+          "specifiers": ["TICK_MARK"]
         }
       ],
-      "exports": [
-        "Text"
-      ],
+      "exports": ["Text"],
       "totalLines": 784,
       "hasStructuralAnalysis": true
     },
@@ -4195,32 +3102,22 @@
       "imports": [
         {
           "source": "../composition.js",
-          "specifiers": [
-            "Composition"
-          ]
+          "specifiers": ["Composition"]
         },
         {
           "source": "../media-time.js",
-          "specifiers": [
-            "getMediaTime"
-          ]
+          "specifiers": ["getMediaTime"]
         },
         {
           "source": "../media-time.js",
-          "specifiers": [
-            "MediaTiming"
-          ]
+          "specifiers": ["MediaTiming"]
         },
         {
           "source": "./video-source.js",
-          "specifiers": [
-            "VideoSource"
-          ]
+          "specifiers": ["VideoSource"]
         }
       ],
-      "exports": [
-        "getMediaTime"
-      ],
+      "exports": ["getMediaTime"],
       "totalLines": 35,
       "hasStructuralAnalysis": true
     },
@@ -4230,51 +3127,34 @@
       "functions": [
         {
           "name": "pickKonvaConfig",
-          "params": [
-            "config"
-          ],
+          "params": ["config"],
           "returnType": "Konva.GroupConfig",
           "exported": false,
           "lineCount": 10
         },
         {
           "name": "isVideoNode",
-          "params": [
-            "node"
-          ],
+          "params": ["node"],
           "exported": true,
           "lineCount": 3
         },
         {
           "name": "positionOffset",
-          "params": [
-            "pos",
-            "freeX",
-            "freeY"
-          ],
+          "params": ["pos", "freeX", "freeY"],
           "returnType": "{ x: number; y: number }",
           "exported": false,
           "lineCount": 17
         },
         {
           "name": "normalizeCorners",
-          "params": [
-            "c"
-          ],
+          "params": ["c"],
           "returnType": "number[]",
           "exported": false,
           "lineCount": 6
         },
         {
           "name": "roundRectPath",
-          "params": [
-            "ctx",
-            "x",
-            "y",
-            "w",
-            "h",
-            "r"
-          ],
+          "params": ["ctx", "x", "y", "w", "h", "r"],
           "returnType": "void",
           "exported": false,
           "lineCount": 21
@@ -4318,102 +3198,62 @@
       "imports": [
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "../audio/mixer.js",
-          "specifiers": [
-            "AudioChannel",
-            "AudioMixer"
-          ]
+          "specifiers": ["AudioChannel", "AudioMixer"]
         },
         {
           "source": "../composition.js",
-          "specifiers": [
-            "getComposition"
-          ]
+          "specifiers": ["getComposition"]
         },
         {
           "source": "../environment.js",
-          "specifiers": [
-            "detectEnvironment",
-            "getEnvironment"
-          ]
+          "specifiers": ["detectEnvironment", "getEnvironment"]
         },
         {
           "source": "../flex-engine.js",
-          "specifiers": [
-            "parseSize"
-          ]
+          "specifiers": ["parseSize"]
         },
         {
           "source": "../flex-types.js",
-          "specifiers": [
-            "ObjectFit",
-            "ObjectPosition",
-            "SizeValue"
-          ]
+          "specifiers": ["ObjectFit", "ObjectPosition", "SizeValue"]
         },
         {
           "source": "../media-marker.js",
-          "specifiers": [
-            "MEDIA_MARK",
-            "VIDEO_MARK"
-          ]
+          "specifiers": ["MEDIA_MARK", "VIDEO_MARK"]
         },
         {
           "source": "../signal.js",
-          "specifiers": [
-            "ReadonlySignal",
-            "Signal",
-            "createSignal"
-          ]
+          "specifiers": ["ReadonlySignal", "Signal", "createSignal"]
         },
         {
           "source": "./driver.js",
-          "specifiers": [
-            "VideoDriver",
-            "VideoDriverContext",
-            "VideoTiming"
-          ]
+          "specifiers": ["VideoDriver", "VideoDriverContext", "VideoTiming"]
         },
         {
           "source": "./types.js",
-          "specifiers": [
-            "VideoConfig"
-          ]
+          "specifiers": ["VideoConfig"]
         },
         {
           "source": "./video-for-preview.js",
-          "specifiers": [
-            "PreviewVideoDriver"
-          ]
+          "specifiers": ["PreviewVideoDriver"]
         },
         {
           "source": "./video-for-rendering.js",
-          "specifiers": [
-            "RenderingVideoDriver"
-          ]
+          "specifiers": ["RenderingVideoDriver"]
         },
         {
           "source": "./video-source-browser.js",
-          "specifiers": [
-            "BrowserVideoSource"
-          ]
+          "specifiers": ["BrowserVideoSource"]
         },
         {
           "source": "./video-source.js",
-          "specifiers": [
-            "VideoSource"
-          ]
+          "specifiers": ["VideoSource"]
         }
       ],
-      "exports": [
-        "Video",
-        "isVideoNode"
-      ],
+      "exports": ["Video", "isVideoNode"],
       "totalLines": 308,
       "hasStructuralAnalysis": true
     },
@@ -4425,24 +3265,15 @@
       "imports": [
         {
           "source": "konva",
-          "specifiers": [
-            "Konva"
-          ]
+          "specifiers": ["Konva"]
         },
         {
           "source": "../flex-types.js",
-          "specifiers": [
-            "FlexChildProps",
-            "ObjectFit",
-            "ObjectPosition",
-            "SizeValue"
-          ]
+          "specifiers": ["FlexChildProps", "ObjectFit", "ObjectPosition", "SizeValue"]
         },
         {
           "source": "./video-source.js",
-          "specifiers": [
-            "VideoSourceFactory"
-          ]
+          "specifiers": ["VideoSourceFactory"]
         }
       ],
       "exports": [],
@@ -4456,17 +3287,8 @@
       "classes": [
         {
           "name": "PreviewVideoDriver",
-          "methods": [
-            "constructor",
-            "tick",
-            "deactivate",
-            "dispose"
-          ],
-          "properties": [
-            "_wasActive",
-            "_lastLocalFrame",
-            "_unsub"
-          ],
+          "methods": ["constructor", "tick", "deactivate", "dispose"],
+          "properties": ["_wasActive", "_lastLocalFrame", "_unsub"],
           "exported": true,
           "lineCount": 64
         }
@@ -4474,16 +3296,10 @@
       "imports": [
         {
           "source": "./driver.js",
-          "specifiers": [
-            "VideoDriver",
-            "VideoDriverContext",
-            "getMediaTime"
-          ]
+          "specifiers": ["VideoDriver", "VideoDriverContext", "getMediaTime"]
         }
       ],
-      "exports": [
-        "PreviewVideoDriver"
-      ],
+      "exports": ["PreviewVideoDriver"],
       "totalLines": 76,
       "hasStructuralAnalysis": true
     },
@@ -4494,15 +3310,8 @@
       "classes": [
         {
           "name": "RenderingVideoDriver",
-          "methods": [
-            "constructor",
-            "tick",
-            "deactivate",
-            "dispose"
-          ],
-          "properties": [
-            "_lastMediaTime"
-          ],
+          "methods": ["constructor", "tick", "deactivate", "dispose"],
+          "properties": ["_lastMediaTime"],
           "exported": true,
           "lineCount": 40
         }
@@ -4510,16 +3319,10 @@
       "imports": [
         {
           "source": "./driver.js",
-          "specifiers": [
-            "VideoDriver",
-            "VideoDriverContext",
-            "getMediaTime"
-          ]
+          "specifiers": ["VideoDriver", "VideoDriverContext", "getMediaTime"]
         }
       ],
-      "exports": [
-        "RenderingVideoDriver"
-      ],
+      "exports": ["RenderingVideoDriver"],
       "totalLines": 49,
       "hasStructuralAnalysis": true
     },
@@ -4568,15 +3371,10 @@
       "imports": [
         {
           "source": "./video-source.js",
-          "specifiers": [
-            "SeekMode",
-            "VideoSource"
-          ]
+          "specifiers": ["SeekMode", "VideoSource"]
         }
       ],
-      "exports": [
-        "BrowserVideoSource"
-      ],
+      "exports": ["BrowserVideoSource"],
       "totalLines": 195,
       "hasStructuralAnalysis": true
     },
@@ -4588,9 +3386,7 @@
       "imports": [
         {
           "source": "../environment.js",
-          "specifiers": [
-            "Environment"
-          ]
+          "specifiers": ["Environment"]
         }
       ],
       "exports": [],
@@ -4623,9 +3419,7 @@
       "functions": [],
       "classes": [],
       "imports": [],
-      "exports": [
-        "TIMELINE_PACKAGE"
-      ],
+      "exports": ["TIMELINE_PACKAGE"],
       "totalLines": 5,
       "hasStructuralAnalysis": true
     },

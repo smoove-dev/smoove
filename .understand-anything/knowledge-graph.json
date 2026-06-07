@@ -2,19 +2,8 @@
   "version": "1.0.0",
   "project": {
     "name": "konva-motion",
-    "languages": [
-      "typescript",
-      "json",
-      "markdown",
-      "css",
-      "html",
-      "yaml"
-    ],
-    "frameworks": [
-      "React",
-      "Vite",
-      "Zod"
-    ],
+    "languages": ["typescript", "json", "markdown", "css", "html", "yaml"],
+    "frameworks": ["React", "Vite", "Zod"],
     "description": "Remotion-style timeline-driven animation for Konva. A Composition (Konva.Stage) owns a frame clock and walks range-gated Sequence layers each tick, with built-in flexbox layout via flexily.",
     "analyzedAt": "2026-06-03T20:07:51.828Z",
     "gitCommitHash": "ae2c61e974d24037f328766a0643577b3e54f259"
@@ -26,12 +15,7 @@
       "name": "CLAUDE.md",
       "filePath": "CLAUDE.md",
       "summary": "Working notes for Claude Code agents, documenting the repo's mental model (Composition/Sequence frame clock), monorepo layout, conventions, common commands, and gotchas.",
-      "tags": [
-        "documentation",
-        "conventions",
-        "monorepo",
-        "developer-guide"
-      ],
+      "tags": ["documentation", "conventions", "monorepo", "developer-guide"],
       "complexity": "moderate"
     },
     {
@@ -40,12 +24,7 @@
       "name": "README.md",
       "filePath": "README.md",
       "summary": "Project overview introducing konva-motion's timeline-driven animation model with a runnable Composition/Sequence example, package table, quick-start commands, and doc links.",
-      "tags": [
-        "documentation",
-        "entry-point",
-        "overview",
-        "quick-start"
-      ],
+      "tags": ["documentation", "entry-point", "overview", "quick-start"],
       "complexity": "moderate"
     },
     {
@@ -54,12 +33,7 @@
       "name": "biome.json",
       "filePath": "biome.json",
       "summary": "Root Biome configuration for lint and format across the workspace, including VCS integration, import organization, linter, and formatter rules.",
-      "tags": [
-        "configuration",
-        "linting",
-        "formatting",
-        "build-system"
-      ],
+      "tags": ["configuration", "linting", "formatting", "build-system"],
       "complexity": "simple"
     },
     {
@@ -68,12 +42,7 @@
       "name": "package.json",
       "filePath": "package.json",
       "summary": "Root workspace manifest defining the pnpm package manager pin, dev dependencies (Biome, TypeScript), and scripts to build packages, run the demo, and check/format with Biome.",
-      "tags": [
-        "configuration",
-        "monorepo",
-        "build-system",
-        "scripts"
-      ],
+      "tags": ["configuration", "monorepo", "build-system", "scripts"],
       "complexity": "simple"
     },
     {
@@ -82,12 +51,7 @@
       "name": "pnpm-workspace.yaml",
       "filePath": "pnpm-workspace.yaml",
       "summary": "pnpm workspace definition enumerating the workspace package globs (packages/* and demo) that participate in workspace:* linking.",
-      "tags": [
-        "configuration",
-        "monorepo",
-        "workspace",
-        "pnpm"
-      ],
+      "tags": ["configuration", "monorepo", "workspace", "pnpm"],
       "complexity": "simple"
     },
     {
@@ -96,12 +60,7 @@
       "name": "tsconfig.base.json",
       "filePath": "tsconfig.base.json",
       "summary": "Shared TypeScript compiler base extended by per-package tsconfigs, enabling strict mode, composite project builds, ES2022/ESNext targets, and declaration/source maps.",
-      "tags": [
-        "configuration",
-        "typescript",
-        "build-system",
-        "strict-mode"
-      ],
+      "tags": ["configuration", "typescript", "build-system", "strict-mode"],
       "complexity": "simple",
       "languageNotes": "Uses composite: true to enable tsc -b project-reference incremental builds across the monorepo."
     },
@@ -111,12 +70,7 @@
       "name": "tsconfig.json",
       "filePath": "tsconfig.json",
       "summary": "Root solution-style TypeScript config with no files of its own, referencing the core, layout, timeline, and demo subprojects for orchestrated tsc -b builds.",
-      "tags": [
-        "configuration",
-        "typescript",
-        "build-system",
-        "project-references"
-      ],
+      "tags": ["configuration", "typescript", "build-system", "project-references"],
       "complexity": "simple"
     },
     {
@@ -125,12 +79,7 @@
       "name": "index.html",
       "filePath": "demo/index.html",
       "summary": "HTML entry document for the KmStudio demo app; mounts a #root div, preloads Google Fonts, and bootstraps the Vite React app via /src/main.tsx.",
-      "tags": [
-        "entry-point",
-        "markup",
-        "vite",
-        "demo"
-      ],
+      "tags": ["entry-point", "markup", "vite", "demo"],
       "complexity": "simple",
       "languageNotes": "Standard Vite single-page-app shell: an empty mount node plus a type=\"module\" script tag pointing at the TSX entry."
     },
@@ -140,13 +89,7 @@
       "name": "package.json",
       "filePath": "demo/package.json",
       "summary": "Package manifest for the demo workspace; declares Vite dev/build/preview scripts and depends on the @konva-motion/core and @konva-motion/timeline workspace packages alongside konva, React, react-router-dom, and zod.",
-      "tags": [
-        "configuration",
-        "package-manifest",
-        "dependencies",
-        "build-system",
-        "demo"
-      ],
+      "tags": ["configuration", "package-manifest", "dependencies", "build-system", "demo"],
       "complexity": "simple",
       "languageNotes": "Uses pnpm workspace protocol (workspace:*) to link the local @konva-motion/* packages; konva is pinned to a real version here per the peer-dependency convention."
     },
@@ -156,12 +99,7 @@
       "name": "tsconfig.json",
       "filePath": "demo/tsconfig.json",
       "summary": "TypeScript configuration for the demo, extending the repo base config with noEmit type-checking only, react-jsx, and project references to the core and timeline packages.",
-      "tags": [
-        "configuration",
-        "typescript",
-        "build-system",
-        "demo"
-      ],
+      "tags": ["configuration", "typescript", "build-system", "demo"],
       "complexity": "simple",
       "languageNotes": "composite:false + noEmit:true means this config is for typechecking only — Vite performs the actual build."
     },
@@ -171,12 +109,7 @@
       "name": "README.md",
       "filePath": "doc/README.md",
       "summary": "Primary usage documentation for konva-motion covering installation, the Composition/Sequence API, interpolation and easing helpers, how-to animation recipes, Flex layout, the Text and Audio components, and server-side offline rendering.",
-      "tags": [
-        "documentation",
-        "entry-point",
-        "api-reference",
-        "usage-guide"
-      ],
+      "tags": ["documentation", "entry-point", "api-reference", "usage-guide"],
       "complexity": "complex",
       "languageNotes": "Reference doc structured around the public API surface of @konva-motion/core; the target API examples must stay in sync with the package's exports."
     },
@@ -186,11 +119,7 @@
       "name": "architecture.md",
       "filePath": "doc/architecture.md",
       "summary": "Design document describing the engine architecture: the core vs timeline package split, the per-frame tick loop that gates and redraws sequences, teardown, and singleton enforcement.",
-      "tags": [
-        "documentation",
-        "architecture",
-        "design"
-      ],
+      "tags": ["documentation", "architecture", "design"],
       "complexity": "moderate"
     },
     {
@@ -199,11 +128,7 @@
       "name": "contributing.md",
       "filePath": "doc/contributing.md",
       "summary": "Contributor guide covering local setup, common pnpm commands, and the monorepo layout for the konva-motion workspace.",
-      "tags": [
-        "documentation",
-        "development",
-        "contributing"
-      ],
+      "tags": ["documentation", "development", "contributing"],
       "complexity": "simple"
     },
     {
@@ -212,11 +137,7 @@
       "name": "launch.json",
       "filePath": ".claude/launch.json",
       "summary": "Claude Code launch configuration declaring debug/run configurations for the workspace.",
-      "tags": [
-        "configuration",
-        "claude-code",
-        "tooling"
-      ],
+      "tags": ["configuration", "claude-code", "tooling"],
       "complexity": "simple"
     },
     {
@@ -225,11 +146,7 @@
       "name": "settings.json",
       "filePath": ".claude/settings.json",
       "summary": "Claude Code settings enabling project plugins for the konva-motion workspace.",
-      "tags": [
-        "configuration",
-        "claude-code",
-        "tooling"
-      ],
+      "tags": ["configuration", "claude-code", "tooling"],
       "complexity": "simple"
     },
     {
@@ -238,11 +155,7 @@
       "name": ".npmrc",
       "filePath": ".npmrc",
       "summary": "npm/pnpm registry and resolution configuration for the monorepo.",
-      "tags": [
-        "configuration",
-        "package-manager",
-        "build-system"
-      ],
+      "tags": ["configuration", "package-manager", "build-system"],
       "complexity": "simple"
     },
     {
@@ -251,11 +164,7 @@
       "name": "assets.d.ts",
       "filePath": "demo/src/assets.d.ts",
       "summary": "Ambient TypeScript module declarations letting the demo import media assets (images, audio, video) as URL strings via Vite.",
-      "tags": [
-        "type-definition",
-        "vite",
-        "assets"
-      ],
+      "tags": ["type-definition", "vite", "assets"],
       "complexity": "simple",
       "languageNotes": "Uses `declare module '*.ext'` ambient declarations so Vite asset imports typecheck."
     },
@@ -265,12 +174,7 @@
       "name": "audio-mixer.ts",
       "filePath": "demo/src/demos/audio-mixer.ts",
       "summary": "Demo that visualizes a multi-track audio mixer, animating volume bars and channel strips driven by reactive mixer state from the core Composition.",
-      "tags": [
-        "demo",
-        "animation",
-        "audio",
-        "data-pipeline"
-      ],
+      "tags": ["demo", "animation", "audio", "data-pipeline"],
       "complexity": "complex"
     },
     {
@@ -278,16 +182,9 @@
       "type": "function",
       "name": "timecode",
       "filePath": "demo/src/demos/audio-mixer.ts",
-      "lineRange": [
-        44,
-        48
-      ],
+      "lineRange": [44, 48],
       "summary": "Formats a frame number into a zero-padded MM:SS timecode string.",
-      "tags": [
-        "utility",
-        "formatting",
-        "time"
-      ],
+      "tags": ["utility", "formatting", "time"],
       "complexity": "simple"
     },
     {
@@ -296,11 +193,7 @@
       "name": "basic.ts",
       "filePath": "demo/src/demos/basic.ts",
       "summary": "Minimal introductory demo animating a circle's position and a square's opacity across two sequences.",
-      "tags": [
-        "demo",
-        "animation",
-        "example"
-      ],
+      "tags": ["demo", "animation", "example"],
       "complexity": "simple"
     },
     {
@@ -309,11 +202,7 @@
       "name": "bouncing.ts",
       "filePath": "demo/src/demos/bouncing.ts",
       "summary": "Demo animating a bouncing ball with vertical motion and squash-and-stretch scaling.",
-      "tags": [
-        "demo",
-        "animation",
-        "easing"
-      ],
+      "tags": ["demo", "animation", "easing"],
       "complexity": "simple"
     },
     {
@@ -322,12 +211,7 @@
       "name": "cohabit.ts",
       "filePath": "demo/src/demos/cohabit.ts",
       "summary": "Large production-style promotional video demo orchestrating video clips, music, voiceover, SFX, captions, and a logo reveal across many timed sequences.",
-      "tags": [
-        "demo",
-        "animation",
-        "audio",
-        "compositing"
-      ],
+      "tags": ["demo", "animation", "audio", "compositing"],
       "complexity": "complex",
       "languageNotes": "Heavy use of local builder helpers (addClip/addMusic/addVo/addCaption) to compose a long timeline."
     },
@@ -336,16 +220,9 @@
       "type": "function",
       "name": "fadeRise",
       "filePath": "demo/src/demos/cohabit.ts",
-      "lineRange": [
-        118,
-        129
-      ],
+      "lineRange": [118, 129],
       "summary": "Computes a combined fade-in/fade-out opacity and upward rise offset for a node based on the current frame.",
-      "tags": [
-        "utility",
-        "animation",
-        "easing"
-      ],
+      "tags": ["utility", "animation", "easing"],
       "complexity": "simple"
     },
     {
@@ -353,16 +230,9 @@
       "type": "function",
       "name": "applyGrade",
       "filePath": "demo/src/demos/cohabit.ts",
-      "lineRange": [
-        135,
-        161
-      ],
+      "lineRange": [135, 161],
       "summary": "Applies a color-grade overlay (tint, vignette, blend layers) to a sequence.",
-      "tags": [
-        "utility",
-        "compositing",
-        "color"
-      ],
+      "tags": ["utility", "compositing", "color"],
       "complexity": "moderate"
     },
     {
@@ -370,16 +240,9 @@
       "type": "function",
       "name": "addClip",
       "filePath": "demo/src/demos/cohabit.ts",
-      "lineRange": [
-        179,
-        226
-      ],
+      "lineRange": [179, 226],
       "summary": "Creates a video clip sequence with grade, volume ducking, and entrance scale/offset animation.",
-      "tags": [
-        "factory",
-        "animation",
-        "video"
-      ],
+      "tags": ["factory", "animation", "video"],
       "complexity": "moderate"
     },
     {
@@ -387,16 +250,9 @@
       "type": "function",
       "name": "addMusic",
       "filePath": "demo/src/demos/cohabit.ts",
-      "lineRange": [
-        230,
-        255
-      ],
+      "lineRange": [230, 255],
       "summary": "Adds a music track sequence with volume curve and ducking against voiceover.",
-      "tags": [
-        "factory",
-        "audio",
-        "mixing"
-      ],
+      "tags": ["factory", "audio", "mixing"],
       "complexity": "moderate"
     },
     {
@@ -404,16 +260,9 @@
       "type": "function",
       "name": "addVo",
       "filePath": "demo/src/demos/cohabit.ts",
-      "lineRange": [
-        268,
-        285
-      ],
+      "lineRange": [268, 285],
       "summary": "Adds a voiceover audio sequence with fade-based volume envelope.",
-      "tags": [
-        "factory",
-        "audio",
-        "mixing"
-      ],
+      "tags": ["factory", "audio", "mixing"],
       "complexity": "moderate"
     },
     {
@@ -421,16 +270,9 @@
       "type": "function",
       "name": "addCaption",
       "filePath": "demo/src/demos/cohabit.ts",
-      "lineRange": [
-        289,
-        319
-      ],
+      "lineRange": [289, 319],
       "summary": "Creates an animated caption text node with fade and rise entrance within a sequence.",
-      "tags": [
-        "factory",
-        "animation",
-        "text"
-      ],
+      "tags": ["factory", "animation", "text"],
       "complexity": "moderate"
     },
     {
@@ -438,16 +280,9 @@
       "type": "function",
       "name": "makeBubble",
       "filePath": "demo/src/demos/cohabit.ts",
-      "lineRange": [
-        327,
-        367
-      ],
+      "lineRange": [327, 367],
       "summary": "Builds a rounded chat-bubble group sized to its text content.",
-      "tags": [
-        "factory",
-        "component",
-        "layout"
-      ],
+      "tags": ["factory", "component", "layout"],
       "complexity": "moderate"
     },
     {
@@ -455,16 +290,9 @@
       "type": "function",
       "name": "makeLogo",
       "filePath": "demo/src/demos/cohabit.ts",
-      "lineRange": [
-        391,
-        461
-      ],
+      "lineRange": [391, 461],
       "summary": "Constructs the branded logo group (windows mark plus wordmark) at a given scale and color.",
-      "tags": [
-        "factory",
-        "component",
-        "branding"
-      ],
+      "tags": ["factory", "component", "branding"],
       "complexity": "moderate"
     },
     {
@@ -473,11 +301,7 @@
       "name": "colors.ts",
       "filePath": "demo/src/demos/colors.ts",
       "summary": "Demo animating color interpolation across background, concentric rings, and a pulsing blob.",
-      "tags": [
-        "demo",
-        "animation",
-        "color"
-      ],
+      "tags": ["demo", "animation", "color"],
       "complexity": "moderate"
     },
     {
@@ -486,11 +310,7 @@
       "name": "easings.ts",
       "filePath": "demo/src/demos/easings.ts",
       "summary": "Demo comparing easing curves by animating dots across the stage with different easing functions.",
-      "tags": [
-        "demo",
-        "animation",
-        "easing"
-      ],
+      "tags": ["demo", "animation", "easing"],
       "complexity": "moderate"
     },
     {
@@ -499,12 +319,7 @@
       "name": "flex-layout.ts",
       "filePath": "demo/src/demos/flex-layout.ts",
       "summary": "Demo showing the built-in flexbox layout reflowing a card whose width animates each frame.",
-      "tags": [
-        "demo",
-        "animation",
-        "layout",
-        "flexbox"
-      ],
+      "tags": ["demo", "animation", "layout", "flexbox"],
       "complexity": "moderate"
     },
     {
@@ -513,12 +328,7 @@
       "name": "flex-row-grow.ts",
       "filePath": "demo/src/demos/flex-row-grow.ts",
       "summary": "Demo of a flex row where child grow factors animate, reflowing image widths over time.",
-      "tags": [
-        "demo",
-        "animation",
-        "layout",
-        "flexbox"
-      ],
+      "tags": ["demo", "animation", "layout", "flexbox"],
       "complexity": "moderate"
     },
     {
@@ -527,12 +337,7 @@
       "name": "flex-showcase.ts",
       "filePath": "demo/src/demos/flex-showcase.ts",
       "summary": "Comprehensive flexbox showcase demonstrating justify, align, grow, and gap behaviors with animated swatches.",
-      "tags": [
-        "demo",
-        "animation",
-        "layout",
-        "flexbox"
-      ],
+      "tags": ["demo", "animation", "layout", "flexbox"],
       "complexity": "complex"
     },
     {
@@ -540,16 +345,9 @@
       "type": "function",
       "name": "swatch",
       "filePath": "demo/src/demos/flex-showcase.ts",
-      "lineRange": [
-        7,
-        18
-      ],
+      "lineRange": [7, 18],
       "summary": "Factory creating a colored Block swatch of a given size for use in flex rows.",
-      "tags": [
-        "factory",
-        "component",
-        "layout"
-      ],
+      "tags": ["factory", "component", "layout"],
       "complexity": "simple"
     },
     {
@@ -558,12 +356,7 @@
       "name": "flex-typewriter.ts",
       "filePath": "demo/src/demos/flex-typewriter.ts",
       "summary": "Demo combining flex layout with a typewriter text reveal inside an auto-sizing card.",
-      "tags": [
-        "demo",
-        "animation",
-        "layout",
-        "text"
-      ],
+      "tags": ["demo", "animation", "layout", "text"],
       "complexity": "moderate"
     },
     {
@@ -572,12 +365,7 @@
       "name": "ig-story.ts",
       "filePath": "demo/src/demos/ig-story.ts",
       "summary": "Instagram-story style demo rendering multiple animated scenes with hero images, word reveals, stickers, and captions.",
-      "tags": [
-        "demo",
-        "animation",
-        "compositing",
-        "scenes"
-      ],
+      "tags": ["demo", "animation", "compositing", "scenes"],
       "complexity": "complex"
     },
     {
@@ -585,16 +373,9 @@
       "type": "function",
       "name": "buildScene",
       "filePath": "demo/src/demos/ig-story.ts",
-      "lineRange": [
-        232,
-        589
-      ],
+      "lineRange": [232, 589],
       "summary": "Builds a single story scene sequence with background, hero, animated words, stickers, and caption, wiring per-frame updaters.",
-      "tags": [
-        "factory",
-        "animation",
-        "scenes"
-      ],
+      "tags": ["factory", "animation", "scenes"],
       "complexity": "complex"
     },
     {
@@ -603,12 +384,7 @@
       "name": "image-clip.ts",
       "filePath": "demo/src/demos/image-clip.ts",
       "summary": "Demo clipping an image to an animated circular mask with expanding rings.",
-      "tags": [
-        "demo",
-        "animation",
-        "image",
-        "clipping"
-      ],
+      "tags": ["demo", "animation", "image", "clipping"],
       "complexity": "moderate"
     },
     {
@@ -616,16 +392,9 @@
       "type": "function",
       "name": "loadImage",
       "filePath": "demo/src/demos/image-clip.ts",
-      "lineRange": [
-        7,
-        12
-      ],
+      "lineRange": [7, 12],
       "summary": "Loads an image URL into an HTMLImageElement, resolving a promise on load.",
-      "tags": [
-        "utility",
-        "image",
-        "async"
-      ],
+      "tags": ["utility", "image", "async"],
       "complexity": "simple"
     },
     {
@@ -634,11 +403,7 @@
       "name": "image-fade.ts",
       "filePath": "demo/src/demos/image-fade.ts",
       "summary": "Demo cross-fading between images with scale and offset transitions.",
-      "tags": [
-        "demo",
-        "animation",
-        "image"
-      ],
+      "tags": ["demo", "animation", "image"],
       "complexity": "moderate"
     },
     {
@@ -646,16 +411,9 @@
       "type": "function",
       "name": "loadImage",
       "filePath": "demo/src/demos/image-fade.ts",
-      "lineRange": [
-        7,
-        12
-      ],
+      "lineRange": [7, 12],
       "summary": "Loads an image URL into an HTMLImageElement, resolving a promise on load.",
-      "tags": [
-        "utility",
-        "image",
-        "async"
-      ],
+      "tags": ["utility", "image", "async"],
       "complexity": "simple"
     },
     {
@@ -664,11 +422,7 @@
       "name": "image-slider.ts",
       "filePath": "demo/src/demos/image-slider.ts",
       "summary": "Demo sliding between images horizontally with eased transitions and a frame label.",
-      "tags": [
-        "demo",
-        "animation",
-        "image"
-      ],
+      "tags": ["demo", "animation", "image"],
       "complexity": "moderate"
     },
     {
@@ -676,16 +430,9 @@
       "type": "function",
       "name": "loadImage",
       "filePath": "demo/src/demos/image-slider.ts",
-      "lineRange": [
-        7,
-        12
-      ],
+      "lineRange": [7, 12],
       "summary": "Loads an image URL into an HTMLImageElement, resolving a promise on load.",
-      "tags": [
-        "utility",
-        "image",
-        "async"
-      ],
+      "tags": ["utility", "image", "async"],
       "complexity": "simple"
     },
     {
@@ -694,12 +441,7 @@
       "name": "journey.ts",
       "filePath": "demo/src/demos/journey.ts",
       "summary": "Cinematic multi-chapter journey demo with hero clips, polaroids, titles, a progress bar, and timecode overlay.",
-      "tags": [
-        "demo",
-        "animation",
-        "compositing",
-        "scenes"
-      ],
+      "tags": ["demo", "animation", "compositing", "scenes"],
       "complexity": "complex"
     },
     {
@@ -707,16 +449,9 @@
       "type": "function",
       "name": "formatTimecode",
       "filePath": "demo/src/demos/journey.ts",
-      "lineRange": [
-        75,
-        84
-      ],
+      "lineRange": [75, 84],
       "summary": "Formats the current frame and total into a MM:SS / MM:SS timecode readout string.",
-      "tags": [
-        "utility",
-        "formatting",
-        "time"
-      ],
+      "tags": ["utility", "formatting", "time"],
       "complexity": "simple"
     },
     {
@@ -725,12 +460,7 @@
       "name": "keyframes.ts",
       "filePath": "demo/src/demos/keyframes.ts",
       "summary": "Demo driving a star through multi-stop keyframed position, rotation, scale, and color animations.",
-      "tags": [
-        "demo",
-        "animation",
-        "keyframes",
-        "easing"
-      ],
+      "tags": ["demo", "animation", "keyframes", "easing"],
       "complexity": "moderate"
     },
     {
@@ -739,11 +469,7 @@
       "name": "staggered.ts",
       "filePath": "demo/src/demos/staggered.ts",
       "summary": "Demo animating a palette of cards into view with a staggered, sequence-offset entrance.",
-      "tags": [
-        "demo",
-        "animation",
-        "stagger"
-      ],
+      "tags": ["demo", "animation", "stagger"],
       "complexity": "simple"
     },
     {
@@ -752,12 +478,7 @@
       "name": "text-fit.ts",
       "filePath": "demo/src/demos/text-fit.ts",
       "summary": "Demo showcasing text auto-fitting behaviors inside boxes whose dimensions animate.",
-      "tags": [
-        "demo",
-        "animation",
-        "text",
-        "layout"
-      ],
+      "tags": ["demo", "animation", "text", "layout"],
       "complexity": "moderate"
     },
     {
@@ -765,16 +486,9 @@
       "type": "function",
       "name": "label",
       "filePath": "demo/src/demos/text-fit.ts",
-      "lineRange": [
-        8,
-        10
-      ],
+      "lineRange": [8, 10],
       "summary": "Creates a small caption Text node at a given position.",
-      "tags": [
-        "utility",
-        "factory",
-        "text"
-      ],
+      "tags": ["utility", "factory", "text"],
       "complexity": "simple"
     },
     {
@@ -783,11 +497,7 @@
       "name": "text-highlight.ts",
       "filePath": "demo/src/demos/text-highlight.ts",
       "summary": "Demo highlighting substrings within text blocks, animating highlight ranges and box sizing.",
-      "tags": [
-        "demo",
-        "animation",
-        "text"
-      ],
+      "tags": ["demo", "animation", "text"],
       "complexity": "moderate"
     },
     {
@@ -795,16 +505,9 @@
       "type": "function",
       "name": "range",
       "filePath": "demo/src/demos/text-highlight.ts",
-      "lineRange": [
-        14,
-        17
-      ],
+      "lineRange": [14, 17],
       "summary": "Computes the start/end character indices of a needle substring within a haystack.",
-      "tags": [
-        "utility",
-        "text",
-        "search"
-      ],
+      "tags": ["utility", "text", "search"],
       "complexity": "simple"
     },
     {
@@ -813,11 +516,7 @@
       "name": "text-typewriter.ts",
       "filePath": "demo/src/demos/text-typewriter.ts",
       "summary": "Demo revealing text character-by-character in a typewriter effect across several columns and bubbles.",
-      "tags": [
-        "demo",
-        "animation",
-        "text"
-      ],
+      "tags": ["demo", "animation", "text"],
       "complexity": "moderate"
     },
     {
@@ -826,11 +525,7 @@
       "name": "transforms.ts",
       "filePath": "demo/src/demos/transforms.ts",
       "summary": "Demo animating rotation and scale transforms on a ring of shapes plus a radial burst flash.",
-      "tags": [
-        "demo",
-        "animation",
-        "transforms"
-      ],
+      "tags": ["demo", "animation", "transforms"],
       "complexity": "moderate"
     },
     {
@@ -839,11 +534,7 @@
       "name": "types.ts",
       "filePath": "demo/src/demos/types.ts",
       "summary": "Shared TypeScript type definitions for demo entries, declaring the DemoDef contract (build function, props schema) used across all studio demos.",
-      "tags": [
-        "type-definition",
-        "demo",
-        "contract"
-      ],
+      "tags": ["type-definition", "demo", "contract"],
       "complexity": "simple"
     },
     {
@@ -852,12 +543,7 @@
       "name": "typewriter.ts",
       "filePath": "demo/src/demos/typewriter.ts",
       "summary": "Demo that builds a chat-style typewriter animation by staggering Text/Block bubbles across sequences on a Composition.",
-      "tags": [
-        "demo",
-        "animation",
-        "composition",
-        "text"
-      ],
+      "tags": ["demo", "animation", "composition", "text"],
       "complexity": "moderate"
     },
     {
@@ -866,12 +552,7 @@
       "name": "video-sync.ts",
       "filePath": "demo/src/demos/video-sync.ts",
       "summary": "Demo showcasing frame-synced video playback by laying out two Video sequences and reflecting the composition's play/frame state into status overlays.",
-      "tags": [
-        "demo",
-        "video",
-        "composition",
-        "synchronization"
-      ],
+      "tags": ["demo", "video", "composition", "synchronization"],
       "complexity": "moderate"
     },
     {
@@ -880,11 +561,7 @@
       "name": "main.tsx",
       "filePath": "demo/src/main.tsx",
       "summary": "Browser entry point that mounts the studio App into the DOM via React createRoot wrapped in a HashRouter, and loads global studio styles.",
-      "tags": [
-        "entry-point",
-        "react",
-        "bootstrap"
-      ],
+      "tags": ["entry-point", "react", "bootstrap"],
       "complexity": "simple"
     },
     {
@@ -893,11 +570,7 @@
       "name": "node-module-shim.ts",
       "filePath": "demo/src/node-module-shim.ts",
       "summary": "Browser shim providing a no-op createRequire so Node 'module' imports resolve harmlessly in the Vite build.",
-      "tags": [
-        "utility",
-        "shim",
-        "compatibility"
-      ],
+      "tags": ["utility", "shim", "compatibility"],
       "complexity": "simple"
     },
     {
@@ -905,15 +578,9 @@
       "type": "function",
       "name": "createRequire",
       "filePath": "demo/src/node-module-shim.ts",
-      "lineRange": [
-        1,
-        5
-      ],
+      "lineRange": [1, 5],
       "summary": "No-op stand-in for Node's createRequire that returns a throwing require, satisfying bundler resolution in the browser.",
-      "tags": [
-        "utility",
-        "shim"
-      ],
+      "tags": ["utility", "shim"],
       "complexity": "simple"
     },
     {
@@ -922,12 +589,7 @@
       "name": "App.tsx",
       "filePath": "demo/src/studio/App.tsx",
       "summary": "Studio root component wiring routing, composition lifecycle, keyboard shortcuts, fullscreen/zoom state, and the player/sidebar/right-panel layout.",
-      "tags": [
-        "entry-point",
-        "react",
-        "component",
-        "studio"
-      ],
+      "tags": ["entry-point", "react", "component", "studio"],
       "complexity": "complex"
     },
     {
@@ -935,16 +597,9 @@
       "type": "function",
       "name": "StageStatus",
       "filePath": "demo/src/studio/App.tsx",
-      "lineRange": [
-        16,
-        38
-      ],
+      "lineRange": [16, 38],
       "summary": "Overlay component that subscribes to a composition's signals to render the current stage title and dimensions.",
-      "tags": [
-        "component",
-        "react",
-        "overlay"
-      ],
+      "tags": ["component", "react", "overlay"],
       "complexity": "simple"
     },
     {
@@ -952,17 +607,9 @@
       "type": "function",
       "name": "Studio",
       "filePath": "demo/src/studio/App.tsx",
-      "lineRange": [
-        40,
-        168
-      ],
+      "lineRange": [40, 168],
       "summary": "Main studio screen managing the active demo's composition, prop editing, viewport fit/zoom, keyboard transport shortcuts, and panel visibility.",
-      "tags": [
-        "component",
-        "react",
-        "studio",
-        "state-management"
-      ],
+      "tags": ["component", "react", "studio", "state-management"],
       "complexity": "complex"
     },
     {
@@ -970,16 +617,9 @@
       "type": "function",
       "name": "StudioRoute",
       "filePath": "demo/src/studio/App.tsx",
-      "lineRange": [
-        170,
-        177
-      ],
+      "lineRange": [170, 177],
       "summary": "Route wrapper that resolves the demo id from URL params via findDemo and renders the Studio screen.",
-      "tags": [
-        "component",
-        "react",
-        "routing"
-      ],
+      "tags": ["component", "react", "routing"],
       "complexity": "simple"
     },
     {
@@ -987,17 +627,9 @@
       "type": "function",
       "name": "App",
       "filePath": "demo/src/studio/App.tsx",
-      "lineRange": [
-        179,
-        187
-      ],
+      "lineRange": [179, 187],
       "summary": "Top-level router component defining the studio routes and default redirect to the first demo.",
-      "tags": [
-        "component",
-        "react",
-        "routing",
-        "entry-point"
-      ],
+      "tags": ["component", "react", "routing", "entry-point"],
       "complexity": "simple"
     },
     {
@@ -1006,12 +638,7 @@
       "name": "catalog.ts",
       "filePath": "demo/src/studio/catalog.ts",
       "summary": "Central demo registry that imports every demo module, attaches metadata and schemas, and exports grouped/flat catalogs plus a findDemo lookup.",
-      "tags": [
-        "registry",
-        "catalog",
-        "data-model",
-        "studio"
-      ],
+      "tags": ["registry", "catalog", "data-model", "studio"],
       "complexity": "complex"
     },
     {
@@ -1019,15 +646,9 @@
       "type": "function",
       "name": "entry",
       "filePath": "demo/src/studio/catalog.ts",
-      "lineRange": [
-        66,
-        85
-      ],
+      "lineRange": [66, 85],
       "summary": "Helper that combines a demo definition with metadata to produce a fully-formed StudioDemo catalog entry.",
-      "tags": [
-        "factory",
-        "catalog"
-      ],
+      "tags": ["factory", "catalog"],
       "complexity": "simple"
     },
     {
@@ -1036,12 +657,7 @@
       "name": "Icon.tsx",
       "filePath": "demo/src/studio/Icon.tsx",
       "summary": "SVG icon component rendering a named glyph from an internal path registry, used throughout the studio UI.",
-      "tags": [
-        "component",
-        "react",
-        "icon",
-        "ui"
-      ],
+      "tags": ["component", "react", "icon", "ui"],
       "complexity": "moderate"
     },
     {
@@ -1049,16 +665,9 @@
       "type": "function",
       "name": "Icon",
       "filePath": "demo/src/studio/Icon.tsx",
-      "lineRange": [
-        129,
-        149
-      ],
+      "lineRange": [129, 149],
       "summary": "Renders an inline SVG for the given icon name at the requested size with optional style overrides.",
-      "tags": [
-        "component",
-        "react",
-        "icon"
-      ],
+      "tags": ["component", "react", "icon"],
       "complexity": "simple"
     },
     {
@@ -1067,12 +676,7 @@
       "name": "kf.ts",
       "filePath": "demo/src/studio/kf.ts",
       "summary": "Schema-builder DSL wrapping Zod with UI metadata (kf.text/number/color/select/object/array) plus helpers to derive defaults and merge prop values.",
-      "tags": [
-        "schema-definition",
-        "validation",
-        "factory",
-        "studio"
-      ],
+      "tags": ["schema-definition", "validation", "factory", "studio"],
       "complexity": "complex",
       "languageNotes": "Attaches UI metadata to Zod schemas via Object.defineProperty so the form renderer can introspect field kinds."
     },
@@ -1081,16 +685,9 @@
       "type": "function",
       "name": "tag",
       "filePath": "demo/src/studio/kf.ts",
-      "lineRange": [
-        71,
-        80
-      ],
+      "lineRange": [71, 80],
       "summary": "Attaches a non-enumerable UI metadata object to a Zod schema and records its describe() string.",
-      "tags": [
-        "utility",
-        "schema-definition",
-        "metadata"
-      ],
+      "tags": ["utility", "schema-definition", "metadata"],
       "complexity": "simple"
     },
     {
@@ -1098,16 +695,9 @@
       "type": "function",
       "name": "kmDefault",
       "filePath": "demo/src/studio/kf.ts",
-      "lineRange": [
-        283,
-        303
-      ],
+      "lineRange": [283, 303],
       "summary": "Recursively derives a default value object from a schema, cloning array item defaults as needed.",
-      "tags": [
-        "utility",
-        "schema-definition",
-        "defaults"
-      ],
+      "tags": ["utility", "schema-definition", "defaults"],
       "complexity": "moderate"
     },
     {
@@ -1115,16 +705,9 @@
       "type": "function",
       "name": "kmMerge",
       "filePath": "demo/src/studio/kf.ts",
-      "lineRange": [
-        312,
-        325
-      ],
+      "lineRange": [312, 325],
       "summary": "Deep-merges an override value tree onto a base default tree, recursing into nested objects.",
-      "tags": [
-        "utility",
-        "merge",
-        "schema-definition"
-      ],
+      "tags": ["utility", "merge", "schema-definition"],
       "complexity": "moderate"
     },
     {
@@ -1133,12 +716,7 @@
       "name": "Player.tsx",
       "filePath": "demo/src/studio/Player.tsx",
       "summary": "Transport bar component providing play/pause, scrubbing, time display, loop, volume/mute, and fullscreen controls bound to a composition's signals.",
-      "tags": [
-        "component",
-        "react",
-        "player",
-        "transport"
-      ],
+      "tags": ["component", "react", "player", "transport"],
       "complexity": "complex"
     },
     {
@@ -1146,16 +724,9 @@
       "type": "function",
       "name": "fmt",
       "filePath": "demo/src/studio/Player.tsx",
-      "lineRange": [
-        7,
-        12
-      ],
+      "lineRange": [7, 12],
       "summary": "Formats a seconds value into a zero-padded mm:ss timecode string.",
-      "tags": [
-        "utility",
-        "formatting",
-        "time"
-      ],
+      "tags": ["utility", "formatting", "time"],
       "complexity": "simple"
     },
     {
@@ -1163,17 +734,9 @@
       "type": "function",
       "name": "Player",
       "filePath": "demo/src/studio/Player.tsx",
-      "lineRange": [
-        15,
-        173
-      ],
+      "lineRange": [15, 173],
       "summary": "Transport UI that subscribes to composition frame/playing signals and drives seek, scrub-drag, loop, mute, and volume controls.",
-      "tags": [
-        "component",
-        "react",
-        "player",
-        "state-management"
-      ],
+      "tags": ["component", "react", "player", "state-management"],
       "complexity": "complex"
     },
     {
@@ -1182,12 +745,7 @@
       "name": "RightPanel.tsx",
       "filePath": "demo/src/studio/RightPanel.tsx",
       "summary": "Collapsible right-side studio panel with Props, Info, and Code tabs, hosting the schema-driven prop editor for the active demo.",
-      "tags": [
-        "component",
-        "react",
-        "panel",
-        "studio"
-      ],
+      "tags": ["component", "react", "panel", "studio"],
       "complexity": "complex"
     },
     {
@@ -1195,16 +753,9 @@
       "type": "function",
       "name": "PropsTab",
       "filePath": "demo/src/studio/RightPanel.tsx",
-      "lineRange": [
-        9,
-        55
-      ],
+      "lineRange": [9, 55],
       "summary": "Tab that renders the demo's schema form and a reset control, forwarding value changes upward.",
-      "tags": [
-        "component",
-        "react",
-        "form"
-      ],
+      "tags": ["component", "react", "form"],
       "complexity": "moderate"
     },
     {
@@ -1212,16 +763,9 @@
       "type": "function",
       "name": "InfoTab",
       "filePath": "demo/src/studio/RightPanel.tsx",
-      "lineRange": [
-        57,
-        97
-      ],
+      "lineRange": [57, 97],
       "summary": "Tab presenting demo metadata such as description, tags, fps, and computed duration in seconds.",
-      "tags": [
-        "component",
-        "react",
-        "metadata"
-      ],
+      "tags": ["component", "react", "metadata"],
       "complexity": "moderate"
     },
     {
@@ -1229,16 +773,9 @@
       "type": "function",
       "name": "CodeTab",
       "filePath": "demo/src/studio/RightPanel.tsx",
-      "lineRange": [
-        99,
-        132
-      ],
+      "lineRange": [99, 132],
       "summary": "Tab displaying the demo's source/usage code snippet for reference.",
-      "tags": [
-        "component",
-        "react",
-        "code-display"
-      ],
+      "tags": ["component", "react", "code-display"],
       "complexity": "moderate"
     },
     {
@@ -1246,16 +783,9 @@
       "type": "function",
       "name": "RightPanel",
       "filePath": "demo/src/studio/RightPanel.tsx",
-      "lineRange": [
-        134,
-        187
-      ],
+      "lineRange": [134, 187],
       "summary": "Container that renders the tab strip and the active tab body, with a close affordance.",
-      "tags": [
-        "component",
-        "react",
-        "panel"
-      ],
+      "tags": ["component", "react", "panel"],
       "complexity": "moderate"
     },
     {
@@ -1263,16 +793,9 @@
       "type": "function",
       "name": "PanelHandle",
       "filePath": "demo/src/studio/RightPanel.tsx",
-      "lineRange": [
-        189,
-        200
-      ],
+      "lineRange": [189, 200],
       "summary": "Edge handle button that reopens the right panel when it is collapsed.",
-      "tags": [
-        "component",
-        "react",
-        "ui"
-      ],
+      "tags": ["component", "react", "ui"],
       "complexity": "simple"
     },
     {
@@ -1281,12 +804,7 @@
       "name": "SchemaForm.tsx",
       "filePath": "demo/src/studio/SchemaForm.tsx",
       "summary": "Schema-driven form renderer that introspects kf/Zod metadata to render typed field editors (text, number, color, select, object, array) with drag-reorder support.",
-      "tags": [
-        "component",
-        "react",
-        "form",
-        "schema-definition"
-      ],
+      "tags": ["component", "react", "form", "schema-definition"],
       "complexity": "complex",
       "languageNotes": "Dispatches on per-field UI metadata to render a tree of specialized field components, including recursive object/array nesting."
     },
@@ -1295,16 +813,9 @@
       "type": "function",
       "name": "Dropdown",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        17,
-        73
-      ],
+      "lineRange": [17, 73],
       "summary": "Custom popover dropdown with outside-click dismissal used by select-style fields.",
-      "tags": [
-        "component",
-        "react",
-        "dropdown"
-      ],
+      "tags": ["component", "react", "dropdown"],
       "complexity": "moderate"
     },
     {
@@ -1312,16 +823,9 @@
       "type": "function",
       "name": "FieldShell",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        76,
-        94
-      ],
+      "lineRange": [76, 94],
       "summary": "Layout wrapper rendering a field's label, description, and child control.",
-      "tags": [
-        "component",
-        "react",
-        "layout"
-      ],
+      "tags": ["component", "react", "layout"],
       "complexity": "simple"
     },
     {
@@ -1329,16 +833,9 @@
       "type": "function",
       "name": "KNumber",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        125,
-        146
-      ],
+      "lineRange": [125, 146],
       "summary": "Numeric field editor with min/max handling that emits parsed number changes.",
-      "tags": [
-        "component",
-        "react",
-        "form-field"
-      ],
+      "tags": ["component", "react", "form-field"],
       "complexity": "moderate"
     },
     {
@@ -1346,17 +843,9 @@
       "type": "function",
       "name": "KColor",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        147,
-        187
-      ],
+      "lineRange": [147, 187],
       "summary": "Color field editor offering swatches and validated hex input.",
-      "tags": [
-        "component",
-        "react",
-        "form-field",
-        "color"
-      ],
+      "tags": ["component", "react", "form-field", "color"],
       "complexity": "moderate"
     },
     {
@@ -1364,16 +853,9 @@
       "type": "function",
       "name": "KBool",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        188,
-        209
-      ],
+      "lineRange": [188, 209],
       "summary": "Boolean toggle field editor emitting on/off changes.",
-      "tags": [
-        "component",
-        "react",
-        "form-field"
-      ],
+      "tags": ["component", "react", "form-field"],
       "complexity": "moderate"
     },
     {
@@ -1381,16 +863,9 @@
       "type": "function",
       "name": "KMultiselect",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        217,
-        245
-      ],
+      "lineRange": [217, 245],
       "summary": "Multi-select field editor toggling membership in an array of enum values.",
-      "tags": [
-        "component",
-        "react",
-        "form-field"
-      ],
+      "tags": ["component", "react", "form-field"],
       "complexity": "moderate"
     },
     {
@@ -1398,17 +873,9 @@
       "type": "function",
       "name": "KObject",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        259,
-        309
-      ],
+      "lineRange": [259, 309],
       "summary": "Collapsible group field that recursively renders nested object schema fields.",
-      "tags": [
-        "component",
-        "react",
-        "form-field",
-        "recursive"
-      ],
+      "tags": ["component", "react", "form-field", "recursive"],
       "complexity": "moderate"
     },
     {
@@ -1416,17 +883,9 @@
       "type": "function",
       "name": "KArray",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        312,
-        440
-      ],
+      "lineRange": [312, 440],
       "summary": "Array field editor supporting add/remove, drag-to-reorder, and per-item recursive field rendering.",
-      "tags": [
-        "component",
-        "react",
-        "form-field",
-        "drag-drop"
-      ],
+      "tags": ["component", "react", "form-field", "drag-drop"],
       "complexity": "complex"
     },
     {
@@ -1434,17 +893,9 @@
       "type": "function",
       "name": "InlineColor",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        443,
-        466
-      ],
+      "lineRange": [443, 466],
       "summary": "Compact inline color editor variant for use inside array rows.",
-      "tags": [
-        "component",
-        "react",
-        "form-field",
-        "color"
-      ],
+      "tags": ["component", "react", "form-field", "color"],
       "complexity": "moderate"
     },
     {
@@ -1452,17 +903,9 @@
       "type": "function",
       "name": "Field",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        469,
-        529
-      ],
+      "lineRange": [469, 529],
       "summary": "Dispatcher that selects the appropriate field editor component based on a schema node's UI kind.",
-      "tags": [
-        "component",
-        "react",
-        "dispatch",
-        "form"
-      ],
+      "tags": ["component", "react", "dispatch", "form"],
       "complexity": "complex"
     },
     {
@@ -1470,17 +913,9 @@
       "type": "function",
       "name": "SchemaForm",
       "filePath": "demo/src/studio/SchemaForm.tsx",
-      "lineRange": [
-        532,
-        547
-      ],
+      "lineRange": [532, 547],
       "summary": "Top-level form component that renders the root schema's fields and bubbles value changes.",
-      "tags": [
-        "component",
-        "react",
-        "form",
-        "entry-point"
-      ],
+      "tags": ["component", "react", "form", "entry-point"],
       "complexity": "simple"
     },
     {
@@ -1489,12 +924,7 @@
       "name": "Sidebar.tsx",
       "filePath": "demo/src/studio/Sidebar.tsx",
       "summary": "Left navigation listing demos grouped by category with search filtering, collapsible groups, and active-item selection.",
-      "tags": [
-        "component",
-        "react",
-        "navigation",
-        "studio"
-      ],
+      "tags": ["component", "react", "navigation", "studio"],
       "complexity": "moderate"
     },
     {
@@ -1502,16 +932,9 @@
       "type": "function",
       "name": "Sidebar",
       "filePath": "demo/src/studio/Sidebar.tsx",
-      "lineRange": [
-        5,
-        95
-      ],
+      "lineRange": [5, 95],
       "summary": "Renders the grouped, searchable demo list and invokes onSelect when a demo is chosen.",
-      "tags": [
-        "component",
-        "react",
-        "navigation"
-      ],
+      "tags": ["component", "react", "navigation"],
       "complexity": "moderate"
     },
     {
@@ -1520,12 +943,7 @@
       "name": "styles.css",
       "filePath": "demo/src/studio/styles.css",
       "summary": "Global stylesheet for the entire studio UI, defining layout, theming, controls, panels, and player styling.",
-      "tags": [
-        "stylesheet",
-        "css",
-        "ui",
-        "theme"
-      ],
+      "tags": ["stylesheet", "css", "ui", "theme"],
       "complexity": "complex"
     },
     {
@@ -1534,12 +952,7 @@
       "name": "useComposition.ts",
       "filePath": "demo/src/studio/useComposition.ts",
       "summary": "React hook that builds, hosts, and tears down a demo's Composition, exposes a props signal, and refreshes the stage on prop changes.",
-      "tags": [
-        "hook",
-        "react",
-        "composition",
-        "lifecycle"
-      ],
+      "tags": ["hook", "react", "composition", "lifecycle"],
       "complexity": "moderate"
     },
     {
@@ -1547,16 +960,9 @@
       "type": "function",
       "name": "createSignal",
       "filePath": "demo/src/studio/useComposition.ts",
-      "lineRange": [
-        8,
-        22
-      ],
+      "lineRange": [8, 22],
       "summary": "Minimal observable signal factory with get/set/subscribe semantics used to feed live props into a composition.",
-      "tags": [
-        "utility",
-        "signal",
-        "observable"
-      ],
+      "tags": ["utility", "signal", "observable"],
       "complexity": "moderate"
     },
     {
@@ -1564,17 +970,9 @@
       "type": "function",
       "name": "useComposition",
       "filePath": "demo/src/studio/useComposition.ts",
-      "lineRange": [
-        34,
-        85
-      ],
+      "lineRange": [34, 85],
       "summary": "Hook that constructs a demo's composition in a hidden host element, wires a props signal to refresh, and disposes it on unmount or demo change.",
-      "tags": [
-        "hook",
-        "react",
-        "composition",
-        "lifecycle"
-      ],
+      "tags": ["hook", "react", "composition", "lifecycle"],
       "complexity": "complex"
     },
     {
@@ -1583,11 +981,7 @@
       "name": "useSignal.ts",
       "filePath": "demo/src/studio/useSignal.ts",
       "summary": "React hook that subscribes a component to a core ReadonlySignal via useSyncExternalStore for tear-free reads.",
-      "tags": [
-        "hook",
-        "react",
-        "signal"
-      ],
+      "tags": ["hook", "react", "signal"],
       "complexity": "simple"
     },
     {
@@ -1595,16 +989,9 @@
       "type": "function",
       "name": "useSignal",
       "filePath": "demo/src/studio/useSignal.ts",
-      "lineRange": [
-        9,
-        14
-      ],
+      "lineRange": [9, 14],
       "summary": "Subscribes to a signal's value through useSyncExternalStore and returns the current value.",
-      "tags": [
-        "hook",
-        "react",
-        "signal"
-      ],
+      "tags": ["hook", "react", "signal"],
       "complexity": "simple"
     },
     {
@@ -1613,12 +1000,7 @@
       "name": "ZoomControl.tsx",
       "filePath": "demo/src/studio/ZoomControl.tsx",
       "summary": "Dropdown control for selecting stage zoom level (fit or discrete percentage steps) for the studio viewport.",
-      "tags": [
-        "component",
-        "react",
-        "control",
-        "studio"
-      ],
+      "tags": ["component", "react", "control", "studio"],
       "complexity": "moderate"
     },
     {
@@ -1626,16 +1008,9 @@
       "type": "function",
       "name": "ZoomControl",
       "filePath": "demo/src/studio/ZoomControl.tsx",
-      "lineRange": [
-        8,
-        78
-      ],
+      "lineRange": [8, 78],
       "summary": "Popover that lists zoom presets and emits the selected zoom mode/percentage.",
-      "tags": [
-        "component",
-        "react",
-        "control"
-      ],
+      "tags": ["component", "react", "control"],
       "complexity": "moderate"
     },
     {
@@ -1644,11 +1019,7 @@
       "name": "vite.config.ts",
       "filePath": "demo/vite.config.ts",
       "summary": "Vite build configuration for the demo app, enabling the React plugin and any asset/alias settings.",
-      "tags": [
-        "configuration",
-        "build-system",
-        "vite"
-      ],
+      "tags": ["configuration", "build-system", "vite"],
       "complexity": "simple"
     },
     {
@@ -1657,11 +1028,7 @@
       "name": "package.json",
       "filePath": "packages/core/package.json",
       "summary": "Package manifest for @konva-motion/core declaring ESM exports pointing at dist/, build scripts, flexily dependency, and konva as a peer dependency.",
-      "tags": [
-        "configuration",
-        "package-manifest",
-        "build-system"
-      ],
+      "tags": ["configuration", "package-manifest", "build-system"],
       "complexity": "simple"
     },
     {
@@ -1670,11 +1037,7 @@
       "name": "asset.ts",
       "filePath": "packages/core/src/audio/asset.ts",
       "summary": "Type definitions describing collected audio asset descriptors emitted during offline rendering.",
-      "tags": [
-        "type-definition",
-        "audio",
-        "data-model"
-      ],
+      "tags": ["type-definition", "audio", "data-model"],
       "complexity": "simple"
     },
     {
@@ -1683,11 +1046,7 @@
       "name": "audio-driver.ts",
       "filePath": "packages/core/src/audio/audio-driver.ts",
       "summary": "Defines the AudioDriver interface and driver context, the abstraction implemented by preview and rendering audio drivers.",
-      "tags": [
-        "type-definition",
-        "audio",
-        "interface"
-      ],
+      "tags": ["type-definition", "audio", "interface"],
       "complexity": "simple"
     },
     {
@@ -1696,12 +1055,7 @@
       "name": "audio-for-preview.ts",
       "filePath": "packages/core/src/audio/audio-for-preview.ts",
       "summary": "Preview-mode audio driver that plays/pauses and seeks a live audio source in sync with the composition's play state and frame clock.",
-      "tags": [
-        "audio",
-        "service",
-        "preview",
-        "synchronization"
-      ],
+      "tags": ["audio", "service", "preview", "synchronization"],
       "complexity": "moderate"
     },
     {
@@ -1709,17 +1063,9 @@
       "type": "class",
       "name": "PreviewAudioDriver",
       "filePath": "packages/core/src/audio/audio-for-preview.ts",
-      "lineRange": [
-        13,
-        72
-      ],
+      "lineRange": [13, 72],
       "summary": "AudioDriver implementation that keeps a real audio element synced to the composition playhead, correcting drift and toggling playback with the transport.",
-      "tags": [
-        "audio",
-        "service",
-        "driver",
-        "synchronization"
-      ],
+      "tags": ["audio", "service", "driver", "synchronization"],
       "complexity": "moderate"
     },
     {
@@ -1728,12 +1074,7 @@
       "name": "audio-for-rendering.ts",
       "filePath": "packages/core/src/audio/audio-for-rendering.ts",
       "summary": "Rendering-mode audio driver that mutes live playback and instead collects audio asset timing for offline/server rendering.",
-      "tags": [
-        "audio",
-        "service",
-        "rendering",
-        "driver"
-      ],
+      "tags": ["audio", "service", "rendering", "driver"],
       "complexity": "simple"
     },
     {
@@ -1741,17 +1082,9 @@
       "type": "class",
       "name": "RenderingAudioDriver",
       "filePath": "packages/core/src/audio/audio-for-rendering.ts",
-      "lineRange": [
-        11,
-        34
-      ],
+      "lineRange": [11, 34],
       "summary": "AudioDriver for offline rendering that mutes the source and records audio asset descriptors per frame instead of playing audio.",
-      "tags": [
-        "audio",
-        "service",
-        "driver",
-        "rendering"
-      ],
+      "tags": ["audio", "service", "driver", "rendering"],
       "complexity": "simple"
     },
     {
@@ -1760,12 +1093,7 @@
       "name": "audio-source-browser.ts",
       "filePath": "packages/core/src/audio/audio-source-browser.ts",
       "summary": "Browser AudioSource backed by an HTMLAudioElement, handling load/ready, debounced seeking, play/pause, volume, and mute.",
-      "tags": [
-        "audio",
-        "service",
-        "browser",
-        "media"
-      ],
+      "tags": ["audio", "service", "browser", "media"],
       "complexity": "complex",
       "languageNotes": "Serializes overlapping seeks through a pending-resolver queue to avoid thrashing the media element's seeked events."
     },
@@ -1774,17 +1102,9 @@
       "type": "class",
       "name": "BrowserAudioSource",
       "filePath": "packages/core/src/audio/audio-source-browser.ts",
-      "lineRange": [
-        13,
-        158
-      ],
+      "lineRange": [13, 158],
       "summary": "HTMLAudioElement-backed AudioSource implementation managing ready callbacks, queued seeks, and playback controls for the browser.",
-      "tags": [
-        "audio",
-        "service",
-        "browser",
-        "media"
-      ],
+      "tags": ["audio", "service", "browser", "media"],
       "complexity": "complex"
     },
     {
@@ -1793,11 +1113,7 @@
       "name": "audio-source.ts",
       "filePath": "packages/core/src/audio/audio-source.ts",
       "summary": "AudioSource interface and SeekMode definition that abstract audio playback backends across browser and rendering environments.",
-      "tags": [
-        "type-definition",
-        "audio",
-        "interface"
-      ],
+      "tags": ["type-definition", "audio", "interface"],
       "complexity": "simple"
     },
     {
@@ -1806,13 +1122,7 @@
       "name": "index.ts",
       "filePath": "packages/core/src/audio/index.ts",
       "summary": "Defines the Audio node (extends a Konva container) that plays an audio source range-gated to its sequence, wiring playback to a per-composition AudioMixer and an environment-specific driver (preview vs rendering).",
-      "tags": [
-        "audio",
-        "media",
-        "component",
-        "service",
-        "entry-point"
-      ],
+      "tags": ["audio", "media", "component", "service", "entry-point"],
       "complexity": "moderate",
       "languageNotes": "Lazily resolves the owning Composition via getStage()/getComposition() and selects a driver based on detectEnvironment()."
     },
@@ -1821,17 +1131,9 @@
       "type": "class",
       "name": "Audio",
       "filePath": "packages/core/src/audio/index.ts",
-      "lineRange": [
-        23,
-        158
-      ],
+      "lineRange": [23, 158],
       "summary": "Konva-group-derived audio node: loads a source, registers with the composition mixer, ticks an AudioDriver each frame, and applies muted/volume from both its own signals and the mixer.",
-      "tags": [
-        "audio",
-        "media",
-        "component",
-        "signal"
-      ],
+      "tags": ["audio", "media", "component", "signal"],
       "complexity": "complex"
     },
     {
@@ -1839,16 +1141,9 @@
       "type": "function",
       "name": "isAudioNode",
       "filePath": "packages/core/src/audio/index.ts",
-      "lineRange": [
-        160,
-        162
-      ],
+      "lineRange": [160, 162],
       "summary": "Type guard that detects whether a Konva node is an Audio node via its AUDIO_MARK attribute.",
-      "tags": [
-        "audio",
-        "type-guard",
-        "utility"
-      ],
+      "tags": ["audio", "type-guard", "utility"],
       "complexity": "simple"
     },
     {
@@ -1857,12 +1152,7 @@
       "name": "mixer.ts",
       "filePath": "packages/core/src/audio/mixer.ts",
       "summary": "AudioMixer: a per-composition master volume/mute bus that registered audio channels subscribe to and reapply when master settings change.",
-      "tags": [
-        "audio",
-        "media",
-        "service",
-        "signal"
-      ],
+      "tags": ["audio", "media", "service", "signal"],
       "complexity": "simple"
     },
     {
@@ -1870,17 +1160,9 @@
       "type": "class",
       "name": "AudioMixer",
       "filePath": "packages/core/src/audio/mixer.ts",
-      "lineRange": [
-        28,
-        74
-      ],
+      "lineRange": [28, 74],
       "summary": "Master audio bus holding volume/muted signals and a set of channels; register/unregister bind channels, and setVolume/setMuted reapply to all registered channels.",
-      "tags": [
-        "audio",
-        "media",
-        "signal",
-        "registry"
-      ],
+      "tags": ["audio", "media", "signal", "registry"],
       "complexity": "moderate"
     },
     {
@@ -1889,11 +1171,7 @@
       "name": "types.ts",
       "filePath": "packages/core/src/audio/types.ts",
       "summary": "Type definitions for audio configuration (AudioConfig) consumed by the Audio node.",
-      "tags": [
-        "audio",
-        "type-definition",
-        "media"
-      ],
+      "tags": ["audio", "type-definition", "media"],
       "complexity": "simple"
     },
     {
@@ -1902,12 +1180,7 @@
       "name": "block.ts",
       "filePath": "packages/core/src/block.ts",
       "summary": "Block layout primitive (extends a Konva group) that renders a flex-laid-out box with a background rect supporting solid/gradient fills, per-edge borders, corner radius, and shadows.",
-      "tags": [
-        "layout",
-        "component",
-        "flex",
-        "rendering"
-      ],
+      "tags": ["layout", "component", "flex", "rendering"],
       "complexity": "moderate"
     },
     {
@@ -1915,16 +1188,9 @@
       "type": "class",
       "name": "Block",
       "filePath": "packages/core/src/block.ts",
-      "lineRange": [
-        49,
-        122
-      ],
+      "lineRange": [49, 122],
       "summary": "Konva-group-derived container that owns a background Rect and recomputes its flex layout plus background styling on size/attr changes.",
-      "tags": [
-        "layout",
-        "component",
-        "flex"
-      ],
+      "tags": ["layout", "component", "flex"],
       "complexity": "moderate"
     },
     {
@@ -1932,16 +1198,9 @@
       "type": "function",
       "name": "applyBackground",
       "filePath": "packages/core/src/block.ts",
-      "lineRange": [
-        124,
-        161
-      ],
+      "lineRange": [124, 161],
       "summary": "Applies a background value to a Rect, resolving solid colors as well as linear and radial gradient color stops and geometry.",
-      "tags": [
-        "rendering",
-        "gradient",
-        "styling"
-      ],
+      "tags": ["rendering", "gradient", "styling"],
       "complexity": "moderate"
     },
     {
@@ -1949,16 +1208,9 @@
       "type": "function",
       "name": "applyBorder",
       "filePath": "packages/core/src/block.ts",
-      "lineRange": [
-        163,
-        184
-      ],
+      "lineRange": [163, 184],
       "summary": "Configures stroke width, color, and optional dashed style on a Rect for border rendering.",
-      "tags": [
-        "rendering",
-        "styling",
-        "border"
-      ],
+      "tags": ["rendering", "styling", "border"],
       "complexity": "moderate"
     },
     {
@@ -1966,16 +1218,9 @@
       "type": "function",
       "name": "applyShadow",
       "filePath": "packages/core/src/block.ts",
-      "lineRange": [
-        186,
-        198
-      ],
+      "lineRange": [186, 198],
       "summary": "Enables and configures shadow color, blur, offset, and opacity on a Rect, or disables shadow when absent.",
-      "tags": [
-        "rendering",
-        "styling",
-        "shadow"
-      ],
+      "tags": ["rendering", "styling", "shadow"],
       "complexity": "simple"
     },
     {
@@ -1984,13 +1229,7 @@
       "name": "composition.ts",
       "filePath": "packages/core/src/composition.ts",
       "summary": "Heart of the engine: Composition (extends Konva.Stage) owns the frame clock (fps, durationInFrames, signals) and drives a RAF tick loop, while Sequence (extends Konva.Layer) is a range-gated layer that runs updaters and batchDraws while the playhead is inside its window.",
-      "tags": [
-        "entry-point",
-        "engine",
-        "frame-clock",
-        "signal",
-        "sequence"
-      ],
+      "tags": ["entry-point", "engine", "frame-clock", "signal", "sequence"],
       "complexity": "complex",
       "languageNotes": "Reads requestAnimationFrame/performance.now off globalThis with fallbacks so importing in Node is safe; play() requires a browser, setFrame()/renderFrame() work offline."
     },
@@ -1999,17 +1238,9 @@
       "type": "class",
       "name": "Composition",
       "filePath": "packages/core/src/composition.ts",
-      "lineRange": [
-        60,
-        340
-      ],
+      "lineRange": [60, 340],
       "summary": "Konva.Stage subclass that maintains frame/isPlaying signals, an AudioMixer, an event emitter, and a RAF-driven clock; exposes play/pause/stop/setFrame/renderFrame plus delayRender/continueRender for offline rendering.",
-      "tags": [
-        "engine",
-        "frame-clock",
-        "signal",
-        "entry-point"
-      ],
+      "tags": ["engine", "frame-clock", "signal", "entry-point"],
       "complexity": "complex"
     },
     {
@@ -2017,17 +1248,9 @@
       "type": "class",
       "name": "Sequence",
       "filePath": "packages/core/src/composition.ts",
-      "lineRange": [
-        348,
-        409
-      ],
+      "lineRange": [348, 409],
       "summary": "Konva.Layer subclass gated to a [from, from+durationInFrames) frame window; toggles visibility, runs registered updaters, ticks media children, recomputes Flex layouts, and batchDraws when active.",
-      "tags": [
-        "engine",
-        "sequence",
-        "layout",
-        "frame-clock"
-      ],
+      "tags": ["engine", "sequence", "layout", "frame-clock"],
       "complexity": "moderate"
     },
     {
@@ -2035,15 +1258,9 @@
       "type": "function",
       "name": "getComposition",
       "filePath": "packages/core/src/composition.ts",
-      "lineRange": [
-        56,
-        58
-      ],
+      "lineRange": [56, 58],
       "summary": "Returns the owning Composition for a Konva stage when it is a Composition instance, else null.",
-      "tags": [
-        "utility",
-        "engine"
-      ],
+      "tags": ["utility", "engine"],
       "complexity": "simple"
     },
     {
@@ -2052,12 +1269,7 @@
       "name": "easing.ts",
       "filePath": "packages/core/src/easing.ts",
       "summary": "Easing function library (linear, quad/cubic/poly, sin, circle, exp, elastic, back, bounce, bezier, steps) plus in/out/inOut combinators, exported as a single Easing object for use with interpolate.",
-      "tags": [
-        "animation",
-        "easing",
-        "utility",
-        "math"
-      ],
+      "tags": ["animation", "easing", "utility", "math"],
       "complexity": "moderate"
     },
     {
@@ -2066,11 +1278,7 @@
       "name": "emitter.ts",
       "filePath": "packages/core/src/emitter.ts",
       "summary": "Tiny typed event emitter factory used by Composition for composition-level lifecycle events (play, stop, frame, etc.).",
-      "tags": [
-        "utility",
-        "event-handler",
-        "reactivity"
-      ],
+      "tags": ["utility", "event-handler", "reactivity"],
       "complexity": "simple"
     },
     {
@@ -2078,16 +1286,9 @@
       "type": "function",
       "name": "createEmitter",
       "filePath": "packages/core/src/emitter.ts",
-      "lineRange": [
-        7,
-        34
-      ],
+      "lineRange": [7, 34],
       "summary": "Creates a typed emitter with on/off/emit backed by a Map of event names to listener sets, returning unsubscribe handles from on().",
-      "tags": [
-        "utility",
-        "event-handler",
-        "factory"
-      ],
+      "tags": ["utility", "event-handler", "factory"],
       "complexity": "simple"
     },
     {
@@ -2096,11 +1297,7 @@
       "name": "environment.ts",
       "filePath": "packages/core/src/environment.ts",
       "summary": "Runtime environment detection that distinguishes preview (browser) from rendering modes, allowing media subsystems to pick the appropriate driver.",
-      "tags": [
-        "utility",
-        "environment",
-        "configuration"
-      ],
+      "tags": ["utility", "environment", "configuration"],
       "complexity": "simple"
     },
     {
@@ -2108,15 +1305,9 @@
       "type": "function",
       "name": "detectEnvironment",
       "filePath": "packages/core/src/environment.ts",
-      "lineRange": [
-        30,
-        40
-      ],
+      "lineRange": [30, 40],
       "summary": "Determines the current Environment/EnvironmentMode, honoring an optional override, for branching between preview and rendering behavior.",
-      "tags": [
-        "utility",
-        "environment"
-      ],
+      "tags": ["utility", "environment"],
       "complexity": "simple"
     },
     {
@@ -2124,15 +1315,9 @@
       "type": "function",
       "name": "getEnvironment",
       "filePath": "packages/core/src/environment.ts",
-      "lineRange": [
-        50,
-        54
-      ],
+      "lineRange": [50, 54],
       "summary": "Resolves the Environment associated with a given stage, falling back to detectEnvironment().",
-      "tags": [
-        "utility",
-        "environment"
-      ],
+      "tags": ["utility", "environment"],
       "complexity": "simple"
     },
     {
@@ -2141,12 +1326,7 @@
       "name": "flex-engine.ts",
       "filePath": "packages/core/src/flex-engine.ts",
       "summary": "Thin adapter over the flexily flexbox library: parses CSS-like size/edge/alignment values, applies container and child flex props onto FlexilyNodes, and installs measure functions for text and image leaves.",
-      "tags": [
-        "layout",
-        "flex",
-        "utility",
-        "adapter"
-      ],
+      "tags": ["layout", "flex", "utility", "adapter"],
       "complexity": "complex",
       "languageNotes": "Wraps flexily (synchronous JS flexbox, no WASM/async init) and re-exports FlexilyNode."
     },
@@ -2155,16 +1335,9 @@
       "type": "function",
       "name": "normalizeEdges",
       "filePath": "packages/core/src/flex-engine.ts",
-      "lineRange": [
-        38,
-        48
-      ],
+      "lineRange": [38, 48],
       "summary": "Normalizes a scalar or array edge value into a uniform per-side {top,right,bottom,left} representation.",
-      "tags": [
-        "layout",
-        "utility",
-        "flex"
-      ],
+      "tags": ["layout", "utility", "flex"],
       "complexity": "simple"
     },
     {
@@ -2172,16 +1345,9 @@
       "type": "function",
       "name": "parseSize",
       "filePath": "packages/core/src/flex-engine.ts",
-      "lineRange": [
-        50,
-        58
-      ],
+      "lineRange": [50, 58],
       "summary": "Parses a SizeValue into a pixel number or percentage descriptor, used widely by layout primitives.",
-      "tags": [
-        "layout",
-        "utility",
-        "parsing"
-      ],
+      "tags": ["layout", "utility", "parsing"],
       "complexity": "simple"
     },
     {
@@ -2189,16 +1355,9 @@
       "type": "function",
       "name": "applyContainerProps",
       "filePath": "packages/core/src/flex-engine.ts",
-      "lineRange": [
-        139,
-        145
-      ],
+      "lineRange": [139, 145],
       "summary": "Applies flex container props (direction, justify, align, gap, padding) onto a FlexilyNode.",
-      "tags": [
-        "layout",
-        "flex",
-        "utility"
-      ],
+      "tags": ["layout", "flex", "utility"],
       "complexity": "simple"
     },
     {
@@ -2206,16 +1365,9 @@
       "type": "function",
       "name": "applyChildProps",
       "filePath": "packages/core/src/flex-engine.ts",
-      "lineRange": [
-        147,
-        153
-      ],
+      "lineRange": [147, 153],
       "summary": "Applies flex child props (grow, shrink, basis, alignSelf, margin) onto a FlexilyNode.",
-      "tags": [
-        "layout",
-        "flex",
-        "utility"
-      ],
+      "tags": ["layout", "flex", "utility"],
       "complexity": "simple"
     },
     {
@@ -2223,16 +1375,9 @@
       "type": "function",
       "name": "applySize",
       "filePath": "packages/core/src/flex-engine.ts",
-      "lineRange": [
-        122,
-        137
-      ],
+      "lineRange": [122, 137],
       "summary": "Sets width/height (pixel or percent) on a FlexilyNode from parsed SizeValues.",
-      "tags": [
-        "layout",
-        "flex",
-        "utility"
-      ],
+      "tags": ["layout", "flex", "utility"],
       "complexity": "simple"
     },
     {
@@ -2240,17 +1385,9 @@
       "type": "function",
       "name": "setTextMeasure",
       "filePath": "packages/core/src/flex-engine.ts",
-      "lineRange": [
-        160,
-        188
-      ],
+      "lineRange": [160, 188],
       "summary": "Installs a flexily measure function for a Konva Text leaf, measuring intrinsic width/height honoring wrapping and column context.",
-      "tags": [
-        "layout",
-        "flex",
-        "text",
-        "measurement"
-      ],
+      "tags": ["layout", "flex", "text", "measurement"],
       "complexity": "moderate"
     },
     {
@@ -2258,17 +1395,9 @@
       "type": "function",
       "name": "setTextWrapperMeasure",
       "filePath": "packages/core/src/flex-engine.ts",
-      "lineRange": [
-        198,
-        217
-      ],
+      "lineRange": [198, 217],
       "summary": "Installs a flexily measure function for the Text wrapper component, delegating to its _measureForFlex.",
-      "tags": [
-        "layout",
-        "flex",
-        "text",
-        "measurement"
-      ],
+      "tags": ["layout", "flex", "text", "measurement"],
       "complexity": "moderate"
     },
     {
@@ -2276,17 +1405,9 @@
       "type": "function",
       "name": "setImageMeasure",
       "filePath": "packages/core/src/flex-engine.ts",
-      "lineRange": [
-        219,
-        233
-      ],
+      "lineRange": [219, 233],
       "summary": "Installs a flexily measure function for an Image leaf based on the loaded image's natural dimensions.",
-      "tags": [
-        "layout",
-        "flex",
-        "image",
-        "measurement"
-      ],
+      "tags": ["layout", "flex", "image", "measurement"],
       "complexity": "moderate"
     },
     {
@@ -2295,11 +1416,7 @@
       "name": "flex-types.ts",
       "filePath": "packages/core/src/flex-types.ts",
       "summary": "Shared type definitions for flex layout, blocks, images, and text (Align, Justify, FlexConfig, BlockConfig, ImageConfig, TextConfig, gradient/shadow/edge value types, etc.).",
-      "tags": [
-        "type-definition",
-        "layout",
-        "flex"
-      ],
+      "tags": ["type-definition", "layout", "flex"],
       "complexity": "moderate"
     },
     {
@@ -2308,12 +1425,7 @@
       "name": "flex.ts",
       "filePath": "packages/core/src/flex.ts",
       "summary": "Flex container primitive (extends a Konva group) plus the recursive layout pipeline (layoutRoot/buildChildren/writeBack) that maps the Konva tree into flexily nodes, calculates layout, and writes computed positions/sizes back onto Konva nodes.",
-      "tags": [
-        "layout",
-        "flex",
-        "component",
-        "engine"
-      ],
+      "tags": ["layout", "flex", "component", "engine"],
       "complexity": "complex",
       "languageNotes": "Builds a transient FlexilyNode tree each pass, calls calculateLayout, writes back, then freeRecursive to release native nodes."
     },
@@ -2322,16 +1434,9 @@
       "type": "class",
       "name": "Flex",
       "filePath": "packages/core/src/flex.ts",
-      "lineRange": [
-        41,
-        63
-      ],
+      "lineRange": [41, 63],
       "summary": "Konva-group-derived flex container whose computeLayout delegates to layoutRoot to reflow its subtree.",
-      "tags": [
-        "layout",
-        "flex",
-        "component"
-      ],
+      "tags": ["layout", "flex", "component"],
       "complexity": "simple"
     },
     {
@@ -2339,16 +1444,9 @@
       "type": "function",
       "name": "layoutRoot",
       "filePath": "packages/core/src/flex.ts",
-      "lineRange": [
-        74,
-        92
-      ],
+      "lineRange": [74, 92],
       "summary": "Builds the flexily root for a Konva group, applies container props, recursively constructs children, calculates layout, writes results back, and frees the native tree.",
-      "tags": [
-        "layout",
-        "flex",
-        "engine"
-      ],
+      "tags": ["layout", "flex", "engine"],
       "complexity": "moderate"
     },
     {
@@ -2356,16 +1454,9 @@
       "type": "function",
       "name": "buildChildren",
       "filePath": "packages/core/src/flex.ts",
-      "lineRange": [
-        106,
-        164
-      ],
+      "lineRange": [106, 164],
       "summary": "Recursively maps visible Konva children into FlexilyNodes, dispatching on node kind (Flex, Block, Text wrapper/leaf, Image, plain) to apply props, sizes, and measure functions.",
-      "tags": [
-        "layout",
-        "flex",
-        "recursion"
-      ],
+      "tags": ["layout", "flex", "recursion"],
       "complexity": "complex"
     },
     {
@@ -2373,16 +1464,9 @@
       "type": "function",
       "name": "writeBack",
       "filePath": "packages/core/src/flex.ts",
-      "lineRange": [
-        166,
-        189
-      ],
+      "lineRange": [166, 189],
       "summary": "Copies computed flexily positions and sizes back onto paired Konva nodes and triggers per-node relayout hooks (_layoutBackground/_layoutImage/_layoutText).",
-      "tags": [
-        "layout",
-        "flex",
-        "writeback"
-      ],
+      "tags": ["layout", "flex", "writeback"],
       "complexity": "moderate"
     },
     {
@@ -2391,12 +1475,7 @@
       "name": "image.ts",
       "filePath": "packages/core/src/image.ts",
       "summary": "Image layout primitive (extends a Konva group) that loads an HTMLImageElement, applies object-fit/object-position cropping, and clips to rounded corners.",
-      "tags": [
-        "image",
-        "media",
-        "component",
-        "layout"
-      ],
+      "tags": ["image", "media", "component", "layout"],
       "complexity": "moderate"
     },
     {
@@ -2404,16 +1483,9 @@
       "type": "class",
       "name": "Image",
       "filePath": "packages/core/src/image.ts",
-      "lineRange": [
-        37,
-        125
-      ],
+      "lineRange": [37, 125],
       "summary": "Konva-group-derived image node that owns an inner Konva.Image, loads its source asynchronously, and recomputes fit/position/crop on layout.",
-      "tags": [
-        "image",
-        "media",
-        "component"
-      ],
+      "tags": ["image", "media", "component"],
       "complexity": "moderate"
     },
     {
@@ -2421,17 +1493,9 @@
       "type": "function",
       "name": "loadImage",
       "filePath": "packages/core/src/image.ts",
-      "lineRange": [
-        27,
-        35
-      ],
+      "lineRange": [27, 35],
       "summary": "Loads an image URL into an HTMLImageElement, resolving when decoded.",
-      "tags": [
-        "image",
-        "media",
-        "async",
-        "utility"
-      ],
+      "tags": ["image", "media", "async", "utility"],
       "complexity": "simple"
     },
     {
@@ -2439,16 +1503,9 @@
       "type": "function",
       "name": "positionOffset",
       "filePath": "packages/core/src/image.ts",
-      "lineRange": [
-        127,
-        143
-      ],
+      "lineRange": [127, 143],
       "summary": "Computes the x/y crop offset for an object-position keyword given the free space on each axis.",
-      "tags": [
-        "image",
-        "layout",
-        "utility"
-      ],
+      "tags": ["image", "layout", "utility"],
       "complexity": "moderate"
     },
     {
@@ -2456,16 +1513,9 @@
       "type": "function",
       "name": "roundRectPath",
       "filePath": "packages/core/src/image.ts",
-      "lineRange": [
-        152,
-        172
-      ],
+      "lineRange": [152, 172],
       "summary": "Draws a rounded-rectangle path on a canvas context for per-corner radius clipping.",
-      "tags": [
-        "rendering",
-        "canvas",
-        "utility"
-      ],
+      "tags": ["rendering", "canvas", "utility"],
       "complexity": "moderate"
     },
     {
@@ -2474,11 +1524,7 @@
       "name": "index.ts",
       "filePath": "packages/core/src/index.ts",
       "summary": "Public barrel for @konva-motion/core, re-exporting the engine (Composition, Sequence), layout primitives (Flex, Block, Image, Text), animation math (interpolate, interpolateColors, Easing), media (Audio, Video), signals, and environment helpers.",
-      "tags": [
-        "entry-point",
-        "barrel",
-        "exports"
-      ],
+      "tags": ["entry-point", "barrel", "exports"],
       "complexity": "simple"
     },
     {
@@ -2487,12 +1533,7 @@
       "name": "interpolate-colors.ts",
       "filePath": "packages/core/src/interpolate-colors.ts",
       "summary": "Color interpolation utility that parses hex/rgb/rgba/hsl colors and interpolates each RGBA channel across an input range via the numeric interpolate function.",
-      "tags": [
-        "animation",
-        "color",
-        "interpolation",
-        "utility"
-      ],
+      "tags": ["animation", "color", "interpolation", "utility"],
       "complexity": "complex"
     },
     {
@@ -2500,16 +1541,9 @@
       "type": "function",
       "name": "parseColor",
       "filePath": "packages/core/src/interpolate-colors.ts",
-      "lineRange": [
-        182,
-        231
-      ],
+      "lineRange": [182, 231],
       "summary": "Parses a CSS color string (hex shorthand/full, rgb/rgba, hsl) into normalized RGBA components.",
-      "tags": [
-        "color",
-        "parsing",
-        "utility"
-      ],
+      "tags": ["color", "parsing", "utility"],
       "complexity": "complex"
     },
     {
@@ -2517,17 +1551,9 @@
       "type": "function",
       "name": "hslToRgb",
       "filePath": "packages/core/src/interpolate-colors.ts",
-      "lineRange": [
-        168,
-        180
-      ],
+      "lineRange": [168, 180],
       "summary": "Converts HSL color components to RGB.",
-      "tags": [
-        "color",
-        "conversion",
-        "math",
-        "utility"
-      ],
+      "tags": ["color", "conversion", "math", "utility"],
       "complexity": "simple"
     },
     {
@@ -2535,16 +1561,9 @@
       "type": "function",
       "name": "interpolateColors",
       "filePath": "packages/core/src/interpolate-colors.ts",
-      "lineRange": [
-        238,
-        281
-      ],
+      "lineRange": [238, 281],
       "summary": "Interpolates an input value across an array of color stops, parsing each and blending RGBA channels with the numeric interpolate primitive.",
-      "tags": [
-        "animation",
-        "color",
-        "interpolation"
-      ],
+      "tags": ["animation", "color", "interpolation"],
       "complexity": "complex"
     },
     {
@@ -2553,12 +1572,7 @@
       "name": "interpolate.ts",
       "filePath": "packages/core/src/interpolate.ts",
       "summary": "Core numeric interpolation primitive that maps an input value across input/output ranges with per-segment easing and configurable extrapolation.",
-      "tags": [
-        "animation",
-        "interpolation",
-        "math",
-        "utility"
-      ],
+      "tags": ["animation", "interpolation", "math", "utility"],
       "complexity": "moderate"
     },
     {
@@ -2566,16 +1580,9 @@
       "type": "function",
       "name": "interpolate",
       "filePath": "packages/core/src/interpolate.ts",
-      "lineRange": [
-        59,
-        97
-      ],
+      "lineRange": [59, 97],
       "summary": "Maps input across multi-point input/output ranges, selecting the active segment and applying easing and extrapolation rules.",
-      "tags": [
-        "animation",
-        "interpolation",
-        "math"
-      ],
+      "tags": ["animation", "interpolation", "math"],
       "complexity": "moderate"
     },
     {
@@ -2583,16 +1590,9 @@
       "type": "function",
       "name": "interpolateSegment",
       "filePath": "packages/core/src/interpolate.ts",
-      "lineRange": [
-        17,
-        53
-      ],
+      "lineRange": [17, 53],
       "summary": "Interpolates a value within a single segment between two range points, applying easing and clamp/extend/identity extrapolation at the edges.",
-      "tags": [
-        "animation",
-        "interpolation",
-        "math"
-      ],
+      "tags": ["animation", "interpolation", "math"],
       "complexity": "moderate"
     },
     {
@@ -2601,11 +1601,7 @@
       "name": "media-marker.ts",
       "filePath": "packages/core/src/media-marker.ts",
       "summary": "Defines string marker attribute keys (MEDIA_MARK, VIDEO_MARK, AUDIO_MARK, TICK_MARK) used to tag and detect media nodes and tickable children on the Konva tree.",
-      "tags": [
-        "media",
-        "constants",
-        "utility"
-      ],
+      "tags": ["media", "constants", "utility"],
       "complexity": "simple"
     },
     {
@@ -2614,11 +1610,7 @@
       "name": "media-time.ts",
       "filePath": "packages/core/src/media-time.ts",
       "summary": "Maps a sequence-local frame to a media playback time (seconds) honoring trim-before/after and loop settings via getMediaTime.",
-      "tags": [
-        "media",
-        "time",
-        "utility"
-      ],
+      "tags": ["media", "time", "utility"],
       "complexity": "simple"
     },
     {
@@ -2626,16 +1618,9 @@
       "type": "function",
       "name": "getMediaTime",
       "filePath": "packages/core/src/media-time.ts",
-      "lineRange": [
-        17,
-        27
-      ],
+      "lineRange": [17, 27],
       "summary": "Computes the media time in seconds for a local frame given MediaTiming (fps, trim, loop), clamping to valid bounds.",
-      "tags": [
-        "media",
-        "time",
-        "utility"
-      ],
+      "tags": ["media", "time", "utility"],
       "complexity": "simple"
     },
     {
@@ -2644,11 +1629,7 @@
       "name": "signal.ts",
       "filePath": "packages/core/src/signal.ts",
       "summary": "Minimal reactive signal primitive: createSignal for read/write signals with subscription, and derived for computed signals over multiple sources.",
-      "tags": [
-        "reactivity",
-        "signal",
-        "utility"
-      ],
+      "tags": ["reactivity", "signal", "utility"],
       "complexity": "simple"
     },
     {
@@ -2656,16 +1637,9 @@
       "type": "function",
       "name": "createSignal",
       "filePath": "packages/core/src/signal.ts",
-      "lineRange": [
-        10,
-        25
-      ],
+      "lineRange": [10, 25],
       "summary": "Creates a writable signal with get/set/subscribe, notifying listeners only on actual value changes (Object.is).",
-      "tags": [
-        "reactivity",
-        "signal",
-        "factory"
-      ],
+      "tags": ["reactivity", "signal", "factory"],
       "complexity": "simple"
     },
     {
@@ -2673,16 +1647,9 @@
       "type": "function",
       "name": "derived",
       "filePath": "packages/core/src/signal.ts",
-      "lineRange": [
-        27,
-        47
-      ],
+      "lineRange": [27, 47],
       "summary": "Creates a read-only signal computed from multiple source signals, recomputing and notifying when any source changes.",
-      "tags": [
-        "reactivity",
-        "signal",
-        "computed"
-      ],
+      "tags": ["reactivity", "signal", "computed"],
       "complexity": "moderate"
     },
     {
@@ -2691,12 +1658,7 @@
       "name": "text.ts",
       "filePath": "packages/core/src/text.ts",
       "summary": "Rich Text layout primitive (extends a Konva group) with auto-fit sizing, line clamping, highlight rendering, typewriter/character reveal animation, and a blinking cursor, integrated with the frame clock via _kmTick.",
-      "tags": [
-        "text",
-        "component",
-        "layout",
-        "animation"
-      ],
+      "tags": ["text", "component", "layout", "animation"],
       "complexity": "complex",
       "languageNotes": "Builds per-character geometry and word-boundary indices to support word-snapped reveals and segment highlight rectangles."
     },
@@ -2705,17 +1667,9 @@
       "type": "class",
       "name": "Text",
       "filePath": "packages/core/src/text.ts",
-      "lineRange": [
-        81,
-        740
-      ],
+      "lineRange": [81, 740],
       "summary": "Konva-group-derived text node managing an inner Konva.Text plus highlight/clip/fade/cursor layers; handles fit-to-box sizing, line clamping, highlight segments, frame-driven reveal, and caret positioning.",
-      "tags": [
-        "text",
-        "component",
-        "animation",
-        "layout"
-      ],
+      "tags": ["text", "component", "animation", "layout"],
       "complexity": "complex"
     },
     {
@@ -2723,16 +1677,9 @@
       "type": "function",
       "name": "buildWordIndex",
       "filePath": "packages/core/src/text.ts",
-      "lineRange": [
-        761,
-        783
-      ],
+      "lineRange": [761, 783],
       "summary": "Builds per-character word-end and word-membership indices used to snap character reveals to word boundaries.",
-      "tags": [
-        "text",
-        "indexing",
-        "utility"
-      ],
+      "tags": ["text", "indexing", "utility"],
       "complexity": "moderate"
     },
     {
@@ -2741,12 +1688,7 @@
       "name": "driver.ts",
       "filePath": "packages/core/src/video/driver.ts",
       "summary": "Video driver interface/types (VideoDriver, VideoDriverContext, VideoTiming) and a re-export of getMediaTime, shared by the preview and rendering video drivers.",
-      "tags": [
-        "video",
-        "media",
-        "type-definition",
-        "driver"
-      ],
+      "tags": ["video", "media", "type-definition", "driver"],
       "complexity": "simple"
     },
     {
@@ -2755,13 +1697,7 @@
       "name": "index.ts",
       "filePath": "packages/core/src/video/index.ts",
       "summary": "Defines the Video node (extends a Konva container) rendering a video frame with object-fit/crop and rounded corners, wiring audio to the composition mixer and selecting a preview or rendering VideoDriver by environment.",
-      "tags": [
-        "video",
-        "media",
-        "component",
-        "service",
-        "entry-point"
-      ],
+      "tags": ["video", "media", "component", "service", "entry-point"],
       "complexity": "complex",
       "languageNotes": "Uses requestVideoFrameCallback-driven sources and lazily resolves the Composition/Environment to choose the right driver."
     },
@@ -2770,17 +1706,9 @@
       "type": "class",
       "name": "Video",
       "filePath": "packages/core/src/video/index.ts",
-      "lineRange": [
-        53,
-        256
-      ],
+      "lineRange": [53, 256],
       "summary": "Konva-group-derived video node owning an inner Konva.Image fed by a VideoSource; registers with the mixer, ticks a VideoDriver each frame, and applies fit/position/crop and audio settings.",
-      "tags": [
-        "video",
-        "media",
-        "component",
-        "signal"
-      ],
+      "tags": ["video", "media", "component", "signal"],
       "complexity": "complex"
     },
     {
@@ -2788,16 +1716,9 @@
       "type": "function",
       "name": "isVideoNode",
       "filePath": "packages/core/src/video/index.ts",
-      "lineRange": [
-        258,
-        260
-      ],
+      "lineRange": [258, 260],
       "summary": "Type guard detecting whether a Konva node is a Video node via its VIDEO_MARK attribute.",
-      "tags": [
-        "video",
-        "type-guard",
-        "utility"
-      ],
+      "tags": ["video", "type-guard", "utility"],
       "complexity": "simple"
     },
     {
@@ -2806,11 +1727,7 @@
       "name": "types.ts",
       "filePath": "packages/core/src/video/types.ts",
       "summary": "Type definitions for video configuration (VideoConfig) consumed by the Video node.",
-      "tags": [
-        "video",
-        "type-definition",
-        "media"
-      ],
+      "tags": ["video", "type-definition", "media"],
       "complexity": "simple"
     },
     {
@@ -2819,12 +1736,7 @@
       "name": "video-for-preview.ts",
       "filePath": "packages/core/src/video/video-for-preview.ts",
       "summary": "PreviewVideoDriver: drives a video source for interactive playback, syncing native playback while playing and seeking the element when the playhead drifts from the expected media time.",
-      "tags": [
-        "video",
-        "media",
-        "driver",
-        "preview"
-      ],
+      "tags": ["video", "media", "driver", "preview"],
       "complexity": "moderate"
     },
     {
@@ -2832,17 +1744,9 @@
       "type": "class",
       "name": "PreviewVideoDriver",
       "filePath": "packages/core/src/video/video-for-preview.ts",
-      "lineRange": [
-        12,
-        75
-      ],
+      "lineRange": [12, 75],
       "summary": "Video driver for preview mode that subscribes to composition play state, seeks to the expected media time on drift, and plays/pauses the underlying element.",
-      "tags": [
-        "video",
-        "media",
-        "driver",
-        "preview"
-      ],
+      "tags": ["video", "media", "driver", "preview"],
       "complexity": "moderate"
     },
     {
@@ -2851,12 +1755,7 @@
       "name": "video-for-rendering.ts",
       "filePath": "packages/core/src/video/video-for-rendering.ts",
       "summary": "RenderingVideoDriver: deterministic offline driver that seeks the video to the exact media time per frame, using delayRender/continueRender to block rendering until the seek completes.",
-      "tags": [
-        "video",
-        "media",
-        "driver",
-        "rendering"
-      ],
+      "tags": ["video", "media", "driver", "rendering"],
       "complexity": "moderate"
     },
     {
@@ -2864,17 +1763,9 @@
       "type": "class",
       "name": "RenderingVideoDriver",
       "filePath": "packages/core/src/video/video-for-rendering.ts",
-      "lineRange": [
-        9,
-        48
-      ],
+      "lineRange": [9, 48],
       "summary": "Video driver for offline rendering that seeks to the exact media time each tick and gates frame completion via the composition's delayRender/continueRender handles.",
-      "tags": [
-        "video",
-        "media",
-        "driver",
-        "rendering"
-      ],
+      "tags": ["video", "media", "driver", "rendering"],
       "complexity": "moderate"
     },
     {
@@ -2883,12 +1774,7 @@
       "name": "video-source-browser.ts",
       "filePath": "packages/core/src/video/video-source-browser.ts",
       "summary": "BrowserVideoSource: wraps an HTMLVideoElement as a VideoSource, exposing load/seek/play/pause and frame callbacks via requestVideoFrameCallback with serialized seek draining.",
-      "tags": [
-        "video",
-        "media",
-        "source",
-        "browser"
-      ],
+      "tags": ["video", "media", "source", "browser"],
       "complexity": "complex",
       "languageNotes": "Uses requestVideoFrameCallback and fastSeek where available, queuing/draining overlapping seek requests."
     },
@@ -2897,17 +1783,9 @@
       "type": "class",
       "name": "BrowserVideoSource",
       "filePath": "packages/core/src/video/video-source-browser.ts",
-      "lineRange": [
-        14,
-        194
-      ],
+      "lineRange": [14, 194],
       "summary": "VideoSource implementation backed by an HTMLVideoElement: loads media, serializes seeks, emits ready/frame callbacks, and exposes playback/volume controls.",
-      "tags": [
-        "video",
-        "media",
-        "source",
-        "browser"
-      ],
+      "tags": ["video", "media", "source", "browser"],
       "complexity": "complex"
     },
     {
@@ -2916,12 +1794,7 @@
       "name": "video-source.ts",
       "filePath": "packages/core/src/video/video-source.ts",
       "summary": "Defines the runtime-agnostic VideoSource interface and VideoSourceFactory type — the dependency-injection seam between the animation engine and the underlying media decoder (browser HTMLVideoElement or server-side decoder).",
-      "tags": [
-        "type-definition",
-        "video",
-        "abstraction",
-        "service"
-      ],
+      "tags": ["type-definition", "video", "abstraction", "service"],
       "complexity": "simple",
       "languageNotes": "Type-only module: exports a TypeScript interface plus two type aliases (SeekMode, VideoSourceFactory) with no runtime code. The `.js` import specifier targets the sibling `environment.ts` under NodeNext-style ESM resolution."
     },
@@ -2931,11 +1804,7 @@
       "name": "tsconfig.json",
       "filePath": "packages/core/tsconfig.json",
       "summary": "TypeScript project configuration for the @konva-motion/core package, extending the root config with composite build settings and an include pointing at src.",
-      "tags": [
-        "configuration",
-        "typescript",
-        "build-system"
-      ],
+      "tags": ["configuration", "typescript", "build-system"],
       "complexity": "simple"
     },
     {
@@ -2944,11 +1813,7 @@
       "name": "package.json",
       "filePath": "packages/timeline/package.json",
       "summary": "Package manifest for @konva-motion/timeline, the planned React UI components package (scrubber, play button); currently a placeholder declaring exports, types, and build scripts pointing at dist.",
-      "tags": [
-        "configuration",
-        "package-manifest",
-        "build-system"
-      ],
+      "tags": ["configuration", "package-manifest", "build-system"],
       "complexity": "simple"
     },
     {
@@ -2957,11 +1822,7 @@
       "name": "index.ts",
       "filePath": "packages/timeline/src/index.ts",
       "summary": "Placeholder entry point for the @konva-motion/timeline package, exporting only a TIMELINE_PACKAGE marker constant until the planned React UI components land.",
-      "tags": [
-        "entry-point",
-        "placeholder",
-        "barrel"
-      ],
+      "tags": ["entry-point", "placeholder", "barrel"],
       "complexity": "simple"
     },
     {
@@ -2970,11 +1831,7 @@
       "name": "tsconfig.json",
       "filePath": "packages/timeline/tsconfig.json",
       "summary": "TypeScript project configuration for the @konva-motion/timeline package, extending the root config with composite build settings and an include pointing at src.",
-      "tags": [
-        "configuration",
-        "typescript",
-        "build-system"
-      ],
+      "tags": ["configuration", "typescript", "build-system"],
       "complexity": "simple"
     },
     {
@@ -2982,16 +1839,9 @@
       "type": "function",
       "name": "findDemo",
       "filePath": "demo/src/studio/catalog.ts",
-      "lineRange": [
-        365,
-        366
-      ],
+      "lineRange": [365, 366],
       "summary": "Looks up a StudioDemo entry by id in the flat demo catalog, returning undefined when not found.",
-      "tags": [
-        "utility",
-        "lookup",
-        "catalog"
-      ],
+      "tags": ["utility", "lookup", "catalog"],
       "complexity": "simple"
     },
     {
@@ -2999,16 +1849,9 @@
       "type": "function",
       "name": "kmItemDefault",
       "filePath": "demo/src/studio/kf.ts",
-      "lineRange": [
-        306,
-        309
-      ],
+      "lineRange": [306, 309],
       "summary": "Derives a default value for an array item schema via kmDefault, deep-cloning object defaults so each item is independent.",
-      "tags": [
-        "utility",
-        "schema-definition",
-        "defaults"
-      ],
+      "tags": ["utility", "schema-definition", "defaults"],
       "complexity": "simple"
     }
   ],
@@ -6068,45 +4911,33 @@
       "order": 1,
       "title": "Project Overview",
       "description": "Start with the README to understand what konva-motion is: a Remotion-style, timeline-driven animation layer built on top of Konva. It introduces the core mental model — a Composition that owns a frame clock and Sequences that gate animation to a frame range — with a runnable example, the package table (core, layout, timeline), and quick-start commands. Read this first to get the vocabulary the rest of the tour builds on.",
-      "nodeIds": [
-        "document:README.md"
-      ]
+      "nodeIds": ["document:README.md"]
     },
     {
       "order": 2,
       "title": "Engine Architecture",
       "description": "The architecture doc explains the design decisions behind the engine before you read the code. It covers the core-vs-timeline package split, the per-frame tick loop that gates and redraws sequences, teardown, and singleton enforcement. Pair this with the agent-facing CLAUDE.md notes for the same mental model in condensed form.",
-      "nodeIds": [
-        "document:doc/architecture.md",
-        "document:CLAUDE.md"
-      ]
+      "nodeIds": ["document:doc/architecture.md", "document:CLAUDE.md"]
     },
     {
       "order": 3,
       "title": "Core Public API",
       "description": "packages/core/src/index.ts is the public barrel for @konva-motion/core and the single most depended-upon file in the project (every demo imports from it). It re-exports the engine (Composition, Sequence), the layout primitives (Flex, Block, Image, Text), the animation math (interpolate, interpolateColors, Easing), the media nodes (Audio, Video), and signal/environment helpers. Reading this gives you a one-screen map of everything the engine exposes.",
-      "nodeIds": [
-        "file:packages/core/src/index.ts"
-      ],
+      "nodeIds": ["file:packages/core/src/index.ts"],
       "languageLesson": "A TypeScript barrel file uses 're-export' syntax (export * / export { X } from './x') to collect many internal modules behind one import path, defining the package's public API surface in a single place."
     },
     {
       "order": 4,
       "title": "The Frame Clock: Composition & Sequence",
       "description": "This is the heart of the engine. Composition extends Konva.Stage and owns the frame clock (fps, durationInFrames, reactive signals) driving a requestAnimationFrame tick loop, while Sequence extends Konva.Layer and is range-gated — its updaters run and it batchDraws only while the playhead sits inside [from, from + durationInFrames). Everything from Step 3's barrel ultimately serves this tick loop. Note the agnostic-runtime design: setFrame(n) works offline for server rendering, while play() is browser-only.",
-      "nodeIds": [
-        "file:packages/core/src/composition.ts"
-      ],
+      "nodeIds": ["file:packages/core/src/composition.ts"],
       "languageLesson": "The engine reads requestAnimationFrame/performance.now off globalThis with fallbacks so importing in Node is safe — a common pattern for runtime-agnostic libraries that must work in both browser and headless/server contexts."
     },
     {
       "order": 5,
       "title": "Reactivity & Events",
       "description": "Building on the Composition's frame clock from Step 4, these primitives carry its state outward. signal.ts is a minimal reactive store (createSignal for read/write signals with subscriptions, derived for computed values) that the Composition exposes for frame/play state, and emitter.ts is a tiny typed event bus for composition lifecycle events (play, stop, frame). The studio UI later subscribes to these signals to render tear-free transport controls.",
-      "nodeIds": [
-        "file:packages/core/src/signal.ts",
-        "file:packages/core/src/emitter.ts"
-      ]
+      "nodeIds": ["file:packages/core/src/signal.ts", "file:packages/core/src/emitter.ts"]
     },
     {
       "order": 6,

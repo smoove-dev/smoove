@@ -24,6 +24,13 @@ doc                 short design + usage docs
 Top-level `tsconfig.json` is a solution file; per-package `tsconfig.json` uses
 `composite: true` with project references.
 
+`core/src` is grouped by domain: `engine/` (composition, sequence, signal,
+emitter, environment), `layout/` (block, image, `flex/`, `text/`), `animation/`
+(interpolate, interpolate-colors, color, easing), and `media/` (media-time,
+media-marker, `audio/`, `video/`). `index.ts` is the single public barrel — the
+package only exports `.`, so consumers never deep-import; internal moves just
+need the barrel repointed.
+
 ## Conventions
 
 - **pnpm workspaces.** Cross-package deps use `workspace:*`. Don't add a

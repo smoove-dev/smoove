@@ -1,6 +1,28 @@
 import Konva from "konva";
-import { parseSize } from "./flex-engine.js";
-import type { ImageConfig, ObjectFit, ObjectPosition, SizeValue } from "./flex-types.js";
+import { parseSize } from "./flex/engine.js";
+import type { FlexChildProps, SizeValue } from "./flex/types.js";
+
+export type ObjectFit = "cover" | "contain" | "fill" | "none";
+export type ObjectPosition =
+  | "center"
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "top left"
+  | "top right"
+  | "bottom left"
+  | "bottom right";
+
+export type ImageConfig = Omit<Konva.GroupConfig, "width" | "height"> &
+  FlexChildProps & {
+    width?: SizeValue;
+    height?: SizeValue;
+    src: HTMLImageElement | string;
+    objectFit?: ObjectFit;
+    objectPosition?: ObjectPosition;
+    cornerRadius?: number | number[];
+  };
 
 const IMG_KEYS = [
   "src",

@@ -1,14 +1,44 @@
 import Konva from "konva";
-import { normalizeEdges, parseSize } from "./flex-engine.js";
-import type {
-  BackgroundValue,
-  BlockConfig,
-  EdgeColor,
-  GradientBackground,
-  ShadowProps,
-  SizeValue,
-} from "./flex-types.js";
-import { layoutRoot } from "./flex.js";
+import { normalizeEdges, parseSize } from "./flex/engine.js";
+import { layoutRoot } from "./flex/flex.js";
+import type { EdgeValue, FlexChildProps, FlexProps, SizeValue } from "./flex/types.js";
+
+export type EdgeColor =
+  | string
+  | [string, string]
+  | [string, string, string, string]
+  | { top?: string; right?: string; bottom?: string; left?: string };
+
+export type GradientStop = [number, string];
+export type GradientBackground = {
+  gradient: {
+    type: "linear" | "radial";
+    stops: GradientStop[];
+    angle?: number;
+  };
+};
+export type BackgroundValue = string | GradientBackground;
+
+export type ShadowProps = {
+  color?: string;
+  blur?: number;
+  offsetX?: number;
+  offsetY?: number;
+  opacity?: number;
+};
+
+export type BlockConfig = Omit<Konva.GroupConfig, "width" | "height"> &
+  FlexProps &
+  FlexChildProps & {
+    width?: SizeValue;
+    height?: SizeValue;
+    borderSize?: EdgeValue;
+    borderColor?: EdgeColor;
+    borderStyle?: "solid" | "dashed";
+    shadow?: ShadowProps;
+    background?: BackgroundValue;
+    cornerRadius?: number | number[];
+  };
 
 const BLOCK_KEYS = [
   "flexDirection",

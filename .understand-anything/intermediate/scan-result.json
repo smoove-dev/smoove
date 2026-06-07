@@ -1,19 +1,8 @@
 {
   "name": "konva-motion",
   "description": "Remotion-style timeline-driven animation for Konva. A Composition (Konva.Stage) owns a frame clock and walks range-gated Sequence layers each tick, with built-in flexbox layout via flexily.",
-  "languages": [
-    "css",
-    "html",
-    "json",
-    "markdown",
-    "typescript",
-    "yaml"
-  ],
-  "frameworks": [
-    "React",
-    "Vite",
-    "Zod"
-  ],
+  "languages": ["css", "html", "json", "markdown", "typescript", "yaml"],
+  "frameworks": ["React", "Vite", "Zod"],
   "files": [
     {
       "path": ".claude/launch.json",
@@ -610,9 +599,7 @@
     "demo/src/demos/types.ts": [],
     "demo/src/demos/typewriter.ts": [],
     "demo/src/demos/video-sync.ts": [],
-    "demo/src/main.tsx": [
-      "demo/src/studio/styles.css"
-    ],
+    "demo/src/main.tsx": ["demo/src/studio/styles.css"],
     "demo/src/node-module-shim.ts": [],
     "demo/src/studio/App.tsx": [],
     "demo/src/studio/catalog.ts": [],
