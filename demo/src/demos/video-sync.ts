@@ -17,25 +17,17 @@ const PAUSED = "#7d8590";
 export const videoSyncDemo: DemoDef = {
   id: "video-sync",
   name: "Video — playback sync",
-  build(container, width, height) {
-    // Design canvas is a square 1080×1080 "motion video"; the demo preview
-    // scales it to fit the available area (the real render target stays 1080²).
+  build() {
+    // Design canvas is a square 1080×1080 "motion video"; the player letterboxes
+    // it into whatever space it's given (the render target stays 1080²).
     const SIDE = 1080;
     const comp = new Composition({
       id: "video-sync",
       fps: 30,
       durationInFrames: TOTAL,
-      container,
       width: SIDE,
       height: SIDE,
     });
-
-    const host = document.getElementById(container);
-    if (host) {
-      const scale = Math.min(width, height) / SIDE;
-      host.style.transform = `scale(${scale})`;
-      host.style.transformOrigin = "center center";
-    }
 
     // Region geometry — two stacked halves, each a label line above a video box.
     const labelH = Math.round(SIDE * 0.075);

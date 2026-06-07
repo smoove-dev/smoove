@@ -5,13 +5,14 @@ import type { DemoDef } from "./types.js";
 export const flexLayoutDemo: DemoDef = {
   id: "flex-layout",
   name: "Flex layout — auto card",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const duration = 180;
     const comp = new Composition({
       id: "flex-layout",
       fps: 30,
       durationInFrames: duration,
-      container,
       width,
       height,
       loop: true,

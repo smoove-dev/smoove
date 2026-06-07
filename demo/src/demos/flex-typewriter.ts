@@ -8,13 +8,14 @@ const MESSAGE =
 export const flexTypewriterDemo: DemoDef = {
   id: "flex-typewriter",
   name: "Flex — typewriter pushes image",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const duration = 240;
     const comp = new Composition({
       id: "flex-typewriter",
       fps: 30,
       durationInFrames: duration,
-      container,
       width,
       height,
       loop: true,

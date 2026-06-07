@@ -86,12 +86,13 @@ const formatTimecode = (frame: number, fps: number, total: number): string => {
 export const journeyDemo: DemoDef = {
   id: "journey",
   name: "A Traveler's Journey",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const comp = new Composition({
       id: "journey",
       fps: 60,
       durationInFrames: TOTAL_DURATION,
-      container,
       width,
       height,
       loop: true,

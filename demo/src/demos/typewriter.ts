@@ -24,7 +24,9 @@ const PAUSE_AFTER = 22; // frames to wait after a message finishes before the ne
 export const typewriterDemo: DemoDef = {
   id: "typewriter",
   name: "Typewriter — AI chat",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const fps = 30;
     const charsPerFrame = CHARS_PER_SEC / fps;
 
@@ -42,7 +44,6 @@ export const typewriterDemo: DemoDef = {
       id: "typewriter",
       fps,
       durationInFrames: total,
-      container,
       width,
       height,
       loop: true,

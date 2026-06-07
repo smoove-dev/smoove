@@ -5,12 +5,13 @@ import type { DemoDef } from "./types.js";
 export const basicDemo: DemoDef = {
   id: "basic",
   name: "Basic — circle + fade",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const comp = new Composition({
       id: "basic",
       fps: 30,
       durationInFrames: 90,
-      container,
       width,
       height,
     });

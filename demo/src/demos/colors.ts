@@ -7,13 +7,14 @@ const PALETTE = ["#ff6b6b", "#ffd166", "#06d6a0", "#118ab2", "#9b5de5", "#ff6b6b
 export const colorsDemo: DemoDef = {
   id: "colors",
   name: "Colors — fill + stroke interpolation",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const duration = 180;
     const comp = new Composition({
       id: "colors",
       fps: 30,
       durationInFrames: duration,
-      container,
       width,
       height,
       loop: true,

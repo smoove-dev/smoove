@@ -591,21 +591,15 @@ const buildScene = (
 export const igStoryDemo: DemoDef = {
   id: "ig-story",
   name: "IG Story · 30s",
-  build(container, width, height) {
-    // Lock to 9:16 portrait, fit within available area.
-    const aspect = 9 / 16;
-    let w = Math.round(height * aspect);
-    let h = height;
-    if (w > width) {
-      w = width;
-      h = Math.round(width / aspect);
-    }
+  build() {
+    // Native 9:16 portrait; the player letterboxes it into whatever space.
+    const w = 720;
+    const h = 1280;
 
     const comp = new Composition({
       id: "ig-story",
       fps: FPS,
       durationInFrames: TOTAL,
-      container,
       width: w,
       height: h,
       loop: true,

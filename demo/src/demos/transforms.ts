@@ -5,14 +5,15 @@ import type { DemoDef } from "./types.js";
 export const transformsDemo: DemoDef = {
   id: "transforms",
   name: "Rotate + scale",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const totalFrames = 240;
     const comp = new Composition({
       id: "transforms",
       fps: 60,
       durationInFrames: totalFrames,
       loop: true,
-      container,
       width,
       height,
     });

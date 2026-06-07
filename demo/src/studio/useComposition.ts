@@ -22,24 +22,23 @@ function createSignal<T>(initial: T): Signal<T> {
 }
 
 /**
- * Mounts the demo's Composition into a container `<div>` and tears it down
- * when the demo changes / unmounts. Owns a per-mount props `Signal` seeded
- * from the demo's current `values` and handed to `build` — so a demo can read
- * `props.get()` in updaters and subscribe to it. `applyProps(next)` pushes a
- * form edit into that live signal WITHOUT rebuilding the composition, so the
- * playhead frame is preserved across edits. The signal is created fresh per
- * mount and discarded on teardown, so the demo's subscription dies with the
- * old composition (no leak, no stale-comp calls, no core changes).
+ * Builds the demo's Composition and tears it down when the demo changes /
+ * unmounts. The demo owns its native resolution and no longer takes a
+ * container — the `<km-player>` it's handed to mounts and letterboxes it.
+ *
+ * Owns a per-mount props `Signal` seeded from the demo's current `values` and
+ * handed to `build` — so a demo can read `props.get()` in updaters and
+ * subscribe to it. `applyProps(next)` pushes a form edit into that live signal
+ * WITHOUT rebuilding the composition, so the playhead frame is preserved across
+ * edits. The signal is created fresh per mount and discarded on teardown.
  */
 export function useComposition(
   demo: StudioDemo,
   values: Record<string, unknown>,
 ): {
-  containerRef: React.RefObject<HTMLDivElement>;
   comp: Composition | null;
   applyProps: (next: Record<string, unknown>) => void;
 } {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [comp, setComp] = useState<Composition | null>(null);
 
   // Keep the latest values available to the (demo-keyed) build effect without
@@ -49,17 +48,10 @@ export function useComposition(
   const sigRef = useRef<Signal<Record<string, unknown>> | null>(null);
 
   useEffect(() => {
-    const host = containerRef.current;
-    if (!host) return;
-    host.innerHTML = "";
-    const slot = document.createElement("div");
-    slot.id = `stage-${demo.id}`;
-    host.appendChild(slot);
-
     const sig = createSignal<Record<string, unknown>>(valuesRef.current);
     sigRef.current = sig;
 
-    const c = demo.build(slot.id, demo.width, demo.height, sig);
+    const c = demo.build(sig);
     c.setLoop(true);
     c.play();
     setComp(c);
@@ -73,7 +65,6 @@ export function useComposition(
       sigRef.current = null;
       setComp(null);
       c.destroy();
-      host.innerHTML = "";
     };
   }, [demo]);
 
@@ -81,5 +72,5 @@ export function useComposition(
     sigRef.current?.set(next);
   }, []);
 
-  return { containerRef, comp, applyProps };
+  return { comp, applyProps };
 }

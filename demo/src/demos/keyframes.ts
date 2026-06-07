@@ -5,13 +5,14 @@ import type { DemoDef } from "./types.js";
 export const keyframesDemo: DemoDef = {
   id: "keyframes",
   name: "Keyframes — multi-stop interpolate",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const duration = 150;
     const comp = new Composition({
       id: "keyframes",
       fps: 30,
       durationInFrames: duration,
-      container,
       width,
       height,
       loop: true,

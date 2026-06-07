@@ -14,14 +14,15 @@ const loadImage = (url: string): HTMLImageElement => {
 export const imageFadeDemo: DemoDef = {
   id: "image-fade",
   name: "Image — crossfade",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const perSlide = 90;
     const total = SEEDS.length * perSlide;
     const comp = new Composition({
       id: "image-fade",
       fps: 30,
       durationInFrames: total,
-      container,
       width,
       height,
       loop: true,

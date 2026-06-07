@@ -24,7 +24,7 @@ function range(haystack: string, needle: string): { start: number; end: number }
 export const textHighlightDemo: DemoDef = {
   id: "text-highlight",
   name: "Text · highlight",
-  build(container) {
+  build() {
     const fps = 30;
     const duration = 150;
 
@@ -35,7 +35,6 @@ export const textHighlightDemo: DemoDef = {
       id: "text-highlight",
       fps,
       durationInFrames: duration,
-      container,
       width,
       height,
       loop: true,

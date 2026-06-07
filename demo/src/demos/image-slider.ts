@@ -14,14 +14,15 @@ const loadImage = (url: string): HTMLImageElement => {
 export const imageSliderDemo: DemoDef = {
   id: "image-slider",
   name: "Image — slider",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const perSlide = 60;
     const total = SEEDS.length * perSlide;
     const comp = new Composition({
       id: "image-slider",
       fps: 30,
       durationInFrames: total,
-      container,
       width,
       height,
       loop: true,

@@ -7,14 +7,15 @@ const SEEDS = ["alps", "bay", "canyon", "dune"];
 export const flexRowGrowDemo: DemoDef = {
   id: "flex-row-grow",
   name: "Flex — row of growing images",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const perSlot = 60;
     const total = SEEDS.length * perSlot;
     const comp = new Composition({
       id: "flex-row-grow",
       fps: 30,
       durationInFrames: total,
-      container,
       width,
       height,
       loop: true,

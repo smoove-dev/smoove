@@ -5,14 +5,15 @@ import type { DemoDef } from "./types.js";
 export const staggeredDemo: DemoDef = {
   id: "staggered",
   name: "Staggered fade-in",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const totalFrames = 180;
     const comp = new Composition({
       id: "staggered",
       fps: 30,
       durationInFrames: totalFrames,
       loop: true,
-      container,
       width,
       height,
     });

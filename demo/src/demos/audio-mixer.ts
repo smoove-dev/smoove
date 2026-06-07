@@ -65,23 +65,15 @@ const inRange = (f: number, from: number, end: number) => f >= from && f < end;
 export const audioMixerDemo: DemoDef = {
   id: "audio-mixer",
   name: "Audio — mixer & ducking",
-  build(container, width, height) {
+  build() {
     const SIDE = 1080;
     const comp = new Composition({
       id: "audio-mixer",
       fps: FPS,
       durationInFrames: TOTAL,
-      container,
       width: SIDE,
       height: SIDE,
     });
-
-    const host = document.getElementById(container);
-    if (host) {
-      const scale = Math.min(width, height) / SIDE;
-      host.style.transform = `scale(${scale})`;
-      host.style.transformOrigin = "center center";
-    }
 
     // ===== Audio nodes — each in its own range-gated Sequence =====
     const musicA = new Audio({ id: "music-a", name: "Music A", src: musicAUrl });

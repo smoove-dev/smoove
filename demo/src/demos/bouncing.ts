@@ -5,13 +5,14 @@ import type { DemoDef } from "./types.js";
 export const bouncingDemo: DemoDef = {
   id: "bouncing",
   name: "Bouncing ball (loop)",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const comp = new Composition({
       id: "bouncing",
       fps: 60,
       durationInFrames: 120,
       loop: true,
-      container,
       width,
       height,
     });

@@ -100,6 +100,9 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
   get spaceKey(): boolean {
     return !this.hasAttribute("no-space-key");
   }
+  get keyboard(): boolean {
+    return !this.hasAttribute("no-keyboard");
+  }
   get doubleClickFullscreen(): boolean {
     return this.hasAttribute("double-click-fullscreen");
   }
@@ -166,12 +169,20 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
   // --- chrome / mounting -----------------------------------------------------
   private _ensureChrome(): void {
     if (this._stage) return;
+    // Essential structural styles are applied inline so the player works with
+    // zero CSS imported (headless). The opt-in stylesheet only adds cosmetics
+    // (control bar, colors, overlay). The host needs a positioning context for
+    // the absolutely-positioned stage; only set it if the page hasn't.
+    if (getComputedStyle(this).position === "static") this.style.position = "relative";
     const stage = document.createElement("div");
     stage.className = "km-player__stage";
+    stage.style.cssText = "position:absolute;inset:0;overflow:hidden";
     const scale = document.createElement("div");
     scale.className = "km-player__scale";
+    scale.style.cssText = "position:absolute;top:0;left:0;transform-origin:top left";
     const canvas = document.createElement("div");
     canvas.className = "km-player__canvas";
+    canvas.style.cssText = "width:100%;height:100%";
     scale.appendChild(canvas);
     stage.appendChild(scale);
     this.insertBefore(stage, this.firstChild);
@@ -317,6 +328,7 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
   };
 
   private _onKeyDown = (e: KeyboardEvent): void => {
+    if (!this.keyboard) return;
     const target = e.target as HTMLElement | null;
     if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
     switch (e.key) {

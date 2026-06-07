@@ -17,7 +17,7 @@ function label(text: string, x: number, y: number): Konva.Text {
 export const textTypewriterDemo: DemoDef = {
   id: "text-typewriter",
   name: "Text · typewriter",
-  build(container) {
+  build() {
     const fps = 30;
     const duration = 200;
 
@@ -28,7 +28,6 @@ export const textTypewriterDemo: DemoDef = {
       id: "text-typewriter",
       fps,
       durationInFrames: duration,
-      container,
       width,
       height,
       loop: true,

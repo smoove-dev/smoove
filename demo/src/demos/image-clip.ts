@@ -14,14 +14,15 @@ const loadImage = (url: string): HTMLImageElement => {
 export const imageClipDemo: DemoDef = {
   id: "image-clip",
   name: "Image — circular clip reveal",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const perSlide = 75;
     const total = SEEDS.length * perSlide;
     const comp = new Composition({
       id: "image-clip",
       fps: 30,
       durationInFrames: total,
-      container,
       width,
       height,
       loop: true,

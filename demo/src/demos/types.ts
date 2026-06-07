@@ -8,12 +8,15 @@ export type DemoDef = {
   id: string;
   name: string;
   /**
-   * Build the composition. `props` is a live signal of the demo's current
-   * prop values — read `props.get()` in updaters and subscribe to it to
-   * re-apply the current frame when the user edits props (the playhead never
-   * moves). Demos without a schema simply ignore it.
+   * Build the composition. The demo owns its own resolution — it constructs
+   * the `Composition` with its native `width`/`height` and no container (core
+   * creates one in the browser; the player letterboxes it into whatever space
+   * it's given). `props` is a live signal of the demo's current prop values —
+   * read `props.get()` in updaters and subscribe to it to re-apply the current
+   * frame when the user edits props (the playhead never moves). Demos without a
+   * schema simply omit the argument.
    */
-  build: (container: string, width: number, height: number, props: PropsSignal) => Composition;
+  build: (props: PropsSignal) => Composition;
   /** Optional kf.object(...) schema → auto-generated props form. */
   schema?: KmSchema;
   /** Optional overrides deep-merged over the schema defaults. */

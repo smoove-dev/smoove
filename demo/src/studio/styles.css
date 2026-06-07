@@ -353,6 +353,13 @@ button {
   overflow: hidden;
 }
 
+/* <km-player> fills the centered stage area; it letterboxes the comp itself. */
+.studio-player {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 /* floating zoom control */
 .zoom {
   position: absolute;

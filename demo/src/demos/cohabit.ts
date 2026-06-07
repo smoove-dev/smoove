@@ -546,7 +546,7 @@ export const cohabitDemo: DemoDef = {
   id: "cohabit",
   name: "Cohabit · 34s",
   schema: cohabitSchema,
-  build(container, width, height, props) {
+  build(props) {
     // Read live prop values with the getter. That's the whole contract: the
     // studio re-renders the current frame automatically whenever props change
     // (see `comp.refresh()` wiring), so updaters just read `p()` — no manual
@@ -556,19 +556,10 @@ export const cohabitDemo: DemoDef = {
       id: "cohabit",
       fps: FPS,
       durationInFrames: TOTAL,
-      container,
       width: W,
       height: H,
       loop: true,
     });
-
-    // Fit the 1920×1080 design canvas into the available preview area.
-    const host = document.getElementById(container);
-    if (host) {
-      const scale = Math.min(width / W, height / H);
-      host.style.transform = `scale(${scale})`;
-      host.style.transformOrigin = "center center";
-    }
 
     // ── Scene 1 — The Problem (cool, desaturated "before") ──
     // Clip audio kept at −18 dB: ambient texture under VO + music.

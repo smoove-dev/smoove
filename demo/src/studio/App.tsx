@@ -1,18 +1,17 @@
 import type { Composition } from "@konva-motion/core";
+import "@konva-motion/player";
 import { useEffect, useRef, useState } from "react";
 import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { Player } from "./Player.js";
 import { PlayerWcDemo } from "./PlayerWcDemo.js";
 import { PanelHandle, type PanelTab, RightPanel } from "./RightPanel.js";
 import { Sidebar } from "./Sidebar.js";
-import { ZoomControl, type ZoomMode } from "./ZoomControl.js";
 import { FIRST_DEMO_ID, KM_FLAT, type StudioDemo, findDemo } from "./catalog.js";
 import { useComposition } from "./useComposition.js";
 import { useSignal } from "./useSignal.js";
 
 type PropValues = Record<string, unknown>;
-
-const PAD = 48;
+type KmPlayerEl = HTMLElement & { composition: Composition | null };
 
 function StageStatus({
   comp,
@@ -50,7 +49,7 @@ function Studio({ demo }: { demo: StudioDemo }) {
   });
   const values = valuesByDemo[demo.id] ?? demo.defaults;
 
-  const { containerRef, comp, applyProps } = useComposition(demo, values);
+  const { comp, applyProps } = useComposition(demo, values);
 
   // Editing props pushes into the live signal (no rebuild → frame preserved).
   const onChangeProps = (next: PropValues) => {
@@ -62,35 +61,21 @@ function Studio({ demo }: { demo: StudioDemo }) {
     applyProps(demo.defaults);
   };
 
-  const [zoom, setZoom] = useState<ZoomMode>("fit");
   const [panelOpen, setPanelOpen] = useState(false);
   const [panelTab, setPanelTab] = useState<PanelTab>("props");
   const [fs, setFs] = useState(false);
 
-  // fit scaling — observe the stage wrapper
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const [box, setBox] = useState({ w: 0, h: 0 });
+  // Hand the live composition to the <km-player>, which mounts it and
+  // letterbox-scales it to fill the stage — no manual fit math needed.
+  const playerRef = useRef<KmPlayerEl | null>(null);
   useEffect(() => {
-    const el = wrapRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver((ents) => {
-      const r = ents[0]?.contentRect;
-      if (r) setBox({ w: r.width, h: r.height });
-    });
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
+    if (playerRef.current) playerRef.current.composition = comp ?? null;
+  }, [comp]);
 
   const frameW = comp ? comp.width() : demo.width;
   const frameH = comp ? comp.height() : demo.height;
-  // "Fit to size" scales down to fit but never enlarges past 100%.
-  const rawFit = box.w ? Math.min((box.w - PAD * 2) / frameW, (box.h - PAD * 2) / frameH) : 0.5;
-  const fitScale = Math.min(1, Math.max(0.05, rawFit));
-  const scale = zoom === "fit" ? fitScale : zoom;
-  const overflowScroll =
-    zoom !== "fit" && (frameW * scale > box.w - 8 || frameH * scale > box.h - 8);
 
-  // keyboard shortcuts act on the live composition
+  // keyboard shortcuts act on the live composition (km-player keyboard is off)
   useEffect(() => {
     if (!comp) return;
     const h = (e: KeyboardEvent) => {
@@ -119,25 +104,11 @@ function Studio({ demo }: { demo: StudioDemo }) {
     <div className={`app${fs ? " isFs" : ""}`}>
       <Sidebar activeId={demo.id} onSelect={(id) => navigate(`/${id}`)} />
       <div className="main">
-        <div className="stage-wrap" ref={wrapRef}>
-          {!fs && <ZoomControl mode={zoom} fitPct={fitScale} onSet={setZoom} />}
-          <div
-            className="stage-center"
-            style={overflowScroll ? { overflow: "auto", placeItems: "safe center" } : undefined}
-          >
-            <div className="video-frame" style={{ width: frameW * scale, height: frameH * scale }}>
-              <div
-                className="video-scale"
-                style={{
-                  width: frameW,
-                  height: frameH,
-                  transform: `scale(${scale})`,
-                  transformOrigin: "top left",
-                }}
-              >
-                <div className="video-stage" ref={containerRef} />
-              </div>
-            </div>
+        <div className="stage-wrap">
+          <div className="stage-center">
+            {/* The player owns scaling/letterbox; the studio supplies its own
+                control bar below, so km-player renders no controls. */}
+            <km-player ref={playerRef} class="studio-player" no-keyboard="" no-click-to-play="" />
           </div>
           {!fs && comp && <StageStatus comp={comp} title={demo.title} w={frameW} h={frameH} />}
         </div>

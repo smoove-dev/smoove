@@ -17,13 +17,14 @@ const ROWS: Row[] = [
 export const easingsDemo: DemoDef = {
   id: "easings",
   name: "Easings — race of curves",
-  build(container, width, height) {
+  build() {
+    const width = 1280;
+    const height = 720;
     const duration = 120;
     const comp = new Composition({
       id: "easings",
       fps: 30,
       durationInFrames: duration,
-      container,
       width,
       height,
       loop: true,

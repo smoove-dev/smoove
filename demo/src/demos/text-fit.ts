@@ -16,7 +16,7 @@ function label(text: string, x: number, y: number): Konva.Text {
 export const textFitDemo: DemoDef = {
   id: "text-fit",
   name: "Text · fitText",
-  build(container) {
+  build() {
     const fps = 30;
     const duration = 150;
 
@@ -27,7 +27,6 @@ export const textFitDemo: DemoDef = {
       id: "text-fit",
       fps,
       durationInFrames: duration,
-      container,
       width,
       height,
       loop: true,

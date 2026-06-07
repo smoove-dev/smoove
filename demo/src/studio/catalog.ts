@@ -2,10 +2,9 @@
    KmStudio demo catalog — wraps the real @konva-motion/core demos
    (demos/*.ts) with display metadata the sidebar / panel need.
 
-   `build(container, width, height)` is the unchanged DemoDef builder.
-   The viewport sizes its frame from the *live* Composition after it
-   mounts, so `width`/`height` here are the intended build inputs and
-   `fps`/`durationInFrames` are cosmetic labels for the sidebar.
+   `build(props)` is the DemoDef builder — each demo owns its native size.
+   The `width`/`height`/`fps`/`durationInFrames` here are cosmetic labels for
+   the sidebar; the live Composition drives the real frame size.
    ============================================================ */
 import { audioMixerDemo } from "../demos/audio-mixer.js";
 import { basicDemo } from "../demos/basic.js";
