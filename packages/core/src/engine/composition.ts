@@ -60,11 +60,14 @@ export class Composition extends Konva.Stage {
   readonly isStopped: ReadonlySignal<boolean>;
   readonly isPaused: ReadonlySignal<boolean>;
   readonly loop: ReadonlySignal<boolean>;
+  /** Playback speed multiplier. 1 = realtime; negative plays in reverse. */
+  readonly playbackRate: ReadonlySignal<number>;
 
   private readonly _frame: Signal<number>;
   private readonly _isPlaying: Signal<boolean>;
   private readonly _durationInFrames: Signal<number>;
   private readonly _loop: Signal<boolean>;
+  private readonly _playbackRate: Signal<number>;
   private readonly _emitter: Emitter<CompositionEventMap>;
 
   private _rafId: number | null = null;
@@ -91,6 +94,14 @@ export class Composition extends Konva.Stage {
     }
 
     const { fps, durationInFrames, loop = false, mode, ...stageOpts } = opts;
+    // Konva requires a container element. In the browser, fall back to a
+    // detached <div> when none is given, so a Composition can be constructed
+    // up-front and mounted later via `setContainer` (e.g. handed to a player).
+    // In non-browser runtimes (server rendering) there's no DOM, so leave it
+    // unset — frames are driven with `setFrame`/`renderFrame`, not a canvas.
+    if (stageOpts.container == null && typeof document !== "undefined") {
+      stageOpts.container = document.createElement("div");
+    }
     super(stageOpts);
 
     const marker = this as Konva.Stage & CompositionMarker;
@@ -106,11 +117,13 @@ export class Composition extends Konva.Stage {
     this._isPlaying = createSignal(false);
     this._durationInFrames = createSignal(durationInFrames);
     this._loop = createSignal(loop);
+    this._playbackRate = createSignal(1);
 
     this.frame = this._frame;
     this.isPlaying = this._isPlaying;
     this.durationInFrames = this._durationInFrames;
     this.loop = this._loop;
+    this.playbackRate = this._playbackRate;
 
     this.isStopped = derived(
       [this._isPlaying, this._frame],
@@ -196,6 +209,25 @@ export class Composition extends Konva.Stage {
 
   setLoop(value: boolean): void {
     this._loop.set(value);
+  }
+
+  /**
+   * Set the playback speed multiplier. `1` is realtime; `2` is double speed;
+   * negative values play in reverse. Clamped to `[-10, 10]`; `0` throws (it
+   * would freeze the clock). Changing the rate mid-playback resyncs the clock
+   * so the new speed takes effect from the current frame onward.
+   */
+  setPlaybackRate(rate: number): void {
+    if (!Number.isFinite(rate) || rate === 0) {
+      throw new Error("Composition.setPlaybackRate(): rate must be a non-zero finite number");
+    }
+    const clamped = Math.max(-10, Math.min(10, rate));
+    if (clamped === this._playbackRate.get()) return;
+    this._playbackRate.set(clamped);
+    if (this._isPlaying.get()) {
+      this._startFrame = this._frame.get();
+      this._startWallMs = wallNow();
+    }
   }
 
   setFrame(target: number): void {
@@ -303,22 +335,27 @@ export class Composition extends Konva.Stage {
 
   private _tick = (now: number): void => {
     if (!this._isPlaying.get()) return;
+    const rate = this._playbackRate.get();
     const elapsedMs = now - this._startWallMs;
-    const advance = Math.floor((elapsedMs / 1000) * this.fps);
+    // round (not floor) so small negative advances still register frame-by-frame.
+    const advance = Math.round((elapsedMs / 1000) * this.fps * rate);
     const lastFrame = this._durationInFrames.get() - 1;
-    const target = Math.min(lastFrame, this._startFrame + advance);
+    const target = Math.max(0, Math.min(lastFrame, this._startFrame + advance));
 
     if (target !== this._frame.get()) {
       this._frame.set(target);
       this._applyFrame(target, true);
     }
 
-    if (target >= lastFrame) {
+    const atEnd = rate > 0 && target >= lastFrame;
+    const atStart = rate < 0 && target <= 0;
+    if (atEnd || atStart) {
       if (this._loop.get()) {
-        this._startFrame = 0;
+        const wrap = atEnd ? 0 : lastFrame;
+        this._startFrame = wrap;
         this._startWallMs = now;
-        this._frame.set(0);
-        this._applyFrame(0, true);
+        this._frame.set(wrap);
+        this._applyFrame(wrap, true);
         this._scheduleTick();
         return;
       }

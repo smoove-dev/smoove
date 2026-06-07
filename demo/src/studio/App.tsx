@@ -2,6 +2,7 @@ import type { Composition } from "@konva-motion/core";
 import { useEffect, useRef, useState } from "react";
 import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { Player } from "./Player.js";
+import { PlayerWcDemo } from "./PlayerWcDemo.js";
 import { PanelHandle, type PanelTab, RightPanel } from "./RightPanel.js";
 import { Sidebar } from "./Sidebar.js";
 import { ZoomControl, type ZoomMode } from "./ZoomControl.js";
@@ -180,6 +181,7 @@ export function App() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to={`/${FIRST_DEMO_ID}`} replace />} />
+      <Route path="/player" element={<PlayerWcDemo />} />
       <Route path="/:demoId" element={<StudioRoute />} />
       <Route path="*" element={<Navigate to={`/${FIRST_DEMO_ID}`} replace />} />
     </Routes>

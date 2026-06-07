@@ -17,7 +17,8 @@ composition walks its child sequences, runs their updaters, and issues one
 ```
 packages/core       @konva-motion/core — engine + layout. Composition, Sequence, Flex, Block, Image. konva is a peerDep; flexily is a regular dep.
 packages/timeline   @konva-motion/timeline — planned React UI components (scrubber, play button). Placeholder.
-demo                Vite + TS app, imports both via `workspace:*`
+packages/player     @konva-motion/player — Lit web-component player wrapping a Composition (<km-player> + controls). konva + core are peerDeps; lit + @lit/context are deps. Light DOM; opt-in styles at "@konva-motion/player/styles.css".
+demo                Vite + TS app, imports packages via `workspace:*`
 doc                 short design + usage docs
 ```
 

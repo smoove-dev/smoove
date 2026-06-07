@@ -4,6 +4,7 @@
     { "path": "./packages/timeline" },
     { "path": "./packages/core" },
     { "path": "./packages/layout" },
+    { "path": "./packages/player" },
     { "path": "./demo" }
   ]
 }
