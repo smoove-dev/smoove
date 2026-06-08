@@ -4,8 +4,13 @@ import { type AudioChannel, AudioMixer } from "../media/audio/mixer.js";
 import { MEDIA_MARK } from "../media/media-marker.js";
 import { type Emitter, createEmitter } from "./emitter.js";
 import { type Environment, type EnvironmentMode, detectEnvironment } from "./environment.js";
-import { Sequence } from "./sequence.js";
+import { Sequence, type SequenceProvider } from "./sequence.js";
 import { type ReadonlySignal, type Signal, createSignal, derived } from "./signal.js";
+
+/** A SequenceProvider duck-types on a `sequences()` method (Konva layers lack one). */
+function isSequenceProvider(x: Konva.Layer | SequenceProvider): x is SequenceProvider {
+  return typeof (x as Partial<SequenceProvider>).sequences === "function";
+}
 
 export type CompositionOptions = Konva.StageConfig & {
   id: string;
@@ -154,10 +159,21 @@ export class Composition extends Konva.Stage {
     return super.off(evtStr, handler);
   }
 
-  override add(layer: Konva.Layer, ...rest: Konva.Layer[]): this {
-    super.add(layer, ...rest);
+  override add(
+    first: Konva.Layer | SequenceProvider,
+    ...rest: (Konva.Layer | SequenceProvider)[]
+  ): this {
+    // Expand any SequenceProvider (Series / TransitionSeries) into its layers,
+    // so `comp.add(series)` works as well as `comp.add(layer)`.
+    const layers: Konva.Layer[] = [];
+    for (const item of [first, ...rest]) {
+      if (isSequenceProvider(item)) layers.push(...item.sequences());
+      else layers.push(item);
+    }
+    if (layers.length === 0) return this;
+    super.add(...(layers as [Konva.Layer, ...Konva.Layer[]]));
     const frame = this._frame.get();
-    for (const l of [layer, ...rest]) {
+    for (const l of layers) {
       if (l instanceof Sequence) {
         // Register the sequence's media (video + audio) eagerly so mixer channels
         // exist before playback (lazy fallback lives in each node's _ensureDriver).

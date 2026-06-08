@@ -10,6 +10,14 @@ export type SequenceOptions = Konva.LayerConfig & {
 
 export type Updater = (localFrame: number) => void;
 
+/**
+ * Anything that expands into a list of `Sequence`s — e.g. `Series` or
+ * `@konva-motion/transitions`' `TransitionSeries`. `Composition.add` accepts a
+ * provider directly and adds each sequence it yields, so callers can write
+ * `comp.add(series)` instead of looping over `series.sequences()`.
+ */
+export type SequenceProvider = { sequences(): Sequence[] };
+
 /** Media nodes (video/audio) are discovered by marker attr to keep this file independent of `video/`+`audio/`. */
 type MediaNode = Konva.Node & {
   _kmTick?: (localFrame: number) => void;

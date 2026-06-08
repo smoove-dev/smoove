@@ -26,6 +26,9 @@ importers:
       '@konva-motion/timeline':
         specifier: workspace:*
         version: link:../packages/timeline
+      '@konva-motion/transitions':
+        specifier: workspace:*
+        version: link:../packages/transitions
       konva:
         specifier: ^9.3.16
         version: 9.3.22
@@ -86,6 +89,15 @@ importers:
         version: 3.3.3
 
   packages/timeline: {}
+
+  packages/transitions:
+    dependencies:
+      '@konva-motion/core':
+        specifier: workspace:*
+        version: link:../core
+      konva:
+        specifier: '>=9'
+        version: 9.3.22
 
 packages:
 

@@ -9,8 +9,21 @@ export {
 export {
   Sequence,
   type SequenceOptions,
+  type SequenceProvider,
   type Updater,
 } from "./engine/sequence.js";
+export {
+  Series,
+  type SeriesOptions,
+  type SeriesSceneOptions,
+} from "./engine/series.js";
+export {
+  // @internal — offset engine reused by @konva-motion/transitions.
+  computeOffsets,
+  type ComputeOffsetsResult,
+  type OffsetScene,
+  type PlacedScene,
+} from "./engine/offsets.js";
 export type { ReadonlySignal } from "./engine/signal.js";
 export {
   interpolate,

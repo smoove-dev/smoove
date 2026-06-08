@@ -5,6 +5,7 @@
     { "path": "./packages/core" },
     { "path": "./packages/layout" },
     { "path": "./packages/player" },
+    { "path": "./packages/transitions" },
     { "path": "./demo" }
   ]
 }

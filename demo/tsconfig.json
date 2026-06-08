@@ -9,6 +9,7 @@
   "references": [
     { "path": "../packages/timeline" },
     { "path": "../packages/core" },
-    { "path": "../packages/player" }
+    { "path": "../packages/player" },
+    { "path": "../packages/transitions" }
   ]
 }

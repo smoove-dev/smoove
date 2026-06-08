@@ -1,0 +1,26 @@
+{
+  "name": "@konva-motion/transitions",
+  "version": "0.0.0",
+  "description": "Remotion-style transitions for konva-motion — TransitionSeries, 18 presentations and 2 timings.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "peerDependencies": {
+    "@konva-motion/core": "workspace:*",
+    "konva": ">=9"
+  }
+}

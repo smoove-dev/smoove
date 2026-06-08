@@ -27,6 +27,7 @@ import { textFitDemo } from "../demos/text-fit.js";
 import { textHighlightDemo } from "../demos/text-highlight.js";
 import { textTypewriterDemo } from "../demos/text-typewriter.js";
 import { transformsDemo } from "../demos/transforms.js";
+import { TRANSITION_GALLERY } from "../demos/transition-gallery.js";
 import type { DemoDef } from "../demos/types.js";
 import { typewriterDemo } from "../demos/typewriter.js";
 import { videoSyncDemo } from "../demos/video-sync.js";
@@ -220,6 +221,23 @@ const GROUPS: { group: string; icon: string; items: Entry[] }[] = [
         desc: "Each photo is revealed through an expanding circular clip mask, then handed off to the next.",
         tags: ["image", "clip", "reveal"],
       }),
+    ],
+  },
+  {
+    group: "Transitions",
+    icon: "basic",
+    items: [
+      ...TRANSITION_GALLERY.map((g) =>
+        entry(g.def, {
+          title: `${g.title}${g.tier === "B" ? " · shader" : ""}`,
+          width: W16,
+          height: H16,
+          fps: 30,
+          durationInFrames: 90,
+          desc: g.desc,
+          tags: ["transition", g.tier === "A" ? "geometric" : "shader"],
+        }),
+      ),
     ],
   },
   {
