@@ -1,4 +1,11 @@
 import Konva from "konva";
+import { getComposition } from "../engine/composition.js";
+import {
+  type ImageLoader,
+  type LoadedImage,
+  getDefaultImageLoader,
+} from "../engine/runtime-defaults.js";
+import { TICK_MARK } from "../media/media-marker.js";
 import { parseSize } from "./flex/engine.js";
 import type { FlexChildProps, SizeValue } from "./flex/types.js";
 
@@ -22,6 +29,12 @@ export type ImageConfig = Omit<Konva.GroupConfig, "width" | "height"> &
     objectFit?: ObjectFit;
     objectPosition?: ObjectPosition;
     cornerRadius?: number | number[];
+    /**
+     * Inject an alternative image loader (e.g. a server/skia loader). Defaults
+     * to the runtime default — the DOM `<img>` loader in the browser, or
+     * whatever a server renderer registered via `setDefaultImageLoader`.
+     */
+    loader?: ImageLoader;
   };
 
 const IMG_KEYS = [
@@ -33,6 +46,7 @@ const IMG_KEYS = [
   "flexBasis",
   "alignSelf",
   "margin",
+  "loader",
 ] as const;
 
 function pickKonvaConfig(config: ImageConfig): Konva.GroupConfig {
@@ -46,22 +60,19 @@ function pickKonvaConfig(config: ImageConfig): Konva.GroupConfig {
   return out as Konva.GroupConfig;
 }
 
-function loadImage(src: string): Promise<HTMLImageElement> {
-  return new Promise((resolve, reject) => {
-    const img = document.createElement("img");
-    img.crossOrigin = "anonymous";
-    img.onload = () => resolve(img);
-    img.onerror = reject;
-    img.src = src;
-  });
-}
-
 export class Image extends Konva.Group {
   private readonly _img: Konva.Image;
-  private _source: HTMLImageElement | null = null;
+  private _source: LoadedImage | null = null;
+  /** Pending load (string src only); null once resolved or for element sources. */
+  private _loadPromise: Promise<void> | null = null;
+  /** Guards the one-time render gate registered on first tick. */
+  private _renderGated = false;
 
   constructor(config: ImageConfig) {
     super(pickKonvaConfig(config));
+    // Discovered by `Sequence._apply` so `_kmTick` runs at attach-time (when the
+    // composition is reachable) to gate the async load during offline rendering.
+    this.setAttr(TICK_MARK, true);
 
     this._img = new Konva.Image({ image: undefined, listening: false });
     super.add(this._img);
@@ -87,12 +98,19 @@ export class Image extends Konva.Group {
     this.on("widthChange heightChange", () => this._layoutImage());
 
     if (typeof config.src === "string") {
-      loadImage(config.src).then((img) => {
-        this._source = img;
-        this._img.image(img);
-        this._layoutImage();
-        this.getLayer()?.batchDraw();
-      });
+      // Kick the load off eagerly (preserves preview timing). The promise is
+      // captured so `_kmTick` can gate offline rendering on it via delayRender.
+      const loader = config.loader ?? getDefaultImageLoader();
+      this._loadPromise = loader(config.src)
+        .then((img) => {
+          this._source = img;
+          this._img.image(img);
+          this._layoutImage();
+          this.getLayer()?.batchDraw();
+        })
+        .catch((err: unknown) => {
+          console.error("[konva-motion] Image load failed:", err);
+        });
     } else {
       this._source = config.src;
       this._img.image(config.src);
@@ -100,6 +118,25 @@ export class Image extends Konva.Group {
 
     this._layoutImage();
   }
+
+  /**
+   * @internal — called by `Sequence` each tick while on-stage. Once, during
+   * offline rendering, registers a `delayRender` gate so `renderFrame` waits for
+   * the image to finish loading before the frame is captured. No-op in preview.
+   */
+  _kmTick(_localFrame: number): void {
+    if (this._renderGated || !this._loadPromise) return;
+    const stage = this.getStage();
+    if (!stage) return;
+    const comp = getComposition(stage);
+    if (!comp || !comp.environment.isRendering) return;
+    this._renderGated = true;
+    const handle = comp.delayRender("load image");
+    this._loadPromise.finally(() => comp.continueRender(handle));
+  }
+
+  /** @internal — called by `Sequence` when it goes out of range. */
+  _kmDeactivate(): void {}
 
   /** @internal */
   _layoutImage(): void {

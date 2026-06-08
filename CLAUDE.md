@@ -18,6 +18,8 @@ composition walks its child sequences, runs their updaters, and issues one
 packages/core       @konva-motion/core — engine + layout. Composition, Sequence, Flex, Block, Image. konva is a peerDep; flexily is a regular dep.
 packages/timeline   @konva-motion/timeline — planned React UI components (scrubber, play button). Placeholder.
 packages/player     @konva-motion/player — Lit web-component player wrapping a Composition (<km-player> + controls). konva + core are peerDeps; lit + @lit/context are deps. Light DOM; opt-in styles at "@konva-motion/player/styles.css".
+packages/transitions @konva-motion/transitions — Remotion-style TransitionSeries + presentations. konva + core are peerDeps.
+packages/renderer   @konva-motion/renderer — headless video renderer (Node). Rasterizes a Composition with skia-canvas (konva/skia-backend) and encodes via ffmpeg (@ffmpeg-installer). konva 10 + core are peerDeps; skia-canvas + @ffmpeg-installer are deps. `./register` subpath = setupServerRendering() at import.
 demo                Vite + TS app, imports packages via `workspace:*`
 doc                 short design + usage docs
 ```

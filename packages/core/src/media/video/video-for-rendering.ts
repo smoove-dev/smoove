@@ -13,22 +13,21 @@ export class RenderingVideoDriver implements VideoDriver {
 
   tick(localFrame: number): void {
     const { source, comp } = this.ctx;
-    if (!source.isReady) {
-      // The source isn't decodable yet; redraw so whatever is available shows.
-      this.ctx.redraw();
-      return;
-    }
-
     const mediaTime = getMediaTime(localFrame, this.ctx.timing);
-    if (mediaTime === this._lastMediaTime) {
+    // Already decoded this exact frame and the source is live — just redraw.
+    if (source.isReady && mediaTime === this._lastMediaTime) {
       this.ctx.redraw();
       return;
     }
     this._lastMediaTime = mediaTime;
 
+    // Gate the frame: wait for the source to become decodable (the async
+    // `load()` fired in the constructor may still be in flight), then seek to
+    // the exact media time. Holding the handle across both steps is what keeps
+    // `renderFrame()` from capturing a blank frame before the video is ready.
     const handle = comp.delayRender(`seek video -> ${mediaTime.toFixed(4)}s`);
-    source
-      .seek(mediaTime)
+    this._waitReady()
+      .then(() => source.seek(mediaTime))
       .then(() => {
         this.ctx.redraw();
       })
@@ -38,6 +37,20 @@ export class RenderingVideoDriver implements VideoDriver {
       .finally(() => {
         comp.continueRender(handle);
       });
+  }
+
+  private _waitReady(): Promise<void> {
+    const { source } = this.ctx;
+    return new Promise<void>((resolve) => {
+      const off = source.onReady(() => {
+        off();
+        resolve();
+      });
+      if (source.isReady) {
+        off();
+        resolve();
+      }
+    });
   }
 
   deactivate(): void {

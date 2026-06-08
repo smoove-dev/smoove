@@ -89,6 +89,10 @@ export class Composition extends Konva.Stage {
   // for an external audio-mux pass. Empty during preview.
   private _audioAssets: AudioAsset[] = [];
 
+  // Reused scratch canvas for captureCanvas() — avoids a per-frame skia Canvas
+  // allocation (native memory V8's GC can't see) during long renders.
+  private _captureCanvas: HTMLCanvasElement | null = null;
+
   constructor(opts: CompositionOptions) {
     if (!opts.id) throw new Error("Composition: id is required");
     if (!Number.isFinite(opts.fps) || opts.fps <= 0) {
@@ -302,6 +306,42 @@ export class Composition extends Konva.Stage {
     await new Promise<void>((resolve) => {
       this._renderWaiters.push(resolve);
     });
+  }
+
+  /**
+   * Composite every visible sequence layer into a single canvas and return it.
+   * Works headlessly (no DOM container needed); under the server skia backend
+   * the result is a skia `Canvas`, on which a renderer can call
+   * `.toBufferSync("raw")` for RGBA pixels.
+   *
+   * Unlike `Stage.toCanvas()`, this **reuses one scratch canvas** across calls.
+   * Allocating a fresh skia `Canvas` per frame leaks native memory (invisible to
+   * V8's GC), which balloons RSS and collapses throughput over a long render.
+   */
+  captureCanvas(): HTMLCanvasElement {
+    const w = this.width();
+    const h = this.height();
+    let scratch = this._captureCanvas;
+    if (!scratch) {
+      scratch = Konva.Util.createCanvasElement();
+      this._captureCanvas = scratch;
+    }
+    if (scratch.width !== w || scratch.height !== h) {
+      scratch.width = w;
+      scratch.height = h;
+    }
+    const ctx = scratch.getContext("2d") as CanvasRenderingContext2D | null;
+    if (!ctx) return scratch;
+    ctx.clearRect(0, 0, w, h);
+    for (const child of this.getChildren()) {
+      if (child instanceof Konva.Layer && child.visible()) {
+        // Force a synchronous scene draw so the layer's own canvas is current
+        // (a `Sequence` may have only scheduled an async `batchDraw`).
+        child.drawScene();
+        ctx.drawImage(child.getNativeCanvasElement(), 0, 0, w, h);
+      }
+    }
+    return scratch;
   }
 
   /** @internal — {@link RenderingAudioDriver} records one sample per audio per frame. */

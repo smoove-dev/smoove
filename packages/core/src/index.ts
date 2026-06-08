@@ -73,6 +73,16 @@ export {
   detectEnvironment,
   getEnvironment,
 } from "./engine/environment.js";
+export {
+  type ImageLoader,
+  type LoadedImage,
+  setDefaultVideoSourceFactory,
+  getDefaultVideoSourceFactory,
+  setDefaultAudioSourceFactory,
+  getDefaultAudioSourceFactory,
+  setDefaultImageLoader,
+  getDefaultImageLoader,
+} from "./engine/runtime-defaults.js";
 export type {
   Align,
   AlignSelf,

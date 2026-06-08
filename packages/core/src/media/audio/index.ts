@@ -1,13 +1,13 @@
 import Konva from "konva";
 import { getComposition } from "../../engine/composition.js";
 import { detectEnvironment, getEnvironment } from "../../engine/environment.js";
+import { getDefaultAudioSourceFactory } from "../../engine/runtime-defaults.js";
 import { type ReadonlySignal, type Signal, createSignal } from "../../engine/signal.js";
 import { AUDIO_MARK, MEDIA_MARK } from "../media-marker.js";
 import type { MediaTiming } from "../media-time.js";
 import type { AudioDriver, AudioDriverContext } from "./audio-driver.js";
 import { PreviewAudioDriver } from "./audio-for-preview.js";
 import { RenderingAudioDriver } from "./audio-for-rendering.js";
-import { BrowserAudioSource } from "./audio-source-browser.js";
 import type { AudioSource } from "./audio-source.js";
 import type { AudioChannel, AudioMixer } from "./mixer.js";
 import type { AudioConfig } from "./types.js";
@@ -58,7 +58,7 @@ export class Audio extends Konva.Group implements AudioChannel {
     // Build the source eagerly so loading starts immediately. The driver (which
     // needs the attached stage's composition) is resolved lazily on first tick.
     const env = detectEnvironment();
-    const factory = config.sourceFactory ?? (() => new BrowserAudioSource());
+    const factory = config.sourceFactory ?? getDefaultAudioSourceFactory();
     this._source = factory(env);
     this._applyAudio(); // honor config volume/muted before a mixer is attached
     this._source.setPlaybackRate(this._playbackRate);

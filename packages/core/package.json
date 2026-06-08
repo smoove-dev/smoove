@@ -24,6 +24,6 @@
     "flexily": "^0.7.1"
   },
   "peerDependencies": {
-    "konva": ">=9"
+    "konva": ">=10"
   }
 }

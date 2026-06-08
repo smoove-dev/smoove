@@ -13,7 +13,7 @@
     "@konva-motion/player": "workspace:*",
     "@konva-motion/timeline": "workspace:*",
     "@konva-motion/transitions": "workspace:*",
-    "konva": "^9.3.16",
+    "konva": "^10.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",

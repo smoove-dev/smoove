@@ -26,6 +26,6 @@
   },
   "peerDependencies": {
     "@konva-motion/core": "workspace:*",
-    "konva": ">=9"
+    "konva": ">=10"
   }
 }
