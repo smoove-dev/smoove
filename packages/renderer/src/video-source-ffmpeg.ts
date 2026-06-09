@@ -14,11 +14,11 @@ type SeekMode = "precise" | "fast";
  */
 const FORWARD_GAP_LIMIT = 48;
 
-// Optional decode-resolution cap (0 = uncapped). skia-canvas retains the native
-// pixels of every distinct frame ingested for the life of the process, so the
-// memory cost of a video render scales with frame area × distinct frames.
-// Decoding a (typically dimmed/background) clip at a smaller size cuts that cost
-// proportionally. Konva upscales the smaller frame to its display box.
+// Optional decode-resolution cap (0 = uncapped). A throughput/size knob: decoding
+// a (typically dimmed/background) clip at a smaller size cuts CPU + RSS
+// proportionally, and Konva upscales the smaller frame to its display box. (This
+// was once needed as a leak workaround; the real leak — drawing onto an uncleared
+// canvas — is fixed by the `clearRect` in `_paint`, so the cap is now optional.)
 let DECODE_MAX_W = 0;
 let DECODE_MAX_H = 0;
 
@@ -329,7 +329,14 @@ export class FfmpegVideoSource implements VideoSource {
     if (raw.length < need) return;
     // Copy decoded bytes into the reused ImageData's pixel array, then blit.
     pixels.set(raw.subarray(0, need));
-    canvas.getContext("2d").putImageData(img, 0, 0);
+    const ctx = canvas.getContext("2d");
+    // Clear before the blit. skia-canvas retains a native snapshot of a canvas's
+    // prior content every time you draw onto it without first clearing — so an
+    // uncleared per-frame `putImageData` leaks ~one frame of RSS per video frame
+    // for the process lifetime (GC can't see it). Clearing releases the prior
+    // snapshot and keeps memory flat. Confirmed by isolation tests.
+    ctx.clearRect(0, 0, this._width, this._height);
+    ctx.putImageData(img, 0, 0);
     for (const cb of this._frameCbs) cb();
   }
 
