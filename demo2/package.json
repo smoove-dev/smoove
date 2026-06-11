@@ -1,0 +1,30 @@
+{
+  "name": "demo2",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "start": "react-router-serve ./build/server/index.js",
+    "preview": "vite preview",
+    "typecheck": "react-router typegen && tsc -b"
+  },
+  "dependencies": {
+    "@konva-motion/core": "workspace:*",
+    "@konva-motion/player": "workspace:*",
+    "@konva-motion/studio": "workspace:*",
+    "konva": "^10.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "7.17.0"
+  },
+  "devDependencies": {
+    "@react-router/dev": "7.17.0",
+    "@react-router/node": "7.17.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.6.3",
+    "vite": "^6.3.6"
+  }
+}

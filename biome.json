@@ -2,7 +2,14 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
   "files": {
-    "ignore": ["**/dist/**", "**/node_modules/**", "**/.vite/**"]
+    "ignore": [
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/.vite/**",
+      "**/build/**",
+      "**/.react-router/**",
+      "packages/studio/src/studio.css"
+    ]
   },
   "organizeImports": { "enabled": true },
   "linter": {

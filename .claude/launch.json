@@ -1,6 +1,12 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "demo", "runtimeExecutable": "pnpm", "runtimeArgs": ["dev"], "port": 5173 }
+    { "name": "demo", "runtimeExecutable": "pnpm", "runtimeArgs": ["dev"], "port": 5173 },
+    {
+      "name": "demo2",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "demo2", "dev"],
+      "port": 5174
+    }
   ]
 }

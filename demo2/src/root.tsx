@@ -1,0 +1,42 @@
+import type { ReactNode } from "react";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import "@konva-motion/studio/styles.css";
+import "./app.css";
+
+export function links() {
+  return [
+    { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap",
+    },
+  ];
+}
+
+export function Layout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>KmStudio — demo2</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <div id="km-root">{children}</div>
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+export function HydrateFallback() {
+  return <div className="km-boot">Loading studio…</div>;
+}
+
+export default function Root() {
+  return <Outlet />;
+}

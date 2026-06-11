@@ -7,6 +7,8 @@
     { "path": "./packages/player" },
     { "path": "./packages/transitions" },
     { "path": "./packages/renderer" },
-    { "path": "./demo" }
+    { "path": "./packages/studio" },
+    { "path": "./demo" },
+    { "path": "./demo2" }
   ]
 }

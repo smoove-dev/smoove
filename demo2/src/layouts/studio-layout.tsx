@@ -1,0 +1,46 @@
+import { Studio, useSignalValue, useStudio } from "@konva-motion/studio";
+import { Outlet, useLocation, useNavigate } from "react-router";
+import { createMockRender } from "../mock-render.js";
+import { registry } from "../registry.js";
+
+const mockRender = createMockRender();
+
+/**
+ * Persistent shell: the Studio provider + the left rail + a route Outlet. The
+ * center (home doc / stage / queue) and the right panel are decided entirely by
+ * the matched child route — switching views = navigating, not store state.
+ */
+export default function StudioLayout() {
+  const navigate = useNavigate();
+  return (
+    <Studio registry={registry} render={mockRender} onNavigate={(id) => navigate(`/c/${id}`)}>
+      <Studio.Body>
+        <SideRail />
+        <Outlet />
+      </Studio.Body>
+      <Studio.Toasts />
+    </Studio>
+  );
+}
+
+function SideRail() {
+  const store = useStudio();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queueCount = useSignalValue(store.queueCount);
+  return (
+    <Studio.Sidebar>
+      <Studio.Brand name="KmStudio" tag="v1.0" onClick={() => navigate("/")} />
+      <Studio.Section>
+        <Studio.NavItem
+          icon="queue"
+          title="Render Queue"
+          badge={queueCount}
+          active={location.pathname === "/queue"}
+          onClick={() => navigate("/queue")}
+        />
+      </Studio.Section>
+      <Studio.Library />
+    </Studio.Sidebar>
+  );
+}

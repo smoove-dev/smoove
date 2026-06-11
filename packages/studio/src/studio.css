@@ -1,0 +1,156 @@
+/* ============================================================
+   @konva-motion/studio — Tailwind v4 source. Compiled at build to
+   dist/styles/studio.css and shipped via the "./styles.css" export.
+
+   We deliberately import only the THEME + UTILITIES layers (not
+   Preflight) so importing this file never resets the host page — only
+   opted-in utility classes and the :root design tokens ship, both inert
+   on elements that don't use them. The few global resets we DO want are
+   scoped under `.km-studio` / `.km-studio-portal` in @layer base below.
+
+   The @theme block is the single source of truth for the look — recolor
+   or re-radius the whole studio by overriding these CSS variables.
+   ============================================================ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+
+/* Scan only this package's own source for class names (deterministic,
+   independent of who runs the build / their CWD). */
+@source "./components";
+@source "./hooks";
+@source "./lib";
+@source "./index.ts";
+
+@theme {
+  /* ---- Surfaces (deepest → raised) ---- */
+  --color-stage: #0c0c0f;
+  --color-bg-0: #100f14;
+  --color-bg-1: #17161c;
+  --color-bg-2: #1e1d25;
+  --color-bg-3: #2a2933;
+  --color-line: color-mix(in oklab, #ffffff 8%, transparent);
+  --color-line-2: color-mix(in oklab, #ffffff 13%, transparent);
+
+  /* ---- Ink ---- */
+  --color-ink-1: #eceaf2;
+  --color-ink-2: #a4a2b2;
+  --color-ink-3: #6b6a78;
+
+  /* ---- Accent + status (change --color-accent to reskin) ---- */
+  --color-accent: #7c5cff;
+  --color-accent-2: #9579ff;
+  --color-good: #46d39a;
+  --color-warn: #ffb44d;
+  --color-danger: #ff6b6b;
+
+  /* ---- Shape: route every corner through these two ---- */
+  --radius-ui: 10px;
+  --radius-control: 7px;
+
+  /* ---- Type ---- */
+  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* ---- Frame metrics ---- */
+  --spacing-sidebar: 256px;
+  --spacing-panel: 320px;
+}
+
+/* Tints derived from accent — regenerate automatically when accent changes. */
+@theme inline {
+  --color-accent-soft: color-mix(in oklab, var(--color-accent) 16%, transparent);
+  --color-accent-line: color-mix(in oklab, var(--color-accent) 40%, transparent);
+}
+
+@layer base {
+  /* Scoped root — applies the base look without touching the host page. */
+  .km-studio {
+    color: var(--color-ink-1);
+    background: var(--color-bg-0);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .km-studio,
+  .km-studio * {
+    box-sizing: border-box;
+  }
+
+  /* Scoped reset (Preflight is intentionally not imported, so re-apply only the
+     bits we need on form controls — otherwise native UA styles leak: white
+     button backgrounds, default padding that off-centers icon buttons, fonts
+     that don't inherit). Lives in @layer base so utilities still win. */
+  .km-studio button,
+  .km-studio-portal button {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    line-height: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .km-studio button:disabled,
+  .km-studio-portal button:disabled {
+    cursor: not-allowed;
+  }
+  .km-studio input,
+  .km-studio textarea,
+  .km-studio select,
+  .km-studio-portal input,
+  .km-studio-portal textarea,
+  .km-studio-portal select {
+    appearance: none;
+    font: inherit;
+    line-height: inherit;
+    color: inherit;
+    margin: 0;
+  }
+  .km-studio svg,
+  .km-studio-portal svg {
+    display: block;
+  }
+
+  /* thin scrollbars, opt-in via .scroll. Apply inside the studio root and
+     inside studio-owned portals (menus/dialogs/toasts render to a portal
+     container we place inside `.km-studio`). */
+  .km-studio .scroll,
+  .km-studio-portal .scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #34343c transparent;
+  }
+  .km-studio .scroll::-webkit-scrollbar,
+  .km-studio-portal .scroll::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  .km-studio .scroll::-webkit-scrollbar-thumb,
+  .km-studio-portal .scroll::-webkit-scrollbar-thumb {
+    background: #2c2c33;
+    border-radius: 99px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  .km-studio .scroll::-webkit-scrollbar-thumb:hover,
+  .km-studio-portal .scroll::-webkit-scrollbar-thumb:hover {
+    background: #3a3a44;
+    background-clip: content-box;
+  }
+  .km-studio .scroll::-webkit-scrollbar-track,
+  .km-studio-portal .scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  @keyframes km-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .km-studio .spin,
+  .km-studio-portal .spin {
+    animation: km-spin 1s linear infinite;
+  }
+}
