@@ -49,6 +49,8 @@ export function createStore(opts: StudioStoreOptions) {
   const zoom = new Signal.State<ZoomValue>("fit");
   /** The measured fit-scale (reported by the Stage) so Zoom can show "Fit %". */
   const fitScale = new Signal.State<number>(0.5);
+  /** Horizontal zoom for the layered timeline (1 = fit width). */
+  const timelineZoom = new Signal.State<number>(1);
   const region = new Signal.State<Region>({ in: null, out: null });
   const layerOff = new Signal.State<Record<string, Set<number>>>({});
   const jobs = new Signal.State<RenderJob[]>([]);
@@ -156,6 +158,7 @@ export function createStore(opts: StudioStoreOptions) {
   const setPanelTab = (t: PanelTab) => panelTab.set(t);
   const setZoom = (z: ZoomValue) => zoom.set(z);
   const setFitScale = (s: number) => fitScale.set(s);
+  const setTimelineZoom = (z: number) => timelineZoom.set(Math.max(1, Math.min(16, z)));
 
   const setRegion = (r: Region) => region.set(r);
   const setRegionIn = (frame: number) => {
@@ -270,6 +273,7 @@ export function createStore(opts: StudioStoreOptions) {
     panelTab,
     zoom,
     fitScale,
+    timelineZoom,
     region,
     layerOff,
     jobs,
@@ -287,6 +291,7 @@ export function createStore(opts: StudioStoreOptions) {
     setPanelTab,
     setZoom,
     setFitScale,
+    setTimelineZoom,
     setRegion,
     setRegionIn,
     setRegionOut,
