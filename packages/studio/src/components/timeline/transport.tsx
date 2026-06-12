@@ -53,8 +53,10 @@ export function Transport({ className }: { className?: string }) {
         </div>
       </div>
 
-      <div className="font-mono text-[12.5px] text-ink-2 ml-2 whitespace-nowrap tracking-tight">
-        <span className="text-ink-1">{fmtTime(timeSec)}</span>
+      <div className="font-mono text-[12.5px] text-ink-2 ml-2 whitespace-nowrap tracking-tight tabular-nums">
+        <span className="text-ink-1 inline-block text-right" style={{ minWidth: "3.5ch" }}>
+          {fmtTime(timeSec)}
+        </span>
         <span className="text-ink-3 mx-0.5">/</span>
         {fmtTime(durSec)}
       </div>

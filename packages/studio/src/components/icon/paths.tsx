@@ -186,6 +186,7 @@ export const PATHS = {
   ),
   loader: <path d="M9 3a6 6 0 11-5.2 3" {...p} />,
   plus: <path d="M9 4v10M4 9h10" {...p} />,
+  minus: <path d="M4 9h10" {...p} />,
   grip: (
     <g fill="currentColor" stroke="none">
       <circle cx="7" cy="5" r="1.3" />

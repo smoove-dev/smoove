@@ -44,6 +44,7 @@ function ModeButton({
 export function TimelineHeader() {
   const store = useStudio();
   const tlMode = useSignalValue(store.tlMode);
+  const tlZoom = useSignalValue(store.timelineZoom);
   const region = useSignalValue(store.region);
   const { player, frame, total, fps } = usePlayback();
   const realFps = useRealFps();
@@ -117,6 +118,38 @@ export function TimelineHeader() {
 
       <div className="flex-1" />
 
+      {tlMode === "layered" && (
+        <>
+          <div className="flex items-center h-[26px] bg-bg-2 border border-line rounded-control overflow-hidden">
+            <button
+              type="button"
+              onClick={() => store.setTimelineZoom(tlZoom / 1.5)}
+              className="w-[24px] h-full grid place-items-center text-ink-3 hover:bg-bg-3 hover:text-ink-1"
+              title="Zoom out"
+            >
+              <Icon name="minus" size={13} />
+            </button>
+            <button
+              type="button"
+              onClick={() => store.setTimelineZoom(1)}
+              className="h-full px-1.5 min-w-[40px] text-center font-mono text-[10.5px] text-ink-2 hover:text-ink-1 border-x border-line tabular-nums"
+              title="Reset zoom"
+            >
+              {Math.round(tlZoom * 100)}%
+            </button>
+            <button
+              type="button"
+              onClick={() => store.setTimelineZoom(tlZoom * 1.5)}
+              className="w-[24px] h-full grid place-items-center text-ink-3 hover:bg-bg-3 hover:text-ink-1"
+              title="Zoom in"
+            >
+              <Icon name="plus" size={13} />
+            </button>
+          </div>
+          <span className="w-px h-[15px] bg-line-2" />
+        </>
+      )}
+
       <div className="flex items-center gap-2.5 font-mono text-[11.5px] text-ink-2 tabular-nums">
         <span className="inline-flex items-center gap-1.5">
           <Icon name="layout" size={12} className="text-ink-3" />
@@ -133,7 +166,9 @@ export function TimelineHeader() {
             health === "low" && "text-danger",
           )}
         >
-          {curFps == null ? "—" : curFps}
+          <span className="inline-block text-right" style={{ minWidth: "2ch" }}>
+            {curFps == null ? "—" : curFps}
+          </span>
           <span className="text-ink-3">/</span>
           <span className="text-ink-2">{fps}</span>
           <i className="not-italic text-[9.5px] text-ink-3 ml-0.5">fps</i>
@@ -141,7 +176,12 @@ export function TimelineHeader() {
         <span className="w-px h-[15px] bg-line-2" />
         <span className="inline-flex items-center gap-1">
           <Icon name="camera" size={12} className="text-ink-3" />
-          <span className="text-ink-1">{frame}</span>
+          <span
+            className="text-ink-1 inline-block text-right"
+            style={{ minWidth: `${String(total).length}ch` }}
+          >
+            {frame}
+          </span>
           <span className="text-ink-3">/</span>
           {total}
           <i className="not-italic text-[9.5px] text-ink-3 ml-0.5">f</i>
