@@ -47,6 +47,11 @@ export type Registry = {
   load(id: string, props: ReadonlySignal<Record<string, unknown>>): Promise<Composition>;
   /** The already-loaded instance for an id, if any (sync). */
   peek(id: string): Composition | undefined;
+  /** Swap an entry's builder + drop its cached composition, then notify
+      listeners. Used for dev hot-reload of composition source. */
+  update(id: string, load: RegistryEntry["load"]): void;
+  /** Subscribe to entry changes (id passed to listener). Returns unsubscribe. */
+  onChange(listener: (id: string) => void): () => void;
 };
 
 /* ============================================================ render (mock) */

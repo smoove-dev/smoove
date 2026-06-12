@@ -127,6 +127,28 @@ export function createStore(opts: StudioStoreOptions) {
   /** Router-initiated selection (URL changed) — does NOT call onNavigate. */
   const syncSelected = (id: string): void => applySelect(id, false);
 
+  // ---- dev hot-reload ------------------------------------------------------
+  // When a composition's builder is swapped (registry.update, e.g. Vite HMR),
+  // rebuild + remount the active one, preserving props (the props signal is
+  // memoized per id) and the playhead. The Stage consumes `takeRestore()` after
+  // mounting the rebuilt comp.
+  let pendingRestore: { frame: number; playing: boolean } | null = null;
+  const takeRestore = (): { frame: number; playing: boolean } | null => {
+    const r = pendingRestore;
+    pendingRestore = null;
+    return r;
+  };
+  async function reloadActive(id: string): Promise<void> {
+    const api = player.get();
+    pendingRestore = api ? { frame: api.getCurrentFrame(), playing: api.isPlaying() } : null;
+    wiredRefresh.delete(id);
+    composition.set(null); // force the Stage to remount even if React keeps the ref
+    await loadActive();
+  }
+  registry.onChange((id) => {
+    if (id === selectedId.get()) void reloadActive(id);
+  });
+
   // ---- layout / playback-view actions ---------------------------------------
   const setPlayer = (api: PlayerApi | null) => player.set(api);
   const setTlMode = (m: TlMode) => tlMode.set(m);
@@ -257,6 +279,7 @@ export function createStore(opts: StudioStoreOptions) {
     select,
     syncSelected,
     loadActive,
+    takeRestore,
     setPlayer,
     setToastSink,
     setTlMode,

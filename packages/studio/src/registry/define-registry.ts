@@ -15,10 +15,25 @@ export function defineRegistry(entries: RegistryEntry[]): Registry {
   }
   const loaded = new Map<string, Composition>();
   const pending = new Map<string, Promise<Composition>>();
+  const listeners = new Set<(id: string) => void>();
 
   return {
     entries: () => entries,
     peek: (id) => loaded.get(id),
+    update(id, load) {
+      const entry = byId.get(id);
+      if (!entry) return;
+      entry.load = load;
+      loaded.delete(id);
+      pending.delete(id);
+      for (const fn of listeners) fn(id);
+    },
+    onChange(listener) {
+      listeners.add(listener);
+      return () => {
+        listeners.delete(listener);
+      };
+    },
     load(id, props) {
       const existing = loaded.get(id);
       if (existing) return Promise.resolve(existing);

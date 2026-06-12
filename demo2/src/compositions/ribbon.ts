@@ -32,7 +32,7 @@ export function ribbon(props: ReadonlySignal<Record<string, unknown>>): Composit
   });
 
   const backdrop = new Sequence({ from: 0, durationInFrames: FRAMES, name: "video:Backdrop" });
-  backdrop.add(new Konva.Rect({ x: 0, y: 0, width: WIDTH, height: HEIGHT, fill: "#0e0d13" }));
+  backdrop.add(new Konva.Rect({ x: 0, y: 0, width: WIDTH, height: HEIGHT, fill: "#000" }));
   comp.add(backdrop);
 
   // stripe pool

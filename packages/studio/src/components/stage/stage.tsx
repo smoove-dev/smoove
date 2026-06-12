@@ -64,8 +64,19 @@ export function Stage({ className, showStatus = false }: StageProps) {
   // mount / swap the composition
   useEffect(() => {
     const el = playerRef.current;
-    if (el) el.composition = comp ?? null;
-  }, [comp]);
+    if (!el) return;
+    el.composition = comp ?? null;
+    // After a dev hot-reload, restore the playhead + play state on the rebuilt
+    // comp (the player setter mounts synchronously, so seekTo works here).
+    if (comp) {
+      const restore = store.takeRestore();
+      if (restore) {
+        el.seekTo(restore.frame);
+        if (restore.playing) el.play();
+        else el.pause();
+      }
+    }
+  }, [comp, store]);
 
   // apply per-layer enable/disable
   useEffect(() => {
