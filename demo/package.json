@@ -20,6 +20,7 @@
     "react-router": "7.17.0"
   },
   "devDependencies": {
+    "@konva-motion/vite": "workspace:*",
     "@react-router/dev": "7.17.0",
     "@react-router/node": "7.17.0",
     "@types/react": "^18.3.12",

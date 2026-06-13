@@ -1,7 +1,7 @@
 import { Studio, useSignalValue, useStudio } from "@konva-motion/studio";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import { createMockRender } from "../mock-render.js";
-import { registry } from "../registry.js";
+import registry from "../registry.js";
 
 const mockRender = createMockRender();
 

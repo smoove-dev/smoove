@@ -1,10 +1,11 @@
+import { konvaMotion } from "@konva-motion/vite";
 import { reactRouter } from "@react-router/dev/vite";
 import { defineConfig } from "vite";
 
 const shim = new URL("./src/node-module-shim.ts", import.meta.url).pathname;
 
 export default defineConfig({
-  plugins: [reactRouter()],
+  plugins: [konvaMotion(), reactRouter()],
   server: { port: 5174 },
   build: { target: "esnext" },
   resolve: {

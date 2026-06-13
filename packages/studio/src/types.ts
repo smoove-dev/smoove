@@ -3,8 +3,8 @@ import type { IconName } from "./components/icon/paths.js";
 import type { LayerKind } from "./lib/constants.js";
 import type { KmSchema } from "./schema/types.js";
 
-/** A signal you can both read and write. The store owns the writable side; an
-    entry's `load` only sees the readable side. */
+/** A signal you can both read and write. The store owns the writable side and
+    pushes form edits onto the composition via `comp.setProps`. */
 export interface WritableSignal<T> extends ReadonlySignal<T> {
   set(value: T): void;
 }
@@ -22,6 +22,19 @@ export type StudioLayer = {
   end: number;
 };
 
+/** The composition for an entry: a ready instance, or a (lazy / code-split)
+    loader resolving to one. A loader may resolve to a module namespace whose
+    `default` export is the Composition — the registry unwraps it.
+
+    Typed against `Composition<any>` on purpose: the registry is props-shape
+    agnostic, and `Composition<P>` is invariant in `P` (via `setProps`), so a
+    concretely-typed `Composition<MyProps>` would not otherwise be assignable. */
+// biome-ignore lint/suspicious/noExplicitAny: framework boundary erases the props shape.
+type AnyComposition = Composition<any>;
+export type CompositionInput =
+  | AnyComposition
+  | (() => AnyComposition | Promise<AnyComposition> | Promise<{ default: AnyComposition }>);
+
 export interface RegistryEntry<P extends Record<string, unknown> = Record<string, unknown>> {
   /** REQUIRED — the stable key shared by catalog + route segment (`/:id`). */
   id: string;
@@ -35,21 +48,21 @@ export interface RegistryEntry<P extends Record<string, unknown> = Record<string
   defaultProps?: P;
   /** Explicit layer override; otherwise layers are derived from the comp. */
   layers?: StudioLayer[];
-  /** Supply the Composition. Receives the live props signal so form edits
-      refresh without a rebuild. May be async (lazy / code-split). */
-  load(props: ReadonlySignal<P>): Composition | Promise<Composition>;
+  /** The Composition (default-exported), or a lazy loader resolving to one.
+      Props live on the comp's `props` signal — set via `comp.setProps`. */
+  composition: CompositionInput;
 }
 
 export type Registry = {
   /** Lightweight catalog rows — id + metadata, no compositions built. */
   entries(): RegistryEntry[];
-  /** Build/load (memoized) the composition for an id, wiring its props signal. */
-  load(id: string, props: ReadonlySignal<Record<string, unknown>>): Promise<Composition>;
+  /** Resolve (memoized) the composition for an id. */
+  load(id: string): Promise<Composition>;
   /** The already-loaded instance for an id, if any (sync). */
   peek(id: string): Composition | undefined;
-  /** Swap an entry's builder + drop its cached composition, then notify
+  /** Swap an entry's composition + drop its cached instance, then notify
       listeners. Used for dev hot-reload of composition source. */
-  update(id: string, load: RegistryEntry["load"]): void;
+  update(id: string, composition: CompositionInput): void;
   /** Subscribe to entry changes (id passed to listener). Returns unsubscribe. */
   onChange(listener: (id: string) => void): () => void;
 };

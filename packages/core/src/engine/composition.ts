@@ -12,14 +12,18 @@ function isSequenceProvider(x: Konva.Layer | SequenceProvider): x is SequencePro
   return typeof (x as Partial<SequenceProvider>).sequences === "function";
 }
 
-export type CompositionOptions = Konva.StageConfig & {
-  id: string;
-  fps: number;
-  durationInFrames: number;
-  loop?: boolean;
-  /** Force the runtime environment. Defaults to ambient detection (see `detectEnvironment`). */
-  mode?: EnvironmentMode;
-};
+export type CompositionOptions<P extends Record<string, unknown> = Record<string, unknown>> =
+  Konva.StageConfig & {
+    id: string;
+    fps: number;
+    durationInFrames: number;
+    loop?: boolean;
+    /** Initial props handed to the scene. Read live with `comp.props.get()` in
+        updaters; pushed to with `comp.setProps()` by a player or the studio. */
+    props?: P;
+    /** Force the runtime environment. Defaults to ambient detection (see `detectEnvironment`). */
+    mode?: EnvironmentMode;
+  };
 
 export type CompositionEvent = {
   frame: number;
@@ -48,13 +52,16 @@ const caf: ((id: number) => void) | null =
 const wallNow = (): number =>
   typeof globalThis.performance?.now === "function" ? globalThis.performance.now() : Date.now();
 
-type CompositionMarker = { __KonvaMotionComposition?: Composition };
+// biome-ignore lint/suspicious/noExplicitAny: the marker is props-shape-agnostic; P is invariant via setProps.
+type CompositionMarker = { __KonvaMotionComposition?: Composition<any> };
 
 export function getComposition(stage: Konva.Stage): Composition | null {
   return (stage as Konva.Stage & CompositionMarker).__KonvaMotionComposition ?? null;
 }
 
-export class Composition extends Konva.Stage {
+export class Composition<
+  P extends Record<string, unknown> = Record<string, unknown>,
+> extends Konva.Stage {
   readonly fps: number;
   readonly environment: Environment;
   /** Composition-level audio bus — master volume/mute scaling every Video and Audio. */
@@ -67,8 +74,12 @@ export class Composition extends Konva.Stage {
   readonly loop: ReadonlySignal<boolean>;
   /** Playback speed multiplier. 1 = realtime; negative plays in reverse. */
   readonly playbackRate: ReadonlySignal<number>;
+  /** Live props the scene reads. Pushed to with {@link setProps} by a player or
+      the studio form; updaters read it via `comp.props.get()`. */
+  readonly props: ReadonlySignal<P>;
 
   private readonly _frame: Signal<number>;
+  private readonly _props: Signal<P>;
   private readonly _isPlaying: Signal<boolean>;
   private readonly _durationInFrames: Signal<number>;
   private readonly _loop: Signal<boolean>;
@@ -93,7 +104,7 @@ export class Composition extends Konva.Stage {
   // allocation (native memory V8's GC can't see) during long renders.
   private _captureCanvas: HTMLCanvasElement | null = null;
 
-  constructor(opts: CompositionOptions) {
+  constructor(opts: CompositionOptions<P>) {
     if (!opts.id) throw new Error("Composition: id is required");
     if (!Number.isFinite(opts.fps) || opts.fps <= 0) {
       throw new Error("Composition: fps must be a positive number");
@@ -102,7 +113,7 @@ export class Composition extends Konva.Stage {
       throw new Error("Composition: durationInFrames must be a positive integer");
     }
 
-    const { fps, durationInFrames, loop = false, mode, ...stageOpts } = opts;
+    const { fps, durationInFrames, loop = false, props, mode, ...stageOpts } = opts;
     // Konva requires a container element. In the browser, fall back to a
     // detached <div> when none is given, so a Composition can be constructed
     // up-front and mounted later via `setContainer` (e.g. handed to a player).
@@ -127,12 +138,14 @@ export class Composition extends Konva.Stage {
     this._durationInFrames = createSignal(durationInFrames);
     this._loop = createSignal(loop);
     this._playbackRate = createSignal(1);
+    this._props = createSignal<P>(props ?? ({} as P));
 
     this.frame = this._frame;
     this.isPlaying = this._isPlaying;
     this.durationInFrames = this._durationInFrames;
     this.loop = this._loop;
     this.playbackRate = this._playbackRate;
+    this.props = this._props;
 
     this.isStopped = derived(
       [this._isPlaying, this._frame],
@@ -270,6 +283,19 @@ export class Composition extends Konva.Stage {
    */
   refresh(): void {
     this._applyFrame(this._frame.get(), false);
+  }
+
+  /**
+   * Replace the live props and re-render the current frame. Any holder — a bare
+   * `<km-player>` or the studio form — drives the scene by calling this; the
+   * `createSignal` `Object.is` guard skips a redundant refresh when nothing
+   * changed. Pass an updater to derive the next value from the previous one.
+   */
+  setProps(next: P | ((prev: P) => P)): void {
+    const value = typeof next === "function" ? (next as (prev: P) => P)(this._props.get()) : next;
+    if (Object.is(value, this._props.get())) return;
+    this._props.set(value);
+    this.refresh();
   }
 
   /**

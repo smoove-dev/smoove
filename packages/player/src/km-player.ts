@@ -66,6 +66,10 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
   }
   set composition(c: Composition | null) {
     if (c === this._comp) return;
+    // Halt the outgoing composition so it stops ticking + playing audio in the
+    // background — it's a long-lived instance the consumer may reuse, so we
+    // reset it to a clean stopped state (frame 0) rather than leave it running.
+    this._comp?.stop();
     this._unbind();
     this._comp = c ?? null;
     if (this.isConnected && this._comp) this._mount();
@@ -221,7 +225,9 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
 
     this._bind(comp);
 
-    if (this.initialFrame > 0) comp.setFrame(this.initialFrame);
+    // Load at the start (or an explicit `initialframe`) — a reused composition
+    // instance may carry a playhead from a previous mount.
+    comp.setFrame(this.initialFrame);
     comp.refresh();
     this._layout();
 
@@ -413,6 +419,10 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
     const comp = this._comp;
     if (!comp) return;
     this.seekTo(comp.frame.get() + delta);
+  }
+
+  setProps(props: Record<string, unknown>): void {
+    this._comp?.setProps(props);
   }
 
   getCurrentFrame(): number {

@@ -81,13 +81,16 @@ export function createStore(opts: StudioStoreOptions) {
   }
 
   // ---- selection / loading --------------------------------------------------
-  // Wire each composition's props signal to refresh() exactly once, so form
-  // edits re-apply the current frame without rebuilding (playhead preserved).
-  const wiredRefresh = new Set<string>();
-  function wireRefresh(id: string, comp: Composition): void {
-    if (wiredRefresh.has(id)) return;
-    wiredRefresh.add(id);
-    getPropsSignal(id).subscribe(() => comp.refresh());
+  // Bridge each composition's form props onto the comp exactly once: seed it
+  // with the current values and forward later edits via `comp.setProps`, which
+  // re-applies the current frame without rebuilding (playhead preserved).
+  const wiredProps = new Set<string>();
+  function wireProps(id: string, comp: Composition): void {
+    const sig = getPropsSignal(id);
+    comp.setProps(sig.get());
+    if (wiredProps.has(id)) return;
+    wiredProps.add(id);
+    sig.subscribe((value) => comp.setProps(value));
   }
 
   async function loadActive(): Promise<void> {
@@ -97,17 +100,17 @@ export function createStore(opts: StudioStoreOptions) {
     if (cached) {
       composition.set(cached);
       setStatus(id, "ready");
-      wireRefresh(id, cached);
+      wireProps(id, cached);
       return;
     }
     setStatus(id, "loading");
     loadError.set(null);
     try {
-      const comp = await registry.load(id, getPropsSignal(id));
+      const comp = await registry.load(id);
       if (selectedId.get() !== id) return; // selection moved on
       composition.set(comp);
       setStatus(id, "ready");
-      wireRefresh(id, comp);
+      wireProps(id, comp);
     } catch (err) {
       if (selectedId.get() !== id) return;
       composition.set(null);
@@ -143,7 +146,7 @@ export function createStore(opts: StudioStoreOptions) {
   async function reloadActive(id: string): Promise<void> {
     const api = player.get();
     pendingRestore = api ? { frame: api.getCurrentFrame(), playing: api.isPlaying() } : null;
-    wiredRefresh.delete(id);
+    wiredProps.delete(id);
     composition.set(null); // force the Stage to remount even if React keeps the ref
     await loadActive();
   }

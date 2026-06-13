@@ -1,0 +1,29 @@
+{
+  "name": "@konva-motion/vite",
+  "version": "0.0.0",
+  "description": "Vite plugin for konva-motion studio — invisible HMR wiring + build-time composition metadata.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "peerDependencies": {
+    "vite": ">=5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "vite": "^6.3.6"
+  }
+}

@@ -8,6 +8,7 @@
     { "path": "./packages/transitions" },
     { "path": "./packages/renderer" },
     { "path": "./packages/studio" },
+    { "path": "./packages/vite" },
     { "path": "./demo" },
     { "path": "./demo2" }
   ]

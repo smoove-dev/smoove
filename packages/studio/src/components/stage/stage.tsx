@@ -54,7 +54,7 @@ export function Stage({ className, showStatus = false }: StageProps) {
     el.setAttribute("no-keyboard", "");
     el.setAttribute("no-click-to-play", "");
     el.setAttribute("loop", "");
-    el.setAttribute("autoplay", "");
+    // No autoplay: a composition loads stopped (paused on frame 0) by default.
     store.setPlayer(el);
     return () => {
       if (store.player.get() === el) store.setPlayer(null);

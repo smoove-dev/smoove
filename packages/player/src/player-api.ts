@@ -43,6 +43,9 @@ export interface PlayerApi {
   stepBy(delta: number): void;
   getCurrentFrame(): number;
   isPlaying(): boolean;
+  /** Push new props onto the mounted composition; it re-renders the current
+      frame automatically. No-op before a composition is assigned. */
+  setProps(props: Record<string, unknown>): void;
 
   setVolume(volume: number): void;
   getVolume(): number;
