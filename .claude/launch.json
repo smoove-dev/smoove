@@ -5,7 +5,7 @@
     {
       "name": "demo2",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "demo2", "dev"],
+      "runtimeArgs": ["--filter", "demo", "dev"],
       "port": 5174
     }
   ]

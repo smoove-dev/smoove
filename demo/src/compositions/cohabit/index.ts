@@ -3,7 +3,7 @@ import { type CohabitProps, schema } from "./schema.js";
 
 const entry: RegistryEntry<CohabitProps> = {
   id: "cohabit",
-  title: "Cohabit · 34s",
+  title: "Cohabit",
   group: "Film",
   description:
     "A four-scene branded promo — graded video, a layered music + voiceover + SFX mix, and a prop-driven end card.",

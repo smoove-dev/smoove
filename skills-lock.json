@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-dev-guidelines": {
+      "source": "0Chan-smc/claude-code-workflow-lab",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/frontend-dev-guidelines/SKILL.md",
+      "computedHash": "d872982edeed320e27116864a7a7340ae3c210075e6c6893006c50dd33eb8321"
+    }
+  }
+}
