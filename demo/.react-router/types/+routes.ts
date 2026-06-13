@@ -22,12 +22,30 @@ type Pages = {
   "/queue": {
     params: {};
   };
+  "/api/render": {
+    params: {};
+  };
+  "/api/render/:jobId/events": {
+    params: {
+      "jobId": string;
+    };
+  };
+  "/api/render/:jobId/download": {
+    params: {
+      "jobId": string;
+    };
+  };
+  "/api/render/:jobId/cancel": {
+    params: {
+      "jobId": string;
+    };
+  };
 };
 
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/c/:id" | "/queue";
+    page: "/" | "/c/:id" | "/queue" | "/api/render" | "/api/render/:jobId/events" | "/api/render/:jobId/download" | "/api/render/:jobId/cancel";
   };
   "layouts/studio-layout.tsx": {
     id: "layouts/studio-layout";
@@ -45,6 +63,22 @@ type RouteFiles = {
     id: "routes/queue";
     page: "/queue";
   };
+  "routes/api.render.ts": {
+    id: "routes/api.render";
+    page: "/api/render";
+  };
+  "routes/api.render.events.ts": {
+    id: "routes/api.render.events";
+    page: "/api/render/:jobId/events";
+  };
+  "routes/api.render.download.ts": {
+    id: "routes/api.render.download";
+    page: "/api/render/:jobId/download";
+  };
+  "routes/api.render.cancel.ts": {
+    id: "routes/api.render.cancel";
+    page: "/api/render/:jobId/cancel";
+  };
 };
 
 type RouteModules = {
@@ -53,4 +87,8 @@ type RouteModules = {
   "routes/home": typeof import("./src/routes/home.tsx");
   "routes/composition": typeof import("./src/routes/composition.tsx");
   "routes/queue": typeof import("./src/routes/queue.tsx");
+  "routes/api.render": typeof import("./src/routes/api.render.ts");
+  "routes/api.render.events": typeof import("./src/routes/api.render.events.ts");
+  "routes/api.render.download": typeof import("./src/routes/api.render.download.ts");
+  "routes/api.render.cancel": typeof import("./src/routes/api.render.cancel.ts");
 };

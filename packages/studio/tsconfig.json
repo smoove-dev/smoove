@@ -5,9 +5,9 @@
     "outDir": "dist",
     "jsx": "react-jsx",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["react", "react-dom"]
+    "types": ["react", "react-dom", "node"]
   },
   "include": ["src"],
   "exclude": ["src/studio.css"],
-  "references": [{ "path": "../core" }, { "path": "../player" }]
+  "references": [{ "path": "../core" }, { "path": "../player" }, { "path": "../renderer" }]
 }

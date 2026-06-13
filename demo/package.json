@@ -13,6 +13,7 @@
   "dependencies": {
     "@konva-motion/core": "workspace:*",
     "@konva-motion/player": "workspace:*",
+    "@konva-motion/renderer": "workspace:*",
     "@konva-motion/studio": "workspace:*",
     "konva": "^10.3.0",
     "react": "^18.3.1",

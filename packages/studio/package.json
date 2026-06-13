@@ -12,6 +12,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./server": {
+      "types": "./dist/server/index.d.ts",
+      "import": "./dist/server/index.js"
+    },
     "./styles.css": "./dist/styles/studio.css"
   },
   "files": ["dist"],
@@ -28,12 +32,20 @@
   "peerDependencies": {
     "@konva-motion/core": "workspace:*",
     "@konva-motion/player": "workspace:*",
+    "@konva-motion/renderer": "workspace:*",
     "konva": ">=10",
     "react": ">=18",
     "react-dom": ">=18"
   },
+  "peerDependenciesMeta": {
+    "@konva-motion/renderer": {
+      "optional": true
+    }
+  },
   "devDependencies": {
+    "@konva-motion/renderer": "workspace:*",
     "@tailwindcss/cli": "^4.3.0",
+    "@types/node": "^22.10.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "concurrently": "^9.1.0",

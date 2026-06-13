@@ -1,9 +1,10 @@
 import { Studio, useSignalValue, useStudio } from "@konva-motion/studio";
 import { Outlet, useLocation, useNavigate } from "react-router";
-import { createMockRender } from "../mock-render.js";
 import registry from "../registry.js";
+import { createHttpRenderBackend } from "../render-client.js";
 
-const mockRender = createMockRender();
+// Real backend: talks to the /api/render resource routes (POST + SSE + download).
+const render = createHttpRenderBackend("/api/render");
 
 /**
  * Persistent shell: the Studio provider + the left rail + a route Outlet. The
@@ -13,7 +14,7 @@ const mockRender = createMockRender();
 export default function StudioLayout() {
   const navigate = useNavigate();
   return (
-    <Studio registry={registry} render={mockRender} onNavigate={(id) => navigate(`/c/${id}`)}>
+    <Studio registry={registry} render={render} onNavigate={(id) => navigate(`/c/${id}`)}>
       <Studio.Body>
         <SideRail />
         <Outlet />

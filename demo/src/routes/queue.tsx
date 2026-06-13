@@ -7,7 +7,7 @@ export default function Queue() {
   return (
     <Studio.Main>
       <Studio.Header>
-        <Studio.HeaderTitle icon="queue" title="Render Queue" sub="Mock render pipeline" />
+        <Studio.HeaderTitle icon="queue" title="Render Queue" sub="Server render pipeline" />
         <Studio.Spacer />
         <Studio.Button tone="ghost" icon="spark" onClick={() => navigate("/")}>
           Home

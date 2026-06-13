@@ -1,6 +1,7 @@
 import { Studio, useSignalValue, useStudio } from "@konva-motion/studio";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { ClientOnly } from "../components/client-only.js";
 import type { Route } from "./+types/composition";
 
 /** The studio view for a single composition: stage + timeline + inspector. */
@@ -44,7 +45,9 @@ export default function Composition({ params }: Route.ComponentProps) {
           <Studio.Spacer />
           <Studio.Zoom />
         </Studio.Header>
-        <Studio.Stage />
+        <ClientOnly fallback={<div className="flex-1 min-h-0" />}>
+          {() => <Studio.Stage />}
+        </ClientOnly>
         <Studio.Timeline />
       </Studio.Main>
 

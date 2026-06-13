@@ -88,6 +88,10 @@ export type RenderRequest = {
   rangeLabel: string;
   sizeEst: number;
   frameNo?: number;
+  /** Absolute composition frame range for a partial (region) render. When
+      omitted the whole composition is rendered. `to` is inclusive. */
+  from?: number;
+  to?: number;
 };
 
 export type RenderJob = RenderRequest & {

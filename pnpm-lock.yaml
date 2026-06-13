@@ -23,6 +23,9 @@ importers:
       '@konva-motion/player':
         specifier: workspace:*
         version: link:../packages/player
+      '@konva-motion/renderer':
+        specifier: workspace:*
+        version: link:../packages/renderer
       '@konva-motion/studio':
         specifier: workspace:*
         version: link:../packages/studio
@@ -134,9 +137,15 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
     devDependencies:
+      '@konva-motion/renderer':
+        specifier: workspace:*
+        version: link:../renderer
       '@tailwindcss/cli':
         specifier: ^4.3.0
         version: 4.3.0
+      '@types/node':
+        specifier: ^22.10.0
+        version: 22.19.20
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.29

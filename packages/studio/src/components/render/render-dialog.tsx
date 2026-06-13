@@ -94,6 +94,7 @@ export function RenderDialog({
       h,
       fps: rfps,
       frames,
+      ...(range === "region" && hasRegion ? { from: inFrame, to: outFrame } : {}),
       rangeLabel:
         range === "region" && hasRegion
           ? `${fmtTime(inFrame / compFps)}–${fmtTime(outFrame / compFps)}`
