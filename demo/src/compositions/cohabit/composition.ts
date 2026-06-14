@@ -30,6 +30,7 @@ import s4bUrl from "../../files/film/s4b.mp4";
 import s4cUrl from "../../files/film/s4c.mp4";
 import whooshAUrl from "../../files/film/whoosh-a.mp3";
 import whooshBUrl from "../../files/film/whoosh-b.mp3";
+import { mediaSrc } from "../../media-src.js";
 import type { CohabitProps } from "./schema.js";
 
 const FPS = 30;
@@ -176,7 +177,7 @@ function addClip(comp: Composition<CohabitProps>, o: ClipOpts): Sequence {
   const muted = o.clipVol === undefined;
   const group = new Konva.Group({ x: 0, y: 0 });
   const video = new Video({
-    src: o.src,
+    src: mediaSrc(o.src),
     name: o.name,
     x: 0,
     y: 0,
@@ -235,7 +236,7 @@ function addMusic(
   const music = new Audio({
     id: o.name,
     name: o.name,
-    src: o.src,
+    src: mediaSrc(o.src),
     trimBefore: o.trimBefore,
     volume: 0,
   });
@@ -253,7 +254,9 @@ function addSfx(
   o: { src: string; name: string; from: number; dur: number; volume: number },
 ): void {
   const seq = new Sequence({ from: o.from, durationInFrames: o.dur });
-  seq.add(new Audio({ id: `${o.name}-${o.from}`, name: o.name, src: o.src, volume: o.volume }));
+  seq.add(
+    new Audio({ id: `${o.name}-${o.from}`, name: o.name, src: mediaSrc(o.src), volume: o.volume }),
+  );
   comp.add(seq);
 }
 
@@ -264,7 +267,7 @@ function addVo(
 ): void {
   const dur = o.to - o.from;
   const seq = new Sequence({ from: o.from, durationInFrames: dur });
-  const vo = new Audio({ id: o.name, name: o.name, src: o.src, volume: 0 });
+  const vo = new Audio({ id: o.name, name: o.name, src: mediaSrc(o.src), volume: 0 });
   seq.add(vo);
   seq.register((f) => {
     vo.setVolume(
