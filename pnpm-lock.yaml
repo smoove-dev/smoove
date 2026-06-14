@@ -29,6 +29,9 @@ importers:
       '@konva-motion/studio':
         specifier: workspace:*
         version: link:../packages/studio
+      '@konva-motion/transitions':
+        specifier: workspace:*
+        version: link:../packages/transitions
       konva:
         specifier: ^10.3.0
         version: 10.3.0
