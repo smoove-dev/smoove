@@ -58,6 +58,8 @@ export function ExportFrameDialog({
       id: store.selectedId.get(),
       kind: "still",
       comp: title,
+      // Capture the live props so the exported frame matches the preview.
+      props: comp?.props.get(),
       format,
       quality: "frame",
       w,

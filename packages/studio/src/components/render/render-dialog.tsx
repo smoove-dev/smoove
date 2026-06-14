@@ -88,6 +88,8 @@ export function RenderDialog({
       id: store.selectedId.get(),
       kind: "video",
       comp: title,
+      // The live props drive the preview; send them so the render matches it.
+      props: comp?.props.get(),
       format,
       quality,
       w,
