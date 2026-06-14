@@ -17,21 +17,49 @@ import { type Plugin, transformWithEsbuild } from "vite";
  * selection, props and playhead).
  *
  * Without the plugin everything still works — you just wire HMR by hand.
+ *
+ * It also fixes media for server rendering: a composition imports assets as Vite
+ * URLs (`import clip from "./clip.mp4"`), which the browser player plays but the
+ * headless renderer's ffmpeg/skia can't open. In the SSR build the plugin
+ * rewrites those imports to an absolute FILESYSTEM path; the client build is
+ * untouched. So `new Video({ src: clip })` just works in both — no per-`src`
+ * helper to remember.
  */
 export interface KonvaMotionOptions {
   /** Which modules are treated as registry files. Default: `*registry.{ts,tsx,js,jsx}`. */
   include?: RegExp;
+  /**
+   * Asset imports matching this extension set resolve to an absolute filesystem
+   * path in the SSR build (instead of a Vite URL), so the server renderer can
+   * read them. The client build is unaffected. Pass a custom RegExp to widen or
+   * narrow the set; default covers common video, audio, and image extensions.
+   */
+  serverAssets?: RegExp;
 }
+
+const DEFAULT_SERVER_ASSETS =
+  /\.(?:mp4|webm|mov|m4v|mkv|mp3|wav|ogg|m4a|aac|flac|png|jpe?g|webp|avif|gif)$/i;
 
 // biome-ignore lint/suspicious/noExplicitAny: ESTree nodes are walked structurally.
 type AnyNode = any;
 
 export function konvaMotion(options: KonvaMotionOptions = {}): Plugin {
   const include = options.include ?? /registry\.(?:t|j)sx?$/;
+  const serverAssets = options.serverAssets ?? DEFAULT_SERVER_ASSETS;
 
   return {
     name: "konva-motion",
     enforce: "pre",
+    load(id, loadOptions) {
+      const file = id.split("?")[0] ?? id;
+      if (!serverAssets.test(file)) return null;
+      // Only the server (SSR) sees a filesystem path — the client keeps the URL.
+      // Support both the Environment API (Vite 6) and the legacy `ssr` flag.
+      const envName = (this as { environment?: { name?: string } }).environment?.name;
+      const ssr = loadOptions?.ssr === true || (envName != null && envName !== "client");
+      if (!ssr) return null;
+      return `export default ${JSON.stringify(file)};`;
+    },
     async transform(code, id) {
       const file = id.split("?")[0] ?? id;
       if (!include.test(file)) return null;
