@@ -20,6 +20,7 @@ packages/timeline   @konva-motion/timeline — planned React UI components (scru
 packages/player     @konva-motion/player — Lit web-component player wrapping a Composition (<km-player> + controls). konva + core are peerDeps; lit + @lit/context are deps. Light DOM; opt-in styles at "@konva-motion/player/styles.css".
 packages/transitions @konva-motion/transitions — Remotion-style TransitionSeries + presentations. konva + core are peerDeps.
 packages/renderer   @konva-motion/renderer — headless video renderer (Node). Rasterizes a Composition with skia-canvas (konva/skia-backend) and encodes via ffmpeg (@ffmpeg-installer). konva 10 + core are peerDeps; skia-canvas + @ffmpeg-installer are deps. `./register` subpath = setupServerRendering() at import.
+packages/docs       @konva-motion/docs — documentation website. React Router framework-mode SSR app (RR 7, `appDirectory: "src"`). Renders Markdown pages (frontmatter via gray-matter, markdown-it + highlight.js) with the KmStudio design. Authoring = add a `.md` under `src/content/`; the sidebar nav, TOC, and prev/next are derived from frontmatter. Embeds live demos via @konva-motion/player.
 demo                Vite + TS app, imports packages via `workspace:*`
 doc                 short design + usage docs
 ```

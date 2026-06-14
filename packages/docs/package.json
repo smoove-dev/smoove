@@ -1,0 +1,39 @@
+{
+  "name": "@konva-motion/docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "start": "react-router-serve ./build/server/index.js",
+    "preview": "vite preview",
+    "typecheck": "react-router typegen && tsc -b"
+  },
+  "dependencies": {
+    "@konva-motion/core": "workspace:*",
+    "@konva-motion/player": "workspace:*",
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^11.9.0",
+    "konva": "^10.3.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-container": "^4.0.0",
+    "markdown-it-kbd": "^2.2.2",
+    "markdown-it-task-lists": "^2.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "7.17.0"
+  },
+  "devDependencies": {
+    "@konva-motion/vite": "workspace:*",
+    "@react-router/dev": "7.17.0",
+    "@react-router/node": "7.17.0",
+    "@types/markdown-it": "^14.1.2",
+    "@types/markdown-it-container": "^2.0.10",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.6.3",
+    "vite": "^6.3.6"
+  }
+}

@@ -1,0 +1,804 @@
+/* ============================================================
+   prose.css — the typographic content template.
+   This styles the "middle" of every doc page. Drop in any HTML
+   (or markdown-rendered HTML) inside .prose and it Just Works.
+   ============================================================ */
+
+.prose {
+  color: var(--ink-1);
+  font-size: 16px;
+  line-height: 1.72;
+  max-width: 100%;
+}
+.prose > *:first-child {
+  margin-top: 0;
+}
+
+/* ---------------- eyebrow / page lead ---------------- */
+.prose .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 14px;
+}
+.prose .eyebrow::before {
+  content: "";
+  width: 16px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.prose .lead {
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  font-weight: 400;
+  margin: 0 0 28px;
+  max-width: 64ch;
+}
+
+/* ---------------- headings ---------------- */
+.prose h1 {
+  font-size: clamp(30px, 4.6vw, 40px);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink-1);
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+.prose h2 {
+  font-size: 25px;
+  line-height: 1.22;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--ink-1);
+  margin: 52px 0 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  text-wrap: balance;
+}
+.prose h3 {
+  font-size: 19.5px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--ink-1);
+  margin: 36px 0 12px;
+}
+.prose h4 {
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--ink-1);
+  margin: 28px 0 10px;
+  letter-spacing: .01em;
+}
+.prose h2:first-child,
+.prose h3:first-child {
+  margin-top: 0;
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* anchor links on hover */
+.prose .heading-anchor {
+  margin-left: .4em;
+  color: var(--ink-3);
+  opacity: 0;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity .15s, color .15s;
+}
+.prose h2:hover .heading-anchor,
+.prose h3:hover .heading-anchor,
+.prose h4:hover .heading-anchor {
+  opacity: 1;
+}
+.prose .heading-anchor:hover {
+  color: var(--accent-2);
+}
+[id] {
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+/* ---------------- body copy ---------------- */
+.prose p {
+  margin: 0 0 18px;
+  max-width: 68ch;
+}
+.prose a:not(.btn):not(.card) {
+  color: var(--accent-2);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-line);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  transition: text-decoration-color .15s, color .15s;
+}
+.prose a:not(.btn):not(.card):hover {
+  text-decoration-color: var(--accent-2);
+}
+.prose strong {
+  color: var(--ink-1);
+  font-weight: 700;
+}
+.prose em {
+  font-style: italic;
+}
+.prose small {
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* ---------------- lists ---------------- */
+.prose ul,
+.prose ol {
+  margin: 0 0 18px;
+  padding-left: 0;
+  max-width: 68ch;
+}
+.prose li {
+  margin: 7px 0;
+  padding-left: 28px;
+  position: relative;
+}
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: .72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 99px;
+  background: var(--accent);
+  transform: translateY(-50%);
+}
+.prose ol {
+  counter-reset: ol;
+}
+.prose ol > li {
+  counter-increment: ol;
+}
+.prose ol > li::before {
+  content: counter(ol);
+  position: absolute;
+  left: 0;
+  top: .05em;
+  width: 19px;
+  height: 19px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--accent-2);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  display: grid;
+  place-items: center;
+}
+.prose li > ul,
+.prose li > ol {
+  margin: 7px 0 2px;
+}
+.prose ul ul > li::before {
+  background: var(--ink-3);
+}
+
+/* task list (markdown `- [ ]` via markdown-it-task-lists) */
+.prose .task,
+.prose .task-list-item {
+  list-style: none;
+  padding-left: 28px;
+}
+.prose .task::before,
+.prose .task-list-item::before {
+  display: none;
+}
+.prose .task input,
+.prose .task-list-item input,
+.prose .task-list-item .task-list-item-checkbox {
+  position: absolute;
+  left: 2px;
+  top: .3em;
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
+}
+
+/* ---------------- inline code ---------------- */
+.prose :not(pre) > code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: .86em;
+  font-weight: 500;
+  color: var(--ink-1);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: .12em .4em;
+  white-space: nowrap;
+}
+.prose a code {
+  color: var(--accent-2);
+}
+
+/* ---------------- code block ---------------- */
+.code-block {
+  margin: 0 0 24px;
+  border: 1px solid var(--code-line);
+  border-radius: var(--radius-ui);
+  background: var(--code-bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.code-block__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 10px 0 14px;
+  border-bottom: 1px solid var(--code-line);
+  background: color-mix(in oklab, var(--code-bg) 80%, var(--bg-1));
+}
+.code-block__lang {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.code-block__dots {
+  display: flex;
+  gap: 6px;
+  margin-right: 2px;
+}
+.code-block__dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 99px;
+  background: var(--bg-3);
+  display: block;
+}
+.code-block__copy {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-3);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 5px 9px;
+  transition: color .15s, background-color .15s, border-color .15s;
+}
+.code-block__copy:hover {
+  color: var(--ink-1);
+  background: var(--bg-2);
+  border-color: var(--line);
+}
+.code-block__copy.is-copied {
+  color: var(--good);
+}
+.code-block__copy svg {
+  width: 14px;
+  height: 14px;
+}
+.code-block__copy .ic-check {
+  display: none;
+}
+.code-block__copy.is-copied .ic-copy {
+  display: none;
+}
+.code-block__copy.is-copied .ic-check {
+  display: block;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+}
+.code-block pre.scroll {
+  scrollbar-width: thin;
+}
+.code-block code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--code-ink);
+  background: none;
+  border: 0;
+  padding: 0;
+  white-space: pre;
+}
+/* standalone pre (no toolbar) */
+.prose pre:not(.code-block pre) {
+  margin: 0 0 24px;
+  padding: 16px 18px;
+  border-radius: var(--radius-ui);
+  background: var(--code-bg);
+  border: 1px solid var(--code-line);
+  overflow-x: auto;
+}
+
+/* syntax tokens (highlight.js classes -> theme vars) */
+.hljs-comment,
+.hljs-quote {
+  color: var(--tok-com);
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-built_in,
+.hljs-type {
+  color: var(--tok-key);
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-meta .hljs-string,
+.hljs-template-tag {
+  color: var(--tok-str);
+}
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet {
+  color: var(--tok-num);
+}
+.hljs-title,
+.hljs-title.function_,
+.hljs-function .hljs-title,
+.hljs-section {
+  color: var(--tok-fn);
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-variable.constant_ {
+  color: var(--tok-attr);
+}
+.hljs-name,
+.hljs-tag .hljs-name,
+.hljs-selector-class,
+.hljs-selector-id {
+  color: var(--tok-tag);
+}
+.hljs-property,
+.hljs-params,
+.hljs-variable {
+  color: var(--tok-prop);
+}
+.hljs-punctuation,
+.hljs-operator {
+  color: var(--tok-punc);
+}
+.hljs-meta {
+  color: var(--ink-3);
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: 700;
+}
+
+/* ---------------- blockquote ---------------- */
+.prose blockquote {
+  margin: 0 0 24px;
+  padding: 4px 0 4px 22px;
+  border-left: 3px solid var(--accent);
+  color: var(--ink-2);
+  font-size: 17px;
+  font-style: italic;
+  max-width: 64ch;
+}
+.prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+.prose blockquote cite {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  font-style: normal;
+  color: var(--ink-3);
+}
+.prose blockquote cite::before {
+  content: "— ";
+}
+
+/* ---------------- callouts (no left-stripe trope) ---------------- */
+.callout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+  margin: 0 0 24px;
+  padding: 16px 18px;
+  border-radius: var(--radius-ui);
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+}
+.callout__icon {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  border: 1px solid;
+}
+.callout__icon svg {
+  width: 16px;
+  height: 16px;
+}
+.callout__body {
+  min-width: 0;
+}
+.callout__title {
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  margin-bottom: 3px;
+}
+.callout__body p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 14.5px;
+}
+.callout__body p + p {
+  margin-top: 8px;
+}
+.callout__body code {
+  font-size: .85em;
+}
+
+.callout--note {
+  background: var(--info-soft);
+  border-color: color-mix(in oklab, var(--info) 28%, transparent);
+}
+.callout--note .callout__icon {
+  color: var(--info);
+  border-color: color-mix(in oklab, var(--info) 35%, transparent);
+  background: color-mix(in oklab, var(--info) 12%, transparent);
+}
+.callout--note .callout__title {
+  color: var(--info);
+}
+.callout--tip {
+  background: var(--good-soft);
+  border-color: color-mix(in oklab, var(--good) 26%, transparent);
+}
+.callout--tip .callout__icon {
+  color: var(--good);
+  border-color: color-mix(in oklab, var(--good) 35%, transparent);
+  background: color-mix(in oklab, var(--good) 12%, transparent);
+}
+.callout--tip .callout__title {
+  color: var(--good);
+}
+.callout--warning {
+  background: var(--warn-soft);
+  border-color: color-mix(in oklab, var(--warn) 30%, transparent);
+}
+.callout--warning .callout__icon {
+  color: var(--warn);
+  border-color: color-mix(in oklab, var(--warn) 38%, transparent);
+  background: color-mix(in oklab, var(--warn) 14%, transparent);
+}
+.callout--warning .callout__title {
+  color: var(--warn);
+}
+.callout--danger {
+  background: var(--danger-soft);
+  border-color: color-mix(in oklab, var(--danger) 30%, transparent);
+}
+.callout--danger .callout__icon {
+  color: var(--danger);
+  border-color: color-mix(in oklab, var(--danger) 38%, transparent);
+  background: color-mix(in oklab, var(--danger) 14%, transparent);
+}
+.callout--danger .callout__title {
+  color: var(--danger);
+}
+
+/* ---------------- tables ---------------- */
+.prose .table-wrap {
+  margin: 0 0 24px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-ui);
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.prose thead th {
+  text-align: left;
+  font-weight: 700;
+  color: var(--ink-1);
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  padding: 11px 16px;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--line-2);
+  white-space: nowrap;
+}
+.prose tbody td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  vertical-align: top;
+}
+.prose tbody tr:last-child td {
+  border-bottom: 0;
+}
+.prose tbody tr:hover td {
+  background: color-mix(in oklab, var(--bg-1) 55%, transparent);
+}
+.prose td code,
+.prose th code {
+  white-space: nowrap;
+}
+.prose td strong {
+  color: var(--ink-1);
+}
+
+/* ---------------- hr ---------------- */
+.prose hr {
+  border: 0;
+  height: 1px;
+  background: var(--line);
+  margin: 40px 0;
+}
+
+/* ---------------- kbd & badges ---------------- */
+.prose kbd {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-1);
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  padding: 2px 7px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  color: var(--ink-2);
+  background: var(--bg-2);
+  vertical-align: middle;
+}
+.badge--accent {
+  color: var(--accent-2);
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+}
+.badge--good {
+  color: var(--good);
+  background: var(--good-soft);
+  border-color: color-mix(in oklab, var(--good) 32%, transparent);
+}
+.badge--warn {
+  color: var(--warn);
+  background: var(--warn-soft);
+  border-color: color-mix(in oklab, var(--warn) 34%, transparent);
+}
+
+/* ---------------- figures / images ---------------- */
+.prose figure {
+  margin: 0 0 24px;
+}
+.prose figure img {
+  width: 100%;
+  border-radius: var(--radius-ui);
+  border: 1px solid var(--line);
+}
+.prose figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+/* ---------------- property / API list ---------------- */
+.prop {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.prop:last-child {
+  border-bottom: 0;
+}
+.prop__head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.prop__name {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-1);
+}
+.prop__type {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  color: var(--accent-2);
+}
+.prop__desc,
+.prop > p {
+  color: var(--ink-2);
+  font-size: 14.5px;
+  margin: 0;
+}
+.prop__desc code,
+.prop > p code {
+  font-size: .85em;
+}
+
+/* ---------------- steps ---------------- */
+.steps {
+  margin: 0 0 24px;
+  padding-left: 30px;
+  border-left: 1px solid var(--line);
+  counter-reset: step;
+}
+.steps__item {
+  position: relative;
+  padding: 0 0 26px 14px;
+}
+.steps__item:last-child {
+  padding-bottom: 0;
+}
+.steps__item::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: -45px;
+  top: -3px;
+  width: 28px;
+  height: 28px;
+  border-radius: 99px;
+  display: grid;
+  place-items: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  box-shadow: 0 0 0 4px var(--bg-0);
+}
+.steps__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink-1);
+  margin: 0 0 6px;
+}
+.steps__item > p {
+  margin-bottom: 12px;
+}
+
+/* ---------------- live demo placeholder slot ---------------- */
+.demo-slot {
+  margin: 0 0 24px;
+  border-radius: var(--radius-ui);
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  background: var(--bg-1);
+}
+.demo-slot__bar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 38px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-1);
+}
+.demo-slot__bar .label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.demo-slot__bar .tag {
+  margin-left: auto;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.demo-slot__bar .glow {
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: var(--good);
+  box-shadow: 0 0 8px var(--good);
+}
+.demo-slot__stage {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(
+      120% 120% at 30% 15%,
+      color-mix(in oklab, var(--accent) 14%, transparent),
+      transparent 60%
+    ), var(--stage);
+}
+.demo-slot__hint {
+  text-align: center;
+  color: var(--ink-3);
+  max-width: 320px;
+}
+.demo-slot__hint .ring {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 14px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  color: var(--accent-2);
+  border: 1px dashed var(--accent-line);
+  background: var(--accent-soft);
+}
+.demo-slot__hint .ring svg {
+  width: 22px;
+  height: 22px;
+}
+.demo-slot__hint b {
+  display: block;
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.demo-slot__hint span {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* utility: two-up grid for cards inside prose */
+.prose .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 0 0 24px;
+}
+
+@media (max-width: 600px) {
+  .prose {
+    font-size: 15.5px;
+  }
+  .callout {
+    grid-template-columns: 1fr;
+  }
+  .callout__icon {
+    width: 28px;
+    height: 28px;
+  }
+}

@@ -7,6 +7,12 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "demo", "dev"],
       "port": 5174
+    },
+    {
+      "name": "docs",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@konva-motion/docs", "dev"],
+      "port": 5176
     }
   ]
 }

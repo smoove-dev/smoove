@@ -9,6 +9,7 @@
     { "path": "./packages/renderer" },
     { "path": "./packages/studio" },
     { "path": "./packages/vite" },
+    { "path": "./packages/docs" },
     { "path": "./demo" },
     { "path": "./demo2" }
   ]

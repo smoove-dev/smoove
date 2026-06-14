@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false,
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
+    "rootDirs": [".", "./.react-router/types"]
+  },
+  "include": ["src", "vite.config.ts", "react-router.config.ts", ".react-router/types/**/*"],
+  "references": [{ "path": "../core" }, { "path": "../player" }]
+}

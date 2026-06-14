@@ -1,0 +1,9 @@
+/* Boot fallback shown while the client hydrates. */
+.km-boot {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  color: var(--ink-3);
+  font: 600 13px "Hanken Grotesk", system-ui, sans-serif;
+  letter-spacing: 0.04em;
+}

@@ -1,0 +1,538 @@
+/* ============================================================
+   base.css — konva-motion docs
+   Design tokens (light + dark), reset, and shared atoms.
+   Built strictly on the KmStudio design system: violet accent,
+   layered surfaces, Hanken Grotesk + JetBrains Mono.
+   ============================================================ */
+
+/* ---------------- DARK (default) ---------------- */
+:root {
+  color-scheme: dark;
+
+  --stage: #0c0c0f;
+  --bg-0: #100f14;
+  --bg-1: #17161c;
+  --bg-2: #1e1d25;
+  --bg-3: #2a2933;
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.13);
+
+  --ink-1: #eceaf2;
+  --ink-2: #a4a2b2;
+  --ink-3: #6b6a78;
+
+  --accent: #7c5cff;
+  --accent-2: #9579ff;
+  --accent-soft: color-mix(in oklab, var(--accent) 16%, transparent);
+  --accent-line: color-mix(in oklab, var(--accent) 38%, transparent);
+
+  --good: #46d39a;
+  --warn: #ffb44d;
+  --danger: #ff6b6b;
+  --info: #56b8ff;
+
+  --good-soft: color-mix(in oklab, var(--good) 15%, transparent);
+  --warn-soft: color-mix(in oklab, var(--warn) 15%, transparent);
+  --danger-soft: color-mix(in oklab, var(--danger) 15%, transparent);
+  --info-soft: color-mix(in oklab, var(--info) 15%, transparent);
+
+  /* code surface + tokens */
+  --code-bg: #131218;
+  --code-line: rgba(255, 255, 255, 0.07);
+  --code-ink: #d6d3e0;
+  --tok-key: #c4a7ff;
+  --tok-str: #8ee6b0;
+  --tok-num: #ffb27a;
+  --tok-fn: #7cc7ff;
+  --tok-com: #5b5a68;
+  --tok-punc: #97959f;
+  --tok-tag: #ff8fa3;
+  --tok-attr: #ffd479;
+  --tok-prop: #d6d3e0;
+
+  --radius-ui: 10px;
+  --radius-control: 7px;
+
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.02), 0 14px 40px -22px rgba(0, 0, 0, 0.8);
+  --shadow-pop: 0 18px 44px -12px rgba(0, 0, 0, 0.7);
+
+  --sidebar-w: 270px;
+  --toc-w: 224px;
+  --header-h: 60px;
+}
+
+/* ---------------- LIGHT ---------------- */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --stage: #ecebf2;
+  --bg-0: #ffffff;
+  --bg-1: #f8f7fb;
+  --bg-2: #f1f0f6;
+  --bg-3: #e7e6ee;
+
+  --line: rgba(24, 18, 48, 0.09);
+  --line-2: rgba(24, 18, 48, 0.14);
+
+  --ink-1: #1a1822;
+  --ink-2: #56535f;
+  --ink-3: #8b8893;
+
+  --accent: #6840ee;
+  --accent-2: #7c5cff;
+  --accent-soft: color-mix(in oklab, var(--accent) 12%, transparent);
+  --accent-line: color-mix(in oklab, var(--accent) 30%, transparent);
+
+  --good: #18966a;
+  --warn: #b9760e;
+  --danger: #d6433f;
+  --info: #2576d6;
+
+  --good-soft: color-mix(in oklab, var(--good) 11%, transparent);
+  --warn-soft: color-mix(in oklab, var(--warn) 12%, transparent);
+  --danger-soft: color-mix(in oklab, var(--danger) 10%, transparent);
+  --info-soft: color-mix(in oklab, var(--info) 11%, transparent);
+
+  --code-bg: #faf9fd;
+  --code-line: rgba(24, 18, 48, 0.1);
+  --code-ink: #36333f;
+  --tok-key: #7c3aed;
+  --tok-str: #0d8a54;
+  --tok-num: #b4530a;
+  --tok-fn: #1f6feb;
+  --tok-com: #9b98a6;
+  --tok-punc: #6b6878;
+  --tok-tag: #c2185b;
+  --tok-attr: #9a6700;
+  --tok-prop: #36333f;
+
+  --shadow-card: 0 1px 2px rgba(24, 18, 48, 0.04), 0 16px 40px -28px rgba(24, 18, 48, 0.4);
+  --shadow-pop: 0 18px 44px -14px rgba(24, 18, 48, 0.22);
+}
+
+/* ---------------- reset ---------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--bg-0);
+  color: var(--ink-1);
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body,
+.theme-fade,
+.theme-fade * {
+  transition: background-color .25s ease, border-color .25s ease, color .2s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+button {
+  font-family: inherit;
+}
+::selection {
+  background: color-mix(in oklab, var(--accent) 32%, transparent);
+  color: #fff;
+}
+[data-theme="light"] ::selection {
+  color: var(--ink-1);
+}
+
+/* scrollbars */
+.scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--ink-3) 55%, transparent) transparent;
+}
+.scroll::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--ink-3) 45%, transparent);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--ink-3) 70%, transparent);
+  background-clip: content-box;
+}
+.scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 55%, transparent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------------- brand ---------------- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand__mark {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(150deg, var(--accent-2), var(--accent));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 3px 12px var(--accent-soft);
+}
+.brand__mark svg {
+  width: 15px;
+  height: 15px;
+}
+.brand__word {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--ink-1);
+  white-space: nowrap;
+}
+.brand__word .dim {
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+/* ---------------- buttons ---------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: var(--radius-ui);
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  transition: filter .15s ease, background-color .15s ease, border-color .15s ease, transform .12s
+    ease;
+}
+.btn:active {
+  transform: translateY(.5px);
+}
+.btn--primary {
+  color: #fff;
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  box-shadow: 0 2px 16px -4px var(--accent-soft);
+}
+.btn--primary:hover {
+  filter: brightness(1.08);
+}
+.btn--ghost {
+  color: var(--ink-1);
+  background: var(--bg-2);
+  border-color: var(--line-2);
+}
+.btn--ghost:hover {
+  background: var(--bg-3);
+}
+.btn--quiet {
+  color: var(--ink-2);
+  background: transparent;
+}
+.btn--quiet:hover {
+  color: var(--ink-1);
+  background: var(--bg-2);
+}
+.btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* icon button */
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-ui);
+  color: var(--ink-2);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.icon-btn:hover {
+  background: var(--bg-2);
+  color: var(--ink-1);
+}
+.icon-btn--bordered {
+  background: var(--bg-2);
+  border-color: var(--line);
+}
+.icon-btn--bordered:hover {
+  background: var(--bg-3);
+  border-color: var(--line-2);
+}
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* theme toggle (sun/moon swap) */
+.theme-toggle .sun {
+  display: none;
+}
+.theme-toggle .moon {
+  display: block;
+}
+[data-theme="light"] .theme-toggle .sun {
+  display: block;
+}
+[data-theme="light"] .theme-toggle .moon {
+  display: none;
+}
+
+/* version / eyebrow pill */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--ink-2);
+  background: var(--bg-2);
+  white-space: nowrap;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 5px 11px;
+}
+.pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 99px;
+  background: var(--accent-2);
+  box-shadow: 0 0 8px var(--accent-soft);
+}
+.pill .ver {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------- GitHub link + star count ---------------- */
+.gh-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 38px;
+  flex: none;
+  padding: 0 12px 0 11px;
+  border-radius: var(--radius-ui);
+  color: var(--ink-2);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  font-weight: 600;
+  font-size: 13px;
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.gh-link:hover {
+  background: var(--bg-3);
+  color: var(--ink-1);
+  border-color: var(--line-2);
+}
+.gh-link svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+}
+.gh-link .stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--ink-3);
+  padding-left: 9px;
+  margin-left: 1px;
+  border-left: 1px solid var(--line-2);
+}
+.gh-link .stars svg {
+  width: 12px;
+  height: 12px;
+  color: var(--warn);
+}
+.gh-link:hover .stars {
+  color: var(--ink-2);
+}
+.gh-link--icon {
+  width: 38px;
+  padding: 0;
+  justify-content: center;
+}
+.gh-link--icon .gh-name,
+.gh-link--icon .stars {
+  display: none;
+}
+
+/* ---------------- social icon row ---------------- */
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.social a {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-control);
+  color: var(--ink-3);
+  transition: color .15s, background-color .15s;
+}
+.social a:hover {
+  color: var(--ink-1);
+  background: var(--bg-2);
+}
+.social a svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---------------- OSS shield badges ---------------- */
+.shields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.shield {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-2);
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 5px 11px;
+}
+.shield svg {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  color: var(--ink-3);
+}
+.shield b {
+  color: var(--ink-1);
+  font-weight: 600;
+}
+.shield .v {
+  color: var(--accent-2);
+}
+
+/* ---------------- copyable command ---------------- */
+.copy-cmd {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+  max-width: 100%;
+  background: var(--code-bg);
+  border: 1px solid var(--code-line);
+  border-radius: var(--radius-ui);
+  padding: 9px 9px 9px 16px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13.5px;
+  color: var(--code-ink);
+  box-shadow: var(--shadow-card);
+}
+.copy-cmd > span {
+  overflow-x: auto;
+}
+.copy-cmd .prompt {
+  color: var(--accent-2);
+  user-select: none;
+}
+.copy-cmd button {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 6px;
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: color .15s, background-color .15s, border-color .15s;
+}
+.copy-cmd button:hover {
+  color: var(--ink-1);
+  background: var(--bg-2);
+  border-color: var(--line);
+}
+.copy-cmd button.is-copied {
+  color: var(--good);
+}
+.copy-cmd button svg {
+  width: 15px;
+  height: 15px;
+}
+.copy-cmd button .ic-check {
+  display: none;
+}
+.copy-cmd button.is-copied .ic-copy {
+  display: none;
+}
+.copy-cmd button.is-copied .ic-check {
+  display: block;
+}

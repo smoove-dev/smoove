@@ -8,6 +8,7 @@
   "scripts": {
     "build": "pnpm -r --filter \"./packages/*\" run build",
     "dev": "pnpm --filter demo run dev",
+    "dev:docs": "pnpm --filter docs run dev",
     "check": "biome check .",
     "format": "biome format --write ."
   },
