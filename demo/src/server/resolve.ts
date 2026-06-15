@@ -1,4 +1,9 @@
 import { setupServerRendering } from "@konva-motion/renderer";
+// Route Tier B (shader) transitions through the headless-gl + skia compositor so
+// demos like `tr-ripple` / `tr-film-burn` render their shaders server-side
+// instead of falling back to `fade()`. Needs the optional `gl` (headless-gl)
+// package; if it's missing, shader transitions quietly fall back to fade.
+import "@konva-motion/renderer/gl";
 import type { RenderRequest } from "@konva-motion/studio";
 import registry from "../registry.js";
 

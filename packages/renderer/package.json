@@ -15,6 +15,10 @@
     "./register": {
       "types": "./dist/register.d.ts",
       "import": "./dist/register.js"
+    },
+    "./gl": {
+      "types": "./dist/gl.d.ts",
+      "import": "./dist/gl.js"
     }
   },
   "files": ["dist"],
@@ -29,12 +33,22 @@
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "skia-canvas": "^3.0.8"
   },
+  "optionalDependencies": {
+    "gl": "^8.1.6"
+  },
   "devDependencies": {
+    "@konva-motion/transitions": "workspace:*",
     "@types/node": "^22.10.0",
     "tsx": "^4.19.2"
   },
   "peerDependencies": {
     "@konva-motion/core": "workspace:*",
+    "@konva-motion/transitions": "workspace:*",
     "konva": ">=10"
+  },
+  "peerDependenciesMeta": {
+    "@konva-motion/transitions": {
+      "optional": true
+    }
   }
 }

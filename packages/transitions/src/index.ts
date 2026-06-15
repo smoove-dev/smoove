@@ -20,5 +20,12 @@ export {
 
 export * from "./presentations/index.js";
 
-export { getCompositor, GlCompositor } from "./gl/compositor.js";
+export {
+  getCompositor,
+  GlCompositor,
+  type GlPlatform,
+  setCompositorFactory,
+} from "./gl/compositor.js";
 export { glTransition } from "./gl/gl-transition.js";
+export { type GlContext, VERTEX_SHADER, VERTEX_SHADER_100 } from "./gl/shared.js";
+export { transpileTo100 } from "./gl/transpile.js";
