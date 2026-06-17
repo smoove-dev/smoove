@@ -1,22 +1,61 @@
 import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { useState } from "react";
 
-// Live-demo embed: plays a composition in <km-player> and, when given the
-// module's raw `source`, offers a "View source" toggle that reveals it in a
-// runtime-highlighted code block. MDX passes both the `?url` (for the player)
-// and `?raw` (for the source) imports of the same composition module.
+// Every demo composition lives at `src/demos/<name>.ts` and default-exports a
+// `Composition` (see `doc/authoring-demos.md`). These two globs resolve both
+// views of each file from its name — the served `?url` the player `import()`s,
+// and the `?raw` source for the "View source" toggle — so a page only writes
+// `<Demo name="orbit" />` instead of wiring two imports by hand.
+const URLS = import.meta.glob("../demos/*.ts", {
+  query: "?url&no-inline",
+  import: "default",
+  eager: true,
+}) as Record<string, string>;
+const SOURCES = import.meta.glob("../demos/*.ts", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+}) as Record<string, string>;
+
+// `../demos/orbit.ts` → `orbit`
+const basename = (path: string) => path.slice(path.lastIndexOf("/") + 1).replace(/\.ts$/, "");
+
+const DEMOS: Record<string, { url: string; source: string }> = {};
+for (const [path, url] of Object.entries(URLS)) {
+  const name = basename(path);
+  const source = SOURCES[path];
+  if (source !== undefined) DEMOS[name] = { url, source };
+}
+
+// Live-demo embed: plays a composition in <km-player> and offers a "View source"
+// toggle that reveals it in a runtime-highlighted code block. Pass `name` to
+// resolve both the player URL and the source from `src/demos/<name>.ts`, or pass
+// `src`/`source` explicitly to override (e.g. a composition outside src/demos).
 export function Demo({
+  name,
   src,
   source,
   lang = "ts",
   label,
 }: {
-  src: string;
+  name?: string;
+  src?: string;
   source?: string;
   lang?: string;
   label?: string;
 }) {
   const [showSource, setShowSource] = useState(false);
+
+  const resolved = name ? DEMOS[name] : undefined;
+  if (name && !resolved) {
+    throw new Error(
+      `[docs] <Demo name="${name}" /> — no demo at src/demos/${name}.ts. Available: ${
+        Object.keys(DEMOS).sort().join(", ") || "(none)"
+      }`,
+    );
+  }
+  const playerSrc = src ?? resolved?.url;
+  const playerSource = source ?? resolved?.source;
 
   return (
     <figure className="not-prose my-6 overflow-hidden rounded-xl border border-fd-border bg-fd-card">
@@ -25,7 +64,7 @@ export function Demo({
         <span className="font-medium">Live demo</span>
         <span className="ml-auto flex items-center gap-3">
           {label ? <span className="opacity-70">{label}</span> : null}
-          {source ? (
+          {playerSource ? (
             <button
               type="button"
               onClick={() => setShowSource((v) => !v)}
@@ -39,12 +78,12 @@ export function Demo({
       </figcaption>
 
       <div className="grid aspect-video w-full place-items-center bg-fd-secondary [&_km-player]:size-full">
-        <km-player src={src} controls loop autoplay />
+        <km-player src={playerSrc} controls loop autoplay />
       </div>
 
-      {source && showSource ? (
+      {playerSource && showSource ? (
         <div className="border-fd-border border-t [&_figure]:my-0 [&_figure]:rounded-none [&_figure]:border-x-0 [&_figure]:border-b-0">
-          <DynamicCodeBlock lang={lang} code={source} />
+          <DynamicCodeBlock lang={lang} code={playerSource} />
         </div>
       ) : null}
     </figure>

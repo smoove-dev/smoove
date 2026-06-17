@@ -38,15 +38,14 @@ const comp = new Composition({ id: "orbit", fps: 60, durationInFrames: 180 });
 export default comp; // or: () => comp / async () => comp
 ```
 
-The demo below is exactly that. The composition lives in its own module; the
-docs hand the player its URL with Vite's [`?url`](https://vite.dev/guide/assets#explicit-url-imports)
-import, so the player fetches and runs it at load time — the same path a truly
-remote file would take.
+The demo below is exactly that. The composition lives in its own module
+(`src/demos/orbit.ts`); the docs hand the player its URL with Vite's
+[`?url`](https://vite.dev/guide/assets#explicit-url-imports) import, so the
+player fetches and runs it at load time — the same path a truly remote file
+would take. The `<Demo name="…" />` helper resolves both that URL and the
+displayed source from the demo's name.
 
-import orbit from '../../src/demos/orbit.ts?url&no-inline';
-import orbitSource from '../../src/demos/orbit.ts?raw';
-
-<Demo src={orbit} source={orbitSource} lang="ts" label="loaded via src" />
+<Demo name="orbit" lang="ts" label="loaded via src" />
 
 Relative `src` values resolve against the document base. The player emits
 `loadstart` when a load begins and `loaded` once mounted; a failed import — or a
