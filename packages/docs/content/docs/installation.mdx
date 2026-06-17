@@ -1,44 +1,70 @@
 ---
 title: Installation
-description: Add the package, create a Konva Stage, and play your first tween.
+description: Add the package, build your first composition, and play it in the browser.
 ---
 
-konva-motion ships as an ES module with `konva` as a peer dependency. Install both, build a scene, and drive it from a timeline.
+konva-motion ships as an ES module with `konva` as a peer dependency. Install
+both, describe a composition, mount it into a container, and play it.
 
 ## Install
 
 ```bash
-npm install konva konva-motion
+npm install konva @konva-motion/core
 # or
-pnpm add konva konva-motion
+pnpm add konva @konva-motion/core
 ```
 
 <Callout type="info" title="Konva is a peer dependency">
-Pin the `konva` version yourself — konva-motion extends Konva's classes, so the two must resolve to a single copy.
+konva-motion **extends** Konva's classes — `Composition` is a `Konva.Stage`,
+`Sequence` is a `Konva.Layer`, and `Rect`/`Circle`/`Text`/… extend their Konva
+equivalents. Install `konva` yourself and make sure your bundler resolves a
+**single** copy; two copies break `instanceof` checks and layout.
 </Callout>
 
-## Your first tween
+## Your first composition
 
-```js
-import Konva from "konva";
-import { Timeline, easeOut } from "konva-motion";
+Three pieces: a `Composition` (the frame clock), a `Sequence` (a range-gated
+layer), and an **updater** that sets attributes as a function of the frame.
 
-// a regular Konva stage + layer
-const stage = new Konva.Stage({ container: "scene", width: 1280, height: 720 });
-const layer = new Konva.Layer();
-stage.add(layer);
+```ts
+import { Circle, Composition, Easing, Rect, Sequence, interpolate } from "@konva-motion/core";
 
-const title = new Konva.Text({ text: "Motion in minutes", fontSize: 96, y: 80, opacity: 0 });
-layer.add(title);
+const comp = new Composition({
+  id: "first-tween",
+  fps: 30,
+  durationInFrames: 90, // 3 seconds
+  width: 1280,
+  height: 720,
+  loop: true,
+});
 
-// describe the motion on a timeline, then play it
-const tl = new Timeline({ loop: true });
-tl.to(title, { y: 0, opacity: 1, duration: 0.9, easing: easeOut });
-tl.play();
+const scene = new Sequence({ from: 0, durationInFrames: 90 });
+scene.add(new Rect({ x: 0, y: 0, width: 1280, height: 720, fill: "#0d1117" }));
+
+const ball = new Circle({ x: 0, y: 360, radius: 64, fill: "#4ea1ff" });
+scene.add(ball);
+
+scene.register((frame) => {
+  // "Where is the ball at frame N?" — the whole model in one line.
+  ball.x(interpolate(frame, [0, 89], [160, 1120], { easing: Easing.inOut(Easing.cubic) }));
+  ball.opacity(interpolate(frame, [0, 15, 75, 89], [0, 1, 1, 0]));
+});
+
+comp.add(scene);
+
+// Mount into a DOM element and play.
+comp.setContainer(document.getElementById("scene") as HTMLDivElement);
+comp.play();
 ```
 
-<Callout type="warn" title="Heads up">
-Add a node to a Konva `Layer` before you tween it — animating a detached node updates its attributes but nothing repaints.
+That composition is the demo below — open **View source** to see the exact file:
+
+<Demo name="first-tween" label="the code above, running" />
+
+<Callout type="warn" title="Add the node before you animate it">
+Attach every node to a `Sequence` (`scene.add(node)`) **before** you tween it.
+Updating attributes on a detached node changes the values but nothing repaints —
+the sequence is what draws it.
 </Callout>
 
 ## Step by step
@@ -46,23 +72,38 @@ Add a node to a Konva `Layer` before you tween it — animating a detached node 
 <Steps>
 
 <Step>
-### Create a Stage & Layer
+### Create a composition
 
-Set up a Konva `Stage` bound to a container element, add a `Layer`, and place your shapes on it.
+`new Composition({ id, fps, durationInFrames, width, height, loop })` defines the
+frame clock and the canvas. `fps × durationInFrames` is the whole timeline.
 </Step>
 
 <Step>
-### Build a Timeline
+### Add a sequence
 
-Create a `Timeline` — it sequences your tweens and repaints the layer for you on every frame.
+`new Sequence({ from, durationInFrames })` is a range-gated layer. Add your nodes
+to it with `seq.add(...)`, then add the sequence to the composition with
+`comp.add(seq)`.
 </Step>
 
 <Step>
-### Tween a node
+### Register a frame updater
 
-Call `tl.to(node, { …attrs, duration })` to animate any Konva attribute, then `tl.play()`.
+`seq.register((frame) => { … })` runs every tick the sequence is in range. Set
+attributes from the frame — usually via [`interpolate`](/docs/interpolation) and
+[`Easing`](/docs/easing). The argument is the **sequence-local** frame.
+</Step>
+
+<Step>
+### Mount and play
+
+Point the stage at a container with `comp.setContainer(el)` (or pass `container`
+in the constructor), then `comp.play()`. For offline / server rendering use
+`comp.setFrame(n)` instead — it works without a browser.
 </Step>
 
 </Steps>
 
-You're ready — explore the full content toolkit in [Components & Typography](/docs/components).
+Next: [Core concepts](/docs/core-concepts) goes deeper on range-gating and the
+tick loop, or jump to [Animating](/docs/interpolation) to learn `interpolate`
+and `Easing`.

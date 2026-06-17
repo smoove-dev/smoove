@@ -1,0 +1,112 @@
+---
+title: Core concepts
+description: Composition, Sequence, range-gating, the tick loop, and play vs setFrame.
+---
+
+konva-motion has a small surface. Three ideas carry almost everything:
+**the composition is a frame clock**, **a sequence is a range-gated layer**, and
+**every tick runs your updaters and repaints**.
+
+## Composition — the frame clock
+
+A `Composition` _is_ a `Konva.Stage` with a clock bolted on. `fps` and
+`durationInFrames` define a fixed timeline; the composition tracks a current
+frame and advances it during playback.
+
+```ts
+const comp = new Composition({
+  id: "scene", // unique id
+  fps: 30, // frames per second
+  durationInFrames: 150, // 5 seconds total → frames 0…149
+  width: 1280,
+  height: 720,
+  loop: true, // restart at 0 when the end is reached
+});
+```
+
+Read the clock reactively at any time:
+
+```ts
+comp.frame.get(); // current frame
+comp.isPlaying.get(); // true while playing
+comp.frame.subscribe((f) => console.log("now at", f));
+```
+
+## Sequence — a range-gated layer
+
+A `Sequence` _is_ a `Konva.Layer` pinned to a window on the timeline:
+`[from, from + durationInFrames)`. It's only visible — and only repainted —
+while the playhead is inside that window. Outside it, the layer is hidden and its
+updaters don't run.
+
+```ts
+const intro = new Sequence({ from: 0, durationInFrames: 60 }); // frames 0…59
+const outro = new Sequence({ from: 90, durationInFrames: 60 }); // frames 90…149
+comp.add(intro, outro);
+```
+
+This is how you compose a timeline out of independent pieces: stagger their
+`from` values, overlap them, or lay them back-to-back. Each only does work while
+it's on screen.
+
+<Demo name="range-gate" label="three sequences, gated to their own windows" />
+
+### Local frame vs global frame
+
+The updater you pass to `seq.register(...)` receives the **sequence-local**
+frame — `0` on the sequence's first visible frame, counting up from there. For a
+full-duration sequence (`from: 0`) the local frame equals the composition's
+global frame; for a shifted sequence it's offset by `from`.
+
+```ts
+const outro = new Sequence({ from: 90, durationInFrames: 60 });
+outro.register((local) => {
+  // When the global frame is 90, `local` is 0.
+  card.opacity(interpolate(local, [0, 30], [0, 1], { extrapolateRight: "clamp" }));
+});
+```
+
+Local frames let you write a sequence once and place it anywhere on the timeline
+without rewriting its ranges.
+
+## The tick loop
+
+On every tick (during playback, or on a seek) the composition processes each
+sequence that's in range, in this order:
+
+1. **Updaters** run — your `register` callbacks set attributes from the frame.
+2. **Media ticks** — `Video`/`Audio` nodes sync to the frame.
+3. **Layout** — `Flex`/`Block` roots recompute, so animated sizes/gaps reflow.
+4. **Draw** — a `draw()` on the frame a sequence becomes active, `batchDraw()`
+   after.
+
+You only ever write step 1. The rest is the engine.
+
+<Demo name="frame-clock" label="attribute = f(frame), recomputed every tick" />
+
+## `play()` in the browser, `setFrame(n)` anywhere
+
+`comp.play()` drives the clock with `requestAnimationFrame` — it's **browser
+only** and throws in Node. `comp.setFrame(n)` jumps the playhead to a specific
+frame and re-renders; it works in **any** environment, which is exactly what
+scrubbing and the headless [renderer](/docs/rendering) rely on.
+
+```ts
+comp.play(); // browser playback
+comp.pause(); // freeze at the current frame
+comp.stop(); // pause and reset to frame 0
+comp.setFrame(42); // seek anywhere — browser or Node
+```
+
+<Callout type="tip" title="Determinism is the payoff">
+Because a frame's output depends only on the frame number (not on wall-clock
+time or how you got there), `setFrame(42)` always paints the same thing —
+whether you scrubbed to it, played to it, or rendered it on a server. Keep your
+updaters pure and that guarantee holds. See [Best practices](/docs/best-practices).
+</Callout>
+
+## Next steps
+
+- [Best practices](/docs/best-practices) — keep compositions deterministic.
+- [Interpolation](/docs/interpolation) & [Easing](/docs/easing) — the tools your
+  updaters lean on.

@@ -1,0 +1,118 @@
+---
+title: Best practices
+description: The recommended way to structure konva-motion animations so they stay deterministic and seekable.
+---
+
+These are the **recommended-way** principles. Most have a working escape hatch —
+they're here because following them keeps your animations deterministic,
+seekable, and ready to render. Later pages link back to the relevant one where it
+bites.
+
+## Prefer the core wrappers over raw `Konva.*`
+
+`Rect`, `Circle`, `Text`, `Image`, and the rest from `@konva-motion/core` extend
+their Konva equivalents **and** participate in flex layout and the layout
+contract. A raw `Konva.Rect` still renders — but the layout engine can't see it,
+so it won't reflow inside a `Flex`/`Block` and won't be measured or placed.
+
+<Demo name="wrapper-vs-raw" label="same animated gap — only the core row reflows" />
+
+**Why:** the wrappers are the drawing vocabulary; importing them keeps every node
+layout-aware. Reach for `Konva.*` only for something core doesn't wrap yet.
+
+```ts
+// ✅ do — layout-aware
+import { Rect } from "@konva-motion/core";
+row.add(new Rect({ width: 120, height: 120, fill: "#4ea1ff" }));
+
+// 🚫 avoid (unless intentional) — renders, but never reflows in a Flex
+import Konva from "konva";
+row.add(new Konva.Rect({ width: 120, height: 120, fill: "#4ea1ff" }));
+```
+
+## Animate as a function of frame
+
+Drive every attribute from the frame inside `seq.register()`, using
+[`interpolate`](/docs/interpolation) / [`Easing`](/docs/easing). Never reach for
+`setInterval`, `requestAnimationFrame`, `Konva.Tween`, or CSS transitions.
+
+**Why:** only frame-derived values render deterministically and seek/scrub
+correctly. A timer-driven value can't be reproduced at an arbitrary frame.
+
+```ts
+// ✅ do
+seq.register((frame) => {
+  box.x(interpolate(frame, [0, 30], [0, 400], { extrapolateRight: "clamp" }));
+});
+
+// 🚫 don't
+setInterval(() => box.x(box.x() + 4), 16); // invisible to scrubbing and rendering
+```
+
+## Keep compositions pure
+
+A composition should be a pure function of `frame` (and any `props`) — no
+external mutable state, no `Date.now()`, no random values that change between
+renders.
+
+**Why:** purity is what makes preview, scrubbing, and headless render produce
+identical output. If you need randomness, seed it from the frame or a fixed seed.
+
+## Add a node before you animate it
+
+Attach a node to a `Sequence`/layer (`seq.add(node)`) before you set attributes
+on it. Tweening a detached node updates its attrs but never repaints.
+
+**Why:** the sequence is what draws the node. No parent layer, no paint.
+
+## Pin one copy of `konva`
+
+`konva` is a peer dependency and core extends its classes. Two copies in the
+dependency tree break `instanceof` checks and layout.
+
+**Why:** a node from copy A won't be recognized by code holding copy B. Dedupe in
+the consumer (e.g. pnpm's single version, or a bundler `dedupe`).
+
+## Let layout reflow; don't hand-position structure
+
+Use `Flex`/`Block` and animate `gap`, size, or `padding`; the engine recomputes
+layout each tick so children follow. Save manual `x`/`y` math for one-off motion,
+not for structure.
+
+**Why:** hand-positioned layout drifts out of sync the moment content or sizes
+change. Layout that reflows stays correct for free.
+
+```ts
+// ✅ do — animate the container, children follow
+row.setAttrs({ gap: interpolate(frame, [0, 30], [8, 64]) });
+
+// 🚫 avoid — re-deriving each child's x by hand
+children.forEach((c, i) => c.x(i * (120 + gap)));
+```
+
+## `play()` is browser-only; `setFrame(n)` works anywhere
+
+Use `comp.setFrame(n)` for offline and server paths — it's also what the
+[renderer](/docs/rendering) drives. `comp.play()` needs `requestAnimationFrame`
+and throws outside the browser.
+
+## Use `interpolate` extrapolation, not manual clamping
+
+Reach for `extrapolateLeft` / `extrapolateRight: "clamp"` instead of wrapping a
+ratio in `Math.min` / `Math.max`.
+
+**Why:** the intent ("hold at the ends") reads clearly and stays at the call
+site, and the easing is applied correctly within the range.
+
+```ts
+// ✅ do
+interpolate(frame, [0, 30], [0, 1], { extrapolateRight: "clamp" });
+
+// 🚫 don't
+Math.min(1, frame / 30);
+```
+
+## Next steps
+
+Put these to work in [Animating](/docs/interpolation) — `interpolate`, `Easing`,
+and sequencing.

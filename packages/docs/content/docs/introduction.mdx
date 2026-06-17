@@ -1,34 +1,132 @@
 ---
 title: Introduction
-description: What konva-motion is, how the timeline drives tweens, and when to reach for it.
+description: What konva-motion is, the frame-clock mental model, and when to reach for it.
 ---
 
-konva-motion adds a timeline and a tweening engine to [Konva](https://konvajs.org). Describe motion declaratively — animate any node, sequence and loop it, then play it back smoothly or render it to video.
+konva-motion brings [Remotion](https://remotion.dev)-style, timeline-driven
+animation to [Konva](https://konvajs.org). You describe **what an attribute is at
+frame N** — the engine drives your scene from a frame clock, plays it back
+smoothly in the browser, and renders the exact same timeline to video on the
+server.
 
-## Why konva-motion
+<Demo name="hero" label="every frame is a pure function of the clock" />
 
-Konva gives you a fast 2D canvas scene graph. konva-motion gives that scene graph a
-clock: a frame-accurate timeline that drives your nodes' attributes over time. Instead
-of wiring up `requestAnimationFrame` loops by hand, you describe **what** should change
-and **when** — the engine handles the rest.
+## The mental model
 
-- Declarative, timeline-driven animation for Konva — no framework required.
-- Composable timelines with nested sequences.
-- Works with any Konva node — shapes, text, groups, and images.
-- The same timeline that plays in the browser renders to video on the server.
+Everything rests on one idea: **a `Composition` owns a frame clock**, and your
+animation is a pure function of the current frame.
 
-## How it fits together
+- A `Composition` (it _is_ a `Konva.Stage`) holds `fps` and `durationInFrames`.
+  Together they define a fixed timeline of frames `0 … durationInFrames - 1`.
+- A `Sequence` (it _is_ a `Konva.Layer`) is **range-gated**: it lives on the
+  timeline at `[from, from + durationInFrames)` and is only visible — and only
+  repainted — while the playhead is inside that window.
+- Each tick, the composition walks its sequences, runs their **updaters**, and
+  `batchDraw`s the active ones. An updater receives the current frame and writes
+  attributes: `node.x(...)`, `node.opacity(...)`, and so on.
 
-A `Composition` owns a frame clock (fps + duration). A `Sequence` is a range-gated
-layer — visible only while the playhead is inside its window. On each tick the
-composition walks its sequences, runs their updaters, and repaints the active ones.
+```text
+frame:   0         30        60        90       120
+         ├─────────┼─────────┼─────────┼─────────┤
+Seq A    ███████████████████                        from 0,  len 60
+Seq B              ███████████████████              from 30, len 60
+                        ▲ playhead — only A and B in range here get drawn
+```
 
-> Animation is not the art of drawings that move, but the art of movements that are drawn.
->
-> — Norman McLaren
+<Callout type="tip" title="Tip">
+    You never write `requestAnimationFrame`, `setInterval`, or CSS transitions. You
+    answer one question for every attribute: _what is its value at this frame?_ That
+    is what makes playback, scrubbing, and headless rendering produce identical
+    output.
+</Callout>
+
+## When to reach for it
+
+Reach for konva-motion when motion is the point and it has to be **deterministic
+and seekable** — explainer videos, animated data stories, product demos,
+anything you might also export to MP4. Because every frame is computed from the
+clock, you can scrub to any point or render frames out of order and get exactly
+what you'd see on playback.
+
+### Dynamic, data-driven videos at scale
+
+The sweet spot is **parametrized video**: author one composition, then render it
+many times with different data. A composition is a function of `frame` **and
+`props`** — pass data in through `props`, read it back in your updaters, and the
+same timeline produces a different video per input.
+
+The classic example is personalization. Imagine sending every customer a
+birthday video with their own name on it — same animation, 10,000 different
+names. You build the scene once and let the renderer stamp out one MP4 per
+record:
+
+```ts
+import { Composition, Sequence, Text, interpolate } from "@konva-motion/core";
+
+// One composition, parametrized by props.
+function birthdayVideo({ name }: { name: string }) {
+  const comp = new Composition({
+    id: `birthday-${name}`,
+    fps: 30,
+    durationInFrames: 120,
+    width: 1080,
+    height: 1080,
+    props: { name },
+  });
+
+  const scene = new Sequence({ from: 0, durationInFrames: 120 });
+  const greeting = new Text({
+    x: 0,
+    y: 470,
+    width: 1080,
+    align: "center",
+    text: `Happy birthday, ${comp.props.get().name}!`,
+    fontSize: 76,
+    fill: "#f9fafb",
+  });
+  scene.add(greeting);
+  scene.register((frame) => {
+    greeting.opacity(interpolate(frame, [0, 20], [0, 1], { extrapolateRight: "clamp" }));
+  });
+
+  comp.add(scene);
+  return comp;
+}
+```
+
+Then drive it headlessly — no browser, one file per record — with the
+`@konva-motion/renderer` package:
+
+```ts
+import "@konva-motion/renderer/register";
+import { renderComposition } from "@konva-motion/renderer";
+
+for (const customer of customers) {
+  await renderComposition(birthdayVideo({ name: customer.name }), {
+    output: `out/${customer.id}.mp4`,
+  });
+}
+```
+
+The same pattern covers personalized year-in-review recaps, certificates with a
+recipient's name, data-driven social cards, localized ad variants, and any
+"one template, thousands of renders" job. Because every frame is a pure function
+of `frame` + `props`, the browser preview and the server render are guaranteed
+to match — what you design is exactly what each customer receives. (Headless
+rendering is covered in depth in the Rendering section.)
+
+### When you don't need it
+
+You probably don't need it for a single hover/enter transition on a Konva node —
+a one-off `Konva.Tween` or a CSS transition is lighter. The moment you have more
+than one thing moving on a shared timeline, or you want to loop/scrub/export it,
+the frame clock pays for itself.
 
 ## Next steps
 
-Head to [Installation](/docs/installation) to add the package and play your first
-tween, or jump to [Components & Typography](/docs/components) for the full content
-reference.
+- [Installation](/docs/installation) — add the package and build your first
+  composition.
+- [Core concepts](/docs/core-concepts) — `Composition`, `Sequence`,
+  range-gating, and the tick loop in depth.
+- [Best practices](/docs/best-practices) — the recommended way to structure
+  animations so they stay deterministic.
