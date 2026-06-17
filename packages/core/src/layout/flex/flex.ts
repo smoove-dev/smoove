@@ -1,8 +1,6 @@
 import { DIRECTION_LTR } from "flexily/classic";
 import Konva from "konva";
-import { Block } from "../block.js";
-import { Image as KMImage } from "../image.js";
-import { Text as KMText } from "../text/text.js";
+import { type KMLayoutNode, type LayoutBox, isKMLayoutNode } from "../contract.js";
 import {
   FlexilyNode,
   applyChildProps,
@@ -11,7 +9,6 @@ import {
   parseSize,
   setImageMeasure,
   setTextMeasure,
-  setTextWrapperMeasure,
 } from "./engine.js";
 import type { FlexChildProps, FlexConfig, FlexProps, SizeValue } from "./types.js";
 
@@ -38,7 +35,9 @@ function pickKonvaConfig(config: FlexConfig): Konva.GroupConfig {
   return out as Konva.GroupConfig;
 }
 
-export class Flex extends Konva.Group {
+export class Flex extends Konva.Group implements KMLayoutNode {
+  readonly _kmRole = "container" as const;
+
   constructor(config: FlexConfig) {
     super(pickKonvaConfig(config));
     this.setAttrs({
@@ -59,6 +58,19 @@ export class Flex extends Konva.Group {
 
   computeLayout(): void {
     layoutRoot(this, false);
+  }
+
+  /** @internal — {@link KMLayoutNode}: lay self out as a flex root (Sequence calls this). */
+  _kmComputeLayout(): void {
+    this.computeLayout();
+  }
+
+  /** @internal — {@link KMLayoutNode}: write the computed box back (nested in a parent flex). */
+  _kmPlace(box: LayoutBox): void {
+    this.x(box.left);
+    this.y(box.top);
+    this.width(box.width);
+    this.height(box.height);
   }
 }
 
@@ -94,7 +106,6 @@ export function layoutRoot(group: Konva.Group, alwaysSetSize: boolean): void {
 type Pair = {
   konva: Konva.Node;
   flex: ReturnType<typeof FlexilyNode.create>;
-  isContainer: boolean;
 };
 
 function readPixelSize(sizeAttr: SizeValue | undefined): number {
@@ -121,72 +132,70 @@ export function buildChildren(
     const node = FlexilyNode.create();
     applyChildProps(node, child.attrs as FlexChildProps);
 
-    if (child instanceof Flex || child instanceof Block) {
-      const props = child.attrs as FlexProps;
-      applyContainerProps(node, props);
-      applySize(node, child.attrs.flexWidth, child.attrs.flexHeight);
-      buildChildren(child.getChildren(), node, pairs, props.flexDirection ?? "row");
-      pairs.push({ konva: child, flex: node, isContainer: true });
-    } else if (child instanceof KMImage) {
-      applySize(node, child.attrs.flexWidth, child.attrs.flexHeight);
-      pairs.push({ konva: child, flex: node, isContainer: true });
-    } else if (child instanceof KMText) {
-      // Wrapper text: intrinsic size comes from measuring (fit/clamp aware).
-      if (
-        child.attrs.flexWidth === undefined &&
-        child.attrs.maxWidth === undefined &&
-        parentIsColumn
-      ) {
-        node.setWidthPercent(100);
+    if (isKMLayoutNode(child)) {
+      // konva-motion wrapper: it self-describes its layout via the contract.
+      if (child._kmRole === "container") {
+        const props = child.attrs as FlexProps;
+        applyContainerProps(node, props);
+        applySize(node, child.attrs.flexWidth, child.attrs.flexHeight);
+        buildChildren(
+          (child as unknown as Konva.Container).getChildren(),
+          node,
+          pairs,
+          props.flexDirection ?? "row",
+        );
       } else {
-        applySize(node, child.attrs.flexWidth, undefined);
+        child._kmMeasure?.(node, { parentIsColumn });
       }
-      setTextWrapperMeasure(node, child, parentIsColumn);
-      pairs.push({ konva: child, flex: node, isContainer: true });
     } else if (child instanceof Konva.Text) {
+      // Raw Konva.Text (no wrapper): measure with wrap awareness.
       if (child.attrs.flexWidth === undefined && parentIsColumn) node.setWidthPercent(100);
       else applySize(node, child.attrs.flexWidth, undefined);
       setTextMeasure(node, child, parentIsColumn);
-      pairs.push({ konva: child, flex: node, isContainer: false });
     } else if (child instanceof Konva.Image) {
+      // Raw Konva.Image (no wrapper): intrinsic size from the bitmap.
       applySize(node, child.attrs.flexWidth, child.attrs.flexHeight);
       if (child.attrs.flexWidth === undefined && child.attrs.flexHeight === undefined) {
         setImageMeasure(node, child);
       }
-      pairs.push({ konva: child, flex: node, isContainer: false });
     } else {
+      // Any other raw Konva node: size from numeric width/height attrs.
       const w = child.attrs.width;
       const h = child.attrs.height;
       if (typeof w === "number" && w > 0) node.setWidth(w);
       if (typeof h === "number" && h > 0) node.setHeight(h);
-      pairs.push({ konva: child, flex: node, isContainer: false });
     }
 
+    pairs.push({ konva: child, flex: node });
     parentFlex.insertChild(node, i);
   });
 }
 
 export function writeBack(pairs: Pair[]): void {
-  for (const { konva, flex, isContainer } of pairs) {
-    konva.x(flex.getComputedLeft());
-    konva.y(flex.getComputedTop());
-    const w = flex.getComputedWidth();
-    const h = flex.getComputedHeight();
-    if (isContainer) {
-      konva.width(w);
-      konva.height(h);
-      if (konva instanceof Block) konva._layoutBackground();
-      else if (konva instanceof KMImage) konva._layoutImage();
-      else if (konva instanceof KMText) konva._layoutText();
-    } else if (konva instanceof Konva.Text) {
+  for (const { konva, flex } of pairs) {
+    const left = flex.getComputedLeft();
+    const top = flex.getComputedTop();
+    const width = flex.getComputedWidth();
+    const height = flex.getComputedHeight();
+
+    if (isKMLayoutNode(konva)) {
+      // Wrapper handles its own position/size/restyle (origin-corrected per shape).
+      konva._kmPlace({ left, top, width, height });
+      continue;
+    }
+
+    // Raw Konva fallback. Origin-correct via getSelfRect so centered-origin
+    // shapes (e.g. a bare Konva.Circle) land their bounding box at the slot;
+    // top-left-origin nodes have selfRect.x === 0, so this is a no-op for them.
+    const r = (konva as Konva.Shape).getSelfRect();
+    konva.x(left - r.x);
+    konva.y(top - r.y);
+    if (konva instanceof Konva.Text) {
       if (konva.attrs.wrap === undefined) konva.wrap("word");
-      konva.width(w);
-    } else if (!(konva instanceof Konva.Image)) {
-      konva.width(w);
-      konva.height(h);
+      konva.width(width);
     } else {
-      konva.width(w);
-      konva.height(h);
+      konva.width(width);
+      konva.height(height);
     }
   }
 }

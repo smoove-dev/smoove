@@ -3,7 +3,8 @@ import { getComposition } from "../../engine/composition.js";
 import { detectEnvironment, getEnvironment } from "../../engine/environment.js";
 import { getDefaultVideoSourceFactory } from "../../engine/runtime-defaults.js";
 import { type ReadonlySignal, type Signal, createSignal } from "../../engine/signal.js";
-import { parseSize } from "../../layout/flex/engine.js";
+import type { KMLayoutNode, LayoutBox } from "../../layout/contract.js";
+import { type FlexilyNode, applySize, parseSize } from "../../layout/flex/engine.js";
 import type { SizeValue } from "../../layout/flex/types.js";
 import type { ObjectFit, ObjectPosition } from "../../layout/image.js";
 import type { AudioChannel, AudioMixer } from "../audio/mixer.js";
@@ -51,7 +52,8 @@ function pickKonvaConfig(config: VideoConfig): Konva.GroupConfig {
  * driven by the composition's frame clock. Picks a {@link RenderingVideoDriver}
  * or {@link PreviewVideoDriver} based on the composition's {@link Environment}.
  */
-export class Video extends Konva.Group implements AudioChannel {
+export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
+  readonly _kmRole = "leaf" as const;
   /** Human label for mixer UIs — `config.name`, falling back to `config.src`. */
   readonly label: string;
   /** Intrinsic audio level, 0..1 — scaled by the composition mixer's master. */
@@ -140,6 +142,24 @@ export class Video extends Konva.Group implements AudioChannel {
   /** @internal — called by Sequence when it goes out of range. */
   _kmDeactivate(): void {
     this._driver?.deactivate();
+  }
+
+  /** @internal — {@link KMLayoutNode}: size from explicit width/height (cover/contain handle the rest). */
+  _kmMeasure(node: FlexilyNode): void {
+    applySize(
+      node,
+      this.attrs.flexWidth as SizeValue | undefined,
+      this.attrs.flexHeight as SizeValue | undefined,
+    );
+  }
+
+  /** @internal — {@link KMLayoutNode}: write the computed box back + re-fit the frame. */
+  _kmPlace(box: LayoutBox): void {
+    this.x(box.left);
+    this.y(box.top);
+    this.width(box.width);
+    this.height(box.height);
+    this._layoutImage();
   }
 
   private _ensureDriver(): VideoDriver | null {

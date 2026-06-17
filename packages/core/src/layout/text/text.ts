@@ -1,7 +1,9 @@
 import Konva from "konva";
 import { stringToArray } from "konva/lib/shapes/Text.js";
 import { TICK_MARK } from "../../media/media-marker.js";
-import { parseSize } from "../flex/engine.js";
+import type { KMLayoutNode, LayoutBox } from "../contract.js";
+import type { MeasureContext } from "../contract.js";
+import { type FlexilyNode, applySize, parseSize, setTextWrapperMeasure } from "../flex/engine.js";
 import type { SizeValue } from "../flex/types.js";
 import {
   type Geometry,
@@ -36,7 +38,8 @@ type KonvaTextInternal = Konva.Text & {
  * layout primitives it `extends Konva.Group`, exposing intrinsic text size to
  * the flex engine via {@link _measureForFlex}.
  */
-export class Text extends Konva.Group {
+export class Text extends Konva.Group implements KMLayoutNode {
+  readonly _kmRole = "leaf" as const;
   private readonly _text: KonvaTextInternal;
   /** Clipping wrapper around `_text` — reveals a char range without re-wrapping. */
   private readonly _textClip: Konva.Group;
@@ -131,6 +134,29 @@ export class Text extends Konva.Group {
   }
 
   // ----- flex integration -------------------------------------------------
+
+  /** @internal — {@link KMLayoutNode}: wrap-aware sizing + intrinsic measure. */
+  _kmMeasure(node: FlexilyNode, ctx: MeasureContext): void {
+    if (
+      this.attrs.flexWidth === undefined &&
+      this.attrs.maxWidth === undefined &&
+      ctx.parentIsColumn
+    ) {
+      node.setWidthPercent(100);
+    } else {
+      applySize(node, this.attrs.flexWidth as SizeValue | undefined, undefined);
+    }
+    setTextWrapperMeasure(node, this, ctx.parentIsColumn);
+  }
+
+  /** @internal — {@link KMLayoutNode}: write the computed box back + re-layout glyphs. */
+  _kmPlace(box: LayoutBox): void {
+    this.x(box.left);
+    this.y(box.top);
+    this.width(box.width);
+    this.height(box.height);
+    this._layoutText();
+  }
 
   /**
    * @internal Intrinsic size for the flex engine. Lays out the FULL text at the

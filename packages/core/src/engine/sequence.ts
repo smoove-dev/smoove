@@ -1,6 +1,5 @@
 import Konva from "konva";
-import { Block } from "../layout/block.js";
-import { Flex } from "../layout/flex/flex.js";
+import { isKMLayoutRoot } from "../layout/contract.js";
 import { MEDIA_MARK, TICK_MARK } from "../media/media-marker.js";
 
 export type SequenceOptions = Konva.LayerConfig & {
@@ -72,7 +71,7 @@ export class Sequence extends Konva.Layer {
       // up-to-date size this frame rather than lagging one behind.
       for (const v of this._media) v._kmTick?.(local);
       for (const c of this.getChildren()) {
-        if (c instanceof Flex || c instanceof Block) c.computeLayout();
+        if (isKMLayoutRoot(c)) c._kmComputeLayout();
       }
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the

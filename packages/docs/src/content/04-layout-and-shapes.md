@@ -1,0 +1,125 @@
+---
+title: Layout & Shapes
+group: Layout
+order: 4
+eyebrow: Layout
+description: Flexbox layout for Konva, plus a flex-aware wrapper for every Konva shape — all driven by the timeline.
+icon: layers
+---
+
+`@konva-motion/core` ships a synchronous flexbox engine and a flex-aware
+wrapper for **every Konva drawing primitive**. Import the whole vocabulary from
+one place — you never reach for `Konva.*` shapes directly.
+
+:::note One import surface
+`Composition`, `Sequence`, the layout containers (`Flex`, `Block`), media
+(`Image`, `Video`, `Audio`), `Text`, and all shapes (`Rect`, `Circle`, …) come
+from `@konva-motion/core`. konva-motion is the primary API surface.
+:::
+
+## Flex containers
+
+`Flex` and `Block` are flexbox containers (Konva groups). A `Block` is a `Flex`
+that also paints a background, border, shadow, and corner radius. When a
+container sits inside a `Sequence`, its layout recomputes every frame — so
+animating `width`, `gap`, or child sizes reflows everything for free.
+
+```ts
+import { Flex, Block, Rect, Circle, Text } from "@konva-motion/core";
+
+const card = new Block({
+  flexDirection: "column",
+  padding: 24,
+  gap: 16,
+  background: "#15151f",
+  borderSize: 1,
+  borderColor: "#2a2a38",
+  cornerRadius: 16,
+});
+
+const row = new Flex({ flexDirection: "row", gap: 24, alignItems: "center" });
+row.add(new Rect({ width: 140, height: 140, fill: "#38bdf8", cornerRadius: 16 }));
+row.add(new Circle({ radius: 70, fill: "#f472b6" }));
+
+card.add(new Text({ text: "Shapes in a flex row", fontSize: 28, fill: "#eceaf2" }));
+card.add(row);
+```
+
+Container props: `flexDirection`, `justifyContent`, `alignItems`, `gap`,
+`padding`. Sizes accept a `number` (px) or a CSS-style `"50%"` string. Every
+flex child also accepts `flexGrow`, `flexShrink`, `flexBasis`, `alignSelf`, and
+`margin`.
+
+## Shapes
+
+Each Konva shape is re-exported as a wrapper with the same name and config, plus
+flex child props and `px`/`%` `width`/`height`:
+
+| | |
+| --- | --- |
+| `Rect` | `Circle` |
+| `Ellipse` | `Line` |
+| `Arrow` | `Star` |
+| `Ring` | `Arc` |
+| `Wedge` | `RegularPolygon` |
+| `Path` | `TextPath` |
+| `Sprite` | |
+
+- A shape with no explicit `width`/`height` lays out at its **intrinsic size**
+  (its `getSelfRect()` bounds — a circle's diameter, a line's points box).
+- Positions are **origin-corrected**: a `Circle`'s bounding box lands in the
+  flex slot, not its center, so centered-origin shapes align with rectangles.
+
+:::tip flexGrow on radius shapes
+For radius/points-based shapes, `width`/`height` map onto geometry, so
+`flexGrow`-driven stretch can distort them. Give those an explicit size (or
+leave them un-stretched) for predictable results.
+:::
+
+## Animating layout
+
+Mutate any flex attr inside `Sequence.register`; the next tick reflows
+positions and sizes — no explicit layout call:
+
+```ts
+seq.register((frame) => {
+  card.width(320 + 200 * Math.sin(frame / 30));   // siblings rewrap/resize
+  row.setAttr("gap", frame % 48);                 // animate the gap
+});
+```
+
+This is the canonical demonstration: change **one** element's size and its
+siblings reflow (and, with `flexShrink`, resize) automatically.
+
+## Custom shapes & the layout contract
+
+Layout participation is an **open contract**, `KMLayoutNode` — the engine checks
+for it with `isKMLayoutNode` rather than a hard-coded type switch, so adding a
+node type never means editing the engine.
+
+:::prop KMLayoutNode._kmRole | "container" | "leaf"
+A container (`Flex`/`Block`) has its children laid out and recursed into; a leaf
+(`Image`/`Text`/shapes) is sized by its own measure.
+:::
+
+:::prop KMLayoutNode._kmMeasure | (flexNode, ctx) → void
+Leaf only — configure the flexily node's size (explicit `px`/`%`, or intrinsic
+from `getSelfRect()`).
+:::
+
+:::prop KMLayoutNode._kmPlace | (box) → void
+Write the computed `{ left, top, width, height }` back onto the node (position
+origin-corrected; containers also restyle).
+:::
+
+To make a custom `Konva.Shape` subclass flex-aware, wrap it with the
+`FlexShape` mixin — it supplies the leaf contract, `px`/`%` size handling, and
+config stripping:
+
+```ts
+import Konva from "konva";
+import { FlexShape, type LeafConfig } from "@konva-motion/core";
+
+type MyConfig = Omit<Konva.MyShapeConfig, "width" | "height"> & LeafConfig;
+class MyShape extends FlexShape<Konva.MyShape, MyConfig>(Konva.MyShape) {}
+```

@@ -15,7 +15,7 @@ composition walks its child sequences, runs their updaters, and issues one
 ## Layout
 
 ```
-packages/core       @konva-motion/core — engine + layout. Composition, Sequence, Flex, Block, Image. konva is a peerDep; flexily is a regular dep.
+packages/core       @konva-motion/core — engine + layout. Composition, Sequence, Flex, Block, Image, Text, + a flex-aware wrapper for every Konva shape (Rect/Circle/Star/…). konva is a peerDep; flexily is a regular dep.
 packages/timeline   @konva-motion/timeline — planned React UI components (scrubber, play button). Placeholder.
 packages/player     @konva-motion/player — Lit web-component player wrapping a Composition (<km-player> + controls). konva + core are peerDeps; lit + @lit/context are deps. Light DOM; opt-in styles at "@konva-motion/player/styles.css".
 packages/transitions @konva-motion/transitions — Remotion-style TransitionSeries + presentations. konva + core are peerDeps.
@@ -29,24 +29,34 @@ Top-level `tsconfig.json` is a solution file; per-package `tsconfig.json` uses
 `composite: true` with project references.
 
 `core/src` is grouped by domain: `engine/` (composition, sequence, signal,
-emitter, environment), `layout/` (block, image, `flex/`, `text/`), `animation/`
-(interpolate, interpolate-colors, color, easing), and `media/` (media-time,
-media-marker, `audio/`, `video/`). `index.ts` is the single public barrel — the
-package only exports `.`, so consumers never deep-import; internal moves just
-need the barrel repointed.
+emitter, environment), `layout/` (block, image, `shapes`, `contract`, `flex/`,
+`text/`), `animation/` (interpolate, interpolate-colors, color, easing), and
+`media/` (media-time, media-marker, `audio/`, `video/`). `index.ts` is the
+single public barrel — the package only exports `.`, so consumers never
+deep-import; internal moves just need the barrel repointed.
 
 ## Conventions
 
 - **pnpm workspaces.** Cross-package deps use `workspace:*`. Don't add a
   package outside `packages/*` or `demo/` without updating `pnpm-workspace.yaml`.
 - **`core` extends Konva classes.** `Composition extends Konva.Stage`,
-  `Sequence extends Konva.Layer`, `Flex`/`Block`/`Image` extend `Konva.Group`.
-  `konva` is a peer dep of `core`, not a regular dep — consumers pin the
-  version. The demo pins a real `konva` version.
-- **Layout is built in.** `Flex`/`Block`/`Image` use flexily (synchronous JS
-  flexbox; no WASM/async init). `Sequence._apply` recomputes layout on any
-  top-level `Flex` child each tick, so animated sizes/gaps reflow without
-  user wiring.
+  `Sequence extends Konva.Layer`, `Flex`/`Block`/`Image`/`Text` extend
+  `Konva.Group`, and each shape wrapper extends its `Konva.Shape` (via the
+  `FlexShape` mixin in `layout/flex/mixin.ts`). `konva` is a peer dep of `core`,
+  not a regular dep — consumers pin the version. The demo pins a real `konva`
+  version. Aim: an app imports the whole drawing vocabulary from core, not
+  `Konva.*`.
+- **Layout is built in.** Wrappers use flexily (synchronous JS flexbox; no
+  WASM/async init). `Sequence._apply` recomputes layout on any top-level `Flex`
+  or `Block` child each tick, so animated sizes/gaps reflow without user wiring.
+- **Layout dispatch is an open contract**, not an `instanceof` switch. Nodes
+  implement `KMLayoutNode` (`layout/contract.ts`: `_kmRole`, `_kmMeasure?`,
+  `_kmPlace`, `_kmComputeLayout?`); `flex.ts`/`sequence.ts` dispatch via
+  `isKMLayoutNode`/`isKMLayoutRoot`. Wrap a new node type by implementing the
+  contract — don't edit the engine. Shape wrappers use `getSelfRect()` for
+  intrinsic size + origin-corrected placement; their config translator must
+  *delete* (not `undefined`) absent width/height so `Circle`-style radius attrs
+  aren't wiped.
 - **Agnostic runtime.** `core` reads `requestAnimationFrame` /
   `cancelAnimationFrame` / `performance.now()` off `globalThis` with
   fallbacks — importing in Node is safe. `play()` throws in non-browser;

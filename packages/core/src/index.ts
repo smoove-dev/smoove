@@ -49,6 +49,42 @@ export {
   type ObjectPosition,
 } from "./layout/image.js";
 export { Text } from "./layout/text/text.js";
+export {
+  Arc,
+  type ArcConfig,
+  Arrow,
+  type ArrowConfig,
+  Circle,
+  type CircleConfig,
+  Ellipse,
+  type EllipseConfig,
+  Line,
+  type LineConfig,
+  Path,
+  type PathConfig,
+  Rect,
+  type RectConfig,
+  RegularPolygon,
+  type RegularPolygonConfig,
+  Ring,
+  type RingConfig,
+  Sprite,
+  type SpriteConfig,
+  Star,
+  type StarConfig,
+  TextPath,
+  type TextPathConfig,
+  Wedge,
+  type WedgeConfig,
+} from "./layout/shapes.js";
+export {
+  type KMLayoutNode,
+  type LayoutBox,
+  type MeasureContext,
+  isKMLayoutNode,
+  isKMLayoutRoot,
+} from "./layout/contract.js";
+export { FlexShape, type LeafConfig } from "./layout/flex/mixin.js";
 export type {
   FitConfig,
   HighlightConfig,

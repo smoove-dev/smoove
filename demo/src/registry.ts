@@ -26,6 +26,8 @@ import flexRowGrow from "./compositions/flex-row-grow/index.js";
 import flexShowcase from "./compositions/flex-showcase/index.js";
 import igStory from "./compositions/ig-story/index.js";
 import journey from "./compositions/journey/index.js";
+import shapesFlex from "./compositions/shapes-flex/index.js";
+import shapesPlayground from "./compositions/shapes-playground/index.js";
 
 // Images.
 import imageClip from "./compositions/image-clip/index.js";
@@ -88,6 +90,8 @@ export default defineRegistry([
   flexLayout,
   flexRowGrow,
   flexShowcase,
+  shapesFlex,
+  shapesPlayground,
   igStory,
   journey,
   // Images.

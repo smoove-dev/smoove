@@ -1,4 +1,5 @@
 import Konva from "konva";
+import type { KMLayoutNode, LayoutBox } from "./contract.js";
 import { normalizeEdges, parseSize } from "./flex/engine.js";
 import { layoutRoot } from "./flex/flex.js";
 import type { EdgeValue, FlexChildProps, FlexProps, SizeValue } from "./flex/types.js";
@@ -76,7 +77,8 @@ function firstColor(c: EdgeColor | undefined): string | undefined {
   return c.top ?? c.right ?? c.bottom ?? c.left;
 }
 
-export class Block extends Konva.Group {
+export class Block extends Konva.Group implements KMLayoutNode {
+  readonly _kmRole = "container" as const;
   private readonly _bg: Konva.Rect;
 
   constructor(config: BlockConfig) {
@@ -126,6 +128,20 @@ export class Block extends Konva.Group {
    */
   computeLayout(): void {
     layoutRoot(this, true);
+    this._layoutBackground();
+  }
+
+  /** @internal — {@link KMLayoutNode}: lay self out as a flex root (Sequence calls this). */
+  _kmComputeLayout(): void {
+    this.computeLayout();
+  }
+
+  /** @internal — {@link KMLayoutNode}: write the computed box back + restyle the background. */
+  _kmPlace(box: LayoutBox): void {
+    this.x(box.left);
+    this.y(box.top);
+    this.width(box.width);
+    this.height(box.height);
     this._layoutBackground();
   }
 

@@ -6,7 +6,9 @@ import {
   getDefaultImageLoader,
 } from "../engine/runtime-defaults.js";
 import { TICK_MARK } from "../media/media-marker.js";
-import { parseSize } from "./flex/engine.js";
+import type { KMLayoutNode, LayoutBox } from "./contract.js";
+import { applySize, parseSize } from "./flex/engine.js";
+import type { FlexilyNode } from "./flex/engine.js";
 import type { FlexChildProps, SizeValue } from "./flex/types.js";
 
 export type ObjectFit = "cover" | "contain" | "fill" | "none";
@@ -60,7 +62,8 @@ function pickKonvaConfig(config: ImageConfig): Konva.GroupConfig {
   return out as Konva.GroupConfig;
 }
 
-export class Image extends Konva.Group {
+export class Image extends Konva.Group implements KMLayoutNode {
+  readonly _kmRole = "leaf" as const;
   private readonly _img: Konva.Image;
   private _source: LoadedImage | null = null;
   /** Pending load (string src only); null once resolved or for element sources. */
@@ -137,6 +140,24 @@ export class Image extends Konva.Group {
 
   /** @internal — called by `Sequence` when it goes out of range. */
   _kmDeactivate(): void {}
+
+  /** @internal — {@link KMLayoutNode}: size from explicit width/height (cover/contain handle the rest). */
+  _kmMeasure(node: FlexilyNode): void {
+    applySize(
+      node,
+      this.attrs.flexWidth as SizeValue | undefined,
+      this.attrs.flexHeight as SizeValue | undefined,
+    );
+  }
+
+  /** @internal — {@link KMLayoutNode}: write the computed box back + re-fit the bitmap. */
+  _kmPlace(box: LayoutBox): void {
+    this.x(box.left);
+    this.y(box.top);
+    this.width(box.width);
+    this.height(box.height);
+    this._layoutImage();
+  }
 
   /** @internal */
   _layoutImage(): void {
