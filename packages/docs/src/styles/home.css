@@ -350,3 +350,60 @@ body {
     grid-column: 1 / -1;
   }
 }
+
+/* ---------------- hero code block chrome ----------------
+   The hero's static code sample reuses the `.code-block` window chrome that
+   used to live in the (now removed) markdown prose stylesheet. Docs code blocks
+   are styled by Fumadocs/Shiki instead, so these rules live with the home page. */
+.code-block {
+  margin: 0 0 24px;
+  border: 1px solid var(--code-line);
+  border-radius: var(--radius-ui);
+  background: var(--code-bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.code-block__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 10px 0 14px;
+  border-bottom: 1px solid var(--code-line);
+  background: color-mix(in oklab, var(--code-bg) 80%, var(--bg-1));
+}
+.code-block__lang {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.code-block__dots {
+  display: flex;
+  gap: 6px;
+  margin-right: 2px;
+}
+.code-block__dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 99px;
+  background: var(--bg-3);
+  display: block;
+}
+.code-block pre {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+}
+.code-block code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--code-ink);
+  background: none;
+  border: 0;
+  padding: 0;
+  white-space: pre;
+}

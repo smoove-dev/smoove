@@ -1,17 +1,13 @@
 ---
 title: Components & Typography
-group: Components
-order: 3
-eyebrow: Components
 description: The konva-motion documentation template — every content component, themeable in light and dark.
-icon: type
 ---
 
-This page is the living style reference for konva-motion docs. Every content element below is a building block — write it in plain Markdown and it inherits this rhythm, spacing, and color automatically, in both light and dark themes.
+This page is the living style reference for konva-motion docs. Every content element below is a building block — write it in plain MDX and it inherits this rhythm, spacing, and color automatically, in both light and dark themes.
 
-:::note A template, not a page
-The header, sidebar, table of contents, and footer stay identical across every doc. Only the article in the middle changes — so authoring a new page means writing a Markdown file, **no HTML required**.
-:::
+<Callout type="info" title="A template, not a page">
+The header, sidebar, table of contents, and footer stay identical across every doc. Only the article in the middle changes — so authoring a new page means writing an MDX file, **no HTML required**.
+</Callout>
 
 ## Headings
 
@@ -32,9 +28,9 @@ Reserve `h4` for fine-grained labels — option groups, edge cases, footnoted de
 Body copy runs at a comfortable measure of about 68 characters. You can mix **bold
 emphasis**, *italics*, and [inline links](/docs/introduction) freely. Reference an API
 with inline code like `tl.to()` or a value such as `easeInOut`. Keyboard shortcuts
-render as keys: press [[Space]] to play and [[⌘]][[K]] to search.
+render as keys: press <kbd>Space</kbd> to play and <kbd>⌘</kbd><kbd>K</kbd> to search.
 
-Status is communicated with badges: {{accent:stable}} {{good:v1.0}} {{warn:beta}} {{deprecated}}.
+Status is communicated with badges: <Badge variant="accent">stable</Badge> <Badge variant="good">v1.0</Badge> <Badge variant="warn">beta</Badge> <Badge>deprecated</Badge>.
 
 ## Lists
 
@@ -60,8 +56,8 @@ Task lists track progress:
 
 ## Code blocks
 
-Fenced code renders with a language label, window dots, and a one-click copy button.
-Syntax is highlighted on the server and re-colored for whichever theme is active.
+Fenced code renders with a language label and a one-click copy button. Syntax is
+highlighted and re-colored for whichever theme is active.
 
 ```js
 import Konva from "konva";
@@ -82,13 +78,13 @@ npm install konva konva-motion
 
 Four admonition styles draw the eye without shouting. Each pairs a tinted surface with an icon.
 
-:::tip Tip
+<Callout type="tip" title="Tip">
 Chain tweens with `.to()` — each one starts after the last finishes, so you describe a sequence in the order it plays.
-:::
+</Callout>
 
-:::danger Breaking in v1
+<Callout type="error" title="Breaking in v1">
 The standalone `tween()` helper was removed. Use `timeline.to()` instead — it returns the timeline so calls stay chainable.
-:::
+</Callout>
 
 ## Blockquotes
 
@@ -109,35 +105,43 @@ Tabular data scrolls horizontally on small screens without breaking the layout.
 
 For longer entries, a property list reads better than a table:
 
-:::prop timeline.to | (node, config) → Timeline
+<Prop name="timeline.to" sig="(node, config) → Timeline">
 Tweens a Konva node's attributes to target values over a `duration`. Returns the timeline, so calls chain.
-:::
+</Prop>
 
-:::prop timeline.from | (node, config) → Timeline | v1.0
+<Prop name="timeline.from" sig="(node, config) → Timeline" badge="v1.0">
 Animates a node *from* the given attributes to its current ones — ideal for entrances.
-:::
+</Prop>
 
-:::prop stagger | (amount) → number
+<Prop name="stagger" sig="(amount) → number">
 Offsets each node's start time so a group of tweens cascades instead of firing at once.
-:::
+</Prop>
 
 ## Step-by-step
 
 For guided walkthroughs, numbered steps connect along a single rail:
 
-:::steps
-1. **Create a Stage & Layer**
+<Steps>
 
-   Set up a Konva `Stage` bound to a container element, add a `Layer`, and place your shapes on it.
+<Step>
+### Create a Stage & Layer
 
-2. **Build a Timeline**
+Set up a Konva `Stage` bound to a container element, add a `Layer`, and place your shapes on it.
+</Step>
 
-   Create a `Timeline` — it sequences your tweens and repaints the layer for you on every frame.
+<Step>
+### Build a Timeline
 
-3. **Tween a node**
+Create a `Timeline` — it sequences your tweens and repaints the layer for you on every frame.
+</Step>
 
-   Call `tl.to(node, { …attrs, duration })` to animate any Konva attribute, then `tl.play()`.
-:::
+<Step>
+### Tween a node
+
+Call `tl.to(node, { …attrs, duration })` to animate any Konva attribute, then `tl.play()`.
+</Step>
+
+</Steps>
 
 ## Live demo
 
@@ -152,9 +156,9 @@ load and plays a composition like an HTML5 `<video>`:
 Until a composition is wired in, the themed canvas frame below holds its place — sized
 16:9 and ready to mount a real preview.
 
-:::demo 1280 × 720 canvas
-:::
+<Demo label="1280 × 720 canvas" />
 
 ---
 
-Every element on this page is driven by `prose.css`. Restyle it once and every doc updates together.
+Every element on this page is rendered by Fumadocs + MDX components — restyle the theme
+once and every doc updates together.

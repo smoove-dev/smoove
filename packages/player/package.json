@@ -12,6 +12,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./player.js": "./dist/index.js",
     "./styles.css": "./dist/player.css"
   },
   "files": ["dist"],

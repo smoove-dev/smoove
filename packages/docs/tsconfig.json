@@ -3,11 +3,27 @@
   "compilerOptions": {
     "noEmit": true,
     "composite": false,
+    // This package only typechecks (noEmit); declaration emit is inherited from
+    // the base config and would otherwise trip TS2742 on fumadocs' zod-derived
+    // inferred types under pnpm.
+    "declaration": false,
+    "declarationMap": false,
     "jsx": "react-jsx",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["vite/client"],
-    "rootDirs": [".", "./.react-router/types"]
+    "rootDirs": [".", "./.react-router/types"],
+    "paths": {
+      "collections/*": ["./.source/*"],
+      "demos/*": ["./src/demos/*"]
+    }
   },
-  "include": ["src", "vite.config.ts", "react-router.config.ts", ".react-router/types/**/*"],
+  "include": [
+    "src",
+    "vite.config.ts",
+    "react-router.config.ts",
+    "source.config.ts",
+    ".react-router/types/**/*",
+    ".source/**/*"
+  ],
   "references": [{ "path": "../core" }, { "path": "../player" }]
 }

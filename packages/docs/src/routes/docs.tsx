@@ -1,62 +1,79 @@
-import { useEffect, useState } from "react";
-import { Outlet, useMatches } from "react-router";
-import { DocHeader } from "../components/doc-header";
-import { Sidebar } from "../components/sidebar";
-import { Toc } from "../components/toc";
-import { buildNav } from "../lib/content.server";
-import type { Heading } from "../lib/markdown.server";
+import browserCollections from "collections/browser";
+import { useFumadocsLoader } from "fumadocs-core/source/client";
+import { DocsLayout } from "fumadocs-ui/layouts/docs";
+import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "fumadocs-ui/layouts/docs/page";
+import { Link, isRouteErrorResponse, redirect, useRouteError } from "react-router";
+import { useMDXComponents } from "../components/mdx";
+import { baseOptions } from "../lib/layout.shared";
+import { source } from "../lib/source";
 import type { Route } from "./+types/docs";
 
-export function loader() {
-  return { nav: buildNav() };
+export async function loader({ params }: Route.LoaderArgs) {
+  const slugs = params["*"].split("/").filter((v) => v.length > 0);
+  const page = source.getPage(slugs);
+  if (!page) {
+    // Bare `/docs` (no slug) → send the reader to the first page in the tree.
+    if (slugs.length === 0) {
+      const first = source.getPages()[0];
+      if (first) throw redirect(first.url);
+    }
+    throw new Response("Not found", { status: 404 });
+  }
+  return {
+    path: page.path,
+    url: page.url,
+    pageTree: await source.serializePageTree(source.getPageTree()),
+  };
 }
 
-export default function DocsLayout({ loaderData }: Route.ComponentProps) {
-  const { nav } = loaderData;
-  const [navOpen, setNavOpen] = useState(false);
+// MDX bodies are rendered client-side (the documented Fumadocs RR path): the
+// loader ships only page metadata + the serialized tree, and this client loader
+// resolves the compiled MDX for `path`.
+const clientLoader = browserCollections.docs.createClientLoader({
+  component({ toc, frontmatter, default: Mdx }) {
+    return (
+      <DocsPage toc={toc}>
+        <title>{`${frontmatter.title} · konva-motion`}</title>
+        {frontmatter.description ? (
+          <meta name="description" content={frontmatter.description} />
+        ) : null}
+        <DocsTitle>{frontmatter.title}</DocsTitle>
+        <DocsDescription>{frontmatter.description}</DocsDescription>
+        <DocsBody>
+          <Mdx components={useMDXComponents()} />
+        </DocsBody>
+      </DocsPage>
+    );
+  },
+});
 
-  // The TOC lives in the layout (3rd grid column) but its data comes from the
-  // child page route — read its loader data via the match tree.
-  const matches = useMatches();
-  const page = matches.find((m) => m.id.endsWith("docs.page"));
-  const headings =
-    (page?.data as { page?: { headings?: Heading[] } } | undefined)?.page?.headings ?? [];
-
-  // Lock body scroll while the mobile drawer is open.
-  useEffect(() => {
-    document.body.style.overflow = navOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [navOpen]);
-
-  // Escape closes the drawer.
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setNavOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const close = () => setNavOpen(false);
+export default function Page({ loaderData }: Route.ComponentProps) {
+  const { path, pageTree } = useFumadocsLoader(loaderData);
 
   return (
-    <>
-      <DocHeader onMenu={() => setNavOpen(true)} />
-      <div className={navOpen ? "nav-open" : undefined}>
-        {/* biome-ignore lint/a11y/useKeyWithClickEvents: decorative scrim; Escape closes the drawer */}
-        <div className="nav-scrim" onClick={close} aria-hidden="true" />
-        <div className="shell">
-          <Sidebar nav={nav} onNavigate={close} />
-          <main className="content">
-            <div className="content__inner">
-              <Outlet />
-            </div>
-          </main>
-          <Toc headings={headings} />
-        </div>
-      </div>
-    </>
+    <DocsLayout {...baseOptions()} tree={pageTree}>
+      {clientLoader.useContent(path)}
+    </DocsLayout>
+  );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  const is404 = isRouteErrorResponse(error) && error.status === 404;
+  return (
+    <div className="mx-auto max-w-xl px-6 py-24 text-center">
+      <h1 className="font-semibold text-2xl">
+        {is404 ? "Page not found" : "Something went wrong"}
+      </h1>
+      <p className="mt-3 text-fd-muted-foreground">
+        {is404
+          ? "That documentation page doesn’t exist (yet)."
+          : "An unexpected error occurred while loading this page."}{" "}
+        <Link className="text-fd-primary underline" to="/docs">
+          Back to the docs
+        </Link>
+        .
+      </p>
+    </div>
   );
 }

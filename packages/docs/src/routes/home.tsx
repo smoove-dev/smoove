@@ -14,7 +14,7 @@ import {
   IconX,
 } from "../components/icons";
 import { useCopyButtons } from "../components/use-copy-buttons";
-import { getAllDocs, getFirstDocSlug } from "../lib/content.server";
+import "../styles/base.css";
 import "../styles/home.css";
 import type { Route } from "./+types/home";
 
@@ -22,16 +22,14 @@ const GH_URL = "https://github.com/konva-motion/konva-motion";
 const INSTALL_CMD = "npm install konva-motion";
 
 export function loader() {
-  const docs = getAllDocs();
-  const has = (slug: string) => docs.some((d) => d.slug === slug);
-  const link = (slug: string) => (has(slug) ? `/docs/${slug}` : "/docs");
+  // Doc slugs are stable (content/docs/<slug>.mdx); link to them directly.
   return {
-    getStarted: getFirstDocSlug() ? `/docs/${getFirstDocSlug()}` : "/docs",
+    getStarted: "/docs/introduction",
     links: {
-      introduction: link("introduction"),
-      installation: link("installation"),
-      concepts: link("core-concepts"),
-      components: link("components"),
+      introduction: "/docs/introduction",
+      installation: "/docs/installation",
+      concepts: "/docs/layout-and-shapes",
+      components: "/docs/components",
     },
   };
 }

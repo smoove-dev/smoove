@@ -1,10 +1,6 @@
 ---
 title: Player
-group: Player
-order: 5
-eyebrow: Player
-description: Play a composition in the browser with the <km-player> web component — including loading one from a remote file.
-icon: bolt
+description: Play a composition in the browser with the km-player web component — including loading one from a remote file.
 ---
 
 `@konva-motion/player` is a framework-agnostic **web component** that plays a
@@ -47,27 +43,27 @@ docs hand the player its URL with Vite's [`?url`](https://vite.dev/guide/assets#
 import, so the player fetches and runs it at load time — the same path a truly
 remote file would take.
 
-:::demo orbit | loaded via src
-:::
+import orbit from '../../src/demos/orbit.ts?url&no-inline';
+
+<Demo src={orbit} label="loaded via src" />
 
 Relative `src` values resolve against the document base. The player emits
 `loadstart` when a load begins and `loaded` once mounted; a failed import — or a
 module that doesn't resolve to a `Composition` — emits `error`. A `loading`
 attribute is reflected on the host while the import is in flight.
 
-:::warning Only load trusted URLs
-
+<Callout type="warn" title="Only load trusted URLs">
 `src` performs a dynamic `import()`, which **executes arbitrary code** from the
 URL. Load only modules you trust, and make sure your CSP `script-src` allows the
 origin.
-:::
+</Callout>
 
 ## Attributes
 
-:::prop src | string | new
+<Prop name="src" sig="string" badge="new">
 URL of an ESM module whose default export resolves to a `Composition`. An
 imperatively-assigned `composition` property takes precedence over `src`.
-:::
+</Prop>
 
 Other attributes: `controls`, `loop`, `autoplay`, `muted`, `volume`,
 `playbackrate`, `initialframe`, `no-click-to-play`, `no-space-key`,

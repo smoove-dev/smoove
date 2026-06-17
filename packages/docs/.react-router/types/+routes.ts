@@ -14,20 +14,20 @@ type Pages = {
   "/": {
     params: {};
   };
-  "/docs": {
-    params: {};
-  };
-  "/docs/:slug": {
+  "/docs/*": {
     params: {
-      "slug": string;
+      "*": string;
     };
+  };
+  "/api/search": {
+    params: {};
   };
 };
 
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/docs" | "/docs/:slug";
+    page: "/" | "/docs/*" | "/api/search";
   };
   "routes/home.tsx": {
     id: "routes/home";
@@ -35,15 +35,11 @@ type RouteFiles = {
   };
   "routes/docs.tsx": {
     id: "routes/docs";
-    page: "/docs" | "/docs/:slug";
+    page: "/docs/*";
   };
-  "routes/docs.index.tsx": {
-    id: "routes/docs.index";
-    page: "/docs";
-  };
-  "routes/docs.page.tsx": {
-    id: "routes/docs.page";
-    page: "/docs/:slug";
+  "routes/search.ts": {
+    id: "routes/search";
+    page: "/api/search";
   };
 };
 
@@ -51,6 +47,5 @@ type RouteModules = {
   "root": typeof import("./src/root.tsx");
   "routes/home": typeof import("./src/routes/home.tsx");
   "routes/docs": typeof import("./src/routes/docs.tsx");
-  "routes/docs.index": typeof import("./src/routes/docs.index.tsx");
-  "routes/docs.page": typeof import("./src/routes/docs.page.tsx");
+  "routes/search": typeof import("./src/routes/search.ts");
 };

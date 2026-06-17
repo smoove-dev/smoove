@@ -1,10 +1,6 @@
 ---
 title: Installation
-group: Getting Started
-order: 2
-eyebrow: Getting Started
 description: Add the package, create a Konva Stage, and play your first tween.
-icon: cube
 ---
 
 konva-motion ships as an ES module with `konva` as a peer dependency. Install both, build a scene, and drive it from a timeline.
@@ -17,9 +13,9 @@ npm install konva konva-motion
 pnpm add konva konva-motion
 ```
 
-:::note Konva is a peer dependency
+<Callout type="info" title="Konva is a peer dependency">
 Pin the `konva` version yourself — konva-motion extends Konva's classes, so the two must resolve to a single copy.
-:::
+</Callout>
 
 ## Your first tween
 
@@ -41,24 +37,32 @@ tl.to(title, { y: 0, opacity: 1, duration: 0.9, easing: easeOut });
 tl.play();
 ```
 
-:::warning Heads up
+<Callout type="warn" title="Heads up">
 Add a node to a Konva `Layer` before you tween it — animating a detached node updates its attributes but nothing repaints.
-:::
+</Callout>
 
 ## Step by step
 
-:::steps
-1. **Create a Stage & Layer**
+<Steps>
 
-   Set up a Konva `Stage` bound to a container element, add a `Layer`, and place your shapes on it.
+<Step>
+### Create a Stage & Layer
 
-2. **Build a Timeline**
+Set up a Konva `Stage` bound to a container element, add a `Layer`, and place your shapes on it.
+</Step>
 
-   Create a `Timeline` — it sequences your tweens and repaints the layer for you on every frame.
+<Step>
+### Build a Timeline
 
-3. **Tween a node**
+Create a `Timeline` — it sequences your tweens and repaints the layer for you on every frame.
+</Step>
 
-   Call `tl.to(node, { …attrs, duration })` to animate any Konva attribute, then `tl.play()`.
-:::
+<Step>
+### Tween a node
+
+Call `tl.to(node, { …attrs, duration })` to animate any Konva attribute, then `tl.play()`.
+</Step>
+
+</Steps>
 
 You're ready — explore the full content toolkit in [Components & Typography](/docs/components).

@@ -63,7 +63,7 @@
 }
 
 /* ---------------- LIGHT ---------------- */
-[data-theme="light"] {
+.light {
   color-scheme: light;
 
   --stage: #ecebf2;
@@ -164,7 +164,7 @@ button {
   background: color-mix(in oklab, var(--accent) 32%, transparent);
   color: #fff;
 }
-[data-theme="light"] ::selection {
+.light ::selection {
   color: var(--ink-1);
 }
 
@@ -316,10 +316,10 @@ button {
 .theme-toggle .moon {
   display: block;
 }
-[data-theme="light"] .theme-toggle .sun {
+.light .theme-toggle .sun {
   display: block;
 }
-[data-theme="light"] .theme-toggle .moon {
+.light .theme-toggle .moon {
   display: none;
 }
 
