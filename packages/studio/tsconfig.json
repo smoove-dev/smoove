@@ -9,5 +9,5 @@
   },
   "include": ["src"],
   "exclude": ["src/studio.css"],
-  "references": [{ "path": "../core" }, { "path": "../player" }, { "path": "../renderer" }]
+  "references": [{ "path": "../core" }, { "path": "../renderer" }]
 }

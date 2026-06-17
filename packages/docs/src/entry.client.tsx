@@ -1,9 +1,6 @@
-// Register the <km-player> custom element — browser-only entry, so this
-// `customElements.define` side effect never runs during SSR. Doc pages can then
-// embed live demos by dropping a <km-player> into their Markdown.
-import "@konva-motion/player";
-// Opt-in default styling for the player chrome (control bar, overlay, colors).
-import "@konva-motion/player/styles.css";
+// <km-player> is registered + styled by the standalone <script>/<link> tags in
+// root.tsx (the dogfooded CDN-style distribution), so it is no longer bundled
+// here. Doc pages embed live demos by dropping a <km-player> into their Markdown.
 import { StrictMode, startTransition } from "react";
 import { hydrateRoot } from "react-dom/client";
 import { HydratedRouter } from "react-router/dom";

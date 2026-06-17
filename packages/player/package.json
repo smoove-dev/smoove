@@ -4,21 +4,24 @@
   "description": "Lit web components that play a konva-motion Composition like an HTML5 <video>.",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/player.js",
+  "module": "./dist/player.js",
   "types": "./dist/index.d.ts",
+  "unpkg": "./dist/player.global.js",
+  "jsdelivr": "./dist/player.global.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/player.js"
     },
-    "./player.js": "./dist/index.js",
+    "./standalone": "./dist/player.global.js",
     "./styles.css": "./dist/player.css"
   },
   "files": ["dist"],
   "scripts": {
-    "build": "tsc -b && cp src/player.css dist/player.css",
-    "dev": "tsc -b --watch",
+    "build": "vite build && vite build --mode standalone",
+    "dev": "vite build --watch",
+    "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
@@ -28,5 +31,11 @@
   "peerDependencies": {
     "@konva-motion/core": "workspace:*",
     "konva": ">=10"
+  },
+  "devDependencies": {
+    "@konva-motion/core": "workspace:*",
+    "konva": "^10.3.0",
+    "vite": "^8.0.0",
+    "vite-plugin-dts": "^5.0.2"
   }
 }

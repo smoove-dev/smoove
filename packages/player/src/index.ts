@@ -1,3 +1,6 @@
+// Component styles — Vite extracts this to dist/player.css.
+import "./player.css";
+
 // Side-effect imports register every custom element on load.
 import "./km-player.js";
 import "./containers.js";

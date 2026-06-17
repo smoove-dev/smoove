@@ -2,6 +2,12 @@ import { RootProvider } from "fumadocs-ui/provider/react-router";
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import "./app.css";
+// Dogfood the standalone player distribution: `?url` hands us the served URL of
+// the prebuilt files (self-contained ESM bundle + its stylesheet) instead of
+// inlining them into the docs bundle, so the docs site loads <km-player> via a
+// plain <script>/<link> — exactly the way a CDN consumer would.
+import playerScriptUrl from "@konva-motion/player/standalone?url";
+import playerStylesUrl from "@konva-motion/player/styles.css?url";
 
 export function links() {
   return [
@@ -11,6 +17,7 @@ export function links() {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap",
     },
+    { rel: "stylesheet", href: playerStylesUrl },
   ];
 }
 
@@ -24,6 +31,9 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <Meta />
         <Links />
+        {/* Registers <km-player> + controls and pins window.KonvaMotion / Konva.
+            type="module" defers it, so element upgrade happens post-parse. */}
+        <script type="module" src={playerScriptUrl} />
       </head>
       <body>
         <RootProvider>{children}</RootProvider>

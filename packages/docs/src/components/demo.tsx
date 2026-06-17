@@ -7,7 +7,7 @@ export function Demo({ src, label }: { src: string; label?: string }) {
         {label ? <span className="ml-auto opacity-70">{label}</span> : null}
       </figcaption>
       <div className="grid aspect-video w-full place-items-center bg-fd-secondary [&_km-player]:size-full">
-        <km-player src={src} controls loop />
+        <km-player src={src} controls loop autoplay />
       </div>
     </figure>
   );

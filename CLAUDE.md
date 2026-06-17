@@ -17,7 +17,7 @@ composition walks its child sequences, runs their updaters, and issues one
 ```
 packages/core       @konva-motion/core — engine + layout. Composition, Sequence, Flex, Block, Image, Text, + a flex-aware wrapper for every Konva shape (Rect/Circle/Star/…). konva is a peerDep; flexily is a regular dep.
 packages/timeline   @konva-motion/timeline — planned React UI components (scrubber, play button). Placeholder.
-packages/player     @konva-motion/player — Lit web-component player wrapping a Composition (<km-player> + controls). konva + core are peerDeps; lit + @lit/context are deps. Light DOM; opt-in styles at "@konva-motion/player/styles.css".
+packages/player     @konva-motion/player — Lit web-component player wrapping a Composition (<km-player> + controls). konva + core are peerDeps; lit + @lit/context are deps. Light DOM; opt-in styles at "@konva-motion/player/styles.css". Built with **Vite** (not tsc): default mode emits `dist/player.js` (ESM, peers external) + types; `--mode standalone` emits `dist/player.global.js` (self-contained ESM for `<script type="module">`, bundles konva/core/lit and pins `window.KonvaMotion` + `window.Konva`) via the `"./standalone"` / unpkg / jsdelivr export. CSS extracts to `dist/player.css`.
 packages/transitions @konva-motion/transitions — Remotion-style TransitionSeries + presentations. konva + core are peerDeps.
 packages/renderer   @konva-motion/renderer — headless video renderer (Node). Rasterizes a Composition with skia-canvas (konva/skia-backend) and encodes via ffmpeg (@ffmpeg-installer). konva 10 + core are peerDeps; skia-canvas + @ffmpeg-installer are deps. `./register` subpath = setupServerRendering() at import. `./gl` subpath = wire shader (Tier B) transitions through a headless-gl + skia compositor (optional `gl` dep; transitions optional peer) so they render server-side instead of falling back to fade.
 packages/docs       @konva-motion/docs — documentation website. React Router framework-mode SSR app (RR 7, `appDirectory: "src"`). Renders Markdown pages (frontmatter via gray-matter, markdown-it + highlight.js) with the KmStudio design. Authoring = add a `.md` under `src/content/`; the sidebar nav, TOC, and prev/next are derived from frontmatter. Embeds live demos via @konva-motion/player.
@@ -63,8 +63,13 @@ deep-import; internal moves just need the barrel repointed.
   `setFrame(n)` works anywhere for offline / server rendering.
 - **`timeline` is a placeholder** for React UI components. Don't put engine
   logic there.
-- **Build = `tsc -b` per package.** No bundler yet. Emit goes to `dist/`;
-  packages publish via the `exports` field pointing at `dist/`.
+- **Build = `tsc -b` per package**, _except_ `player`, which builds with
+  **Vite** (library mode + vite-plugin-dts) so it can also ship a
+  self-contained `<script>`-tag bundle. Emit goes to `dist/`; packages publish
+  via the `exports` field pointing at `dist/`. Because player no longer emits
+  via tsc, it is **not** a project-reference of other packages (studio/docs/root
+  tsconfigs reference core/renderer only) — consumers resolve player types
+  through its `types` field.
 - **Biome** for lint + format (`pnpm check`, `pnpm format`). Config is at the
   repo root; there is no per-package Biome config.
 - **No tests yet.** Add Vitest per-package when there's logic worth testing —
