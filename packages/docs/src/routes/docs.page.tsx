@@ -7,6 +7,7 @@ import {
   IconInfo,
 } from "../components/icons";
 import { useCopyButtons } from "../components/use-copy-buttons";
+import { useDemoMounts } from "../components/use-demo-mounts";
 import { getDoc, getPrevNext } from "../lib/content.server";
 import type { Route } from "./+types/docs.page";
 
@@ -33,6 +34,8 @@ export default function DocPage({ loaderData }: Route.ComponentProps) {
   const { page, prev, next } = loaderData;
   // Re-wire copy buttons inside the server-rendered article on each navigation.
   useCopyButtons(page.meta.slug);
+  // Mount any `:::demo <id> | …` slots with a live <km-player>.
+  useDemoMounts(page.meta.slug);
 
   return (
     <>

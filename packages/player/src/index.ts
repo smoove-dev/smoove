@@ -46,5 +46,7 @@ export type {
   FullscreenChangeDetail,
   ScaleChangeDetail,
   PlayerErrorDetail,
+  LoadStartDetail,
+  LoadedDetail,
   KmPlayerEventMap,
 } from "./events.js";

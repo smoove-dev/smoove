@@ -1,3 +1,5 @@
+import type { Composition } from "@konva-motion/core";
+
 /**
  * Detail payloads for the DOM `CustomEvent`s dispatched by `<km-player>`.
  * All events bubble and are composed. Subscribe with
@@ -52,9 +54,20 @@ export interface ScaleChangeDetail {
   scale: number;
 }
 
-/** `error` — an exception thrown while mounting or starting playback. */
+/** `error` — an exception thrown while mounting, starting playback, or loading `src`. */
 export interface PlayerErrorDetail {
   error: unknown;
+}
+
+/** `loadstart` — a remote `src` load began. */
+export interface LoadStartDetail {
+  src: string;
+}
+
+/** `loaded` — a remote `src` resolved and its composition was mounted. */
+export interface LoadedDetail {
+  src: string;
+  composition: Composition;
 }
 
 /** Maps each event name to its `CustomEvent` detail type. */
@@ -71,4 +84,6 @@ export interface KmPlayerEventMap {
   fullscreenchange: CustomEvent<FullscreenChangeDetail>;
   scalechange: CustomEvent<ScaleChangeDetail>;
   error: CustomEvent<PlayerErrorDetail>;
+  loadstart: CustomEvent<LoadStartDetail>;
+  loaded: CustomEvent<LoadedDetail>;
 }

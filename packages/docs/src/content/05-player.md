@@ -1,0 +1,74 @@
+---
+title: Player
+group: Player
+order: 5
+eyebrow: Player
+description: Play a composition in the browser with the <km-player> web component — including loading one from a remote file.
+icon: bolt
+---
+
+`@konva-motion/player` is a framework-agnostic **web component** that plays a
+`Composition` like an HTML5 `<video>` — letterbox-scaling it to its box, with
+fullscreen, keyboard control, and a Remotion-style imperative + event API.
+
+```ts
+import "@konva-motion/player"; // registers <km-player> and the controls
+import "@konva-motion/player/styles.css"; // opt-in default styling
+
+const player = document.querySelector("km-player");
+player.composition = comp; // a Composition — no container needed
+```
+
+## Loading from a remote file
+
+Instead of assigning a composition imperatively, point the player at a **remote
+ESM module** with the `src` attribute — just like `<video src>`:
+
+```html
+<km-player src="https://cdn.example/orbit.js" controls loop></km-player>
+```
+
+The player dynamically `import()`s the URL and resolves its **default export** to
+a live `Composition`. That export may be a `Composition` instance, a factory
+returning one (sync or async), or a factory resolving to `{ default: Composition }`:
+
+```ts
+// orbit.js — the remote module
+import { Composition, Sequence } from "@konva-motion/core";
+
+const comp = new Composition({ id: "orbit", fps: 60, durationInFrames: 180 });
+// …build the scene…
+
+export default comp; // or: () => comp / async () => comp
+```
+
+The demo below is exactly that. The composition lives in its own module; the
+docs hand the player its URL with Vite's [`?url`](https://vite.dev/guide/assets#explicit-url-imports)
+import, so the player fetches and runs it at load time — the same path a truly
+remote file would take.
+
+:::demo orbit | loaded via src
+:::
+
+Relative `src` values resolve against the document base. The player emits
+`loadstart` when a load begins and `loaded` once mounted; a failed import — or a
+module that doesn't resolve to a `Composition` — emits `error`. A `loading`
+attribute is reflected on the host while the import is in flight.
+
+:::warning Only load trusted URLs
+
+`src` performs a dynamic `import()`, which **executes arbitrary code** from the
+URL. Load only modules you trust, and make sure your CSP `script-src` allows the
+origin.
+:::
+
+## Attributes
+
+:::prop src | string | new
+URL of an ESM module whose default export resolves to a `Composition`. An
+imperatively-assigned `composition` property takes precedence over `src`.
+:::
+
+Other attributes: `controls`, `loop`, `autoplay`, `muted`, `volume`,
+`playbackrate`, `initialframe`, `no-click-to-play`, `no-space-key`,
+`no-keyboard`, `double-click-fullscreen`.

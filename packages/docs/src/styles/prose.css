@@ -750,6 +750,17 @@
       transparent 60%
     ), var(--stage);
 }
+/* Once a live <km-player> is mounted, let it fill the stage edge to edge. The
+   player host has width:100% but no intrinsic height, and the stage centers its
+   children, so it needs an explicit size to fill. */
+.demo-slot__stage:has(km-player) {
+  padding: 0;
+}
+.demo-slot__stage km-player {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .demo-slot__hint {
   text-align: center;
   color: var(--ink-3);

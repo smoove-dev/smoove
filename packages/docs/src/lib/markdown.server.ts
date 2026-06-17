@@ -138,15 +138,22 @@ calloutContainer("tip", "tip", "Tip");
 calloutContainer("warning", "warning", "Heads up");
 calloutContainer("danger", "danger", "Warning");
 
-/* ---------------- demo slot: :::demo <tag text> ---------------- */
+/* ---------------- demo slot: :::demo [id |] <tag text> ----------------
+   `:::demo 1280 × 720` → a placeholder slot (just a label).
+   `:::demo orbit | 1280 × 720` → the leading `id |` names a composition the
+   client mounts a live <km-player> into (see `demos/registry.ts`). */
 md.use(container, "demo", {
   render(tokens: MdToken[], idx: number) {
     const token = tokens[idx];
     if (!token) return "";
     if (token.nesting === 1) {
-      const tag = token.info.trim().slice("demo".length).trim();
+      const raw = token.info.trim().slice("demo".length).trim();
+      const sep = raw.indexOf("|");
+      const id = sep >= 0 ? raw.slice(0, sep).trim() : "";
+      const tag = sep >= 0 ? raw.slice(sep + 1).trim() : raw;
       const tagHtml = tag ? `<span class="tag">${esc(tag)}</span>` : "";
-      return `<div class="demo-slot"><div class="demo-slot__bar"><span class="glow" aria-hidden="true"></span><span class="label">Live demo</span>${tagHtml}</div><div class="demo-slot__stage">${DEMO_HINT}`;
+      const demoAttr = id ? ` data-km-demo="${esc(id)}"` : "";
+      return `<div class="demo-slot"><div class="demo-slot__bar"><span class="glow" aria-hidden="true"></span><span class="label">Live demo</span>${tagHtml}</div><div class="demo-slot__stage"${demoAttr}>${DEMO_HINT}`;
     }
     return "</div></div>\n";
   },

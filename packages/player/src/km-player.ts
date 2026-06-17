@@ -9,6 +9,44 @@ const TIMEUPDATE_INTERVAL_MS = 250;
 const now = (): number => (typeof performance?.now === "function" ? performance.now() : Date.now());
 
 /**
+ * Duck-typed `Composition` check — avoids a runtime dependency on `core`
+ * (it stays a type-only import). A Composition is a `Konva.Stage`
+ * (`setContainer`) that also exposes the engine's `refresh()`.
+ */
+function isComposition(v: unknown): v is Composition {
+  return (
+    typeof v === "object" &&
+    v !== null &&
+    typeof (v as { setContainer?: unknown }).setContainer === "function" &&
+    typeof (v as { refresh?: unknown }).refresh === "function"
+  );
+}
+
+/**
+ * Resolve a remote module's default export to a live {@link Composition},
+ * unwrapping factories (sync/async) and `{ default }` nesting along the way.
+ */
+async function resolveComposition(input: unknown): Promise<Composition> {
+  let value: unknown = input;
+  for (let i = 0; i < 5; i++) {
+    value = await value;
+    if (isComposition(value)) return value;
+    if (typeof value === "function") {
+      value = (value as () => unknown)();
+      continue;
+    }
+    if (typeof value === "object" && value !== null && "default" in value) {
+      value = (value as { default: unknown }).default;
+      continue;
+    }
+    break;
+  }
+  throw new Error(
+    "[konva-motion] remote src did not resolve to a Composition — expected a default export of a Composition or a factory returning one",
+  );
+}
+
+/**
  * `<km-player>` — the host element. Wraps a {@link Composition} and plays it
  * like an HTML5 `<video>`: letterbox-scales the stage to its box, supports
  * fullscreen and keyboard control, auto-renders a default control bar, and
@@ -22,7 +60,7 @@ const now = (): number => (typeof performance?.now === "function" ? performance.
  */
 export class KmPlayer extends HTMLElement implements PlayerApi {
   static get observedAttributes(): string[] {
-    return ["loop", "controls", "muted", "volume", "playbackrate"];
+    return ["loop", "controls", "muted", "volume", "playbackrate", "src"];
   }
 
   // --- stable, player-owned reactive state -----------------------------------
@@ -50,6 +88,9 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
 
   private _comp: Composition | null = null;
   private _unsubs: Array<() => void> = [];
+  // Monotonic token guarding async `src` loads: a stale import resolving late
+  // must not clobber a composition assigned by a newer `src` (or imperatively).
+  private _loadSeq = 0;
   private _prevPlaying = false;
   private _lastTimeupdate = 0;
 
@@ -65,6 +106,8 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
     return this._comp;
   }
   set composition(c: Composition | null) {
+    // An explicit assignment wins over any in-flight `src` load — invalidate it.
+    this._loadSeq++;
     if (c === this._comp) return;
     // Halt the outgoing composition so it stops ticking + playing audio in the
     // background — it's a long-lived instance the consumer may reuse, so we
@@ -114,6 +157,13 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
     const a = this.getAttribute("initialframe");
     return a == null ? 0 : Number(a);
   }
+  get src(): string | null {
+    return this.getAttribute("src");
+  }
+  set src(v: string | null) {
+    if (v == null) this.removeAttribute("src");
+    else this.setAttribute("src", v);
+  }
 
   // --- lifecycle -------------------------------------------------------------
   connectedCallback(): void {
@@ -135,6 +185,9 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
     this.addEventListener("keydown", this._onKeyDown);
 
     if (this._comp) this._mount();
+    // A composition assigned imperatively before connect wins; otherwise honor
+    // a declarative `src`.
+    else if (this.src) this._loadFromSrc(this.src);
     this._reconcileControls();
   }
 
@@ -147,7 +200,14 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
     // Intentionally NOT destroying the composition — the consumer owns it.
   }
 
-  attributeChangedCallback(name: string): void {
+  attributeChangedCallback(name: string, _old: string | null, value: string | null): void {
+    // `src` is handled before the early-return below: it loads a composition
+    // rather than configuring an existing one, so it must run even when none is
+    // mounted yet.
+    if (name === "src") {
+      if (this.isConnected && value) this._loadFromSrc(value);
+      return;
+    }
     const comp = this._comp;
     if (!comp) return;
     switch (name) {
@@ -293,6 +353,42 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
   private _unbind(): void {
     for (const u of this._unsubs) u();
     this._unsubs = [];
+  }
+
+  // --- remote loading --------------------------------------------------------
+  /**
+   * Dynamically import a remote ESM module and mount its default export. The
+   * default export may be a {@link Composition}, a factory returning one (sync
+   * or async), or a factory resolving to `{ default: Composition }`.
+   *
+   * Loads are race-guarded with {@link _loadSeq}: a stale import resolving after
+   * a newer `src` — or an imperative `composition =` — is discarded.
+   */
+  private async _loadFromSrc(rawSrc: string): Promise<void> {
+    const seq = ++this._loadSeq;
+    let url: string;
+    try {
+      // Resolve against the document base so consumer-relative URLs behave like
+      // `<video src>` (a bare dynamic import resolves relative to this module).
+      url = new URL(rawSrc, document.baseURI).href;
+    } catch (error) {
+      this._emit("error", { error });
+      return;
+    }
+    this.toggleAttribute("loading", true);
+    this._emit("loadstart", { src: url });
+    try {
+      const mod = (await import(/* @vite-ignore */ url)) as { default?: unknown };
+      const comp = await resolveComposition("default" in mod ? mod.default : mod);
+      if (seq !== this._loadSeq) return; // superseded by a newer load/assignment
+      this.toggleAttribute("loading", false);
+      this.composition = comp;
+      this._emit("loaded", { src: url, composition: comp });
+    } catch (error) {
+      if (seq !== this._loadSeq) return;
+      this.toggleAttribute("loading", false);
+      this._emit("error", { error });
+    }
   }
 
   // --- layout / fullscreen ---------------------------------------------------
