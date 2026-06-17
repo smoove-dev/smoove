@@ -44,8 +44,9 @@ import, so the player fetches and runs it at load time — the same path a truly
 remote file would take.
 
 import orbit from '../../src/demos/orbit.ts?url&no-inline';
+import orbitSource from '../../src/demos/orbit.ts?raw';
 
-<Demo src={orbit} label="loaded via src" />
+<Demo src={orbit} source={orbitSource} lang="ts" label="loaded via src" />
 
 Relative `src` values resolve against the document base. The player emits
 `loadstart` when a load begins and `loaded` once mounted; a failed import — or a
