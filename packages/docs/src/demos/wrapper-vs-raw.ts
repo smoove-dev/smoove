@@ -2,22 +2,26 @@ import { Composition, Flex, Rect, Sequence, Text } from "@konva-motion/core";
 import Konva from "konva";
 
 /**
- * Why prefer the core wrappers over raw `Konva.*`. Both rows sit in a Flex whose
- * `gap` animates. The core `Rect`s implement the layout contract, so they reflow
- * as the gap grows. The raw `Konva.Rect`s are invisible to the layout engine —
- * they render, but stay frozen wherever you first put them.
+ * Why prefer the core wrappers over raw `Konva.*`. Both rows are a Flex whose
+ * width animates, and both hold a fixed box plus a "content" box that should
+ * fill the rest of the row. The core `Rect` takes `flexGrow: 1`, so it stretches
+ * to fill the row as it widens. The raw `Konva.Rect` is still measured and
+ * placed by the layout engine, but it can't express `flexGrow`, so it stays its
+ * fixed size and leaves a growing gap.
  */
 const width = 1280;
 const height = 720;
-const duration = 150;
-const startGap = 24;
-const maxGap = 210;
-const itemW = 150;
-const colors = ["#4cc9f0", "#b5179e", "#80ffdb"];
+const duration = 300;
+const minW = 360;
+const maxW = 1040;
+const rowX = 120;
+const rowH = 150;
+const FIXED = "#39c6c0";
+const FILL = "#f0c000";
 
 const comp = new Composition({
   id: "wrapper-vs-raw",
-  fps: 30,
+  fps: 60,
   durationInFrames: duration,
   width,
   height,
@@ -29,7 +33,7 @@ main.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 
 const label = (text: string, y: number, fill: string) =>
   new Text({
-    x: 200,
+    x: rowX,
     y,
     text,
     fontSize: 26,
@@ -38,38 +42,71 @@ const label = (text: string, y: number, fill: string) =>
     fill,
   });
 
-// Row 1 — core Rect: participates in layout, reflows with the gap.
-main.add(label("core Rect — reflows ✓", 130, "#3fb950"));
-const coreRow = new Flex({ x: 200, y: 175, flexDirection: "row", gap: startGap });
-for (const c of colors)
-  coreRow.add(new Rect({ width: itemW, height: itemW, fill: c, cornerRadius: 14 }));
+// An outline per row shows the animated container bounds, so "fills the row"
+// vs "leaves a gap" is obvious. These are leaves, not laid out by the Flex.
+const coreOutline = new Rect({
+  x: rowX,
+  y: 170,
+  width: minW,
+  height: rowH,
+  stroke: "#30363d",
+  strokeWidth: 2,
+  cornerRadius: 12,
+});
+const rawOutline = new Rect({
+  x: rowX,
+  y: 470,
+  width: minW,
+  height: rowH,
+  stroke: "#30363d",
+  strokeWidth: 2,
+  cornerRadius: 12,
+});
+
+// Row 1, core Rect with flexGrow: stretches to fill the row.
+main.add(label("core Rect (flexGrow): fills the row ✓", 130, "#3fb950"));
+main.add(coreOutline);
+const coreRow = new Flex({
+  x: rowX,
+  y: 170,
+  width: minW,
+  height: rowH,
+  flexDirection: "row",
+  gap: 16,
+  padding: 16,
+  alignItems: "center",
+});
+coreRow.add(new Rect({ width: 110, height: 110, fill: FIXED, cornerRadius: 12 }));
+coreRow.add(new Rect({ width: 50, height: 110, flexGrow: 1, fill: FILL, cornerRadius: 12 }));
 main.add(coreRow);
 
-// Row 2 — raw Konva.Rect: renders, but the layout engine can't see it, so it
-// stays put. We position each one by hand at the starting layout.
-main.add(label("raw Konva.Rect — frozen ✗", 430, "#f85149"));
-const rawRow = new Flex({ x: 200, y: 475, flexDirection: "row", gap: startGap });
-colors.forEach((c, i) => {
-  rawRow.add(
-    new Konva.Rect({
-      x: i * (itemW + startGap),
-      y: 0,
-      width: itemW,
-      height: itemW,
-      fill: c,
-      cornerRadius: 14,
-      opacity: 0.5,
-    }),
-  );
+// Row 2, raw Konva.Rect: laid out and placed, but no flexGrow, so it stays put.
+main.add(label("raw Konva.Rect: can't grow, leaves a gap ✗", 430, "#f85149"));
+main.add(rawOutline);
+const rawRow = new Flex({
+  x: rowX,
+  y: 470,
+  width: minW,
+  height: rowH,
+  flexDirection: "row",
+  gap: 16,
+  padding: 16,
+  alignItems: "center",
 });
+rawRow.add(new Rect({ width: 110, height: 110, fill: FIXED, cornerRadius: 12 }));
+rawRow.add(
+  new Konva.Rect({ width: 110, height: 110, fill: FILL, cornerRadius: 12, opacity: 0.85 }),
+);
 main.add(rawRow);
 
 main.register((frame) => {
   const t = frame / duration;
-  const gap = startGap + (maxGap - startGap) * (0.5 - 0.5 * Math.cos(t * Math.PI * 2));
-  // Both rows get the same gap — only the core row actually reflows.
-  coreRow.setAttrs({ gap });
-  rawRow.setAttrs({ gap });
+  const w = minW + (maxW - minW) * (0.5 - 0.5 * Math.cos(t * Math.PI * 2));
+  coreOutline.width(w);
+  rawOutline.width(w);
+  // The Sequence recomputes each Flex root after this updater runs.
+  coreRow.setAttrs({ flexWidth: w });
+  rawRow.setAttrs({ flexWidth: w });
 });
 
 comp.add(main);

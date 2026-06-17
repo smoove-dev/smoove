@@ -4,23 +4,22 @@ description: What konva-motion is, the frame-clock mental model, and when to rea
 ---
 
 konva-motion brings [Remotion](https://remotion.dev)-style, timeline-driven
-animation to [Konva](https://konvajs.org). You describe **what an attribute is at
-frame N** — the engine drives your scene from a frame clock, plays it back
-smoothly in the browser, and renders the exact same timeline to video on the
-server.
+animation to [Konva](https://konvajs.org). You describe what an attribute is at
+frame N. The engine drives your scene from a frame clock, plays it back smoothly
+in the browser, and renders the exact same timeline to video on the server.
 
 <Demo name="hero" label="every frame is a pure function of the clock" />
 
 ## The mental model
 
-Everything rests on one idea: **a `Composition` owns a frame clock**, and your
+Everything rests on one idea: a `Composition` owns a frame clock, and your
 animation is a pure function of the current frame.
 
 - A `Composition` (it _is_ a `Konva.Stage`) holds `fps` and `durationInFrames`.
   Together they define a fixed timeline of frames `0 … durationInFrames - 1`.
-- A `Sequence` (it _is_ a `Konva.Layer`) is **range-gated**: it lives on the
-  timeline at `[from, from + durationInFrames)` and is only visible — and only
-  repainted — while the playhead is inside that window.
+- A `Sequence` (it _is_ a `Konva.Layer`) is **range-gated**. It lives on the
+  timeline at `[from, from + durationInFrames)` and is only visible, and only
+  repainted, while the playhead is inside that window.
 - Each tick, the composition walks its sequences, runs their **updaters**, and
   `batchDraw`s the active ones. An updater receives the current frame and writes
   attributes: `node.x(...)`, `node.opacity(...)`, and so on.
@@ -30,7 +29,7 @@ frame:   0         30        60        90       120
          ├─────────┼─────────┼─────────┼─────────┤
 Seq A    ███████████████████                        from 0,  len 60
 Seq B              ███████████████████              from 30, len 60
-                        ▲ playhead — only A and B in range here get drawn
+                        ▲ playhead (only A and B in range here get drawn)
 ```
 
 <Callout type="tip" title="Tip">
@@ -42,23 +41,22 @@ Seq B              ███████████████████    
 
 ## When to reach for it
 
-Reach for konva-motion when motion is the point and it has to be **deterministic
-and seekable** — explainer videos, animated data stories, product demos,
-anything you might also export to MP4. Because every frame is computed from the
-clock, you can scrub to any point or render frames out of order and get exactly
-what you'd see on playback.
+Reach for konva-motion when motion is the point and it has to be deterministic
+and seekable: explainer videos, animated data stories, product demos, anything
+you might also export to MP4. Every frame is computed from the clock, so you can
+scrub to any point or render frames out of order and get exactly what you'd see
+on playback.
 
 ### Dynamic, data-driven videos at scale
 
 The sweet spot is **parametrized video**: author one composition, then render it
-many times with different data. A composition is a function of `frame` **and
-`props`** — pass data in through `props`, read it back in your updaters, and the
+many times with different data. A composition is a function of `frame` and
+`props`. Pass data in through `props`, read it back in your updaters, and the
 same timeline produces a different video per input.
 
-The classic example is personalization. Imagine sending every customer a
-birthday video with their own name on it — same animation, 10,000 different
-names. You build the scene once and let the renderer stamp out one MP4 per
-record:
+The classic example is personalization. Say you want to send every customer a
+birthday video with their own name on it: same animation, 10,000 different names.
+You build the scene once and let the renderer stamp out one MP4 per record.
 
 ```ts
 import { Composition, Sequence, Text, interpolate } from "@konva-motion/core";
@@ -94,8 +92,8 @@ function birthdayVideo({ name }: { name: string }) {
 }
 ```
 
-Then drive it headlessly — no browser, one file per record — with the
-`@konva-motion/renderer` package:
+Then drive it headlessly with the `@konva-motion/renderer` package. No browser,
+one file per record.
 
 ```ts
 import "@konva-motion/renderer/register";
@@ -109,24 +107,24 @@ for (const customer of customers) {
 ```
 
 The same pattern covers personalized year-in-review recaps, certificates with a
-recipient's name, data-driven social cards, localized ad variants, and any
-"one template, thousands of renders" job. Because every frame is a pure function
-of `frame` + `props`, the browser preview and the server render are guaranteed
-to match — what you design is exactly what each customer receives. (Headless
+recipient's name, data-driven social cards, localized ad variants, and any "one
+template, thousands of renders" job. Every frame is a pure function of `frame`
+plus `props`, so the browser preview and the server render are guaranteed to
+match. What you design is exactly what each customer receives. (Headless
 rendering is covered in depth in the Rendering section.)
 
 ### When you don't need it
 
-You probably don't need it for a single hover/enter transition on a Konva node —
-a one-off `Konva.Tween` or a CSS transition is lighter. The moment you have more
-than one thing moving on a shared timeline, or you want to loop/scrub/export it,
-the frame clock pays for itself.
+You probably don't need it for a single hover or enter transition on a Konva
+node. A one-off `Konva.Tween` or a CSS transition is lighter. The moment you
+have more than one thing moving on a shared timeline, or you want to
+loop/scrub/export it, the frame clock pays for itself.
 
 ## Next steps
 
-- [Installation](/docs/installation) — add the package and build your first
+- [Installation](/docs/installation): add the package and build your first
   composition.
-- [Core concepts](/docs/core-concepts) — `Composition`, `Sequence`,
-  range-gating, and the tick loop in depth.
-- [Best practices](/docs/best-practices) — the recommended way to structure
+- [Core concepts](/docs/core-concepts): `Composition`, `Sequence`, range-gating,
+  and the tick loop in depth.
+- [Best practices](/docs/best-practices): the recommended way to structure
   animations so they stay deterministic.

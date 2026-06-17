@@ -15,10 +15,10 @@ pnpm add konva @konva-motion/core
 ```
 
 <Callout type="info" title="Konva is a peer dependency">
-konva-motion **extends** Konva's classes — `Composition` is a `Konva.Stage`,
+konva-motion **extends** Konva's classes. `Composition` is a `Konva.Stage`,
 `Sequence` is a `Konva.Layer`, and `Rect`/`Circle`/`Text`/… extend their Konva
 equivalents. Install `konva` yourself and make sure your bundler resolves a
-**single** copy; two copies break `instanceof` checks and layout.
+single copy; two copies break `instanceof` checks and layout.
 </Callout>
 
 ## Your first composition
@@ -31,23 +31,23 @@ import { Circle, Composition, Easing, Rect, Sequence, interpolate } from "@konva
 
 const comp = new Composition({
   id: "first-tween",
-  fps: 30,
-  durationInFrames: 90, // 3 seconds
+  fps: 60,
+  durationInFrames: 180, // 3 seconds
   width: 1280,
   height: 720,
   loop: true,
 });
 
-const scene = new Sequence({ from: 0, durationInFrames: 90 });
+const scene = new Sequence({ from: 0, durationInFrames: 180 });
 scene.add(new Rect({ x: 0, y: 0, width: 1280, height: 720, fill: "#0d1117" }));
 
 const ball = new Circle({ x: 0, y: 360, radius: 64, fill: "#4ea1ff" });
 scene.add(ball);
 
 scene.register((frame) => {
-  // "Where is the ball at frame N?" — the whole model in one line.
-  ball.x(interpolate(frame, [0, 89], [160, 1120], { easing: Easing.inOut(Easing.cubic) }));
-  ball.opacity(interpolate(frame, [0, 15, 75, 89], [0, 1, 1, 0]));
+  // "Where is the ball at frame N?" The whole model in one line.
+  ball.x(interpolate(frame, [0, 179], [160, 1120], { easing: Easing.inOut(Easing.cubic) }));
+  ball.opacity(interpolate(frame, [0, 30, 150, 179], [0, 1, 1, 0]));
 });
 
 comp.add(scene);
@@ -57,14 +57,14 @@ comp.setContainer(document.getElementById("scene") as HTMLDivElement);
 comp.play();
 ```
 
-That composition is the demo below — open **View source** to see the exact file:
+That composition is the demo below. Open **View source** to see the exact file:
 
 <Demo name="first-tween" label="the code above, running" />
 
 <Callout type="warn" title="Add the node before you animate it">
 Attach every node to a `Sequence` (`scene.add(node)`) **before** you tween it.
-Updating attributes on a detached node changes the values but nothing repaints —
-the sequence is what draws it.
+Updating attributes on a detached node changes the values but nothing repaints.
+The sequence is what draws it.
 </Callout>
 
 ## Step by step
@@ -90,7 +90,7 @@ to it with `seq.add(...)`, then add the sequence to the composition with
 ### Register a frame updater
 
 `seq.register((frame) => { … })` runs every tick the sequence is in range. Set
-attributes from the frame — usually via [`interpolate`](/docs/interpolation) and
+attributes from the frame, usually via [`interpolate`](/docs/interpolation) and
 [`Easing`](/docs/easing). The argument is the **sequence-local** frame.
 </Step>
 
@@ -98,8 +98,8 @@ attributes from the frame — usually via [`interpolate`](/docs/interpolation) a
 ### Mount and play
 
 Point the stage at a container with `comp.setContainer(el)` (or pass `container`
-in the constructor), then `comp.play()`. For offline / server rendering use
-`comp.setFrame(n)` instead — it works without a browser.
+in the constructor), then `comp.play()`. For offline or server rendering use
+`comp.setFrame(n)` instead. It works without a browser.
 </Step>
 
 </Steps>

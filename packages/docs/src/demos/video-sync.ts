@@ -3,8 +3,8 @@ import Konva from "konva";
 import clip1Url from "./assets/sync-test-1.mp4";
 import clip2Url from "./assets/sync-test-2.mp4";
 
-// Each clip is capped to its first 10s (300 frames @30fps) via `trimAfter`.
-const PHASE = 300;
+// Each clip is capped to its first 10s (600 frames @60fps) via `trimAfter`.
+const PHASE = 600;
 const TOTAL = PHASE * 3; // top plays, then bottom plays, then both together.
 
 const NAME_1 = "sync-test-1.mp4";
@@ -18,7 +18,7 @@ const PAUSED = "#7d8590";
 const SIDE = 1080;
 const comp = new Composition({
   id: "video-sync",
-  fps: 30,
+  fps: 60,
   durationInFrames: TOTAL,
   width: SIDE,
   height: SIDE,

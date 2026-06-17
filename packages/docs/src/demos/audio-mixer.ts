@@ -6,19 +6,19 @@ import voiceUrl from "./assets/voice.wav";
 import whooshAUrl from "./assets/whoosh-a.mp3";
 import whooshBUrl from "./assets/whoosh-b.mp3";
 
-const FPS = 30;
-const TOTAL = 780; // 26s
+const FPS = 60;
+const TOTAL = 1560; // 26s
 
-// ---- Timeline anchors (frames @30fps) ----
-const VO_FROM = 120; // voice enters
-const VO_END = 404; // voice ends (120 + ~284 frames for the 9.48s clip)
-const DUCK_IN = 200; // music A fully ducked by here
-const DUCK_OUT = 424; // music A restored by here
-const XF_FROM = 540; // crossfade begins, music B enters
-const XF_END = 630; // crossfade complete (A=0, B=1)
-const A_END = 630; // music A sequence ends
-const OUT_FROM = 710; // music B outro fade begins
-const OUT_END = 770; // music B silent
+// ---- Timeline anchors (frames @60fps) ----
+const VO_FROM = 240; // voice enters
+const VO_END = 808; // voice ends (240 + ~568 frames for the 9.48s clip)
+const DUCK_IN = 400; // music A fully ducked by here
+const DUCK_OUT = 848; // music A restored by here
+const XF_FROM = 1080; // crossfade begins, music B enters
+const XF_END = 1260; // crossfade complete (A=0, B=1)
+const A_END = 1260; // music A sequence ends
+const OUT_FROM = 1420; // music B outro fade begins
+const OUT_END = 1540; // music B silent
 
 // ---- Palette ----
 const BG = "#0b1020";
@@ -50,7 +50,7 @@ const volA = (f: number) =>
 const volB = (f: number) =>
   interpolate(f, [XF_FROM, XF_END, OUT_FROM, OUT_END], [0, 1, 1, 0], clamp);
 const volV = (f: number) =>
-  interpolate(f, [VO_FROM, VO_FROM + 8, VO_END - 8, VO_END], [0, 1, 1, 0], clamp);
+  interpolate(f, [VO_FROM, VO_FROM + 16, VO_END - 16, VO_END], [0, 1, 1, 0], clamp);
 
 const inRange = (f: number, from: number, end: number) => f >= from && f < end;
 
@@ -77,11 +77,11 @@ const seqV = new Sequence({ from: VO_FROM, durationInFrames: VO_END - VO_FROM })
 seqV.add(voice);
 
 const whooshA = new Audio({ id: "whoosh-a", name: "Whoosh", src: whooshAUrl, volume: 0.5 });
-const seqWA = new Sequence({ from: 108, durationInFrames: 64 });
+const seqWA = new Sequence({ from: 216, durationInFrames: 128 });
 seqWA.add(whooshA);
 
 const whooshB = new Audio({ id: "whoosh-b", name: "Whoosh", src: whooshBUrl, volume: 0.5 });
-const seqWB = new Sequence({ from: XF_FROM - 8, durationInFrames: 130 });
+const seqWB = new Sequence({ from: XF_FROM - 16, durationInFrames: 260 });
 seqWB.add(whooshB);
 
 // ===== Visual layer (always on) =====
@@ -238,13 +238,13 @@ const render = (frame: number, playing: boolean) => {
   // Visualizer color blends Music A (gold) → Music B (teal) across the crossfade.
   const vizColor = interpolateColors(frame, [0, XF_FROM, XF_END, TOTAL], [GOLD, GOLD, TEAL, TEAL]);
   const combined = Math.max(eA, eB, eV * 0.85);
-  const pulse = 1 + 0.12 * Math.sin(frame * 0.4);
+  const pulse = 1 + 0.12 * Math.sin(frame * 0.2);
 
   for (let i = 0; i < N; i++) {
     const ang = (i / N) * Math.PI * 2 - Math.PI / 2;
     const cos = Math.cos(ang);
     const sin = Math.sin(ang);
-    const osc = 0.32 + 0.68 * Math.abs(Math.sin(frame * 0.22 + i * 0.55));
+    const osc = 0.32 + 0.68 * Math.abs(Math.sin(frame * 0.11 + i * 0.55));
     const len = 14 + 120 * combined * osc * pulse;
     const x1 = CX + cos * INNER;
     const y1 = CY + sin * INNER;

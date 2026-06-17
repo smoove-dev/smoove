@@ -3,10 +3,10 @@ import Konva from "konva";
 
 const width = 1280;
 const height = 720;
-const duration = 180;
+const duration = 360;
 const comp = new Composition({
   id: "flex-layout",
-  fps: 30,
+  fps: 60,
   durationInFrames: duration,
   width,
   height,

@@ -3,15 +3,15 @@ import { Circle, Composition, Easing, Rect, Sequence, Text, interpolate } from "
 /**
  * Introduction hero. A title + subtitle slide up and fade in over two accent
  * dots, then ease back out so the loop is seamless (frame 0 ≈ last frame).
- * Everything is a pure function of the frame — no timers, no tweens.
+ * Everything is a pure function of the frame: no timers, no tweens.
  */
 const width = 1280;
 const height = 720;
-const duration = 150;
+const duration = 300;
 
 const comp = new Composition({
   id: "hero",
-  fps: 30,
+  fps: 60,
   durationInFrames: duration,
   width,
   height,
@@ -65,9 +65,9 @@ const easeOut = Easing.out(Easing.cubic);
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 main.register((frame) => {
-  // In over [0, 40], hold, out over [110, 150] — symmetric, so the loop joins.
-  const reveal = interpolate(frame, [0, 40], [0, 1], { easing: easeOut, ...clamp });
-  const exit = interpolate(frame, [110, 150], [0, 1], {
+  // In over [0, 80], hold, out over [220, 300], symmetric so the loop joins.
+  const reveal = interpolate(frame, [0, 80], [0, 1], { easing: easeOut, ...clamp });
+  const exit = interpolate(frame, [220, 300], [0, 1], {
     easing: Easing.in(Easing.cubic),
     ...clamp,
   });

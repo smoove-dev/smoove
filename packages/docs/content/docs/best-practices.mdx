@@ -3,29 +3,35 @@ title: Best practices
 description: The recommended way to structure konva-motion animations so they stay deterministic and seekable.
 ---
 
-These are the **recommended-way** principles. Most have a working escape hatch —
-they're here because following them keeps your animations deterministic,
+These are the recommended-way principles. Most have a working escape hatch.
+They're here because following them keeps your animations deterministic,
 seekable, and ready to render. Later pages link back to the relevant one where it
 bites.
 
 ## Prefer the core wrappers over raw `Konva.*`
 
 `Rect`, `Circle`, `Text`, `Image`, and the rest from `@konva-motion/core` extend
-their Konva equivalents **and** participate in flex layout and the layout
-contract. A raw `Konva.Rect` still renders — but the layout engine can't see it,
-so it won't reflow inside a `Flex`/`Block` and won't be measured or placed.
+their Konva equivalents and add full flex participation: percentage sizes
+(`width: "100%"`), flex child props (`flexGrow`/`flexShrink`/`flexBasis`/
+`alignSelf`), and the richer nodes (`Text` fit and highlights, `Image`
+`objectFit`, `Block` backgrounds). A raw `Konva.Rect` with a fixed pixel size is
+still measured and placed inside a `Flex`, but it can't express any of those, so
+it can't grow to fill a row, take a percentage width, or align itself. In the
+demo below the container grows: the `flexGrow` wrapper fills it, the raw box
+can't and leaves a gap.
 
-<Demo name="wrapper-vs-raw" label="same animated gap — only the core row reflows" />
+<Demo name="wrapper-vs-raw" label="grow the container: the flexGrow wrapper fills it, the raw box can't" />
 
-**Why:** the wrappers are the drawing vocabulary; importing them keeps every node
-layout-aware. Reach for `Konva.*` only for something core doesn't wrap yet.
+**Why:** the wrappers are the drawing vocabulary, and importing them gives every
+node `%` sizes, flex child props, and the rich `Text`/`Image`/`Block` features.
+Reach for `Konva.*` only for something core doesn't wrap yet.
 
 ```ts
-// ✅ do — layout-aware
+// ✅ do: layout-aware
 import { Rect } from "@konva-motion/core";
 row.add(new Rect({ width: 120, height: 120, fill: "#4ea1ff" }));
 
-// 🚫 avoid (unless intentional) — renders, but never reflows in a Flex
+// 🚫 avoid (unless intentional): renders, but never reflows in a Flex
 import Konva from "konva";
 row.add(new Konva.Rect({ width: 120, height: 120, fill: "#4ea1ff" }));
 ```
@@ -51,7 +57,7 @@ setInterval(() => box.x(box.x() + 4), 16); // invisible to scrubbing and renderi
 
 ## Keep compositions pure
 
-A composition should be a pure function of `frame` (and any `props`) — no
+A composition should be a pure function of `frame` (and any `props`): no
 external mutable state, no `Date.now()`, no random values that change between
 renders.
 
@@ -83,18 +89,18 @@ not for structure.
 change. Layout that reflows stays correct for free.
 
 ```ts
-// ✅ do — animate the container, children follow
+// ✅ do: animate the container, children follow
 row.setAttrs({ gap: interpolate(frame, [0, 30], [8, 64]) });
 
-// 🚫 avoid — re-deriving each child's x by hand
+// 🚫 avoid: re-deriving each child's x by hand
 children.forEach((c, i) => c.x(i * (120 + gap)));
 ```
 
 ## `play()` is browser-only; `setFrame(n)` works anywhere
 
-Use `comp.setFrame(n)` for offline and server paths — it's also what the
-[renderer](/docs/rendering) drives. `comp.play()` needs `requestAnimationFrame`
-and throws outside the browser.
+Use `comp.setFrame(n)` for offline and server paths. It's also what the
+headless renderer drives. `comp.play()` needs `requestAnimationFrame` and throws
+outside the browser.
 
 ## Use `interpolate` extrapolation, not manual clamping
 
@@ -114,5 +120,5 @@ Math.min(1, frame / 30);
 
 ## Next steps
 
-Put these to work in [Animating](/docs/interpolation) — `interpolate`, `Easing`,
+Put these to work in [Animating](/docs/interpolation): `interpolate`, `Easing`,
 and sequencing.

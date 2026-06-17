@@ -15,8 +15,8 @@ function range(haystack: string, needle: string): { start: number; end: number }
   return { start, end: start + needle.length };
 }
 
-const fps = 30;
-const duration = 150;
+const fps = 60;
+const duration = 300;
 
 const width = 512;
 const height = 512;
@@ -167,13 +167,13 @@ main.add(big);
 
 main.register((local) => {
   // box1 is a flex child (reflowed each frame) — just set progress.
-  hl1.progress = interpolate(local, [10, 50], [0, 1], {
+  hl1.progress = interpolate(local, [20, 100], [0, 1], {
     easing: Easing.inOut(Easing.cubic),
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   // big is a direct child — set progress and re-render it.
-  hlLong.progress = interpolate(local, [40, 110], [0, 1], {
+  hlLong.progress = interpolate(local, [80, 220], [0, 1], {
     easing: Easing.out(Easing.cubic),
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",

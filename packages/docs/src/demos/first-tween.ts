@@ -4,11 +4,11 @@ import { Circle, Composition, Easing, Rect, Sequence, interpolate } from "@konva
 // position and opacity are a function of the current frame.
 const width = 1280;
 const height = 720;
-const duration = 90; // 3 seconds at 30fps
+const duration = 180; // 3 seconds at 60fps
 
 const comp = new Composition({
   id: "first-tween",
-  fps: 30,
+  fps: 60,
   durationInFrames: duration,
   width,
   height,
@@ -22,13 +22,13 @@ const ball = new Circle({ x: 0, y: height / 2, radius: 64, fill: "#4ea1ff" });
 scene.add(ball);
 
 scene.register((frame) => {
-  // "Where is the ball at frame N?" — the whole mental model in one line.
+  // "Where is the ball at frame N?" The whole mental model in one line.
   ball.x(
     interpolate(frame, [0, duration - 1], [160, width - 160], {
       easing: Easing.inOut(Easing.cubic),
     }),
   );
-  ball.opacity(interpolate(frame, [0, 15, duration - 15, duration - 1], [0, 1, 1, 0]));
+  ball.opacity(interpolate(frame, [0, 30, duration - 30, duration - 1], [0, 1, 1, 0]));
 });
 
 comp.add(scene);

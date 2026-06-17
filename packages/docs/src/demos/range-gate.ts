@@ -2,17 +2,17 @@ import { Composition, Line, Rect, Sequence, Text } from "@konva-motion/core";
 
 /**
  * Three Sequences with different `from` / `durationInFrames`. Each card only
- * exists — is drawn, ticked, painted — while the playhead sits inside that
+ * exists (drawn, ticked, painted) while the playhead sits inside that
  * sequence's window. The timeline at the bottom shows the windows and the
  * moving playhead so the gating is visible.
  */
 const width = 1280;
 const height = 720;
-const duration = 180;
+const duration = 360;
 
 const comp = new Composition({
   id: "range-gate",
-  fps: 30,
+  fps: 60,
   durationInFrames: duration,
   width,
   height,
@@ -21,33 +21,13 @@ const comp = new Composition({
 
 type Win = { from: number; len: number; color: string; name: string };
 const windows: Win[] = [
-  { from: 0, len: 70, color: "#4cc9f0", name: "A · from 0, 70f" },
-  { from: 55, len: 70, color: "#b5179e", name: "B · from 55, 70f" },
-  { from: 115, len: 65, color: "#80ffdb", name: "C · from 115, 65f" },
+  { from: 0, len: 140, color: "#4cc9f0", name: "A · from 0, 140f" },
+  { from: 110, len: 140, color: "#b5179e", name: "B · from 110, 140f" },
+  { from: 230, len: 130, color: "#80ffdb", name: "C · from 230, 130f" },
 ];
 
-// One card per window, each in its own range-gated Sequence.
-windows.forEach((w, i) => {
-  const seq = new Sequence({ from: w.from, durationInFrames: w.len });
-  const x = 160 + i * 340;
-  seq.add(new Rect({ x, y: 180, width: 280, height: 200, fill: w.color, cornerRadius: 16 }));
-  seq.add(
-    new Text({
-      x,
-      y: 262,
-      width: 280,
-      align: "center",
-      text: w.name,
-      fontSize: 24,
-      fontStyle: "600",
-      fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
-      fill: "#0d1117",
-    }),
-  );
-  comp.add(seq);
-});
-
-// Always-on layer: background, timeline track, window bars, and the playhead.
+// Always-on base layer (added FIRST so it sits underneath the cards):
+// background, timeline track, window bars, and the playhead.
 const base = new Sequence({ from: 0, durationInFrames: duration });
 base.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 
@@ -91,4 +71,27 @@ base.register((frame) => {
 });
 
 comp.add(base);
+
+// One card per window, each in its own range-gated Sequence, layered on top of
+// the base so the card and its label are visible while in range.
+windows.forEach((w, i) => {
+  const seq = new Sequence({ from: w.from, durationInFrames: w.len });
+  const x = 160 + i * 340;
+  seq.add(new Rect({ x, y: 180, width: 280, height: 200, fill: w.color, cornerRadius: 16 }));
+  seq.add(
+    new Text({
+      x,
+      y: 262,
+      width: 280,
+      align: "center",
+      text: w.name,
+      fontSize: 24,
+      fontStyle: "600",
+      fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
+      fill: "#0d1117",
+    }),
+  );
+  comp.add(seq);
+});
+
 export default comp;

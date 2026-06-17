@@ -3,15 +3,15 @@ import { Circle, Composition, Line, Rect, Sequence, Text, interpolate } from "@k
 /**
  * Makes the frame → value mapping literal: a dot rides a track, and the readout
  * shows the exact frame and the `x` it interpolates to. The dot's position is
- * never stored — it is recomputed from `frame` every tick.
+ * never stored: it is recomputed from `frame` every tick.
  */
 const width = 1280;
 const height = 720;
-const duration = 120;
+const duration = 240;
 
 const comp = new Composition({
   id: "frame-clock",
-  fps: 30,
+  fps: 60,
   durationInFrames: duration,
   width,
   height,
@@ -49,7 +49,7 @@ const formula = new Text({
   y: 220,
   width,
   align: "center",
-  text: "x = interpolate(frame, [0, 119], [200, 1080])",
+  text: "x = interpolate(frame, [0, 239], [200, 1080])",
   fontSize: 24,
   fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
   fill: "#7d8590",
