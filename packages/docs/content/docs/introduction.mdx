@@ -3,10 +3,10 @@ title: Introduction
 description: What konva-motion is, the frame-clock mental model, and when to reach for it.
 ---
 
-konva-motion brings [Remotion](https://remotion.dev)-style, timeline-driven
-animation to [Konva](https://konvajs.org). You describe what an attribute is at
-frame N. The engine drives your scene from a frame clock, plays it back smoothly
-in the browser, and renders the exact same timeline to video on the server.
+konva-motion brings timeline-driven animation to [Konva](https://konvajs.org).
+You describe what an attribute is at frame N. The engine drives your scene from a
+frame clock, plays it back smoothly in the browser, and renders the exact same
+timeline to video on the server.
 
 <Demo name="hero" label="every frame is a pure function of the clock" />
 
@@ -128,3 +128,11 @@ loop/scrub/export it, the frame clock pays for itself.
   and the tick loop in depth.
 - [Best practices](/docs/best-practices): the recommended way to structure
   animations so they stay deterministic.
+
+## Credits
+
+konva-motion stands on two projects. [Konva](https://konvajs.org) is the 2D
+canvas library it builds on: every drawing primitive extends a Konva class, so
+the full Konva API is right there underneath. [Remotion](https://remotion.dev)
+is the inspiration for the frame-driven model, the idea that an animation should
+be a pure function of the current frame.
