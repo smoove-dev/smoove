@@ -1,0 +1,127 @@
+---
+title: Text
+description: The rich Text node, with CSS-like fitting, a frame-driven typewriter, and animated highlights.
+---
+
+`Text` is core's rich text node. It covers the everyday styling you expect plus
+two things raw Konva text does not give you: a frame-driven typewriter and
+per-range highlights you can sweep in.
+
+```ts
+import { Text } from "@konva-motion/core";
+
+seq.add(
+  new Text({
+    x: 40,
+    y: 40,
+    width: 420,
+    text: "Frame-first text.",
+    fontSize: 28,
+    lineHeight: 1.4,
+    fill: "#e6edf3",
+  }),
+);
+```
+
+It takes the styling props you would reach for: `fontSize`, `fontFamily`,
+`fontStyle`, `fill`, `align`, `lineHeight`, `letterSpacing`, `padding`, `wrap`
+(`"word" | "char" | "none"`), and `ellipsis`. `width`/`height` accept px or `%`,
+and it participates in flex like any other node.
+
+<Callout type="warn" title="Update content with setText, not text()">
+The `Text` wrapper extends `Konva.Group` (it composes an internal Konva text
+node plus the highlight and cursor layers), so it has no `.text()` accessor.
+Change the content with `setText("...")`, which re-runs fitting, clamping, and
+layout. Calling `.text(...)` throws.
+</Callout>
+
+## Typewriter
+
+Pass a `typewriter` config and the text reveals as a function of the local
+frame. It is fully deterministic, so it scrubs and renders the same every time:
+there is no `setInterval` driving it.
+
+```ts
+new Text({
+  width: "100%",
+  text: "This types itself out, word by word.",
+  typewriter: { mode: "word", durationInFrames: 180, cursor: { color: "#fff" } },
+  fontSize: 17,
+});
+```
+
+- `mode`: reveal by `"letter"` (default) or `"word"`.
+- `durationInFrames`: spread the whole reveal across this many frames. Leave it
+  off and `step` units appear per frame instead.
+- `startFrame`: delay the start, so one sequence can drive several staggered
+  typewriters (chat messages typed one after another).
+- `cursor`: a blinking caret at the reveal head (`true` or a config object).
+- `fade`: fade each freshly revealed unit in.
+- `reserveHeight` (default `true`): reserve the final height up front so the box
+  does not reflow as lines appear.
+
+<Demo name="typewriter" label="word vs letter modes, a cursor, type-then-highlight, and reserveHeight" />
+
+## Highlights
+
+`highlights` paints a marker behind a character range. Each entry is a
+`{ start, end }` range plus styling, and a `progress` from 0 to 1 that you
+animate to sweep the marker in.
+
+```ts
+const hl = {
+  start: 10,
+  end: 24,
+  background: "#f0c000",
+  color: "#0d1117",
+  cornerRadiusStart: 4,
+  cornerRadiusEnd: 4,
+  paddingStart: 4,
+  paddingEnd: 4,
+  progress: 0,
+};
+
+seq.register((frame) => {
+  hl.progress = interpolate(frame, [20, 100], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+});
+```
+
+The fields: `start`/`end` (char indices), `background`, optional text `color`
+override, `paddingStart`/`paddingEnd`, `cornerRadiusStart`/`cornerRadiusEnd`
+(applied only at the true ends, not at wrapped line breaks), `height`
+(`number | "line"`), and `progress`.
+
+<Demo name="text-highlight" label="an animated sweep, mixed corner radii, and a highlight spanning wrapped lines" />
+
+<Callout type="info" title="Re-render a direct-child Text after changing progress">
+A `Text` inside a flex `Flex`/`Block` reflows every tick, so just set
+`highlights[i].progress`. A `Text` added straight to a sequence (not in a flex
+container) needs a nudge to repaint: call `text._layoutText()` after you change
+`progress`. A `Text` with a `typewriter` re-renders every frame anyway, so it
+picks up progress changes without the extra call.
+</Callout>
+
+## Fitting text to a box
+
+To make text fit a fixed box, reach for the fitting options instead of guessing
+a font size. `fitText: { min, max }` binary-searches the largest font size that
+fits; `maxLines` clamps the line count; `maxWidth`/`maxHeight` bound the box.
+With `ellipsis` on, overflow is trimmed and an ellipsis is added.
+
+```ts
+new Text({
+  width: 300,
+  text: longHeadline,
+  fitText: { min: 14, max: 48 },
+  maxLines: 2,
+  ellipsis: true,
+});
+```
+
+## Next steps
+
+- [Images](/docs/images): bitmaps with objectFit and rounded corners.
+- [Flex](/docs/flex): lay text alongside shapes in a reflowing layout.

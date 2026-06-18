@@ -1,0 +1,100 @@
+---
+title: Shapes
+description: A flex-aware wrapper for every Konva shape, with full config parity and frame-driven geometry.
+---
+
+`@konva-motion/core` re-exports every Konva drawing primitive as a wrapper with
+the same name and the same config. Import the whole drawing vocabulary from one
+place and reach for `Konva.*` only for something core does not wrap yet.
+
+```ts
+import { Rect, Circle, Star, Line } from "@konva-motion/core";
+
+seq.add(new Rect({ x: 40, y: 40, width: 160, height: 90, fill: "#7c5cff", cornerRadius: 12 }));
+seq.add(new Circle({ x: 320, y: 85, radius: 55, fill: "#39c6c0" }));
+seq.add(new Star({ x: 520, y: 85, numPoints: 5, innerRadius: 28, outerRadius: 60, fill: "#f0c000" }));
+```
+
+Each wrapper extends its Konva shape through the `FlexShape` mixin, so it is a
+real Konva node plus flex participation: it can sit inside a [Flex](/docs/flex)
+or [Block](/docs/block), take child props like `flexGrow`, and size itself with
+`%` as well as pixels.
+
+<Demo name="shapes-gallery" label="the wrapper vocabulary, breathing in sync" />
+
+## The full set
+
+| | | |
+| --- | --- | --- |
+| `Rect` | `Circle` | `Ellipse` |
+| `Line` | `Arrow` | `Star` |
+| `Ring` | `Arc` | `Wedge` |
+| `RegularPolygon` | `Path` | `TextPath` |
+| `Sprite` | | |
+
+## Config parity with Konva
+
+Every prop on the matching `Konva.*Config` works on the wrapper: `fill`,
+`stroke`, `strokeWidth`, `opacity`, `shadow*`, `dash`, `rotation`, the lot. The
+wrappers do not re-document or restrict those; they pass straight through to
+Konva. See the [Konva shape docs](https://konvajs.org/docs/shapes/Rect.html) for
+the per-shape attributes.
+
+What the wrapper adds on top is layout: `width`/`height` accept a number (px) or
+a `"50%"` string, and every shape takes the flex child props `flexGrow`,
+`flexShrink`, `flexBasis`, `alignSelf`, and `margin`.
+
+## Animating geometry
+
+A shape's geometry is just attributes, so it tweens exactly like `x` or
+`opacity`: read the frame in `seq.register` and write the attr with its Konva
+setter. A `Star`'s `innerRadius`, an `Arc`'s `angle`, a `RegularPolygon`'s
+`sides`, a `Ring`'s `innerRadius`: all animate the same way.
+
+```ts
+seq.register((frame) => {
+  star.innerRadius(interpolate(frame, [0, 90, 180], [12, 64, 12]));
+  arc.angle(interpolate(frame, [0, 179], [20, 350]));
+  polygon.sides(Math.round(interpolate(frame, [0, 179], [3, 8])));
+});
+```
+
+<Demo name="shape-morph" label="innerRadius, angle, and sides driven from the frame" />
+
+## Intrinsic size and origin
+
+A shape with no explicit `width`/`height` lays out at its intrinsic size, which
+is its `getSelfRect()` bounds: a circle's diameter, a line's points box. When it
+sits in a flex container, placement is origin-corrected, so a `Circle`'s
+bounding box lands in the flex slot rather than its center. Centered-origin
+shapes line up with rectangles without you offsetting anything.
+
+<Callout type="warn" title="Radius shapes and width/height">
+For radius and points based shapes (`Circle`, `Ring`, `Star`, `Line`, ...),
+Konva maps `width`/`height` onto geometry. The wrapper only forwards a pixel
+`width`/`height` to Konva and deletes an absent one, so a `Circle`'s `radius` is
+never wiped by a stray `width: undefined`. But a `flexGrow`-driven stretch can
+still distort these shapes: give them an explicit size, or leave them
+un-stretched, when you want predictable geometry.
+</Callout>
+
+## Wrapping a custom shape
+
+Layout participation is an open contract, `KMLayoutNode`, not a hard-coded type
+switch. To make your own `Konva.Shape` subclass flex-aware, wrap it with the
+`FlexShape` mixin: it supplies the leaf contract, `px`/`%` size handling, and
+config stripping.
+
+```ts
+import Konva from "konva";
+import { FlexShape, type LeafConfig } from "@konva-motion/core";
+
+type MyConfig = Omit<Konva.MyShapeConfig, "width" | "height"> & LeafConfig;
+class MyShape extends FlexShape<Konva.MyShape, MyConfig>(Konva.MyShape) {}
+```
+
+## Next steps
+
+- [Text](/docs/text): the rich text node, with typewriter and highlights.
+- [Images](/docs/images): bitmaps with objectFit and rounded corners.
+- [Flex](/docs/flex): lay shapes out in rows and columns that reflow each tick.

@@ -1,0 +1,72 @@
+---
+title: Images
+description: Draw bitmaps with CSS-like objectFit, objectPosition, rounded corners, and a pluggable loader.
+---
+
+`Image` draws a bitmap and fits it into a box the way CSS `object-fit` does, so
+you size the box and pick how the picture fills it. Pass a URL string or an
+`HTMLImageElement` as `src`.
+
+```ts
+import { Image } from "@konva-motion/core";
+
+seq.add(
+  new Image({
+    x: 40,
+    y: 40,
+    width: 320,
+    height: 200,
+    src: "https://picsum.photos/seed/konva-motion/640/400",
+    objectFit: "cover",
+    cornerRadius: 12,
+  }),
+);
+```
+
+A string `src` loads asynchronously: the node draws nothing until the bitmap
+arrives, then repaints itself. An `HTMLImageElement` is used immediately.
+
+## objectFit
+
+`objectFit` decides how the bitmap fills the box:
+
+| Value | Behaviour |
+| --- | --- |
+| `cover` (default) | Scale to fill the box, cropping the overflow. |
+| `contain` | Scale to fit inside the box, letterboxing the rest. |
+| `fill` | Stretch to the box exactly, ignoring aspect ratio. |
+| `none` | Native pixels, cropped by the box. |
+
+<Demo name="image-objectfit" label="one source image, four fits, in boxes whose width breathes" />
+
+## objectPosition and corners
+
+When `cover` crops or `contain` letterboxes, `objectPosition` anchors the
+bitmap: `"center"` (default), an edge (`"top"`, `"left"`, ...), or a corner
+(`"top left"`, `"bottom right"`, ...). `cornerRadius` rounds the box, taking a
+single number or a `[topLeft, topRight, bottomRight, bottomLeft]` array like
+Konva.
+
+```ts
+new Image({
+  width: 240,
+  height: 360,
+  src: portraitUrl,
+  objectFit: "cover",
+  objectPosition: "top",
+  cornerRadius: [16, 16, 0, 0],
+});
+```
+
+<Callout type="info" title="Custom loaders and server rendering">
+`loader` swaps how a string `src` is turned into a bitmap. It defaults to the
+DOM `<img>` loader in the browser, or whatever a server renderer registered. For
+headless render you usually do not set it per node: you map asset URLs to file
+paths and register a loader once. See
+[Rendering media](/docs/rendering-media).
+</Callout>
+
+## Next steps
+
+- [Flex](/docs/flex): place images in a layout that reflows each tick.
+- [Video](/docs/video): the moving-picture counterpart, synced to the frame clock.
