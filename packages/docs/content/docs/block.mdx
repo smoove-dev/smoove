@@ -1,0 +1,128 @@
+---
+title: Block
+description: A Flex container that paints a background, border, corner radius, and shadow behind its children.
+---
+
+`Block` is a [Flex](/docs/flex) that paints itself. It is the box you reach for
+when a group of children needs a background, a border, rounded corners, or a
+shadow: a card, a panel, a chip, a callout. Every flex prop works on it, plus a
+small set of style props.
+
+```ts
+import { Block, Text } from "@konva-motion/core";
+
+const card = new Block({
+  x: 80,
+  y: 80,
+  width: 400,
+  flexDirection: "column",
+  padding: 24,
+  gap: 12,
+  background: "#1f2937",
+  cornerRadius: 16,
+});
+
+card.add(new Text({ text: "Hello", fontSize: 24, fill: "#f9fafb" }));
+seq.add(card);
+```
+
+A `Block` lays out exactly like a `Flex`: same `flexDirection`,
+`justifyContent`, `alignItems`, `gap`, `padding`, and the same child props
+(`flexGrow`, `flexShrink`, `flexBasis`, `alignSelf`, `margin`) when it sits
+inside another container. The difference is the painted rect behind the children.
+With no explicit `width`/`height` a `Block` hugs its content, then sizes the
+background to match.
+
+<Demo name="block-card" label="gradient, border, corner radius, and an animated shadow" />
+
+## Background
+
+`background` takes a solid color string or a gradient object.
+
+```ts
+// Solid
+new Block({ background: "#1f2937" });
+
+// Linear gradient (angle in degrees, stops as [position 0-1, color])
+new Block({
+  background: {
+    gradient: {
+      type: "linear",
+      angle: 135,
+      stops: [
+        [0, "#1f2937"],
+        [1, "#0b1120"],
+      ],
+    },
+  },
+});
+
+// Radial gradient
+new Block({
+  background: {
+    gradient: {
+      type: "radial",
+      stops: [
+        [0, "#4ea1ff"],
+        [1, "#0b1120"],
+      ],
+    },
+  },
+});
+```
+
+<Demo name="block-backgrounds" label="solid, linear gradient, radial gradient" />
+
+## Border
+
+`borderSize` is an `EdgeValue` (a number, `[top, right, bottom, left]`,
+`[vertical, horizontal]`, or an object). `borderColor` takes a single color or
+the same per-edge shapes. `borderStyle` is `"solid"` (default) or `"dashed"`.
+
+```ts
+new Block({
+  borderSize: 2,
+  borderColor: "#374151",
+  borderStyle: "dashed",
+  cornerRadius: 12,
+});
+```
+
+<Demo name="block-borders" label="solid, dashed, and a thicker border" />
+
+## Corner radius and shadow
+
+`cornerRadius` is a single number or an array of per-corner radii. `shadow`
+takes `{ color, blur, offsetX, offsetY, opacity }`, all optional.
+
+```ts
+new Block({
+  cornerRadius: [16, 16, 0, 0], // top corners only
+  shadow: { color: "#000", blur: 24, offsetY: 10, opacity: 0.45 },
+});
+```
+
+<Demo name="block-corners" label="sharp, uniform, per-corner, and a pill" />
+
+Because the background is recomputed each tick, every style prop animates like
+any other attribute: set it from the frame with `setAttrs`.
+
+```ts
+seq.register((frame) => {
+  card.setAttrs({
+    shadow: { color: "#000", blur: interpolate(frame, [0, 60], [12, 36]), opacity: 0.5 },
+  });
+});
+```
+
+<Callout type="info" title="Block is a layout root; keep it a direct child">
+Like `Flex`, a `Block` is laid out by the `Sequence` when it is a direct child of
+that sequence (or nested inside another `Flex`/`Block`). Add it straight to the
+sequence that holds its updater so it recomputes and restyles every frame.
+</Callout>
+
+## Next steps
+
+- [Flex](/docs/flex): the layout props in full, and how reflow works.
+- [Images](/docs/images): drop a bitmap into a card with `objectFit`.
+- [Video](/docs/video): the same layout treatment for moving footage.

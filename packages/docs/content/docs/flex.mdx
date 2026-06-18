@@ -1,0 +1,114 @@
+---
+title: Flex
+description: Lay shapes out in rows and columns with flexbox props, and let the layout reflow on every frame.
+---
+
+`Flex` is a Konva group that arranges its children with flexbox. You write the
+same props you know from CSS, the engine measures and places every child, and it
+recomputes the whole layout on every tick. Animate a gap or a size and the
+layout follows, with no manual `x`/`y` math.
+
+```ts
+import { Flex, Rect } from "@konva-motion/core";
+
+const row = new Flex({
+  x: 60,
+  y: 60,
+  flexDirection: "row",
+  alignItems: "center",
+  gap: 16,
+  padding: 16,
+});
+
+row.add(new Rect({ width: 120, height: 120, cornerRadius: 12, fill: "#4ea1ff" }));
+row.add(new Rect({ width: 120, height: 80, cornerRadius: 12, fill: "#b5179e" }));
+seq.add(row);
+```
+
+Add a `Flex` to a [Sequence](/docs/sequencing) and the engine lays it out each
+frame. Anything that participates in layout can go inside it: the core
+[shapes](/docs/shapes), [Text](/docs/text), [Image](/docs/images), a nested
+`Flex`, or a [Block](/docs/block).
+
+## Container props
+
+Set these on the `Flex` itself to control how its children are arranged.
+
+| Prop | Values |
+| --- | --- |
+| `flexDirection` | `"row"` (default), `"column"`, `"row-reverse"`, `"column-reverse"` |
+| `justifyContent` | `"flex-start"`, `"center"`, `"flex-end"`, `"space-between"`, `"space-around"`, `"space-evenly"` |
+| `alignItems` | `"flex-start"`, `"center"`, `"flex-end"`, `"stretch"` |
+| `gap` | number (px between children) |
+| `padding` | `EdgeValue`: a number, `[top, right, bottom, left]`, `[vertical, horizontal]`, or `{ top, right, bottom, left }` |
+
+`justifyContent` distributes children along the main axis; `alignItems` lines
+them up on the cross axis. To spread children across the row you need room to
+spread into, so give the container a `width` (or `height` in a column).
+
+## Child props
+
+Set these on the children to control how each one sizes and aligns inside the
+container.
+
+| Prop | Values |
+| --- | --- |
+| `flexGrow` | number: share of leftover space this child takes |
+| `flexShrink` | number: how much this child gives up when space is tight |
+| `flexBasis` | number: starting main-axis size before grow/shrink |
+| `alignSelf` | `"auto"`, `"flex-start"`, `"center"`, `"flex-end"`, `"stretch"` |
+| `margin` | `EdgeValue`, same shape as `padding` |
+
+```ts
+// The middle card fills whatever space the two fixed cards leave behind.
+row.add(new Rect({ width: 120, height: 120, fill: "#4ea1ff" }));
+row.add(new Rect({ flexGrow: 1, height: 120, fill: "#b5179e" }));
+row.add(new Rect({ width: 120, height: 120, fill: "#80ffdb" }));
+```
+
+## Sizing in pixels or percent
+
+`width` and `height` accept a number (pixels) or a percentage string, so a child
+can track its container as it resizes.
+
+```ts
+const panel = new Flex({ width: 600, flexDirection: "column", gap: 8 });
+panel.add(new Rect({ width: "100%", height: 40, fill: "#4ea1ff" })); // full width
+panel.add(new Rect({ width: "50%", height: 40, fill: "#b5179e" }));  // half width
+```
+
+A child with no explicit size lays out at its intrinsic size (a shape's
+`getSelfRect`, a text node's measured box). Percentage sizes and the flex child
+props are the part raw `Konva.*` nodes can't express, which is the main reason to
+reach for the core wrappers. See [Best practices](/docs/best-practices).
+
+## Reflow every tick
+
+The engine rebuilds the layout each frame, so layout is just another thing you
+animate. Drive a container prop or a child size from the frame and the children
+move themselves.
+
+<Demo name="flex-reflow" label="gap and one child's flexGrow, animated straight from the frame" />
+
+<Callout type="warn" title="Animate the container's own size with setAttrs({ flexWidth })">
+A `Flex` stores its `width`/`height` config as the `flexWidth`/`flexHeight`
+attrs, separate from Konva's bounding-box `width`/`height`. So calling
+`flex.width(600)` in an updater sets the Konva box, not the size the layout reads.
+To animate the container's own size, set the layout attr directly:
+`flex.setAttrs({ flexWidth: 600 })`. Child sizes, `gap`, and `padding` animate
+the same way: `flex.setAttrs({ gap: 24 })`.
+</Callout>
+
+Nest a `Flex` inside another `Flex` and the inner one is both a child (it takes
+`flexGrow`, `alignSelf`, and the rest) and a container (it lays out its own
+children). Build a whole layout tree this way and the engine walks all of it
+each tick.
+
+<Demo name="flex-layout" label="a card whose content reflows as the container resizes" />
+
+## Next steps
+
+- [Block](/docs/block): a `Flex` that paints a background, border, and shadow.
+- [Shapes](/docs/shapes): the flex-aware drawing vocabulary that fills a layout.
+- [Best practices](/docs/best-practices): let layout reflow instead of
+  hand-positioning when you mean structure.

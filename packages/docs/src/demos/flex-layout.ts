@@ -65,7 +65,7 @@ const heading = new Konva.Text({
 });
 
 const body = new Konva.Text({
-  text: "Drop blocks into a Flex. Text never overlaps the image — Flexily walks the tree each tick and re-flows whatever changed (width, gap, content).",
+  text: "Drop blocks into a Flex. Text never overlaps the image. Flexily walks the tree each tick and re-flows whatever changed (width, gap, content).",
   fontSize: 14,
   lineHeight: 1.4,
   fill: "#d1d5db",
@@ -82,7 +82,9 @@ main.register((frame) => {
   const t = frame / (duration - 1);
   const eased = 0.5 - 0.5 * Math.cos(Math.PI * 2 * t);
   const w = cardMin + (cardMax - cardMin) * eased;
-  card.width(w);
+  // Animate the container's own layout width via the flexWidth attr. Calling
+  // card.width(w) would set Konva's bounding box, which the layout never reads.
+  card.setAttrs({ flexWidth: w });
   card.x((width - w) / 2);
   card.y(
     interpolate(t, [0, 1], [(height - 360) / 2, (height - 360) / 2], {
