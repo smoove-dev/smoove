@@ -78,7 +78,7 @@ export function Demo({
       </figcaption>
 
       <div className="grid aspect-video w-full place-items-center bg-fd-secondary [&_km-player]:size-full">
-        <km-player src={playerSrc} controls loop autoplay />
+        <km-player src={playerSrc} controls loop />
       </div>
 
       {playerSource && showSource ? (

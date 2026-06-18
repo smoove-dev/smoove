@@ -17,6 +17,9 @@
     "---Layout---",
     "flex",
     "block",
+    "---Media---",
+    "video",
+    "audio",
     "---Player---",
     "player"
   ]

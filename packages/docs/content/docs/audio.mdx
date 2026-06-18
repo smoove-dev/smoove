@@ -1,0 +1,102 @@
+---
+title: Audio
+description: Add sound to a composition, automate levels from the frame, and balance every track through one master mixer.
+---
+
+`Audio` adds a sound track. It is an invisible node you add to a
+[Sequence](/docs/sequencing): it draws nothing, but the sequence's
+`from`/`durationInFrames` range-gate when it plays, and the composition's mixer
+sounds it on the frame clock. Levels are driven by the frame, the same as
+everything else, so a mix scrubs and renders deterministically.
+
+```ts
+import { Audio, Composition, Sequence } from "@konva-motion/core";
+
+const comp = new Composition({ id: "scene", fps: 60, durationInFrames: 1560, width: 1080, height: 1080 });
+
+const music = new Audio({ src: musicUrl, name: "Music", volume: 0.8 });
+const seq = new Sequence({ from: 0, durationInFrames: 1560 });
+seq.add(music);
+comp.add(seq);
+```
+
+## Props
+
+`src` is the only required prop.
+
+| Prop | Values |
+| --- | --- |
+| `src` | URL string of the audio file (required) |
+| `id` | stable id for the track (useful for render and mixer UIs) |
+| `name` | human label shown in mixer UIs (defaults to `src`) |
+| `trimBefore` | first frame of the clip to play (skips the head) |
+| `trimAfter` | last frame to play (cuts the tail) |
+| `loop` | `boolean`: restart the clip when it reaches the end |
+| `muted` | `boolean`: silence this track |
+| `volume` | number `0..1`: this track's level before the master mix |
+| `playbackRate` | number: `1` is real time, `2` is double speed |
+
+A track is heard only while the playhead is inside its sequence's window. Put a
+sound effect on a short `Sequence({ from, durationInFrames })` and it fires for
+exactly that range, then stops.
+
+## Automate volume from the frame
+
+Drive a track's level the recommended way: from the frame, with
+[`interpolate`](/docs/interpolation) inside a `register` updater. Fade a music
+bed in over the first half second, hold it, then fade it out at the end.
+
+```ts
+import { interpolate } from "@konva-motion/core";
+
+const FADE = 30; // half a second at 60fps
+seq.register((frame) => {
+  const level = interpolate(
+    frame,
+    [0, FADE, 1530, 1560],
+    [0, 0.8, 0.8, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
+  music.setVolume(level);
+});
+```
+
+<Callout type="warn" title="Set volume with setVolume(), not by assignment">
+`audio.volume` is a read-only signal you read with `audio.volume.get()`, so you
+cannot assign to it. Change the level with `audio.setVolume(0..1)`, mute with
+`audio.setMuted(true)`, and change speed with `audio.setPlaybackRate(n)`.
+</Callout>
+
+## The master mixer
+
+Every composition has a master bus at `comp.mixer`. It scales and gates every
+track at once. A track's effective level is `master × track`, and it is silent
+when either the master or the track is muted.
+
+```ts
+comp.mixer.setVolume(0.5); // halve everything
+comp.mixer.setMuted(true); // silence the whole mix
+
+comp.mixer.volume.get(); // read the master level
+comp.mixer.channels;      // every registered Video/Audio track, for a meter UI
+```
+
+Layer as many tracks as you want: a music bed, a voiceover on its own range, a
+couple of one-shot effects. Mixing is just frame-driven volume curves per track.
+This demo crossfades two music beds, ducks the music under a voice with an
+`interpolate` range, and fires whooshes on short sequences, all on one playhead.
+
+<Demo name="audio-mixer" label="two music beds, a voice, and whooshes, ducked and crossfaded on the frame clock" />
+
+<Callout type="info" title="Renders headless too">
+On a headless render the mixer does not play audio, it records each track as it
+sounds (level, mute, position) and `@konva-motion/renderer` muxes the tracks into
+the output file with ffmpeg. The same frame-driven volume curves produce the
+rendered mix. See [Rendering media](/docs/rendering-media).
+</Callout>
+
+## Next steps
+
+- [Video](/docs/video): footage that carries its own audio through the same mixer.
+- [Sequencing](/docs/sequencing): the `from`/`durationInFrames` window that gates a track.
+- [Player](/docs/player): master volume and mute controls in the `<km-player>` UI.

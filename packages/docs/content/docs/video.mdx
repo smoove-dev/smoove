@@ -1,0 +1,93 @@
+---
+title: Video
+description: Play footage on the frame clock, trimmed and synced so preview, scrub, and render all line up.
+---
+
+`Video` plays a clip on the composition's frame clock. Every frame maps to a
+fixed point in the footage, so the picture you see while scrubbing is the same
+picture a headless render writes out. You drop it into a [Sequence](/docs/sequencing)
+like any other node and the engine seeks the clip to match the playhead.
+
+```ts
+import { Composition, Sequence, Video } from "@konva-motion/core";
+
+const comp = new Composition({ id: "clip", fps: 60, durationInFrames: 600, width: 1080, height: 1080 });
+
+const seq = new Sequence({ from: 0, durationInFrames: 600 });
+seq.add(new Video({ src: clipUrl, width: 1080, height: 608, objectFit: "contain" }));
+comp.add(seq);
+```
+
+`Video` extends `Konva.Group`, so it takes a position and the flex child props,
+and it lays out inside a [Flex](/docs/flex) or [Block](/docs/block) the same way
+a shape does. What it adds on top is footage that tracks the frame.
+
+## Props
+
+`src` is the only required prop. Everything else has a default.
+
+| Prop | Values |
+| --- | --- |
+| `src` | URL string of the clip (required) |
+| `width` / `height` | number (px) or `"100%"` percentage string |
+| `objectFit` | `"cover"`, `"contain"`, `"fill"`, `"none"` |
+| `objectPosition` | `"center"` (default), `"top"`, `"bottom"`, `"left"`, `"right"`, `"top left"`, ... |
+| `cornerRadius` | number or `[topLeft, topRight, bottomRight, bottomLeft]` |
+| `trimBefore` | first frame of the clip to show (skips the head) |
+| `trimAfter` | last frame to show (cuts the tail) |
+| `loop` | `boolean`: restart the clip when it reaches the end |
+| `muted` | `boolean`: silence this clip |
+| `volume` | number `0..1`: this clip's level before the master mix |
+| `playbackRate` | number: `1` is real time, `2` is double speed |
+
+`objectFit` and `objectPosition` are the same controls as on [Image](/docs/images),
+so the fit modes behave identically. Use `"contain"` to letterbox a clip into a
+box without cropping, `"cover"` to fill the box and crop the overflow.
+
+## Sync to the frame
+
+The clip is positioned by the sequence's local frame, not by wall-clock time. A
+`Sequence({ from, durationInFrames })` gates when the video is on screen; inside
+that window the engine maps the local frame to a point in the footage.
+
+`trimBefore` and `trimAfter` set the in and out points in frames. A clip with
+`trimAfter: 600` only ever shows its first 600 frames (10 seconds at 60fps),
+whatever its real length. `playbackRate` scales how fast footage advances per
+frame. Without `loop`, the clip holds on its last in-range frame once it runs
+out rather than going black.
+
+Because the picture is a pure function of the frame, you can run several clips
+off one playhead and they stay locked together. This demo plays the top clip,
+then the bottom clip, then both at once, all driven by the same frame.
+
+<Demo name="video-sync" label="three clips driven by the playhead: top, then bottom, then both" />
+
+## Volume and playback
+
+Set a clip's level with the `volume` and `muted` config, or change it at runtime
+with `setVolume(0..1)`, `setMuted(true)`, and `setPlaybackRate(n)`. The `volume`
+here is the clip's own level. The composition's master bus scales every clip on
+top of it. See the master mix on the [Audio](/docs/audio) page.
+
+```ts
+const v = new Video({ src: clipUrl, volume: 0.8 });
+seq.add(v);
+
+seq.register(() => {
+  // Duck this clip under a voiceover, then bring it back.
+  v.setVolume(voiceIsTalking ? 0.2 : 0.8);
+});
+```
+
+<Callout type="info" title="Renders headless too">
+A composition with video renders to a file with `@konva-motion/renderer`, which
+decodes frames through a skia backend instead of an HTML `<video>` element. You
+do not change the composition: `setFrame(n)` and the same `trimBefore`/`trimAfter`
+windows drive both preview and render. See [Rendering](/docs/rendering).
+</Callout>
+
+## Next steps
+
+- [Audio](/docs/audio): sound tracks and the master mixer.
+- [Images](/docs/images): the `objectFit` and `objectPosition` controls in full.
+- [Sequencing](/docs/sequencing): the `from`/`durationInFrames` window that gates a clip.
