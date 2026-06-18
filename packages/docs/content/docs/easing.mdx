@@ -1,0 +1,91 @@
+---
+title: Easing
+description: Reshape the 0 to 1 progress of an interpolation with Easing presets, modifiers, and factories.
+---
+
+A linear `interpolate` moves at a constant rate, which reads as mechanical.
+Easing reshapes the progress between two stops so motion can accelerate, ease
+off, or overshoot. An easing function takes a value from 0 to 1 and returns a
+new value from 0 to 1; `interpolate` runs it on the progress before mapping to
+your output range.
+
+```ts
+import { Easing, interpolate } from "@konva-motion/core";
+
+card.x(
+  interpolate(frame, [0, 60], [100, 900], {
+    easing: Easing.inOut(Easing.cubic),
+  }),
+);
+```
+
+Easing lives in the `easing` option of `interpolate`. There is no separate tween
+API to learn.
+
+<Demo name="easing-compare" label="the same move under five different curves" />
+
+## Presets
+
+These are ready to drop into the `easing` option as-is:
+
+| Preset | Feel |
+| --- | --- |
+| `Easing.linear` | Constant rate, no shaping. |
+| `Easing.ease` | A soft general-purpose start. |
+| `Easing.quad` | Gentle acceleration (t²). |
+| `Easing.cubic` | Stronger acceleration (t³). |
+| `Easing.sin` | Sine curve. |
+| `Easing.circle` | Circular arc. |
+| `Easing.exp` | Sharp exponential ramp. |
+| `Easing.bounce` | Settles with a few bounces. |
+| `Easing.step0` / `Easing.step1` | Hard jump, no in-between. |
+
+By itself a preset like `Easing.cubic` eases in (slow start, fast finish). To
+change which end is eased, wrap it in a modifier.
+
+## Modifiers: in, out, inOut
+
+The modifiers take an easing function and return a reshaped one:
+
+```ts
+Easing.out(Easing.cubic); // fast start, soft landing
+Easing.inOut(Easing.cubic); // soft at both ends
+```
+
+- `Easing.out(fn)` flips the curve so it eases out.
+- `Easing.inOut(fn)` eases in for the first half and out for the second.
+- `Easing.in(fn)` returns the curve unchanged.
+
+<Callout type="info" title="Easing.in is a no-op here">
+A bare preset already eases in, so `Easing.in` is an identity pass-through kept
+for symmetry with Remotion. `Easing.in(Easing.cubic)` is the same as
+`Easing.cubic`. Reach for `out` and `inOut` when you want to change the shape.
+</Callout>
+
+## Factories
+
+Some curves take parameters, so they're functions that return an easing
+function:
+
+```ts
+Easing.bezier(0.25, 0.1, 0.25, 1); // a cubic-bezier curve, same params as CSS
+Easing.elastic(1.5); // springy overshoot; higher bounciness wobbles more
+Easing.back(2); // pulls back, then overshoots past the target
+Easing.poly(4); // t to the nth power; poly(2) is quad, poly(3) is cubic
+```
+
+- `Easing.bezier(x1, y1, x2, y2)` mirrors `cubic-bezier()` from CSS, so you can
+  paste curves straight from a design tool.
+- `Easing.elastic(bounciness?)` overshoots and oscillates before settling.
+- `Easing.back(s?)` overshoots once; `s` controls how far it pulls back first.
+- `Easing.poly(n)` raises progress to the `n`th power.
+
+`elastic` and `back` push progress above 1 on purpose. Combined with a numeric
+output range that means the value briefly travels past its target, which is what
+sells the overshoot. If you need it pinned afterward, add
+`extrapolateRight: "clamp"`.
+
+## Next steps
+
+- [Sequencing](/docs/sequencing): arrange eased tweens across the timeline.
+- [Best practices](/docs/best-practices): why frame-derived easing stays seekable.

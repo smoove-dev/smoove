@@ -1,0 +1,84 @@
+---
+title: Sequencing
+description: Arrange a timeline from staggered sequences and back-to-back scenes with Series.
+---
+
+A `Sequence` covers a window on the timeline, `[from, from + durationInFrames)`,
+and only runs and paints while the playhead is inside it. Its updater receives
+the sequence-local frame, which is 0 on the sequence's first visible frame.
+[Core concepts](/docs/core-concepts) covers the gating in full; this page is
+about putting several of these together.
+
+There are two moves you reach for constantly: staggering many nodes inside one
+sequence, and laying scenes back-to-back with `Series`.
+
+## Staggering N nodes
+
+A stagger is the same tween applied to many nodes, each shifted by a per-index
+delay. You don't need a sequence per node. Keep them in one sequence and offset
+the frame you read for each:
+
+```ts
+bars.forEach((bar, i) => {
+  const local = frame - i * 8; // each bar starts 8 frames after the last
+  const h = interpolate(local, [0, 40], [0, 320], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  bar.height(h);
+});
+```
+
+Subtracting `i * step` slides each node's personal timeline later. Clamp on both
+ends so a node sits still before its turn and holds after it finishes.
+
+<Demo name="stagger" label="eight bars sharing one tween, offset by index" />
+
+## Back-to-back scenes with Series
+
+When you have whole scenes that should play one after another, computing each
+`from` by hand gets tedious and breaks the moment you change a duration. `Series`
+does that arithmetic. You add scenes in order and it resolves each `Sequence`'s
+`from`:
+
+```ts
+import { Series } from "@konva-motion/core";
+
+const series = new Series({ from: 0 });
+
+series
+  .add({ durationInFrames: 90 }, (seq) => {
+    seq.add(intro);
+  })
+  .add({ durationInFrames: 120, offset: -20 }, (seq) => {
+    seq.add(body);
+  });
+
+comp.add(series);
+```
+
+Each `add` takes scene options and a `build` callback. The callback gets a fresh
+`Sequence` with its `from` already set, so you just populate it and register
+updaters as usual. `comp.add(series)` expands the series into one sequence per
+scene.
+
+The `offset` controls the gap between a scene and the one before it:
+
+- `0` (the default) puts the scene immediately after the previous one.
+- A positive offset leaves a gap of empty frames.
+- A negative offset overlaps the previous scene, which is what you want for a
+  cross-fade between scenes.
+
+<Demo name="series-scenes" label="three scenes, the later two overlapping to cross-fade" />
+
+<Callout type="info" title="Sequence gates frames; trim is for media">
+`from` and `durationInFrames` gate when a sequence is on the timeline. They are
+not the same as trimming a clip. The `trimBefore`/`trimAfter` props that skip
+into source footage live on the [Video](/docs/video) and
+[Audio](/docs/audio) nodes, not on `Sequence`.
+</Callout>
+
+## Next steps
+
+- [Shapes](/docs/shapes): the drawing vocabulary you sequence.
+- [Transitions](/docs/transitions): richer scene-to-scene effects on top of Series.

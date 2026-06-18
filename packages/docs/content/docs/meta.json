@@ -6,6 +6,10 @@
     "installation",
     "core-concepts",
     "best-practices",
+    "---Animating---",
+    "interpolation",
+    "easing",
+    "sequencing",
     "---Player---",
     "player"
   ]

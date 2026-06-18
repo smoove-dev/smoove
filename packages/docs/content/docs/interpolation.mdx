@@ -1,0 +1,112 @@
+---
+title: Interpolation
+description: Map a frame onto any number with interpolate, multi-stop ranges, extrapolation, and interpolateColors.
+---
+
+Almost every updater you write answers one question: what is this attribute at
+frame N? `interpolate` is the tool that answers it. You give it the current
+frame, an input range, and an output range, and it maps one onto the other.
+
+```ts
+import { interpolate } from "@konva-motion/core";
+
+scene.register((frame) => {
+  // frames 0…59 map onto x positions 100…900
+  card.x(interpolate(frame, [0, 59], [100, 900]));
+});
+```
+
+The signature is `interpolate(input, inputRange, outputRange, options?)`, and
+it's API-compatible with Remotion's `interpolate`. The input range has to be
+strictly increasing and the two ranges have to be the same length.
+
+<Demo name="interpolate-basics" label="a two-stop map, a multi-stop hold, and clamp vs extend" />
+
+## Multi-stop ranges
+
+The ranges don't have to be two points. Add more stops and each adjacent pair
+becomes its own linear segment. This is how you fade in, hold, then fade out
+without chaining several calls:
+
+```ts
+// 0 at the edges, 1 in the middle: fade up over 30 frames, hold, fade back down.
+card.opacity(interpolate(frame, [0, 30, 150, 179], [0, 1, 1, 0]));
+```
+
+The stops in the input range and the output range line up by position, so
+`[0, 30, 150, 179]` against `[0, 1, 1, 0]` reads as "at frame 0 the value is 0,
+at frame 30 it's 1, it holds 1 until frame 150, then it's back to 0 at 179."
+
+## Extrapolation: what happens off the ends
+
+By default `interpolate` keeps going past the ends of your input range, which is
+rarely what you want for the last frame of a move. The `extrapolateLeft` and
+`extrapolateRight` options control that behavior independently.
+
+| Mode | Below / above the range does this |
+| --- | --- |
+| `"extend"` | Keeps extrapolating the line (the default). |
+| `"clamp"` | Holds at the nearest output value. |
+| `"identity"` | Returns the input unchanged. |
+| `"wrap"` | Wraps back around the range with modulo. |
+
+`"clamp"` is the one you reach for most. It pins the value once the move is done
+instead of letting it drift:
+
+```ts
+// Without clamp, x keeps growing after frame 60 and the card flies off-screen.
+card.x(interpolate(frame, [0, 60], [100, 900], { extrapolateRight: "clamp" }));
+```
+
+<Callout type="tip" title="Clamp instead of Math.min/max">
+Reaching for `Math.min`/`Math.max` around a ratio is a sign you want
+`extrapolateLeft`/`extrapolateRight: "clamp"`. Let `interpolate` do the clamping
+so the intent stays in one place. See [Best practices](/docs/best-practices).
+</Callout>
+
+## Easing the curve
+
+Pass an `easing` function to bend the progress between stops. Linear is the
+default; anything from the `Easing` object reshapes the motion:
+
+```ts
+import { Easing, interpolate } from "@konva-motion/core";
+
+card.x(
+  interpolate(frame, [0, 60], [100, 900], {
+    easing: Easing.inOut(Easing.cubic),
+  }),
+);
+```
+
+Easing gets its own page because there's a lot to it. See
+[Easing](/docs/easing).
+
+## interpolateColors
+
+Colors aren't numbers, so they get their own function. `interpolateColors` takes
+the same frame and input range but an output range of color strings, and returns
+an `rgba(...)` string you can hand straight to a `fill`:
+
+```ts
+import { interpolateColors } from "@konva-motion/core";
+
+panel.fill(interpolateColors(frame, [0, 100, 200], ["#4ea1ff", "#ffd166", "#39c6c0"]));
+```
+
+It accepts named colors, hex (3/4/6/8 digit), `rgb`/`rgba`, and `hsl`/`hsla`,
+and interpolates each channel independently.
+
+<Demo name="color-shift" label="a fill traveling through four color stops" />
+
+<Callout type="info" title="interpolateColors clamps, and takes no options">
+Unlike `interpolate`, `interpolateColors` has no options argument. It always
+clamps at both ends, so values before the first stop or after the last one stay
+at the edge color. If you need easing on a color, ease a `0…1` driver with
+`interpolate` first and feed that into `interpolateColors`.
+</Callout>
+
+## Next steps
+
+- [Easing](/docs/easing): reshape the curve between stops.
+- [Sequencing](/docs/sequencing): stagger and arrange tweens across the timeline.
