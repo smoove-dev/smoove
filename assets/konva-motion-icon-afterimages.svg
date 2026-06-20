@@ -1,0 +1,18 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="konva-motion">
+  <defs>
+    <linearGradient id="kma-bg" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#34D399"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="256" height="256" rx="58" fill="url(#kma-bg)"/>
+  <rect x="1" y="1" width="254" height="254" rx="57" fill="none" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
+
+  <g fill="#ffffff" stroke="#ffffff" stroke-linejoin="round">
+    <path d="M134 128 L58 71 Q79 128 58 185 Z" opacity="0.16" stroke-width="2"/>
+    <path d="M155 128 L79 71 Q100 128 79 185 Z" opacity="0.30" stroke-width="6"/>
+    <path d="M176 128 L100 71 Q122 128 100 185 Z" opacity="0.55" stroke-width="10"/>
+    <path d="M197 128 L122 71 Q143 128 122 185 Z" opacity="1" stroke-width="16"/>
+  </g>
+</svg>

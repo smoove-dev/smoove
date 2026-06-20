@@ -1,0 +1,18 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="konva-motion">
+  <defs>
+    <linearGradient id="kmc-bg" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#34D399"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="128" cy="128" r="128" fill="url(#kmc-bg)"/>
+  <circle cx="128" cy="128" r="127" fill="none" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
+
+  <g fill="#ffffff" stroke="#ffffff" stroke-linejoin="round">
+    <path d="M131 128 L67 80 Q85 128 67 176 Z" opacity="0.16" stroke-width="2"/>
+    <path d="M149 128 L85 80 Q103 128 85 176 Z" opacity="0.30" stroke-width="5"/>
+    <path d="M167 128 L103 80 Q121 128 103 176 Z" opacity="0.55" stroke-width="9"/>
+    <path d="M185 128 L121 80 Q139 128 121 176 Z" opacity="1" stroke-width="14"/>
+  </g>
+</svg>

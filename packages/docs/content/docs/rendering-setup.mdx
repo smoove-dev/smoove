@@ -1,0 +1,52 @@
+---
+title: Setup
+description: Install @konva-motion/renderer to export a composition to an MP4 file from Node.
+---
+
+`@konva-motion/renderer` turns a composition into a video file. It runs in Node,
+not the browser: it rasterizes each frame with skia-canvas and encodes with
+ffmpeg. Install it alongside `@konva-motion/core`.
+
+```bash
+npm install konva @konva-motion/core @konva-motion/renderer
+# or
+pnpm add konva @konva-motion/core @konva-motion/renderer
+```
+
+<Callout type="warn" title="Native requirements">
+This package is Node-only. `skia-canvas` builds a native module, so the install
+machine needs a system C/C++ toolchain. ffmpeg is fetched automatically through
+`@ffmpeg-installer`, so you do not install it yourself. None of this runs in the
+browser; use the [Player](/docs/player) there instead.
+</Callout>
+
+Set up the server rendering backend once, before you build the composition:
+
+```ts
+import "@konva-motion/renderer/register"; // calls setupServerRendering() on import
+import { Composition } from "@konva-motion/core";
+import { renderComposition } from "@konva-motion/renderer";
+```
+
+<Callout type="info" title="Shader transitions need the WebGL path">
+Shader (Tier B) presentations from `@konva-motion/transitions` render through the
+renderer's WebGL path. Install transitions and the optional `gl` dependency, then
+import the `gl` entry before building the composition:
+
+```bash
+npm install @konva-motion/transitions
+npm install --save-optional gl
+```
+
+```ts
+import "@konva-motion/renderer/gl";
+```
+
+`@konva-motion/transitions` is an optional peer; without `gl`, shader transitions
+fall back to a plain `fade()`.
+</Callout>
+
+## Next step
+
+- [Rendering](/docs/rendering): render a composition to a file with
+  `renderComposition`.

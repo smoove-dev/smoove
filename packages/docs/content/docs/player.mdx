@@ -1,35 +1,47 @@
 ---
 title: Player
-description: Play a composition in the browser with the km-player web component — including loading one from a remote file.
+description: "Play a composition in the browser with the km-player web component: attributes, imperative API, events, custom controls, and the CDN build."
 ---
 
 `@konva-motion/player` is a framework-agnostic **web component** that plays a
-`Composition` like an HTML5 `<video>` — letterbox-scaling it to its box, with
-fullscreen, keyboard control, and an imperative + event API.
+`Composition` like an HTML5 `<video>`. It letterbox-scales the stage to its box
+and adds fullscreen, click and keyboard control, an imperative API, and a set of
+DOM events. Use it from plain HTML, React, Vue, Svelte, or anything that can put
+an element on a page.
+
+<Callout type="info" title="Install it first">
+The player ships as `@konva-motion/player`, separate from core. See
+[Setup](/docs/player-setup) for the npm install (plus the optional `styles.css`)
+and the no-bundler CDN build. The examples below assume the elements are
+registered.
+</Callout>
+
+## Giving it a composition
+
+There are two ways to hand the player a composition.
+
+**Assign it imperatively.** Set the `composition` property to a live
+`Composition`. You do not call `setContainer` yourself; the player owns the
+canvas and mounts the stage into its own box.
 
 ```ts
-import "@konva-motion/player"; // registers <km-player> and the controls
-import "@konva-motion/player/styles.css"; // opt-in default styling
-
 const player = document.querySelector("km-player");
-player.composition = comp; // a Composition — no container needed
+player.composition = comp;
 ```
 
-## Loading from a remote file
-
-Instead of assigning a composition imperatively, point the player at a **remote
-ESM module** with the `src` attribute — just like `<video src>`:
+**Point `src` at a remote module.** Set the `src` attribute to a URL, the same
+way you would on `<video src>`. The player dynamically `import()`s that ESM
+module and resolves its **default export** to a `Composition`:
 
 ```html
 <km-player src="https://cdn.example/orbit.js" controls loop></km-player>
 ```
 
-The player dynamically `import()`s the URL and resolves its **default export** to
-a live `Composition`. That export may be a `Composition` instance, a factory
-returning one (sync or async), or a factory resolving to `{ default: Composition }`:
+The default export may be a `Composition` instance, a factory returning one
+(sync or async), or a factory resolving to `{ default: Composition }`:
 
 ```ts
-// orbit.js — the remote module
+// orbit.js, the remote module
 import { Composition, Sequence } from "@konva-motion/core";
 
 const comp = new Composition({ id: "orbit", fps: 60, durationInFrames: 180 });
@@ -41,16 +53,17 @@ export default comp; // or: () => comp / async () => comp
 The demo below is exactly that. The composition lives in its own module
 (`src/demos/orbit.ts`); the docs hand the player its URL with Vite's
 [`?url`](https://vite.dev/guide/assets#explicit-url-imports) import, so the
-player fetches and runs it at load time — the same path a truly remote file
-would take. The `<Demo name="…" />` helper resolves both that URL and the
-displayed source from the demo's name.
+player fetches and runs it at load time, the same path a truly remote file would
+take.
 
 <Demo name="orbit" lang="ts" label="loaded via src" />
 
 Relative `src` values resolve against the document base. The player emits
-`loadstart` when a load begins and `loaded` once mounted; a failed import — or a
-module that doesn't resolve to a `Composition` — emits `error`. A `loading`
-attribute is reflected on the host while the import is in flight.
+`loadstart` when a load begins and `loaded` once mounted; a failed import, or a
+module that does not resolve to a `Composition`, emits `error`. A `loading`
+attribute is reflected on the host while the import is in flight. An
+imperatively-assigned `composition` always wins over `src`, even if a `src` load
+is still in flight.
 
 <Callout type="warn" title="Only load trusted URLs">
 `src` performs a dynamic `import()`, which **executes arbitrary code** from the
@@ -60,11 +73,181 @@ origin.
 
 ## Attributes
 
-<Prop name="src" sig="string" badge="new">
-URL of an ESM module whose default export resolves to a `Composition`. An
-imperatively-assigned `composition` property takes precedence over `src`.
-</Prop>
+| Attribute | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `src` | string | none | URL of an ESM module whose default export resolves to a `Composition`. |
+| `controls` | boolean | off | Render the default control bar. |
+| `loop` | boolean | off | Restart at frame 0 when playback reaches the end. |
+| `autoplay` | boolean | off | Start playing once a composition is mounted. |
+| `muted` | boolean | off | Mute the master mixer on mount. |
+| `volume` | number `0`-`1` | `1` | Master volume on mount. |
+| `playbackrate` | number | `1` | Playback speed; `2` is double speed, negative plays in reverse. |
+| `initialframe` | number | `0` | Frame to seek to on mount, before any autoplay. |
+| `no-click-to-play` | boolean | off | Disable click-on-stage to toggle play. |
+| `no-space-key` | boolean | off | Disable the spacebar play/pause shortcut. |
+| `no-keyboard` | boolean | off | Disable all keyboard shortcuts. |
+| `double-click-fullscreen` | boolean | off | Toggle fullscreen on double-click. |
 
-Other attributes: `controls`, `loop`, `autoplay`, `muted`, `volume`,
-`playbackrate`, `initialframe`, `no-click-to-play`, `no-space-key`,
-`no-keyboard`, `double-click-fullscreen`.
+<Callout type="info" title="Which attributes react to live changes">
+`src`, `controls`, `loop`, `muted`, `volume`, and `playbackrate` re-apply when
+you change them after mount, so they are good targets for data binding. `autoplay`
+and `initialframe` are read **once**, when the composition mounts. To drive
+playback after mount, use the imperative API below instead of toggling attributes.
+</Callout>
+
+## Keyboard and clicks
+
+When the player has focus it handles a few shortcuts:
+
+- **Space** toggles play and pause.
+- **Left / Right arrow** steps one frame back or forward.
+- **`f`** toggles fullscreen.
+- **`l`** toggles loop.
+
+Clicking the stage toggles play. Double-click toggles fullscreen, but only when
+`double-click-fullscreen` is set. Turn any of these off with `no-click-to-play`,
+`no-space-key`, or `no-keyboard`. Typing in an `input`, `textarea`, or `select`
+never triggers a shortcut.
+
+## Imperative API
+
+Grab the element and call methods on it. The same API backs the default controls,
+so anything the bar does you can do in code.
+
+```ts
+const player = document.querySelector("km-player");
+player.play();
+player.seekTo(90);
+player.setPlaybackRate(2);
+```
+
+| Group | Methods |
+| --- | --- |
+| Playback | `play()`, `pause()`, `toggle()`, `stop()`, `seekTo(frame)`, `stepBy(delta)`, `setPlaybackRate(rate)` |
+| Queries | `getCurrentFrame()`, `isPlaying()`, `getPlaybackRate()` |
+| Volume | `setVolume(0..1)`, `getVolume()`, `mute()`, `unmute()`, `setMuted(bool)`, `toggleMute()`, `isMuted()` |
+| Loop | `setLoop(bool)`, `toggleLoop()`, `isLooping()` |
+| Fullscreen | `requestFullscreen()`, `exitFullscreen()`, `toggleFullscreen()`, `isFullscreen()`, `getScale()` |
+| Props | `setProps(props)` |
+
+`setProps` forwards an object to the composition and re-renders, so you can pass
+runtime values into a parameterized comp. Read-only properties round it out:
+`composition` (the live `Composition` or `null`), `fps`, and `state` (the signal
+bag the controls subscribe to, see [custom controls](#custom-controls)).
+
+## Events
+
+The player dispatches `CustomEvent`s that bubble and cross shadow boundaries
+(`composed: true`), so you can listen on the element or any ancestor.
+
+```ts
+player.addEventListener("timeupdate", (e) => {
+  const { frame, time, durationInSeconds } = e.detail;
+});
+player.addEventListener("ended", (e) => console.log("done at", e.detail.frame));
+```
+
+| Event | `detail` | When |
+| --- | --- | --- |
+| `frameupdate` | `{ frame }` | Every rendered frame. |
+| `timeupdate` | `{ frame, time, durationInFrames, durationInSeconds }` | Throttled to ~4/second (plus the first and last frame). |
+| `play` | `{ frame }` | Playback starts. |
+| `pause` | `{ frame }` | Playback pauses before the end. |
+| `ended` | `{ frame }` | Playback reaches the end with loop off. |
+| `seeked` | `{ frame }` | `seekTo` / `stepBy` moves the playhead. |
+| `ratechange` | `{ playbackRate }` | Playback rate changes. |
+| `volumechange` | `{ volume }` | Master volume changes. |
+| `mutechange` | `{ muted }` | Master mute changes. |
+| `fullscreenchange` | `{ isFullscreen }` | The player enters or leaves fullscreen. |
+| `scalechange` | `{ scale }` | The letterbox scale factor changes (resize, fullscreen). |
+| `loadstart` | `{ src }` | A `src` import begins. |
+| `loaded` | `{ src, composition }` | A `src` module mounts. |
+| `error` | `{ error }` | A `src` load fails, or `play()` throws. |
+
+`time` is in seconds (`frame / fps`). `frameupdate` fires on every frame for
+animation work; `timeupdate` is the throttled one to drive a UI without
+re-rendering 60 times a second.
+
+## Custom controls
+
+Set `controls` and the player injects a default bar: a progress track, a
+play/pause toggle, a sound control, a time readout, and loop and fullscreen
+buttons. To build your own, drop control elements **inside** `<km-player>` and
+leave `controls` off. Any user-supplied `<km-player-controls>` replaces the
+default bar; the controls wire themselves to the player through context, so they
+work with no extra script.
+
+The building blocks are plain custom elements:
+
+| Element | Role |
+| --- | --- |
+| `<km-player-overlay>` | Centered layer over the stage, for a big play affordance or branding. |
+| `<km-player-controls>` | The control bar container; holds one or more rows. |
+| `<km-player-controls-row>` | A flex row of controls. |
+| `<km-player-space grow>` | Spacer; add `grow` to push the controls after it to the right. |
+| `<km-player-play-button size="large">` | Large centered play affordance; fades out during playback. |
+| `<km-player-play-toggle-button>` | Compact play/pause button for the bar. |
+| `<km-player-progress>` | Draggable seek bar; pauses while you scrub, resumes on release. |
+| `<km-player-sound-control collapsed>` | Mute button plus a volume slider; `collapsed` hides the slider until hover. |
+| `<km-player-time>` | A `m:ss / m:ss` readout. |
+| `<km-player-loop-button>` | Loop toggle. |
+| `<km-player-fullscreen-button>` | Fullscreen toggle. |
+
+Compose them however you like. This is the markup the live demo below renders, a
+center play overlay plus a one-row bar:
+
+```html
+<km-player src="orbit.js" loop>
+  <km-player-overlay>
+    <km-player-play-button size="large"></km-player-play-button>
+  </km-player-overlay>
+  <km-player-controls>
+    <km-player-controls-row>
+      <km-player-play-toggle-button></km-player-play-toggle-button>
+      <km-player-progress></km-player-progress>
+      <km-player-time></km-player-time>
+      <km-player-sound-control collapsed></km-player-sound-control>
+      <km-player-loop-button></km-player-loop-button>
+      <km-player-fullscreen-button></km-player-fullscreen-button>
+    </km-player-controls-row>
+  </km-player-controls>
+</km-player>
+```
+
+<Demo name="player-custom-controls" label="a custom overlay play button and a single-row bar">
+  <km-player-overlay>
+    <km-player-play-button size="large" />
+  </km-player-overlay>
+  <km-player-controls>
+    <km-player-controls-row>
+      <km-player-play-toggle-button />
+      <km-player-progress />
+      <km-player-time />
+      <km-player-sound-control collapsed />
+      <km-player-loop-button />
+      <km-player-fullscreen-button />
+    </km-player-controls-row>
+  </km-player-controls>
+</Demo>
+
+Need a control the kit does not ship? Read the player from the DOM with
+`getPlayerApi(el)` (or consume `playerContext` with `@lit/context`) and subscribe
+to its `state` signals. Every signal exposes `.get()` and `.subscribe(fn)`:
+
+```ts
+import { getPlayerApi } from "@konva-motion/player";
+
+const player = getPlayerApi(myControlElement);
+player?.state.frame.subscribe((frame) => render(frame));
+player?.state.playing.subscribe((playing) => toggleIcon(playing));
+// state also has: duration, loop, rate, volume, muted, fullscreen, scale
+```
+
+`createDefaultControls()` is exported too, if you want to start from the default
+bar and tweak it.
+
+## Next steps
+
+- [Setup](/docs/player-setup): npm and the no-bundler CDN build.
+- [Rendering](/docs/rendering): export the finished composition to an MP4 file.
+- [Core concepts](/docs/core-concepts): the frame clock the player drives.

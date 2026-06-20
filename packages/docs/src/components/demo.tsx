@@ -1,5 +1,5 @@
 import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 
 // Every demo composition lives at `src/demos/<name>.ts` and default-exports a
 // `Composition` (see `doc/authoring-demos.md`). These two globs resolve both
@@ -31,18 +31,23 @@ for (const [path, url] of Object.entries(URLS)) {
 // toggle that reveals it in a runtime-highlighted code block. Pass `name` to
 // resolve both the player URL and the source from `src/demos/<name>.ts`, or pass
 // `src`/`source` explicitly to override (e.g. a composition outside src/demos).
+// Pass `children` (control markup like `<km-player-controls>`) to render custom
+// controls inside the player instead of the default bar; the page documents the
+// markup itself in a code block, so the "View source" toggle is then suppressed.
 export function Demo({
   name,
   src,
   source,
   lang = "ts",
   label,
+  children,
 }: {
   name?: string;
   src?: string;
   source?: string;
   lang?: string;
   label?: string;
+  children?: ReactNode;
 }) {
   const [showSource, setShowSource] = useState(false);
 
@@ -54,8 +59,9 @@ export function Demo({
       }`,
     );
   }
+  const custom = Boolean(children);
   const playerSrc = src ?? resolved?.url;
-  const playerSource = source ?? resolved?.source;
+  const playerSource = source ?? (custom ? undefined : resolved?.source);
 
   return (
     <figure className="not-prose my-6 overflow-hidden rounded-xl border border-fd-border bg-fd-card">
@@ -78,7 +84,9 @@ export function Demo({
       </figcaption>
 
       <div className="grid aspect-video w-full place-items-center bg-fd-secondary [&_km-player]:size-full">
-        <km-player src={playerSrc} controls loop />
+        <km-player src={playerSrc} controls={custom ? undefined : true} loop>
+          {children}
+        </km-player>
       </div>
 
       {playerSource && showSource ? (

@@ -1,0 +1,82 @@
+---
+title: Setup
+description: Install the km-player web component with npm, or load the self-contained build from a CDN with no bundler.
+---
+
+`@konva-motion/player` is a framework-agnostic web component that plays a
+`Composition` in the browser. It ships separately from `@konva-motion/core`.
+There are two ways to add it: install from npm, or drop in the self-contained CDN
+build with no build step at all.
+
+<Tabs items={["npm", "CDN (no bundler)"]}>
+
+<Tab value="npm">
+
+```bash
+npm install konva @konva-motion/core @konva-motion/player
+# or
+pnpm add konva @konva-motion/core @konva-motion/player
+```
+
+Import the package once to register `<km-player>` and the control elements, then
+opt into the default styling:
+
+```ts
+import "@konva-motion/player"; // registers <km-player> and the controls
+import "@konva-motion/player/styles.css"; // opt-in default styling
+```
+
+The stylesheet is optional. Without it the player still works, just unstyled: the
+structural layout is applied inline, and the control bar and overlay get their
+look from `styles.css`.
+
+<Callout type="info" title="konva and core are peers">
+You install `konva` and `@konva-motion/core` yourself; the player lists them as
+peer dependencies (`lit` and `@lit/context` are bundled). Pin a single copy of
+`konva`. See [Installation](/docs/installation) for the core setup.
+</Callout>
+
+</Tab>
+
+<Tab value="CDN (no bundler)">
+
+For a plain HTML page, load the self-contained build from a CDN. It bundles Konva
+and the core authoring API, registers every element, and pins `window.KonvaMotion`
+and `window.Konva`, so you can build a composition inline:
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@konva-motion/player/dist/player.css"
+/>
+
+<km-player controls loop style="width: 640px; aspect-ratio: 16/9"></km-player>
+
+<script type="module">
+  import "https://cdn.jsdelivr.net/npm/@konva-motion/player/dist/player.global.js";
+
+  const { Composition, Sequence, Rect, interpolate } = window.KonvaMotion;
+
+  const comp = new Composition({ id: "demo", fps: 60, durationInFrames: 120, width: 640, height: 360 });
+  const seq = new Sequence({ from: 0, durationInFrames: 120 });
+  const box = new Rect({ x: 40, y: 140, width: 80, height: 80, fill: "#38bdf8" });
+  seq.add(box);
+  seq.register((frame) => box.x(interpolate(frame, [0, 120], [40, 520], { extrapolateRight: "clamp" })));
+  comp.add(seq);
+
+  document.querySelector("km-player").composition = comp;
+</script>
+```
+
+The same file is published on unpkg (`https://unpkg.com/@konva-motion/player/dist/player.global.js`)
+and through the `@konva-motion/player/standalone` export for tools that resolve
+package subpaths.
+
+</Tab>
+
+</Tabs>
+
+## Next step
+
+- [Player](/docs/player): attributes, the imperative API, events, and custom
+  controls.

@@ -13,6 +13,7 @@
   "dependencies": {
     "@konva-motion/core": "workspace:*",
     "@konva-motion/player": "workspace:*",
+    "@konva-motion/transitions": "workspace:*",
     "fumadocs-core": "^16.10.3",
     "fumadocs-ui": "^16.10.3",
     "konva": "^10.3.0",

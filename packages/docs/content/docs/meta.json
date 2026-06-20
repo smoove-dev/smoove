@@ -20,7 +20,13 @@
     "---Media---",
     "video",
     "audio",
+    "---Transitions---",
+    "transitions-setup",
+    "transitions",
     "---Player---",
-    "player"
+    "player-setup",
+    "player",
+    "---Rendering---",
+    "rendering-setup"
   ]
 }

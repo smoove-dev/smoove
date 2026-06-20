@@ -1,0 +1,117 @@
+---
+title: Transitions
+description: Join scenes with cross-fades, slides, wipes, and shader effects using TransitionSeries.
+---
+
+`TransitionSeries` plays scenes one after another and blends each pair where they
+meet. It is [Series](/docs/sequencing) with overlap: a transition between two
+scenes pulls the second scene back over the first by the transition's length, and
+both layers are live during that window so a presentation can mix them. You add
+scenes and transitions in order, then `comp.add(series)` expands the whole thing
+into one `Sequence` per scene.
+
+<Callout type="info" title="Install it first">
+`TransitionSeries` and the presentations ship as `@konva-motion/transitions`,
+separate from core. See [Setup](/docs/transitions-setup) for the install and peer
+requirements.
+</Callout>
+
+```ts
+import { Composition } from "@konva-motion/core";
+import { TransitionSeries, fade, linearTiming } from "@konva-motion/transitions";
+
+const comp = new Composition({ id: "intro", fps: 60, durationInFrames: 200, width: 1280, height: 720 });
+
+const series = new TransitionSeries({ composition: comp });
+series.scene({ durationInFrames: 80 }, (seq) => seq.add(sceneA));
+series.transition({ presentation: fade(), timing: linearTiming({ durationInFrames: 20 }) });
+series.scene({ durationInFrames: 80 }, (seq) => seq.add(sceneB));
+
+comp.add(series);
+```
+
+The series needs the composition up front: spring timings read `fps` from it, and
+presentations are sized from the stage `width`/`height`. Each `.scene` takes a
+duration and a `build` callback that receives a fresh `Sequence` with its `from`
+already resolved. Each `.transition` sits between two scenes and overlaps them.
+
+<Callout type="info" title="Net duration = scenes minus transitions">
+A transition overlaps the two scenes it joins, so it shortens the total. The
+series runs for the sum of every scene duration minus the sum of every transition
+duration. Size the composition's `durationInFrames` to match so a looped player
+does not sit on empty frames at the end.
+</Callout>
+
+<Demo name="transition-fade" label="three scenes cross-fading on a linear timing" />
+
+## Presentations
+
+A presentation decides how two scenes blend. The geometric ones below run on
+Konva transforms (opacity, position, scale, a clip), so they work anywhere the
+player does.
+
+| Presentation | Options | What it does |
+| --- | --- | --- |
+| `fade()` | none | Cross-dissolve. Both layers cross at 50/50 opacity in the middle. |
+| `slide({ direction })` | `direction` | Push the incoming layer in while the outgoing one leaves the opposite side. |
+| `wipe({ direction })` | `direction` | Reveal the incoming layer behind a moving edge; the outgoing one stays put underneath. |
+| `clockWipe({ width, height })` | `width`, `height` | Sweep the incoming layer in like a clock hand. |
+| `iris({ width, height })` | `width`, `height` | Open a growing circle from the center. |
+| `flip({ direction })` | `direction` | Flip between scenes around an axis. |
+| `none()` | none | Hard cut, no blend. |
+
+`direction` is one of `"from-left"`, `"from-right"`, `"from-top"`, or
+`"from-bottom"`, and defaults to `"from-left"`. The demo below joins three scenes
+with a slide and a wipe so you can compare them.
+
+<Demo name="transition-slide" label="slide then wipe, both on a linear timing" />
+
+## Timings
+
+The timing reshapes the 0 to 1 progress a presentation reads. Swap the timing and
+the same presentation changes pace without any other edits.
+
+`linearTiming({ durationInFrames, easing? })` moves progress evenly across the
+transition. Pass an `easing` curve from core's `Easing` to bend it:
+
+```ts
+import { Easing } from "@konva-motion/core";
+
+linearTiming({ durationInFrames: 20, easing: Easing.inOut(Easing.cubic) });
+```
+
+`springTiming({ config?, durationInFrames?, durationRestThreshold?, reverse? })`
+runs progress through a physics spring, so a slide overshoots its mark and settles
+instead of arriving at a constant speed. The `config` shapes the bounce:
+
+| Option | Meaning |
+| --- | --- |
+| `config.damping` | Higher settles faster with less bounce (default `10`). |
+| `config.mass` | Higher is heavier and slower (default `1`). |
+| `config.stiffness` | Higher snaps harder (default `100`). |
+| `config.overshootClamping` | `true` stops the spring from passing its target. |
+| `durationInFrames` | Force a length. Omit it to use the spring's natural settle time. |
+| `reverse` | Run the spring from 1 to 0. |
+
+<Demo name="transition-spring" label="a slide on a spring timing, overshooting then settling" />
+
+<Callout type="info" title="Shader presentations">
+There is a second set of presentations built on WebGL2 fragment shaders:
+`dissolve`, `crosswarp`, `crossZoom`, `dreamyZoom`, `filmBurn`, `linearBlur`,
+`ripple`, `zoomBlur`, `zoomInOut`, `swap`, and `bookFlip`. They run in the browser
+when WebGL2 is available and fall back to `fade()` when it is not. To render them
+in a headless export, import `@konva-motion/renderer/gl` before building the
+composition. See [Rendering media](/docs/rendering-media).
+</Callout>
+
+<Callout type="warn" title="Structural rules the series enforces">
+A `TransitionSeries` must start and end with a scene, never a transition, and two
+transitions cannot be adjacent. A transition also cannot be longer than either
+scene it joins, since it overlaps both. Break any of these and the series throws
+when you read its sequences.
+</Callout>
+
+## Next steps
+
+- [Player](/docs/player): play a composition with `<km-player>`.
+- [Rendering](/docs/rendering): export the finished composition to a file.
