@@ -27,6 +27,8 @@
     "player-setup",
     "player",
     "---Rendering---",
-    "rendering-setup"
+    "rendering-setup",
+    "rendering",
+    "rendering-media"
   ]
 }

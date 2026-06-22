@@ -1,0 +1,167 @@
+---
+title: Rendering
+description: Export a composition to an MP4 file from Node with renderComposition, plus single frames and raw frames.
+---
+
+`renderComposition` turns a composition into a video file. It walks the frame
+clock the same way the player does, rasterizes each frame with skia-canvas, and
+encodes the result with ffmpeg. The whole pipeline runs in Node, so the
+composition you preview in the browser is the file you ship.
+
+<Callout type="info" title="Install it first">
+Rendering lives in `@konva-motion/renderer`, a separate Node-only package. See
+[Setup](/docs/rendering-setup) for the install, the native requirements, and the
+`register` import used below.
+</Callout>
+
+## Render to a file
+
+Import the `register` entry first. It calls `setupServerRendering()` on import,
+which installs the skia backend and the Node media factories. Do this before you
+build the composition, then await `renderComposition`:
+
+```ts
+import "@konva-motion/renderer/register";
+import { Composition, Sequence, Rect, interpolate } from "@konva-motion/core";
+import { renderComposition } from "@konva-motion/renderer";
+
+const comp = new Composition({ id: "out", fps: 60, durationInFrames: 120, width: 1280, height: 720 });
+
+const main = new Sequence({ from: 0, durationInFrames: 120 });
+const box = new Rect({ x: 0, y: 320, width: 80, height: 80, fill: "#ffd166" });
+main.add(box);
+main.register((f) => box.x(interpolate(f, [0, 119], [0, 1200])));
+comp.add(main);
+
+const result = await renderComposition(comp, { output: "out.mp4" });
+console.log(result);
+// { output: "out.mp4", width: 1280, height: 720, frames: 120, durationInSeconds: 2, hasAudio: false }
+```
+
+`renderComposition` resolves with a `RenderResult` once the file is written:
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `output` | `string` | The path that was written. |
+| `width` / `height` | `number` | Encoded pixel size. |
+| `frames` | `number` | Frames encoded. |
+| `durationInSeconds` | `number` | `frames / fps`. |
+| `hasAudio` | `boolean` | `true` when an audio track was muxed in. |
+
+## Options
+
+Only `output` is required. Everything else falls back to the composition's own
+settings.
+
+| Option | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `output` | `string` | required | File path to write. |
+| `resolution` | `{ width, height }` | composition size | Encode at a different size. |
+| `fit` | `"contain" \| "cover"` | `"contain"` | How a native frame fits a different `resolution`: `contain` scales and pads, `cover` scales and crops. |
+| `quality` | preset or config | `"medium"` | See [Quality presets](#quality-presets). |
+| `fps` | `number` | composition `fps` | Output frame rate. |
+| `range` | `{ from, to }` | full duration | Inclusive frame range to render. |
+| `format` | `string` | `"mp4"` | Container hint (H.264 + AAC). |
+| `mute` | `boolean` | `false` | Drop all audio. |
+| `fonts` | paths or record | none | Register fonts before drawing. See [Rendering media](/docs/rendering-media). |
+| `onProgress` | `(p) => void` | none | Per-frame progress callback. |
+| `signal` | `AbortSignal` | none | Cancel the render. |
+| `ffmpegPath` | `string` | bundled binary | Override the ffmpeg binary. |
+
+```ts
+await renderComposition(comp, {
+  output: "out.mp4",
+  resolution: { width: 1920, height: 1080 },
+  fit: "cover",
+  quality: "high",
+  range: { from: 0, to: 59 }, // first second at 60fps
+});
+```
+
+## Quality presets
+
+`quality` accepts a preset name or a custom `QualityConfig`. Each preset maps to
+an x264 rate factor, an x264 speed preset, and an AAC audio bitrate. Lower `crf`
+means better quality and a bigger file.
+
+| Preset | `crf` | x264 preset | Audio |
+| --- | --- | --- | --- |
+| `low` | 28 | `veryfast` | 96k |
+| `medium` | 23 | `fast` | 128k |
+| `high` | 18 | `slow` | 192k |
+| `max` | 14 | `slower` | 256k |
+
+`medium` is the default. Pass a config object to tune any field yourself:
+
+```ts
+await renderComposition(comp, { output: "out.mp4", quality: { crf: 20, preset: "medium", audioBitrate: "160k" } });
+```
+
+## Progress and cancellation
+
+`onProgress` fires as frames are encoded. The progress object is `{ frame, total,
+fps, etaSeconds? }`, where `fps` is the current throughput:
+
+```ts
+await renderComposition(comp, {
+  output: "out.mp4",
+  onProgress: ({ frame, total, fps }) => {
+    process.stdout.write(`  ${frame}/${total} @ ${fps.toFixed(1)} fps\r`);
+  },
+});
+```
+
+Pass an `AbortSignal` to stop a render in flight. Aborting rejects the promise and
+tears down the ffmpeg process:
+
+```ts
+const controller = new AbortController();
+setTimeout(() => controller.abort(), 5000); // give up after 5s
+
+await renderComposition(comp, { output: "out.mp4", signal: controller.signal });
+```
+
+## A single frame
+
+`renderStill` renders one frame and returns its image buffer. Pass `output` to
+also write it to disk. The default `type` is `"png"`; use `"jpeg"` with a
+`quality` from 0 to 1 for a smaller file.
+
+```ts
+import { renderStill } from "@konva-motion/renderer";
+
+const png = await renderStill(comp, { frame: 60, output: "thumb.png" });
+// png is a Buffer; `output` is optional
+
+const jpeg = await renderStill(comp, { frame: 60, type: "jpeg", quality: 0.9 });
+```
+
+## Raw frames
+
+`renderFrames` is an async generator that yields raw RGBA buffers, one per frame.
+This is the foundation `renderComposition` builds on. Reach for it when you want to
+pipe frames into your own encoder or do per-frame processing:
+
+```ts
+import { renderFrames } from "@konva-motion/renderer";
+
+for await (const { index, frame, data, width, height } of renderFrames(comp, { range: { from: 0, to: 59 } })) {
+  // data is a width * height * 4 byte RGBA Buffer
+}
+```
+
+To pipe an encoded video somewhere other than a file (an HTTP response, say), use
+`renderToStream(comp, opts)`. It returns `{ stream, done }`: a readable stream of a
+fragmented container and a promise that resolves with the `RenderResult`.
+
+<Callout type="warn" title="No CLI">
+The renderer is API-only; there is no `konva-motion render` command. Put the calls
+above in a `.ts` file and run it with `npx tsx render.ts` (or compile and run it
+with `node`).
+</Callout>
+
+## Next steps
+
+- [Rendering media](/docs/rendering-media): server-side assets, fonts, audio mux,
+  and shader transitions.
+- [Setup](/docs/rendering-setup): install and native requirements.

@@ -1,0 +1,147 @@
+---
+title: Rendering media
+description: Make images, video, audio, fonts, and shader transitions render headlessly with the Node renderer.
+---
+
+A composition that only draws shapes renders with nothing extra. The moment it
+loads an image, plays a clip, mixes audio, draws with a custom font, or uses a
+shader transition, the headless renderer needs a little more wiring than the
+browser. This page covers each case.
+
+<Callout type="info" title="Setup first">
+Everything here assumes `@konva-motion/renderer` is installed and the `register`
+import has run. See [Setup](/docs/rendering-setup) and [Rendering](/docs/rendering).
+</Callout>
+
+## Assets that resolve in both worlds
+
+A composition usually imports media as a Vite asset:
+
+```ts
+import clip from "./clip.mp4";
+new Video({ src: clip });
+```
+
+In the browser that import is a URL the player can fetch. Under the Node renderer,
+ffmpeg and skia cannot open a URL like `/assets/clip-a1b2.mp4`; they need a real
+file path. The `@konva-motion/vite` plugin bridges the two. In the SSR build it
+rewrites a media import to an absolute filesystem path; the client build keeps the
+URL. So the same `new Video({ src: clip })` works in preview and in render with no
+per-`src` helper.
+
+```ts
+// vite.config.ts
+import { konvaMotion } from "@konva-motion/vite";
+
+export default defineConfig({
+  plugins: [konvaMotion()],
+});
+```
+
+<Callout type="info" title="Which extensions get rewritten">
+The default set covers the common video, audio, and image extensions (`mp4`,
+`webm`, `mov`, `m4v`, `mkv`, `mp3`, `wav`, `ogg`, `m4a`, `aac`, `flac`, `png`,
+`jpg`/`jpeg`, `webp`, `avif`, `gif`). Pass `konvaMotion({ serverAssets: /…/ })` to
+widen or narrow it.
+</Callout>
+
+If you build the composition yourself in a plain Node script (no Vite), just pass a
+real path: `new Image({ src: "/abs/path/card.png" })`. The plugin only matters when
+imports go through a Vite build.
+
+## Fonts
+
+There is no DOM and no `@font-face` under skia, so a custom font has to be
+registered before any text is drawn. Register it with `registerFonts`, or pass
+`fonts` to `setupServerRendering` or to `renderComposition`:
+
+```ts
+import { registerFonts, renderComposition } from "@konva-motion/renderer";
+
+// an array of font file paths...
+registerFonts(["./fonts/Inter-Regular.ttf", "./fonts/Inter-Bold.ttf"]);
+
+// ...or a family-name -> path(s) record
+registerFonts({ Inter: ["./fonts/Inter-Regular.ttf", "./fonts/Inter-Bold.ttf"] });
+
+// or inline on the render call
+await renderComposition(comp, { output: "out.mp4", fonts: ["./fonts/Inter-Regular.ttf"] });
+```
+
+The family name a node references in `fontFamily` must match a registered font,
+otherwise skia falls back to a system face.
+
+## Audio
+
+Audio is not decoded while frames are drawn. As the renderer walks the timeline it
+records which `Audio`/`Video` nodes are audible and at what level, then ffmpeg does
+the real work in a separate pass: it trims each clip, applies the volume envelope,
+delays it to its start frame, and mixes everything with `amix`. The result is muxed
+into the output as an AAC track, and `RenderResult.hasAudio` reports whether a track
+was written.
+
+Frame-driven volume survives the trip. A level you animate with `register` +
+`interpolate` + `setVolume` becomes a keyframed envelope on the muxed track, and the
+[master mixer](/docs/audio) (`comp.mixer`) scales every channel on top. Pass `mute:
+true` to drop all audio:
+
+```ts
+await renderComposition(comp, { output: "out.mp4", mute: true });
+```
+
+The internal collector is exported as `collectAudioTrack(comp, fps)` if you want to
+inspect the clip list (`{ id, src, startFrame, endFrame, mediaInSeconds,
+playbackRate, volume }`) without rendering. You do not need to call it for a normal
+export; `renderComposition` runs it for you.
+
+## Video decode memory
+
+skia-canvas keeps every distinct decoded video frame's pixels for the life of the
+process, so a long, video-heavy render can grow large in memory. Cap the decode
+resolution to bound it. Clips bigger than the cap are scaled down (aspect
+preserved) and Konva upscales them back into their display box:
+
+```ts
+import { setupServerRendering } from "@konva-motion/renderer";
+
+setupServerRendering({ videoDecodeCap: { width: 1280, height: 720 } });
+```
+
+Omit `videoDecodeCap` for full-resolution decode.
+
+## Custom video source
+
+The default decoder is `nodeVideoSourceFactory` (an ffmpeg streaming decoder).
+Swap it through `setupServerRendering` if you need your own. The factory receives
+the resolved environment so you can branch on `env.isRendering`:
+
+```ts
+setupServerRendering({
+  video: (env) => (env.isRendering ? new MyDecoder() : new BrowserVideoSource()),
+});
+```
+
+## Shader transitions
+
+The geometric [transitions](/docs/transitions) (`fade`, `slide`, `wipe`, and the
+rest) run on Konva transforms, so they render headlessly with no extra setup. The
+shader presentations (`dissolve`, `crosswarp`, `bookFlip`, and the others) need a
+GL context. Enable them by importing the `gl` entry before you build the
+composition:
+
+```ts
+import "@konva-motion/renderer/register";
+import "@konva-motion/renderer/gl";
+```
+
+<Callout type="warn" title="The gl dependency is optional">
+The `gl` entry drives shaders through headless-gl, an optional dependency. Install
+it with `npm install --save-optional gl`. Without it, shader presentations fall
+back to a plain `fade()` and the renderer logs a one-time warning. See
+[Setup](/docs/rendering-setup) for the install.
+</Callout>
+
+## Next steps
+
+- [Rendering](/docs/rendering): the `renderComposition` API and quality presets.
+- [Transitions](/docs/transitions): the presentations and timings you render here.
