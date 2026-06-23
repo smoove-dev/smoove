@@ -211,8 +211,9 @@ button {
   display: grid;
   place-items: center;
   color: #fff;
-  background: linear-gradient(150deg, var(--accent-2), var(--accent));
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 3px 12px var(--accent-soft);
+  /* konva-motion brand gradient (emerald → cyan), independent of the site accent. */
+  background: linear-gradient(150deg, #34d399, #06b6d4);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 3px 12px rgba(6, 182, 212, 0.35);
 }
 .brand__mark svg {
   width: 15px;

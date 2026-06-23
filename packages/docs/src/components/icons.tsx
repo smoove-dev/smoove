@@ -22,10 +22,17 @@ function Line(props: IconProps & { children: React.ReactNode }) {
 }
 
 /* ---------------- brand ---------------- */
+// Play triangle with a fading motion-afterimage trail — the konva-motion mark.
+// Native 0 0 256 256 art; colored via currentColor (opacities give the trail).
 export function BrandMark(props: IconProps) {
   return (
-    <svg viewBox="0 0 18 18" aria-hidden="true" {...props}>
-      <path d="M9 3l1.6 4.4L15 9l-4.4 1.6L9 15l-1.6-4.4L3 9l4.4-1.6z" fill="currentColor" />
+    <svg viewBox="0 0 256 256" aria-hidden="true" {...props}>
+      <g fill="currentColor" stroke="currentColor" strokeLinejoin="round">
+        <path d="M131 128 L67 80 Q85 128 67 176 Z" opacity="0.16" strokeWidth="2" />
+        <path d="M149 128 L85 80 Q103 128 85 176 Z" opacity="0.30" strokeWidth="5" />
+        <path d="M167 128 L103 80 Q121 128 103 176 Z" opacity="0.55" strokeWidth="9" />
+        <path d="M185 128 L121 80 Q139 128 121 176 Z" opacity="1" strokeWidth="14" />
+      </g>
     </svg>
   );
 }

@@ -9,7 +9,7 @@ const GH_URL = "https://github.com/konva-motion/konva-motion";
 function Logo() {
   return (
     <>
-      <span className="inline-grid size-6 place-items-center rounded-lg bg-gradient-to-br from-violet-400 to-violet-600 text-white shadow-sm ring-1 ring-white/15">
+      <span className="inline-grid size-6 place-items-center rounded-lg bg-gradient-to-br from-emerald-400 to-cyan-500 text-white shadow-sm ring-1 ring-white/15">
         <BrandMark className="size-3.5" />
       </span>
       <span className="font-semibold text-[15px] tracking-tight">

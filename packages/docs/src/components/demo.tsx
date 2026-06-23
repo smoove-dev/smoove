@@ -1,5 +1,12 @@
 import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
+import { BrandMark } from "./icons";
+
+// Minimal slice of the <km-player> imperative API we drive from the overlay.
+interface KmPlayerEl extends HTMLElement {
+  toggle(): void;
+  isPlaying(): boolean;
+}
 
 // Every demo composition lives at `src/demos/<name>.ts` and default-exports a
 // `Composition` (see `doc/authoring-demos.md`). These two globs resolve both
@@ -50,6 +57,25 @@ export function Demo({
   children?: ReactNode;
 }) {
   const [showSource, setShowSource] = useState(false);
+  const playerRef = useRef<KmPlayerEl | null>(null);
+  const [playing, setPlaying] = useState(false);
+
+  // Track playback so the logo play-overlay shows only while paused. The player
+  // emits bubbling `play`/`pause`/`ended` CustomEvents (see km-player.ts).
+  useEffect(() => {
+    const el = playerRef.current;
+    if (!el) return;
+    const onPlay = () => setPlaying(true);
+    const onStop = () => setPlaying(false);
+    el.addEventListener("play", onPlay);
+    el.addEventListener("pause", onStop);
+    el.addEventListener("ended", onStop);
+    return () => {
+      el.removeEventListener("play", onPlay);
+      el.removeEventListener("pause", onStop);
+      el.removeEventListener("ended", onStop);
+    };
+  }, []);
 
   const resolved = name ? DEMOS[name] : undefined;
   if (name && !resolved) {
@@ -83,10 +109,29 @@ export function Demo({
         </span>
       </figcaption>
 
-      <div className="grid aspect-video w-full place-items-center bg-fd-secondary [&_km-player]:size-full">
-        <km-player src={playerSrc} controls={custom ? undefined : true} loop>
+      <div className="relative grid aspect-video w-full place-items-center bg-fd-secondary [&_km-player]:size-full">
+        <km-player
+          ref={playerRef as React.Ref<HTMLElement>}
+          src={playerSrc}
+          controls={custom ? undefined : true}
+          loop
+        >
           {children}
         </km-player>
+        {custom ? null : (
+          <button
+            type="button"
+            aria-label="Play"
+            onClick={() => playerRef.current?.toggle()}
+            className={`absolute inset-0 grid place-items-center transition-opacity duration-200 ${
+              playing ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
+          >
+            <span className="grid size-16 place-items-center rounded-full bg-black/45 text-white shadow-lg backdrop-blur-sm transition-transform hover:scale-105">
+              <BrandMark className="size-8" />
+            </span>
+          </button>
+        )}
       </div>
 
       {playerSource && showSource ? (

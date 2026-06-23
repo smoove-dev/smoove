@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes, RefAttributes } from "react";
 
 // Ambient JSX typing for <km-player> and its control elements (a framework-
 // agnostic set of web components from @konva-motion/player) so MDX/TSX can render
@@ -10,7 +10,7 @@ type BoolAttr = boolean | "";
 declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
-      "km-player": HTMLAttributes<HTMLElement> & {
+      "km-player": HTMLAttributes<HTMLElement> & RefAttributes<HTMLElement> & {
         src?: string;
         controls?: BoolAttr;
         loop?: BoolAttr;

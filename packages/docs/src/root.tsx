@@ -11,6 +11,7 @@ import playerStylesUrl from "@konva-motion/player/styles.css?url";
 
 export function links() {
   return [
+    { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
     {

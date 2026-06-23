@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router";
 import { HomeHeader } from "../components/home-header";
 import {
@@ -14,6 +15,9 @@ import {
   IconX,
 } from "../components/icons";
 import { useCopyButtons } from "../components/use-copy-buttons";
+// The hero background is a real konva-motion composition, loaded into <km-player>
+// exactly like a remote demo: `?url` hands us its served module URL.
+import heroBgUrl from "../demos/hero-bg.ts?url";
 import "../styles/base.css";
 import "../styles/home.css";
 import type { Route } from "./+types/home";
@@ -49,6 +53,20 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   const { getStarted, links } = loaderData;
   useCopyButtons();
 
+  // Honor reduced-motion: the hero background autoplays, but pause it for users
+  // who prefer less motion (the player exposes an imperative pause()).
+  const heroPlayerRef = useRef<(HTMLElement & { pause(): void }) | null>(null);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      if (mq.matches) heroPlayerRef.current?.pause();
+    };
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
   return (
     <>
       <HomeHeader />
@@ -56,6 +74,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       <section className="hero">
         <div className="hero__grid" aria-hidden="true" />
         <div className="hero__glow" aria-hidden="true" />
+        <div className="hero__player" aria-hidden="true">
+          <km-player ref={heroPlayerRef as React.Ref<HTMLElement>} src={heroBgUrl} autoplay loop />
+        </div>
 
         <div className="hero__inner">
           <span className="pill">
@@ -145,16 +166,24 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               <span className="code-block__lang">js</span>
             </div>
             <pre className="scroll">
-              <code className="language-javascript">{`const tl = new Timeline();
+              <code className="language-javascript">{`import { Composition, Sequence, Circle } from "@konva-motion/core";
 
-tl.to(circle, {
-  x: 480,
-  scaleX: 1.4,
-  duration: 0.8,
-  easing: easeOut,
+// The aurora playing behind this card — every frame is a
+// pure function of the playhead, so the loop is seamless.
+const comp = new Composition({ fps: 60, durationInFrames: 1800, loop: true });
+const scene = new Sequence({ from: 0, durationInFrames: 1800 });
+
+const orb = new Circle({ x: 800, y: 450, radius: 200, fill: "#34d399" });
+scene.add(orb);
+
+scene.register((frame) => {
+  const t = frame / 1800;
+  orb.x(800 + 220 * Math.sin(t * Math.PI * 2));
+  orb.radius(200 + 50 * Math.sin(t * Math.PI * 2));
 });
 
-tl.play();`}</code>
+comp.add(scene);
+export default comp;`}</code>
             </pre>
           </div>
         </div>

@@ -75,6 +75,35 @@ body {
   opacity: 0.8;
   animation: heroPulse 7s ease-in-out infinite;
 }
+/* Live konva-motion composition playing as the hero backdrop. Sits above the
+   grid/glow but below the headline; transparent canvas so the page theme shows
+   through. Non-interactive — it's pure atmosphere. */
+.hero__player {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.9;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 60%, transparent 100%);
+}
+/* Give the player box the composition's 16:9 aspect so the player's own
+   contain-fit becomes an exact fill, then size it to COVER the hero (clipped by
+   the parent's overflow:hidden) — the animation fills the whole hero, not a band.
+   Transparent overrides the player's video-style black backdrop. */
+.hero__player km-player {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  background: transparent;
+}
 .hero__grid {
   position: absolute;
   inset: 0;
