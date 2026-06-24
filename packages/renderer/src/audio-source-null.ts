@@ -1,11 +1,12 @@
 import type { AudioSource, AudioSourceFactory } from "@konva-motion/core";
 
 /**
- * No-op {@link AudioSource} for server rendering. Audio is never decoded during
- * an offline render — `RenderingAudioDriver` only records timing/volume metadata
- * per frame (collected via `comp.getAudioAssets()`), which an external ffmpeg
- * pass turns into the muxed track. This source exists only so the `Audio` node
- * can be constructed in Node without touching `document`.
+ * No-op {@link AudioSource} for server rendering. Audio is not decoded by the
+ * node during frame rendering — `RenderingAudioDriver` only records timing/volume
+ * metadata per frame (collected via `comp.getAudioAssets()`), which the
+ * {@link mixAudio} pass later decodes (via Mediabunny) and mixes into the muxed
+ * track. This source exists only so the `Audio` node can be constructed in Node
+ * without touching `document`.
  */
 export class NullAudioSource implements AudioSource {
   readonly duration = 0;

@@ -1,7 +1,7 @@
 {
   "name": "@konva-motion/renderer",
   "version": "0.0.0",
-  "description": "Headless server renderer for konva-motion — rasterizes a Composition with skia-canvas and encodes to video via ffmpeg.",
+  "description": "Headless server renderer for konva-motion — rasterizes a Composition with skia-canvas and encodes to video via Mediabunny (node-av / FFmpeg C API).",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
@@ -21,7 +21,9 @@
       "import": "./dist/gl.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -b",
     "dev": "tsc -b --watch",
@@ -30,7 +32,8 @@
     "example:mixer": "tsx examples/audio-mixer.ts"
   },
   "dependencies": {
-    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@mediabunny/server": "^1.49.0",
+    "mediabunny": "^1.49.0",
     "skia-canvas": "^3.0.8"
   },
   "optionalDependencies": {

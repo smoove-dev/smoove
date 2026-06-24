@@ -41,15 +41,15 @@ export class RenderingVideoDriver implements VideoDriver {
 
   private _waitReady(): Promise<void> {
     const { source } = this.ctx;
+    // Short-circuit when already ready: registering `onReady` here would invoke
+    // the callback synchronously (sources fire immediately when ready), and the
+    // callback references `off` before its `const` is initialized (TDZ).
+    if (source.isReady) return Promise.resolve();
     return new Promise<void>((resolve) => {
       const off = source.onReady(() => {
         off();
         resolve();
       });
-      if (source.isReady) {
-        off();
-        resolve();
-      }
     });
   }
 

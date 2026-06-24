@@ -1,23 +1,32 @@
 import type { Composition } from "@konva-motion/core";
 import type { VideoSourceFactory } from "@konva-motion/core";
+import {
+  QUALITY_HIGH,
+  QUALITY_LOW,
+  QUALITY_MEDIUM,
+  QUALITY_VERY_HIGH,
+  type Quality,
+} from "mediabunny";
 
-/** ffmpeg encode tuning. */
+/**
+ * Encode tuning. Mediabunny encoders are bitrate-oriented (no CRF): a value is
+ * either a target bitrate in bits/second or one of Mediabunny's resolution-aware
+ * {@link Quality} constants (`QUALITY_LOW` … `QUALITY_VERY_HIGH`).
+ */
 export interface QualityConfig {
-  /** x264 constant rate factor (lower = better quality / bigger file). */
-  crf: number;
-  /** x264 speed/efficiency preset. */
-  preset: string;
-  /** AAC audio bitrate, e.g. "128k". */
-  audioBitrate: string;
+  /** Target video bitrate (bits/second) or a Mediabunny quality constant. */
+  videoBitrate: number | Quality;
+  /** Target audio bitrate (bits/second) or a Mediabunny quality constant. */
+  audioBitrate: number | Quality;
 }
 
 export type QualityPreset = "low" | "medium" | "high" | "max";
 
 export const QUALITY_PRESETS: Record<QualityPreset, QualityConfig> = {
-  low: { crf: 28, preset: "veryfast", audioBitrate: "96k" },
-  medium: { crf: 23, preset: "fast", audioBitrate: "128k" },
-  high: { crf: 18, preset: "slow", audioBitrate: "192k" },
-  max: { crf: 14, preset: "slower", audioBitrate: "256k" },
+  low: { videoBitrate: QUALITY_LOW, audioBitrate: 96_000 },
+  medium: { videoBitrate: QUALITY_MEDIUM, audioBitrate: 128_000 },
+  high: { videoBitrate: QUALITY_HIGH, audioBitrate: 192_000 },
+  max: { videoBitrate: QUALITY_VERY_HIGH, audioBitrate: 256_000 },
 };
 
 /** How a native-size frame is fitted into a different target resolution. */
@@ -58,13 +67,11 @@ export interface RenderOptions {
   /** Frame rate of the output; defaults to the composition's fps. */
   fps?: number;
   range?: FrameRange;
-  /** Container/codec hint. Default `"mp4"` (H.264 + AAC). */
-  format?: string;
+  /** Output container. `"mp4"` (H.264 + AAC, default) or `"webm"` (VP9 + Opus). */
+  format?: "mp4" | "webm";
   fonts?: FontsOption;
   /** Drop all audio. */
   mute?: boolean;
-  /** Override the ffmpeg binary path (defaults to `@ffmpeg-installer/ffmpeg`). */
-  ffmpegPath?: string;
   signal?: AbortSignal;
   onProgress?: (progress: RenderProgress) => void;
 }
@@ -151,11 +158,10 @@ export interface SetupOptions {
   /** Fonts to register via skia-canvas `FontLibrary.use`. */
   fonts?: FontsOption;
   /**
-   * Cap the decode resolution of node video sources (clips larger are scaled
-   * down, preserving aspect; Konva upscales to the display box). skia-canvas
-   * retains every distinct decoded frame's pixels for the process lifetime, so
-   * a lower cap keeps memory bounded on long, video-heavy renders. Omit for
-   * full-resolution decode.
+   * Cap the decode/blit resolution of node video sources (clips larger are
+   * scaled down, preserving aspect; Konva upscales to the display box). An
+   * optional throughput/size knob for large background clips — Mediabunny decode
+   * is already memory-bounded. Omit for full-resolution decode.
    */
   videoDecodeCap?: { width: number; height: number };
 }

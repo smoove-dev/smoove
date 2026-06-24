@@ -5,7 +5,7 @@ import type { AudioClip, VolumeKeyframe } from "./types.js";
  * Coalesce the per-frame audio samples collected during a render
  * (`comp.getAudioAssets()`) into clips. Samples are grouped by source id,
  * muted/silent ones dropped, then split into runs of consecutive frames — each
- * run becomes one {@link AudioClip} an ffmpeg pass can turn into an input.
+ * run becomes one {@link AudioClip} the {@link mixAudio} pass decodes and mixes.
  */
 export function collectAudioTrack(comp: Composition, fps: number): AudioClip[] {
   const audible = comp.getAudioAssets().filter((a) => !a.muted && a.volume > 0);
@@ -62,7 +62,7 @@ function makeClip(id: string, run: AudioAsset[], fps: number): AudioClip {
 /**
  * Reduce a dense per-frame volume curve to its breakpoints (Ramer–Douglas–
  * Peucker on vertical error). A linear ramp collapses to two points, a constant
- * run to two — keeping the eventual ffmpeg `volume` expression small while
+ * run to two — keeping the volume envelope evaluated by the mixer compact while
  * preserving the shape. `eps` is the max allowed volume error (0..1).
  */
 export function simplifyEnvelope(kfs: VolumeKeyframe[], eps = 0.015): VolumeKeyframe[] {

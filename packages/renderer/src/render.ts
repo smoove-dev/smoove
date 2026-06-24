@@ -1,14 +1,16 @@
-import { once } from "node:events";
-import { createReadStream } from "node:fs";
-import { unlink, writeFile } from "node:fs/promises";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { writeFile } from "node:fs/promises";
 import { PassThrough } from "node:stream";
-import { pipeline } from "node:stream/promises";
-import type { Composition } from "@konva-motion/core";
+import { type Composition, isAudioNode, isVideoNode } from "@konva-motion/core";
+import Konva from "konva";
 import { Canvas } from "skia-canvas";
+import { mixAudio } from "./audio-mix.js";
 import { collectAudioTrack } from "./audio-track.js";
-import { buildMuxArgs, runFfmpeg, spawnVideoEncoder } from "./ffmpeg.js";
+import {
+  AUDIO_CHANNELS,
+  AUDIO_SAMPLE_RATE,
+  type EncodeTarget,
+  MediabunnyEncoder,
+} from "./encode.js";
 import { registerFonts } from "./setup.js";
 import {
   type Fit,
@@ -41,6 +43,16 @@ function resolveQuality(q?: QualityPreset | QualityConfig): QualityConfig {
 /** Capture the current frame as a skia Canvas (already composited by core). */
 function capture(comp: Composition): Canvas {
   return comp.captureCanvas() as unknown as Canvas;
+}
+
+/** Does the composition contain any audio-bearing node? Decides the audio track up front. */
+function hasAudioNodes(comp: Composition): boolean {
+  for (const layer of comp.getChildren()) {
+    if (!(layer instanceof Konva.Layer)) continue;
+    const found = layer.find((n: Konva.Node) => isAudioNode(n) || isVideoNode(n));
+    if (found.length > 0) return true;
+  }
+  return false;
 }
 
 async function* framesBetween(
@@ -76,9 +88,15 @@ export async function* renderFrames(
   yield* framesBetween(comp, from, to, opts.signal);
 }
 
-async function renderToFile(
+/**
+ * Core render: rasterize each frame, feed it to a single Mediabunny
+ * {@link MediabunnyEncoder}, then mix + add audio and finalize — one pass, no
+ * temp files, no child processes. `target` is either an output file or a stream.
+ */
+async function runRender(
   comp: Composition,
-  opts: RenderOptions & { fragmented?: boolean },
+  opts: RenderOptions,
+  target: EncodeTarget,
 ): Promise<RenderResult> {
   assertRendering(comp);
   registerFonts(opts.fonts);
@@ -86,47 +104,40 @@ async function renderToFile(
   const fps = opts.fps ?? comp.fps;
   const fit: Fit = opts.fit ?? "contain";
   const native: Resolution = { width: comp.width(), height: comp.height() };
-  const target = opts.resolution ?? native;
+  const size = opts.resolution ?? native;
+  const resize = size.width !== native.width || size.height !== native.height;
   const quality = resolveQuality(opts.quality);
+  const format = opts.format ?? "mp4";
   const total = comp.durationInFrames.get();
   const from = opts.range?.from ?? 0;
   const to = opts.range?.to ?? total - 1;
   const frameCount = to - from + 1;
+  const durationInSeconds = frameCount / fps;
 
   comp.clearAudioAssets();
+  const wantAudio = !opts.mute && hasAudioNodes(comp);
 
-  const tmpVideo = join(tmpdir(), `km-render-${process.pid}-${Date.now()}.mp4`);
-  const encoder = spawnVideoEncoder({
-    width: native.width,
-    height: native.height,
+  const encoder = new MediabunnyEncoder({
+    width: size.width,
+    height: size.height,
     fps,
-    resolution: opts.resolution,
-    fit,
+    format,
     quality,
-    output: tmpVideo,
-    ffmpegPath: opts.ffmpegPath,
+    hasAudio: wantAudio,
+    target,
   });
-  const stdin = encoder.stdin;
-  if (!stdin) throw new Error("[konva-motion] ffmpeg stdin unavailable");
-
-  const encoderDone = new Promise<void>((resolve, reject) => {
-    let err = "";
-    encoder.stderr?.on("data", (d) => {
-      err += d.toString();
-    });
-    encoder.on("error", reject);
-    encoder.on("close", (code) =>
-      code === 0
-        ? resolve()
-        : reject(new Error(`[konva-motion] ffmpeg encoder exited ${code}: ${err}`)),
-    );
-  });
+  await encoder.start();
 
   const startMs = Date.now();
   try {
     let i = 0;
-    for await (const frame of framesBetween(comp, from, to, opts.signal)) {
-      if (!stdin.write(frame.data)) await once(stdin, "drain");
+    for (let f = from; f <= to; f++) {
+      if (opts.signal?.aborted) throw new Error("[konva-motion] render aborted");
+      await comp.renderFrame(f);
+      let canvas = capture(comp);
+      if (resize) canvas = fitCanvas(canvas, size, fit);
+      const data = canvas.toBufferSync("raw", { colorType: "rgba" });
+      await encoder.addFrame(data, i / fps, 1 / fps);
       i++;
       if (opts.onProgress) {
         const elapsed = (Date.now() - startMs) / 1000;
@@ -139,54 +150,59 @@ async function renderToFile(
         });
       }
     }
-  } finally {
-    stdin.end();
-  }
-  await encoderDone;
 
-  const clips = opts.mute ? [] : collectAudioTrack(comp, fps);
-  const { args, hasAudio } = buildMuxArgs({
-    videoFile: tmpVideo,
-    clips,
-    fps,
-    audioBitrate: quality.audioBitrate,
-    output: opts.output,
-    fragmented: opts.fragmented,
-  });
-  try {
-    await runFfmpeg(args, opts.ffmpegPath);
-  } finally {
-    await unlink(tmpVideo).catch(() => {});
-  }
+    let hasAudio = false;
+    if (wantAudio) {
+      const clips = collectAudioTrack(comp, fps);
+      const mixed = await mixAudio(clips, fps, durationInSeconds, from);
+      hasAudio = mixed !== null;
+      await feedAudio(encoder, mixed, durationInSeconds);
+    }
 
-  return {
-    output: opts.output,
-    width: target.width,
-    height: target.height,
-    frames: frameCount,
-    durationInSeconds: frameCount / fps,
-    hasAudio,
-  };
+    await encoder.finalize();
+    return {
+      output: target.kind === "file" ? target.path : "",
+      width: size.width,
+      height: size.height,
+      frames: frameCount,
+      durationInSeconds,
+      hasAudio,
+    };
+  } catch (err) {
+    await encoder.cancel().catch(() => {});
+    throw err;
+  }
+}
+
+/** Feed mixed PCM (or full-duration silence when the track is empty) in 1s chunks. */
+async function feedAudio(
+  encoder: MediabunnyEncoder,
+  mixed: Float32Array | null,
+  durationInSeconds: number,
+): Promise<void> {
+  const totalFrames = Math.ceil(durationInSeconds * AUDIO_SAMPLE_RATE);
+  const buf = mixed ?? new Float32Array(totalFrames * AUDIO_CHANNELS);
+  const chunkFrames = AUDIO_SAMPLE_RATE; // 1 second per AudioSample
+  for (let frame = 0; frame < totalFrames; frame += chunkFrames) {
+    const n = Math.min(chunkFrames, totalFrames - frame);
+    const chunk = buf.slice(frame * AUDIO_CHANNELS, (frame + n) * AUDIO_CHANNELS);
+    await encoder.addAudioChunk(chunk, frame / AUDIO_SAMPLE_RATE);
+  }
 }
 
 /** Render frames + audio to a muxed video file. */
 export function renderComposition(comp: Composition, opts: RenderOptions): Promise<RenderResult> {
-  return renderToFile(comp, opts);
+  return runRender(comp, opts, { kind: "file", path: opts.output });
 }
 
 /**
  * Render to a fragmented mp4/webm exposed as a `Readable`, plus a `done` promise
  * that resolves with the {@link RenderResult} (or rejects) so errors aren't lost.
+ * Mediabunny writes the fragmented container straight into the stream — no temp file.
  */
 export function renderToStream(comp: Composition, opts: StreamOptions): RenderToStreamResult {
   const stream = new PassThrough();
-  const done = (async (): Promise<RenderResult> => {
-    const out = join(tmpdir(), `km-stream-${process.pid}-${Date.now()}.mp4`);
-    const result = await renderToFile(comp, { ...opts, output: out, fragmented: true });
-    await pipeline(createReadStream(out), stream);
-    await unlink(out).catch(() => {});
-    return { ...result, output: "" };
-  })();
+  const done = runRender(comp, { ...opts, output: "" }, { kind: "stream", writable: stream });
   done.catch((err) => stream.destroy(err instanceof Error ? err : new Error(String(err))));
   return { stream, done };
 }

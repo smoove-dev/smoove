@@ -12,8 +12,9 @@ export default defineConfig({
     // Keep the headless renderer's native deps external in the SSR build —
     // they're loaded with Node's `require` at runtime. Bundling them makes
     // Rollup try to parse the prebuilt `.node` binaries (skia-canvas's
-    // `skia.node`, headless-gl's `webgl.node`) as JS and the build fails.
-    external: ["skia-canvas", "gl", "@ffmpeg-installer/ffmpeg", "@ffmpeg-installer/darwin-arm64"],
+    // `skia.node`, headless-gl's `webgl.node`, @mediabunny/server's node-av
+    // bindings) as JS and the build fails.
+    external: ["skia-canvas", "gl", "mediabunny", "@mediabunny/server"],
   },
   resolve: {
     // single React instance across demo2 + the workspace-linked studio package

@@ -6,9 +6,10 @@ import {
 import { FontLibrary } from "skia-canvas";
 import { nullAudioSourceFactory } from "./audio-source-null.js";
 import { loadImageNode } from "./image-loader.js";
+import { registerServerMedia } from "./media-server.js";
 import { installSkiaBackend } from "./skia.js";
 import type { FontsOption, SetupOptions } from "./types.js";
-import { nodeVideoSourceFactory, setVideoDecodeCap } from "./video-source-ffmpeg.js";
+import { nodeVideoSourceFactory, setVideoDecodeCap } from "./video-source-mediabunny.js";
 
 const RENDERING_FLAG = "__KONVA_MOTION_RENDERING__";
 let factoriesRegistered = false;
@@ -29,6 +30,7 @@ export function registerFonts(fonts?: FontsOption): void {
  */
 export function setupServerRendering(opts: SetupOptions = {}): void {
   installSkiaBackend();
+  registerServerMedia();
   (globalThis as Record<string, unknown>)[RENDERING_FLAG] = true;
   if (!factoriesRegistered) {
     setDefaultVideoSourceFactory(opts.video ?? nodeVideoSourceFactory);

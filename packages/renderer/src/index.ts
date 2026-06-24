@@ -10,15 +10,16 @@ export { probeComposition } from "./probe.js";
 
 // Wiring seams (call before building compositions)
 export { setupServerRendering, registerFonts } from "./setup.js";
+export { registerServerMedia } from "./media-server.js";
 export { installSkiaBackend } from "./skia.js";
 export { loadImageNode } from "./image-loader.js";
 export {
   nodeVideoSourceFactory,
-  FfmpegVideoSource,
+  MediabunnyVideoSource,
   setVideoDecodeCap,
-} from "./video-source-ffmpeg.js";
+} from "./video-source-mediabunny.js";
 export { nullAudioSourceFactory, NullAudioSource } from "./audio-source-null.js";
-export { setFfmpegPath, resolveFfmpegPath } from "./ffmpeg-bin.js";
+export { mixAudio } from "./audio-mix.js";
 
 // Types
 export {

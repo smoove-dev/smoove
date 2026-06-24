@@ -9,6 +9,7 @@ import type { SizeValue } from "../../layout/flex/types.js";
 import type { ObjectFit, ObjectPosition } from "../../layout/image.js";
 import type { AudioDriver, AudioDriverContext } from "../audio/audio-driver.js";
 import { PreviewAudioDriver } from "../audio/audio-for-preview.js";
+import { RenderingAudioDriver } from "../audio/audio-for-rendering.js";
 import { isSchedulable } from "../audio/audio-source-mediabunny.js";
 import type { AudioChannel, AudioMixer } from "../audio/mixer.js";
 import { MEDIA_MARK, VIDEO_MARK } from "../media-marker.js";
@@ -198,11 +199,29 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
     };
     if (getEnvironment(stage).isRendering) {
       this._driver = new RenderingVideoDriver(ctx);
+      // Record the file's soundtrack as audio assets so the server mux can decode
+      // and mix it (videos with no audio track simply yield no audible PCM).
+      const audioCtx: AudioDriverContext = {
+        source: this._source,
+        timing,
+        comp,
+        id: this.id() || `video-${this._id}`,
+        src: this._src,
+        effectiveVolume: () => {
+          const m = this._mixer;
+          return (m ? m.volume.get() : 1) * this._volume.get();
+        },
+        effectiveMuted: () => {
+          const m = this._mixer;
+          return (m ? m.muted.get() : false) || this._muted.get();
+        },
+      };
+      this._audioDriver = new RenderingAudioDriver(audioCtx);
     } else {
       this._driver = new PreviewVideoDriver(ctx);
       // In preview, schedule the file's own soundtrack through the shared Web
-      // Audio context — same scheduler the standalone Audio node uses. (Server
-      // rendering doesn't collect Video audio yet; see the migration doc.)
+      // Audio context — same scheduler the standalone Audio node uses. (The
+      // rendering branch above records it as audio assets for the server mux.)
       if (isSchedulable(this._source)) {
         const audioCtx: AudioDriverContext = {
           source: this._source,

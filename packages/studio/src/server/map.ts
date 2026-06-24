@@ -54,7 +54,9 @@ export function toRenderOptions(req: RenderRequest, output: string): RenderOptio
     resolution: { width: req.w, height: req.h },
     fps: req.fps,
     quality: qualityPreset(req.quality),
-    format: videoMeta(req.format).ext,
+    // The renderer encodes mp4 (H.264/AAC) or webm (VP9/Opus); other containers
+    // (e.g. mov) fall back to mp4.
+    format: videoMeta(req.format).ext === "webm" ? "webm" : "mp4",
   };
   // `to` is inclusive in both the studio region and the renderer's FrameRange.
   if (req.from != null && req.to != null) opts.range = { from: req.from, to: req.to };
