@@ -3,13 +3,13 @@
  * nodes build at construction time. The browser is the default everywhere; a
  * server renderer swaps in Node-safe implementations **before** any composition
  * is constructed (e.g. `@konva-motion/renderer`'s `setupServerRendering()`),
- * since {@link BrowserAudioSource}/{@link BrowserVideoSource} touch `document`
- * in their constructors and would throw in Node.
+ * since the browser defaults ({@link MediabunnyAudioSource}/
+ * {@link MediabunnyVideoSource}) rely on `document`/WebCodecs and would throw in Node.
  */
 
-import { BrowserAudioSource } from "../media/audio/audio-source-browser.js";
+import { MediabunnyAudioSource } from "../media/audio/audio-source-mediabunny.js";
 import type { AudioSource, AudioSourceFactory } from "../media/audio/audio-source.js";
-import { BrowserVideoSource } from "../media/video/video-source-browser.js";
+import { MediabunnyVideoSource } from "../media/video/video-source-mediabunny.js";
 import type { VideoSource, VideoSourceFactory } from "../media/video/video-source.js";
 
 /** A drawable, loaded image with intrinsic dimensions — what {@link ImageLoader} resolves. */
@@ -31,8 +31,8 @@ function domLoadImage(src: string): Promise<LoadedImage> {
   });
 }
 
-let videoFactory: VideoSourceFactory = (): VideoSource => new BrowserVideoSource();
-let audioFactory: AudioSourceFactory = (): AudioSource => new BrowserAudioSource();
+let videoFactory: VideoSourceFactory = (): VideoSource => new MediabunnyVideoSource();
+let audioFactory: AudioSourceFactory = (): AudioSource => new MediabunnyAudioSource();
 let imageLoader: ImageLoader = domLoadImage;
 
 export function setDefaultVideoSourceFactory(factory: VideoSourceFactory): void {

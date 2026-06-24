@@ -7,6 +7,9 @@ import type { KMLayoutNode, LayoutBox } from "../../layout/contract.js";
 import { type FlexilyNode, applySize, parseSize } from "../../layout/flex/engine.js";
 import type { SizeValue } from "../../layout/flex/types.js";
 import type { ObjectFit, ObjectPosition } from "../../layout/image.js";
+import type { AudioDriver, AudioDriverContext } from "../audio/audio-driver.js";
+import { PreviewAudioDriver } from "../audio/audio-for-preview.js";
+import { isSchedulable } from "../audio/audio-source-mediabunny.js";
 import type { AudioChannel, AudioMixer } from "../audio/mixer.js";
 import { MEDIA_MARK, VIDEO_MARK } from "../media-marker.js";
 import type { VideoDriver, VideoDriverContext, VideoTiming } from "./driver.js";
@@ -70,12 +73,15 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
   private readonly _muted: Signal<boolean>;
   private _mixer: AudioMixer | null = null;
   private _driver: VideoDriver | null = null;
+  private _audioDriver: AudioDriver | null = null;
+  private readonly _src: string;
 
   constructor(config: VideoConfig) {
     super(pickKonvaConfig(config));
     this.setAttr(MEDIA_MARK, true);
     this.setAttr(VIDEO_MARK, true);
 
+    this._src = config.src;
     this._trimBefore = config.trimBefore ?? config.startFrom ?? 0;
     this._trimAfter = config.trimAfter ?? config.endAt;
     this._loop = config.loop ?? false;
@@ -137,11 +143,13 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
   _kmTick(localFrame: number): void {
     const driver = this._ensureDriver();
     driver?.tick(localFrame);
+    this._audioDriver?.tick(localFrame);
   }
 
   /** @internal — called by Sequence when it goes out of range. */
   _kmDeactivate(): void {
     this._driver?.deactivate();
+    this._audioDriver?.deactivate();
   }
 
   /** @internal — {@link KMLayoutNode}: size from explicit width/height (cover/contain handle the rest). */
@@ -188,9 +196,32 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
         this.getLayer()?.batchDraw();
       },
     };
-    this._driver = getEnvironment(stage).isRendering
-      ? new RenderingVideoDriver(ctx)
-      : new PreviewVideoDriver(ctx);
+    if (getEnvironment(stage).isRendering) {
+      this._driver = new RenderingVideoDriver(ctx);
+    } else {
+      this._driver = new PreviewVideoDriver(ctx);
+      // In preview, schedule the file's own soundtrack through the shared Web
+      // Audio context — same scheduler the standalone Audio node uses. (Server
+      // rendering doesn't collect Video audio yet; see the migration doc.)
+      if (isSchedulable(this._source)) {
+        const audioCtx: AudioDriverContext = {
+          source: this._source,
+          timing,
+          comp,
+          id: this.id() || `video-${this._id}`,
+          src: this._src,
+          effectiveVolume: () => {
+            const m = this._mixer;
+            return (m ? m.volume.get() : 1) * this._volume.get();
+          },
+          effectiveMuted: () => {
+            const m = this._mixer;
+            return (m ? m.muted.get() : false) || this._muted.get();
+          },
+        };
+        this._audioDriver = new PreviewAudioDriver(audioCtx);
+      }
+    }
     return this._driver;
   }
 
@@ -228,6 +259,8 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
     this._mixer = null;
     this._driver?.dispose();
     this._driver = null;
+    this._audioDriver?.dispose();
+    this._audioDriver = null;
     this._source.destroy();
     return super.destroy();
   }

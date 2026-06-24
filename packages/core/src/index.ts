@@ -97,12 +97,17 @@ export { Audio, isAudioNode } from "./media/audio/index.js";
 export type { AudioConfig } from "./media/audio/types.js";
 export type { AudioSource, AudioSourceFactory } from "./media/audio/audio-source.js";
 export { BrowserAudioSource } from "./media/audio/audio-source-browser.js";
+export {
+  MediabunnyAudioSource,
+  type SchedulableAudioSource,
+} from "./media/audio/audio-source-mediabunny.js";
 export type { AudioAsset } from "./media/audio/asset.js";
 export { getMediaTime, type MediaTiming } from "./media/media-time.js";
 export { Video, isVideoNode } from "./media/video/index.js";
 export type { VideoConfig } from "./media/video/types.js";
 export type { VideoSource, VideoSourceFactory } from "./media/video/video-source.js";
 export { BrowserVideoSource } from "./media/video/video-source-browser.js";
+export { MediabunnyVideoSource } from "./media/video/video-source-mediabunny.js";
 export {
   type Environment,
   type EnvironmentMode,
