@@ -17,3 +17,10 @@ export const AUDIO_MARK = "__kmIsAudio";
  * NOT registered with the audio mixer.
  */
 export const TICK_MARK = "__kmIsTick";
+/**
+ * Set by {@link Font} nodes. Walked by `Composition.add` so a scene-declared
+ * font is loaded (and buffered on) before playback. Kept here, like the other
+ * markers, so `composition.ts` discovers fonts by string without importing
+ * `layout/text/` (avoiding an import cycle).
+ */
+export const FONT_MARK = "__kmIsFont";

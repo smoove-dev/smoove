@@ -1,5 +1,6 @@
 import type Konva from "konva";
 import type { FlexChildProps, SizeValue } from "../flex/types.js";
+import type { Font, FontFaceRef } from "./font.js";
 
 export type TextAlign = "left" | "center" | "right" | "justify";
 
@@ -89,6 +90,13 @@ export type TextConfig = Omit<Konva.GroupConfig, "width" | "height" | "text"> &
     fontSize?: number;
     fontFamily?: string;
     fontStyle?: string;
+    /**
+     * A declarative {@link Font} (or a specific `font.face(selector)`). Overrides
+     * `fontFamily`/`fontStyle` (weight + style are derived from the face) and
+     * re-lays-out automatically once the font finishes loading. A bare `Font`
+     * uses its preferred face (`400`/`normal`, else the first declared face).
+     */
+    font?: Font | FontFaceRef;
     fill?: string;
     align?: TextAlign;
     lineHeight?: number;

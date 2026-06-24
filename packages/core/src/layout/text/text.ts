@@ -5,6 +5,7 @@ import type { KMLayoutNode, LayoutBox } from "../contract.js";
 import type { MeasureContext } from "../contract.js";
 import { type FlexilyNode, applySize, parseSize, setTextWrapperMeasure } from "../flex/engine.js";
 import type { SizeValue } from "../flex/types.js";
+import { Font, type FontFaceRef } from "./font.js";
 import {
   type Geometry,
   type LineRange,
@@ -23,6 +24,18 @@ import type {
 
 const ELLIPSIS = "…";
 const BIG = 1e9;
+
+/**
+ * Build Konva's `fontStyle` string from a resolved face's weight + style. Konva
+ * folds both into one canvas-font token, e.g. `"italic 700"`. `400`/`normal`
+ * collapse to `"normal"`.
+ */
+function konvaFontStyle(weight: string, style: string): string {
+  const parts: string[] = [];
+  if (style !== "normal") parts.push(style);
+  if (weight !== "400") parts.push(weight);
+  return parts.length > 0 ? parts.join(" ") : "normal";
+}
 
 /** Konva.Text internals we rely on for measurement (same pattern as flex-engine). */
 type KonvaTextInternal = Konva.Text & {
@@ -73,11 +86,18 @@ export class Text extends Konva.Group implements KMLayoutNode {
     this._hlText = new Konva.Group({ listening: false });
     this._fade = new Konva.Group({ listening: false });
     this._textClip = new Konva.Group({ listening: false });
+    // A declarative `font` overrides fontFamily/fontStyle (weight + style live in
+    // Konva's fontStyle string). A bare Font uses its preferred face.
+    const fontRef: FontFaceRef | null = config.font
+      ? config.font instanceof Font
+        ? config.font.face()
+        : config.font
+      : null;
     this._text = new Konva.Text({
       text: this._fullText,
       fontSize: config.fontSize,
-      fontFamily: config.fontFamily,
-      fontStyle: config.fontStyle,
+      fontFamily: fontRef ? fontRef.family : config.fontFamily,
+      fontStyle: fontRef ? konvaFontStyle(fontRef.weight, fontRef.style) : config.fontStyle,
       fill: config.fill,
       align: config.align,
       lineHeight: config.lineHeight,
@@ -120,6 +140,15 @@ export class Text extends Konva.Group implements KMLayoutNode {
       if (!this._inLayout) this._layoutText();
     });
     this._layoutText();
+
+    // The font may not be loaded yet — Konva would have measured with a fallback
+    // face. Re-layout + redraw once it lands (same shape as Image's load hook).
+    if (fontRef && !fontRef.isLoaded) {
+      fontRef.whenReady().then(() => {
+        this._layoutText();
+        this.getLayer()?.batchDraw();
+      });
+    }
   }
 
   /** Replace the text content. Re-runs fit + clamp + layout. */

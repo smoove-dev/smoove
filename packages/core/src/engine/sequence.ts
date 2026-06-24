@@ -84,4 +84,17 @@ export class Sequence extends Konva.Layer {
       for (const v of this._media) v._kmDeactivate?.();
     }
   }
+
+  /**
+   * Internal — force this sequence hidden and inactive, regardless of frame
+   * range. Used by `Composition` while it buffers assets so the stage stays
+   * transparent (no frame painted over not-yet-loaded fonts). The next
+   * {@link _apply} re-activates it normally.
+   */
+  _kmHide(): void {
+    if (!this._active && !this.visible()) return;
+    this.visible(false);
+    this._active = false;
+    for (const v of this._media) v._kmDeactivate?.();
+  }
 }

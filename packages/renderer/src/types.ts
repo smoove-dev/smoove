@@ -158,6 +158,12 @@ export interface SetupOptions {
   /** Fonts to register via skia-canvas `FontLibrary.use`. */
   fonts?: FontsOption;
   /**
+   * Directory for caching fonts that scene `Font` nodes load from remote URLs.
+   * Downloaded once and reused across frames and process runs. Defaults to
+   * `os.tmpdir()/konva-motion-fonts`.
+   */
+  fontCacheDir?: string;
+  /**
    * Cap the decode/blit resolution of node video sources (clips larger are
    * scaled down, preserving aspect; Konva upscales to the display box). An
    * optional throughput/size knob for large background clips — Mediabunny decode

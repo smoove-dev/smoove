@@ -13,6 +13,7 @@ export { setupServerRendering, registerFonts } from "./setup.js";
 export { registerServerMedia } from "./media-server.js";
 export { installSkiaBackend } from "./skia.js";
 export { loadImageNode } from "./image-loader.js";
+export { makeSkiaFontLoader, DEFAULT_FONT_CACHE_DIR } from "./font-loader.js";
 export {
   nodeVideoSourceFactory,
   MediabunnyVideoSource,

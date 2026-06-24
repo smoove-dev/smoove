@@ -1,7 +1,7 @@
 import Konva from "konva";
 import type { AudioAsset } from "../media/audio/asset.js";
 import { type AudioChannel, AudioMixer } from "../media/audio/mixer.js";
-import { MEDIA_MARK } from "../media/media-marker.js";
+import { FONT_MARK, MEDIA_MARK } from "../media/media-marker.js";
 import { type Emitter, createEmitter } from "./emitter.js";
 import { type Environment, type EnvironmentMode, detectEnvironment } from "./environment.js";
 import { Sequence, type SequenceProvider } from "./sequence.js";
@@ -28,6 +28,19 @@ export type CompositionOptions<P extends Record<string, unknown> = Record<string
 export type CompositionEvent = {
   frame: number;
   durationInFrames: number;
+};
+
+/**
+ * Asset-buffering state. `"idle"` — nothing pending; `"buffering"` — one or more
+ * assets (fonts, …) are still loading; `"ready"` — everything registered so far
+ * has settled. Observe it to show a spinner; `play()` honors it (see below).
+ */
+export type BufferState = "idle" | "buffering" | "ready";
+
+/** A node that registers itself with the composition when discovered (e.g. {@link Font}). */
+type RegisterableNode = Konva.Node & {
+  // biome-ignore lint/suspicious/noExplicitAny: props-shape-agnostic, like the CompositionMarker.
+  _kmRegister?: (comp: Composition<any>) => void;
 };
 
 export type CompositionEventMap = {
@@ -77,6 +90,10 @@ export class Composition<
   /** Live props the scene reads. Pushed to with {@link setProps} by a player or
       the studio form; updaters read it via `comp.props.get()`. */
   readonly props: ReadonlySignal<P>;
+  /** Asset-buffering state — `"idle"` | `"buffering"` | `"ready"`. See {@link registerAsset}. */
+  readonly buffer: ReadonlySignal<BufferState>;
+  /** Convenience: `buffer.get() === "buffering"`. */
+  readonly isBuffering: ReadonlySignal<boolean>;
 
   private readonly _frame: Signal<number>;
   private readonly _props: Signal<P>;
@@ -84,11 +101,19 @@ export class Composition<
   private readonly _durationInFrames: Signal<number>;
   private readonly _loop: Signal<boolean>;
   private readonly _playbackRate: Signal<number>;
+  private readonly _buffer: Signal<BufferState>;
   private readonly _emitter: Emitter<CompositionEventMap>;
 
   private _rafId: number | null = null;
   private _startWallMs = 0;
   private _startFrame = 0;
+
+  // Asset-buffering gate (the preview analogue of the delayRender render gate):
+  // outstanding asset loads that should be ready before playback advances.
+  private readonly _assets = new Set<Promise<unknown>>();
+  private _readyWaiters: Array<() => void> = [];
+  // Set when play() is called while buffering — playback starts on buffer ready.
+  private _resumeOnReady = false;
 
   // delayRender/continueRender gate — outstanding async work that must complete
   // before a rendered frame is captured (Remotion's delayRender model).
@@ -139,6 +164,7 @@ export class Composition<
     this._loop = createSignal(loop);
     this._playbackRate = createSignal(1);
     this._props = createSignal<P>(props ?? ({} as P));
+    this._buffer = createSignal<BufferState>("idle");
 
     this.frame = this._frame;
     this.isPlaying = this._isPlaying;
@@ -146,6 +172,8 @@ export class Composition<
     this.loop = this._loop;
     this.playbackRate = this._playbackRate;
     this.props = this._props;
+    this.buffer = this._buffer;
+    this.isBuffering = derived([this._buffer], () => this._buffer.get() === "buffering");
 
     this.isStopped = derived(
       [this._isPlaying, this._frame],
@@ -190,14 +218,26 @@ export class Composition<
     if (layers.length === 0) return this;
     super.add(...(layers as [Konva.Layer, ...Konva.Layer[]]));
     const frame = this._frame.get();
+    // Pass 1 — register assets first (across ALL added layers) so a Font in any
+    // of them flips the buffer to "buffering" before we paint anything. Media is
+    // registered eagerly so mixer channels exist before playback (lazy fallback
+    // lives in each node's _ensureDriver / Font._kmTick).
     for (const l of layers) {
       if (l instanceof Sequence) {
-        // Register the sequence's media (video + audio) eagerly so mixer channels
-        // exist before playback (lazy fallback lives in each node's _ensureDriver).
         for (const v of l.find((n: Konva.Node) => n.getAttr(MEDIA_MARK) === true)) {
           this.mixer.register(v as unknown as AudioChannel);
         }
-        l._apply(frame);
+        for (const f of l.find((n: Konva.Node) => n.getAttr(FONT_MARK) === true)) {
+          (f as RegisterableNode)._kmRegister?.(this);
+        }
+      }
+    }
+    // Pass 2 — paint the current frame, unless we're now buffering: leave the
+    // sequences hidden (transparent) until assets load. The buffer-drain in
+    // registerAsset paints the first frame once everything is ready.
+    if (this._buffer.get() !== "buffering") {
+      for (const l of layers) {
+        if (l instanceof Sequence) l._apply(frame);
       }
     }
     return this;
@@ -210,7 +250,16 @@ export class Composition<
       );
     }
     if (this._isPlaying.get()) return;
+    // Buffer-aware: if assets are still loading, defer the clock and resume
+    // automatically once buffering completes (see registerAsset).
+    if (this._buffer.get() === "buffering") {
+      this._resumeOnReady = true;
+      return;
+    }
+    this._startClock();
+  }
 
+  private _startClock(): void {
     this._isPlaying.set(true);
     this._startFrame = this._frame.get();
     this._startWallMs = wallNow();
@@ -227,12 +276,14 @@ export class Composition<
   }
 
   pause(): void {
+    this._resumeOnReady = false;
     if (!this._isPlaying.get()) return;
     this._cancelTick();
     this._isPlaying.set(false);
   }
 
   stop(): void {
+    this._resumeOnReady = false;
     this._cancelTick();
     if (this._isPlaying.get()) this._isPlaying.set(false);
     this._frame.set(0);
@@ -296,6 +347,51 @@ export class Composition<
     if (Object.is(value, this._props.get())) return;
     this._props.set(value);
     this.refresh();
+  }
+
+  /**
+   * Register an outstanding asset load (e.g. a {@link Font}). While any asset is
+   * pending, {@link buffer} is `"buffering"`; once all settle it flips to
+   * `"ready"` and {@link whenReady} waiters resolve. A `play()` issued while
+   * buffering is deferred and starts automatically here. Errors are swallowed
+   * (the asset logs its own) so one bad asset can't wedge playback.
+   *
+   * This is the preview-side buffer; offline rendering uses the per-frame
+   * {@link delayRender}/{@link renderFrame} gate instead.
+   */
+  registerAsset(load: Promise<unknown>, _label?: string): void {
+    this._assets.add(load);
+    if (this._buffer.get() !== "buffering") {
+      this._buffer.set("buffering");
+      // Hide everything so the stage is transparent while assets load — no frame
+      // is shown over not-yet-loaded fonts.
+      this._hideAllSequences();
+    }
+    const settle = (): void => {
+      if (!this._assets.delete(load)) return;
+      if (this._assets.size > 0) return;
+      this._buffer.set("ready");
+      const waiters = this._readyWaiters;
+      this._readyWaiters = [];
+      for (const resolve of waiters) resolve();
+      // Now that assets are loaded, paint. If a play() was deferred, resume the
+      // clock (which applies the frame); otherwise paint the current frame once.
+      if (this._resumeOnReady) {
+        this._resumeOnReady = false;
+        this._startClock();
+      } else {
+        this._applyFrame(this._frame.get(), false);
+      }
+    };
+    load.then(settle, settle);
+  }
+
+  /** Resolves once no assets are pending — immediately if idle/ready. */
+  whenReady(): Promise<void> {
+    if (this._assets.size === 0) return Promise.resolve();
+    return new Promise<void>((resolve) => {
+      this._readyWaiters.push(resolve);
+    });
   }
 
   /**
@@ -397,10 +493,22 @@ export class Composition<
   }
 
   private _applyFrame(frame: number, emit: boolean): void {
+    // While buffering, draw nothing — the stage stays transparent until every
+    // registered asset (fonts, …) has loaded. Sequences are left hidden so no
+    // frame is painted over not-yet-loaded fonts. Offline rendering never
+    // buffers (fonts gate via delayRender), so this only affects preview.
+    if (this._buffer.get() === "buffering") return;
     for (const child of this.getChildren()) {
       if (child instanceof Sequence) child._apply(frame);
     }
     if (emit) this._emitter.emit("time", this._event());
+  }
+
+  /** Hide every sequence (transparent stage) — used while buffering assets. */
+  private _hideAllSequences(): void {
+    for (const child of this.getChildren()) {
+      if (child instanceof Sequence) child._kmHide();
+    }
   }
 
   private _scheduleTick(): void {

@@ -1,10 +1,12 @@
 import {
   setDefaultAudioSourceFactory,
+  setDefaultFontLoader,
   setDefaultImageLoader,
   setDefaultVideoSourceFactory,
 } from "@konva-motion/core";
 import { FontLibrary } from "skia-canvas";
 import { nullAudioSourceFactory } from "./audio-source-null.js";
+import { makeSkiaFontLoader } from "./font-loader.js";
 import { loadImageNode } from "./image-loader.js";
 import { registerServerMedia } from "./media-server.js";
 import { installSkiaBackend } from "./skia.js";
@@ -36,6 +38,7 @@ export function setupServerRendering(opts: SetupOptions = {}): void {
     setDefaultVideoSourceFactory(opts.video ?? nodeVideoSourceFactory);
     setDefaultAudioSourceFactory(nullAudioSourceFactory);
     setDefaultImageLoader(loadImageNode);
+    setDefaultFontLoader(makeSkiaFontLoader(opts.fontCacheDir));
     factoriesRegistered = true;
   } else if (opts.video) {
     setDefaultVideoSourceFactory(opts.video);

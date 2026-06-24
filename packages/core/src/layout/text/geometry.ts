@@ -11,6 +11,7 @@ const TEXT_KEYS = [
   "fontSize",
   "fontFamily",
   "fontStyle",
+  "font",
   "fill",
   "align",
   "lineHeight",

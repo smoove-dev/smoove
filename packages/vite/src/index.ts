@@ -18,12 +18,14 @@ import { type Plugin, transformWithEsbuild } from "vite";
  *
  * Without the plugin everything still works — you just wire HMR by hand.
  *
- * It also fixes media for server rendering: a composition imports assets as Vite
- * URLs (`import clip from "./clip.mp4"`), which the browser player plays but the
+ * It also fixes assets for server rendering: a composition imports media and
+ * fonts as Vite URLs (`import clip from "./clip.mp4"`, `import face from
+ * "./font.woff2?url"`), which the browser player/`FontFace` can use but the
  * headless renderer's ffmpeg/skia can't open. In the SSR build the plugin
  * rewrites those imports to an absolute FILESYSTEM path; the client build is
- * untouched. So `new Video({ src: clip })` just works in both — no per-`src`
- * helper to remember.
+ * untouched. So `new Video({ src: clip })` and `new Font({ faces: [{ src: face }]
+ * })` just work in both — no per-`src` helper to remember. (The `?url` query is
+ * stripped before matching, so both bare and `?url` imports are handled.)
  */
 export interface KonvaMotionOptions {
   /** Which modules are treated as registry files. Default: `*registry.{ts,tsx,js,jsx}`. */
@@ -32,13 +34,15 @@ export interface KonvaMotionOptions {
    * Asset imports matching this extension set resolve to an absolute filesystem
    * path in the SSR build (instead of a Vite URL), so the server renderer can
    * read them. The client build is unaffected. Pass a custom RegExp to widen or
-   * narrow the set; default covers common video, audio, and image extensions.
+   * narrow the set; default covers common video, audio, image, and font
+   * extensions. The `?url` query (used by font imports) is stripped before the
+   * test, so `./font.woff2?url` matches.
    */
   serverAssets?: RegExp;
 }
 
 const DEFAULT_SERVER_ASSETS =
-  /\.(?:mp4|webm|mov|m4v|mkv|mp3|wav|ogg|m4a|aac|flac|png|jpe?g|webp|avif|gif)$/i;
+  /\.(?:mp4|webm|mov|m4v|mkv|mp3|wav|ogg|m4a|aac|flac|png|jpe?g|webp|avif|gif|woff2?|ttf|otf)$/i;
 
 // biome-ignore lint/suspicious/noExplicitAny: ESTree nodes are walked structurally.
 type AnyNode = any;

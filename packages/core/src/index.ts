@@ -1,6 +1,7 @@
 export {
   Composition,
   getComposition,
+  type BufferState,
   type CompositionEvent,
   type CompositionEventMap,
   type CompositionEventName,
@@ -49,6 +50,13 @@ export {
   type ObjectPosition,
 } from "./layout/image.js";
 export { Text } from "./layout/text/text.js";
+export {
+  Font,
+  type FontConfig,
+  type FontFace,
+  type FontFaceRef,
+  type FontStyleName,
+} from "./layout/text/font.js";
 export {
   Arc,
   type ArcConfig,
@@ -117,12 +125,17 @@ export {
 export {
   type ImageLoader,
   type LoadedImage,
+  type FontLoader,
+  type FontFaceDescriptor,
   setDefaultVideoSourceFactory,
   getDefaultVideoSourceFactory,
   setDefaultAudioSourceFactory,
   getDefaultAudioSourceFactory,
   setDefaultImageLoader,
   getDefaultImageLoader,
+  setDefaultFontLoader,
+  getDefaultFontLoader,
+  loadFontFace,
 } from "./engine/runtime-defaults.js";
 export type {
   Align,

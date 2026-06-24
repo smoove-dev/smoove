@@ -12,6 +12,7 @@ import keyframes from "./compositions/keyframes/index.js";
 import staggered from "./compositions/staggered/index.js";
 import transforms from "./compositions/transforms/index.js";
 
+import customFont from "./compositions/custom-font/index.js";
 import flexTypewriter from "./compositions/flex-typewriter/index.js";
 // Text.
 import ribbon from "./compositions/ribbon/index.js";
@@ -86,6 +87,7 @@ export default defineRegistry([
   textHighlight,
   typewriter,
   flexTypewriter,
+  customFont,
   // Layout.
   flexLayout,
   flexRowGrow,
