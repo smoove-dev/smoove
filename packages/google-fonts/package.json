@@ -1,0 +1,24 @@
+{
+  "name": "@konva-motion/google-fonts",
+  "version": "0.0.0",
+  "description": "Typed, tree-shakeable Google Fonts for konva-motion — one Font subclass per family, loaded from the Google Fonts CDN. No build: imported as TS source.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    "./manifest": "./src/manifest.ts",
+    "./*": "./src/fonts/*.ts"
+  },
+  "files": ["src"],
+  "scripts": {
+    "generate": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings=ExperimentalWarning scripts/generate.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@konva-motion/core": "workspace:*",
+    "konva": ">=10"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0"
+  }
+}

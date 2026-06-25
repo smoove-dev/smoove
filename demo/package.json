@@ -14,6 +14,7 @@
     "@konva-motion/core": "workspace:*",
     "@konva-motion/player": "workspace:*",
     "@konva-motion/renderer": "workspace:*",
+    "@konva-motion/google-fonts": "workspace:*",
     "@konva-motion/studio": "workspace:*",
     "@konva-motion/transitions": "workspace:*",
     "konva": "^10.3.0",

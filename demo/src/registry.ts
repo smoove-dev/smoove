@@ -14,6 +14,7 @@ import transforms from "./compositions/transforms/index.js";
 
 import customFont from "./compositions/custom-font/index.js";
 import flexTypewriter from "./compositions/flex-typewriter/index.js";
+import googleFont from "./compositions/google-font/index.js";
 // Text.
 import ribbon from "./compositions/ribbon/index.js";
 import textFit from "./compositions/text-fit/index.js";
@@ -88,6 +89,7 @@ export default defineRegistry([
   typewriter,
   flexTypewriter,
   customFont,
+  googleFont,
   // Layout.
   flexLayout,
   flexRowGrow,

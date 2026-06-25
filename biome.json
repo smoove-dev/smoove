@@ -8,7 +8,9 @@
       "**/.vite/**",
       "**/build/**",
       "**/.react-router/**",
-      "packages/studio/src/studio.css"
+      "packages/studio/src/studio.css",
+      "packages/google-fonts/src/fonts/**",
+      "packages/google-fonts/src/manifest.ts"
     ]
   },
   "organizeImports": { "enabled": true },
