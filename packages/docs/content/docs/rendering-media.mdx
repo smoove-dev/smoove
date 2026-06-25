@@ -24,26 +24,11 @@ new Video({ src: clip });
 
 In the browser that import is a URL the player can fetch. Under the Node renderer,
 Mediabunny and skia cannot open a URL like `/assets/clip-a1b2.mp4`; they need a real
-file path. The `@konva-motion/vite` plugin bridges the two. In the SSR build it
-rewrites a media import to an absolute filesystem path; the client build keeps the
-URL. So the same `new Video({ src: clip })` works in preview and in render with no
-per-`src` helper.
-
-```ts
-// vite.config.ts
-import { konvaMotion } from "@konva-motion/vite";
-
-export default defineConfig({
-  plugins: [konvaMotion()],
-});
-```
-
-<Callout type="info" title="Which extensions get rewritten">
-The default set covers the common video, audio, and image extensions (`mp4`,
-`webm`, `mov`, `m4v`, `mkv`, `mp3`, `wav`, `ogg`, `m4a`, `aac`, `flac`, `png`,
-`jpg`/`jpeg`, `webp`, `avif`, `gif`). Pass `konvaMotion({ serverAssets: /…/ })` to
-widen or narrow it.
-</Callout>
+file path. The [`@konva-motion/vite`](/docs/vite-plugin) plugin bridges the two: in
+the SSR build it rewrites a media or font import to an absolute filesystem path
+while the client build keeps the URL, so the same `new Video({ src: clip })` works
+in preview and in render. See [The Vite plugin](/docs/vite-plugin) for setup and the
+configurable extension set.
 
 If you build the composition yourself in a plain Node script (no Vite), just pass a
 real path: `new Image({ src: "/abs/path/card.png" })`. The plugin only matters when

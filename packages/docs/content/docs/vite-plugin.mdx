@@ -1,0 +1,126 @@
+---
+title: The Vite plugin
+description: An optional Vite plugin that makes media imports render headlessly and wires studio hot-reload for you.
+---
+
+`@konva-motion/vite` is optional. Everything works without it. What it removes is
+two pieces of by-hand wiring you hit when you build a konva-motion project with
+[Vite](https://vite.dev): media imports that resolve in the browser but not in the
+Node renderer, and the `import.meta.hot` boilerplate a studio needs to hot-swap a
+composition you are editing. Add the plugin and both disappear.
+
+## Install
+
+It is a build-time plugin, so install it as a dev dependency. `vite` (5 or newer)
+is a peer dependency you already have.
+
+```bash
+npm install -D @konva-motion/vite
+# or
+pnpm add -D @konva-motion/vite
+```
+
+Add it to your Vite config:
+
+```ts
+// vite.config.ts
+import { konvaMotion } from "@konva-motion/vite";
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  plugins: [konvaMotion()],
+});
+```
+
+That single call turns on both jobs below. Each is independent: if your project
+only does one of them, the other is a no-op.
+
+## Job 1: assets that render in both worlds
+
+A composition usually imports media as a Vite asset:
+
+```ts
+import clip from "./clip.mp4";
+new Video({ src: clip });
+```
+
+In the browser that import is a URL the [player](/docs/player) can fetch. Under the
+Node [renderer](/docs/rendering), Mediabunny and skia cannot open a URL like
+`/assets/clip-a1b2.mp4`; they need a real file path. The plugin bridges the two. In
+the SSR build it rewrites the import to an absolute filesystem path; the client
+build keeps the URL. So the same `new Video({ src: clip })` works in preview and in
+render with no per-`src` helper to remember. The same applies to a [`Font`](/docs/fonts)
+face imported as a URL (`import face from "./Inter.woff2?url"`); the `?url` query is
+stripped before matching.
+
+<Callout type="info" title="Which extensions get rewritten">
+The default set covers the common video, audio, image, and font extensions (`mp4`,
+`webm`, `mov`, `m4v`, `mkv`, `mp3`, `wav`, `ogg`, `m4a`, `aac`, `flac`, `png`,
+`jpg`/`jpeg`, `webp`, `avif`, `gif`, `woff`/`woff2`, `ttf`, `otf`). Pass
+`konvaMotion({ serverAssets: /…/ })` to widen or narrow it.
+</Callout>
+
+If you build a composition in a plain Node script with no Vite step, this job does
+not apply: just pass a real path, `new Image({ src: "/abs/path/card.png" })`. The
+rewrite only matters when an import goes through a Vite build.
+
+## Job 2: invisible studio hot-reload
+
+A studio (the `@konva-motion/studio` package) is an in-browser editor that lists
+your compositions, plays them, and exposes their props. If you build one around the
+registry pattern, you author a single module that lists your compositions:
+
+```ts
+// registry.ts
+import { defineRegistry } from "@konva-motion/studio";
+import pulse from "./compositions/pulse/index.js";
+import ribbon from "./compositions/ribbon/index.js";
+
+export default defineRegistry([pulse, ribbon]);
+```
+
+Each entry is the default export of a composition directory. When you edit a
+composition's source, you want the studio to swap in the new version in place,
+keeping the current selection, props, and playhead, rather than reloading the page.
+That normally means hand-writing an `import.meta.hot.accept` block against every
+entry's source.
+
+The plugin writes it for you. It detects a module whose default export is
+`defineRegistry([...])`, rewrites the export so the injected code can reference it,
+and appends the `accept` handler that re-registers an entry's composition on a
+source edit. You never touch `import.meta.hot`. Editing a composition propagates up
+through its `index.ts` to the registry boundary, and the studio rebuilds and
+remounts that one entry.
+
+<Callout type="info" title="Which files count as a registry">
+By default the plugin only inspects modules whose filename ends in
+`registry.{ts,tsx,js,jsx}` and whose default export is an actual `defineRegistry`
+call, so it stays off unrelated files. Override the filename match with
+`konvaMotion({ include: /…/ })`.
+</Callout>
+
+Without the plugin the studio still runs; you wire HMR by hand, or accept a full
+reload on every edit.
+
+## When you need it
+
+Reach for `@konva-motion/vite` when:
+
+- You import media or fonts as Vite asset URLs **and** you
+  [render the composition headlessly](/docs/rendering-media) with the Node renderer.
+- You build a studio with the `defineRegistry` pattern and want a composition edit
+  to hot-swap in place.
+
+You do not need it when:
+
+- Your composition only plays in the browser and is never server-rendered.
+- You build the composition in a plain Node script and pass real filesystem paths
+  directly, with no Vite build in the loop.
+- You have no registry and no studio.
+
+## Next steps
+
+- [Rendering media](/docs/rendering-media): the full headless story for images,
+  video, audio, fonts, and shader transitions.
+- [Fonts](/docs/fonts): how a `Font` node loads its faces in the browser and under
+  the renderer.
