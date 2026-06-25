@@ -80,11 +80,13 @@ seq.register(() => {
 ```
 
 <Callout type="info" title="Renders headless too">
-A composition with video renders to a file with `@konva-motion/renderer`, which
-decodes frames through a skia backend instead of an HTML `<video>` element. You
-do not change the composition: `setFrame(n)` and the same `trimBefore`/`trimAfter`
-windows drive both preview and render. Add the package from
-[Rendering setup](/docs/rendering-setup), then see [Rendering](/docs/rendering).
+Preview and render both decode footage with [Mediabunny](https://mediabunny.dev):
+the browser pulls frames through WebCodecs, the Node renderer
+(`@konva-motion/renderer`) through its server decoder. Both seek frame-accurately,
+so the frame you scrub to is byte-for-byte the frame that gets written. You do not
+change the composition: `setFrame(n)` and the same `trimBefore`/`trimAfter` windows
+drive both. Add the package from [Rendering setup](/docs/rendering-setup), then see
+[Rendering](/docs/rendering).
 </Callout>
 
 ## Next steps

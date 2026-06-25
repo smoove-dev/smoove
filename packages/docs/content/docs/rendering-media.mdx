@@ -23,7 +23,7 @@ new Video({ src: clip });
 ```
 
 In the browser that import is a URL the player can fetch. Under the Node renderer,
-ffmpeg and skia cannot open a URL like `/assets/clip-a1b2.mp4`; they need a real
+Mediabunny and skia cannot open a URL like `/assets/clip-a1b2.mp4`; they need a real
 file path. The `@konva-motion/vite` plugin bridges the two. In the SSR build it
 rewrites a media import to an absolute filesystem path; the client build keeps the
 URL. So the same `new Video({ src: clip })` works in preview and in render with no
@@ -51,9 +51,19 @@ imports go through a Vite build.
 
 ## Fonts
 
-There is no DOM and no `@font-face` under skia, so a custom font has to be
-registered before any text is drawn. Register it with `registerFonts`, or pass
-`fonts` to `setupServerRendering` or to `renderComposition`:
+There is no DOM and no `@font-face` under skia, so a font has to be loaded before
+text is drawn with it. There are two ways that happens.
+
+**A `Font` node loads itself.** A scene that declares a [`Font`](/docs/fonts), or
+imports a [Google Fonts](/docs/google-fonts) family, needs no render-side setup.
+`setupServerRendering` installs a loader that resolves each declared face,
+downloads any remote URLs, and caches them on disk; the render waits for the
+faces before it draws. This is the path most scenes take.
+
+**Register a family by name.** If text picks a font only through `fontFamily` (a
+raw `Konva.Text`, or a `Text` with no `font`), register that family so skia can
+find it. Use `registerFonts`, or pass `fonts` to `setupServerRendering` or
+`renderComposition`:
 
 ```ts
 import { registerFonts, renderComposition } from "@konva-motion/renderer";
@@ -71,14 +81,34 @@ await renderComposition(comp, { output: "out.mp4", fonts: ["./fonts/Inter-Regula
 The family name a node references in `fontFamily` must match a registered font,
 otherwise skia falls back to a system face.
 
+### Remote fonts and the cache
+
+Font paths accept HTTP(S) URLs as well as local files, both for `registerFonts`
+and for the faces a `Font` node declares. The server loader downloads each face
+once, caches it on disk, and reuses it for every frame and every later render.
+This is what lets a [Google Fonts](/docs/google-fonts) family (its faces are
+hosted on `gstatic.com`) render headlessly with no extra wiring.
+
+```ts
+registerFonts({ Inter: ["https://example.com/fonts/Inter-Regular.woff2"] });
+```
+
+The default cache lives in your temp directory. Point it somewhere stable (a
+build cache, say) with `fontCacheDir`:
+
+```ts
+setupServerRendering({ fontCacheDir: "./.cache/fonts" });
+```
+
 ## Audio
 
 Audio is not decoded while frames are drawn. As the renderer walks the timeline it
-records which `Audio`/`Video` nodes are audible and at what level, then ffmpeg does
-the real work in a separate pass: it trims each clip, applies the volume envelope,
-delays it to its start frame, and mixes everything with `amix`. The result is muxed
-into the output as an AAC track, and `RenderResult.hasAudio` reports whether a track
-was written.
+records which `Audio`/`Video` nodes are audible and at what level, then mixes them
+in a separate in-process pass: each clip is decoded with Mediabunny, resampled for
+its `playbackRate`, gain-shaped by its volume envelope, delayed to its start frame,
+and summed into one stereo PCM timeline. That mix is handed to the same Mediabunny
+encoder that writes the video, so there is no ffmpeg pass and no temp file.
+`RenderResult.hasAudio` reports whether a track was written.
 
 Frame-driven volume survives the trip. A level you animate with `register` +
 `interpolate` + `setVolume` becomes a keyframed envelope on the muxed track, and the
@@ -111,13 +141,13 @@ Omit `videoDecodeCap` for full-resolution decode.
 
 ## Custom video source
 
-The default decoder is `nodeVideoSourceFactory` (an ffmpeg streaming decoder).
-Swap it through `setupServerRendering` if you need your own. The factory receives
-the resolved environment so you can branch on `env.isRendering`:
+The default decoder is `nodeVideoSourceFactory`, a Mediabunny-backed streaming
+decoder for Node. Swap it through `setupServerRendering` if you need your own. The
+factory receives the resolved environment so you can branch on `env.isRendering`:
 
 ```ts
 setupServerRendering({
-  video: (env) => (env.isRendering ? new MyDecoder() : new BrowserVideoSource()),
+  video: (env) => (env.isRendering ? new MyDecoder() : new MediabunnyVideoSource()),
 });
 ```
 

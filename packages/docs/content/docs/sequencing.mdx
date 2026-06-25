@@ -78,6 +78,10 @@ into source footage live on the [Video](/docs/video) and
 [Audio](/docs/audio) nodes, not on `Sequence`.
 </Callout>
 
+[`props`](/docs/dynamic-props) live on the composition, not the sequence, so
+every scene reads the same `comp.props.get()`. Pass per-scene data as one props
+object and let each scene's updater destructure the part it needs.
+
 ## Next steps
 
 - [Shapes](/docs/shapes): the drawing vocabulary you sequence.

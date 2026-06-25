@@ -130,10 +130,20 @@ player.setPlaybackRate(2);
 | Fullscreen | `requestFullscreen()`, `exitFullscreen()`, `toggleFullscreen()`, `isFullscreen()`, `getScale()` |
 | Props | `setProps(props)` |
 
-`setProps` forwards an object to the composition and re-renders, so you can pass
-runtime values into a parameterized comp. Read-only properties round it out:
-`composition` (the live `Composition` or `null`), `fps`, and `state` (the signal
-bag the controls subscribe to, see [custom controls](#custom-controls)).
+`setProps` forwards an object to the composition (the same as `comp.setProps`)
+and re-renders, so a form or any UI can drive a parametrized comp without
+reaching into it:
+
+```ts
+const player = document.querySelector("km-player");
+player.setProps({ name: "Grace", accent: "#f97316" });
+```
+
+The composition reads those values in its updaters via `comp.props.get()`. See
+[Dynamic props](/docs/dynamic-props) for the full pattern. Read-only properties
+round out the API: `composition` (the live `Composition` or `null`), `fps`, and
+`state` (the signal bag the controls subscribe to, see
+[custom controls](#custom-controls)).
 
 ## Events
 

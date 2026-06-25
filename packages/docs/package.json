@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@konva-motion/core": "workspace:*",
+    "@konva-motion/google-fonts": "workspace:*",
     "@konva-motion/player": "workspace:*",
     "@konva-motion/transitions": "workspace:*",
     "fumadocs-core": "^16.10.3",

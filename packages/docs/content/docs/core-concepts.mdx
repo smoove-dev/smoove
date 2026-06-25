@@ -32,6 +32,11 @@ comp.isPlaying.get(); // true while playing
 comp.frame.subscribe((f) => console.log("now at", f));
 ```
 
+`comp.props` is a reactive signal too: the scene's input data, read in updaters
+with `comp.props.get()` and replaced at runtime with `comp.setProps(...)`. It's
+how you parametrize one composition to render many videos. See
+[Dynamic props](/docs/dynamic-props).
+
 ## Sequence: a range-gated layer
 
 A `Sequence` _is_ a `Konva.Layer` pinned to a window on the timeline:
@@ -74,7 +79,8 @@ without rewriting its ranges.
 On every tick (during playback, or on a seek) the composition processes each
 sequence that's in range, in this order:
 
-1. **Updaters** run: your `register` callbacks set attributes from the frame.
+1. **Updaters** run: your `register` callbacks set attributes from the frame
+   (and from `comp.props.get()`, if the scene is parametrized).
 2. **Media ticks**: `Video`/`Audio` nodes sync to the frame.
 3. **Layout**: `Flex`/`Block` roots recompute, so animated sizes/gaps reflow.
 4. **Draw**: a `draw()` on the frame a sequence becomes active, `batchDraw()`

@@ -2,10 +2,12 @@ import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { BrandMark } from "./icons";
 
-// Minimal slice of the <km-player> imperative API we drive from the overlay.
-interface KmPlayerEl extends HTMLElement {
+// Minimal slice of the <km-player> imperative API we drive from the overlay and
+// expose to callers (e.g. a footer panel that pushes props).
+export interface KmPlayerEl extends HTMLElement {
   toggle(): void;
   isPlaying(): boolean;
+  setProps(props: Record<string, unknown>): void;
 }
 
 // Every demo composition lives at `src/demos/<name>.ts` and default-exports a
@@ -48,6 +50,9 @@ export function Demo({
   lang = "ts",
   label,
   children,
+  footer,
+  initialframe,
+  playerRef: externalPlayerRef,
 }: {
   name?: string;
   src?: string;
@@ -55,9 +60,22 @@ export function Demo({
   lang?: string;
   label?: string;
   children?: ReactNode;
+  // Extra content rendered inside the figure below the player (e.g. a form that
+  // drives the composition via the exposed player element).
+  footer?: ReactNode;
+  // Frame to paint on mount, before play. Useful when a static first frame
+  // should already show the revealed scene.
+  initialframe?: number;
+  // Optional caller-owned ref to the <km-player> element, populated alongside
+  // the internal one so a footer can call its imperative API.
+  playerRef?: React.MutableRefObject<KmPlayerEl | null>;
 }) {
   const [showSource, setShowSource] = useState(false);
   const playerRef = useRef<KmPlayerEl | null>(null);
+  const setPlayerRef = (el: KmPlayerEl | null) => {
+    playerRef.current = el;
+    if (externalPlayerRef) externalPlayerRef.current = el;
+  };
   const [playing, setPlaying] = useState(false);
 
   // Track playback so the logo play-overlay shows only while paused. The player
@@ -111,9 +129,10 @@ export function Demo({
 
       <div className="relative grid aspect-video w-full place-items-center bg-fd-secondary [&_km-player]:size-full">
         <km-player
-          ref={playerRef as React.Ref<HTMLElement>}
+          ref={setPlayerRef as React.Ref<HTMLElement>}
           src={playerSrc}
           controls={custom ? undefined : true}
+          initialframe={initialframe}
           loop
         >
           {children}
@@ -133,6 +152,8 @@ export function Demo({
           </button>
         )}
       </div>
+
+      {footer ? <div className="border-fd-border border-t">{footer}</div> : null}
 
       {playerSource && showSource ? (
         <div className="border-fd-border border-t [&_figure]:my-0 [&_figure]:rounded-none [&_figure]:border-x-0 [&_figure]:border-b-0">

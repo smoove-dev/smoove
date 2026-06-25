@@ -1,0 +1,126 @@
+---
+title: Dynamic props
+description: Parametrize a composition with props, read them live in updaters, and push new values at runtime with setProps.
+---
+
+A composition is a pure function of two inputs: the current **frame** and its
+**props**. Frames you already know; they drive motion. Props are the other
+half: the data that makes one composition render a thousand different videos. A
+headline, a customer name, an accent color, a chart's numbers: anything you'd
+want to vary without rewriting the scene goes in `props`.
+
+```ts
+import { Composition } from "@konva-motion/core";
+
+interface Props {
+  name: string;
+  accent: string;
+}
+
+const comp = new Composition<Props>({
+  id: "card",
+  fps: 60,
+  durationInFrames: 120,
+  width: 1280,
+  height: 720,
+  props: { name: "Ada", accent: "#38bdf8" },
+});
+```
+
+The generic (`Composition<Props>`) types the whole props object, so reads and
+updates are checked. Leave it off and props default to `{}`.
+
+## Read props in your updaters
+
+`comp.props` is a reactive signal, exactly like `comp.frame`. Read the current
+value with `comp.props.get()`, and read it inside your `register` updater, not
+once at construction:
+
+```ts
+scene.register((frame) => {
+  const { name, accent } = comp.props.get();
+  label.setText(`Hello, ${name}`);
+  label.fill(accent);
+  label.opacity(interpolate(frame, [0, 20], [0, 1], { extrapolateRight: "clamp" }));
+});
+```
+
+Because the updater re-reads props every tick, the scene always reflects the
+latest values, so when props change the next frame picks them up for free. The
+demo below is one composition whose headline, accent color, and rating bars all
+come straight out of `props`. Edit the fields under it and the running video
+updates live; each change calls `player.setProps(...)`:
+
+<PropsPlayground />
+
+<Callout type="warn" title="Reading props at construction bakes them in">
+`const t = new Text({ text: comp.props.get().name })` reads the value once, when
+the node is built, and will not update when props change. To stay live, read
+`comp.props.get()` inside the updater and write the attribute there.
+</Callout>
+
+## Update props at runtime
+
+Push new values with `comp.setProps`. It replaces the props object and
+re-renders the current frame immediately, so a paused scene updates on the spot:
+
+```ts
+comp.setProps({ name: "Grace", accent: "#f97316" });
+
+// Or derive the next value from the previous one:
+comp.setProps((prev) => ({ ...prev, accent: "#f97316" }));
+```
+
+`setProps` skips the re-render when the value is unchanged (an `Object.is`
+guard), so pass a new object rather than mutating the existing one. A mutation
+looks identical to the old reference, so the change is silently dropped.
+
+### From the player
+
+A `<km-player>` exposes the same call, so a form, a slider, or any UI can drive a
+mounted composition without reaching into it:
+
+```ts
+const player = document.querySelector("km-player");
+player.setProps({ name: "Grace", accent: "#f97316" });
+```
+
+See [`setProps` on the Player page](/docs/player#imperative-api).
+
+## Render one template many times
+
+This is where props earn their keep. Author the scene once, then render it once
+per record. Each render gets its own props and produces its own file:
+
+```ts
+import "@konva-motion/renderer/register";
+import { renderComposition } from "@konva-motion/renderer";
+
+for (const customer of customers) {
+  const comp = buildCard({ name: customer.name, accent: customer.brandColor });
+  await renderComposition(comp, { output: `out/${customer.id}.mp4` });
+}
+```
+
+Because every frame is a pure function of `frame` plus `props`, the browser
+preview and the server render of the same props are guaranteed to match. What
+you design is exactly what each record receives. The [Introduction](/docs/introduction#dynamic-data-driven-videos-at-scale)
+walks through the full personalized-video example.
+
+## Refreshing other external state
+
+`setProps` is the typed path for the composition's own data. If an updater reads
+some _other_ external value you mutate by hand, call `comp.refresh()` afterward:
+it re-runs the updaters and repaints the current frame, the same work a normal
+tick does, without advancing the playhead.
+
+```ts
+showWatermark = true; // some external flag an updater reads
+comp.refresh();        // re-render the current frame so the change shows
+```
+
+## Next steps
+
+- [Core concepts](/docs/core-concepts): the frame clock and the tick loop props ride on.
+- [Player](/docs/player): drive `setProps` from the `<km-player>` UI.
+- [Rendering](/docs/rendering): stamp out one file per record.

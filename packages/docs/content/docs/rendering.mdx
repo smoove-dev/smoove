@@ -5,8 +5,9 @@ description: Export a composition to an MP4 file from Node with renderCompositio
 
 `renderComposition` turns a composition into a video file. It walks the frame
 clock the same way the player does, rasterizes each frame with skia-canvas, and
-encodes the result with ffmpeg. The whole pipeline runs in Node, so the
-composition you preview in the browser is the file you ship.
+encodes the result with [Mediabunny](https://mediabunny.dev) in a single
+in-process pass: no ffmpeg binary, no temp files. The whole pipeline runs in
+Node, so the composition you preview in the browser is the file you ship.
 
 <Callout type="info" title="Install it first">
 Rendering lives in `@konva-motion/renderer`, a separate Node-only package. See
@@ -61,12 +62,11 @@ settings.
 | `quality` | preset or config | `"medium"` | See [Quality presets](#quality-presets). |
 | `fps` | `number` | composition `fps` | Output frame rate. |
 | `range` | `{ from, to }` | full duration | Inclusive frame range to render. |
-| `format` | `string` | `"mp4"` | Container hint (H.264 + AAC). |
+| `format` | `"mp4" \| "webm"` | `"mp4"` | Output container: `mp4` (H.264 + AAC) or `webm` (VP9 + Opus). |
 | `mute` | `boolean` | `false` | Drop all audio. |
 | `fonts` | paths or record | none | Register fonts before drawing. See [Rendering media](/docs/rendering-media). |
 | `onProgress` | `(p) => void` | none | Per-frame progress callback. |
 | `signal` | `AbortSignal` | none | Cancel the render. |
-| `ffmpegPath` | `string` | bundled binary | Override the ffmpeg binary. |
 
 ```ts
 await renderComposition(comp, {
@@ -80,21 +80,34 @@ await renderComposition(comp, {
 
 ## Quality presets
 
-`quality` accepts a preset name or a custom `QualityConfig`. Each preset maps to
-an x264 rate factor, an x264 speed preset, and an AAC audio bitrate. Lower `crf`
-means better quality and a bigger file.
+`quality` accepts a preset name or a custom `QualityConfig`. Mediabunny encoders
+are bitrate-oriented, not CRF-based: each preset pairs a video target with an
+audio bitrate. The video target is one of Mediabunny's resolution-aware quality
+constants, so the same preset produces a sensible bitrate at any size.
 
-| Preset | `crf` | x264 preset | Audio |
-| --- | --- | --- | --- |
-| `low` | 28 | `veryfast` | 96k |
-| `medium` | 23 | `fast` | 128k |
-| `high` | 18 | `slow` | 192k |
-| `max` | 14 | `slower` | 256k |
+| Preset | Video | Audio |
+| --- | --- | --- |
+| `low` | `QUALITY_LOW` | 96 kbps |
+| `medium` | `QUALITY_MEDIUM` | 128 kbps |
+| `high` | `QUALITY_HIGH` | 192 kbps |
+| `max` | `QUALITY_VERY_HIGH` | 256 kbps |
 
-`medium` is the default. Pass a config object to tune any field yourself:
+`medium` is the default. Pass a `QualityConfig` to set either field yourself,
+as a Mediabunny quality constant or a target bitrate in bits per second:
 
 ```ts
-await renderComposition(comp, { output: "out.mp4", quality: { crf: 20, preset: "medium", audioBitrate: "160k" } });
+import { QUALITY_HIGH } from "mediabunny";
+
+await renderComposition(comp, {
+  output: "out.mp4",
+  quality: { videoBitrate: QUALITY_HIGH, audioBitrate: 160_000 },
+});
+
+// or a raw target bitrate
+await renderComposition(comp, {
+  output: "out.mp4",
+  quality: { videoBitrate: 8_000_000, audioBitrate: 192_000 },
+});
 ```
 
 ## Progress and cancellation
@@ -112,7 +125,7 @@ await renderComposition(comp, {
 ```
 
 Pass an `AbortSignal` to stop a render in flight. Aborting rejects the promise and
-tears down the ffmpeg process:
+tears down the encoder:
 
 ```ts
 const controller = new AbortController();

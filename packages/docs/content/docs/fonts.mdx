@@ -1,0 +1,97 @@
+---
+title: Fonts
+description: Declare a custom font with the Font node, apply it to Text, and let the composition buffer until the glyphs load.
+---
+
+A canvas does not read your CSS `@font-face` rules, so a custom font has to be
+loaded before any text is drawn with it. `Font` is how you declare one: a family
+name plus its faces. You add it to a sequence like any other node, and the
+composition takes care of loading it and waiting for it.
+
+```ts
+import { Font, Sequence, Text } from "@konva-motion/core";
+
+const inter = new Font({
+  family: "Inter",
+  faces: [
+    { weight: 400, src: interRegularUrl },
+    { weight: 700, src: interBoldUrl },
+  ],
+});
+
+const seq = new Sequence({ from: 0, durationInFrames: 120 });
+seq.add(inter); // declare the font in the tree
+seq.add(new Text({ text: "Sharp at any size", font: inter, fontSize: 48 }));
+```
+
+A `Font` is an invisible node; it draws nothing. It exists so the composition
+can discover it, load its faces, and re-lay-out any text that uses it once the
+glyphs arrive.
+
+## Declaring faces
+
+Each face is a `{ weight, style, src }`. Only `src` is required; `weight`
+defaults to `400` and `style` to `"normal"`.
+
+| Field | Values |
+| --- | --- |
+| `src` | The font file: a URL (a Vite `?url` import, or a remote `https://…`), or a file path under the server renderer. |
+| `weight` | `400`, `"700"`, `"bold"` (→ 700), `"normal"` (→ 400), or a variable range like `"100 900"`. Default `400`. |
+| `style` | `"normal"`, `"italic"`, or `"oblique"`. Default `"normal"`. |
+
+<Callout type="warn" title="A family name is process-global">
+The text backend keys faces by `family`, so two genuinely different fonts must
+use two different `family` names. Declaring the same weight/style twice in one
+family is ignored with a warning; the first face wins.
+</Callout>
+
+## Applying a font to Text
+
+Pass the `Font` to a [`Text`](/docs/text)'s `font` option. A bare `Font` uses its
+preferred face (`400`/`normal`, or the first one declared). To pin a specific
+face, call `font.face(selector)`:
+
+```ts
+new Text({ text: "Regular", font: inter });          // preferred (400) face
+new Text({ text: "Bold", font: inter.face("700") }); // a specific face
+new Text({ text: "Quote", font: inter.face("400-italic") });
+```
+
+The selector is `"<weight>"` or `"<weight>-<style>"`:
+
+- no selector → the preferred face (`400`/`normal`, else the first declared);
+- `"700"` → the `700` face (prefers `normal` style);
+- `"400-italic"` → exactly `400`/`italic`. Throws if that face was not declared.
+
+`font` overrides `fontFamily`/`fontStyle` on the same `Text`: the weight and
+style come from the face you selected.
+
+## Nothing flashes while fonts load
+
+When a composition contains `Font` nodes it **buffers**: it paints nothing until
+every declared face has loaded, then renders the first frame with the real
+glyphs. There is no flash of a fallback system font and no reflow as text
+re-measures. `play()` issued during buffering is deferred and starts
+automatically once the fonts are ready.
+
+<Demo name="fonts" label="a script display face plus regular/bold picked from one family" />
+
+You can wait on a font yourself if you need to: `font.whenReady()` resolves once
+its faces have loaded, and `font.isLoaded` is the synchronous flag.
+
+## Loading in the browser vs on the server
+
+The same `Font` works in both places; only the loader differs, and the engine
+picks it for you:
+
+- **Browser preview** uses the `FontFace` API (the reliable canvas path, since
+  the canvas ignores `@font-face` CSS).
+- **Headless render** uses skia-canvas's font registry. A server renderer
+  installs that loader for you, and remote `src` URLs are downloaded and cached
+  on disk. See [Rendering media](/docs/rendering-media#fonts).
+
+## Next steps
+
+- [Google Fonts](/docs/google-fonts): skip the URLs with one typed import per Google family.
+- [Text](/docs/text): the rich text node the font applies to.
+- [Rendering media](/docs/rendering-media#fonts): how fonts resolve under the headless renderer.

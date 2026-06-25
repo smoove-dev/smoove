@@ -28,6 +28,10 @@ It takes the styling props you would reach for: `fontSize`, `fontFamily`,
 (`"word" | "char" | "none"`), and `ellipsis`. `width`/`height` accept px or `%`,
 and it participates in flex like any other node.
 
+For a custom typeface, pass a `font`: a [`Font`](/docs/fonts) node or a specific
+`font.face(...)`. It overrides `fontFamily`/`fontStyle` and re-lays-out once the
+glyphs load. See [Fonts](/docs/fonts) and [Google Fonts](/docs/google-fonts).
+
 <Callout type="warn" title="Update content with setText, not text()">
 The `Text` wrapper extends `Konva.Group` (it composes an internal Konva text
 node plus the highlight and cursor layers), so it has no `.text()` accessor.
@@ -123,5 +127,6 @@ new Text({
 
 ## Next steps
 
+- [Fonts](/docs/fonts): load a custom typeface and apply it with `font`.
 - [Images](/docs/images): bitmaps with objectFit and rounded corners.
 - [Flex](/docs/flex): lay text alongside shapes in a reflowing layout.

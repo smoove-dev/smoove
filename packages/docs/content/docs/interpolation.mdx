@@ -82,6 +82,23 @@ card.x(
 Easing gets its own page because there's a lot to it. See
 [Easing](/docs/easing).
 
+## Driving the output range from props
+
+Nothing says the output range has to be a literal. Read a value from
+[`props`](/docs/dynamic-props) inside the updater and interpolate toward it, and
+the same animation retargets per render: a bar that grows to a data-driven
+height, a camera that pans by a configured amount.
+
+```ts
+scene.register((frame) => {
+  const { targetHeight } = comp.props.get();
+  bar.height(interpolate(frame, [0, 60], [0, targetHeight], { extrapolateRight: "clamp" }));
+});
+```
+
+Because the updater re-reads props every frame, a `comp.setProps(...)` retargets
+the move instantly.
+
 ## interpolateColors
 
 Colors aren't numbers, so they get their own function. `interpolateColors` takes

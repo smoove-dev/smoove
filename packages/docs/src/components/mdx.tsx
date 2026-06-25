@@ -6,6 +6,7 @@ import type { MDXComponents } from "mdx/types";
 import { Badge } from "./badge";
 import { Demo } from "./demo";
 import { Prop } from "./prop";
+import { PropsPlayground } from "./props-playground";
 
 // MDX component map handed to every doc body. Fumadocs defaults (headings, code
 // blocks with copy buttons, links, tables…) plus the components our content
@@ -20,6 +21,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Tab,
     Tabs,
     Demo,
+    PropsPlayground,
     Prop,
     Badge,
     ...components,

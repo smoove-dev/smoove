@@ -64,6 +64,11 @@ renders.
 **Why:** purity is what makes preview, scrubbing, and headless render produce
 identical output. If you need randomness, seed it from the frame or a fixed seed.
 
+External data belongs in [`props`](/docs/dynamic-props): read `comp.props.get()`
+inside the updater and change it with `comp.setProps(...)`, which re-renders for
+you. Pass a new object rather than mutating the old one; `setProps` skips the
+re-render when the reference is unchanged.
+
 ## Add a node before you animate it
 
 Attach a node to a `Sequence`/layer (`seq.add(node)`) before you set attributes

@@ -1,0 +1,69 @@
+---
+title: Google Fonts
+description: Use any Google font with one typed import per family, no URLs to copy, no files to host.
+---
+
+`@konva-motion/google-fonts` turns the whole Google Fonts catalog into typed
+[`Font`](/docs/fonts) subclasses, one per family. You import the family you want,
+and you get a `Font` that already knows every face's URL. Nothing to copy from
+the Google Fonts site, nothing to host.
+
+```bash
+npm install @konva-motion/google-fonts
+```
+
+```ts
+import { Sequence, Text } from "@konva-motion/core";
+import Roboto from "@konva-motion/google-fonts/roboto";
+
+const roboto = new Roboto({ weights: ["400", "700"] });
+
+const seq = new Sequence({ from: 0, durationInFrames: 120 });
+seq.add(roboto);
+seq.add(new Text({ text: "Hello", font: roboto.face("700"), fontSize: 64 }));
+```
+
+Each family is its own subpath import (`@konva-motion/google-fonts/<family>`), so
+your bundle only includes the families you actually import.
+
+## Choosing faces
+
+The constructor options are typed per family, so the editor only offers the
+weights, styles, and subsets that family actually ships:
+
+| Option | Meaning |
+| --- | --- |
+| `weights` | Weights to register, e.g. `["400", "700"]`. Omit to register every weight. |
+| `styles` | `["normal", "italic"]`. Omit to register every style. |
+| `subset` | One character set to load (`"latin"`, `"cyrillic"`, …). Default `"latin"`. |
+
+```ts
+import PlayfairDisplay from "@konva-motion/google-fonts/playfair-display";
+
+const playfair = new PlayfairDisplay({
+  weights: ["400", "700"],
+  styles: ["normal", "italic"],
+});
+
+new Text({ text: "Headline", font: playfair.face("700") });
+new Text({ text: "An aside", font: playfair.face("400-italic") });
+```
+
+A generated family is a `Font`, so everything from the [Fonts](/docs/fonts)
+page applies unchanged: `seq.add(font)`, `font.face(...)`, the buffer-until-loaded
+behavior, and disk-cached server rendering.
+
+<Demo name="google-fonts" label="Playfair Display: two weights and an italic, one import" />
+
+<Callout type="info" title="One subset, one file per face">
+A family ships a separate file per character subset. The package loads exactly
+one subset (default `"latin"`) so the same file is used in the browser and in
+a headless render. Pick the `subset` that matches your text: if you set text in
+Cyrillic, pass `subset: "cyrillic"`.
+</Callout>
+
+## Next steps
+
+- [Fonts](/docs/fonts): the `Font` node these subclasses extend.
+- [Text](/docs/text): the node a font applies to.
+- [Rendering media](/docs/rendering-media#fonts): Google fonts render headlessly with no extra setup.

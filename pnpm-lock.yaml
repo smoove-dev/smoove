@@ -90,6 +90,9 @@ importers:
       '@konva-motion/core':
         specifier: workspace:*
         version: link:../core
+      '@konva-motion/google-fonts':
+        specifier: workspace:*
+        version: link:../google-fonts
       '@konva-motion/player':
         specifier: workspace:*
         version: link:../player

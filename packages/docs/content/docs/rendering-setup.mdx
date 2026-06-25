@@ -5,7 +5,8 @@ description: Install @konva-motion/renderer to export a composition to an MP4 fi
 
 `@konva-motion/renderer` turns a composition into a video file. It runs in Node,
 not the browser: it rasterizes each frame with skia-canvas and encodes with
-ffmpeg. Install it alongside `@konva-motion/core`.
+[Mediabunny](https://mediabunny.dev), all in-process. Install it alongside
+`@konva-motion/core`.
 
 ```bash
 npm install konva @konva-motion/core @konva-motion/renderer
@@ -15,9 +16,10 @@ pnpm add konva @konva-motion/core @konva-motion/renderer
 
 <Callout type="warn" title="Native requirements">
 This package is Node-only. `skia-canvas` builds a native module, so the install
-machine needs a system C/C++ toolchain. ffmpeg is fetched automatically through
-`@ffmpeg-installer`, so you do not install it yourself. None of this runs in the
-browser; use the [Player](/docs/player) there instead.
+machine needs a system C/C++ toolchain. Media decoding and encoding come from
+Mediabunny (`@mediabunny/server`, which uses prebuilt FFmpeg bindings), pulled in
+as dependencies, so there is no separate ffmpeg binary to install. None of this
+runs in the browser; use the [Player](/docs/player) there instead.
 </Callout>
 
 Set up the server rendering backend once, before you build the composition:
