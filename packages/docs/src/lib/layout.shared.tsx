@@ -29,9 +29,9 @@ export function baseOptions(): BaseLayoutProps {
     },
     githubUrl: GH_URL,
     links: [
-      { text: "Docs", url: "/docs/introduction" },
-      { text: "Components", url: "/docs/components" },
-      { text: "Examples", url: "/docs/player" },
+      // { text: "Docs", url: "/docs/introduction" },
+      // { text: "Components", url: "/docs/components" },
+      // { text: "Examples", url: "/docs/player" },
     ],
   };
 }

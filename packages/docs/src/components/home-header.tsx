@@ -11,9 +11,7 @@ export function HomeHeader() {
       <Brand />
       <span className="spacer" />
       <nav className="home-header__links">
-        <Link to="/docs">Docs</Link>
-        <Link to="/docs">Components</Link>
-        <Link to="/docs">Examples</Link>
+        <Link to="/docs/introduction">Docs</Link>
       </nav>
       <a
         className="gh-link"
@@ -26,7 +24,7 @@ export function HomeHeader() {
         <span className="gh-name">GitHub</span>
         <span className="stars">
           <IconStar />
-          2.4k
+          0
         </span>
       </a>
       <ThemeToggle />

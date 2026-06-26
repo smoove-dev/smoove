@@ -6,17 +6,14 @@ import {
   IconArrowRight,
   IconBook,
   IconCube,
-  IconDiscord,
   IconGithub,
   IconNpm,
   IconStar,
   IconTimeline,
   IconType,
-  IconX,
 } from "../components/icons";
 import { useCopyButtons } from "../components/use-copy-buttons";
-// The hero background is a real konva-motion composition, loaded into <km-player>
-// exactly like a remote demo: `?url` hands us its served module URL.
+
 import heroBgUrl from "../demos/hero-bg.ts?url";
 import "../styles/base.css";
 import "../styles/home.css";
@@ -80,7 +77,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
         <div className="hero__inner">
           <span className="pill">
-            <span className="dot" /> Konva animation toolkit <span className="ver">v1.0.0</span>
+            <span className="dot" /> konva-motion <span className="ver">v0.1.0</span>
           </span>
           <h1>
             Declarative <span className="grad">motion</span>
@@ -168,9 +165,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             <pre className="scroll">
               <code className="language-javascript">{`import { Composition, Sequence, Circle } from "@konva-motion/core";
 
-// The aurora playing behind this card — every frame is a
-// pure function of the playhead, so the loop is seamless.
-const comp = new Composition({ fps: 60, durationInFrames: 1800, loop: true });
+const comp = new Composition({ fps: 60, durationInFrames: 1800 });
 const scene = new Sequence({ from: 0, durationInFrames: 1800 });
 
 const orb = new Circle({ x: 800, y: 450, radius: 200, fill: "#34d399" });
@@ -182,8 +177,7 @@ scene.register((frame) => {
   orb.radius(200 + 50 * Math.sin(t * Math.PI * 2));
 });
 
-comp.add(scene);
-export default comp;`}</code>
+comp.add(scene);`}</code>
             </pre>
           </div>
         </div>
@@ -261,22 +255,6 @@ export default comp;`}</code>
               >
                 <IconNpm />
               </a>
-              <a
-                href="https://x.com/konvamotion"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X / Twitter"
-              >
-                <IconX />
-              </a>
-              <a
-                href="https://discord.gg/konva-motion"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Discord"
-              >
-                <IconDiscord />
-              </a>
             </div>
           </div>
 
@@ -289,12 +267,6 @@ export default comp;`}</code>
               <li>
                 <Link to={links.installation}>Installation</Link>
               </li>
-              <li>
-                <Link to={links.components}>Components</Link>
-              </li>
-              <li>
-                <Link to="/docs">API reference</Link>
-              </li>
             </ul>
           </div>
 
@@ -304,16 +276,6 @@ export default comp;`}</code>
               <li>
                 <a href={GH_URL} target="_blank" rel="noopener noreferrer">
                   GitHub
-                </a>
-              </li>
-              <li>
-                <a href={`${GH_URL}/discussions`} target="_blank" rel="noopener noreferrer">
-                  Discussions
-                </a>
-              </li>
-              <li>
-                <a href="https://discord.gg/konva-motion" target="_blank" rel="noopener noreferrer">
-                  Discord
                 </a>
               </li>
               <li>
@@ -328,37 +290,11 @@ export default comp;`}</code>
             </ul>
           </div>
 
-          <div className="footer-col">
-            <h4>Resources</h4>
-            <ul>
-              <li>
-                <Link to="/docs">Changelog</Link>
-              </li>
-              <li>
-                <Link to="/docs">Examples</Link>
-              </li>
-              <li>
-                <a
-                  href="https://www.npmjs.com/package/konva-motion"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  npm package
-                </a>
-              </li>
-              <li>
-                <a href={`${GH_URL}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer">
-                  License
-                </a>
-              </li>
-            </ul>
-          </div>
+          <div className="footer-col"></div>
         </div>
 
         <div className="footer-bottom">
           <span>© 2026 konva-motion · Released under the MIT License</span>
-          <span className="spacer" />
-          <span>Built with the konva-motion design system</span>
         </div>
       </footer>
     </>
