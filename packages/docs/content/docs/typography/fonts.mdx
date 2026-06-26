@@ -47,7 +47,7 @@ family is ignored with a warning; the first face wins.
 
 ## Applying a font to Text
 
-Pass the `Font` to a [`Text`](/docs/text)'s `font` option. A bare `Font` uses its
+Pass the `Font` to a [`Text`](/docs/typography/text)'s `font` option. A bare `Font` uses its
 preferred face (`400`/`normal`, or the first one declared). To pin a specific
 face, call `font.face(selector)`:
 
@@ -88,10 +88,10 @@ picks it for you:
   the canvas ignores `@font-face` CSS).
 - **Headless render** uses skia-canvas's font registry. A server renderer
   installs that loader for you, and remote `src` URLs are downloaded and cached
-  on disk. See [Rendering media](/docs/rendering-media#fonts).
+  on disk. See [Rendering media](/docs/rendering/media#fonts).
 
 ## Next steps
 
-- [Google Fonts](/docs/google-fonts): skip the URLs with one typed import per Google family.
-- [Text](/docs/text): the rich text node the font applies to.
-- [Rendering media](/docs/rendering-media#fonts): how fonts resolve under the headless renderer.
+- [Google Fonts](/docs/typography/google-fonts): skip the URLs with one typed import per Google family.
+- [Text](/docs/typography/text): the rich text node the font applies to.
+- [Rendering media](/docs/rendering/media#fonts): how fonts resolve under the headless renderer.

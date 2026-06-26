@@ -19,7 +19,7 @@ comp.add(seq);
 ```
 
 `Video` extends `Konva.Group`, so it takes a position and the flex child props,
-and it lays out inside a [Flex](/docs/flex) or [Block](/docs/block) the same way
+and it lays out inside a [Flex](/docs/layout/flex) or [Block](/docs/layout/block) the same way
 a shape does. What it adds on top is footage that tracks the frame.
 
 ## Props
@@ -85,7 +85,7 @@ the browser pulls frames through WebCodecs, the Node renderer
 (`@konva-motion/renderer`) through its server decoder. Both seek frame-accurately,
 so the frame you scrub to is byte-for-byte the frame that gets written. You do not
 change the composition: `setFrame(n)` and the same `trimBefore`/`trimAfter` windows
-drive both. Add the package from [Rendering setup](/docs/rendering-setup), then see
+drive both. Add the package from [Rendering setup](/docs/rendering/install), then see
 [Rendering](/docs/rendering).
 </Callout>
 

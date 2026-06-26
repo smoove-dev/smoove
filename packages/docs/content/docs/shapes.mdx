@@ -16,8 +16,8 @@ seq.add(new Star({ x: 520, y: 85, numPoints: 5, innerRadius: 28, outerRadius: 60
 ```
 
 Each wrapper extends its Konva shape through the `FlexShape` mixin, so it is a
-real Konva node plus flex participation: it can sit inside a [Flex](/docs/flex)
-or [Block](/docs/block), take child props like `flexGrow`, and size itself with
+real Konva node plus flex participation: it can sit inside a [Flex](/docs/layout/flex)
+or [Block](/docs/layout/block), take child props like `flexGrow`, and size itself with
 `%` as well as pixels.
 
 <Demo name="shapes-gallery" label="the wrapper vocabulary, breathing in sync" />
@@ -95,6 +95,6 @@ class MyShape extends FlexShape<Konva.MyShape, MyConfig>(Konva.MyShape) {}
 
 ## Next steps
 
-- [Text](/docs/text): the rich text node, with typewriter and highlights.
+- [Text](/docs/typography/text): the rich text node, with typewriter and highlights.
 - [Images](/docs/images): bitmaps with objectFit and rounded corners.
-- [Flex](/docs/flex): lay shapes out in rows and columns that reflow each tick.
+- [Flex](/docs/layout/flex): lay shapes out in rows and columns that reflow each tick.

@@ -11,7 +11,7 @@ Node, so the composition you preview in the browser is the file you ship.
 
 <Callout type="info" title="Install it first">
 Rendering lives in `@konva-motion/renderer`, a separate Node-only package. See
-[Setup](/docs/rendering-setup) for the install, the native requirements, and the
+[Setup](/docs/rendering/install) for the install, the native requirements, and the
 `register` import used below.
 </Callout>
 
@@ -64,7 +64,7 @@ settings.
 | `range` | `{ from, to }` | full duration | Inclusive frame range to render. |
 | `format` | `"mp4" \| "webm"` | `"mp4"` | Output container: `mp4` (H.264 + AAC) or `webm` (VP9 + Opus). |
 | `mute` | `boolean` | `false` | Drop all audio. |
-| `fonts` | paths or record | none | Register fonts before drawing. See [Rendering media](/docs/rendering-media). |
+| `fonts` | paths or record | none | Register fonts before drawing. See [Rendering media](/docs/rendering/media). |
 | `onProgress` | `(p) => void` | none | Per-frame progress callback. |
 | `signal` | `AbortSignal` | none | Cancel the render. |
 
@@ -175,6 +175,6 @@ with `node`).
 
 ## Next steps
 
-- [Rendering media](/docs/rendering-media): server-side assets, fonts, audio mux,
+- [Rendering media](/docs/rendering/media): server-side assets, fonts, audio mux,
   and shader transitions.
-- [Setup](/docs/rendering-setup): install and native requirements.
+- [Setup](/docs/rendering/install): install and native requirements.

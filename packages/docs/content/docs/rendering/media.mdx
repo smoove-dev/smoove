@@ -1,5 +1,5 @@
 ---
-title: Rendering media
+title: Media
 description: Make images, video, audio, fonts, and shader transitions render headlessly with the Node renderer.
 ---
 
@@ -10,7 +10,7 @@ browser. This page covers each case.
 
 <Callout type="info" title="Setup first">
 Everything here assumes `@konva-motion/renderer` is installed and the `register`
-import has run. See [Setup](/docs/rendering-setup) and [Rendering](/docs/rendering).
+import has run. See [Setup](/docs/rendering/install) and [Rendering](/docs/rendering).
 </Callout>
 
 ## Assets that resolve in both worlds
@@ -39,8 +39,8 @@ imports go through a Vite build.
 There is no DOM and no `@font-face` under skia, so a font has to be loaded before
 text is drawn with it. There are two ways that happens.
 
-**A `Font` node loads itself.** A scene that declares a [`Font`](/docs/fonts), or
-imports a [Google Fonts](/docs/google-fonts) family, needs no render-side setup.
+**A `Font` node loads itself.** A scene that declares a [`Font`](/docs/typography/fonts), or
+imports a [Google Fonts](/docs/typography/google-fonts) family, needs no render-side setup.
 `setupServerRendering` installs a loader that resolves each declared face,
 downloads any remote URLs, and caches them on disk; the render waits for the
 faces before it draws. This is the path most scenes take.
@@ -71,7 +71,7 @@ otherwise skia falls back to a system face.
 Font paths accept HTTP(S) URLs as well as local files, both for `registerFonts`
 and for the faces a `Font` node declares. The server loader downloads each face
 once, caches it on disk, and reuses it for every frame and every later render.
-This is what lets a [Google Fonts](/docs/google-fonts) family (its faces are
+This is what lets a [Google Fonts](/docs/typography/google-fonts) family (its faces are
 hosted on `gstatic.com`) render headlessly with no extra wiring.
 
 ```ts
@@ -153,7 +153,7 @@ import "@konva-motion/renderer/gl";
 The `gl` entry drives shaders through headless-gl, an optional dependency. Install
 it with `npm install --save-optional gl`. Without it, shader presentations fall
 back to a plain `fade()` and the renderer logs a one-time warning. See
-[Setup](/docs/rendering-setup) for the install.
+[Setup](/docs/rendering/install) for the install.
 </Callout>
 
 ## Next steps

@@ -4,7 +4,7 @@ description: Use any Google font with one typed import per family, no URLs to co
 ---
 
 `@konva-motion/google-fonts` turns the whole Google Fonts catalog into typed
-[`Font`](/docs/fonts) subclasses, one per family. You import the family you want,
+[`Font`](/docs/typography/fonts) subclasses, one per family. You import the family you want,
 and you get a `Font` that already knows every face's URL. Nothing to copy from
 the Google Fonts site, nothing to host.
 
@@ -49,7 +49,7 @@ new Text({ text: "Headline", font: playfair.face("700") });
 new Text({ text: "An aside", font: playfair.face("400-italic") });
 ```
 
-A generated family is a `Font`, so everything from the [Fonts](/docs/fonts)
+A generated family is a `Font`, so everything from the [Fonts](/docs/typography/fonts)
 page applies unchanged: `seq.add(font)`, `font.face(...)`, the buffer-until-loaded
 behavior, and disk-cached server rendering.
 
@@ -64,6 +64,6 @@ Cyrillic, pass `subset: "cyrillic"`.
 
 ## Next steps
 
-- [Fonts](/docs/fonts): the `Font` node these subclasses extend.
-- [Text](/docs/text): the node a font applies to.
-- [Rendering media](/docs/rendering-media#fonts): Google fonts render headlessly with no extra setup.
+- [Fonts](/docs/typography/fonts): the `Font` node these subclasses extend.
+- [Text](/docs/typography/text): the node a font applies to.
+- [Rendering media](/docs/rendering/media#fonts): Google fonts render headlessly with no extra setup.

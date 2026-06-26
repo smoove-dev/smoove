@@ -1,6 +1,6 @@
 ---
-title: Transitions
-description: Join scenes with cross-fades, slides, wipes, and shader effects using TransitionSeries.
+title: Build a series
+description: Construct a TransitionSeries, size its duration, and shape each transition with linear or spring timings.
 ---
 
 `TransitionSeries` plays scenes one after another and blends each pair where they
@@ -9,12 +9,6 @@ scenes pulls the second scene back over the first by the transition's length, an
 both layers are live during that window so a presentation can mix them. You add
 scenes and transitions in order, then `comp.add(series)` expands the whole thing
 into one `Sequence` per scene.
-
-<Callout type="info" title="Install it first">
-`TransitionSeries` and the presentations ship as `@konva-motion/transitions`,
-separate from core. See [Setup](/docs/transitions-setup) for the install and peer
-requirements.
-</Callout>
 
 ```ts
 import { Composition } from "@konva-motion/core";
@@ -34,6 +28,7 @@ The series needs the composition up front: spring timings read `fps` from it, an
 presentations are sized from the stage `width`/`height`. Each `.scene` takes a
 duration and a `build` callback that receives a fresh `Sequence` with its `from`
 already resolved. Each `.transition` sits between two scenes and overlaps them.
+Pick a presentation for it from the [catalog on the overview](/docs/transitions).
 
 <Callout type="info" title="Net duration = scenes minus transitions">
 A transition overlaps the two scenes it joins, so it shortens the total. The
@@ -41,30 +36,6 @@ series runs for the sum of every scene duration minus the sum of every transitio
 duration. Size the composition's `durationInFrames` to match so a looped player
 does not sit on empty frames at the end.
 </Callout>
-
-<Demo name="transition-fade" label="three scenes cross-fading on a linear timing" />
-
-## Presentations
-
-A presentation decides how two scenes blend. The geometric ones below run on
-Konva transforms (opacity, position, scale, a clip), so they work anywhere the
-player does.
-
-| Presentation | Options | What it does |
-| --- | --- | --- |
-| `fade()` | none | Cross-dissolve. Both layers cross at 50/50 opacity in the middle. |
-| `slide({ direction })` | `direction` | Push the incoming layer in while the outgoing one leaves the opposite side. |
-| `wipe({ direction })` | `direction` | Reveal the incoming layer behind a moving edge; the outgoing one stays put underneath. |
-| `clockWipe({ width, height })` | `width`, `height` | Sweep the incoming layer in like a clock hand. |
-| `iris({ width, height })` | `width`, `height` | Open a growing circle from the center. |
-| `flip({ direction })` | `direction` | Flip between scenes around an axis. |
-| `none()` | none | Hard cut, no blend. |
-
-`direction` is one of `"from-left"`, `"from-right"`, `"from-top"`, or
-`"from-bottom"`, and defaults to `"from-left"`. The demo below joins three scenes
-with a slide and a wipe so you can compare them.
-
-<Demo name="transition-slide" label="slide then wipe, both on a linear timing" />
 
 ## Timings
 
@@ -95,15 +66,6 @@ instead of arriving at a constant speed. The `config` shapes the bounce:
 
 <Demo name="transition-spring" label="a slide on a spring timing, overshooting then settling" />
 
-<Callout type="info" title="Shader presentations">
-There is a second set of presentations built on WebGL2 fragment shaders:
-`dissolve`, `crosswarp`, `crossZoom`, `dreamyZoom`, `filmBurn`, `linearBlur`,
-`ripple`, `zoomBlur`, `zoomInOut`, `swap`, and `bookFlip`. They run in the browser
-when WebGL2 is available and fall back to `fade()` when it is not. To render them
-in a headless export, import `@konva-motion/renderer/gl` before building the
-composition. See [Rendering media](/docs/rendering-media).
-</Callout>
-
 <Callout type="warn" title="Structural rules the series enforces">
 A `TransitionSeries` must start and end with a scene, never a transition, and two
 transitions cannot be adjacent. A transition also cannot be longer than either
@@ -113,5 +75,6 @@ when you read its sequences.
 
 ## Next steps
 
+- [Transitions](/docs/transitions): the full catalog of presentations.
 - [Player](/docs/player): play a composition with `<km-player>`.
 - [Rendering](/docs/rendering): export the finished composition to a file.

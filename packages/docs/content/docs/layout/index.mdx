@@ -1,0 +1,47 @@
+---
+title: Layout
+description: Why layout matters in dynamic video, and how flex reflow keeps a frame aligned as the content changes.
+---
+
+A static design is positioned once. A dynamic video is positioned on every
+frame. The label you pin at `x: 200` fits at frame 0 and overflows at frame 90
+when the word count doubles. The three cards you spaced by hand become five when
+the data changes. A number counting from 9 up to 1000 grows three digits wider
+as it runs. Hand-placed coordinates assume content that holds still, and in
+motion graphics it rarely does.
+
+That is the problem layout solves. Instead of writing `x`/`y` for every node,
+you describe the structure once (a row, a column, gaps, padding) and let the
+engine measure and place the children. When a size, a count, or a gap changes,
+the layout recomputes and everything stays aligned.
+
+## Reflow every tick
+
+`Sequence._apply` runs the layout on every top-level `Flex` or `Block` child
+each frame. Layout is not a one-time setup step; it is part of the animation
+loop. Drive a gap, a padding, or a child's size from the frame and the siblings
+move themselves to make room.
+
+```ts
+seq.register((frame) => {
+  row.setAttrs({ gap: interpolate(frame, [0, 60], [8, 48]) });
+  // every child re-spaces itself; no per-child x math
+});
+```
+
+This is the part raw `Konva.*` nodes can't express. A `Konva.Group` has no notion
+of "share the leftover space" or "track the container at 50%". The core wrappers
+add flexbox on top of every shape, so the structure survives whatever the content
+does at frame N.
+
+## The two building blocks
+
+- [Flex](/docs/layout/flex): a group that arranges its children in rows and
+  columns with flexbox props, and reflows every tick.
+- [Block](/docs/layout/block): a `Flex` that also paints a background, border,
+  corner radius, and shadow. The box you reach for when a group of children needs
+  to look like a card or a panel.
+
+Reach for layout whenever you mean structure ("these sit in a row, evenly
+spaced") rather than a fixed point on the canvas. Pin coordinates only for the
+things that genuinely live at one spot.

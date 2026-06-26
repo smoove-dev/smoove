@@ -1,0 +1,43 @@
+---
+title: The Vite plugin
+description: An optional Vite plugin that makes media imports render headlessly and wires studio hot-reload for you.
+---
+
+`@konva-motion/vite` is optional. Everything works without it. What it removes is
+two pieces of by-hand wiring you hit when you build a konva-motion project with
+[Vite](https://vite.dev): media imports that resolve in the browser but not in the
+Node renderer, and the `import.meta.hot` boilerplate a studio needs to hot-swap a
+composition you are editing. Add the plugin and both disappear.
+
+## What it does
+
+The plugin runs two independent jobs. One call turns both on; if your project only
+does one of them, the other is a no-op.
+
+- **[Assets that render in both worlds](/docs/vite-plugin/jobs#assets-that-render-in-both-worlds):**
+  rewrite a media or font import so the same `src` works in the browser player and
+  in the Node renderer.
+- **[Invisible studio hot-reload](/docs/vite-plugin/jobs#invisible-studio-hot-reload):**
+  write the `import.meta.hot.accept` block a `defineRegistry` studio needs so a
+  composition edit hot-swaps in place.
+
+## When you need it
+
+Reach for `@konva-motion/vite` when:
+
+- You import media or fonts as Vite asset URLs **and** you
+  [render the composition headlessly](/docs/rendering/media) with the Node renderer.
+- You build a studio with the `defineRegistry` pattern and want a composition edit
+  to hot-swap in place.
+
+You do not need it when:
+
+- Your composition only plays in the browser and is never server-rendered.
+- You build the composition in a plain Node script and pass real filesystem paths
+  directly, with no Vite build in the loop.
+- You have no registry and no studio.
+
+## Next steps
+
+- [Install](/docs/vite-plugin/install): add the plugin to your Vite config.
+- [Jobs](/docs/vite-plugin/jobs): what each job does, in detail.

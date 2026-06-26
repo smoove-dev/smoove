@@ -28,9 +28,9 @@ It takes the styling props you would reach for: `fontSize`, `fontFamily`,
 (`"word" | "char" | "none"`), and `ellipsis`. `width`/`height` accept px or `%`,
 and it participates in flex like any other node.
 
-For a custom typeface, pass a `font`: a [`Font`](/docs/fonts) node or a specific
+For a custom typeface, pass a `font`: a [`Font`](/docs/typography/fonts) node or a specific
 `font.face(...)`. It overrides `fontFamily`/`fontStyle` and re-lays-out once the
-glyphs load. See [Fonts](/docs/fonts) and [Google Fonts](/docs/google-fonts).
+glyphs load. See [Fonts](/docs/typography/fonts) and [Google Fonts](/docs/typography/google-fonts).
 
 <Callout type="warn" title="Update content with setText, not text()">
 The `Text` wrapper extends `Konva.Group` (it composes an internal Konva text
@@ -127,6 +127,6 @@ new Text({
 
 ## Next steps
 
-- [Fonts](/docs/fonts): load a custom typeface and apply it with `font`.
+- [Fonts](/docs/typography/fonts): load a custom typeface and apply it with `font`.
 - [Images](/docs/images): bitmaps with objectFit and rounded corners.
-- [Flex](/docs/flex): lay text alongside shapes in a reflowing layout.
+- [Flex](/docs/layout/flex): lay text alongside shapes in a reflowing layout.

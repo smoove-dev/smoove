@@ -1,41 +1,13 @@
 ---
-title: The Vite plugin
-description: An optional Vite plugin that makes media imports render headlessly and wires studio hot-reload for you.
+title: Jobs
+description: The two jobs the plugin runs - assets that render in both worlds, and invisible studio hot-reload.
 ---
 
-`@konva-motion/vite` is optional. Everything works without it. What it removes is
-two pieces of by-hand wiring you hit when you build a konva-motion project with
-[Vite](https://vite.dev): media imports that resolve in the browser but not in the
-Node renderer, and the `import.meta.hot` boilerplate a studio needs to hot-swap a
-composition you are editing. Add the plugin and both disappear.
+`konvaMotion()` runs two independent jobs. [Wiring it in](/docs/vite-plugin/install)
+turns on both; each is a no-op unless your project hits it. This page is what each
+one actually does.
 
-## Install
-
-It is a build-time plugin, so install it as a dev dependency. `vite` (5 or newer)
-is a peer dependency you already have.
-
-```bash
-npm install -D @konva-motion/vite
-# or
-pnpm add -D @konva-motion/vite
-```
-
-Add it to your Vite config:
-
-```ts
-// vite.config.ts
-import { konvaMotion } from "@konva-motion/vite";
-import { defineConfig } from "vite";
-
-export default defineConfig({
-  plugins: [konvaMotion()],
-});
-```
-
-That single call turns on both jobs below. Each is independent: if your project
-only does one of them, the other is a no-op.
-
-## Job 1: assets that render in both worlds
+## Assets that render in both worlds
 
 A composition usually imports media as a Vite asset:
 
@@ -49,7 +21,7 @@ Node [renderer](/docs/rendering), Mediabunny and skia cannot open a URL like
 `/assets/clip-a1b2.mp4`; they need a real file path. The plugin bridges the two. In
 the SSR build it rewrites the import to an absolute filesystem path; the client
 build keeps the URL. So the same `new Video({ src: clip })` works in preview and in
-render with no per-`src` helper to remember. The same applies to a [`Font`](/docs/fonts)
+render with no per-`src` helper to remember. The same applies to a [`Font`](/docs/typography/fonts)
 face imported as a URL (`import face from "./Inter.woff2?url"`); the `?url` query is
 stripped before matching.
 
@@ -64,7 +36,7 @@ If you build a composition in a plain Node script with no Vite step, this job do
 not apply: just pass a real path, `new Image({ src: "/abs/path/card.png" })`. The
 rewrite only matters when an import goes through a Vite build.
 
-## Job 2: invisible studio hot-reload
+## Invisible studio hot-reload
 
 A studio (the `@konva-motion/studio` package) is an in-browser editor that lists
 your compositions, plays them, and exposes their props. If you build one around the
@@ -102,25 +74,9 @@ call, so it stays off unrelated files. Override the filename match with
 Without the plugin the studio still runs; you wire HMR by hand, or accept a full
 reload on every edit.
 
-## When you need it
-
-Reach for `@konva-motion/vite` when:
-
-- You import media or fonts as Vite asset URLs **and** you
-  [render the composition headlessly](/docs/rendering-media) with the Node renderer.
-- You build a studio with the `defineRegistry` pattern and want a composition edit
-  to hot-swap in place.
-
-You do not need it when:
-
-- Your composition only plays in the browser and is never server-rendered.
-- You build the composition in a plain Node script and pass real filesystem paths
-  directly, with no Vite build in the loop.
-- You have no registry and no studio.
-
 ## Next steps
 
-- [Rendering media](/docs/rendering-media): the full headless story for images,
+- [Rendering media](/docs/rendering/media): the full headless story for images,
   video, audio, fonts, and shader transitions.
-- [Fonts](/docs/fonts): how a `Font` node loads its faces in the browser and under
-  the renderer.
+- [Fonts](/docs/typography/fonts): how a `Font` node loads its faces in the browser
+  and under the renderer.

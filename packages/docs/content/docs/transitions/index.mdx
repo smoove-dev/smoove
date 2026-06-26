@@ -1,0 +1,84 @@
+---
+title: Transitions
+description: Blend one scene into the next with cross-fades, slides, wipes, and shader effects.
+---
+
+A transition blends the end of one scene into the start of the next. Instead of
+a hard cut, the two scenes overlap for a window and a presentation mixes them: a
+cross-fade, a slide, a wipe, a shader warp. You build them with `TransitionSeries`,
+which plays scenes in order and overlaps each pair where they meet. Add scenes and
+transitions in sequence, then `comp.add(series)` expands the whole thing into one
+`Sequence` per scene.
+
+<Callout type="info" title="Install it first">
+`TransitionSeries` and the presentations ship as `@konva-motion/transitions`,
+separate from core. See [Install](/docs/transitions/install) for the package and
+its peers.
+</Callout>
+
+```ts
+import { Composition } from "@konva-motion/core";
+import { TransitionSeries, fade, linearTiming } from "@konva-motion/transitions";
+
+const comp = new Composition({ id: "intro", fps: 60, durationInFrames: 200, width: 1280, height: 720 });
+
+const series = new TransitionSeries({ composition: comp });
+series.scene({ durationInFrames: 80 }, (seq) => seq.add(sceneA));
+series.transition({ presentation: fade(), timing: linearTiming({ durationInFrames: 20 }) });
+series.scene({ durationInFrames: 80 }, (seq) => seq.add(sceneB));
+
+comp.add(series);
+```
+
+<Demo name="transition-fade" label="three scenes cross-fading on a linear timing" />
+
+That is the whole shape. For the rules the series enforces, the timings, and the
+spring physics, read [Build a series](/docs/transitions/guide). The rest of this
+page is the catalog: every presentation you can drop into a `.transition`.
+
+## Geometric presentations
+
+These run on Konva transforms (opacity, position, scale, a clip), so they work
+anywhere the player does and render headlessly with no extra setup.
+
+| Presentation | Options | What it does |
+| --- | --- | --- |
+| `fade()` | none | Cross-dissolve. Both layers cross at 50/50 opacity in the middle. |
+| `slide({ direction })` | `direction` | Push the incoming layer in while the outgoing one leaves the opposite side. |
+| `wipe({ direction })` | `direction` | Reveal the incoming layer behind a moving edge; the outgoing one stays put underneath. |
+| `clockWipe({ width, height })` | `width`, `height` | Sweep the incoming layer in like a clock hand. |
+| `iris({ width, height })` | `width`, `height` | Open a growing circle from the center. |
+| `flip({ direction })` | `direction` | Flip between scenes around an axis. |
+| `none()` | none | Hard cut, no blend. |
+
+`direction` is one of `"from-left"`, `"from-right"`, `"from-top"`, or
+`"from-bottom"`, and defaults to `"from-left"`.
+
+<Demo name="transition-slide" label="slide then wipe, both on a linear timing" />
+
+## Shader presentations
+
+A second set runs on WebGL2 fragment shaders. They run in the browser when WebGL2
+is available and fall back to `fade()` when it is not. To render them in a headless
+export, import `@konva-motion/renderer/gl` before building the composition (see
+[Rendering media](/docs/rendering/media)).
+
+| Presentation | What it does |
+| --- | --- |
+| `dissolve()` | Noise-thresholded dissolve; pixels swap in a grainy front. |
+| `crosswarp()` | Warp and stretch one scene into the other. |
+| `crossZoom()` | Zoom into the outgoing scene and back out of the incoming one. |
+| `dreamyZoom()` | Soft, blurred zoom blend. |
+| `filmBurn()` | Burn the outgoing scene away like overexposed film. |
+| `linearBlur()` | Directional motion blur across the cut. |
+| `ripple()` | A ripple distortion sweeps the new scene in. |
+| `zoomBlur()` | Radial zoom blur out from the center. |
+| `zoomInOut()` | Zoom out then back in across the join. |
+| `swap()` | Swap the two scenes with a perspective slide. |
+| `bookFlip()` | Flip between scenes like a turning page. |
+
+## Next steps
+
+- [Build a series](/docs/transitions/guide): scenes, net duration, timings, and
+  the structural rules in full.
+- [Install](/docs/transitions/install): add the package and its peers.
