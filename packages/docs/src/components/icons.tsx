@@ -23,12 +23,33 @@ function Line(props: IconProps & { children: React.ReactNode }) {
 
 /* ---------------- brand ---------------- */
 // The smoove edge-dot mark: four timeline bars tapering to a play triangle,
-// with the sunshine keyframe dot just past the last bar. Bars use currentColor
-// (so the host can color them); the sunshine dot always keeps its own hue.
-export function BrandMark(props: IconProps) {
+// with the sunshine keyframe dot just past the last bar. The sunshine dot always
+// keeps its own hue. By default the bars use currentColor (so a host can color
+// them); pass `gradient` for the official colored mark — coral→mint bars
+// (matches `smoove-mark.svg`), used in the brand lockups.
+export function BrandMark({ gradient, ...props }: IconProps & { gradient?: boolean }) {
   return (
     <svg viewBox="0 0 120 120" fill="none" aria-hidden="true" {...props}>
-      <g stroke="currentColor" strokeWidth="9" strokeLinecap="round">
+      {gradient ? (
+        <defs>
+          <linearGradient
+            id="smoove-mark-grad"
+            x1="40"
+            y1="60"
+            x2="84"
+            y2="60"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#FF5640" />
+            <stop offset="1" stopColor="#15CDA8" />
+          </linearGradient>
+        </defs>
+      ) : null}
+      <g
+        stroke={gradient ? "url(#smoove-mark-grad)" : "currentColor"}
+        strokeWidth="9"
+        strokeLinecap="round"
+      >
         <line x1="40" y1="38" x2="40" y2="82" />
         <line x1="52" y1="44" x2="52" y2="76" />
         <line x1="64" y1="50" x2="64" y2="70" />

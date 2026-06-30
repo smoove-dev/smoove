@@ -1,9 +1,10 @@
 /* ============================================================
    base.css — smoove docs
    Design tokens (light + dark), reset, and shared atoms.
-   Built strictly on the KmStudio design system: violet accent,
-   layered surfaces, Comfortaa (display) + Hanken Grotesk (body) +
-   JetBrains Mono (code).
+   Built on the Smoove brand system: cream-first canvas (#FFF6EC)
+   with grape-ink text (#261733); coral→mint Smoove gradient as the
+   single focal accent (~90/10 calm-vs-bright); grape-ink dark mode.
+   Comfortaa (display) + Hanken Grotesk (body) + JetBrains Mono (code).
    ============================================================ */
 
 /* Brand typefaces — theme-independent, so declared once outside the
@@ -13,110 +14,110 @@
   --font-display: "Comfortaa", system-ui, sans-serif;
 }
 
-/* ---------------- DARK (default) ---------------- */
+/* ---------------- LIGHT (default — cream canvas) ---------------- */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --stage: #0c0c0f;
-  --bg-0: #100f14;
-  --bg-1: #17161c;
-  --bg-2: #1e1d25;
-  --bg-3: #2a2933;
+  --stage: #fff6ec;
+  --bg-0: #fff6ec; /* cream — the default canvas */
+  --bg-1: #ffffff; /* paper — working surfaces */
+  --bg-2: #f0eee7;
+  --bg-3: #e6e2d8;
 
-  --line: rgba(255, 255, 255, 0.08);
-  --line-2: rgba(255, 255, 255, 0.13);
+  --line: #eceaf0;
+  --line-2: #e6e2d8;
 
-  --ink-1: #eceaf2;
-  --ink-2: #a4a2b2;
-  --ink-3: #6b6a78;
+  --ink-1: #261733; /* grape ink */
+  --ink-2: #3b3947;
+  --ink-3: #6a6678;
 
-  --accent: #7c5cff;
-  --accent-2: #9579ff;
-  --accent-soft: color-mix(in oklab, var(--accent) 16%, transparent);
-  --accent-line: color-mix(in oklab, var(--accent) 38%, transparent);
+  --accent: #ff5640; /* coral */
+  --accent-2: #15cda8; /* mint */
+  --accent-soft: color-mix(in oklab, var(--accent) 12%, transparent);
+  --accent-line: color-mix(in oklab, var(--accent) 30%, transparent);
 
-  --good: #46d39a;
-  --warn: #ffb44d;
-  --danger: #ff6b6b;
-  --info: #56b8ff;
+  --good: #0e9e84; /* mint, dark */
+  --warn: #b07a00; /* sunshine, dark */
+  --danger: #e03a28; /* coral, dark */
+  --info: #2576d6;
 
-  --good-soft: color-mix(in oklab, var(--good) 15%, transparent);
-  --warn-soft: color-mix(in oklab, var(--warn) 15%, transparent);
-  --danger-soft: color-mix(in oklab, var(--danger) 15%, transparent);
-  --info-soft: color-mix(in oklab, var(--info) 15%, transparent);
+  --good-soft: color-mix(in oklab, var(--good) 12%, transparent);
+  --warn-soft: color-mix(in oklab, var(--warn) 14%, transparent);
+  --danger-soft: color-mix(in oklab, var(--danger) 12%, transparent);
+  --info-soft: color-mix(in oklab, var(--info) 12%, transparent);
 
-  /* code surface + tokens */
-  --code-bg: #131218;
-  --code-line: rgba(255, 255, 255, 0.07);
-  --code-ink: #d6d3e0;
-  --tok-key: #c4a7ff;
-  --tok-str: #8ee6b0;
-  --tok-num: #ffb27a;
-  --tok-fn: #7cc7ff;
-  --tok-com: #5b5a68;
-  --tok-punc: #97959f;
-  --tok-tag: #ff8fa3;
-  --tok-attr: #ffd479;
-  --tok-prop: #d6d3e0;
+  /* code surface + tokens (warm paper) */
+  --code-bg: #fffdf8;
+  --code-line: #ece7dc;
+  --code-ink: #3b3947;
+  --tok-key: #e03a28; /* coral-dark: keywords */
+  --tok-str: #0e9e84; /* mint-dark: strings */
+  --tok-num: #b07a00; /* sunshine-dark: numbers */
+  --tok-fn: #0e9e84; /* mint-dark: functions */
+  --tok-com: #9a96a6; /* muted: comments */
+  --tok-punc: #8e8aa0;
+  --tok-tag: #e03a28;
+  --tok-attr: #b07a00;
+  --tok-prop: #3b3947;
 
-  --radius-ui: 10px;
-  --radius-control: 7px;
+  --radius-ui: 16px;
+  --radius-control: 10px;
 
-  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.02), 0 14px 40px -22px rgba(0, 0, 0, 0.8);
-  --shadow-pop: 0 18px 44px -12px rgba(0, 0, 0, 0.7);
+  --shadow-card: 0 1px 2px rgba(38, 23, 51, 0.04), 0 16px 40px -28px rgba(38, 23, 51, 0.28);
+  --shadow-pop: 0 18px 44px -14px rgba(38, 23, 51, 0.2);
 
   --sidebar-w: 270px;
   --toc-w: 224px;
   --header-h: 60px;
 }
 
-/* ---------------- LIGHT ---------------- */
-.light {
-  color-scheme: light;
+/* ---------------- DARK (grape ink) ---------------- */
+.dark {
+  color-scheme: dark;
 
-  --stage: #ecebf2;
-  --bg-0: #ffffff;
-  --bg-1: #f8f7fb;
-  --bg-2: #f1f0f6;
-  --bg-3: #e7e6ee;
+  --stage: #1d1129;
+  --bg-0: #261733; /* grape ink — dark canvas */
+  --bg-1: #34204a; /* panel */
+  --bg-2: #3d2856;
+  --bg-3: #4a3266;
 
-  --line: rgba(24, 18, 48, 0.09);
-  --line-2: rgba(24, 18, 48, 0.14);
+  --line: #43305a;
+  --line-2: rgba(255, 255, 255, 0.14);
 
-  --ink-1: #1a1822;
-  --ink-2: #56535f;
-  --ink-3: #8b8893;
+  --ink-1: #f4f1ea;
+  --ink-2: #c9c5d8;
+  --ink-3: #9a96a6;
 
-  --accent: #6840ee;
-  --accent-2: #7c5cff;
-  --accent-soft: color-mix(in oklab, var(--accent) 12%, transparent);
-  --accent-line: color-mix(in oklab, var(--accent) 30%, transparent);
+  --accent: #ff6b57; /* coral, lifted for contrast on grape */
+  --accent-2: #2ee0bd; /* mint, lifted */
+  --accent-soft: color-mix(in oklab, var(--accent) 18%, transparent);
+  --accent-line: color-mix(in oklab, var(--accent) 40%, transparent);
 
-  --good: #18966a;
-  --warn: #b9760e;
-  --danger: #d6433f;
-  --info: #2576d6;
+  --good: #2ee0bd;
+  --warn: #ffc23c;
+  --danger: #ff6b57;
+  --info: #6db3ff;
 
-  --good-soft: color-mix(in oklab, var(--good) 11%, transparent);
-  --warn-soft: color-mix(in oklab, var(--warn) 12%, transparent);
-  --danger-soft: color-mix(in oklab, var(--danger) 10%, transparent);
-  --info-soft: color-mix(in oklab, var(--info) 11%, transparent);
+  --good-soft: color-mix(in oklab, var(--good) 16%, transparent);
+  --warn-soft: color-mix(in oklab, var(--warn) 16%, transparent);
+  --danger-soft: color-mix(in oklab, var(--danger) 16%, transparent);
+  --info-soft: color-mix(in oklab, var(--info) 16%, transparent);
 
-  --code-bg: #faf9fd;
-  --code-line: rgba(24, 18, 48, 0.1);
-  --code-ink: #36333f;
-  --tok-key: #7c3aed;
-  --tok-str: #0d8a54;
-  --tok-num: #b4530a;
-  --tok-fn: #1f6feb;
-  --tok-com: #9b98a6;
-  --tok-punc: #6b6878;
-  --tok-tag: #c2185b;
-  --tok-attr: #9a6700;
-  --tok-prop: #36333f;
+  --code-bg: #1d1129;
+  --code-line: rgba(255, 255, 255, 0.08);
+  --code-ink: #e6e2ee;
+  --tok-key: #ff8f7d;
+  --tok-str: #6fe3c6;
+  --tok-num: #ffc23c;
+  --tok-fn: #6fe3c6;
+  --tok-com: #8a85a0;
+  --tok-punc: #b7b3c6;
+  --tok-tag: #ff8f7d;
+  --tok-attr: #ffc23c;
+  --tok-prop: #e6e2ee;
 
-  --shadow-card: 0 1px 2px rgba(24, 18, 48, 0.04), 0 16px 40px -28px rgba(24, 18, 48, 0.4);
-  --shadow-pop: 0 18px 44px -14px rgba(24, 18, 48, 0.22);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03), 0 14px 40px -22px rgba(0, 0, 0, 0.6);
+  --shadow-pop: 0 18px 44px -12px rgba(0, 0, 0, 0.55);
 }
 
 /* ---------------- reset ---------------- */
@@ -179,11 +180,11 @@ button {
   font-family: inherit;
 }
 ::selection {
-  background: color-mix(in oklab, var(--accent) 32%, transparent);
-  color: #fff;
-}
-.light ::selection {
+  background: color-mix(in oklab, var(--accent) 28%, transparent);
   color: var(--ink-1);
+}
+.dark ::selection {
+  color: #fff;
 }
 
 /* scrollbars */
@@ -219,23 +220,21 @@ button {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
+/* The colored (gradient) edge-dot mark, shown directly — no chip — per the
+   lockup spec (gradient mark + wordmark). Per the size ladder the mark box is
+   ~1.6× the wordmark size (16px word → 26px mark; gap ~0.4×). */
 .brand__mark {
   width: 26px;
   height: 26px;
   flex: none;
-  border-radius: 8px;
   display: grid;
   place-items: center;
-  color: #fff;
-  /* smoove brand gradient (emerald → cyan), independent of the site accent. */
-  background: linear-gradient(150deg, #34d399, #06b6d4);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 3px 12px rgba(6, 182, 212, 0.35);
 }
 .brand__mark svg {
-  width: 15px;
-  height: 15px;
+  width: 26px;
+  height: 26px;
 }
 .brand__word {
   font-family: var(--font-display);
@@ -329,17 +328,17 @@ button {
   height: 18px;
 }
 
-/* theme toggle (sun/moon swap) */
-.theme-toggle .sun {
+/* theme toggle (sun/moon swap) — default is light, so show the sun. */
+.theme-toggle .moon {
   display: none;
 }
-.theme-toggle .moon {
+.theme-toggle .sun {
   display: block;
 }
-.light .theme-toggle .sun {
+.dark .theme-toggle .moon {
   display: block;
 }
-.light .theme-toggle .moon {
+.dark .theme-toggle .sun {
   display: none;
 }
 

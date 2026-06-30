@@ -19,7 +19,7 @@ import "../styles/base.css";
 import "../styles/home.css";
 import type { Route } from "./+types/home";
 
-const GH_URL = "https://github.com/smoove/smoove";
+const GH_URL = "https://github.com/smoove-dev/smoove";
 const INSTALL_CMD = "npm install smoove";
 
 export function loader() {
@@ -173,7 +173,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 const comp = new Composition({ fps: 60, durationInFrames: 1800 });
 const scene = new Sequence({ from: 0, durationInFrames: 1800 });
 
-const orb = new Circle({ x: 800, y: 450, radius: 200, fill: "#34d399" });
+const orb = new Circle({ x: 800, y: 450, radius: 200, fill: "#FF5640" });
 scene.add(orb);
 
 scene.register((frame) => {
@@ -239,11 +239,9 @@ comp.add(scene);`}</code>
           <div className="footer-brand">
             <Link className="brand" to="/">
               <span className="brand__mark">
-                <BrandMark />
+                <BrandMark gradient />
               </span>
-              <span className="brand__word">
-                konva<span className="dim">-motion</span>
-              </span>
+              <span className="brand__word">Smoove</span>
             </Link>
             <p>
               A timeline and tweening engine for Konva. Free and open source under the MIT license.

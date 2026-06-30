@@ -30,6 +30,12 @@ const comp = new Composition({
   loop: true,
 });
 
+// Smoove palette: a coral↔mint aurora field (the Smoove gradient as atmosphere)
+// with sunshine reserved for the twinkling sparks (the "wink").
+const CORAL = "#FF5640";
+const MINT = "#15CDA8";
+const SUNSHINE = "#FFC23C";
+
 // Transparent stage (no base rect) so the page background shows through.
 const scene = new Sequence({ from: 0, durationInFrames });
 
@@ -49,7 +55,7 @@ type Orb = {
 
 const ORB_SPECS = [
   {
-    color: "#34d399",
+    color: CORAL,
     bx: 0.3,
     by: 0.4,
     ax: 220,
@@ -61,7 +67,7 @@ const ORB_SPECS = [
     phase: 0.0,
   },
   {
-    color: "#06b6d4",
+    color: MINT,
     bx: 0.68,
     by: 0.34,
     ax: 260,
@@ -73,7 +79,7 @@ const ORB_SPECS = [
     phase: 1.1,
   },
   {
-    color: "#7c5cff",
+    color: MINT,
     bx: 0.52,
     by: 0.62,
     ax: 200,
@@ -85,7 +91,7 @@ const ORB_SPECS = [
     phase: 2.4,
   },
   {
-    color: "#ec4899",
+    color: CORAL,
     bx: 0.8,
     by: 0.66,
     ax: 180,
@@ -97,7 +103,7 @@ const ORB_SPECS = [
     phase: 3.3,
   },
   {
-    color: "#22d3ee",
+    color: MINT,
     bx: 0.16,
     by: 0.7,
     ax: 160,
@@ -149,11 +155,11 @@ type Ribbon = {
 
 const SAMPLES = 56;
 const RIBBON_SPECS = [
-  { color: "#34d399", baseY: 0.34, amp: 80, freq: 2, speed: 1, phase: 0.0, sw: 2.5, op: 0.3 },
-  { color: "#06b6d4", baseY: 0.44, amp: 110, freq: 3, speed: 2, phase: 1.0, sw: 2.0, op: 0.26 },
-  { color: "#7c5cff", baseY: 0.52, amp: 95, freq: 2, speed: 1, phase: 2.0, sw: 3.0, op: 0.24 },
-  { color: "#22d3ee", baseY: 0.6, amp: 130, freq: 3, speed: 2, phase: 0.6, sw: 2.0, op: 0.22 },
-  { color: "#ec4899", baseY: 0.5, amp: 70, freq: 4, speed: 3, phase: 3.1, sw: 1.8, op: 0.2 },
+  { color: CORAL, baseY: 0.34, amp: 80, freq: 2, speed: 1, phase: 0.0, sw: 2.5, op: 0.3 },
+  { color: MINT, baseY: 0.44, amp: 110, freq: 3, speed: 2, phase: 1.0, sw: 2.0, op: 0.26 },
+  { color: MINT, baseY: 0.52, amp: 95, freq: 2, speed: 1, phase: 2.0, sw: 3.0, op: 0.24 },
+  { color: MINT, baseY: 0.6, amp: 130, freq: 3, speed: 2, phase: 0.6, sw: 2.0, op: 0.22 },
+  { color: CORAL, baseY: 0.5, amp: 70, freq: 4, speed: 3, phase: 3.1, sw: 1.8, op: 0.2 },
 ];
 
 const ribbons: Ribbon[] = RIBBON_SPECS.map((s) => {
@@ -191,7 +197,7 @@ type Spark = {
   phase: number;
 };
 
-const SPARK_COLORS = ["#34d399", "#06b6d4", "#7c5cff", "#22d3ee", "#ec4899"];
+const SPARK_COLORS = [CORAL, MINT, SUNSHINE, MINT, CORAL];
 const sparks: Spark[] = Array.from({ length: 28 }, (_, i) => {
   // Deterministic pseudo-scatter (no Math.random — keeps the module pure).
   const gx = (Math.sin(i * 12.9898) * 43758.5453) % 1;

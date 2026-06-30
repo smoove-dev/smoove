@@ -5,7 +5,7 @@ export function Brand({ className }: { className?: string }) {
   return (
     <Link to="/" className={`brand${className ? ` ${className}` : ""}`} aria-label="smoove home">
       <span className="brand__mark">
-        <BrandMark />
+        <BrandMark gradient />
       </span>
       <span className="brand__word">Smoove</span>
     </Link>

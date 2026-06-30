@@ -1,19 +1,23 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import { BrandMark } from "../components/icons";
 
-const GH_URL = "https://github.com/smoove/smoove";
+const GH_URL = "https://github.com/smoove-dev/smoove";
 
 // Brand lockup for the docs navbar. Self-contained (Tailwind + the BrandMark
-// SVG) because the SmooveStudio `base.css` that styles the home-page `.brand` isn't
-// loaded on docs routes — colors track the violet accent and Fumadocs tokens.
+// SVG) because the home-page `base.css` that styles the `.brand` lockup isn't
+// loaded on docs routes. The colored (gradient) edge-dot mark is shown directly
+// — no chip — per the lockup spec; the wordmark renders in the Comfortaa display
+// face (var(--font-display), set in app.css). Per the size ladder the mark box
+// is ~1.6× the wordmark (15px word → 24px mark = size-6).
 function Logo() {
   return (
     <>
-      <span className="inline-grid size-6 place-items-center rounded-lg bg-gradient-to-br from-emerald-400 to-cyan-500 text-white shadow-sm ring-1 ring-white/15">
-        <BrandMark className="size-3.5" />
-      </span>
-      <span className="font-semibold text-[15px] tracking-tight">
-        konva<span className="text-fd-muted-foreground">-motion</span>
+      <BrandMark className="size-6" gradient />
+      <span
+        className="font-bold text-[15px] tracking-tight"
+        style={{ fontFamily: "var(--font-display)" }}
+      >
+        Smoove
       </span>
     </>
   );

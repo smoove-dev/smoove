@@ -2,6 +2,83 @@
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
 
+/* ============================================================
+   Smoove brand theme for the Fumadocs content pages.
+   The doc shell (sidebar, TOC, prose, callouts) is themed by
+   Fumadocs `--color-fd-*` tokens — not base.css — so they are
+   repainted here. Cream-first light default + grape-ink dark, to
+   match the home chrome. Coral is the primary accent.
+   ============================================================ */
+:root {
+  --color-fd-background: #fff6ec; /* cream canvas */
+  --color-fd-foreground: #261733; /* grape ink */
+  --color-fd-muted: #f0eee7;
+  --color-fd-muted-foreground: #6a6678;
+  --color-fd-popover: #ffffff;
+  --color-fd-popover-foreground: #261733;
+  --color-fd-card: #ffffff;
+  --color-fd-card-foreground: #261733;
+  --color-fd-border: #eceaf0;
+  --color-fd-primary: #ff5640; /* coral */
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-secondary: #f0eee7;
+  --color-fd-secondary-foreground: #261733;
+  --color-fd-accent: #f0eee7; /* hover/active surface */
+  --color-fd-accent-foreground: #261733;
+  --color-fd-ring: #ff5640;
+}
+
+.dark {
+  --color-fd-background: #261733; /* grape ink */
+  --color-fd-foreground: #f4f1ea;
+  --color-fd-muted: #34204a;
+  --color-fd-muted-foreground: #b7b3c6;
+  --color-fd-popover: #2c1b40;
+  --color-fd-popover-foreground: #f4f1ea;
+  --color-fd-card: #34204a;
+  --color-fd-card-foreground: #f4f1ea;
+  --color-fd-border: #43305a;
+  --color-fd-primary: #ff6b57; /* coral, lifted for contrast on grape */
+  --color-fd-primary-foreground: #261733;
+  --color-fd-secondary: #34204a;
+  --color-fd-secondary-foreground: #f4f1ea;
+  --color-fd-accent: #3a2550;
+  --color-fd-accent-foreground: #f4f1ea;
+  --color-fd-ring: #ff6b57;
+}
+
+/* Keep the dark sidebar warm (neutral.css ships a grayscale override). */
+.dark #nd-sidebar {
+  --color-fd-muted: #34204a;
+  --color-fd-secondary: #3d2856;
+  --color-fd-muted-foreground: #b7b3c6;
+}
+
+/* ---------------- brand typefaces (docs content shell) ----------------
+   base.css only loads on the home route, so wire the Smoove faces here too:
+   Comfortaa (display/headings), Hanken Grotesk (body), JetBrains Mono (code).
+   The faces are <link>'d in root.tsx. */
+:root {
+  --font-display: "Comfortaa", system-ui, sans-serif;
+}
+body {
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+code,
+pre,
+kbd,
+samp {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
 /* Boot fallback shown while the client hydrates. */
 .smoove-boot {
   min-height: 100vh;

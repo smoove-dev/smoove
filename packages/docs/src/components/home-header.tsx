@@ -3,7 +3,7 @@ import { Brand } from "./brand";
 import { IconGithub, IconStar } from "./icons";
 import { ThemeToggle } from "./theme-toggle";
 
-const GH_URL = "https://github.com/smoove/smoove";
+const GH_URL = "https://github.com/smoove-dev/smoove";
 
 export function HomeHeader() {
   return (

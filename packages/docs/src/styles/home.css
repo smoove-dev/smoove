@@ -68,11 +68,11 @@ body {
   z-index: 0;
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, var(--accent) 26%, transparent),
+    color-mix(in oklab, var(--accent) 18%, transparent),
     transparent 58%
   );
   filter: blur(20px);
-  opacity: 0.8;
+  opacity: 0.7;
   animation: heroPulse 7s ease-in-out infinite;
 }
 /* Live smoove composition playing as the hero backdrop. Sits above the
@@ -119,11 +119,11 @@ body {
 @keyframes heroPulse {
   0%,
   100% {
-    opacity: 0.62;
+    opacity: 0.45;
     transform: translateX(-50%) scale(1);
   }
   50% {
-    opacity: 0.92;
+    opacity: 0.72;
     transform: translateX(-50%) scale(1.08);
   }
 }
@@ -147,8 +147,10 @@ body {
   margin: 20px 0 0;
   text-wrap: balance;
 }
+/* The single focal gradient moment on the page — the Smoove gradient, on
+   display type only (per the brand brief). */
 .hero h1 .grad {
-  background: linear-gradient(105deg, var(--accent-2), var(--accent) 55%, #ff8fa3);
+  background: linear-gradient(102deg, #ff5640, #15cda8);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
