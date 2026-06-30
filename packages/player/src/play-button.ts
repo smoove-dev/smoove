@@ -6,7 +6,7 @@ import type { PlayerApi } from "./player-api.js";
 const SIZES: Record<string, number> = { small: 28, medium: 44, large: 72 };
 
 /**
- * A large, centered play affordance (for use inside `<km-player-overlay>`).
+ * A large, centered play affordance (for use inside `<smoove-player-overlay>`).
  * `size` is `small | medium | large`. Reflects a `playing` attribute so the
  * stylesheet can fade it out during playback.
  */
@@ -32,7 +32,7 @@ export class SmoovePlayerPlayButton extends SmooveControl {
     const label = playing ? "Pause" : "Play";
     return html`<button
       type="button"
-      class="km-player__overlay-play"
+      class="smoove-player__overlay-play"
       aria-label=${label}
       title=${label}
       @click=${() => this.api?.toggle()}
@@ -40,6 +40,6 @@ export class SmoovePlayerPlayButton extends SmooveControl {
   }
 }
 
-if (!customElements.get("km-player-play-button")) {
-  customElements.define("km-player-play-button", SmoovePlayerPlayButton);
+if (!customElements.get("smoove-player-play-button")) {
+  customElements.define("smoove-player-play-button", SmoovePlayerPlayButton);
 }

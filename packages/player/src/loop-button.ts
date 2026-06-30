@@ -19,7 +19,7 @@ export class SmoovePlayerLoopButton extends SmooveControl {
   protected override render(): TemplateResult {
     return html`<button
       type="button"
-      class="km-player__btn"
+      class="smoove-player__btn"
       aria-label="Loop"
       title="Loop"
       aria-pressed=${this.api?.state.loop.get() ? "true" : "false"}
@@ -28,6 +28,6 @@ export class SmoovePlayerLoopButton extends SmooveControl {
   }
 }
 
-if (!customElements.get("km-player-loop-button")) {
-  customElements.define("km-player-loop-button", SmoovePlayerLoopButton);
+if (!customElements.get("smoove-player-loop-button")) {
+  customElements.define("smoove-player-loop-button", SmoovePlayerLoopButton);
 }

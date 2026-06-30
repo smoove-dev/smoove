@@ -1,7 +1,7 @@
 import type { Composition } from "@smoove/core";
 
 /**
- * Detail payloads for the DOM `CustomEvent`s dispatched by `<km-player>`.
+ * Detail payloads for the DOM `CustomEvent`s dispatched by `<smoove-player>`.
  * All events bubble and are composed. Subscribe with
  * `player.addEventListener("frameupdate", (e) => e.detail.frame)`.
  */

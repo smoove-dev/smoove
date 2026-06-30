@@ -5,7 +5,7 @@
    here is plain light-DOM CSS, so any rule can be overridden.
    ============================================================ */
 
-km-player {
+smoove-player {
   position: relative;
   display: block;
   width: 100%;
@@ -14,34 +14,34 @@ km-player {
   outline: none;
   user-select: none;
 }
-km-player:fullscreen,
-km-player[fullscreen] {
+smoove-player:fullscreen,
+smoove-player[fullscreen] {
   width: 100vw;
   height: 100vh;
 }
 
 /* --- video stage (letterboxed canvas) --- */
-.km-player__stage {
+.smoove-player__stage {
   position: absolute;
   inset: 0;
   overflow: hidden;
 }
-.km-player__scale {
+.smoove-player__scale {
   position: absolute;
   top: 0;
   left: 0;
   transform-origin: top left;
 }
-.km-player__canvas {
+.smoove-player__canvas {
   width: 100%;
   height: 100%;
 }
-.km-player__canvas canvas {
+.smoove-player__canvas canvas {
   display: block;
 }
 
 /* --- overlay layer --- */
-km-player-overlay {
+smoove-player-overlay {
   position: absolute;
   inset: 0;
   display: grid;
@@ -49,11 +49,11 @@ km-player-overlay {
   z-index: 1;
   pointer-events: none;
 }
-km-player-overlay > * {
+smoove-player-overlay > * {
   pointer-events: auto;
 }
 
-.km-player__overlay-play {
+.smoove-player__overlay-play {
   border: none;
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
@@ -64,20 +64,20 @@ km-player-overlay > * {
   cursor: pointer;
   transition: opacity 0.2s, background 0.12s, transform 0.12s;
 }
-.km-player__overlay-play:hover {
+.smoove-player__overlay-play:hover {
   background: rgba(0, 0, 0, 0.62);
   transform: scale(1.05);
 }
-km-player-play-button {
+smoove-player-play-button {
   transition: opacity 0.2s;
 }
-km-player-play-button[playing] {
+smoove-player-play-button[playing] {
   opacity: 0;
   pointer-events: none;
 }
 
 /* --- control bar --- */
-km-player-controls {
+smoove-player-controls {
   position: absolute;
   left: 0;
   right: 0;
@@ -90,20 +90,20 @@ km-player-controls {
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
   font-family: system-ui, sans-serif;
 }
-km-player-controls-row {
+smoove-player-controls-row {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-km-player-space {
+smoove-player-space {
   display: block;
 }
-km-player-space[grow] {
+smoove-player-space[grow] {
   flex: 1;
 }
 
 /* --- buttons --- */
-.km-player__btn {
+.smoove-player__btn {
   width: 34px;
   height: 34px;
   border: none;
@@ -115,19 +115,19 @@ km-player-space[grow] {
   cursor: pointer;
   transition: background 0.12s, color 0.12s;
 }
-.km-player__btn:hover {
+.smoove-player__btn:hover {
   background: rgba(255, 255, 255, 0.16);
 }
-km-player-loop-button[on] .km-player__btn {
+smoove-player-loop-button[on] .smoove-player__btn {
   color: #5b8cff;
 }
 
 /* --- sound --- */
-.km-player__sound {
+.smoove-player__sound {
   display: flex;
   align-items: center;
 }
-.km-player__volume {
+.smoove-player__volume {
   width: 74px;
   height: 4px;
   margin: 0 4px;
@@ -138,7 +138,7 @@ km-player-loop-button[on] .km-player__btn {
   outline: none;
   transition: width 0.2s ease, opacity 0.2s ease, margin 0.2s ease;
 }
-.km-player__volume::-webkit-slider-thumb {
+.smoove-player__volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 12px;
   height: 12px;
@@ -146,7 +146,7 @@ km-player-loop-button[on] .km-player__btn {
   background: #fff;
   cursor: pointer;
 }
-.km-player__volume::-moz-range-thumb {
+.smoove-player__volume::-moz-range-thumb {
   width: 12px;
   height: 12px;
   border: none;
@@ -154,20 +154,20 @@ km-player-loop-button[on] .km-player__btn {
   background: #fff;
   cursor: pointer;
 }
-km-player-sound-control[collapsed] .km-player__volume {
+smoove-player-sound-control[collapsed] .smoove-player__volume {
   width: 0;
   opacity: 0;
   margin: 0;
 }
-km-player-sound-control[collapsed]:hover .km-player__volume,
-km-player-sound-control[collapsed]:focus-within .km-player__volume {
+smoove-player-sound-control[collapsed]:hover .smoove-player__volume,
+smoove-player-sound-control[collapsed]:focus-within .smoove-player__volume {
   width: 74px;
   opacity: 1;
   margin: 0 4px;
 }
 
 /* --- time readout --- */
-.km-player__time {
+.smoove-player__time {
   display: inline-flex;
   align-items: center;
   gap: 3px;
@@ -176,33 +176,33 @@ km-player-sound-control[collapsed]:focus-within .km-player__volume {
   font: 12.5px / 1 ui-monospace, monospace;
   white-space: nowrap;
 }
-.km-player__time-sep,
-.km-player__time-dur {
+.smoove-player__time-sep,
+.smoove-player__time-dur {
   opacity: 0.7;
 }
 
 /* --- progress / scrub --- */
-km-player-progress {
+smoove-player-progress {
   display: block;
   width: 100%;
 }
-.km-player__progress {
+.smoove-player__progress {
   width: 100%;
   padding: 6px 0;
   cursor: pointer;
 }
-.km-player__track {
+.smoove-player__track {
   position: relative;
   height: 4px;
   background: rgba(255, 255, 255, 0.26);
   border-radius: 2px;
   transition: height 0.12s ease;
 }
-.km-player__progress:hover .km-player__track,
-.km-player__progress.is-dragging .km-player__track {
+.smoove-player__progress:hover .smoove-player__track,
+.smoove-player__progress.is-dragging .smoove-player__track {
   height: 6px;
 }
-.km-player__fill {
+.smoove-player__fill {
   position: absolute;
   left: 0;
   top: 0;
@@ -210,7 +210,7 @@ km-player-progress {
   background: #5b8cff;
   border-radius: 2px;
 }
-.km-player__knob {
+.smoove-player__knob {
   position: absolute;
   top: 50%;
   width: 13px;
@@ -221,7 +221,7 @@ km-player-progress {
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0.12s ease;
 }
-.km-player__progress:hover .km-player__knob,
-.km-player__progress.is-dragging .km-player__knob {
+.smoove-player__progress:hover .smoove-player__knob,
+.smoove-player__progress.is-dragging .smoove-player__knob {
   transform: translate(-50%, -50%) scale(1);
 }

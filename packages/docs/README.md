@@ -39,7 +39,7 @@ HTML is disabled). See `src/content/03-components.md` for a live example of each
 | **Callouts** | `:::note Title` … `:::` — also `tip`, `warning`, `danger`. Title is optional. |
 | **Steps** | `:::steps` wrapping an ordered list; each item's first paragraph (bold) is the step title. |
 | **API prop** | `:::prop name \| (signature) \| badge` … `:::` (type and badge optional). |
-| **Demo slot** | `:::demo 1280 × 720 canvas` … `:::` (frames a `<km-player>` or placeholder). |
+| **Demo slot** | `:::demo 1280 × 720 canvas` … `:::` (frames a `<smoove-player>` or placeholder). |
 | **Badges** | `{{stable}}`, or with a variant `{{accent:stable}}` / `{{good:v1.0}}` / `{{warn:beta}}`. |
 | **Keyboard keys** | `[[Space]]`, `[[⌘]][[K]]` → `<kbd>`. |
 | **Task lists** | `- [x] done` / `- [ ] todo`. |
@@ -52,11 +52,11 @@ External links (`https://…`) automatically open in a new tab.
 
 ### Live demos
 
-Embed a running composition with the `<km-player>` element from
+Embed a running composition with the `<smoove-player>` element from
 `@konva-motion/player` (registered in the browser via `entry.client.tsx`):
 
 ```html
-<km-player src="/demos/pulse.js" controls></km-player>
+<smoove-player src="/demos/pulse.js" controls></smoove-player>
 ```
 
 ## Commands

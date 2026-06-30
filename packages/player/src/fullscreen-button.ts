@@ -14,7 +14,7 @@ export class SmoovePlayerFullscreenButton extends SmooveControl {
     const label = fs ? "Exit fullscreen" : "Fullscreen";
     return html`<button
       type="button"
-      class="km-player__btn"
+      class="smoove-player__btn"
       aria-label=${label}
       title=${label}
       @click=${() => this.api?.toggleFullscreen()}
@@ -22,6 +22,6 @@ export class SmoovePlayerFullscreenButton extends SmooveControl {
   }
 }
 
-if (!customElements.get("km-player-fullscreen-button")) {
-  customElements.define("km-player-fullscreen-button", SmoovePlayerFullscreenButton);
+if (!customElements.get("smoove-player-fullscreen-button")) {
+  customElements.define("smoove-player-fullscreen-button", SmoovePlayerFullscreenButton);
 }

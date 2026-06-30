@@ -2,7 +2,7 @@
 import "./player.css";
 
 // Side-effect imports register every custom element on load.
-import "./km-player.js";
+import "./smoove-player.js";
 import "./containers.js";
 import "./play-button.js";
 import "./play-toggle-button.js";
@@ -13,7 +13,7 @@ import "./fullscreen-button.js";
 import "./progress.js";
 
 // Host
-export { SmoovePlayer } from "./km-player.js";
+export { SmoovePlayer } from "./smoove-player.js";
 
 // Layout containers
 export {

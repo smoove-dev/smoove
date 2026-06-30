@@ -1,4 +1,4 @@
-// Register the <km-player> custom element — browser-only entry, so this
+// Register the <smoove-player> custom element — browser-only entry, so this
 // `customElements.define` side effect never runs during the Node SPA prerender.
 import "@smoove/player";
 import { StrictMode, startTransition } from "react";

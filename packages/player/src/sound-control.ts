@@ -29,16 +29,16 @@ export class SmoovePlayerSoundControl extends SmooveControl {
     const volume = this.api?.state.volume.get() ?? 1;
     const off = muted || volume === 0;
     const label = off ? "Unmute" : "Mute";
-    return html`<div class="km-player__sound">
+    return html`<div class="smoove-player__sound">
       <button
         type="button"
-        class="km-player__btn"
+        class="smoove-player__btn"
         aria-label=${label}
         title=${label}
         @click=${() => this.api?.toggleMute()}
       >${icon(off ? "mute" : "volume")}</button>
       <input
-        class="km-player__volume"
+        class="smoove-player__volume"
         type="range"
         min="0"
         max="1"
@@ -51,6 +51,6 @@ export class SmoovePlayerSoundControl extends SmooveControl {
   }
 }
 
-if (!customElements.get("km-player-sound-control")) {
-  customElements.define("km-player-sound-control", SmoovePlayerSoundControl);
+if (!customElements.get("smoove-player-sound-control")) {
+  customElements.define("smoove-player-sound-control", SmoovePlayerSoundControl);
 }

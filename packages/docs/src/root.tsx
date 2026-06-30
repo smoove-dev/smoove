@@ -4,7 +4,7 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import "./app.css";
 // Dogfood the standalone player distribution: `?url` hands us the served URL of
 // the prebuilt files (self-contained ESM bundle + its stylesheet) instead of
-// inlining them into the docs bundle, so the docs site loads <km-player> via a
+// inlining them into the docs bundle, so the docs site loads <smoove-player> via a
 // plain <script>/<link> — exactly the way a CDN consumer would.
 import playerScriptUrl from "@smoove/player/standalone?url";
 import playerStylesUrl from "@smoove/player/styles.css?url";
@@ -32,7 +32,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <Meta />
         <Links />
-        {/* Registers <km-player> + controls and pins window.Smoove / Konva.
+        {/* Registers <smoove-player> + controls and pins window.Smoove / Konva.
             type="module" defers it, so element upgrade happens post-parse. */}
         <script type="module" src={playerScriptUrl} />
       </head>
@@ -46,7 +46,7 @@ export function Layout({ children }: { children: ReactNode }) {
 }
 
 export function HydrateFallback() {
-  return <div className="km-boot">Loading…</div>;
+  return <div className="smoove-boot">Loading…</div>;
 }
 
 export default function Root() {

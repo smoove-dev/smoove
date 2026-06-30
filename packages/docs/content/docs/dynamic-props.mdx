@@ -77,11 +77,11 @@ looks identical to the old reference, so the change is silently dropped.
 
 ### From the player
 
-A `<km-player>` exposes the same call, so a form, a slider, or any UI can drive a
+A `<smoove-player>` exposes the same call, so a form, a slider, or any UI can drive a
 mounted composition without reaching into it:
 
 ```ts
-const player = document.querySelector("km-player");
+const player = document.querySelector("smoove-player");
 player.setProps({ name: "Grace", accent: "#f97316" });
 ```
 
@@ -122,5 +122,5 @@ comp.refresh();        // re-render the current frame so the change shows
 ## Next steps
 
 - [Core concepts](/docs/core-concepts): the frame clock and the tick loop props ride on.
-- [Player](/docs/player): drive `setProps` from the `<km-player>` UI.
+- [Player](/docs/player): drive `setProps` from the `<smoove-player>` UI.
 - [Rendering](/docs/rendering): stamp out one file per record.

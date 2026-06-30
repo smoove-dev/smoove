@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useStudio } from "./use-studio.js";
 
 /**
- * Global keyboard shortcuts. The studio owns them (the `<km-player>` is mounted
+ * Global keyboard shortcuts. The studio owns them (the `<smoove-player>` is mounted
  * with `no-keyboard`): space play/pause, ←/→ step, f fullscreen, l loop,
  * i/o set loop in/out at the playhead. Ignored while typing in a field.
  */

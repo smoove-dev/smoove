@@ -338,7 +338,7 @@ export class Composition<
 
   /**
    * Replace the live props and re-render the current frame. Any holder — a bare
-   * `<km-player>` or the studio form — drives the scene by calling this; the
+   * `<smoove-player>` or the studio form — drives the scene by calling this; the
    * `createSignal` `Object.is` guard skips a redundant refresh when nothing
    * changed. Pass an updater to derive the next value from the previous one.
    */

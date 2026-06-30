@@ -27,7 +27,7 @@ const TOTAL = 60; // 2s
 const WIDTH = 640;
 const HEIGHT = 360;
 
-const dir = mkdtempSync(join(tmpdir(), "km-renderer-demo-"));
+const dir = mkdtempSync(join(tmpdir(), "smoove-renderer-demo-"));
 
 // ---- asset 1: a PNG drawn with skia ----
 const imgPath = join(dir, "card.png");

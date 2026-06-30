@@ -92,7 +92,7 @@ body {
    contain-fit becomes an exact fill, then size it to COVER the hero (clipped by
    the parent's overflow:hidden) — the animation fills the whole hero, not a band.
    Transparent overrides the player's video-style black backdrop. */
-.hero__player km-player {
+.hero__player smoove-player {
   position: absolute;
   top: 50%;
   left: 50%;

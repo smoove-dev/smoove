@@ -2,7 +2,7 @@ import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { BrandMark } from "./icons";
 
-// Minimal slice of the <km-player> imperative API we drive from the overlay and
+// Minimal slice of the <smoove-player> imperative API we drive from the overlay and
 // expose to callers (e.g. a footer panel that pushes props).
 export interface SmoovePlayerEl extends HTMLElement {
   toggle(): void;
@@ -36,11 +36,11 @@ for (const [path, url] of Object.entries(URLS)) {
   if (source !== undefined) DEMOS[name] = { url, source };
 }
 
-// Live-demo embed: plays a composition in <km-player> and offers a "View source"
+// Live-demo embed: plays a composition in <smoove-player> and offers a "View source"
 // toggle that reveals it in a runtime-highlighted code block. Pass `name` to
 // resolve both the player URL and the source from `src/demos/<name>.ts`, or pass
 // `src`/`source` explicitly to override (e.g. a composition outside src/demos).
-// Pass `children` (control markup like `<km-player-controls>`) to render custom
+// Pass `children` (control markup like `<smoove-player-controls>`) to render custom
 // controls inside the player instead of the default bar; the page documents the
 // markup itself in a code block, so the "View source" toggle is then suppressed.
 export function Demo({
@@ -66,7 +66,7 @@ export function Demo({
   // Frame to paint on mount, before play. Useful when a static first frame
   // should already show the revealed scene.
   initialframe?: number;
-  // Optional caller-owned ref to the <km-player> element, populated alongside
+  // Optional caller-owned ref to the <smoove-player> element, populated alongside
   // the internal one so a footer can call its imperative API.
   playerRef?: React.MutableRefObject<SmoovePlayerEl | null>;
 }) {
@@ -79,7 +79,7 @@ export function Demo({
   const [playing, setPlaying] = useState(false);
 
   // Track playback so the logo play-overlay shows only while paused. The player
-  // emits bubbling `play`/`pause`/`ended` CustomEvents (see km-player.ts).
+  // emits bubbling `play`/`pause`/`ended` CustomEvents (see smoove-player.ts).
   useEffect(() => {
     const el = playerRef.current;
     if (!el) return;
@@ -127,8 +127,8 @@ export function Demo({
         </span>
       </figcaption>
 
-      <div className="relative grid aspect-video w-full place-items-center bg-fd-secondary [&_km-player]:size-full">
-        <km-player
+      <div className="relative grid aspect-video w-full place-items-center bg-fd-secondary [&_smoove-player]:size-full">
+        <smoove-player
           ref={setPlayerRef as React.Ref<HTMLElement>}
           src={playerSrc}
           controls={custom ? undefined : true}
@@ -136,7 +136,7 @@ export function Demo({
           loop
         >
           {children}
-        </km-player>
+        </smoove-player>
         {custom ? null : (
           <button
             type="button"

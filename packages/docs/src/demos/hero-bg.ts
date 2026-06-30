@@ -5,7 +5,7 @@ import Konva from "konva";
  * Homepage hero background — a long, seamlessly-looping "aurora" animation built
  * the same way as any other demo: a {@link Composition} whose every frame is a
  * pure function of the playhead. The docs hero plays it via
- * `<km-player src autoplay loop>` with no controls, letterboxed behind the
+ * `<smoove-player src autoplay loop>` with no controls, letterboxed behind the
  * headline.
  *
  * Two design constraints shape it:

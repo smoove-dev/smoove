@@ -1,6 +1,6 @@
 ---
 title: Player
-description: "Play a composition in the browser with the km-player web component: attributes, imperative API, events, custom controls, and the CDN build."
+description: "Play a composition in the browser with the smoove-player web component: attributes, imperative API, events, custom controls, and the CDN build."
 ---
 
 `@konva-motion/player` is a framework-agnostic **web component** that plays a
@@ -25,7 +25,7 @@ There are two ways to hand the player a composition.
 canvas and mounts the stage into its own box.
 
 ```ts
-const player = document.querySelector("km-player");
+const player = document.querySelector("smoove-player");
 player.composition = comp;
 ```
 
@@ -34,7 +34,7 @@ way you would on `<video src>`. The player dynamically `import()`s that ESM
 module and resolves its **default export** to a `Composition`:
 
 ```html
-<km-player src="https://cdn.example/orbit.js" controls loop></km-player>
+<smoove-player src="https://cdn.example/orbit.js" controls loop></smoove-player>
 ```
 
 The default export may be a `Composition` instance, a factory returning one
@@ -115,7 +115,7 @@ Grab the element and call methods on it. The same API backs the default controls
 so anything the bar does you can do in code.
 
 ```ts
-const player = document.querySelector("km-player");
+const player = document.querySelector("smoove-player");
 player.play();
 player.seekTo(90);
 player.setPlaybackRate(2);
@@ -135,7 +135,7 @@ and re-renders, so a form or any UI can drive a parametrized comp without
 reaching into it:
 
 ```ts
-const player = document.querySelector("km-player");
+const player = document.querySelector("smoove-player");
 player.setProps({ name: "Grace", accent: "#f97316" });
 ```
 
@@ -182,8 +182,8 @@ re-rendering 60 times a second.
 
 Set `controls` and the player injects a default bar: a progress track, a
 play/pause toggle, a sound control, a time readout, and loop and fullscreen
-buttons. To build your own, drop control elements **inside** `<km-player>` and
-leave `controls` off. Any user-supplied `<km-player-controls>` replaces the
+buttons. To build your own, drop control elements **inside** `<smoove-player>` and
+leave `controls` off. Any user-supplied `<smoove-player-controls>` replaces the
 default bar; the controls wire themselves to the player through context, so they
 work with no extra script.
 
@@ -191,53 +191,53 @@ The building blocks are plain custom elements:
 
 | Element | Role |
 | --- | --- |
-| `<km-player-overlay>` | Centered layer over the stage, for a big play affordance or branding. |
-| `<km-player-controls>` | The control bar container; holds one or more rows. |
-| `<km-player-controls-row>` | A flex row of controls. |
-| `<km-player-space grow>` | Spacer; add `grow` to push the controls after it to the right. |
-| `<km-player-play-button size="large">` | Large centered play affordance; fades out during playback. |
-| `<km-player-play-toggle-button>` | Compact play/pause button for the bar. |
-| `<km-player-progress>` | Draggable seek bar; pauses while you scrub, resumes on release. |
-| `<km-player-sound-control collapsed>` | Mute button plus a volume slider; `collapsed` hides the slider until hover. |
-| `<km-player-time>` | A `m:ss / m:ss` readout. |
-| `<km-player-loop-button>` | Loop toggle. |
-| `<km-player-fullscreen-button>` | Fullscreen toggle. |
+| `<smoove-player-overlay>` | Centered layer over the stage, for a big play affordance or branding. |
+| `<smoove-player-controls>` | The control bar container; holds one or more rows. |
+| `<smoove-player-controls-row>` | A flex row of controls. |
+| `<smoove-player-space grow>` | Spacer; add `grow` to push the controls after it to the right. |
+| `<smoove-player-play-button size="large">` | Large centered play affordance; fades out during playback. |
+| `<smoove-player-play-toggle-button>` | Compact play/pause button for the bar. |
+| `<smoove-player-progress>` | Draggable seek bar; pauses while you scrub, resumes on release. |
+| `<smoove-player-sound-control collapsed>` | Mute button plus a volume slider; `collapsed` hides the slider until hover. |
+| `<smoove-player-time>` | A `m:ss / m:ss` readout. |
+| `<smoove-player-loop-button>` | Loop toggle. |
+| `<smoove-player-fullscreen-button>` | Fullscreen toggle. |
 
 Compose them however you like. This is the markup the live demo below renders, a
 center play overlay plus a one-row bar:
 
 ```html
-<km-player src="orbit.js" loop>
-  <km-player-overlay>
-    <km-player-play-button size="large"></km-player-play-button>
-  </km-player-overlay>
-  <km-player-controls>
-    <km-player-controls-row>
-      <km-player-play-toggle-button></km-player-play-toggle-button>
-      <km-player-progress></km-player-progress>
-      <km-player-time></km-player-time>
-      <km-player-sound-control collapsed></km-player-sound-control>
-      <km-player-loop-button></km-player-loop-button>
-      <km-player-fullscreen-button></km-player-fullscreen-button>
-    </km-player-controls-row>
-  </km-player-controls>
-</km-player>
+<smoove-player src="orbit.js" loop>
+  <smoove-player-overlay>
+    <smoove-player-play-button size="large"></smoove-player-play-button>
+  </smoove-player-overlay>
+  <smoove-player-controls>
+    <smoove-player-controls-row>
+      <smoove-player-play-toggle-button></smoove-player-play-toggle-button>
+      <smoove-player-progress></smoove-player-progress>
+      <smoove-player-time></smoove-player-time>
+      <smoove-player-sound-control collapsed></smoove-player-sound-control>
+      <smoove-player-loop-button></smoove-player-loop-button>
+      <smoove-player-fullscreen-button></smoove-player-fullscreen-button>
+    </smoove-player-controls-row>
+  </smoove-player-controls>
+</smoove-player>
 ```
 
 <Demo name="player-custom-controls" label="a custom overlay play button and a single-row bar">
-  <km-player-overlay>
-    <km-player-play-button size="large" />
-  </km-player-overlay>
-  <km-player-controls>
-    <km-player-controls-row>
-      <km-player-play-toggle-button />
-      <km-player-progress />
-      <km-player-time />
-      <km-player-sound-control collapsed />
-      <km-player-loop-button />
-      <km-player-fullscreen-button />
-    </km-player-controls-row>
-  </km-player-controls>
+  <smoove-player-overlay>
+    <smoove-player-play-button size="large" />
+  </smoove-player-overlay>
+  <smoove-player-controls>
+    <smoove-player-controls-row>
+      <smoove-player-play-toggle-button />
+      <smoove-player-progress />
+      <smoove-player-time />
+      <smoove-player-sound-control collapsed />
+      <smoove-player-loop-button />
+      <smoove-player-fullscreen-button />
+    </smoove-player-controls-row>
+  </smoove-player-controls>
 </Demo>
 
 Need a control the kit does not ship? Read the player from the DOM with

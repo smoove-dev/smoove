@@ -72,7 +72,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         <div className="hero__grid" aria-hidden="true" />
         <div className="hero__glow" aria-hidden="true" />
         <div className="hero__player" aria-hidden="true">
-          <km-player ref={heroPlayerRef as React.Ref<HTMLElement>} src={heroBgUrl} autoplay loop />
+          <smoove-player ref={heroPlayerRef as React.Ref<HTMLElement>} src={heroBgUrl} autoplay loop />
         </div>
 
         <div className="hero__inner">

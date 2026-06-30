@@ -1,24 +1,24 @@
 /**
  * Standalone (`<script>` tag) entry. Bundles everything and exposes the
  * authoring vocabulary on the global object so a page with no bundler can
- * build a Composition and hand it to `<km-player>`:
+ * build a Composition and hand it to `<smoove-player>`:
  *
  * ```html
  * <link rel="stylesheet" href="player.css" />
  * <script src="player.global.js"></script>
- * <km-player controls></km-player>
+ * <smoove-player controls></smoove-player>
  * <script>
  *   const { Composition, Sequence, Rect } = window.Smoove;
  *   const comp = new Composition({ width: 640, height: 360, fps: 30, durationInFrames: 90 });
  *   // ...build comp...
- *   document.querySelector("km-player").composition = comp;
+ *   document.querySelector("smoove-player").composition = comp;
  * </script>
  * ```
  */
 import * as Smoove from "@smoove/core";
 import Konva from "konva";
 
-// Registers <km-player> + every control element as a side effect.
+// Registers <smoove-player> + every control element as a side effect.
 import "./index.js";
 
 declare global {

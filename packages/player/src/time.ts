@@ -22,14 +22,14 @@ export class SmoovePlayerTime extends SmooveControl {
     const total = this.api?.state.duration.get() ?? 0;
     const cur = fps > 0 ? frame / fps : 0;
     const dur = fps > 0 ? total / fps : 0;
-    return html`<span class="km-player__time"
-      ><span class="km-player__time-cur">${fmt(cur)}</span
-      ><span class="km-player__time-sep">/</span
-      ><span class="km-player__time-dur">${fmt(dur)}</span></span
+    return html`<span class="smoove-player__time"
+      ><span class="smoove-player__time-cur">${fmt(cur)}</span
+      ><span class="smoove-player__time-sep">/</span
+      ><span class="smoove-player__time-dur">${fmt(dur)}</span></span
     >`;
   }
 }
 
-if (!customElements.get("km-player-time")) {
-  customElements.define("km-player-time", SmoovePlayerTime);
+if (!customElements.get("smoove-player-time")) {
+  customElements.define("smoove-player-time", SmoovePlayerTime);
 }

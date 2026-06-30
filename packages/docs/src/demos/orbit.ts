@@ -3,7 +3,7 @@ import Konva from "konva";
 
 /**
  * A self-contained demo composition served as its own ESM module. The docs load
- * it into `<km-player src=…>` via Vite's `?url` import (the `<Demo name="orbit"/>`
+ * it into `<smoove-player src=…>` via Vite's `?url` import (the `<Demo name="orbit"/>`
  * helper resolves it — see `doc/authoring-demos.md`) — the player dynamically
  * `import()`s this file at runtime, exactly as it would a remote composition
  * hosted elsewhere. Its default export is a `Composition`.

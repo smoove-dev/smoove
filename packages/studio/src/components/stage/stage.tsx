@@ -19,7 +19,7 @@ export type StageProps = {
 };
 
 /**
- * The composition viewport. Mounts a `<km-player>`, registers it with the store,
+ * The composition viewport. Mounts a `<smoove-player>`, registers it with the store,
  * and sizes it to the scaled comp box (fit-to-viewport, or an explicit zoom in
  * an overflow-scroll container). The player letterboxes inside that box.
  */
@@ -114,7 +114,7 @@ export function Stage({ className, showStatus = false }: StageProps) {
           className="m-auto flex-none relative rounded-[4px] overflow-hidden bg-black shadow-[0_24px_80px_-20px_rgba(0,0,0,.8),0_0_0_1px_rgba(255,255,255,.06)]"
           style={{ width: w * scale, height: h * scale }}
         >
-          <km-player ref={playerRef} style={{ position: "absolute", inset: 0 }} />
+          <smoove-player ref={playerRef} style={{ position: "absolute", inset: 0 }} />
         </div>
       </div>
 

@@ -3,7 +3,7 @@
 @import "fumadocs-ui/css/preset.css";
 
 /* Boot fallback shown while the client hydrates. */
-.km-boot {
+.smoove-boot {
   min-height: 100vh;
   display: grid;
   place-items: center;

@@ -39,7 +39,7 @@ export function createStore(opts: StudioStoreOptions) {
   // ---- reactive state -------------------------------------------------------
   const selectedId = new Signal.State<string>(firstId);
   const composition = new Signal.State<Composition | null>(null);
-  /** The mounted `<km-player>` API — registered by the Stage. */
+  /** The mounted `<smoove-player>` API — registered by the Stage. */
   const player = new Signal.State<PlayerApi | null>(null);
   const loadStatus = new Signal.State<Record<string, LoadStatus>>({});
   const loadError = new Signal.State<string | null>(null);

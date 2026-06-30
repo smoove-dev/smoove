@@ -47,7 +47,7 @@ async function resolveComposition(input: unknown): Promise<Composition> {
 }
 
 /**
- * `<km-player>` — the host element. Wraps a {@link Composition} and plays it
+ * `<smoove-player>` — the host element. Wraps a {@link Composition} and plays it
  * like an HTML5 `<video>`: letterbox-scales the stage to its box, supports
  * fullscreen and keyboard control, auto-renders a default control bar, and
  * exposes a Remotion-style imperative + event API.
@@ -239,13 +239,13 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
     // the absolutely-positioned stage; only set it if the page hasn't.
     if (getComputedStyle(this).position === "static") this.style.position = "relative";
     const stage = document.createElement("div");
-    stage.className = "km-player__stage";
+    stage.className = "smoove-player__stage";
     stage.style.cssText = "position:absolute;inset:0;overflow:hidden";
     const scale = document.createElement("div");
-    scale.className = "km-player__scale";
+    scale.className = "smoove-player__scale";
     scale.style.cssText = "position:absolute;top:0;left:0;transform-origin:top left";
     const canvas = document.createElement("div");
-    canvas.className = "km-player__canvas";
+    canvas.className = "smoove-player__canvas";
     canvas.style.cssText = "width:100%;height:100%";
     scale.appendChild(canvas);
     stage.appendChild(scale);
@@ -462,9 +462,9 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
   private _reconcileControls(): void {
     if (!this.isConnected) return;
     const hasUserControls = Array.from(this.children).some(
-      (c) => c.tagName === "KM-PLAYER-CONTROLS" && !c.hasAttribute("data-km-default"),
+      (c) => c.tagName === "KM-PLAYER-CONTROLS" && !c.hasAttribute("data-smoove-default"),
     );
-    const existingDefault = this.querySelector(":scope > km-player-controls[data-km-default]");
+    const existingDefault = this.querySelector(":scope > smoove-player-controls[data-smoove-default]");
     if (this.controls && !hasUserControls) {
       if (!existingDefault) this.appendChild(createDefaultControls());
     } else if (existingDefault) {
@@ -600,6 +600,6 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
   }
 }
 
-if (!customElements.get("km-player")) {
-  customElements.define("km-player", SmoovePlayer);
+if (!customElements.get("smoove-player")) {
+  customElements.define("smoove-player", SmoovePlayer);
 }

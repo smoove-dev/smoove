@@ -21,7 +21,7 @@ export type StudioProps = {
 
 /**
  * The compound root. Owns the central store + context, the Base UI Tooltip/Toast
- * providers, the `.km-studio` themed frame, and a studio-owned portal container
+ * providers, the `.smoove-studio` themed frame, and a studio-owned portal container
  * so Base UI popups inherit the scope + theme. Which regions appear is decided
  * purely by what you compose as children — there are no feature flags.
  */
@@ -63,12 +63,12 @@ export function StudioRoot({
           <PortalContainerContext.Provider value={portalEl}>
             <div
               className={cn(
-                "km-studio h-full w-full flex flex-col bg-bg-0 text-ink-1 font-sans select-none overflow-hidden",
+                "smoove-studio h-full w-full flex flex-col bg-bg-0 text-ink-1 font-sans select-none overflow-hidden",
                 className,
               )}
             >
               {children}
-              <div className="km-studio-portal" ref={setPortalEl} />
+              <div className="smoove-studio-portal" ref={setPortalEl} />
             </div>
           </PortalContainerContext.Provider>
         </Toast.Provider>

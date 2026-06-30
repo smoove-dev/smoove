@@ -14,8 +14,8 @@ export default function Home() {
         <Studio.HeaderTitle icon="spark" title="SmooveStudio" sub="smoove · demo2" />
       </Studio.Header>
 
-      <div className="km-doc-wrap scroll">
-        <article className="km-doc">
+      <div className="smoove-doc-wrap scroll">
+        <article className="smoove-doc">
           <h1>Welcome to the studio</h1>
           <p>
             This page lives at <code>/</code> and is just a normal route — the center region is

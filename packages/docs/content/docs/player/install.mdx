@@ -1,6 +1,6 @@
 ---
 title: Install
-description: Install the km-player web component with npm, or load the self-contained build from a CDN with no bundler.
+description: Install the smoove-player web component with npm, or load the self-contained build from a CDN with no bundler.
 ---
 
 `@konva-motion/player` is a framework-agnostic web component that plays a
@@ -18,11 +18,11 @@ npm install konva @konva-motion/core @konva-motion/player
 pnpm add konva @konva-motion/core @konva-motion/player
 ```
 
-Import the package once to register `<km-player>` and the control elements, then
+Import the package once to register `<smoove-player>` and the control elements, then
 opt into the default styling:
 
 ```ts
-import "@konva-motion/player"; // registers <km-player> and the controls
+import "@konva-motion/player"; // registers <smoove-player> and the controls
 import "@konva-motion/player/styles.css"; // opt-in default styling
 ```
 
@@ -50,7 +50,7 @@ and `window.Konva`, so you can build a composition inline:
   href="https://cdn.jsdelivr.net/npm/@konva-motion/player/dist/player.css"
 />
 
-<km-player controls loop style="width: 640px; aspect-ratio: 16/9"></km-player>
+<smoove-player controls loop style="width: 640px; aspect-ratio: 16/9"></smoove-player>
 
 <script type="module">
   import "https://cdn.jsdelivr.net/npm/@konva-motion/player/dist/player.global.js";
@@ -64,7 +64,7 @@ and `window.Konva`, so you can build a composition inline:
   seq.register((frame) => box.x(interpolate(frame, [0, 120], [40, 520], { extrapolateRight: "clamp" })));
   comp.add(seq);
 
-  document.querySelector("km-player").composition = comp;
+  document.querySelector("smoove-player").composition = comp;
 </script>
 ```
 

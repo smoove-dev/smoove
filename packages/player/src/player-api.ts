@@ -2,7 +2,7 @@ import type { Composition } from "@smoove/core";
 import type { ReadonlySignal } from "./signal.js";
 
 /**
- * The reactive state a `<km-player>` exposes to its descendant control
+ * The reactive state a `<smoove-player>` exposes to its descendant control
  * components. These are **stable** signals owned by the player — they survive
  * the `Composition` being swapped, so a control subscribes once on connect.
  * Composition-derived values mirror the live comp; `fullscreen` and `scale`
@@ -21,9 +21,9 @@ export interface PlayerState {
 }
 
 /**
- * The control surface a `<km-player>` provides to its descendants and to
- * imperative consumers. `<km-player>` itself implements this interface, so
- * `el.closest("km-player")` (or the `playerContext`) yields a `PlayerApi`.
+ * The control surface a `<smoove-player>` provides to its descendants and to
+ * imperative consumers. `<smoove-player>` itself implements this interface, so
+ * `el.closest("smoove-player")` (or the `playerContext`) yields a `PlayerApi`.
  * Method names mirror Remotion's `PlayerRef`.
  */
 export interface PlayerApi {

@@ -5,11 +5,11 @@ body {
   background: #100f14;
 }
 
-#km-root {
+#smoove-root {
   height: 100vh;
 }
 
-.km-boot {
+.smoove-boot {
   height: 100vh;
   display: grid;
   place-items: center;
@@ -19,7 +19,7 @@ body {
 }
 
 /* Home doc — demo2 owns this styling (demo2 has no Tailwind build). */
-.km-doc-wrap {
+.smoove-doc-wrap {
   flex: 1;
   min-height: 0;
   overflow: auto;
@@ -27,7 +27,7 @@ body {
   justify-content: center;
   background: radial-gradient(120% 90% at 50% 0%, #16151c 0%, #0c0c0f 70%);
 }
-.km-doc {
+.smoove-doc {
   max-width: 720px;
   width: 100%;
   padding: 48px 40px 80px;
@@ -36,30 +36,30 @@ body {
   font-size: 15px;
   line-height: 1.7;
 }
-.km-doc h1 {
+.smoove-doc h1 {
   color: #eceaf2;
   font-size: 30px;
   font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0 0 16px;
 }
-.km-doc h2 {
+.smoove-doc h2 {
   color: #eceaf2;
   font-size: 18px;
   font-weight: 700;
   margin: 32px 0 10px;
 }
-.km-doc p {
+.smoove-doc p {
   margin: 0 0 14px;
 }
-.km-doc ul {
+.smoove-doc ul {
   margin: 0 0 14px;
   padding-left: 20px;
 }
-.km-doc li {
+.smoove-doc li {
   margin: 6px 0;
 }
-.km-doc code {
+.smoove-doc code {
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 12.5px;
   color: #9579ff;
@@ -68,7 +68,7 @@ body {
   border-radius: 5px;
   padding: 1px 5px;
 }
-.km-doc pre {
+.smoove-doc pre {
   background: #17161c;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
@@ -76,7 +76,7 @@ body {
   overflow: auto;
   margin: 14px 0;
 }
-.km-doc pre code {
+.smoove-doc pre code {
   background: none;
   border: 0;
   padding: 0;

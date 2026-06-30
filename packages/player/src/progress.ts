@@ -29,7 +29,7 @@ export class SmoovePlayerProgress extends SmooveControl {
   }
 
   private _posFromEvent(e: PointerEvent): number {
-    const track = this.querySelector(".km-player__track") ?? this;
+    const track = this.querySelector(".smoove-player__track") ?? this;
     const r = track.getBoundingClientRect();
     return r.width > 0 ? clamp01((e.clientX - r.left) / r.width) : 0;
   }
@@ -69,17 +69,17 @@ export class SmoovePlayerProgress extends SmooveControl {
   protected override render(): TemplateResult {
     const pct = this._pct() * 100;
     return html`<div
-      class="km-player__progress${this._dragging ? " is-dragging" : ""}"
+      class="smoove-player__progress${this._dragging ? " is-dragging" : ""}"
       @pointerdown=${(e: PointerEvent) => this._onDown(e)}
     >
-      <div class="km-player__track">
-        <div class="km-player__fill" style=${`width:${pct}%`}></div>
-        <div class="km-player__knob" style=${`left:${pct}%`}></div>
+      <div class="smoove-player__track">
+        <div class="smoove-player__fill" style=${`width:${pct}%`}></div>
+        <div class="smoove-player__knob" style=${`left:${pct}%`}></div>
       </div>
     </div>`;
   }
 }
 
-if (!customElements.get("km-player-progress")) {
-  customElements.define("km-player-progress", SmoovePlayerProgress);
+if (!customElements.get("smoove-player-progress")) {
+  customElements.define("smoove-player-progress", SmoovePlayerProgress);
 }

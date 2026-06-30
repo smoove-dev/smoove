@@ -14,7 +14,7 @@ export class SmoovePlayerPlayToggleButton extends SmooveControl {
     const label = playing ? "Pause" : "Play";
     return html`<button
       type="button"
-      class="km-player__btn"
+      class="smoove-player__btn"
       aria-label=${label}
       title=${label}
       @click=${() => this.api?.toggle()}
@@ -22,6 +22,6 @@ export class SmoovePlayerPlayToggleButton extends SmooveControl {
   }
 }
 
-if (!customElements.get("km-player-play-toggle-button")) {
-  customElements.define("km-player-play-toggle-button", SmoovePlayerPlayToggleButton);
+if (!customElements.get("smoove-player-play-toggle-button")) {
+  customElements.define("smoove-player-play-toggle-button", SmoovePlayerPlayToggleButton);
 }

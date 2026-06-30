@@ -6,7 +6,7 @@
    Preflight) so importing this file never resets the host page — only
    opted-in utility classes and the :root design tokens ship, both inert
    on elements that don't use them. The few global resets we DO want are
-   scoped under `.km-studio` / `.km-studio-portal` in @layer base below.
+   scoped under `.smoove-studio` / `.smoove-studio-portal` in @layer base below.
 
    The @theme block is the single source of truth for the look — recolor
    or re-radius the whole studio by overriding these CSS variables.
@@ -65,15 +65,15 @@
 
 @layer base {
   /* Scoped root — applies the base look without touching the host page. */
-  .km-studio {
+  .smoove-studio {
     color: var(--color-ink-1);
     background: var(--color-bg-0);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
-  .km-studio,
-  .km-studio * {
+  .smoove-studio,
+  .smoove-studio * {
     box-sizing: border-box;
   }
 
@@ -81,8 +81,8 @@
      bits we need on form controls — otherwise native UA styles leak: white
      button backgrounds, default padding that off-centers icon buttons, fonts
      that don't inherit). Lives in @layer base so utilities still win. */
-  .km-studio button,
-  .km-studio-portal button {
+  .smoove-studio button,
+  .smoove-studio-portal button {
     appearance: none;
     background: transparent;
     border: 0;
@@ -93,64 +93,64 @@
     color: inherit;
     cursor: pointer;
   }
-  .km-studio button:disabled,
-  .km-studio-portal button:disabled {
+  .smoove-studio button:disabled,
+  .smoove-studio-portal button:disabled {
     cursor: not-allowed;
   }
-  .km-studio input,
-  .km-studio textarea,
-  .km-studio select,
-  .km-studio-portal input,
-  .km-studio-portal textarea,
-  .km-studio-portal select {
+  .smoove-studio input,
+  .smoove-studio textarea,
+  .smoove-studio select,
+  .smoove-studio-portal input,
+  .smoove-studio-portal textarea,
+  .smoove-studio-portal select {
     appearance: none;
     font: inherit;
     line-height: inherit;
     color: inherit;
     margin: 0;
   }
-  .km-studio svg,
-  .km-studio-portal svg {
+  .smoove-studio svg,
+  .smoove-studio-portal svg {
     display: block;
   }
 
   /* thin scrollbars, opt-in via .scroll. Apply inside the studio root and
      inside studio-owned portals (menus/dialogs/toasts render to a portal
-     container we place inside `.km-studio`). */
-  .km-studio .scroll,
-  .km-studio-portal .scroll {
+     container we place inside `.smoove-studio`). */
+  .smoove-studio .scroll,
+  .smoove-studio-portal .scroll {
     scrollbar-width: thin;
     scrollbar-color: #34343c transparent;
   }
-  .km-studio .scroll::-webkit-scrollbar,
-  .km-studio-portal .scroll::-webkit-scrollbar {
+  .smoove-studio .scroll::-webkit-scrollbar,
+  .smoove-studio-portal .scroll::-webkit-scrollbar {
     width: 9px;
     height: 9px;
   }
-  .km-studio .scroll::-webkit-scrollbar-thumb,
-  .km-studio-portal .scroll::-webkit-scrollbar-thumb {
+  .smoove-studio .scroll::-webkit-scrollbar-thumb,
+  .smoove-studio-portal .scroll::-webkit-scrollbar-thumb {
     background: #2c2c33;
     border-radius: 99px;
     border: 2px solid transparent;
     background-clip: content-box;
   }
-  .km-studio .scroll::-webkit-scrollbar-thumb:hover,
-  .km-studio-portal .scroll::-webkit-scrollbar-thumb:hover {
+  .smoove-studio .scroll::-webkit-scrollbar-thumb:hover,
+  .smoove-studio-portal .scroll::-webkit-scrollbar-thumb:hover {
     background: #3a3a44;
     background-clip: content-box;
   }
-  .km-studio .scroll::-webkit-scrollbar-track,
-  .km-studio-portal .scroll::-webkit-scrollbar-track {
+  .smoove-studio .scroll::-webkit-scrollbar-track,
+  .smoove-studio-portal .scroll::-webkit-scrollbar-track {
     background: transparent;
   }
 
-  @keyframes km-spin {
+  @keyframes smoove-spin {
     to {
       transform: rotate(360deg);
     }
   }
-  .km-studio .spin,
-  .km-studio-portal .spin {
-    animation: km-spin 1s linear infinite;
+  .smoove-studio .spin,
+  .smoove-studio-portal .spin {
+    animation: smoove-spin 1s linear infinite;
   }
 }

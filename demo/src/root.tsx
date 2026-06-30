@@ -25,7 +25,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <Links />
       </head>
       <body>
-        <div id="km-root">{children}</div>
+        <div id="smoove-root">{children}</div>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -34,7 +34,7 @@ export function Layout({ children }: { children: ReactNode }) {
 }
 
 export function HydrateFallback() {
-  return <div className="km-boot">Loading studio…</div>;
+  return <div className="smoove-boot">Loading studio…</div>;
 }
 
 export default function Root() {
