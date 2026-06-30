@@ -1,4 +1,4 @@
-import type { ReadonlySignal } from "@konva-motion/core";
+import type { ReadonlySignal } from "@smoove/core";
 import { useCallback, useSyncExternalStore } from "react";
 import { Signal } from "signal-polyfill";
 

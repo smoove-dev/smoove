@@ -61,19 +61,19 @@ export type DividerField = {
 
 export type ObjectField = FieldBase & {
   type: "object";
-  fields: Record<string, KmField>;
+  fields: Record<string, SmooveField>;
 };
 
 export type ArrayField = FieldBase & {
   type: "array";
-  of: KmField;
+  of: SmooveField;
   default?: unknown[];
   min?: number;
   max?: number;
   itemLabel?: string;
 };
 
-export type KmField =
+export type SmooveField =
   | TextField
   | MultilineField
   | ColorField
@@ -86,4 +86,4 @@ export type KmField =
   | ArrayField;
 
 /** The top-level schema is always an object of fields. */
-export type KmSchema = ObjectField;
+export type SmooveSchema = ObjectField;

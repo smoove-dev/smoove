@@ -1,4 +1,4 @@
-import { Studio } from "@konva-motion/studio";
+import { Studio } from "@smoove/studio";
 import { useNavigate } from "react-router";
 
 /**
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <Studio.Main>
       <Studio.Header>
-        <Studio.HeaderTitle icon="spark" title="KmStudio" sub="konva-motion · demo2" />
+        <Studio.HeaderTitle icon="spark" title="SmooveStudio" sub="smoove · demo2" />
       </Studio.Header>
 
       <div className="km-doc-wrap scroll">

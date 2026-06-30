@@ -7,7 +7,7 @@ import {
   Sequence,
   Text,
   interpolate,
-} from "@konva-motion/core";
+} from "@smoove/core";
 
 /**
  * Every dot makes the same left-to-right trip over the same frames. The only

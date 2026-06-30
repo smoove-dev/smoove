@@ -1,4 +1,4 @@
-import { dissolve } from "@konva-motion/transitions";
+import { dissolve } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type DissolveProps, defaults } from "./schema.js";
 

@@ -1,5 +1,5 @@
-import type { Composition } from "@konva-motion/core";
-import type { PlayerApi } from "@konva-motion/player";
+import type { Composition } from "@smoove/core";
+import type { PlayerApi } from "@smoove/player";
 import { Signal } from "signal-polyfill";
 import type { IconName } from "../components/icon/paths.js";
 import { makeJobId } from "../lib/ids.js";

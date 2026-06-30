@@ -1,4 +1,4 @@
-import type { Composition } from "@konva-motion/core";
+import type { Composition } from "@smoove/core";
 import type { CompositionInput, Registry, RegistryEntry } from "../types.js";
 
 /** Unwrap a loader result that may be a Composition or a `{ default }` module. */

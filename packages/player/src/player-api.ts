@@ -1,4 +1,4 @@
-import type { Composition } from "@konva-motion/core";
+import type { Composition } from "@smoove/core";
 import type { ReadonlySignal } from "./signal.js";
 
 /**

@@ -1,4 +1,4 @@
-import { linearBlur } from "@konva-motion/transitions";
+import { linearBlur } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type LinearBlurProps, defaults } from "./schema.js";
 

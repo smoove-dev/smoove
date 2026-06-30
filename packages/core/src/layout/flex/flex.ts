@@ -133,7 +133,7 @@ export function buildChildren(
     applyChildProps(node, child.attrs as FlexChildProps);
 
     if (isKMLayoutNode(child)) {
-      // konva-motion wrapper: it self-describes its layout via the contract.
+      // smoove wrapper: it self-describes its layout via the contract.
       if (child._kmRole === "container") {
         const props = child.attrs as FlexProps;
         applyContainerProps(node, props);

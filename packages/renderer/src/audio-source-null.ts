@@ -1,4 +1,4 @@
-import type { AudioSource, AudioSourceFactory } from "@konva-motion/core";
+import type { AudioSource, AudioSourceFactory } from "@smoove/core";
 
 /**
  * No-op {@link AudioSource} for server rendering. Audio is not decoded by the

@@ -1,5 +1,5 @@
-import type { Composition } from "@konva-motion/core";
-import type { VideoSourceFactory } from "@konva-motion/core";
+import type { Composition } from "@smoove/core";
+import type { VideoSourceFactory } from "@smoove/core";
 import {
   QUALITY_HIGH,
   QUALITY_LOW,
@@ -160,7 +160,7 @@ export interface SetupOptions {
   /**
    * Directory for caching fonts that scene `Font` nodes load from remote URLs.
    * Downloaded once and reused across frames and process runs. Defaults to
-   * `os.tmpdir()/konva-motion-fonts`.
+   * `os.tmpdir()/smoove-fonts`.
    */
   fontCacheDir?: string;
   /**

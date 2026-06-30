@@ -14,12 +14,12 @@ import {
   Star,
   Wedge,
   interpolate,
-} from "@konva-motion/core";
+} from "@smoove/core";
 import Konva from "konva";
 
 /**
  * The drawing vocabulary on one canvas. Every shape here is imported from
- * @konva-motion/core, not Konva.* directly: each one extends its Konva
+ * @smoove/core, not Konva.* directly: each one extends its Konva
  * equivalent and adds flex participation. A single shared pulse drives all of
  * them so the gallery reads as motion, not a still.
  */

@@ -1,10 +1,10 @@
 import { type TemplateResult, html } from "lit";
-import { KmControl } from "./base.js";
+import { SmooveControl } from "./base.js";
 import { icon } from "./icons.js";
 import type { PlayerApi } from "./player-api.js";
 
 /** Toggles the player in and out of fullscreen. */
-export class KmPlayerFullscreenButton extends KmControl {
+export class SmoovePlayerFullscreenButton extends SmooveControl {
   protected override bind(api: PlayerApi): void {
     this.watch(api.state.fullscreen);
   }
@@ -23,5 +23,5 @@ export class KmPlayerFullscreenButton extends KmControl {
 }
 
 if (!customElements.get("km-player-fullscreen-button")) {
-  customElements.define("km-player-fullscreen-button", KmPlayerFullscreenButton);
+  customElements.define("km-player-fullscreen-button", SmoovePlayerFullscreenButton);
 }

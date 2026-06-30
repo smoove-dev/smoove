@@ -1,6 +1,6 @@
 /* ============================================================
    Shared scaffolding for the transition gallery — one isolated
-   A → B demo per @konva-motion/transitions presentation.
+   A → B demo per @smoove/transitions presentation.
 
    Every demo is the same four-step shape:
 
@@ -20,9 +20,9 @@
    running transition without rebuilding. In your own app you'd skip
    `live` and pass a fixed `presentation: dissolve({ … })`.
    ============================================================ */
-import { Composition, type Sequence } from "@konva-motion/core";
-import { kf } from "@konva-motion/studio";
-import { type Presentation, TransitionSeries, linearTiming } from "@konva-motion/transitions";
+import { Composition, type Sequence } from "@smoove/core";
+import { kf } from "@smoove/studio";
+import { type Presentation, TransitionSeries, linearTiming } from "@smoove/transitions";
 import Konva from "konva";
 
 export const W = 1280;

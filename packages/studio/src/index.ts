@@ -1,5 +1,5 @@
 import { Brand, Logo } from "./components/brand/brand.js";
-/** @konva-motion/studio — public barrel. */
+/** @smoove/studio — public barrel. */
 import { Button } from "./components/button/button.js";
 import { IconButton } from "./components/button/icon-button.js";
 import { HeaderTitle } from "./components/header/header-title.js";

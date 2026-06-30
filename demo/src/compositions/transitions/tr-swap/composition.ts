@@ -1,4 +1,4 @@
-import { swap } from "@konva-motion/transitions";
+import { swap } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type SwapProps, defaults } from "./schema.js";
 

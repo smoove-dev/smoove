@@ -1,13 +1,13 @@
-import { Block, Composition, Flex, Sequence, Text } from "@konva-motion/core";
+import { Block, Composition, Flex, Sequence, Text } from "@smoove/core";
 import Konva from "konva";
 
 type Message = { role: "user" | "ai"; text: string };
 
 const CONVERSATION: Message[] = [
-  { role: "user", text: "What is konva-motion?" },
+  { role: "user", text: "What is smoove?" },
   {
     role: "ai",
-    text: "konva-motion brings Remotion-style timeline-driven animation to Konva. A Composition owns a frame clock; a Sequence is a range-gated layer that paints only while the playhead is in range.",
+    text: "smoove brings Remotion-style timeline-driven animation to Konva. A Composition owns a frame clock; a Sequence is a range-gated layer that paints only while the playhead is in range.",
   },
   { role: "user", text: "Nice. How is this chat built?" },
   {

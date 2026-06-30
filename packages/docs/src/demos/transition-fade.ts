@@ -1,5 +1,5 @@
-import { Composition, Rect, type Sequence, Text } from "@konva-motion/core";
-import { TransitionSeries, fade, linearTiming } from "@konva-motion/transitions";
+import { Composition, Rect, type Sequence, Text } from "@smoove/core";
+import { TransitionSeries, fade, linearTiming } from "@smoove/transitions";
 
 /**
  * TransitionSeries is Series with overlap. Three scenes play in order, joined by

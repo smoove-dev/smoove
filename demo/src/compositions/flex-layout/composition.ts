@@ -1,4 +1,4 @@
-import { Block, Composition, Easing, Flex, Image, Sequence, interpolate } from "@konva-motion/core";
+import { Block, Composition, Easing, Flex, Image, Sequence, interpolate } from "@smoove/core";
 import Konva from "konva";
 
 const width = 1280;
@@ -52,7 +52,7 @@ const cardBlock = new Block({
 const cover = new Image({
   width: "100%",
   height: 160,
-  src: "https://picsum.photos/seed/konva-motion/800/320",
+  src: "https://picsum.photos/seed/smoove/800/320",
   objectFit: "cover",
   cornerRadius: 10,
 });

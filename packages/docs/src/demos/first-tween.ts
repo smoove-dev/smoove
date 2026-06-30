@@ -1,4 +1,4 @@
-import { Circle, Composition, Easing, Rect, Sequence, interpolate } from "@konva-motion/core";
+import { Circle, Composition, Easing, Rect, Sequence, interpolate } from "@smoove/core";
 
 // The smallest thing that runs: one composition, one sequence, one shape whose
 // position and opacity are a function of the current frame.

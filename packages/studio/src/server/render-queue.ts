@@ -1,10 +1,10 @@
-import type { Composition } from "@konva-motion/core";
+import type { Composition } from "@smoove/core";
 import {
   type SetupOptions,
   renderComposition,
   renderStill,
   setupServerRendering,
-} from "@konva-motion/renderer";
+} from "@smoove/renderer";
 import { makeJobId } from "../lib/ids.js";
 import type { RenderRequest } from "../types.js";
 import { stillMeta, toRenderOptions, toStillOptions, videoMeta } from "./map.js";
@@ -49,7 +49,7 @@ export interface RenderQueue {
 
 /**
  * An in-memory render queue — the only implementation the package ships. It
- * owns nothing HTTP: it runs renders via `@konva-motion/renderer`, tracks job
+ * owns nothing HTTP: it runs renders via `@smoove/renderer`, tracks job
  * state, and pushes progress to subscribers. A host wraps it in whatever
  * transport it likes (the demo: React Router resource routes + SSE).
  */

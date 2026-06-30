@@ -1,4 +1,4 @@
-import type { Composition } from "@konva-motion/core";
+import type { Composition } from "@smoove/core";
 import { ContextProvider } from "@lit/context";
 import { playerContext } from "./context.js";
 import { createDefaultControls } from "./default-controls.js";
@@ -42,7 +42,7 @@ async function resolveComposition(input: unknown): Promise<Composition> {
     break;
   }
   throw new Error(
-    "[konva-motion] remote src did not resolve to a Composition — expected a default export of a Composition or a factory returning one",
+    "[smoove] remote src did not resolve to a Composition — expected a default export of a Composition or a factory returning one",
   );
 }
 
@@ -58,7 +58,7 @@ async function resolveComposition(input: unknown): Promise<Composition> {
  *
  * `composition` is a property (an object), e.g. `el.composition = comp`.
  */
-export class KmPlayer extends HTMLElement implements PlayerApi {
+export class SmoovePlayer extends HTMLElement implements PlayerApi {
   static get observedAttributes(): string[] {
     return ["loop", "controls", "muted", "volume", "playbackrate", "src"];
   }
@@ -601,5 +601,5 @@ export class KmPlayer extends HTMLElement implements PlayerApi {
 }
 
 if (!customElements.get("km-player")) {
-  customElements.define("km-player", KmPlayer);
+  customElements.define("km-player", SmoovePlayer);
 }

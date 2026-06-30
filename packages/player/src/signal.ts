@@ -1,4 +1,4 @@
-import type { ReadonlySignal } from "@konva-motion/core";
+import type { ReadonlySignal } from "@smoove/core";
 
 export type { ReadonlySignal };
 

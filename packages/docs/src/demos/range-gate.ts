@@ -1,4 +1,4 @@
-import { Composition, Line, Rect, Sequence, Text } from "@konva-motion/core";
+import { Composition, Line, Rect, Sequence, Text } from "@smoove/core";
 
 /**
  * Three Sequences with different `from` / `durationInFrames`. Each card only

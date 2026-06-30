@@ -34,7 +34,7 @@ export type ComputeOffsetsResult = {
  * A computed `from` may never fall below `seriesFrom` or below 0 — a negative
  * `offset` that would underflow throws.
  *
- * @internal Engine util reused by `Series` and `@konva-motion/transitions`.
+ * @internal Engine util reused by `Series` and `@smoove/transitions`.
  */
 export function computeOffsets(scenes: OffsetScene[], seriesFrom = 0): ComputeOffsetsResult {
   if (!Number.isInteger(seriesFrom) || seriesFrom < 0) {

@@ -1,24 +1,24 @@
-// Self-contained end-to-end example for @konva-motion/renderer.
+// Self-contained end-to-end example for @smoove/renderer.
 //
-// Run from the package dir:  pnpm --filter @konva-motion/renderer example
+// Run from the package dir:  pnpm --filter @smoove/renderer example
 // (or:  npx tsx examples/render-demo.ts)
 //
 // It synthesizes its own assets (a PNG via skia + a sine tone WAV in pure JS),
 // builds a Composition with shapes + an Image + an Audio node, then exercises
 // renderComposition (-> mp4), renderStill (-> png) and renderFrames (count).
 
-import "@konva-motion/renderer/register";
+import "@smoove/renderer/register";
 
 import { mkdtempSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { Audio, Composition, Image, Sequence, interpolate } from "@konva-motion/core";
+import { Audio, Composition, Image, Sequence, interpolate } from "@smoove/core";
 import {
   probeComposition,
   renderComposition,
   renderFrames,
   renderStill,
-} from "@konva-motion/renderer";
+} from "@smoove/renderer";
 import Konva from "konva";
 import { Canvas } from "skia-canvas";
 
@@ -41,7 +41,7 @@ const imgPath = join(dir, "card.png");
   ctx.fillRect(0, 0, 400, 240);
   ctx.fillStyle = "#ffffff";
   ctx.font = "bold 40px sans-serif";
-  ctx.fillText("konva-motion", 30, 130);
+  ctx.fillText("smoove", 30, 130);
   writeFileSync(imgPath, c.toBufferSync("png"));
 }
 

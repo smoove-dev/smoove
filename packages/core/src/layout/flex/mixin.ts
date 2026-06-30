@@ -25,7 +25,7 @@ const STRIP_KEYS = [
 ] as const;
 
 /**
- * Strip konva-motion-only keys and translate `width`/`height` (which may be a
+ * Strip smoove-only keys and translate `width`/`height` (which may be a
  * `%` string) into a plain Konva config. Mirrors the per-wrapper
  * `pickKonvaConfig` helpers in `block.ts`/`image.ts`/`video.ts` so leaf shapes
  * don't each re-implement it.
@@ -93,7 +93,7 @@ export function leafPlace(shape: Konva.Shape, box: LayoutBox): void {
 }
 
 /**
- * Build a konva-motion leaf wrapper class over a concrete Konva shape. The
+ * Build a smoove leaf wrapper class over a concrete Konva shape. The
  * returned base implements {@link KMLayoutNode} (leaf role + measure + place)
  * and handles config stripping, so a shape wrapper is just:
  *

@@ -1,4 +1,4 @@
-import { Studio, useSignalValue, useStudio } from "@konva-motion/studio";
+import { Studio, useSignalValue, useStudio } from "@smoove/studio";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ClientOnly } from "../components/client-only.js";

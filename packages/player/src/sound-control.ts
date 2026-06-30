@@ -1,5 +1,5 @@
 import { type TemplateResult, html } from "lit";
-import { KmControl } from "./base.js";
+import { SmooveControl } from "./base.js";
 import { icon } from "./icons.js";
 import type { PlayerApi } from "./player-api.js";
 
@@ -7,7 +7,7 @@ import type { PlayerApi } from "./player-api.js";
  * Mute toggle + volume slider. With the `collapsed` attribute the slider is
  * hidden until the control is hovered/focused (styled by the stylesheet).
  */
-export class KmPlayerSoundControl extends KmControl {
+export class SmoovePlayerSoundControl extends SmooveControl {
   static override properties = {
     collapsed: { type: Boolean, reflect: true },
   };
@@ -52,5 +52,5 @@ export class KmPlayerSoundControl extends KmControl {
 }
 
 if (!customElements.get("km-player-sound-control")) {
-  customElements.define("km-player-sound-control", KmPlayerSoundControl);
+  customElements.define("km-player-sound-control", SmoovePlayerSoundControl);
 }

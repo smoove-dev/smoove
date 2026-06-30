@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
 import { cn } from "../../lib/cn.js";
-import type { KmField } from "../../schema/types.js";
+import type { SmooveField } from "../../schema/types.js";
 import { Icon } from "../icon/icon.js";
 import { StSelect } from "../primitives/select.js";
 import { StSlider } from "../primitives/slider.js";
 import { StSwitch } from "../primitives/switch.js";
 
-type FieldProps = { field: KmField; value: unknown; onChange: (value: unknown) => void };
+type FieldProps = { field: SmooveField; value: unknown; onChange: (value: unknown) => void };
 
 const labelCls = "text-[12.5px] text-ink-2 font-medium";
 const inputCls =
@@ -284,7 +284,7 @@ function isObj(v: unknown): v is Record<string, unknown> {
   return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 
-function defaultItem(field: KmField): unknown {
+function defaultItem(field: SmooveField): unknown {
   switch (field.type) {
     case "object": {
       const o: Record<string, unknown> = {};

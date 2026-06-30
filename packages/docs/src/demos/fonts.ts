@@ -1,4 +1,4 @@
-import { Composition, Font, Sequence, Text, interpolate } from "@konva-motion/core";
+import { Composition, Font, Sequence, Text, interpolate } from "@smoove/core";
 
 /**
  * The fonts demo. Two `Font` nodes declared with remote woff2 faces are added to

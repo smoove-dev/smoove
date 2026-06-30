@@ -14,7 +14,7 @@ const nodeModuleShim = fileURLToPath(new URL("./src/node-module-shim.ts", import
  *   Declarations are emitted here via vite-plugin-dts.
  * - `--mode standalone` → self-contained **ESM** (`dist/player.global.js`) for
  *   a `<script type="module">` tag. Everything is bundled (konva, core,
- *   flexily, lit) and the entry also pins `window.KonvaMotion` (core) +
+ *   flexily, lit) and the entry also pins `window.Smoove` (core) +
  *   `window.Konva`. (Classic-IIFE output isn't possible — flexily uses
  *   top-level await, which only an ES module can carry.)
  *
@@ -25,7 +25,7 @@ const nodeModuleShim = fileURLToPath(new URL("./src/node-module-shim.ts", import
 function isExternal(id: string): boolean {
   return (
     id === "konva" ||
-    id === "@konva-motion/core" ||
+    id === "@smoove/core" ||
     id === "lit" ||
     id.startsWith("lit/") ||
     id.startsWith("lit-") ||

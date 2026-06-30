@@ -16,7 +16,7 @@ export function Logo({ icon = "spark", onClick }: { icon?: IconName; onClick?: (
 
 /** Sidebar header: logo + wordmark + version tag. */
 export function Brand({
-  name = "KmStudio",
+  name = "SmooveStudio",
   tag = "v1.0",
   icon = "spark",
   onClick,

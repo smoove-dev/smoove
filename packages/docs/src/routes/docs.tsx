@@ -33,7 +33,7 @@ const clientLoader = browserCollections.docs.createClientLoader({
   component({ toc, frontmatter, default: Mdx }) {
     return (
       <DocsPage toc={toc}>
-        <title>{`${frontmatter.title} · konva-motion`}</title>
+        <title>{`${frontmatter.title} · smoove`}</title>
         {frontmatter.description ? (
           <meta name="description" content={frontmatter.description} />
         ) : null}

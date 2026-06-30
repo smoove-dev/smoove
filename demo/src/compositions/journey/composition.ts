@@ -1,4 +1,4 @@
-import { Block, Composition, Easing, Image, Sequence, interpolate } from "@konva-motion/core";
+import { Block, Composition, Easing, Image, Sequence, interpolate } from "@smoove/core";
 import Konva from "konva";
 
 type Chapter = {

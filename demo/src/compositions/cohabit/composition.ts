@@ -7,7 +7,7 @@ import {
   type ShadowProps,
   Video,
   interpolate,
-} from "@konva-motion/core";
+} from "@smoove/core";
 import Konva from "konva";
 import vo1Url from "../../files/film/VO1.wav";
 import vo2Url from "../../files/film/VO2.wav";

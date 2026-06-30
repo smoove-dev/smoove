@@ -1,4 +1,4 @@
-import { wipe } from "@konva-motion/transitions";
+import { wipe } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type WipeProps, defaults } from "./schema.js";
 

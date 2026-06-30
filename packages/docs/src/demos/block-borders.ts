@@ -1,4 +1,4 @@
-import { Block, Composition, Rect, Sequence, Text, interpolate } from "@konva-motion/core";
+import { Block, Composition, Rect, Sequence, Text, interpolate } from "@smoove/core";
 
 /**
  * Borders on Block: a solid line, a dashed line, and a thicker stroke.

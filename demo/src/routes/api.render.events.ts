@@ -1,4 +1,4 @@
-import type { RenderQueueJob } from "@konva-motion/studio/server";
+import type { RenderQueueJob } from "@smoove/studio/server";
 import type { LoaderFunctionArgs } from "react-router";
 import { queue } from "../server/render-queue.server.js";
 

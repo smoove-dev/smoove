@@ -1,8 +1,8 @@
-import type { RenderBackend, RenderJob } from "@konva-motion/studio";
+import type { RenderBackend, RenderJob } from "@smoove/studio";
 
 /**
  * The demo's HTTP `RenderBackend`. This is where ALL the client-side transport
- * lives — `@konva-motion/studio` ships only contracts + the server queue, never
+ * lives — `@smoove/studio` ships only contracts + the server queue, never
  * `fetch`/`EventSource`. It POSTs the request, follows progress over SSE, and
  * hands the store a download URL when the job finishes.
  *

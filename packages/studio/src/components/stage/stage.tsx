@@ -1,5 +1,5 @@
-import type { ReadonlySignal } from "@konva-motion/core";
-import type { KmPlayer } from "@konva-motion/player";
+import type { ReadonlySignal } from "@smoove/core";
+import type { SmoovePlayer } from "@smoove/player";
 import { useEffect, useRef, useState } from "react";
 import { useComposition } from "../../hooks/use-composition.js";
 import { applyLayerVisibility } from "../../hooks/use-layers.js";
@@ -32,7 +32,7 @@ export function Stage({ className, showStatus = false }: StageProps) {
   useShortcuts();
 
   const wrapRef = useRef<HTMLDivElement | null>(null);
-  const playerRef = useRef<KmPlayer | null>(null);
+  const playerRef = useRef<SmoovePlayer | null>(null);
   const [box, setBox] = useState({ w: 0, h: 0 });
 
   // measure available space

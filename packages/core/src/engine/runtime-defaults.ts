@@ -2,7 +2,7 @@
  * Globally-overridable factories for the media sources and image loader that
  * nodes build at construction time. The browser is the default everywhere; a
  * server renderer swaps in Node-safe implementations **before** any composition
- * is constructed (e.g. `@konva-motion/renderer`'s `setupServerRendering()`),
+ * is constructed (e.g. `@smoove/renderer`'s `setupServerRendering()`),
  * since the browser defaults ({@link MediabunnyAudioSource}/
  * {@link MediabunnyVideoSource}) rely on `document`/WebCodecs and would throw in Node.
  */

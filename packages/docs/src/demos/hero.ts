@@ -1,4 +1,4 @@
-import { Circle, Composition, Easing, Rect, Sequence, Text, interpolate } from "@konva-motion/core";
+import { Circle, Composition, Easing, Rect, Sequence, Text, interpolate } from "@smoove/core";
 
 /**
  * Introduction hero. A title + subtitle slide up and fade in over two accent
@@ -43,7 +43,7 @@ const title = new Text({
   y: 300,
   width,
   align: "center",
-  text: "konva-motion",
+  text: "smoove",
   fontSize: 96,
   fontStyle: "700",
   fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",

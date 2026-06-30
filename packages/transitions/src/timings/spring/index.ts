@@ -1,4 +1,4 @@
-import { interpolate } from "@konva-motion/core";
+import { interpolate } from "@smoove/core";
 import { measureSpring } from "./measure-spring.js";
 import { type SpringConfig, springCalculation } from "./spring-utils.js";
 

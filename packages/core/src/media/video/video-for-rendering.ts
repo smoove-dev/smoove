@@ -32,7 +32,7 @@ export class RenderingVideoDriver implements VideoDriver {
         this.ctx.redraw();
       })
       .catch((err: unknown) => {
-        console.error("[konva-motion] video seek failed during render:", err);
+        console.error("[smoove] video seek failed during render:", err);
       })
       .finally(() => {
         comp.continueRender(handle);

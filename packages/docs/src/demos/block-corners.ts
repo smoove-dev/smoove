@@ -1,4 +1,4 @@
-import { Block, Composition, Rect, Sequence, Text, interpolate } from "@konva-motion/core";
+import { Block, Composition, Rect, Sequence, Text, interpolate } from "@smoove/core";
 
 /**
  * cornerRadius shapes: a sharp box, a uniformly rounded one, per-corner radii

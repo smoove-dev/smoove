@@ -4,7 +4,7 @@ import {
   Sequence,
   type SequenceProvider,
   computeOffsets,
-} from "@konva-motion/core";
+} from "@smoove/core";
 import Konva from "konva";
 import { getCompositor } from "./gl/compositor.js";
 import { fade } from "./presentations/fade.js";
@@ -285,7 +285,7 @@ export class TransitionSeries implements SequenceProvider {
       if (!warnedNoWebGl) {
         warnedNoWebGl = true;
         console.warn(
-          "@konva-motion/transitions: WebGL2 unavailable — shader transitions fall back to fade().",
+          "@smoove/transitions: WebGL2 unavailable — shader transitions fall back to fade().",
         );
       }
       return fade();

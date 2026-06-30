@@ -1,10 +1,10 @@
 import { type PropertyValues, type TemplateResult, html } from "lit";
-import { KmControl } from "./base.js";
+import { SmooveControl } from "./base.js";
 import { icon } from "./icons.js";
 import type { PlayerApi } from "./player-api.js";
 
 /** Toggles loop playback. Reflects an `on` attribute when looping. */
-export class KmPlayerLoopButton extends KmControl {
+export class SmoovePlayerLoopButton extends SmooveControl {
   static override properties = { on: { type: Boolean, reflect: true } };
   declare on?: boolean;
 
@@ -29,5 +29,5 @@ export class KmPlayerLoopButton extends KmControl {
 }
 
 if (!customElements.get("km-player-loop-button")) {
-  customElements.define("km-player-loop-button", KmPlayerLoopButton);
+  customElements.define("km-player-loop-button", SmoovePlayerLoopButton);
 }

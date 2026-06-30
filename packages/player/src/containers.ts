@@ -1,4 +1,4 @@
-import { KmContainer } from "./base.js";
+import { SmooveContainer } from "./base.js";
 
 /**
  * Layout containers. Each is a bare custom element that preserves its
@@ -9,16 +9,16 @@ import { KmContainer } from "./base.js";
  * - `<km-player-controls-row>` — a flex row of controls.
  * - `<km-player-space grow>` — a spacer; `grow` makes it consume free space.
  */
-export class KmPlayerOverlay extends KmContainer {}
-export class KmPlayerControls extends KmContainer {}
-export class KmPlayerControlsRow extends KmContainer {}
-export class KmPlayerSpace extends KmContainer {}
+export class SmoovePlayerOverlay extends SmooveContainer {}
+export class SmoovePlayerControls extends SmooveContainer {}
+export class SmoovePlayerControlsRow extends SmooveContainer {}
+export class SmoovePlayerSpace extends SmooveContainer {}
 
 const REGISTRY: Array<[string, CustomElementConstructor]> = [
-  ["km-player-overlay", KmPlayerOverlay],
-  ["km-player-controls", KmPlayerControls],
-  ["km-player-controls-row", KmPlayerControlsRow],
-  ["km-player-space", KmPlayerSpace],
+  ["km-player-overlay", SmoovePlayerOverlay],
+  ["km-player-controls", SmoovePlayerControls],
+  ["km-player-controls-row", SmoovePlayerControlsRow],
+  ["km-player-space", SmoovePlayerSpace],
 ];
 
 for (const [tag, ctor] of REGISTRY) {

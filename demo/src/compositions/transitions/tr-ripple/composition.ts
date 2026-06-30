@@ -1,4 +1,4 @@
-import { ripple } from "@konva-motion/transitions";
+import { ripple } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type RippleProps, defaults } from "./schema.js";
 

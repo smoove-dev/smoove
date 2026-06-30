@@ -6,7 +6,7 @@ import {
   Sequence,
   Text,
   interpolate,
-} from "@konva-motion/core";
+} from "@smoove/core";
 
 /**
  * The three background options on Block, side by side: a solid color, a linear

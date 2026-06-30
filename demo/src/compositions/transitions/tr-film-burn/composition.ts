@@ -1,4 +1,4 @@
-import { filmBurn } from "@konva-motion/transitions";
+import { filmBurn } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type FilmBurnProps, defaults } from "./schema.js";
 

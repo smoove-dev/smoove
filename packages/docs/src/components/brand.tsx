@@ -6,7 +6,7 @@ export function Brand({ className }: { className?: string }) {
     <Link
       to="/"
       className={`brand${className ? ` ${className}` : ""}`}
-      aria-label="konva-motion home"
+      aria-label="smoove home"
     >
       <span className="brand__mark">
         <BrandMark />

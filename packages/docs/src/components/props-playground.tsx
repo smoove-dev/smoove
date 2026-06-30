@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Demo, type KmPlayerEl } from "./demo";
+import { Demo, type SmoovePlayerEl } from "./demo";
 
 // Must match CardProps in src/demos/dynamic-props.ts.
 const DEFAULTS = { headline: "Parametrized video", accent: "#38bdf8", rating: 4 };
@@ -10,7 +10,7 @@ const DEFAULTS = { headline: "Parametrized video", accent: "#38bdf8", rating: 4 
 // on the next frame (or immediately while paused), which is the whole point of
 // the props signal.
 export function PropsPlayground() {
-  const playerRef = useRef<KmPlayerEl | null>(null);
+  const playerRef = useRef<SmoovePlayerEl | null>(null);
   const [headline, setHeadline] = useState(DEFAULTS.headline);
   const [accent, setAccent] = useState(DEFAULTS.accent);
   const [rating, setRating] = useState(DEFAULTS.rating);

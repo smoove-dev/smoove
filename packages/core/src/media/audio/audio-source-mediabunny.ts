@@ -38,9 +38,9 @@ export class MediabunnyAudioSource implements SchedulableAudioSource {
     const input = new Input({ formats: ALL_FORMATS, source: new UrlSource(src) });
     this._input = input;
     const track = await input.getPrimaryAudioTrack();
-    if (!track) throw new Error(`[konva-motion] no audio track in: ${src}`);
+    if (!track) throw new Error(`[smoove] no audio track in: ${src}`);
     if (!(await track.canDecode())) {
-      throw new Error(`[konva-motion] cannot decode audio track in: ${src}`);
+      throw new Error(`[smoove] cannot decode audio track in: ${src}`);
     }
     if (this._disposed) return;
 

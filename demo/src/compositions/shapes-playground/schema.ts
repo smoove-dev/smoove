@@ -1,4 +1,4 @@
-import { kf } from "@konva-motion/studio";
+import { kf } from "@smoove/studio";
 import { ACCENTS } from "../accents.js";
 
 export type PlaygroundProps = {

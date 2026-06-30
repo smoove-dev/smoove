@@ -184,7 +184,7 @@ export class PreviewAudioDriver implements AudioDriver {
         this._nodes.add(node);
       }
     } catch (err) {
-      if (token === this._pumpToken) console.warn("[konva-motion] audio pump error:", err);
+      if (token === this._pumpToken) console.warn("[smoove] audio pump error:", err);
     }
   }
 

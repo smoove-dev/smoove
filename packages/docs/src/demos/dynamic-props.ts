@@ -1,5 +1,5 @@
-import { Composition, Flex, Rect, Sequence, Text, interpolate, interpolateColors } from "@konva-motion/core";
-import Font from '@konva-motion/google-fonts/special-elite';
+import { Composition, Flex, Rect, Sequence, Text, interpolate, interpolateColors } from "@smoove/core";
+import Font from '@smoove/google-fonts/special-elite';
 
 /**
  * The dynamic-props demo. One composition, parametrized by `props`: the

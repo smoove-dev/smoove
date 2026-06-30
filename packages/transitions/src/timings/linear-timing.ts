@@ -1,4 +1,4 @@
-import { interpolate } from "@konva-motion/core";
+import { interpolate } from "@smoove/core";
 import type { Timing } from "../types.js";
 
 export type LinearTimingOptions = {

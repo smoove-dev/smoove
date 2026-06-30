@@ -19,7 +19,7 @@ export {
   type SeriesSceneOptions,
 } from "./engine/series.js";
 export {
-  // @internal — offset engine reused by @konva-motion/transitions.
+  // @internal — offset engine reused by @smoove/transitions.
   computeOffsets,
   type ComputeOffsetsResult,
   type OffsetScene,

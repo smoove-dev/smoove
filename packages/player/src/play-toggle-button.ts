@@ -1,10 +1,10 @@
 import { type TemplateResult, html } from "lit";
-import { KmControl } from "./base.js";
+import { SmooveControl } from "./base.js";
 import { icon } from "./icons.js";
 import type { PlayerApi } from "./player-api.js";
 
 /** A play/pause toggle button reflecting and driving playback state. */
-export class KmPlayerPlayToggleButton extends KmControl {
+export class SmoovePlayerPlayToggleButton extends SmooveControl {
   protected override bind(api: PlayerApi): void {
     this.watch(api.state.playing);
   }
@@ -23,5 +23,5 @@ export class KmPlayerPlayToggleButton extends KmControl {
 }
 
 if (!customElements.get("km-player-play-toggle-button")) {
-  customElements.define("km-player-play-toggle-button", KmPlayerPlayToggleButton);
+  customElements.define("km-player-play-toggle-button", SmoovePlayerPlayToggleButton);
 }

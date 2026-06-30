@@ -1,4 +1,4 @@
-import { slide } from "@konva-motion/transitions";
+import { slide } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type SlideProps, defaults } from "./schema.js";
 

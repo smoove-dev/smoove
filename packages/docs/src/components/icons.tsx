@@ -22,7 +22,7 @@ function Line(props: IconProps & { children: React.ReactNode }) {
 }
 
 /* ---------------- brand ---------------- */
-// Play triangle with a fading motion-afterimage trail — the konva-motion mark.
+// Play triangle with a fading motion-afterimage trail — the smoove mark.
 // Native 0 0 256 256 art; colored via currentColor (opacities give the trail).
 export function BrandMark(props: IconProps) {
   return (

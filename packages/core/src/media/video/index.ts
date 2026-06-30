@@ -134,7 +134,7 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
       this.getLayer()?.batchDraw();
     });
     this._source.load(config.src).catch((err: unknown) => {
-      console.error("[konva-motion] Video load failed:", err);
+      console.error("[smoove] Video load failed:", err);
     });
 
     this._layoutImage();

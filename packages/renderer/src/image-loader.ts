@@ -1,10 +1,10 @@
-import type { LoadedImage } from "@konva-motion/core";
+import type { LoadedImage } from "@smoove/core";
 import { loadImage } from "skia-canvas";
 
 /**
  * Server image loader backed by skia-canvas. Returns a drawable usable by the
  * konva skia backend. skia-canvas `Image` exposes `width`/`height` but not
- * `naturalWidth`/`naturalHeight`, which `@konva-motion/core`'s `Image` layout
+ * `naturalWidth`/`naturalHeight`, which `@smoove/core`'s `Image` layout
  * reads — so we define them from the decoded dimensions.
  */
 export async function loadImageNode(src: string): Promise<LoadedImage> {

@@ -3,7 +3,7 @@ import {
   setDefaultFontLoader,
   setDefaultImageLoader,
   setDefaultVideoSourceFactory,
-} from "@konva-motion/core";
+} from "@smoove/core";
 import { FontLibrary } from "skia-canvas";
 import { nullAudioSourceFactory } from "./audio-source-null.js";
 import { makeSkiaFontLoader } from "./font-loader.js";
@@ -27,7 +27,7 @@ export function registerFonts(fonts?: FontsOption): void {
  * Install everything needed to render a `Composition` headlessly in Node:
  * the konva skia backend, the global rendering flag, and Node-safe default
  * video/audio source factories + image loader (so media nodes construct without
- * a DOM). Idempotent — call it (or import `@konva-motion/renderer/register`)
+ * a DOM). Idempotent — call it (or import `@smoove/renderer/register`)
  * **before** constructing any composition.
  */
 export function setupServerRendering(opts: SetupOptions = {}): void {

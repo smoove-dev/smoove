@@ -1,4 +1,4 @@
-import type { Composition } from "@konva-motion/core";
+import type { Composition } from "@smoove/core";
 
 /**
  * Detail payloads for the DOM `CustomEvent`s dispatched by `<km-player>`.
@@ -71,7 +71,7 @@ export interface LoadedDetail {
 }
 
 /** Maps each event name to its `CustomEvent` detail type. */
-export interface KmPlayerEventMap {
+export interface SmoovePlayerEventMap {
   play: CustomEvent<PlayPauseDetail>;
   pause: CustomEvent<PlayPauseDetail>;
   ended: CustomEvent<PlayPauseDetail>;

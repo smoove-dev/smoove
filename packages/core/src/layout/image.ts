@@ -112,7 +112,7 @@ export class Image extends Konva.Group implements KMLayoutNode {
           this.getLayer()?.batchDraw();
         })
         .catch((err: unknown) => {
-          console.error("[konva-motion] Image load failed:", err);
+          console.error("[smoove] Image load failed:", err);
         });
     } else {
       this._source = config.src;

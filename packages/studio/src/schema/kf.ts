@@ -3,8 +3,8 @@ import type {
   BooleanField,
   ColorField,
   DividerField,
-  KmField,
-  KmSchema,
+  SmooveField,
+  SmooveSchema,
   MultilineField,
   MultiselectField,
   NumberField,
@@ -39,12 +39,12 @@ export const kf = {
 };
 
 /** Fields with a value (everything but dividers) — used by the form + defaults. */
-export function isValueField(f: KmField): f is Exclude<KmField, DividerField> {
+export function isValueField(f: SmooveField): f is Exclude<SmooveField, DividerField> {
   return f.type !== "divider";
 }
 
 /** Derive a default value for a single field. */
-export function defaultForField(field: KmField): unknown {
+export function defaultForField(field: SmooveField): unknown {
   switch (field.type) {
     case "divider":
       return undefined;
@@ -80,7 +80,7 @@ export function defaultsFor(schema: ObjectField): Record<string, unknown> {
 
 /** Defaults for a schema, deep-merged with caller-supplied overrides. */
 export function resolveDefaults(
-  schema: KmSchema | undefined,
+  schema: SmooveSchema | undefined,
   overrides?: Record<string, unknown>,
 ): Record<string, unknown> {
   const base = schema ? defaultsFor(schema) : {};

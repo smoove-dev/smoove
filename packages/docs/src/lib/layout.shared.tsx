@@ -1,10 +1,10 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import { BrandMark } from "../components/icons";
 
-const GH_URL = "https://github.com/konva-motion/konva-motion";
+const GH_URL = "https://github.com/smoove/smoove";
 
 // Brand lockup for the docs navbar. Self-contained (Tailwind + the BrandMark
-// SVG) because the KmStudio `base.css` that styles the home-page `.brand` isn't
+// SVG) because the SmooveStudio `base.css` that styles the home-page `.brand` isn't
 // loaded on docs routes — colors track the violet accent and Fumadocs tokens.
 function Logo() {
   return (

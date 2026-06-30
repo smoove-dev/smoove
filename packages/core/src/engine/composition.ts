@@ -66,10 +66,10 @@ const wallNow = (): number =>
   typeof globalThis.performance?.now === "function" ? globalThis.performance.now() : Date.now();
 
 // biome-ignore lint/suspicious/noExplicitAny: the marker is props-shape-agnostic; P is invariant via setProps.
-type CompositionMarker = { __KonvaMotionComposition?: Composition<any> };
+type CompositionMarker = { __SmooveComposition?: Composition<any> };
 
 export function getComposition(stage: Konva.Stage): Composition | null {
-  return (stage as Konva.Stage & CompositionMarker).__KonvaMotionComposition ?? null;
+  return (stage as Konva.Stage & CompositionMarker).__SmooveComposition ?? null;
 }
 
 export class Composition<
@@ -150,10 +150,10 @@ export class Composition<
     super(stageOpts);
 
     const marker = this as Konva.Stage & CompositionMarker;
-    if (marker.__KonvaMotionComposition) {
+    if (marker.__SmooveComposition) {
       throw new Error("A Composition is already attached to this Stage.");
     }
-    marker.__KonvaMotionComposition = this;
+    marker.__SmooveComposition = this;
 
     this.fps = fps;
     this.environment = detectEnvironment(mode);

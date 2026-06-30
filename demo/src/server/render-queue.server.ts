@@ -1,4 +1,4 @@
-import { createRenderQueue, createTempStorage } from "@konva-motion/studio/server";
+import { createRenderQueue, createTempStorage } from "@smoove/studio/server";
 import { resolve } from "./resolve.js";
 
 /**

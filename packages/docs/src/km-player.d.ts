@@ -1,7 +1,7 @@
 import type { HTMLAttributes, RefAttributes } from "react";
 
 // Ambient JSX typing for <km-player> and its control elements (a framework-
-// agnostic set of web components from @konva-motion/player) so MDX/TSX can render
+// agnostic set of web components from @smoove/player) so MDX/TSX can render
 // them directly. Boolean attributes accept the JSX shorthand (`controls`) or an
 // empty string. The control tags let a page compose a custom control bar inside
 // <km-player> instead of the default one.

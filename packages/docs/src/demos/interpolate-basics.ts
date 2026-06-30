@@ -1,4 +1,4 @@
-import { Circle, Composition, Line, Rect, Sequence, Text, interpolate } from "@konva-motion/core";
+import { Circle, Composition, Line, Rect, Sequence, Text, interpolate } from "@smoove/core";
 
 /**
  * interpolate turns the current frame into any number. Three rows show the same

@@ -1,5 +1,5 @@
 import { type TemplateResult, html } from "lit";
-import { KmControl } from "./base.js";
+import { SmooveControl } from "./base.js";
 import type { PlayerApi } from "./player-api.js";
 
 const fmt = (seconds: number): string => {
@@ -10,7 +10,7 @@ const fmt = (seconds: number): string => {
 };
 
 /** Current time / total duration readout (`m:ss / m:ss`). */
-export class KmPlayerTime extends KmControl {
+export class SmoovePlayerTime extends SmooveControl {
   protected override bind(api: PlayerApi): void {
     this.watch(api.state.frame);
     this.watch(api.state.duration);
@@ -31,5 +31,5 @@ export class KmPlayerTime extends KmControl {
 }
 
 if (!customElements.get("km-player-time")) {
-  customElements.define("km-player-time", KmPlayerTime);
+  customElements.define("km-player-time", SmoovePlayerTime);
 }

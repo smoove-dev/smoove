@@ -1,4 +1,4 @@
-import type { RegistryEntry } from "@konva-motion/studio";
+import type { RegistryEntry } from "@smoove/studio";
 
 const entry: RegistryEntry = {
   id: "flex-typewriter",

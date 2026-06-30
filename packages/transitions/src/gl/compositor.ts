@@ -46,7 +46,7 @@ export interface GlPlatform {
  *
  * The actual GL surface is supplied by a {@link GlPlatform}: a DOM/WebGL2
  * backend in the browser, or a headless-gl/skia backend during server
- * rendering (see `@konva-motion/renderer/gl`).
+ * rendering (see `@smoove/renderer/gl`).
  */
 export class GlCompositor {
   private readonly platform: GlPlatform;

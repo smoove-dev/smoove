@@ -11,7 +11,7 @@ export type Updater = (localFrame: number) => void;
 
 /**
  * Anything that expands into a list of `Sequence`s — e.g. `Series` or
- * `@konva-motion/transitions`' `TransitionSeries`. `Composition.add` accepts a
+ * `@smoove/transitions`' `TransitionSeries`. `Composition.add` accepts a
  * provider directly and adds each sequence it yields, so callers can write
  * `comp.add(series)` instead of looping over `series.sequences()`.
  */

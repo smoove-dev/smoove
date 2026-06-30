@@ -8,7 +8,7 @@ const p = {
   strokeLinejoin: "round" as const,
 };
 
-/** Inline-SVG glyph set (viewBox 0 0 18 18). Ported from the KmStudio design. */
+/** Inline-SVG glyph set (viewBox 0 0 18 18). Ported from the SmooveStudio design. */
 export const PATHS = {
   search: (
     <>
@@ -108,7 +108,7 @@ export const PATHS = {
     </>
   ),
   spark: (
-    // konva-motion mark: play triangle + motion-afterimage trail. Native art is
+    // smoove mark: play triangle + motion-afterimage trail. Native art is
     // 0 0 256 256; scale(18/256) fits it into the shared 18×18 icon viewBox.
     <g
       transform="scale(0.0703125)"

@@ -19,8 +19,8 @@ import "../styles/base.css";
 import "../styles/home.css";
 import type { Route } from "./+types/home";
 
-const GH_URL = "https://github.com/konva-motion/konva-motion";
-const INSTALL_CMD = "npm install konva-motion";
+const GH_URL = "https://github.com/smoove/smoove";
+const INSTALL_CMD = "npm install smoove";
 
 export function loader() {
   // Doc slugs are stable (content/docs/<slug>.mdx); link to them directly.
@@ -37,11 +37,11 @@ export function loader() {
 
 export function meta(_: Route.MetaArgs) {
   return [
-    { title: "konva-motion · Declarative motion for the canvas" },
+    { title: "smoove · Declarative motion for the canvas" },
     {
       name: "description",
       content:
-        "konva-motion adds a timeline and tweening engine to Konva — animate any node, sequence and loop it, and play it back smoothly.",
+        "smoove adds a timeline and tweening engine to Konva — animate any node, sequence and loop it, and play it back smoothly.",
     },
   ];
 }
@@ -77,7 +77,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
         <div className="hero__inner">
           <span className="pill">
-            <span className="dot" /> konva-motion <span className="ver">v0.1.0</span>
+            <span className="dot" /> smoove <span className="ver">v0.1.0</span>
           </span>
           <h1>
             Declarative <span className="grad">motion</span>
@@ -85,7 +85,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             for the canvas.
           </h1>
           <p className="sub">
-            konva-motion adds a timeline and tweens to Konva. Animate any node — position, scale,
+            smoove adds a timeline and tweens to Konva. Animate any node — position, scale,
             rotation, color — then sequence it, loop it, and play it back smoothly.
           </p>
           <div className="hero__cta">
@@ -163,7 +163,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               <span className="code-block__lang">js</span>
             </div>
             <pre className="scroll">
-              <code className="language-javascript">{`import { Composition, Sequence, Circle } from "@konva-motion/core";
+              <code className="language-javascript">{`import { Composition, Sequence, Circle } from "@smoove/core";
 
 const comp = new Composition({ fps: 60, durationInFrames: 1800 });
 const scene = new Sequence({ from: 0, durationInFrames: 1800 });
@@ -194,7 +194,7 @@ comp.add(scene);`}</code>
               Introduction <span className="arr">→</span>
             </span>
             <p className="qcard__desc">
-              What konva-motion is, how the timeline drives tweens, and when to reach for it.
+              What smoove is, how the timeline drives tweens, and when to reach for it.
             </p>
           </Link>
           <Link className="qcard" to={links.installation}>
@@ -248,7 +248,7 @@ comp.add(scene);`}</code>
                 <IconGithub />
               </a>
               <a
-                href="https://www.npmjs.com/package/konva-motion"
+                href="https://www.npmjs.com/package/smoove"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="npm"
@@ -294,7 +294,7 @@ comp.add(scene);`}</code>
         </div>
 
         <div className="footer-bottom">
-          <span>© 2026 konva-motion · Released under the MIT License</span>
+          <span>© 2026 smoove · Released under the MIT License</span>
         </div>
       </footer>
     </>

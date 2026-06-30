@@ -3,7 +3,7 @@ import { Brand } from "./brand";
 import { IconGithub, IconStar } from "./icons";
 import { ThemeToggle } from "./theme-toggle";
 
-const GH_URL = "https://github.com/konva-motion/konva-motion";
+const GH_URL = "https://github.com/smoove/smoove";
 
 export function HomeHeader() {
   return (
@@ -18,7 +18,7 @@ export function HomeHeader() {
         href={GH_URL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="konva-motion on GitHub"
+        aria-label="smoove on GitHub"
       >
         <IconGithub />
         <span className="gh-name">GitHub</span>

@@ -1,4 +1,4 @@
-import { Studio, useSignalValue, useStudio } from "@konva-motion/studio";
+import { Studio, useSignalValue, useStudio } from "@smoove/studio";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import registry from "../registry.js";
 import { createHttpRenderBackend } from "../render-client.js";
@@ -31,7 +31,7 @@ function SideRail() {
   const queueCount = useSignalValue(store.queueCount);
   return (
     <Studio.Sidebar>
-      <Studio.Brand name="KmStudio" tag="v1.0" onClick={() => navigate("/")} />
+      <Studio.Brand name="SmooveStudio" tag="v1.0" onClick={() => navigate("/")} />
       <Studio.Section>
         <Studio.NavItem
           icon="queue"

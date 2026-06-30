@@ -9,7 +9,7 @@ import {
   Sequence,
   Star,
   interpolate,
-} from "@konva-motion/core";
+} from "@smoove/core";
 
 const width = 1280;
 const height = 720;

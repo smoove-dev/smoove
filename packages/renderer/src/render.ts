@@ -1,6 +1,6 @@
 import { writeFile } from "node:fs/promises";
 import { PassThrough } from "node:stream";
-import { type Composition, isAudioNode, isVideoNode } from "@konva-motion/core";
+import { type Composition, isAudioNode, isVideoNode } from "@smoove/core";
 import Konva from "konva";
 import { Canvas } from "skia-canvas";
 import { mixAudio } from "./audio-mix.js";
@@ -30,7 +30,7 @@ import {
 function assertRendering(comp: Composition): void {
   if (!comp.environment.isRendering) {
     throw new Error(
-      '[konva-motion] Composition is not in rendering mode. Call setupServerRendering() (or import "@konva-motion/renderer/register") BEFORE constructing the Composition, or pass { mode: "rendering" }.',
+      '[smoove] Composition is not in rendering mode. Call setupServerRendering() (or import "@smoove/renderer/register") BEFORE constructing the Composition, or pass { mode: "rendering" }.',
     );
   }
 }
@@ -63,7 +63,7 @@ async function* framesBetween(
 ): AsyncGenerator<RenderedFrame> {
   let index = 0;
   for (let f = from; f <= to; f++) {
-    if (signal?.aborted) throw new Error("[konva-motion] render aborted");
+    if (signal?.aborted) throw new Error("[smoove] render aborted");
     await comp.renderFrame(f);
     const canvas = capture(comp);
     const data = canvas.toBufferSync("raw", { colorType: "rgba" });
@@ -132,7 +132,7 @@ async function runRender(
   try {
     let i = 0;
     for (let f = from; f <= to; f++) {
-      if (opts.signal?.aborted) throw new Error("[konva-motion] render aborted");
+      if (opts.signal?.aborted) throw new Error("[smoove] render aborted");
       await comp.renderFrame(f);
       let canvas = capture(comp);
       if (resize) canvas = fitCanvas(canvas, size, fit);

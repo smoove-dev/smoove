@@ -63,7 +63,7 @@ export class Audio extends Konva.Group implements AudioChannel {
     this._applyAudio(); // honor config volume/muted before a mixer is attached
     this._source.setPlaybackRate(this._playbackRate);
     this._source.load(config.src).catch((err: unknown) => {
-      console.error("[konva-motion] Audio load failed:", err);
+      console.error("[smoove] Audio load failed:", err);
     });
   }
 

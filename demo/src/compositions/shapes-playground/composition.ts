@@ -1,4 +1,4 @@
-import { Block, Composition, Ellipse, Rect, Sequence } from "@konva-motion/core";
+import { Block, Composition, Ellipse, Rect, Sequence } from "@smoove/core";
 import { ACCENTS } from "../accents.js";
 import type { PlaygroundProps } from "./schema.js";
 

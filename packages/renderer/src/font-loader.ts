@@ -3,11 +3,11 @@ import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import type { FontFaceDescriptor, FontLoader } from "@konva-motion/core";
+import type { FontFaceDescriptor, FontLoader } from "@smoove/core";
 import { FontLibrary } from "skia-canvas";
 
 /** Default on-disk cache for fonts fetched from remote URLs. */
-export const DEFAULT_FONT_CACHE_DIR = path.join(tmpdir(), "konva-motion-fonts");
+export const DEFAULT_FONT_CACHE_DIR = path.join(tmpdir(), "smoove-fonts");
 
 // Process-level dedup of FontLibrary.use() calls. skia accumulates faces into a
 // family (and is first-wins per weight/style slot), so re-registering the same

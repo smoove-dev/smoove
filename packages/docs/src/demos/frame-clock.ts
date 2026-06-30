@@ -1,4 +1,4 @@
-import { Circle, Composition, Line, Rect, Sequence, Text, interpolate } from "@konva-motion/core";
+import { Circle, Composition, Line, Rect, Sequence, Text, interpolate } from "@smoove/core";
 
 /**
  * Makes the frame → value mapping literal: a dot rides a track, and the readout

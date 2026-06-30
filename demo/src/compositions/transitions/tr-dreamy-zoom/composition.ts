@@ -1,4 +1,4 @@
-import { dreamyZoom } from "@konva-motion/transitions";
+import { dreamyZoom } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type DreamyZoomProps, defaults } from "./schema.js";
 

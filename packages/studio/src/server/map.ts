@@ -1,4 +1,4 @@
-import type { QualityPreset, RenderOptions, StillOptions } from "@konva-motion/renderer";
+import type { QualityPreset, RenderOptions, StillOptions } from "@smoove/renderer";
 import type { RenderRequest } from "../types.js";
 
 /**

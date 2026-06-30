@@ -1,4 +1,4 @@
-import { Block, Composition, Font, Sequence, Text } from "@konva-motion/core";
+import { Block, Composition, Font, Sequence, Text } from "@smoove/core";
 import Konva from "konva";
 import loraItalic from "../../files/fonts/lora-400-italic.woff2?url";
 import loraRegular from "../../files/fonts/lora-400-normal.woff2?url";

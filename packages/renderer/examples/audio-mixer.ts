@@ -1,5 +1,5 @@
 // Audio-mixer render demo — a port of the demo app's `audio-mixer.ts` that runs
-// headlessly through @konva-motion/renderer using the real sound + video assets
+// headlessly through @smoove/renderer using the real sound + video assets
 // (copied into ./assets). It exercises the composition mixer end to end:
 //
 //   • per-channel automation (Music A ducking under the Voice, A→B crossfade)
@@ -9,7 +9,7 @@
 // The master automation is captured per frame in the audio assets (effective
 // volume = master × intrinsic), so it's actually audible in the muxed output.
 //
-// Run:  pnpm --filter @konva-motion/renderer example:mixer
+// Run:  pnpm --filter @smoove/renderer example:mixer
 //   or: npx tsx examples/audio-mixer.ts [outPath]
 
 import { dirname, join } from "node:path";
@@ -21,8 +21,8 @@ import {
   Video,
   interpolate,
   interpolateColors,
-} from "@konva-motion/core";
-import { renderComposition, setupServerRendering } from "@konva-motion/renderer";
+} from "@smoove/core";
+import { renderComposition, setupServerRendering } from "@smoove/renderer";
 import Konva from "konva";
 
 // Set up server rendering BEFORE building the comp. Cap the video decode so the

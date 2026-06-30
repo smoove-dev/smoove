@@ -1,4 +1,4 @@
-import { Block, Composition, Flex, Image, Sequence } from "@konva-motion/core";
+import { Block, Composition, Flex, Image, Sequence } from "@smoove/core";
 import Konva from "konva";
 
 const MESSAGE =

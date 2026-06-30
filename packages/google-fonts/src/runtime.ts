@@ -1,4 +1,4 @@
-import { Font, type FontStyleName } from "@konva-motion/core";
+import { Font, type FontStyleName } from "@smoove/core";
 
 /**
  * Options for a generated Google font. `weights`, `styles`, and `subset` are
@@ -55,11 +55,11 @@ function pickSubset(
 ): Readonly<Record<string, string>> {
   const map = (subset && faces[subset]) ?? faces[DEFAULT_SUBSET] ?? Object.values(faces)[0];
   if (!map) {
-    throw new Error(`@konva-motion/google-fonts: "${family}" has no subsets.`);
+    throw new Error(`@smoove/google-fonts: "${family}" has no subsets.`);
   }
   if (subset && !faces[subset]) {
     console.warn(
-      `[konva-motion] google-fonts "${family}": no "${subset}" subset; using "${faces[DEFAULT_SUBSET] ? DEFAULT_SUBSET : Object.keys(faces)[0]}".`,
+      `[smoove] google-fonts "${family}": no "${subset}" subset; using "${faces[DEFAULT_SUBSET] ? DEFAULT_SUBSET : Object.keys(faces)[0]}".`,
     );
   }
   return map;
@@ -83,7 +83,7 @@ function selectFaces(
   }
   if (out.length === 0) {
     throw new Error(
-      `@konva-motion/google-fonts: "${family}" — no faces match the selected weights/styles.`,
+      `@smoove/google-fonts: "${family}" — no faces match the selected weights/styles.`,
     );
   }
   return out;

@@ -1,4 +1,4 @@
-import { bookFlip } from "@konva-motion/transitions";
+import { bookFlip } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type BookFlipProps, defaults } from "./schema.js";
 

@@ -1,4 +1,4 @@
-import { Composition, Sequence } from "@konva-motion/core";
+import { Composition, Sequence } from "@smoove/core";
 import Konva from "konva";
 
 const width = 1280;

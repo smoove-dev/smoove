@@ -13,24 +13,24 @@ import "./fullscreen-button.js";
 import "./progress.js";
 
 // Host
-export { KmPlayer } from "./km-player.js";
+export { SmoovePlayer } from "./km-player.js";
 
 // Layout containers
 export {
-  KmPlayerOverlay,
-  KmPlayerControls,
-  KmPlayerControlsRow,
-  KmPlayerSpace,
+  SmoovePlayerOverlay,
+  SmoovePlayerControls,
+  SmoovePlayerControlsRow,
+  SmoovePlayerSpace,
 } from "./containers.js";
 
 // Controls
-export { KmPlayerPlayButton } from "./play-button.js";
-export { KmPlayerPlayToggleButton } from "./play-toggle-button.js";
-export { KmPlayerSoundControl } from "./sound-control.js";
-export { KmPlayerTime } from "./time.js";
-export { KmPlayerLoopButton } from "./loop-button.js";
-export { KmPlayerFullscreenButton } from "./fullscreen-button.js";
-export { KmPlayerProgress } from "./progress.js";
+export { SmoovePlayerPlayButton } from "./play-button.js";
+export { SmoovePlayerPlayToggleButton } from "./play-toggle-button.js";
+export { SmoovePlayerSoundControl } from "./sound-control.js";
+export { SmoovePlayerTime } from "./time.js";
+export { SmoovePlayerLoopButton } from "./loop-button.js";
+export { SmoovePlayerFullscreenButton } from "./fullscreen-button.js";
+export { SmoovePlayerProgress } from "./progress.js";
 
 // State sharing
 export { playerContext, getPlayerApi } from "./context.js";
@@ -51,5 +51,5 @@ export type {
   PlayerErrorDetail,
   LoadStartDetail,
   LoadedDetail,
-  KmPlayerEventMap,
+  SmoovePlayerEventMap,
 } from "./events.js";

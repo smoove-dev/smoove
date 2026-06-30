@@ -1,8 +1,8 @@
-import { Block, Composition, Sequence, Text } from "@konva-motion/core";
-import JetBrainsMono from "@konva-motion/google-fonts/jetbrains-mono";
-import Pacifico from "@konva-motion/google-fonts/pacifico";
-import PlayfairDisplay from "@konva-motion/google-fonts/playfair-display";
-import Roboto from "@konva-motion/google-fonts/roboto";
+import { Block, Composition, Sequence, Text } from "@smoove/core";
+import JetBrainsMono from "@smoove/google-fonts/jetbrains-mono";
+import Pacifico from "@smoove/google-fonts/pacifico";
+import PlayfairDisplay from "@smoove/google-fonts/playfair-display";
+import Roboto from "@smoove/google-fonts/roboto";
 import Konva from "konva";
 
 const fps = 30;
@@ -99,7 +99,7 @@ col.add(
   new Text({
     width: "100%",
     font: roboto,
-    text: "Four Google fonts, pulled by subpath import from @konva-motion/google-fonts and loaded from the CDN, buffered before play.",
+    text: "Four Google fonts, pulled by subpath import from @smoove/google-fonts and loaded from the CDN, buffered before play.",
     fontSize: 15,
     lineHeight: 1.5,
     fill: "#7d8590",

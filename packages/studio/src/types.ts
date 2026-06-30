@@ -1,7 +1,7 @@
-import type { Composition, ReadonlySignal } from "@konva-motion/core";
+import type { Composition, ReadonlySignal } from "@smoove/core";
 import type { IconName } from "./components/icon/paths.js";
 import type { LayerKind } from "./lib/constants.js";
-import type { KmSchema } from "./schema/types.js";
+import type { SmooveSchema } from "./schema/types.js";
 
 /** A signal you can both read and write. The store owns the writable side and
     pushes form edits onto the composition via `comp.setProps`. */
@@ -43,7 +43,7 @@ export interface RegistryEntry<P extends Record<string, unknown> = Record<string
   tags?: string[];
   description?: string;
   /** Drives the auto-generated props form. */
-  propsSchema?: KmSchema;
+  propsSchema?: SmooveSchema;
   /** Overrides deep-merged over the schema defaults. */
   defaultProps?: P;
   /** Explicit layer override; otherwise layers are derived from the comp. */

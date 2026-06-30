@@ -1,7 +1,7 @@
 import { type Plugin, transformWithEsbuild } from "vite";
 
 /**
- * @konva-motion/vite — makes the studio feel like a framework under Vite.
+ * @smoove/vite — makes the studio feel like a framework under Vite.
  *
  * It wires HMR for you. A registry module is authored as
  * `export default defineRegistry([pulse, ribbon, …])`, where each identifier is
@@ -27,7 +27,7 @@ import { type Plugin, transformWithEsbuild } from "vite";
  * })` just work in both — no per-`src` helper to remember. (The `?url` query is
  * stripped before matching, so both bare and `?url` imports are handled.)
  */
-export interface KonvaMotionOptions {
+export interface SmooveOptions {
   /** Which modules are treated as registry files. Default: `*registry.{ts,tsx,js,jsx}`. */
   include?: RegExp;
   /**
@@ -47,12 +47,12 @@ const DEFAULT_SERVER_ASSETS =
 // biome-ignore lint/suspicious/noExplicitAny: ESTree nodes are walked structurally.
 type AnyNode = any;
 
-export function konvaMotion(options: KonvaMotionOptions = {}): Plugin {
+export function smoove(options: SmooveOptions = {}): Plugin {
   const include = options.include ?? /registry\.(?:t|j)sx?$/;
   const serverAssets = options.serverAssets ?? DEFAULT_SERVER_ASSETS;
 
   return {
-    name: "konva-motion",
+    name: "smoove",
     enforce: "pre",
     load(id, loadOptions) {
       const file = id.split("?")[0] ?? id;
@@ -91,8 +91,8 @@ export function konvaMotion(options: KonvaMotionOptions = {}): Plugin {
 }
 
 /** Alias under the name the framework is marketed with. */
-export const reactMotionStudio = konvaMotion;
-export default konvaMotion;
+export const reactMotionStudio = smoove;
+export default smoove;
 
 // ---------------------------------------------------------------- internals
 
@@ -163,7 +163,7 @@ function buildOutput(code: string, specs: string[]): string {
   // Name the default export so the appended code can reference it.
   const named = code.replace(/export\s+default\s+/, `const ${REG} = `);
 
-  const lines = [named, "", "/* @konva-motion/vite — injected HMR */", `export default ${REG};`];
+  const lines = [named, "", "/* @smoove/vite — injected HMR */", `export default ${REG};`];
 
   if (specs.length > 0) {
     lines.push(

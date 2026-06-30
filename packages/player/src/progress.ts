@@ -1,5 +1,5 @@
 import { type TemplateResult, html } from "lit";
-import { KmControl } from "./base.js";
+import { SmooveControl } from "./base.js";
 import type { PlayerApi } from "./player-api.js";
 
 const clamp01 = (x: number): number => Math.max(0, Math.min(1, x));
@@ -8,7 +8,7 @@ const clamp01 = (x: number): number => Math.max(0, Math.min(1, x));
  * Draggable seek bar. Mirrors the demo studio's scrubber UX: grabbing pauses
  * playback and resumes on release, dragging seeks live.
  */
-export class KmPlayerProgress extends KmControl {
+export class SmoovePlayerProgress extends SmooveControl {
   private _dragging = false;
   private _wasPlaying = false;
 
@@ -81,5 +81,5 @@ export class KmPlayerProgress extends KmControl {
 }
 
 if (!customElements.get("km-player-progress")) {
-  customElements.define("km-player-progress", KmPlayerProgress);
+  customElements.define("km-player-progress", SmoovePlayerProgress);
 }

@@ -1,4 +1,4 @@
-import { Composition, Easing, Image, Rect, Sequence, interpolate } from "@konva-motion/core";
+import { Composition, Easing, Image, Rect, Sequence, interpolate } from "@smoove/core";
 import Konva from "konva";
 
 /**
@@ -9,7 +9,7 @@ import Konva from "konva";
  */
 const FONT = "ui-sans-serif, system-ui, sans-serif";
 const MUTED = "#7d8590";
-const SRC = "https://picsum.photos/seed/konva-motion/640/640";
+const SRC = "https://picsum.photos/seed/smoove/640/640";
 
 const width = 1280;
 const height = 720;

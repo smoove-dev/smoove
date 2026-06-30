@@ -6,8 +6,8 @@ import "./app.css";
 // the prebuilt files (self-contained ESM bundle + its stylesheet) instead of
 // inlining them into the docs bundle, so the docs site loads <km-player> via a
 // plain <script>/<link> — exactly the way a CDN consumer would.
-import playerScriptUrl from "@konva-motion/player/standalone?url";
-import playerStylesUrl from "@konva-motion/player/styles.css?url";
+import playerScriptUrl from "@smoove/player/standalone?url";
+import playerStylesUrl from "@smoove/player/styles.css?url";
 
 export function links() {
   return [
@@ -32,7 +32,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <Meta />
         <Links />
-        {/* Registers <km-player> + controls and pins window.KonvaMotion / Konva.
+        {/* Registers <km-player> + controls and pins window.Smoove / Konva.
             type="module" defers it, so element upgrade happens post-parse. */}
         <script type="module" src={playerScriptUrl} />
       </head>

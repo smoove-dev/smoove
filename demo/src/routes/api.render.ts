@@ -1,4 +1,4 @@
-import type { RenderRequest } from "@konva-motion/studio";
+import type { RenderRequest } from "@smoove/studio";
 import type { ActionFunctionArgs } from "react-router";
 import { queue } from "../server/render-queue.server.js";
 

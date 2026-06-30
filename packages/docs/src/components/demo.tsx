@@ -4,7 +4,7 @@ import { BrandMark } from "./icons";
 
 // Minimal slice of the <km-player> imperative API we drive from the overlay and
 // expose to callers (e.g. a footer panel that pushes props).
-export interface KmPlayerEl extends HTMLElement {
+export interface SmoovePlayerEl extends HTMLElement {
   toggle(): void;
   isPlaying(): boolean;
   setProps(props: Record<string, unknown>): void;
@@ -68,11 +68,11 @@ export function Demo({
   initialframe?: number;
   // Optional caller-owned ref to the <km-player> element, populated alongside
   // the internal one so a footer can call its imperative API.
-  playerRef?: React.MutableRefObject<KmPlayerEl | null>;
+  playerRef?: React.MutableRefObject<SmoovePlayerEl | null>;
 }) {
   const [showSource, setShowSource] = useState(false);
-  const playerRef = useRef<KmPlayerEl | null>(null);
-  const setPlayerRef = (el: KmPlayerEl | null) => {
+  const playerRef = useRef<SmoovePlayerEl | null>(null);
+  const setPlayerRef = (el: SmoovePlayerEl | null) => {
     playerRef.current = el;
     if (externalPlayerRef) externalPlayerRef.current = el;
   };

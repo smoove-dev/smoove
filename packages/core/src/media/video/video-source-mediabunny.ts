@@ -72,7 +72,7 @@ export class MediabunnyVideoSource implements VideoSource, SchedulableAudioSourc
     this._canvas.width = 1;
     this._canvas.height = 1;
     const ctx = this._canvas.getContext("2d");
-    if (!ctx) throw new Error("[konva-motion] 2D canvas context unavailable");
+    if (!ctx) throw new Error("[smoove] 2D canvas context unavailable");
     this._ctx = ctx;
   }
 
@@ -80,9 +80,9 @@ export class MediabunnyVideoSource implements VideoSource, SchedulableAudioSourc
     const input = new Input({ formats: ALL_FORMATS, source: new UrlSource(src) });
     this._input = input;
     const track = await input.getPrimaryVideoTrack();
-    if (!track) throw new Error(`[konva-motion] no video track in: ${src}`);
+    if (!track) throw new Error(`[smoove] no video track in: ${src}`);
     if (!(await track.canDecode())) {
-      throw new Error(`[konva-motion] cannot decode video track in: ${src}`);
+      throw new Error(`[smoove] cannot decode video track in: ${src}`);
     }
     if (this._disposed) return;
 
@@ -176,7 +176,7 @@ export class MediabunnyVideoSource implements VideoSource, SchedulableAudioSourc
       try {
         await this._satisfy(time);
       } catch (err) {
-        if (!this._disposed) console.error("[konva-motion] video seek failed:", err);
+        if (!this._disposed) console.error("[smoove] video seek failed:", err);
       }
       for (const r of resolvers) r();
     }

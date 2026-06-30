@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
-import "@konva-motion/studio/styles.css";
+import "@smoove/studio/styles.css";
 import "./app.css";
 
 export function links() {
@@ -20,7 +20,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>KmStudio — demo2</title>
+        <title>SmooveStudio — demo2</title>
         <Meta />
         <Links />
       </head>

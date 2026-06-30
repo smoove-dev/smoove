@@ -1,4 +1,4 @@
-import { Composition, Sequence, Video } from "@konva-motion/core";
+import { Composition, Sequence, Video } from "@smoove/core";
 import Konva from "konva";
 import clip1Url from "./assets/sync-test-1.mp4";
 import clip2Url from "./assets/sync-test-2.mp4";

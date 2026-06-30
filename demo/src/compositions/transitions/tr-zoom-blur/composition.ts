@@ -1,4 +1,4 @@
-import { zoomBlur } from "@konva-motion/transitions";
+import { zoomBlur } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type ZoomBlurProps, defaults } from "./schema.js";
 

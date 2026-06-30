@@ -1,4 +1,4 @@
-import type { RegistryEntry } from "@konva-motion/studio";
+import type { RegistryEntry } from "@smoove/studio";
 import { type FilmBurnProps, schema } from "./schema.js";
 
 const entry: RegistryEntry<FilmBurnProps> = {

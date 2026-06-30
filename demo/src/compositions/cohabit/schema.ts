@@ -1,4 +1,4 @@
-import { kf } from "@konva-motion/studio";
+import { kf } from "@smoove/studio";
 
 export type CohabitBubble = { text: string; wide: boolean };
 export type CohabitEndCard = {

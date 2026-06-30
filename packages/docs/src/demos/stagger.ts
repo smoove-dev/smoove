@@ -1,4 +1,4 @@
-import { Composition, Rect, Sequence, Text, interpolate } from "@konva-motion/core";
+import { Composition, Rect, Sequence, Text, interpolate } from "@smoove/core";
 
 /**
  * One sequence, eight bars, the same rise-and-fall tween offset by a per-index

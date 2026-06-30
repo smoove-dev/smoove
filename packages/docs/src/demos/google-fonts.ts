@@ -1,9 +1,9 @@
-import { Composition, Sequence, Text, interpolate } from "@konva-motion/core";
-import PlayfairDisplay from "@konva-motion/google-fonts/playfair-display";
+import { Composition, Sequence, Text, interpolate } from "@smoove/core";
+import PlayfairDisplay from "@smoove/google-fonts/playfair-display";
 
 /**
  * The google-fonts demo. One typed import per family
- * (`@konva-motion/google-fonts/playfair-display`) gives a `Font` subclass; we
+ * (`@smoove/google-fonts/playfair-display`) gives a `Font` subclass; we
  * register two weights and an italic, then pick faces with `.face(...)`. No font
  * files to host: the package points at Google's woff2 URLs, and the composition
  * buffers on them like any other `Font`.
@@ -31,7 +31,7 @@ scene.add(playfair);
 
 const lines: Array<{ text: string; selector: string; size: number; fill: string }> = [
   { text: "Playfair Display", selector: "700", size: 88, fill: "#f9fafb" },
-  { text: "from @konva-motion/google-fonts", selector: "400", size: 40, fill: "#9ca3af" },
+  { text: "from @smoove/google-fonts", selector: "400", size: 40, fill: "#9ca3af" },
   { text: "one import per family", selector: "400-italic", size: 40, fill: "#a5b4fc" },
 ];
 

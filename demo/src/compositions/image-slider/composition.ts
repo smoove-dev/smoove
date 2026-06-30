@@ -1,4 +1,4 @@
-import { Composition, Easing, Sequence, interpolate } from "@konva-motion/core";
+import { Composition, Easing, Sequence, interpolate } from "@smoove/core";
 import Konva from "konva";
 
 const SEEDS = ["mountain", "ocean", "forest", "desert"];

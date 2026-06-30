@@ -1,4 +1,4 @@
-import type { Environment, VideoSource, VideoSourceFactory } from "@konva-motion/core";
+import type { Environment, VideoSource, VideoSourceFactory } from "@smoove/core";
 import {
   ALL_FORMATS,
   Input,
@@ -71,9 +71,9 @@ export class MediabunnyVideoSource implements VideoSource {
     const input = new Input({ formats: ALL_FORMATS, source: makeInputSource(src) });
     this._input = input;
     const track = await input.getPrimaryVideoTrack();
-    if (!track) throw new Error(`[konva-motion] no video track in: ${src}`);
+    if (!track) throw new Error(`[smoove] no video track in: ${src}`);
     if (!(await track.canDecode())) {
-      throw new Error(`[konva-motion] cannot decode video track in: ${src}`);
+      throw new Error(`[smoove] cannot decode video track in: ${src}`);
     }
     if (this._disposed) return;
 
@@ -155,7 +155,7 @@ export class MediabunnyVideoSource implements VideoSource {
       try {
         await this._satisfy(time);
       } catch (err) {
-        if (!this._disposed) console.error("[konva-motion] video seek failed:", err);
+        if (!this._disposed) console.error("[smoove] video seek failed:", err);
       }
       for (const r of resolvers) r();
     }

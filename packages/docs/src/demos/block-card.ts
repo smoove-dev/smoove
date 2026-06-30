@@ -5,7 +5,7 @@ import {
   Sequence,
   Text,
   interpolateColors,
-} from "@konva-motion/core";
+} from "@smoove/core";
 
 /**
  * A card built with Block: a Flex container that paints a gradient background,

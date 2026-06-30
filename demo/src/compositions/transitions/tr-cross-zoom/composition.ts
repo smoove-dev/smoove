@@ -1,4 +1,4 @@
-import { crossZoom } from "@konva-motion/transitions";
+import { crossZoom } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type CrossZoomProps, defaults } from "./schema.js";
 

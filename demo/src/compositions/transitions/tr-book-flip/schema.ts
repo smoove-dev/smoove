@@ -1,4 +1,4 @@
-import { kf } from "@konva-motion/studio";
+import { kf } from "@smoove/studio";
 import { type Direction, directionField } from "../_shared.js";
 
 export type BookFlipProps = { direction: Direction };

@@ -6,14 +6,14 @@ import type { RenderStorage, StoredArtifact } from "./types.js";
 
 /**
  * The default {@link RenderStorage}: artifacts live as files under a directory
- * in the server's temp space (`os.tmpdir()/konva-motion-renders` by default).
+ * in the server's temp space (`os.tmpdir()/smoove-renders` by default).
  *
  * The renderer writes directly to the file path returned by `put()`, so this is
  * a thin shim over the filesystem — no copy on the hot path. A host that needs
  * durable/remote storage implements the `RenderStorage` contract instead.
  */
 export function createTempStorage(opts: { dir?: string } = {}): RenderStorage {
-  const root = opts.dir ?? join(tmpdir(), "konva-motion-renders");
+  const root = opts.dir ?? join(tmpdir(), "smoove-renders");
   /** jobId → { path, contentType, filename } for finished artifacts. */
   const index = new Map<string, { path: string; contentType: string; filename: string }>();
 

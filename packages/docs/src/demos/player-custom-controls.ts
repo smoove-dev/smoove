@@ -1,4 +1,4 @@
-import { Circle, Composition, Easing, Rect, Sequence, Text, interpolate } from "@konva-motion/core";
+import { Circle, Composition, Easing, Rect, Sequence, Text, interpolate } from "@smoove/core";
 
 /**
  * A short, self-contained scene for the custom-controls example on the player

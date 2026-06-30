@@ -216,7 +216,7 @@ function renderManifest(
 /** Metadata for every generated family. NOT a font barrel — importing this does
     not pull any font module, so per-font tree-shaking is preserved. */
 export interface GoogleFontInfo {
-  /** Import slug: \`@konva-motion/google-fonts/<slug>\`. */
+  /** Import slug: \`@smoove/google-fonts/<slug>\`. */
   slug: string;
   family: string;
   weights: string[];

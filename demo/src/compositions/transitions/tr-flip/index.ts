@@ -1,4 +1,4 @@
-import type { RegistryEntry } from "@konva-motion/studio";
+import type { RegistryEntry } from "@smoove/studio";
 import { type FlipProps, schema } from "./schema.js";
 
 const entry: RegistryEntry<FlipProps> = {

@@ -1,10 +1,10 @@
 import { resolveDefaults } from "../schema/kf.js";
-import type { KmSchema } from "../schema/types.js";
+import type { SmooveSchema } from "../schema/types.js";
 import { usePlayerSignal } from "../signals/signal-bridge.js";
 import { useStudio } from "./use-studio.js";
 
 export type PropsForm = {
-  schema?: KmSchema;
+  schema?: SmooveSchema;
   values: Record<string, unknown>;
   setValue: (key: string, value: unknown) => void;
   setValues: (next: Record<string, unknown>) => void;

@@ -8,14 +8,14 @@
  * <script src="player.global.js"></script>
  * <km-player controls></km-player>
  * <script>
- *   const { Composition, Sequence, Rect } = window.KonvaMotion;
+ *   const { Composition, Sequence, Rect } = window.Smoove;
  *   const comp = new Composition({ width: 640, height: 360, fps: 30, durationInFrames: 90 });
  *   // ...build comp...
  *   document.querySelector("km-player").composition = comp;
  * </script>
  * ```
  */
-import * as KonvaMotion from "@konva-motion/core";
+import * as Smoove from "@smoove/core";
 import Konva from "konva";
 
 // Registers <km-player> + every control element as a side effect.
@@ -23,15 +23,15 @@ import "./index.js";
 
 declare global {
   interface Window {
-    KonvaMotion: typeof KonvaMotion;
+    Smoove: typeof Smoove;
     Konva: typeof Konva;
   }
 }
 
 const g = globalThis as unknown as Window;
-g.KonvaMotion = KonvaMotion;
+g.Smoove = Smoove;
 g.Konva = Konva;
 
-// Re-exported so the IIFE global (`window.KonvaMotionPlayer`) carries the
+// Re-exported so the IIFE global (`window.SmoovePlayer`) carries the
 // player element classes too.
 export * from "./index.js";

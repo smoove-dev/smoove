@@ -1,5 +1,5 @@
 import { type PropertyValues, type TemplateResult, html } from "lit";
-import { KmControl } from "./base.js";
+import { SmooveControl } from "./base.js";
 import { icon } from "./icons.js";
 import type { PlayerApi } from "./player-api.js";
 
@@ -10,7 +10,7 @@ const SIZES: Record<string, number> = { small: 28, medium: 44, large: 72 };
  * `size` is `small | medium | large`. Reflects a `playing` attribute so the
  * stylesheet can fade it out during playback.
  */
-export class KmPlayerPlayButton extends KmControl {
+export class SmoovePlayerPlayButton extends SmooveControl {
   static override properties = {
     size: { type: String, reflect: true },
     playing: { type: Boolean, reflect: true },
@@ -41,5 +41,5 @@ export class KmPlayerPlayButton extends KmControl {
 }
 
 if (!customElements.get("km-player-play-button")) {
-  customElements.define("km-player-play-button", KmPlayerPlayButton);
+  customElements.define("km-player-play-button", SmoovePlayerPlayButton);
 }

@@ -1,4 +1,4 @@
-import { Studio } from "@konva-motion/studio";
+import { Studio } from "@smoove/studio";
 import { useNavigate } from "react-router";
 
 /** The render queue as its own route. */

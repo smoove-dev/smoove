@@ -3,7 +3,7 @@ import { FlexShape } from "./flex/mixin.js";
 import type { FlexChildProps, SizeValue } from "./flex/types.js";
 
 /**
- * konva-motion wrappers for Konva's drawing primitives. Each one keeps Konva's
+ * smoove wrappers for Konva's drawing primitives. Each one keeps Konva's
  * own name and config, and layers on flex participation (`flexGrow`,
  * `flexShrink`, `flexBasis`, `alignSelf`, `margin`) plus `px`/`%` `width`/
  * `height` size values — so any shape can sit inside a {@link Flex}/{@link Block}

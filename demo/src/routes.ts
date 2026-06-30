@@ -7,7 +7,7 @@ export default [
     route("queue", "routes/queue.tsx"),
   ]),
   // Render API (resource routes — no UI). All HTTP for the render queue lives
-  // here; the queue itself comes from @konva-motion/studio/server.
+  // here; the queue itself comes from @smoove/studio/server.
   route("api/render", "routes/api.render.ts"),
   route("api/render/:jobId/events", "routes/api.render.events.ts"),
   route("api/render/:jobId/download", "routes/api.render.download.ts"),

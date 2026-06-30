@@ -1,4 +1,4 @@
-import { flip } from "@konva-motion/transitions";
+import { flip } from "@smoove/transitions";
 import { transitionComp } from "../_shared.js";
 import { type FlipProps, defaults } from "./schema.js";
 

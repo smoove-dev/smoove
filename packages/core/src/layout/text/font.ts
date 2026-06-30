@@ -98,7 +98,7 @@ export class Font extends Konva.Group {
       const slot = `${f.weight}-${f.style}`;
       if (seen.has(slot)) {
         console.warn(
-          `[konva-motion] Font "${this.family}": duplicate ${slot} face — only the first is used.`,
+          `[smoove] Font "${this.family}": duplicate ${slot} face — only the first is used.`,
         );
       }
       seen.add(slot);
@@ -122,7 +122,7 @@ export class Font extends Konva.Group {
         this._loaded = true;
       })
       .catch((err: unknown) => {
-        console.error(`[konva-motion] Font "${this.family}" load failed:`, err);
+        console.error(`[smoove] Font "${this.family}" load failed:`, err);
       });
     return this._loadPromise;
   }

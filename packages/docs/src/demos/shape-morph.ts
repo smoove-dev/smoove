@@ -8,7 +8,7 @@ import {
   Sequence,
   Star,
   interpolate,
-} from "@konva-motion/core";
+} from "@smoove/core";
 import Konva from "konva";
 
 /**

@@ -1,4 +1,4 @@
-import { defineRegistry } from "@konva-motion/studio";
+import { defineRegistry } from "@smoove/studio";
 
 // Featured (ungrouped) — the props-driven intro.
 import pulse from "./compositions/pulse/index.js";
@@ -66,7 +66,7 @@ import cohabit from "./compositions/cohabit/index.js";
 /**
  * The demo registry. Each demo lives in its own directory — `schema.ts`
  * (optional), `composition.ts` (default-exports the `Composition`), and
- * `index.ts` (default-exports the `RegistryEntry`). The `@konva-motion/vite`
+ * `index.ts` (default-exports the `RegistryEntry`). The `@smoove/vite`
  * plugin wires HMR for each entry automatically. Sidebar grouping is driven by
  * each entry's `group` field; order below is preserved within a group.
  */

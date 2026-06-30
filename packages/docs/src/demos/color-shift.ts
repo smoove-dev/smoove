@@ -1,4 +1,4 @@
-import { Composition, Rect, Sequence, Text, interpolateColors } from "@konva-motion/core";
+import { Composition, Rect, Sequence, Text, interpolateColors } from "@smoove/core";
 
 /**
  * interpolateColors walks a value across a list of colors and returns an rgba

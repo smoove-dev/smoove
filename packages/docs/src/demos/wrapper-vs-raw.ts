@@ -1,4 +1,4 @@
-import { Composition, Flex, Rect, Sequence, Text } from "@konva-motion/core";
+import { Composition, Flex, Rect, Sequence, Text } from "@smoove/core";
 import Konva from "konva";
 
 /**

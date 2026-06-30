@@ -1,4 +1,4 @@
-import type { AudioAsset, Composition } from "@konva-motion/core";
+import type { AudioAsset, Composition } from "@smoove/core";
 import type { AudioClip, VolumeKeyframe } from "./types.js";
 
 /**

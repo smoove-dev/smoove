@@ -10,7 +10,7 @@ import type { ReadonlySignal } from "./signal.js";
  * `<km-player>` on connect and offers {@link watch} to re-render when a player
  * signal changes.
  */
-export abstract class KmControl extends LitElement {
+export abstract class SmooveControl extends LitElement {
   /** The resolved player, or `null` if used outside a `<km-player>`. */
   protected api: PlayerApi | null = null;
   private _unsubs: Array<() => void> = [];
@@ -51,4 +51,4 @@ export abstract class KmControl extends LitElement {
  * wipe that content — they are bare custom elements that only exist for
  * semantics + CSS targeting. All styling lives in the opt-in stylesheet.
  */
-export class KmContainer extends HTMLElement {}
+export class SmooveContainer extends HTMLElement {}

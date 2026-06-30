@@ -1,4 +1,4 @@
-// TODO: promote to @konva-motion/core (a general-purpose spring() solver).
+// TODO: promote to @smoove/core (a general-purpose spring() solver).
 // Self-contained physics spring, ported from Remotion's packages/core/src/spring.
 // Analytic solution to the damped harmonic oscillator — pure & deterministic.
 

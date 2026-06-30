@@ -1,4 +1,4 @@
-import { type Composition, Sequence } from "@konva-motion/core";
+import { type Composition, Sequence } from "@smoove/core";
 import type { LayerKind } from "../lib/constants.js";
 import { clamp01 } from "../lib/format.js";
 import type { StudioLayer } from "../types.js";
