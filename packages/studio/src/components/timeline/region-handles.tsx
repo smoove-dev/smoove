@@ -12,17 +12,18 @@ function RegionHandle({
   onStart: (which: DragKind, e: React.MouseEvent) => void;
 }) {
   return (
-    <div
-      className="absolute top-0 bottom-0 w-[11px] -translate-x-1/2 z-[5] cursor-ew-resize flex items-start justify-center group/h"
+    <button
+      className="absolute top-0 bottom-0 w-2.75 -translate-x-1/2 z-5 cursor-ew-resize flex outline-0 items-start justify-center group/h"
       style={{ left: `${frac * 100}%` }}
+      type="button"
       onMouseDown={(e) => {
         e.stopPropagation();
         onStart(which, e);
       }}
       title={which === "in" ? "Loop start" : "Loop end"}
     >
-      <span className="w-[3px] h-full bg-accent rounded-sm shadow-[0_0_6px_var(--color-accent-soft)] group-hover/h:w-1 group-hover/h:bg-accent-2" />
-    </div>
+      <span className="w-0.75 h-full bg-accent rounded-sm shadow-[0_0_6px_var(--color-accent-soft)] group-hover/h:w-1 group-hover/h:bg-accent-2" />
+    </button>
   );
 }
 

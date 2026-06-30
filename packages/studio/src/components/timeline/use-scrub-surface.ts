@@ -14,7 +14,7 @@ export function useScrubSurface(total: number) {
   const store = useStudio();
   const player = useSignalValue(store.player);
   const region = useSignalValue(store.region);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLButtonElement | null>(null);
   const [drag, setDrag] = useState<DragKind | null>(null);
   const [hover, setHover] = useState<number | null>(null);
 

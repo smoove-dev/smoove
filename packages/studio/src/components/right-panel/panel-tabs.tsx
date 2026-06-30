@@ -2,7 +2,6 @@ import { useComposition } from "../../hooks/use-composition.js";
 import { useStudio } from "../../hooks/use-studio.js";
 import { useSignalValue } from "../../signals/signal-bridge.js";
 import { IconButton } from "../button/icon-button.js";
-import { Icon } from "../icon/icon.js";
 import { StTabs, Tab, TabList, TabPanel } from "../primitives/tabs.js";
 import { StTooltip } from "../primitives/tooltip.js";
 import { SchemaForm } from "../schema-form/schema-form.js";

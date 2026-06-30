@@ -1,11 +1,5 @@
 import type { Environment, VideoSource, VideoSourceFactory } from "@smoove/core";
-import {
-  ALL_FORMATS,
-  Input,
-  type InputVideoTrack,
-  type VideoSample,
-  VideoSampleSink,
-} from "mediabunny";
+import { ALL_FORMATS, Input, type VideoSample, VideoSampleSink } from "mediabunny";
 import { Canvas, ImageData, type CanvasRenderingContext2D as SkiaContext } from "skia-canvas";
 import { makeInputSource } from "./media-input-source.js";
 
@@ -45,7 +39,7 @@ export class MediabunnyVideoSource implements VideoSource {
   private _imageData: ImageData | null = null;
 
   private _input: Input | null = null;
-  private _track: InputVideoTrack | null = null;
+
   private _sink: VideoSampleSink | null = null;
 
   private _ready = false;
@@ -77,7 +71,6 @@ export class MediabunnyVideoSource implements VideoSource {
     }
     if (this._disposed) return;
 
-    this._track = track;
     const dw = await track.getDisplayWidth();
     const dh = await track.getDisplayHeight();
     let w = dw;
@@ -252,7 +245,7 @@ export class MediabunnyVideoSource implements VideoSource {
     this._next = null;
     this._input?.dispose();
     this._input = null;
-    this._track = null;
+
     this._sink = null;
     this._canvas = null;
     this._ctx = null;

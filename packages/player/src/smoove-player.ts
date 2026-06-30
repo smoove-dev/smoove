@@ -1,9 +1,7 @@
-import { ContextProvider } from "@lit/context";
 import type { Composition } from "@smoove/core";
-import { playerContext } from "./context.js";
 import { createDefaultControls } from "./default-controls.js";
 import type { PlayerApi, PlayerState } from "./player-api.js";
-import { createSignal, type Signal } from "./signal.js";
+import { createSignal } from "./signal.js";
 
 const TIMEUPDATE_INTERVAL_MS = 250;
 const now = (): number => (typeof performance?.now === "function" ? performance.now() : Date.now());
@@ -99,7 +97,6 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
   private _canvasEl: HTMLDivElement | null = null;
   private _resizeObserver: ResizeObserver | null = null;
   private _mutationObserver: MutationObserver | null = null;
-  private _provider: ContextProvider<typeof playerContext> | null = null;
 
   // --- public reactive accessors (PlayerApi) ---------------------------------
   get composition(): Composition | null {
@@ -169,11 +166,6 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
   connectedCallback(): void {
     if (!this.hasAttribute("tabindex")) this.setAttribute("tabindex", "0");
     this._ensureChrome();
-
-    this._provider ??= new ContextProvider(this, {
-      context: playerContext,
-      initialValue: this,
-    });
 
     this._resizeObserver ??= new ResizeObserver(() => this._layout());
     this._resizeObserver.observe(this);

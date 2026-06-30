@@ -31,6 +31,9 @@ export async function loader({ params }: Route.LoaderArgs) {
 // resolves the compiled MDX for `path`.
 const clientLoader = browserCollections.docs.createClientLoader({
   component({ toc, frontmatter, default: Mdx }) {
+    // biome-ignore lint/correctness/useHookAtTopLevel: MDX API
+    const components = useMDXComponents();
+
     return (
       <DocsPage toc={toc}>
         <title>{`${frontmatter.title} · smoove`}</title>
@@ -40,7 +43,7 @@ const clientLoader = browserCollections.docs.createClientLoader({
         <DocsTitle>{frontmatter.title}</DocsTitle>
         <DocsDescription>{frontmatter.description}</DocsDescription>
         <DocsBody>
-          <Mdx components={useMDXComponents()} />
+          <Mdx components={components} />
         </DocsBody>
       </DocsPage>
     );

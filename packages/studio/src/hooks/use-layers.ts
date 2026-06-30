@@ -22,6 +22,7 @@ export function deriveLayers(comp: Composition): StudioLayer[] {
   const total = comp.durationInFrames.get() || 1;
   return sequencesOf(comp).map((s, i) => {
     const raw = s.name() || s.id() || `Layer ${i + 1}`;
+
     return {
       name: stripPrefix(raw) || `Layer ${i + 1}`,
       kind: inferKind(raw),
@@ -34,6 +35,10 @@ export function deriveLayers(comp: Composition): StudioLayer[] {
 /** Apply per-layer enable/disable to the real Konva Sequences (opacity). */
 export function applyLayerVisibility(comp: Composition, off: Set<number>): void {
   const seqs = sequencesOf(comp);
-  seqs.forEach((s, i) => s.opacity(off.has(i) ? 0 : 1));
+
+  seqs.forEach((s, i) => {
+    s.opacity(off.has(i) ? 0 : 1);
+  });
+
   comp.batchDraw();
 }

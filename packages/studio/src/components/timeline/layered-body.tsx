@@ -125,10 +125,11 @@ export function LayeredBody() {
             </div>
 
             {/* track lane (seek surface) */}
-            <div
+            <button
               ref={s.ref}
               className="relative cursor-pointer"
               style={{ width: tracksW, height: bodyH }}
+              type="button"
               onMouseDown={(e) => {
                 s.setDrag("seek");
                 s.seekTo(e.clientX);
@@ -188,7 +189,7 @@ export function LayeredBody() {
               >
                 <span className="absolute -top-px left-1/2 -translate-x-1/2 w-[11px] h-2 bg-white rounded-b-[3px]" />
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>

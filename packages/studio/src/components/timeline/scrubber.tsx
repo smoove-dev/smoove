@@ -31,9 +31,10 @@ export function Scrubber({
           <Ruler durSec={durSec} fps={fps} total={total} />
         </div>
       )}
-      <div
+      <button
         ref={s.ref}
-        className="relative h-[26px] flex items-center cursor-pointer group"
+        className="relative h-6.5 flex items-center cursor-pointer group outline-0"
+        type="button"
         onMouseDown={(e) => {
           s.setDrag("seek");
           s.seekTo(e.clientX);
@@ -71,7 +72,7 @@ export function Scrubber({
             {fmtTime(s.hover * durSec)}
           </div>
         )}
-      </div>
+      </button>
     </div>
   );
 }
