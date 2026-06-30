@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Meera Inimai";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/meerainimai/v14/845fNMM5EIqOW5MPuvO3ILeZ-GLC.woff2",
   },
-  "tamil": {
-    "400-normal": "https://fonts.gstatic.com/s/meerainimai/v14/845fNMM5EIqOW5MPuvO3ILeZ7mLCZes.woff2",
+  tamil: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/meerainimai/v14/845fNMM5EIqOW5MPuvO3ILeZ7mLCZes.woff2",
   },
 } as const;
 
 export type MeeraInimaiWeight = "400";
 export type MeeraInimaiStyle = "normal";
 export type MeeraInimaiSubset = "latin" | "tamil";
-export type MeeraInimaiOptions = GoogleFontOptions<MeeraInimaiWeight, MeeraInimaiStyle, MeeraInimaiSubset>;
+export type MeeraInimaiOptions = GoogleFontOptions<
+  MeeraInimaiWeight,
+  MeeraInimaiStyle,
+  MeeraInimaiSubset
+>;
 
 /**
  * Meera Inimai — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MeeraInimai extends GoogleFont<MeeraInimaiWeight, MeeraInimaiStyle, MeeraInimaiSubset> {
+export default class MeeraInimai extends GoogleFont<
+  MeeraInimaiWeight,
+  MeeraInimaiStyle,
+  MeeraInimaiSubset
+> {
   constructor(options?: MeeraInimaiOptions) {
     super(FAMILY, FACES, options);
   }

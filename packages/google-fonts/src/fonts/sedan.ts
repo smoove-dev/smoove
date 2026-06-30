@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sedan";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/sedan/v1/Yq6U-L-VVyD6-dOQszlAuQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/sedan/v1/Yq6a-L-VVyD6-dOVgzs.woff2",
   },

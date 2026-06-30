@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Lisu";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR31os.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR31os.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR31os.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR31os.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR31os.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR31os.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR31os.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR31os.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR51otz7Q.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR51otz7Q.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR51otz7Q.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR51otz7Q.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR51otz7Q.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR51otz7Q.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR51otz7Q.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjR51otz7Q.woff2",
   },
-  "lisu": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjQx1otz7Q.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjQx1otz7Q.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjQx1otz7Q.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjQx1otz7Q.woff2",
+  lisu: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjQx1otz7Q.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjQx1otz7Q.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjQx1otz7Q.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanslisu/v27/uk-6EGO3o6EruUbnwovcYhz6kjQx1otz7Q.woff2",
   },
 } as const;
 
 export type NotoSansLisuWeight = "400" | "500" | "600" | "700";
 export type NotoSansLisuStyle = "normal";
 export type NotoSansLisuSubset = "latin" | "latin-ext" | "lisu";
-export type NotoSansLisuOptions = GoogleFontOptions<NotoSansLisuWeight, NotoSansLisuStyle, NotoSansLisuSubset>;
+export type NotoSansLisuOptions = GoogleFontOptions<
+  NotoSansLisuWeight,
+  NotoSansLisuStyle,
+  NotoSansLisuSubset
+>;
 
 /**
  * Noto Sans Lisu — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansLisu extends GoogleFont<NotoSansLisuWeight, NotoSansLisuStyle, NotoSansLisuSubset> {
+export default class NotoSansLisu extends GoogleFont<
+  NotoSansLisuWeight,
+  NotoSansLisuStyle,
+  NotoSansLisuSubset
+> {
   constructor(options?: NotoSansLisuOptions) {
     super(FAMILY, FACES, options);
   }

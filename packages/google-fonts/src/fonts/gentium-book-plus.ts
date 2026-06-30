@@ -4,60 +4,103 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gentium Book Plus";
 
 const FACES = {
-  "cyrillic": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT7XmqfPV.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKcf7P-rQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvMj0eIe1.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbFjM7sfA.woff2",
+  cyrillic: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT7XmqfPV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKcf7P-rQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvMj0eIe1.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbFjM7sfA.woff2",
   },
   "cyrillic-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT7zmqfPV.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKVf7P-rQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvMH0eIe1.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbMjM7sfA.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT7zmqfPV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKVf7P-rQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvMH0eIe1.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbMjM7sfA.woff2",
   },
-  "greek": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT7LmqfPV.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKbf7P-rQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvM_0eIe1.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbCjM7sfA.woff2",
+  greek: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT7LmqfPV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKbf7P-rQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvM_0eIe1.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbCjM7sfA.woff2",
   },
   "greek-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT73mqfPV.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKUf7P-rQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvMD0eIe1.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbNjM7sfA.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT73mqfPV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKUf7P-rQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvMD0eIe1.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbNjM7sfA.woff2",
   },
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT7HmqQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKYf7M.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvMz0eA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbBjM4.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT7HmqQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKYf7M.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvMz0eA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbBjM4.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT7_mqfPV.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKWf7P-rQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvML0eIe1.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbPjM7sfA.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT7_mqfPV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKWf7P-rQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvML0eIe1.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbPjM7sfA.woff2",
   },
-  "vietnamese": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT77mqfPV.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKXf7P-rQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvMP0eIe1.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbOjM7sfA.woff2",
+  vietnamese: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFN2-RHBgUK5fbjKxRpbBtJPyRpocKdT77mqfPV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFL2-RHBgUK5fbjKxRpbBtJPyRpocKXf7P-rQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFA2-RHBgUK5fbjKxRpbBtJPyRpocKdRwrDvMP0eIe1.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumbookplus/v1/vEFO2-RHBgUK5fbjKxRpbBtJPyRpocojWqbOjM7sfA.woff2",
   },
 } as const;
 
 export type GentiumBookPlusWeight = "400" | "700";
 export type GentiumBookPlusStyle = "italic" | "normal";
-export type GentiumBookPlusSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "vietnamese";
-export type GentiumBookPlusOptions = GoogleFontOptions<GentiumBookPlusWeight, GentiumBookPlusStyle, GentiumBookPlusSubset>;
+export type GentiumBookPlusSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
+export type GentiumBookPlusOptions = GoogleFontOptions<
+  GentiumBookPlusWeight,
+  GentiumBookPlusStyle,
+  GentiumBookPlusSubset
+>;
 
 /**
  * Gentium Book Plus — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GentiumBookPlus extends GoogleFont<GentiumBookPlusWeight, GentiumBookPlusStyle, GentiumBookPlusSubset> {
+export default class GentiumBookPlus extends GoogleFont<
+  GentiumBookPlusWeight,
+  GentiumBookPlusStyle,
+  GentiumBookPlusSubset
+> {
   constructor(options?: GentiumBookPlusOptions) {
     super(FAMILY, FACES, options);
   }

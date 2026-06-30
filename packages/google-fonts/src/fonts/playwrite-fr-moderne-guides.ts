@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite FR Moderne Guides";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/playwritefrmoderneguides/v2/CSRr4yxOn-mMWCgLPl16KrUKBbwa2ZZLdkrvXllIP22HmQ.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritefrmoderneguides/v2/CSRr4yxOn-mMWCgLPl16KrUKBbwa2ZZLdkrvXllIP22HmQ.woff2",
   },
 } as const;
 
 export type PlaywriteFRModerneGuidesWeight = "400";
 export type PlaywriteFRModerneGuidesStyle = "normal";
 export type PlaywriteFRModerneGuidesSubset = "fallback";
-export type PlaywriteFRModerneGuidesOptions = GoogleFontOptions<PlaywriteFRModerneGuidesWeight, PlaywriteFRModerneGuidesStyle, PlaywriteFRModerneGuidesSubset>;
+export type PlaywriteFRModerneGuidesOptions = GoogleFontOptions<
+  PlaywriteFRModerneGuidesWeight,
+  PlaywriteFRModerneGuidesStyle,
+  PlaywriteFRModerneGuidesSubset
+>;
 
 /**
  * Playwrite FR Moderne Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteFRModerneGuides extends GoogleFont<PlaywriteFRModerneGuidesWeight, PlaywriteFRModerneGuidesStyle, PlaywriteFRModerneGuidesSubset> {
+export default class PlaywriteFRModerneGuides extends GoogleFont<
+  PlaywriteFRModerneGuidesWeight,
+  PlaywriteFRModerneGuidesStyle,
+  PlaywriteFRModerneGuidesSubset
+> {
   constructor(options?: PlaywriteFRModerneGuidesOptions) {
     super(FAMILY, FACES, options);
   }

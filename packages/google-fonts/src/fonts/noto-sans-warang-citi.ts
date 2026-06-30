@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Warang Citi";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanswarangciti/v19/EYqtmb9SzL1YtsZSScyKDXIeOv3w-zgsNvKhou9D.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanswarangciti/v19/EYqtmb9SzL1YtsZSScyKDXIeOv3w-zgsNvKhou9D.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanswarangciti/v19/EYqtmb9SzL1YtsZSScyKDXIeOv3w-zgsNvKhrO9DOXw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanswarangciti/v19/EYqtmb9SzL1YtsZSScyKDXIeOv3w-zgsNvKhrO9DOXw.woff2",
   },
   "warang-citi": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanswarangciti/v19/EYqtmb9SzL1YtsZSScyKDXIeOv3w-zgsNvKhwu9DOXw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanswarangciti/v19/EYqtmb9SzL1YtsZSScyKDXIeOv3w-zgsNvKhwu9DOXw.woff2",
   },
 } as const;
 
 export type NotoSansWarangCitiWeight = "400";
 export type NotoSansWarangCitiStyle = "normal";
 export type NotoSansWarangCitiSubset = "latin" | "latin-ext" | "warang-citi";
-export type NotoSansWarangCitiOptions = GoogleFontOptions<NotoSansWarangCitiWeight, NotoSansWarangCitiStyle, NotoSansWarangCitiSubset>;
+export type NotoSansWarangCitiOptions = GoogleFontOptions<
+  NotoSansWarangCitiWeight,
+  NotoSansWarangCitiStyle,
+  NotoSansWarangCitiSubset
+>;
 
 /**
  * Noto Sans Warang Citi — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansWarangCiti extends GoogleFont<NotoSansWarangCitiWeight, NotoSansWarangCitiStyle, NotoSansWarangCitiSubset> {
+export default class NotoSansWarangCiti extends GoogleFont<
+  NotoSansWarangCitiWeight,
+  NotoSansWarangCitiStyle,
+  NotoSansWarangCitiSubset
+> {
   constructor(options?: NotoSansWarangCitiOptions) {
     super(FAMILY, FACES, options);
   }

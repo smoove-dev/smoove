@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Licorice";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/licorice/v8/t5tjIR8TMomTCAyjNn2wjKM.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/licorice/v8/t5tjIR8TMomTCAyjNn2-jKPQzA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/licorice/v8/t5tjIR8TMomTCAyjNn2_jKPQzA.woff2",
   },
 } as const;

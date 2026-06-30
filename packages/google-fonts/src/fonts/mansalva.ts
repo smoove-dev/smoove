@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mansalva";
 
 const FACES = {
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/mansalva/v16/aWB4m0aacbtDfvq5NKlhKY_fdw.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mansalva/v16/aWB4m0aacbtDfvq5NKliKY8.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/mansalva/v16/aWB4m0aacbtDfvq5NKlsKY_fdw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/mansalva/v16/aWB4m0aacbtDfvq5NKltKY_fdw.woff2",
   },
 } as const;

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ranchers";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ranchers/v19/zrfm0H3Lx-P2Xvs2ArDfBi8.woff2",
   },
   "latin-ext": {

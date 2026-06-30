@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nova Mono";
 
 const FACES = {
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/novamono/v23/Cn-0JtiGWQ5Ajb--MRKvZGZZndM.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/novamono/v23/Cn-0JtiGWQ5Ajb--MRKvZ2ZZ.woff2",
   },
   "latin-ext": {

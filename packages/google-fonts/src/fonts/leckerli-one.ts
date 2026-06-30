@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Leckerli One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/leckerlione/v22/V8mCoQH8VCsNttEnxnGQ-1idKpZd.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type LeckerliOneWeight = "400";
 export type LeckerliOneStyle = "normal";
 export type LeckerliOneSubset = "latin";
-export type LeckerliOneOptions = GoogleFontOptions<LeckerliOneWeight, LeckerliOneStyle, LeckerliOneSubset>;
+export type LeckerliOneOptions = GoogleFontOptions<
+  LeckerliOneWeight,
+  LeckerliOneStyle,
+  LeckerliOneSubset
+>;
 
 /**
  * Leckerli One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LeckerliOne extends GoogleFont<LeckerliOneWeight, LeckerliOneStyle, LeckerliOneSubset> {
+export default class LeckerliOne extends GoogleFont<
+  LeckerliOneWeight,
+  LeckerliOneStyle,
+  LeckerliOneSubset
+> {
   constructor(options?: LeckerliOneOptions) {
     super(FAMILY, FACES, options);
   }

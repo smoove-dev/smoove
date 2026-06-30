@@ -4,45 +4,74 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Frank Ruhl Libre";
 
 const FACES = {
-  "hebrew": {
-    "300-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
+  hebrew: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Ll4ajn.woff2",
   },
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW7Dl4Q.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/frankruhllibre/v23/j8_w6_fAw7jrcalD7oKYNX0QfAnPW77l4ajn.woff2",
   },
 } as const;
 
 export type FrankRuhlLibreWeight = "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type FrankRuhlLibreStyle = "normal";
 export type FrankRuhlLibreSubset = "hebrew" | "latin" | "latin-ext";
-export type FrankRuhlLibreOptions = GoogleFontOptions<FrankRuhlLibreWeight, FrankRuhlLibreStyle, FrankRuhlLibreSubset>;
+export type FrankRuhlLibreOptions = GoogleFontOptions<
+  FrankRuhlLibreWeight,
+  FrankRuhlLibreStyle,
+  FrankRuhlLibreSubset
+>;
 
 /**
  * Frank Ruhl Libre — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FrankRuhlLibre extends GoogleFont<FrankRuhlLibreWeight, FrankRuhlLibreStyle, FrankRuhlLibreSubset> {
+export default class FrankRuhlLibre extends GoogleFont<
+  FrankRuhlLibreWeight,
+  FrankRuhlLibreStyle,
+  FrankRuhlLibreSubset
+> {
   constructor(options?: FrankRuhlLibreOptions) {
     super(FAMILY, FACES, options);
   }

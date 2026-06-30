@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Qwigley";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/qwigley/v20/1cXzaU3UGJb5tGoCiVtmig.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/qwigley/v20/1cXzaU3UGJb5tGoCiVVmimmB.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/qwigley/v20/1cXzaU3UGJb5tGoCiVRmimmB.woff2",
   },
 } as const;

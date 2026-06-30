@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cutive";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/cutive/v24/NaPZcZ_fHOhV3IpLSPJC.woff2",
   },
   "latin-ext": {

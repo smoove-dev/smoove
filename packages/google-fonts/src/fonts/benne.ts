@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Benne";
 
 const FACES = {
-  "kannada": {
+  kannada: {
     "400-normal": "https://fonts.gstatic.com/s/benne/v24/L0xzDFAhn18E6WjsnN-aTA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/benne/v24/L0xzDFAhn18E6Wj2nN8.woff2",
   },
   "latin-ext": {

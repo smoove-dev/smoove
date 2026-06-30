@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rouge Script";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rougescript/v20/LYjFdGbiklMoCIQOw1Ep3S4_U__a.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type RougeScriptWeight = "400";
 export type RougeScriptStyle = "normal";
 export type RougeScriptSubset = "latin";
-export type RougeScriptOptions = GoogleFontOptions<RougeScriptWeight, RougeScriptStyle, RougeScriptSubset>;
+export type RougeScriptOptions = GoogleFontOptions<
+  RougeScriptWeight,
+  RougeScriptStyle,
+  RougeScriptSubset
+>;
 
 /**
  * Rouge Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RougeScript extends GoogleFont<RougeScriptWeight, RougeScriptStyle, RougeScriptSubset> {
+export default class RougeScript extends GoogleFont<
+  RougeScriptWeight,
+  RougeScriptStyle,
+  RougeScriptSubset
+> {
   constructor(options?: RougeScriptOptions) {
     super(FAMILY, FACES, options);
   }

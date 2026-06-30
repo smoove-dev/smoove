@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "IM Fell Great Primer SC";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/imfellgreatprimersc/v21/ga6daxBOxyt6sCqz3fjZCTFCTUDMHagsQKdDTIf6D30.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/imfellgreatprimersc/v21/ga6daxBOxyt6sCqz3fjZCTFCTUDMHagsQKdDTIf6D30.woff2",
   },
 } as const;
 
 export type IMFellGreatPrimerSCWeight = "400";
 export type IMFellGreatPrimerSCStyle = "normal";
 export type IMFellGreatPrimerSCSubset = "latin";
-export type IMFellGreatPrimerSCOptions = GoogleFontOptions<IMFellGreatPrimerSCWeight, IMFellGreatPrimerSCStyle, IMFellGreatPrimerSCSubset>;
+export type IMFellGreatPrimerSCOptions = GoogleFontOptions<
+  IMFellGreatPrimerSCWeight,
+  IMFellGreatPrimerSCStyle,
+  IMFellGreatPrimerSCSubset
+>;
 
 /**
  * IM Fell Great Primer SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IMFellGreatPrimerSC extends GoogleFont<IMFellGreatPrimerSCWeight, IMFellGreatPrimerSCStyle, IMFellGreatPrimerSCSubset> {
+export default class IMFellGreatPrimerSC extends GoogleFont<
+  IMFellGreatPrimerSCWeight,
+  IMFellGreatPrimerSCStyle,
+  IMFellGreatPrimerSCSubset
+> {
   constructor(options?: IMFellGreatPrimerSCOptions) {
     super(FAMILY, FACES, options);
   }

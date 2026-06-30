@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Beth Ellen";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bethellen/v22/WwkbxPW2BE-3rb_JNT-qIIcoVQ.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type BethEllenOptions = GoogleFontOptions<BethEllenWeight, BethEllenStyle
  * Beth Ellen — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BethEllen extends GoogleFont<BethEllenWeight, BethEllenStyle, BethEllenSubset> {
+export default class BethEllen extends GoogleFont<
+  BethEllenWeight,
+  BethEllenStyle,
+  BethEllenSubset
+> {
   constructor(options?: BethEllenOptions) {
     super(FAMILY, FACES, options);
   }

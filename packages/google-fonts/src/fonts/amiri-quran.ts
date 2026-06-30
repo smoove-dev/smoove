@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Amiri Quran";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/amiriquran/v19/_Xmo-Hk0rD6DbUL4_vH8Zp5v5i2ssg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/amiriquran/v19/_Xmo-Hk0rD6DbUL4_vH8Zp5q5i0.woff2",
   },
 } as const;
@@ -15,13 +15,21 @@ const FACES = {
 export type AmiriQuranWeight = "400";
 export type AmiriQuranStyle = "normal";
 export type AmiriQuranSubset = "arabic" | "latin";
-export type AmiriQuranOptions = GoogleFontOptions<AmiriQuranWeight, AmiriQuranStyle, AmiriQuranSubset>;
+export type AmiriQuranOptions = GoogleFontOptions<
+  AmiriQuranWeight,
+  AmiriQuranStyle,
+  AmiriQuranSubset
+>;
 
 /**
  * Amiri Quran — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AmiriQuran extends GoogleFont<AmiriQuranWeight, AmiriQuranStyle, AmiriQuranSubset> {
+export default class AmiriQuran extends GoogleFont<
+  AmiriQuranWeight,
+  AmiriQuranStyle,
+  AmiriQuranSubset
+> {
   constructor(options?: AmiriQuranOptions) {
     super(FAMILY, FACES, options);
   }

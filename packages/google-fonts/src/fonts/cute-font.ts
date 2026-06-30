@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cute Font";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/cutefont/v28/Noaw6Uny2oWPbSHMrY6fn5lU.woff2",
   },
 } as const;

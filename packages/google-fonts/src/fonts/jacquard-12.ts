@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jacquard 12";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jacquard12/v8/vm8ydRLuXETEweL79J4rGf3OWHs.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/jacquard12/v8/vm8ydRLuXETEweL79J4rGf3AWHvH4Q.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/jacquard12/v8/vm8ydRLuXETEweL79J4rGf2yWHvH4Q.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/jacquard12/v8/vm8ydRLuXETEweL79J4rGf2gWHvH4Q.woff2",
   },
 } as const;
@@ -21,13 +21,21 @@ const FACES = {
 export type Jacquard12Weight = "400";
 export type Jacquard12Style = "normal";
 export type Jacquard12Subset = "latin" | "latin-ext" | "math" | "symbols";
-export type Jacquard12Options = GoogleFontOptions<Jacquard12Weight, Jacquard12Style, Jacquard12Subset>;
+export type Jacquard12Options = GoogleFontOptions<
+  Jacquard12Weight,
+  Jacquard12Style,
+  Jacquard12Subset
+>;
 
 /**
  * Jacquard 12 — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Jacquard12 extends GoogleFont<Jacquard12Weight, Jacquard12Style, Jacquard12Subset> {
+export default class Jacquard12 extends GoogleFont<
+  Jacquard12Weight,
+  Jacquard12Style,
+  Jacquard12Subset
+> {
   constructor(options?: Jacquard12Options) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Chenla";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "400-normal": "https://fonts.gstatic.com/s/chenla/v25/SZc43FDpIKu8WZ9uUx3p.woff2",
   },
 } as const;

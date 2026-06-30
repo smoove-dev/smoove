@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sriracha";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sriracha/v16/0nkrC9D4IuYBgWcI9NbfTwE.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/sriracha/v16/0nkrC9D4IuYBgWcI9NbRTwHSoQ.woff2",
   },
-  "thai": {
+  thai: {
     "400-normal": "https://fonts.gstatic.com/s/sriracha/v16/0nkrC9D4IuYBgWcI9NbLTwHSoQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/sriracha/v16/0nkrC9D4IuYBgWcI9NbQTwHSoQ.woff2",
   },
 } as const;

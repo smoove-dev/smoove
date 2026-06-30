@@ -4,36 +4,52 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Miriam Libre";
 
 const FACES = {
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZZP-fes.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZZP-fes.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZZP-fes.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZZP-fes.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZZP-fes.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZZP-fes.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZZP-fes.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZZP-fes.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZ5P-.woff2",
     "500-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZ5P-.woff2",
     "600-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZ5P-.woff2",
     "700-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_fZ5P-.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_faZP-fes.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_faZP-fes.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_faZP-fes.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_faZP-fes.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_faZP-fes.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_faZP-fes.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_faZP-fes.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/miriamlibre/v19/DdTh798HsHwubBAqfkcBTL_faZP-fes.woff2",
   },
 } as const;
 
 export type MiriamLibreWeight = "400" | "500" | "600" | "700";
 export type MiriamLibreStyle = "normal";
 export type MiriamLibreSubset = "hebrew" | "latin" | "latin-ext";
-export type MiriamLibreOptions = GoogleFontOptions<MiriamLibreWeight, MiriamLibreStyle, MiriamLibreSubset>;
+export type MiriamLibreOptions = GoogleFontOptions<
+  MiriamLibreWeight,
+  MiriamLibreStyle,
+  MiriamLibreSubset
+>;
 
 /**
  * Miriam Libre — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MiriamLibre extends GoogleFont<MiriamLibreWeight, MiriamLibreStyle, MiriamLibreSubset> {
+export default class MiriamLibre extends GoogleFont<
+  MiriamLibreWeight,
+  MiriamLibreStyle,
+  MiriamLibreSubset
+> {
   constructor(options?: MiriamLibreOptions) {
     super(FAMILY, FACES, options);
   }

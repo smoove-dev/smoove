@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Boldonse";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/boldonse/v1/ZgNQjPxGPbbJUZemjB37jGA.woff2",
   },
   "latin-ext": {

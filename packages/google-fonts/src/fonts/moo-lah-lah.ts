@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Moo Lah Lah";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/moolahlah/v8/dg4h_p_opKZOA0w1AYcm56wqawc.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/moolahlah/v8/dg4h_p_opKZOA0w1AYcm56wkawcegg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/moolahlah/v8/dg4h_p_opKZOA0w1AYcm56wlawcegg.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type MooLahLahOptions = GoogleFontOptions<MooLahLahWeight, MooLahLahStyle
  * Moo Lah Lah — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MooLahLah extends GoogleFont<MooLahLahWeight, MooLahLahStyle, MooLahLahSubset> {
+export default class MooLahLah extends GoogleFont<
+  MooLahLahWeight,
+  MooLahLahStyle,
+  MooLahLahSubset
+> {
   constructor(options?: MooLahLahOptions) {
     super(FAMILY, FACES, options);
   }

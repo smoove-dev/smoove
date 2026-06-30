@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Vast Shadow";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/vastshadow/v21/pe0qMImKOZ1V62ZwbVY9dce9I9s.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type VastShadowWeight = "400";
 export type VastShadowStyle = "normal";
 export type VastShadowSubset = "latin";
-export type VastShadowOptions = GoogleFontOptions<VastShadowWeight, VastShadowStyle, VastShadowSubset>;
+export type VastShadowOptions = GoogleFontOptions<
+  VastShadowWeight,
+  VastShadowStyle,
+  VastShadowSubset
+>;
 
 /**
  * Vast Shadow — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class VastShadow extends GoogleFont<VastShadowWeight, VastShadowStyle, VastShadowSubset> {
+export default class VastShadow extends GoogleFont<
+  VastShadowWeight,
+  VastShadowStyle,
+  VastShadowSubset
+> {
   constructor(options?: VastShadowOptions) {
     super(FAMILY, FACES, options);
   }

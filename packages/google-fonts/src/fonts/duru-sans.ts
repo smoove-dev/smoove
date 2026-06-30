@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Duru Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/durusans/v21/xn7iYH8xwmSyTvEV_HOBSP3Z.woff2",
   },
   "latin-ext": {

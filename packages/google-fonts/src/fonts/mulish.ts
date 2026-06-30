@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mulish";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "200-italic": "https://fonts.gstatic.com/s/mulish/v18/1Pttg83HX_SGhgqk2joraqRXBA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/mulish/v18/1Ptvg83HX_SGhgqk2wotcqA.woff2",
     "300-italic": "https://fonts.gstatic.com/s/mulish/v18/1Pttg83HX_SGhgqk2joraqRXBA.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/mulish/v18/1Pttg83HX_SGhgqk2joiaqRXBA.woff2",
     "900-normal": "https://fonts.gstatic.com/s/mulish/v18/1Ptvg83HX_SGhgqk0gotcqA.woff2",
   },
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/mulish/v18/1Pttg83HX_SGhgqk2jovaqQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/mulish/v18/1Ptvg83HX_SGhgqk3wot.woff2",
     "300-italic": "https://fonts.gstatic.com/s/mulish/v18/1Pttg83HX_SGhgqk2jovaqQ.woff2",
@@ -76,7 +76,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/mulish/v18/1Pttg83HX_SGhgqk2johaqRXBA.woff2",
     "900-normal": "https://fonts.gstatic.com/s/mulish/v18/1Ptvg83HX_SGhgqk0QotcqA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-italic": "https://fonts.gstatic.com/s/mulish/v18/1Pttg83HX_SGhgqk2jogaqRXBA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/mulish/v18/1Ptvg83HX_SGhgqk0AotcqA.woff2",
     "300-italic": "https://fonts.gstatic.com/s/mulish/v18/1Pttg83HX_SGhgqk2jogaqRXBA.woff2",

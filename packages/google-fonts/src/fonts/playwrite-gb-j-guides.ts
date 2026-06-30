@@ -4,22 +4,32 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite GB J Guides";
 
 const FACES = {
-  "fallback": {
-    "400-italic": "https://fonts.gstatic.com/s/playwritegbjguides/v2/CSRv4yJOn-mMWCgLPl16K6UKAvM5yY1Bdhm4KRAp.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playwritegbjguides/v2/CSRh4yJOn-mMWCgLPl16K6UKAvM5yY1BdhmILg.woff2",
+  fallback: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/playwritegbjguides/v2/CSRv4yJOn-mMWCgLPl16K6UKAvM5yY1Bdhm4KRAp.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritegbjguides/v2/CSRh4yJOn-mMWCgLPl16K6UKAvM5yY1BdhmILg.woff2",
   },
 } as const;
 
 export type PlaywriteGBJGuidesWeight = "400";
 export type PlaywriteGBJGuidesStyle = "italic" | "normal";
 export type PlaywriteGBJGuidesSubset = "fallback";
-export type PlaywriteGBJGuidesOptions = GoogleFontOptions<PlaywriteGBJGuidesWeight, PlaywriteGBJGuidesStyle, PlaywriteGBJGuidesSubset>;
+export type PlaywriteGBJGuidesOptions = GoogleFontOptions<
+  PlaywriteGBJGuidesWeight,
+  PlaywriteGBJGuidesStyle,
+  PlaywriteGBJGuidesSubset
+>;
 
 /**
  * Playwrite GB J Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteGBJGuides extends GoogleFont<PlaywriteGBJGuidesWeight, PlaywriteGBJGuidesStyle, PlaywriteGBJGuidesSubset> {
+export default class PlaywriteGBJGuides extends GoogleFont<
+  PlaywriteGBJGuidesWeight,
+  PlaywriteGBJGuidesStyle,
+  PlaywriteGBJGuidesSubset
+> {
   constructor(options?: PlaywriteGBJGuidesOptions) {
     super(FAMILY, FACES, options);
   }

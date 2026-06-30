@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rajdhani";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "300-normal": "https://fonts.gstatic.com/s/rajdhani/v17/LDI2apCSOBg7S-QT7pasEfOqeef2kg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/rajdhani/v17/LDIxapCSOBg7S-QT7p4GM-aUWA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/rajdhani/v17/LDI2apCSOBg7S-QT7pb0EPOqeef2kg.woff2",
     "600-normal": "https://fonts.gstatic.com/s/rajdhani/v17/LDI2apCSOBg7S-QT7pbYF_Oqeef2kg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/rajdhani/v17/LDI2apCSOBg7S-QT7pa8FvOqeef2kg.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/rajdhani/v17/LDI2apCSOBg7S-QT7pasEfOreec.woff2",
     "400-normal": "https://fonts.gstatic.com/s/rajdhani/v17/LDIxapCSOBg7S-QT7p4HM-Y.woff2",
     "500-normal": "https://fonts.gstatic.com/s/rajdhani/v17/LDI2apCSOBg7S-QT7pb0EPOreec.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Homenaje";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/homenaje/v17/FwZY7-Q-xVAi_l-6Le6H6Mk.woff2",
   },
 } as const;

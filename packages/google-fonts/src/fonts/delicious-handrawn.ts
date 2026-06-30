@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Delicious Handrawn";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/delicioushandrawn/v10/wlpsgx_NAUNkpmKQifcxkQchDFo3fJ1F25BC.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/delicioushandrawn/v10/wlpsgx_NAUNkpmKQifcxkQchDFo3fJ1F25BC.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/delicioushandrawn/v10/wlpsgx_NAUNkpmKQifcxkQchDFo3fJ1F1ZBCR6s.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/delicioushandrawn/v10/wlpsgx_NAUNkpmKQifcxkQchDFo3fJ1F1ZBCR6s.woff2",
   },
 } as const;
 
 export type DeliciousHandrawnWeight = "400";
 export type DeliciousHandrawnStyle = "normal";
 export type DeliciousHandrawnSubset = "latin" | "latin-ext";
-export type DeliciousHandrawnOptions = GoogleFontOptions<DeliciousHandrawnWeight, DeliciousHandrawnStyle, DeliciousHandrawnSubset>;
+export type DeliciousHandrawnOptions = GoogleFontOptions<
+  DeliciousHandrawnWeight,
+  DeliciousHandrawnStyle,
+  DeliciousHandrawnSubset
+>;
 
 /**
  * Delicious Handrawn — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DeliciousHandrawn extends GoogleFont<DeliciousHandrawnWeight, DeliciousHandrawnStyle, DeliciousHandrawnSubset> {
+export default class DeliciousHandrawn extends GoogleFont<
+  DeliciousHandrawnWeight,
+  DeliciousHandrawnStyle,
+  DeliciousHandrawnSubset
+> {
   constructor(options?: DeliciousHandrawnOptions) {
     super(FAMILY, FACES, options);
   }

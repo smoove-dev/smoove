@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rock 3D";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rock3d/v13/yYLp0hrL0PCo651553OtwA.woff2",
   },
 } as const;

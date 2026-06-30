@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "SN Pro";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "200-italic": "https://fonts.gstatic.com/s/snpro/v1/NGS3v5zWIAwPIq7hb6RIkK440A.woff2",
     "200-normal": "https://fonts.gstatic.com/s/snpro/v1/NGS1v5zWIAwPIq7hbpROiKo.woff2",
     "300-italic": "https://fonts.gstatic.com/s/snpro/v1/NGS3v5zWIAwPIq7hb6RIkK440A.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/snpro/v1/NGS3v5zWIAwPIq7hb6RBkK440A.woff2",
     "900-normal": "https://fonts.gstatic.com/s/snpro/v1/NGS1v5zWIAwPIq7hZ5ROiKo.woff2",
   },
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/snpro/v1/NGS3v5zWIAwPIq7hb6RMkK4.woff2",
     "200-normal": "https://fonts.gstatic.com/s/snpro/v1/NGS1v5zWIAwPIq7hapRO.woff2",
     "300-italic": "https://fonts.gstatic.com/s/snpro/v1/NGS3v5zWIAwPIq7hb6RMkK4.woff2",
@@ -76,7 +76,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/snpro/v1/NGS3v5zWIAwPIq7hb6RCkK440A.woff2",
     "900-normal": "https://fonts.gstatic.com/s/snpro/v1/NGS1v5zWIAwPIq7hZJROiKo.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-italic": "https://fonts.gstatic.com/s/snpro/v1/NGS3v5zWIAwPIq7hb6RDkK440A.woff2",
     "200-normal": "https://fonts.gstatic.com/s/snpro/v1/NGS1v5zWIAwPIq7hZZROiKo.woff2",
     "300-italic": "https://fonts.gstatic.com/s/snpro/v1/NGS3v5zWIAwPIq7hb6RDkK440A.woff2",

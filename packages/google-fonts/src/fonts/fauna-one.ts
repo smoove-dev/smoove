@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fauna One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/faunaone/v16/wlpzgwTPBVpjpCuwkuEB3kZK.woff2",
   },
   "latin-ext": {

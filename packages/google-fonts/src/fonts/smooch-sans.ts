@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Smooch Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/smoochsans/v15/c4mk1n5uGsXss2LJh1QH6Zd63Kc.woff2",
     "200-normal": "https://fonts.gstatic.com/s/smoochsans/v15/c4mk1n5uGsXss2LJh1QH6Zd63Kc.woff2",
     "300-normal": "https://fonts.gstatic.com/s/smoochsans/v15/c4mk1n5uGsXss2LJh1QH6Zd63Kc.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/smoochsans/v15/c4mk1n5uGsXss2LJh1QH6Zd03KeHWA.woff2",
     "900-normal": "https://fonts.gstatic.com/s/smoochsans/v15/c4mk1n5uGsXss2LJh1QH6Zd03KeHWA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/smoochsans/v15/c4mk1n5uGsXss2LJh1QH6Zd13KeHWA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/smoochsans/v15/c4mk1n5uGsXss2LJh1QH6Zd13KeHWA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/smoochsans/v15/c4mk1n5uGsXss2LJh1QH6Zd13KeHWA.woff2",
@@ -39,16 +39,33 @@ const FACES = {
   },
 } as const;
 
-export type SmoochSansWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type SmoochSansWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type SmoochSansStyle = "normal";
 export type SmoochSansSubset = "latin" | "latin-ext" | "vietnamese";
-export type SmoochSansOptions = GoogleFontOptions<SmoochSansWeight, SmoochSansStyle, SmoochSansSubset>;
+export type SmoochSansOptions = GoogleFontOptions<
+  SmoochSansWeight,
+  SmoochSansStyle,
+  SmoochSansSubset
+>;
 
 /**
  * Smooch Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SmoochSans extends GoogleFont<SmoochSansWeight, SmoochSansStyle, SmoochSansSubset> {
+export default class SmoochSans extends GoogleFont<
+  SmoochSansWeight,
+  SmoochSansStyle,
+  SmoochSansSubset
+> {
   constructor(options?: SmoochSansOptions) {
     super(FAMILY, FACES, options);
   }

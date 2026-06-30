@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Coiny";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/coiny/v17/gyByhwU1K989PUwcGFU.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/coiny/v17/gyByhwU1K989PUwSGFWfOw.woff2",
   },
-  "tamil": {
+  tamil: {
     "400-normal": "https://fonts.gstatic.com/s/coiny/v17/gyByhwU1K989PUwKGFWfOw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/coiny/v17/gyByhwU1K989PUwTGFWfOw.woff2",
   },
 } as const;

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Knewave";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/knewave/v15/sykz-yx0lLcxQaSIhS23-w.woff2",
   },
   "latin-ext": {

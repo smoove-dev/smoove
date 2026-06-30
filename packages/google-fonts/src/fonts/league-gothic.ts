@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "League Gothic";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/leaguegothic/v13/qFdR35CBi4tvBz81xy7WG7ep-BQAY7Krj7feObpH_9ahg9U.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/leaguegothic/v13/qFdR35CBi4tvBz81xy7WG7ep-BQAY7Krj7feObpH_9ahg9U.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/leaguegothic/v13/qFdR35CBi4tvBz81xy7WG7ep-BQAY7Krj7feObpH_9avg9UKQw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/leaguegothic/v13/qFdR35CBi4tvBz81xy7WG7ep-BQAY7Krj7feObpH_9avg9UKQw.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/leaguegothic/v13/qFdR35CBi4tvBz81xy7WG7ep-BQAY7Krj7feObpH_9aug9UKQw.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/leaguegothic/v13/qFdR35CBi4tvBz81xy7WG7ep-BQAY7Krj7feObpH_9aug9UKQw.woff2",
   },
 } as const;
 
 export type LeagueGothicWeight = "400";
 export type LeagueGothicStyle = "normal";
 export type LeagueGothicSubset = "latin" | "latin-ext" | "vietnamese";
-export type LeagueGothicOptions = GoogleFontOptions<LeagueGothicWeight, LeagueGothicStyle, LeagueGothicSubset>;
+export type LeagueGothicOptions = GoogleFontOptions<
+  LeagueGothicWeight,
+  LeagueGothicStyle,
+  LeagueGothicSubset
+>;
 
 /**
  * League Gothic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LeagueGothic extends GoogleFont<LeagueGothicWeight, LeagueGothicStyle, LeagueGothicSubset> {
+export default class LeagueGothic extends GoogleFont<
+  LeagueGothicWeight,
+  LeagueGothicStyle,
+  LeagueGothicSubset
+> {
   constructor(options?: LeagueGothicOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Syne Tactile";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/synetactile/v16/11hGGpna2UTQKjMCVzjAPMKR2CEc.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/synetactile/v16/11hGGpna2UTQKjMCVzjAPMKR1iEcvvI.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/synetactile/v16/11hGGpna2UTQKjMCVzjAPMKR1iEcvvI.woff2",
   },
 } as const;
 
 export type SyneTactileWeight = "400";
 export type SyneTactileStyle = "normal";
 export type SyneTactileSubset = "latin" | "latin-ext";
-export type SyneTactileOptions = GoogleFontOptions<SyneTactileWeight, SyneTactileStyle, SyneTactileSubset>;
+export type SyneTactileOptions = GoogleFontOptions<
+  SyneTactileWeight,
+  SyneTactileStyle,
+  SyneTactileSubset
+>;
 
 /**
  * Syne Tactile — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SyneTactile extends GoogleFont<SyneTactileWeight, SyneTactileStyle, SyneTactileSubset> {
+export default class SyneTactile extends GoogleFont<
+  SyneTactileWeight,
+  SyneTactileStyle,
+  SyneTactileSubset
+> {
   constructor(options?: SyneTactileOptions) {
     super(FAMILY, FACES, options);
   }

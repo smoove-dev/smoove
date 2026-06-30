@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yrsa";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/yrsa/v25/wlpwgwnQFlxs1Qnv-6QU.woff2",
     "300-normal": "https://fonts.gstatic.com/s/yrsa/v25/wlp-gwnQFlxs1Qzf-Q.woff2",
     "400-italic": "https://fonts.gstatic.com/s/yrsa/v25/wlpwgwnQFlxs1Qnv-6QU.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/yrsa/v25/wlpwgwnQFlxs1Qnv9aQU4Wc.woff2",
     "700-normal": "https://fonts.gstatic.com/s/yrsa/v25/wlp-gwnQFlxs1QLf-bwQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-italic": "https://fonts.gstatic.com/s/yrsa/v25/wlpwgwnQFlxs1Qnv9KQU4Wc.woff2",
     "300-normal": "https://fonts.gstatic.com/s/yrsa/v25/wlp-gwnQFlxs1QPf-bwQ.woff2",
     "400-italic": "https://fonts.gstatic.com/s/yrsa/v25/wlpwgwnQFlxs1Qnv9KQU4Wc.woff2",

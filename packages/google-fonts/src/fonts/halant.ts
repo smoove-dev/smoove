@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Halant";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "300-normal": "https://fonts.gstatic.com/s/halant/v17/u-490qaujRI2Pbsvc_pynQxrQwc.woff2",
     "400-normal": "https://fonts.gstatic.com/s/halant/v17/u-4-0qaujRI2Pbsn2dhnoy0.woff2",
     "500-normal": "https://fonts.gstatic.com/s/halant/v17/u-490qaujRI2PbsvK_tynQxrQwc.woff2",
     "600-normal": "https://fonts.gstatic.com/s/halant/v17/u-490qaujRI2PbsvB_xynQxrQwc.woff2",
     "700-normal": "https://fonts.gstatic.com/s/halant/v17/u-490qaujRI2PbsvY_1ynQxrQwc.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/halant/v17/u-490qaujRI2Pbsvc_pynAxr.woff2",
     "400-normal": "https://fonts.gstatic.com/s/halant/v17/u-4-0qaujRI2Pbsn2Nhn.woff2",
     "500-normal": "https://fonts.gstatic.com/s/halant/v17/u-490qaujRI2PbsvK_tynAxr.woff2",

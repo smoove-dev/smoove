@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Chango";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/chango/v29/2V0cKI0OB5U7WaJCyHe5.woff2",
   },
   "latin-ext": {

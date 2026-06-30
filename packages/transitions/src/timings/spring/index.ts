@@ -2,8 +2,8 @@ import { interpolate } from "@smoove/core";
 import { measureSpring } from "./measure-spring.js";
 import { type SpringConfig, springCalculation } from "./spring-utils.js";
 
-export { type SpringConfig, defaultSpringConfig } from "./spring-utils.js";
 export { measureSpring } from "./measure-spring.js";
+export { defaultSpringConfig, type SpringConfig } from "./spring-utils.js";
 
 /**
  * Sample a physics spring at `frame`. Returns a value animating `from → to`.

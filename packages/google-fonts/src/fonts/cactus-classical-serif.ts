@@ -4,30 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cactus Classical Serif";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/cactusclassicalserif/v15/sZlVdQ6K-zJOCzUaS90zMNN-Ep-OoC8dZr0JJuNCFE-p.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cactusclassicalserif/v15/sZlVdQ6K-zJOCzUaS90zMNN-Ep-OoC8dZr0JJuNCFE-p.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/cactusclassicalserif/v15/sZlVdQ6K-zJOCzUaS90zMNN-Ep-OoC8dZr0JJudCFA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cactusclassicalserif/v15/sZlVdQ6K-zJOCzUaS90zMNN-Ep-OoC8dZr0JJudCFA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/cactusclassicalserif/v15/sZlVdQ6K-zJOCzUaS90zMNN-Ep-OoC8dZr0JJulCFE-p.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cactusclassicalserif/v15/sZlVdQ6K-zJOCzUaS90zMNN-Ep-OoC8dZr0JJulCFE-p.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/cactusclassicalserif/v15/sZlVdQ6K-zJOCzUaS90zMNN-Ep-OoC8dZr0JJuhCFE-p.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cactusclassicalserif/v15/sZlVdQ6K-zJOCzUaS90zMNN-Ep-OoC8dZr0JJuhCFE-p.woff2",
   },
 } as const;
 
 export type CactusClassicalSerifWeight = "400";
 export type CactusClassicalSerifStyle = "normal";
 export type CactusClassicalSerifSubset = "cyrillic" | "latin" | "latin-ext" | "vietnamese";
-export type CactusClassicalSerifOptions = GoogleFontOptions<CactusClassicalSerifWeight, CactusClassicalSerifStyle, CactusClassicalSerifSubset>;
+export type CactusClassicalSerifOptions = GoogleFontOptions<
+  CactusClassicalSerifWeight,
+  CactusClassicalSerifStyle,
+  CactusClassicalSerifSubset
+>;
 
 /**
  * Cactus Classical Serif — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CactusClassicalSerif extends GoogleFont<CactusClassicalSerifWeight, CactusClassicalSerifStyle, CactusClassicalSerifSubset> {
+export default class CactusClassicalSerif extends GoogleFont<
+  CactusClassicalSerifWeight,
+  CactusClassicalSerifStyle,
+  CactusClassicalSerifSubset
+> {
   constructor(options?: CactusClassicalSerifOptions) {
     super(FAMILY, FACES, options);
   }

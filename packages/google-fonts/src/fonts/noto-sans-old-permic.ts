@@ -5,29 +5,41 @@ const FAMILY = "Noto Sans Old Permic";
 
 const FACES = {
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansoldpermic/v18/snf1s1q1-dF8pli1TesqcbUY4Mr-ElrwKIddiP7tKQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansoldpermic/v18/snf1s1q1-dF8pli1TesqcbUY4Mr-ElrwKIddiP7tKQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansoldpermic/v18/snf1s1q1-dF8pli1TesqcbUY4Mr-ElrwKIdQiP4.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansoldpermic/v18/snf1s1q1-dF8pli1TesqcbUY4Mr-ElrwKIdQiP4.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansoldpermic/v18/snf1s1q1-dF8pli1TesqcbUY4Mr-ElrwKIdeiP7tKQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansoldpermic/v18/snf1s1q1-dF8pli1TesqcbUY4Mr-ElrwKIdeiP7tKQ.woff2",
   },
   "old-permic": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansoldpermic/v18/snf1s1q1-dF8pli1TesqcbUY4Mr-ElrwKIc8iP7tKQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansoldpermic/v18/snf1s1q1-dF8pli1TesqcbUY4Mr-ElrwKIc8iP7tKQ.woff2",
   },
 } as const;
 
 export type NotoSansOldPermicWeight = "400";
 export type NotoSansOldPermicStyle = "normal";
 export type NotoSansOldPermicSubset = "cyrillic-ext" | "latin" | "latin-ext" | "old-permic";
-export type NotoSansOldPermicOptions = GoogleFontOptions<NotoSansOldPermicWeight, NotoSansOldPermicStyle, NotoSansOldPermicSubset>;
+export type NotoSansOldPermicOptions = GoogleFontOptions<
+  NotoSansOldPermicWeight,
+  NotoSansOldPermicStyle,
+  NotoSansOldPermicSubset
+>;
 
 /**
  * Noto Sans Old Permic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansOldPermic extends GoogleFont<NotoSansOldPermicWeight, NotoSansOldPermicStyle, NotoSansOldPermicSubset> {
+export default class NotoSansOldPermic extends GoogleFont<
+  NotoSansOldPermicWeight,
+  NotoSansOldPermicStyle,
+  NotoSansOldPermicSubset
+> {
   constructor(options?: NotoSansOldPermicOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Akaya Kanadaka";
 
 const FACES = {
-  "kannada": {
-    "400-normal": "https://fonts.gstatic.com/s/akayakanadaka/v18/N0bM2S5CPO5oOQqvazoRRb-8-MfMQZRxBQ.woff2",
+  kannada: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/akayakanadaka/v18/N0bM2S5CPO5oOQqvazoRRb-8-MfMQZRxBQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/akayakanadaka/v18/N0bM2S5CPO5oOQqvazoRRb-8-MfWQZQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/akayakanadaka/v18/N0bM2S5CPO5oOQqvazoRRb-8-MfWQZQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/akayakanadaka/v18/N0bM2S5CPO5oOQqvazoRRb-8-MfYQZRxBQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/akayakanadaka/v18/N0bM2S5CPO5oOQqvazoRRb-8-MfYQZRxBQ.woff2",
   },
 } as const;
 
 export type AkayaKanadakaWeight = "400";
 export type AkayaKanadakaStyle = "normal";
 export type AkayaKanadakaSubset = "kannada" | "latin" | "latin-ext";
-export type AkayaKanadakaOptions = GoogleFontOptions<AkayaKanadakaWeight, AkayaKanadakaStyle, AkayaKanadakaSubset>;
+export type AkayaKanadakaOptions = GoogleFontOptions<
+  AkayaKanadakaWeight,
+  AkayaKanadakaStyle,
+  AkayaKanadakaSubset
+>;
 
 /**
  * Akaya Kanadaka — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AkayaKanadaka extends GoogleFont<AkayaKanadakaWeight, AkayaKanadakaStyle, AkayaKanadakaSubset> {
+export default class AkayaKanadaka extends GoogleFont<
+  AkayaKanadakaWeight,
+  AkayaKanadakaStyle,
+  AkayaKanadakaSubset
+> {
   constructor(options?: AkayaKanadakaOptions) {
     super(FAMILY, FACES, options);
   }

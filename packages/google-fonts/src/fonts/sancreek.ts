@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sancreek";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sancreek/v27/pxiHypAnsdxUm159X4D5V14.woff2",
   },
   "latin-ext": {

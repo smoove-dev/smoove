@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pontano Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3axT8N.woff2",
     "400-normal": "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3axT8N.woff2",
     "500-normal": "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3axT8N.woff2",
@@ -12,24 +12,37 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3axT8N.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3ayz8Ns1s.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3ayz8Ns1s.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3ayz8Ns1s.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3ayz8Ns1s.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3ayz8Ns1s.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3ayz8Ns1s.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3ayz8Ns1s.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3ayz8Ns1s.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3ayz8Ns1s.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/pontanosans/v19/qFdD35GdgYR8EzR6oBLDHa3ayz8Ns1s.woff2",
   },
 } as const;
 
 export type PontanoSansWeight = "300" | "400" | "500" | "600" | "700";
 export type PontanoSansStyle = "normal";
 export type PontanoSansSubset = "latin" | "latin-ext";
-export type PontanoSansOptions = GoogleFontOptions<PontanoSansWeight, PontanoSansStyle, PontanoSansSubset>;
+export type PontanoSansOptions = GoogleFontOptions<
+  PontanoSansWeight,
+  PontanoSansStyle,
+  PontanoSansSubset
+>;
 
 /**
  * Pontano Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PontanoSans extends GoogleFont<PontanoSansWeight, PontanoSansStyle, PontanoSansSubset> {
+export default class PontanoSans extends GoogleFont<
+  PontanoSansWeight,
+  PontanoSansStyle,
+  PontanoSansSubset
+> {
   constructor(options?: PontanoSansOptions) {
     super(FAMILY, FACES, options);
   }

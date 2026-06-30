@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Monda";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/monda/v19/TK3tWkYFABsmjsphPho.woff2",
     "500-normal": "https://fonts.gstatic.com/s/monda/v19/TK3tWkYFABsmjsphPho.woff2",
     "600-normal": "https://fonts.gstatic.com/s/monda/v19/TK3tWkYFABsmjsphPho.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/monda/v19/TK3tWkYFABsmjspvPho7vA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/monda/v19/TK3tWkYFABsmjspvPho7vA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/monda/v19/TK3tWkYFABsmjspuPho7vA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/monda/v19/TK3tWkYFABsmjspuPho7vA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/monda/v19/TK3tWkYFABsmjspuPho7vA.woff2",

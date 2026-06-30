@@ -1,4 +1,4 @@
-import { type OffsetScene, type PlacedScene, computeOffsets } from "./offsets.js";
+import { computeOffsets, type OffsetScene, type PlacedScene } from "./offsets.js";
 import { Sequence, type SequenceProvider } from "./sequence.js";
 
 export type SeriesOptions = {

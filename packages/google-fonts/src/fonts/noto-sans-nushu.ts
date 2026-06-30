@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Nushu";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnushu/v20/rnCw-xRQ3B7652emAbAe_Ai1IYa1X1oN.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnushu/v20/rnCw-xRQ3B7652emAbAe_Ai1IYa1X1oN.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnushu/v20/rnCw-xRQ3B7652emAbAe_Ai1IYa1UVoNMrY.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnushu/v20/rnCw-xRQ3B7652emAbAe_Ai1IYa1UVoNMrY.woff2",
   },
-  "nushu": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnushu/v20/rnCw-xRQ3B7652emAbAe_Ai1IYa1IFoNMrY.woff2",
+  nushu: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnushu/v20/rnCw-xRQ3B7652emAbAe_Ai1IYa1IFoNMrY.woff2",
   },
 } as const;
 
 export type NotoSansNushuWeight = "400";
 export type NotoSansNushuStyle = "normal";
 export type NotoSansNushuSubset = "latin" | "latin-ext" | "nushu";
-export type NotoSansNushuOptions = GoogleFontOptions<NotoSansNushuWeight, NotoSansNushuStyle, NotoSansNushuSubset>;
+export type NotoSansNushuOptions = GoogleFontOptions<
+  NotoSansNushuWeight,
+  NotoSansNushuStyle,
+  NotoSansNushuSubset
+>;
 
 /**
  * Noto Sans Nushu — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansNushu extends GoogleFont<NotoSansNushuWeight, NotoSansNushuStyle, NotoSansNushuSubset> {
+export default class NotoSansNushu extends GoogleFont<
+  NotoSansNushuWeight,
+  NotoSansNushuStyle,
+  NotoSansNushuSubset
+> {
   constructor(options?: NotoSansNushuOptions) {
     super(FAMILY, FACES, options);
   }

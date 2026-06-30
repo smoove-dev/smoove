@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Calistoga";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/calistoga/v18/6NUU8F2OJg6MeR7l4e0fs8wB.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/calistoga/v18/6NUU8F2OJg6MeR7l4e0fvcwB8dQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/calistoga/v18/6NUU8F2OJg6MeR7l4e0fvMwB8dQ.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type CalistogaOptions = GoogleFontOptions<CalistogaWeight, CalistogaStyle
  * Calistoga — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Calistoga extends GoogleFont<CalistogaWeight, CalistogaStyle, CalistogaSubset> {
+export default class Calistoga extends GoogleFont<
+  CalistogaWeight,
+  CalistogaStyle,
+  CalistogaSubset
+> {
   constructor(options?: CalistogaOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,30 +4,43 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tiro Kannada";
 
 const FACES = {
-  "kannada": {
-    "400-italic": "https://fonts.gstatic.com/s/tirokannada/v6/CSRm4ztKmvqaDxEDJFY7CIY6SsNjnOEdEg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tirokannada/v6/CSR44ztKmvqaDxEDJFY7CIY6VfN7hOU.woff2",
+  kannada: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/tirokannada/v6/CSRm4ztKmvqaDxEDJFY7CIY6SsNjnOEdEg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tirokannada/v6/CSR44ztKmvqaDxEDJFY7CIY6VfN7hOU.woff2",
   },
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/tirokannada/v6/CSRm4ztKmvqaDxEDJFY7CIY6SsN5nOE.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/tirokannada/v6/CSRm4ztKmvqaDxEDJFY7CIY6SsN5nOE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tirokannada/v6/CSR44ztKmvqaDxEDJFY7CIY6T_N7.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/tirokannada/v6/CSRm4ztKmvqaDxEDJFY7CIY6SsN3nOEdEg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tirokannada/v6/CSR44ztKmvqaDxEDJFY7CIY6QfN7hOU.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/tirokannada/v6/CSRm4ztKmvqaDxEDJFY7CIY6SsN3nOEdEg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tirokannada/v6/CSR44ztKmvqaDxEDJFY7CIY6QfN7hOU.woff2",
   },
 } as const;
 
 export type TiroKannadaWeight = "400";
 export type TiroKannadaStyle = "italic" | "normal";
 export type TiroKannadaSubset = "kannada" | "latin" | "latin-ext";
-export type TiroKannadaOptions = GoogleFontOptions<TiroKannadaWeight, TiroKannadaStyle, TiroKannadaSubset>;
+export type TiroKannadaOptions = GoogleFontOptions<
+  TiroKannadaWeight,
+  TiroKannadaStyle,
+  TiroKannadaSubset
+>;
 
 /**
  * Tiro Kannada — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TiroKannada extends GoogleFont<TiroKannadaWeight, TiroKannadaStyle, TiroKannadaSubset> {
+export default class TiroKannada extends GoogleFont<
+  TiroKannadaWeight,
+  TiroKannadaStyle,
+  TiroKannadaSubset
+> {
   constructor(options?: TiroKannadaOptions) {
     super(FAMILY, FACES, options);
   }

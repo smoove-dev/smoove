@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Almendra SC";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/almendrasc/v31/Iure6Yx284eebowr7hbyTaZOrLQ.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type AlmendraSCWeight = "400";
 export type AlmendraSCStyle = "normal";
 export type AlmendraSCSubset = "latin";
-export type AlmendraSCOptions = GoogleFontOptions<AlmendraSCWeight, AlmendraSCStyle, AlmendraSCSubset>;
+export type AlmendraSCOptions = GoogleFontOptions<
+  AlmendraSCWeight,
+  AlmendraSCStyle,
+  AlmendraSCSubset
+>;
 
 /**
  * Almendra SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AlmendraSC extends GoogleFont<AlmendraSCWeight, AlmendraSCStyle, AlmendraSCSubset> {
+export default class AlmendraSC extends GoogleFont<
+  AlmendraSCWeight,
+  AlmendraSCStyle,
+  AlmendraSCSubset
+> {
   constructor(options?: AlmendraSCOptions) {
     super(FAMILY, FACES, options);
   }

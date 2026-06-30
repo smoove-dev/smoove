@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Prosto One";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/prostoone/v21/OpNJno4VhNfK-RgpwWWxlilVWyXD.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/prostoone/v21/OpNJno4VhNfK-RgpwWWxli1VWw.woff2",
   },
   "latin-ext": {
@@ -24,7 +24,11 @@ export type ProstoOneOptions = GoogleFontOptions<ProstoOneWeight, ProstoOneStyle
  * Prosto One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ProstoOne extends GoogleFont<ProstoOneWeight, ProstoOneStyle, ProstoOneSubset> {
+export default class ProstoOne extends GoogleFont<
+  ProstoOneWeight,
+  ProstoOneStyle,
+  ProstoOneSubset
+> {
   constructor(options?: ProstoOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bungee Tint";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bungeetint/v3/J7abnpl_EGtUEuAJwN9WmotNOj0.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/bungeetint/v3/J7abnpl_EGtUEuAJwN9WmotDOj0jpQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/bungeetint/v3/J7abnpl_EGtUEuAJwN9WmotCOj0jpQ.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type BungeeTintWeight = "400";
 export type BungeeTintStyle = "normal";
 export type BungeeTintSubset = "latin" | "latin-ext" | "vietnamese";
-export type BungeeTintOptions = GoogleFontOptions<BungeeTintWeight, BungeeTintStyle, BungeeTintSubset>;
+export type BungeeTintOptions = GoogleFontOptions<
+  BungeeTintWeight,
+  BungeeTintStyle,
+  BungeeTintSubset
+>;
 
 /**
  * Bungee Tint — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BungeeTint extends GoogleFont<BungeeTintWeight, BungeeTintStyle, BungeeTintSubset> {
+export default class BungeeTint extends GoogleFont<
+  BungeeTintWeight,
+  BungeeTintStyle,
+  BungeeTintSubset
+> {
   constructor(options?: BungeeTintOptions) {
     super(FAMILY, FACES, options);
   }

@@ -1,4 +1,4 @@
-import { type ReadonlySignal, type Signal, createSignal } from "../../engine/signal.js";
+import { createSignal, type ReadonlySignal, type Signal } from "../../engine/signal.js";
 
 /**
  * A registered audio source the mixer can re-apply. Implemented by {@link Video}.

@@ -4,23 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "BioRhyme";
 
 const FACES = {
-  "latin": {
-    "200-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
+  latin: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc37Oa.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/biorhyme/v21/1cXtaULHBpDMsHYW_GZNh7loEHurwOIGadIc0bOaRSs.woff2",
   },
 } as const;
 

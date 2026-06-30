@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Swanky and Moo Moo";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/swankyandmoomoo/v24/flUlRrKz24IuWVI_WJYTYcqbEsMUZ3kksrnl.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/swankyandmoomoo/v24/flUlRrKz24IuWVI_WJYTYcqbEsMUZ3kksrnl.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/swankyandmoomoo/v24/flUlRrKz24IuWVI_WJYTYcqbEsMUZ3kkvLnld64.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/swankyandmoomoo/v24/flUlRrKz24IuWVI_WJYTYcqbEsMUZ3kkvLnld64.woff2",
   },
 } as const;
 
 export type SwankyAndMooMooWeight = "400";
 export type SwankyAndMooMooStyle = "normal";
 export type SwankyAndMooMooSubset = "latin" | "latin-ext";
-export type SwankyAndMooMooOptions = GoogleFontOptions<SwankyAndMooMooWeight, SwankyAndMooMooStyle, SwankyAndMooMooSubset>;
+export type SwankyAndMooMooOptions = GoogleFontOptions<
+  SwankyAndMooMooWeight,
+  SwankyAndMooMooStyle,
+  SwankyAndMooMooSubset
+>;
 
 /**
  * Swanky and Moo Moo — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SwankyAndMooMoo extends GoogleFont<SwankyAndMooMooWeight, SwankyAndMooMooStyle, SwankyAndMooMooSubset> {
+export default class SwankyAndMooMoo extends GoogleFont<
+  SwankyAndMooMooWeight,
+  SwankyAndMooMooStyle,
+  SwankyAndMooMooSubset
+> {
   constructor(options?: SwankyAndMooMooOptions) {
     super(FAMILY, FACES, options);
   }

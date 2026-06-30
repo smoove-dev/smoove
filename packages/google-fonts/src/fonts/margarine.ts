@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Margarine";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/margarine/v27/qkBXXvoE6trLT9Y7YLyu455K.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type MargarineOptions = GoogleFontOptions<MargarineWeight, MargarineStyle
  * Margarine — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Margarine extends GoogleFont<MargarineWeight, MargarineStyle, MargarineSubset> {
+export default class Margarine extends GoogleFont<
+  MargarineWeight,
+  MargarineStyle,
+  MargarineSubset
+> {
   constructor(options?: MargarineOptions) {
     super(FAMILY, FACES, options);
   }

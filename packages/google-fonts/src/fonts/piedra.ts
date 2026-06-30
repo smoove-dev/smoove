@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Piedra";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/piedra/v27/ke8kOg8aN0Bn7hTem0aG.woff2",
   },
   "latin-ext": {

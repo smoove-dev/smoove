@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Arizonia";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/arizonia/v23/neIIzCemt4A5qa7mv5WBFqw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/arizonia/v23/neIIzCemt4A5qa7mv5WPFqwKUQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/arizonia/v23/neIIzCemt4A5qa7mv5WOFqwKUQ.woff2",
   },
 } as const;

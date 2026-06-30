@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nerko One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/nerkoone/v17/m8JQjfZSc7OXlB3ZMOjDd5RA.woff2",
   },
   "latin-ext": {

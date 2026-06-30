@@ -4,30 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "WDXL Lubrifont SC";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/wdxllubrifontsc/v2/gNMeW2VmY6acu0XtugFrduDciOOyfky6kj5wSA.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/wdxllubrifontsc/v2/gNMeW2VmY6acu0XtugFrduDciOOyfky6kj5wSA.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/wdxllubrifontsc/v2/gNMeW2VmY6acu0XtugFrduDciOOyfky-kj4.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/wdxllubrifontsc/v2/gNMeW2VmY6acu0XtugFrduDciOOyfky-kj4.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/wdxllubrifontsc/v2/gNMeW2VmY6acu0XtugFrduDciOOyfkywkj5wSA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/wdxllubrifontsc/v2/gNMeW2VmY6acu0XtugFrduDciOOyfkywkj5wSA.woff2",
   },
-  "symbols2": {
-    "400-normal": "https://fonts.gstatic.com/s/wdxllubrifontsc/v2/gNMeW2VmY6acu0XtugFrduDciOOyfkwEsxtNcWU.woff2",
+  symbols2: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/wdxllubrifontsc/v2/gNMeW2VmY6acu0XtugFrduDciOOyfkwEsxtNcWU.woff2",
   },
 } as const;
 
 export type WDXLLubrifontSCWeight = "400";
 export type WDXLLubrifontSCStyle = "normal";
 export type WDXLLubrifontSCSubset = "cyrillic" | "latin" | "latin-ext" | "symbols2";
-export type WDXLLubrifontSCOptions = GoogleFontOptions<WDXLLubrifontSCWeight, WDXLLubrifontSCStyle, WDXLLubrifontSCSubset>;
+export type WDXLLubrifontSCOptions = GoogleFontOptions<
+  WDXLLubrifontSCWeight,
+  WDXLLubrifontSCStyle,
+  WDXLLubrifontSCSubset
+>;
 
 /**
  * WDXL Lubrifont SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class WDXLLubrifontSC extends GoogleFont<WDXLLubrifontSCWeight, WDXLLubrifontSCStyle, WDXLLubrifontSCSubset> {
+export default class WDXLLubrifontSC extends GoogleFont<
+  WDXLLubrifontSCWeight,
+  WDXLLubrifontSCStyle,
+  WDXLLubrifontSCSubset
+> {
   constructor(options?: WDXLLubrifontSCOptions) {
     super(FAMILY, FACES, options);
   }

@@ -1,4 +1,4 @@
-import { type TemplateResult, html } from "lit";
+import { html, type TemplateResult } from "lit";
 import { SmooveControl } from "./base.js";
 import type { PlayerApi } from "./player-api.js";
 

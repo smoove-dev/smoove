@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Maze";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaze/v2/xMQRuF9ZVa2ftiJEavXSMX3onB-b.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaze/v2/xMQRuF9ZVa2ftiJEavXSMXTonB-b.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaze/v2/xMQRuF9ZVa2ftiJEavXSMXvonB-b.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaze/v2/xMQRuF9ZVa2ftiJEavXSMXnonA.woff2",
   },
   "latin-ext": {
@@ -30,7 +30,11 @@ export type RubikMazeOptions = GoogleFontOptions<RubikMazeWeight, RubikMazeStyle
  * Rubik Maze — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikMaze extends GoogleFont<RubikMazeWeight, RubikMazeStyle, RubikMazeSubset> {
+export default class RubikMaze extends GoogleFont<
+  RubikMazeWeight,
+  RubikMazeStyle,
+  RubikMazeSubset
+> {
   constructor(options?: RubikMazeOptions) {
     super(FAMILY, FACES, options);
   }

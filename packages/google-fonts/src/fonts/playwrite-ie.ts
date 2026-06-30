@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite IE";
 
 const FACES = {
-  "fallback": {
+  fallback: {
     "100-normal": "https://fonts.gstatic.com/s/playwriteie/v11/fC1mPYtWYWnH0hvndYd6GCGMUg.woff2",
     "200-normal": "https://fonts.gstatic.com/s/playwriteie/v11/fC1mPYtWYWnH0hvndYd6GCGMUg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/playwriteie/v11/fC1mPYtWYWnH0hvndYd6GCGMUg.woff2",
@@ -15,13 +15,21 @@ const FACES = {
 export type PlaywriteIEWeight = "100" | "200" | "300" | "400";
 export type PlaywriteIEStyle = "normal";
 export type PlaywriteIESubset = "fallback";
-export type PlaywriteIEOptions = GoogleFontOptions<PlaywriteIEWeight, PlaywriteIEStyle, PlaywriteIESubset>;
+export type PlaywriteIEOptions = GoogleFontOptions<
+  PlaywriteIEWeight,
+  PlaywriteIEStyle,
+  PlaywriteIESubset
+>;
 
 /**
  * Playwrite IE — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteIE extends GoogleFont<PlaywriteIEWeight, PlaywriteIEStyle, PlaywriteIESubset> {
+export default class PlaywriteIE extends GoogleFont<
+  PlaywriteIEWeight,
+  PlaywriteIEStyle,
+  PlaywriteIESubset
+> {
   constructor(options?: PlaywriteIEOptions) {
     super(FAMILY, FACES, options);
   }

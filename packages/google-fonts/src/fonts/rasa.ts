@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rasa";
 
 const FACES = {
-  "gujarati": {
+  gujarati: {
     "300-italic": "https://fonts.gstatic.com/s/rasa/v27/xn7hYHIn1mWmfqBkjiCUd9w.woff2",
     "300-normal": "https://fonts.gstatic.com/s/rasa/v27/xn7vYHIn1mWmfr5UlziQ.woff2",
     "400-italic": "https://fonts.gstatic.com/s/rasa/v27/xn7hYHIn1mWmfqBkjiCUd9w.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/rasa/v27/xn7hYHIn1mWmfqBkjiCUd9w.woff2",
     "700-normal": "https://fonts.gstatic.com/s/rasa/v27/xn7vYHIn1mWmfr5UlziQ.woff2",
   },
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/rasa/v27/xn7hYHIn1mWmfqBklSCU.woff2",
     "300-normal": "https://fonts.gstatic.com/s/rasa/v27/xn7vYHIn1mWmfqVUlw.woff2",
     "400-italic": "https://fonts.gstatic.com/s/rasa/v27/xn7hYHIn1mWmfqBklSCU.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/rasa/v27/xn7hYHIn1mWmfqBkmyCUd9w.woff2",
     "700-normal": "https://fonts.gstatic.com/s/rasa/v27/xn7vYHIn1mWmfqtUlziQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-italic": "https://fonts.gstatic.com/s/rasa/v27/xn7hYHIn1mWmfqBkmiCUd9w.woff2",
     "300-normal": "https://fonts.gstatic.com/s/rasa/v27/xn7vYHIn1mWmfqpUlziQ.woff2",
     "400-italic": "https://fonts.gstatic.com/s/rasa/v27/xn7hYHIn1mWmfqBkmiCUd9w.woff2",

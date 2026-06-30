@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Griffy";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/griffy/v23/FwZa7-ox2FQh9kfAT96F.woff2",
   },
   "latin-ext": {

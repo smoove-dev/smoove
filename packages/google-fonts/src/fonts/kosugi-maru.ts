@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kosugi Maru";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/kosugimaru/v17/0nksC9PgP_wGh21A2KeqGhTpgPvNiA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kosugimaru/v17/0nksC9PgP_wGh21A2KeqGhTtgPs.woff2",
   },
   "latin-ext": {
@@ -18,13 +18,21 @@ const FACES = {
 export type KosugiMaruWeight = "400";
 export type KosugiMaruStyle = "normal";
 export type KosugiMaruSubset = "cyrillic" | "latin" | "latin-ext";
-export type KosugiMaruOptions = GoogleFontOptions<KosugiMaruWeight, KosugiMaruStyle, KosugiMaruSubset>;
+export type KosugiMaruOptions = GoogleFontOptions<
+  KosugiMaruWeight,
+  KosugiMaruStyle,
+  KosugiMaruSubset
+>;
 
 /**
  * Kosugi Maru — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KosugiMaru extends GoogleFont<KosugiMaruWeight, KosugiMaruStyle, KosugiMaruSubset> {
+export default class KosugiMaru extends GoogleFont<
+  KosugiMaruWeight,
+  KosugiMaruStyle,
+  KosugiMaruSubset
+> {
   constructor(options?: KosugiMaruOptions) {
     super(FAMILY, FACES, options);
   }

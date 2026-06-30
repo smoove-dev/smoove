@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Elsie";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/elsie/v26/BCanqZABrez54xYp_Mg.woff2",
     "900-normal": "https://fonts.gstatic.com/s/elsie/v26/BCaqqZABrez54x6q291PWaU.woff2",
   },

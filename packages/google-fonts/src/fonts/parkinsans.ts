@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Parkinsans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/parkinsans/v3/-W_7XJXvQyPb1QfpBpRrfkQLfg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/parkinsans/v3/-W_7XJXvQyPb1QfpBpRrfkQLfg.woff2",
     "500-normal": "https://fonts.gstatic.com/s/parkinsans/v3/-W_7XJXvQyPb1QfpBpRrfkQLfg.woff2",
@@ -25,13 +25,21 @@ const FACES = {
 export type ParkinsansWeight = "300" | "400" | "500" | "600" | "700" | "800";
 export type ParkinsansStyle = "normal";
 export type ParkinsansSubset = "latin" | "latin-ext";
-export type ParkinsansOptions = GoogleFontOptions<ParkinsansWeight, ParkinsansStyle, ParkinsansSubset>;
+export type ParkinsansOptions = GoogleFontOptions<
+  ParkinsansWeight,
+  ParkinsansStyle,
+  ParkinsansSubset
+>;
 
 /**
  * Parkinsans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Parkinsans extends GoogleFont<ParkinsansWeight, ParkinsansStyle, ParkinsansSubset> {
+export default class Parkinsans extends GoogleFont<
+  ParkinsansWeight,
+  ParkinsansStyle,
+  ParkinsansSubset
+> {
   constructor(options?: ParkinsansOptions) {
     super(FAMILY, FACES, options);
   }

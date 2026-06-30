@@ -4,34 +4,51 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Inria Serif";
 
 const FACES = {
-  "latin": {
-    "300-italic": "https://fonts.gstatic.com/s/inriaserif/v18/fC16PYxPY3rXxEndZJAzN3SuT4THvl-Fbw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/inriaserif/v18/fC14PYxPY3rXxEndZJAzN3wAVTjCjl0.woff2",
+  latin: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/inriaserif/v18/fC16PYxPY3rXxEndZJAzN3SuT4THvl-Fbw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/inriaserif/v18/fC14PYxPY3rXxEndZJAzN3wAVTjCjl0.woff2",
     "400-italic": "https://fonts.gstatic.com/s/inriaserif/v18/fC1nPYxPY3rXxEndZJAzN3SuRy_lqw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/inriaserif/v18/fC1lPYxPY3rXxEndZJAzN3Srdy0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/inriaserif/v18/fC16PYxPY3rXxEndZJAzN3SuT5TAvl-Fbw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/inriaserif/v18/fC14PYxPY3rXxEndZJAzN3wQUjjCjl0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/inriaserif/v18/fC16PYxPY3rXxEndZJAzN3SuT5TAvl-Fbw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/inriaserif/v18/fC14PYxPY3rXxEndZJAzN3wQUjjCjl0.woff2",
   },
   "latin-ext": {
-    "300-italic": "https://fonts.gstatic.com/s/inriaserif/v18/fC16PYxPY3rXxEndZJAzN3SuT4THvlGFb1xN.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/inriaserif/v18/fC14PYxPY3rXxEndZJAzN3wAVTjMjl2daw.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/inriaserif/v18/fC1nPYxPY3rXxEndZJAzN3SuRyHlq2Ck.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/inriaserif/v18/fC16PYxPY3rXxEndZJAzN3SuT4THvlGFb1xN.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/inriaserif/v18/fC14PYxPY3rXxEndZJAzN3wAVTjMjl2daw.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/inriaserif/v18/fC1nPYxPY3rXxEndZJAzN3SuRyHlq2Ck.woff2",
     "400-normal": "https://fonts.gstatic.com/s/inriaserif/v18/fC1lPYxPY3rXxEndZJAzN3Sldy39rw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/inriaserif/v18/fC16PYxPY3rXxEndZJAzN3SuT5TAvlGFb1xN.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/inriaserif/v18/fC14PYxPY3rXxEndZJAzN3wQUjjMjl2daw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/inriaserif/v18/fC16PYxPY3rXxEndZJAzN3SuT5TAvlGFb1xN.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/inriaserif/v18/fC14PYxPY3rXxEndZJAzN3wQUjjMjl2daw.woff2",
   },
 } as const;
 
 export type InriaSerifWeight = "300" | "400" | "700";
 export type InriaSerifStyle = "italic" | "normal";
 export type InriaSerifSubset = "latin" | "latin-ext";
-export type InriaSerifOptions = GoogleFontOptions<InriaSerifWeight, InriaSerifStyle, InriaSerifSubset>;
+export type InriaSerifOptions = GoogleFontOptions<
+  InriaSerifWeight,
+  InriaSerifStyle,
+  InriaSerifSubset
+>;
 
 /**
  * Inria Serif — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class InriaSerif extends GoogleFont<InriaSerifWeight, InriaSerifStyle, InriaSerifSubset> {
+export default class InriaSerif extends GoogleFont<
+  InriaSerifWeight,
+  InriaSerifStyle,
+  InriaSerifSubset
+> {
   constructor(options?: InriaSerifOptions) {
     super(FAMILY, FACES, options);
   }

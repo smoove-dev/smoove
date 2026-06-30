@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yusei Magic";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/yuseimagic/v16/yYLt0hbAyuCmoo5wlhPkpgHW8NY.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type YuseiMagicWeight = "400";
 export type YuseiMagicStyle = "normal";
 export type YuseiMagicSubset = "latin" | "latin-ext";
-export type YuseiMagicOptions = GoogleFontOptions<YuseiMagicWeight, YuseiMagicStyle, YuseiMagicSubset>;
+export type YuseiMagicOptions = GoogleFontOptions<
+  YuseiMagicWeight,
+  YuseiMagicStyle,
+  YuseiMagicSubset
+>;
 
 /**
  * Yusei Magic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class YuseiMagic extends GoogleFont<YuseiMagicWeight, YuseiMagicStyle, YuseiMagicSubset> {
+export default class YuseiMagic extends GoogleFont<
+  YuseiMagicWeight,
+  YuseiMagicStyle,
+  YuseiMagicSubset
+> {
   constructor(options?: YuseiMagicOptions) {
     super(FAMILY, FACES, options);
   }

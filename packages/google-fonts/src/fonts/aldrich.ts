@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Aldrich";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/aldrich/v22/MCoTzAn-1s3IGyJMVacY3w.woff2",
   },
 } as const;

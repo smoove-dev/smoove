@@ -4,12 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fondamento";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/fondamento/v22/4UaFrEJGsxNmFTPDnkaJ96_Z5btx.woff2",
     "400-normal": "https://fonts.gstatic.com/s/fondamento/v22/4UaHrEJGsxNmFTPDnkaJ96rp5w.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/fondamento/v22/4UaFrEJGsxNmFTPDnkaJ96_Z67txEwI.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/fondamento/v22/4UaFrEJGsxNmFTPDnkaJ96_Z67txEwI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/fondamento/v22/4UaHrEJGsxNmFTPDnkaJ96Tp56N1.woff2",
   },
 } as const;
@@ -17,13 +18,21 @@ const FACES = {
 export type FondamentoWeight = "400";
 export type FondamentoStyle = "italic" | "normal";
 export type FondamentoSubset = "latin" | "latin-ext";
-export type FondamentoOptions = GoogleFontOptions<FondamentoWeight, FondamentoStyle, FondamentoSubset>;
+export type FondamentoOptions = GoogleFontOptions<
+  FondamentoWeight,
+  FondamentoStyle,
+  FondamentoSubset
+>;
 
 /**
  * Fondamento — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Fondamento extends GoogleFont<FondamentoWeight, FondamentoStyle, FondamentoSubset> {
+export default class Fondamento extends GoogleFont<
+  FondamentoWeight,
+  FondamentoStyle,
+  FondamentoSubset
+> {
   constructor(options?: FondamentoOptions) {
     super(FAMILY, FACES, options);
   }

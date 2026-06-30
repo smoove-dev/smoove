@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kode Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kodemono/v4/A2BYn5pb0QgtVEPFnlYOnYLw.woff2",
     "500-normal": "https://fonts.gstatic.com/s/kodemono/v4/A2BYn5pb0QgtVEPFnlYOnYLw.woff2",
     "600-normal": "https://fonts.gstatic.com/s/kodemono/v4/A2BYn5pb0QgtVEPFnlYOnYLw.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kanit";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/kanit/v17/nKKV-Go6G5tXcraQI2GwcoRE.woff2",
     "100-normal": "https://fonts.gstatic.com/s/kanit/v17/nKKX-Go6G5tXcr72KwKAcA.woff2",
     "200-italic": "https://fonts.gstatic.com/s/kanit/v17/nKKS-Go6G5tXcraQI82hZaNhMQ.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/kanit/v17/nKKS-Go6G5tXcraQI4GnZa1hMWJy.woff2",
     "900-normal": "https://fonts.gstatic.com/s/kanit/v17/nKKU-Go6G5tXcr4WPBWpVaF5NQ.woff2",
   },
-  "thai": {
+  thai: {
     "100-italic": "https://fonts.gstatic.com/s/kanit/v17/nKKV-Go6G5tXcraQI2GwZoREDFs.woff2",
     "100-normal": "https://fonts.gstatic.com/s/kanit/v17/nKKX-Go6G5tXcr72KxaAcJxA.woff2",
     "200-italic": "https://fonts.gstatic.com/s/kanit/v17/nKKS-Go6G5tXcraQI82hZbdhMWJy.woff2",
@@ -64,7 +64,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/kanit/v17/nKKS-Go6G5tXcraQI4GnZbdhMWJy.woff2",
     "900-normal": "https://fonts.gstatic.com/s/kanit/v17/nKKU-Go6G5tXcr4WPBWzVaF5NQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/kanit/v17/nKKV-Go6G5tXcraQI2GwfYREDFs.woff2",
     "100-normal": "https://fonts.gstatic.com/s/kanit/v17/nKKX-Go6G5tXcr72Kw2AcJxA.woff2",
     "200-italic": "https://fonts.gstatic.com/s/kanit/v17/nKKS-Go6G5tXcraQI82hZaxhMWJy.woff2",

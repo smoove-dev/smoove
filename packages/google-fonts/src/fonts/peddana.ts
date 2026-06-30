@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Peddana";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/peddana/v24/aFTU7PBhaX89UcKWthqQBA.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/peddana/v24/aFTU7PBhaX89UcKWtgaQBLyM.woff2",
   },
 } as const;

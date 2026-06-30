@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Road Rage";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/roadrage/v9/6NUU8F2fKAOBKjjr4ekfs8wB.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/roadrage/v9/6NUU8F2fKAOBKjjr4ekfvcwB8dQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/roadrage/v9/6NUU8F2fKAOBKjjr4ekfvMwB8dQ.woff2",
   },
 } as const;

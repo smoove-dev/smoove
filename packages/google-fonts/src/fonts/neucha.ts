@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Neucha";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/neucha/v18/q5uGsou0JOdh94bfuQltOxU.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/neucha/v18/q5uGsou0JOdh94bfvQlt.woff2",
   },
 } as const;

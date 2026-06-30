@@ -4,8 +4,9 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Single Day";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/singleday/v19/LYjHdGDjlEgoAcF95EI5jV9tRtXRM_vAklfi4DzhOchwatn58A.119.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/singleday/v19/LYjHdGDjlEgoAcF95EI5jV9tRtXRM_vAklfi4DzhOchwatn58A.119.woff2",
   },
 } as const;
 
@@ -18,7 +19,11 @@ export type SingleDayOptions = GoogleFontOptions<SingleDayWeight, SingleDayStyle
  * Single Day — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SingleDay extends GoogleFont<SingleDayWeight, SingleDayStyle, SingleDaySubset> {
+export default class SingleDay extends GoogleFont<
+  SingleDayWeight,
+  SingleDayStyle,
+  SingleDaySubset
+> {
   constructor(options?: SingleDayOptions) {
     super(FAMILY, FACES, options);
   }

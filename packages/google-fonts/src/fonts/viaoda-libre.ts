@@ -4,33 +4,45 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Viaoda Libre";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/viaodalibre/v20/vEFW2_lWCgoR6OKuRz9kcRV5bGgZ6tM.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/viaodalibre/v20/vEFW2_lWCgoR6OKuRz9kcRV5bGgZ6tM.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/viaodalibre/v20/vEFW2_lWCgoR6OKuRz9kcRV5ZWgZ6tM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/viaodalibre/v20/vEFW2_lWCgoR6OKuRz9kcRV5ZWgZ6tM.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/viaodalibre/v20/vEFW2_lWCgoR6OKuRz9kcRV5aGgZ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/viaodalibre/v20/vEFW2_lWCgoR6OKuRz9kcRV5ZmgZ6tM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/viaodalibre/v20/vEFW2_lWCgoR6OKuRz9kcRV5ZmgZ6tM.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/viaodalibre/v20/vEFW2_lWCgoR6OKuRz9kcRV5Z2gZ6tM.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/viaodalibre/v20/vEFW2_lWCgoR6OKuRz9kcRV5Z2gZ6tM.woff2",
   },
 } as const;
 
 export type ViaodaLibreWeight = "400";
 export type ViaodaLibreStyle = "normal";
 export type ViaodaLibreSubset = "cyrillic" | "cyrillic-ext" | "latin" | "latin-ext" | "vietnamese";
-export type ViaodaLibreOptions = GoogleFontOptions<ViaodaLibreWeight, ViaodaLibreStyle, ViaodaLibreSubset>;
+export type ViaodaLibreOptions = GoogleFontOptions<
+  ViaodaLibreWeight,
+  ViaodaLibreStyle,
+  ViaodaLibreSubset
+>;
 
 /**
  * Viaoda Libre — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ViaodaLibre extends GoogleFont<ViaodaLibreWeight, ViaodaLibreStyle, ViaodaLibreSubset> {
+export default class ViaodaLibre extends GoogleFont<
+  ViaodaLibreWeight,
+  ViaodaLibreStyle,
+  ViaodaLibreSubset
+> {
   constructor(options?: ViaodaLibreOptions) {
     super(FAMILY, FACES, options);
   }

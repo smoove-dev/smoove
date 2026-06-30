@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Vina Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/vinasans/v8/m8JQjfZKf6-d2273MP7Dd5RA.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/vinasans/v8/m8JQjfZKf6-d2273MP7DeZRAVmo.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/vinasans/v8/m8JQjfZKf6-d2273MP7DeJRAVmo.woff2",
   },
 } as const;

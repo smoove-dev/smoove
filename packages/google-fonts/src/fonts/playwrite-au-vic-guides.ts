@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite AU VIC Guides";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/playwriteauvicguides/v1/ll8sK3mEVy6nEMXMskXIZv8owEdZpVIWaQEnuD6A.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwriteauvicguides/v1/ll8sK3mEVy6nEMXMskXIZv8owEdZpVIWaQEnuD6A.woff2",
   },
 } as const;
 
 export type PlaywriteAUVICGuidesWeight = "400";
 export type PlaywriteAUVICGuidesStyle = "normal";
 export type PlaywriteAUVICGuidesSubset = "fallback";
-export type PlaywriteAUVICGuidesOptions = GoogleFontOptions<PlaywriteAUVICGuidesWeight, PlaywriteAUVICGuidesStyle, PlaywriteAUVICGuidesSubset>;
+export type PlaywriteAUVICGuidesOptions = GoogleFontOptions<
+  PlaywriteAUVICGuidesWeight,
+  PlaywriteAUVICGuidesStyle,
+  PlaywriteAUVICGuidesSubset
+>;
 
 /**
  * Playwrite AU VIC Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteAUVICGuides extends GoogleFont<PlaywriteAUVICGuidesWeight, PlaywriteAUVICGuidesStyle, PlaywriteAUVICGuidesSubset> {
+export default class PlaywriteAUVICGuides extends GoogleFont<
+  PlaywriteAUVICGuidesWeight,
+  PlaywriteAUVICGuidesStyle,
+  PlaywriteAUVICGuidesSubset
+> {
   constructor(options?: PlaywriteAUVICGuidesOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lexend Tera";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/lexendtera/v29/RrQUbo98_jt_IXnBPwCWtahHT4I.woff2",
     "200-normal": "https://fonts.gstatic.com/s/lexendtera/v29/RrQUbo98_jt_IXnBPwCWtahHT4I.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lexendtera/v29/RrQUbo98_jt_IXnBPwCWtahHT4I.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/lexendtera/v29/RrQUbo98_jt_IXnBPwCWtahJT4IQGg.woff2",
     "900-normal": "https://fonts.gstatic.com/s/lexendtera/v29/RrQUbo98_jt_IXnBPwCWtahJT4IQGg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/lexendtera/v29/RrQUbo98_jt_IXnBPwCWtahIT4IQGg.woff2",
     "200-normal": "https://fonts.gstatic.com/s/lexendtera/v29/RrQUbo98_jt_IXnBPwCWtahIT4IQGg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lexendtera/v29/RrQUbo98_jt_IXnBPwCWtahIT4IQGg.woff2",
@@ -39,16 +39,33 @@ const FACES = {
   },
 } as const;
 
-export type LexendTeraWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type LexendTeraWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type LexendTeraStyle = "normal";
 export type LexendTeraSubset = "latin" | "latin-ext" | "vietnamese";
-export type LexendTeraOptions = GoogleFontOptions<LexendTeraWeight, LexendTeraStyle, LexendTeraSubset>;
+export type LexendTeraOptions = GoogleFontOptions<
+  LexendTeraWeight,
+  LexendTeraStyle,
+  LexendTeraSubset
+>;
 
 /**
  * Lexend Tera — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LexendTera extends GoogleFont<LexendTeraWeight, LexendTeraStyle, LexendTeraSubset> {
+export default class LexendTera extends GoogleFont<
+  LexendTeraWeight,
+  LexendTeraStyle,
+  LexendTeraSubset
+> {
   constructor(options?: LexendTeraOptions) {
     super(FAMILY, FACES, options);
   }

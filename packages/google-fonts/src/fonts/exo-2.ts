@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Exo 2";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-italic": "https://fonts.gstatic.com/s/exo2/v26/7cHov4okm5zmbtYtG-gc5UIo.woff2",
     "100-normal": "https://fonts.gstatic.com/s/exo2/v26/7cHmv4okm5zmbtYsK-4E4Q.woff2",
     "200-italic": "https://fonts.gstatic.com/s/exo2/v26/7cHov4okm5zmbtYtG-gc5UIo.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/exo2/v26/7cHov4okm5zmbtYtG-Ec5UIo.woff2",
     "900-normal": "https://fonts.gstatic.com/s/exo2/v26/7cHmv4okm5zmbtYlK-4E4Q.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/exo2/v26/7cHov4okm5zmbtYtG-wc5Q.woff2",
     "100-normal": "https://fonts.gstatic.com/s/exo2/v26/7cHmv4okm5zmbtYoK-4.woff2",
     "200-italic": "https://fonts.gstatic.com/s/exo2/v26/7cHov4okm5zmbtYtG-wc5Q.woff2",
@@ -84,7 +84,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/exo2/v26/7cHov4okm5zmbtYtG-Ic5UIo.woff2",
     "900-normal": "https://fonts.gstatic.com/s/exo2/v26/7cHmv4okm5zmbtYmK-4E4Q.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/exo2/v26/7cHov4okm5zmbtYtG-Mc5UIo.woff2",
     "100-normal": "https://fonts.gstatic.com/s/exo2/v26/7cHmv4okm5zmbtYnK-4E4Q.woff2",
     "200-italic": "https://fonts.gstatic.com/s/exo2/v26/7cHov4okm5zmbtYtG-Mc5UIo.woff2",

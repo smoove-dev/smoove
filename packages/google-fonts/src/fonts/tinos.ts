@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tinos";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/tinos/v26/buE2poGnedXvwjX-TmJJ9RI-.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tinos/v26/buE4poGnedXvwjX_fmRR8Q.woff2",
     "700-italic": "https://fonts.gstatic.com/s/tinos/v26/buEzpoGnedXvwjX-Rt1s4Ckf_exL.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/tinos/v26/buEzpoGnedXvwjX-Rt1s4CAf_exL.woff2",
     "700-normal": "https://fonts.gstatic.com/s/tinos/v26/buE1poGnedXvwj1AW3Fj0C8H-Q.woff2",
   },
-  "greek": {
+  greek: {
     "400-italic": "https://fonts.gstatic.com/s/tinos/v26/buE2poGnedXvwjX-TmVJ9RI-.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tinos/v26/buE4poGnedXvwjX4fmRR8Q.woff2",
     "700-italic": "https://fonts.gstatic.com/s/tinos/v26/buEzpoGnedXvwjX-Rt1s4C4f_exL.woff2",
@@ -28,13 +28,13 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/tinos/v26/buEzpoGnedXvwjX-Rt1s4CEf_exL.woff2",
     "700-normal": "https://fonts.gstatic.com/s/tinos/v26/buE1poGnedXvwj1AW3Fi0C8H-Q.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-italic": "https://fonts.gstatic.com/s/tinos/v26/buE2poGnedXvwjX-TmRJ9RI-.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tinos/v26/buE4poGnedXvwjX5fmRR8Q.woff2",
     "700-italic": "https://fonts.gstatic.com/s/tinos/v26/buEzpoGnedXvwjX-Rt1s4C8f_exL.woff2",
     "700-normal": "https://fonts.gstatic.com/s/tinos/v26/buE1poGnedXvwj1AW3Fs0C8H-Q.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/tinos/v26/buE2poGnedXvwjX-TmZJ9Q.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tinos/v26/buE4poGnedXvwjX7fmQ.woff2",
     "700-italic": "https://fonts.gstatic.com/s/tinos/v26/buEzpoGnedXvwjX-Rt1s4C0f_Q.woff2",
@@ -46,7 +46,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/tinos/v26/buEzpoGnedXvwjX-Rt1s4CMf_exL.woff2",
     "700-normal": "https://fonts.gstatic.com/s/tinos/v26/buE1poGnedXvwj1AW3Fg0C8H-Q.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/tinos/v26/buE2poGnedXvwjX-TmlJ9RI-.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tinos/v26/buE4poGnedXvwjX0fmRR8Q.woff2",
     "700-italic": "https://fonts.gstatic.com/s/tinos/v26/buEzpoGnedXvwjX-Rt1s4CIf_exL.woff2",
@@ -56,7 +56,15 @@ const FACES = {
 
 export type TinosWeight = "400" | "700";
 export type TinosStyle = "italic" | "normal";
-export type TinosSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "hebrew" | "latin" | "latin-ext" | "vietnamese";
+export type TinosSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "hebrew"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type TinosOptions = GoogleFontOptions<TinosWeight, TinosStyle, TinosSubset>;
 
 /**

@@ -4,60 +4,102 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gentium Plus";
 
 const FACES = {
-  "cyrillic": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFLwGkN9w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZj5FN2G0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xw21oPnsw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY40wwzoc.woff2",
+  cyrillic: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFLwGkN9w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZj5FN2G0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xw21oPnsw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY40wwzoc.woff2",
   },
   "cyrillic-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFCwGkN9w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZhpFN2G0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xw_1oPnsw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY6kwwzoc.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFCwGkN9w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZhpFN2G0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xw_1oPnsw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY6kwwzoc.woff2",
   },
-  "greek": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFMwGkN9w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZiJFN2G0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xwx1oPnsw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY5Ewwzoc.woff2",
+  greek: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFMwGkN9w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZiJFN2G0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xwx1oPnsw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY5Ewwzoc.woff2",
   },
   "greek-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFDwGkN9w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZh5FN2G0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xw-1oPnsw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY60wwzoc.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFDwGkN9w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZh5FN2G0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xw-1oPnsw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY60wwzoc.woff2",
   },
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFPwGk.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFPwGk.woff2",
     "400-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZi5FN.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xwy1oM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY50ww.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xwy1oM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY50ww.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFBwGkN9w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZhZFN2G0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xw81oPnsw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY6Uwwzoc.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFBwGkN9w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZhZFN2G0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xw81oPnsw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY6Uwwzoc.woff2",
   },
-  "vietnamese": {
-    "400-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFAwGkN9w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZhJFN2G0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xw91oPnsw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY6Ewwzoc.woff2",
+  vietnamese: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurD6Ytw-oSPaZ00r2bNe8VZjqFAwGkN9w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/Iurd6Ytw-oSPaZ00r2bNe8VZhJFN2G0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurA6Ytw-oSPaZ00r2bNe8VZjqn05Xw91oPnsw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gentiumplus/v2/IurC6Ytw-oSPaZ00r2bNe8VRMLRY6Ewwzoc.woff2",
   },
 } as const;
 
 export type GentiumPlusWeight = "400" | "700";
 export type GentiumPlusStyle = "italic" | "normal";
-export type GentiumPlusSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "vietnamese";
-export type GentiumPlusOptions = GoogleFontOptions<GentiumPlusWeight, GentiumPlusStyle, GentiumPlusSubset>;
+export type GentiumPlusSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
+export type GentiumPlusOptions = GoogleFontOptions<
+  GentiumPlusWeight,
+  GentiumPlusStyle,
+  GentiumPlusSubset
+>;
 
 /**
  * Gentium Plus — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GentiumPlus extends GoogleFont<GentiumPlusWeight, GentiumPlusStyle, GentiumPlusSubset> {
+export default class GentiumPlus extends GoogleFont<
+  GentiumPlusWeight,
+  GentiumPlusStyle,
+  GentiumPlusSubset
+> {
   constructor(options?: GentiumPlusOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Baloo Da 2";
 
 const FACES = {
-  "bengali": {
+  bengali: {
     "400-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQvvdoKFD.woff2",
     "500-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQvvdoKFD.woff2",
     "600-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQvvdoKFD.woff2",
     "700-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQvvdoKFD.woff2",
     "800-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQvvdoKFD.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQundoA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQundoA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQundoA.woff2",
@@ -25,7 +25,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQufdoKFD.woff2",
     "800-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQufdoKFD.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQubdoKFD.woff2",
     "500-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQubdoKFD.woff2",
     "600-normal": "https://fonts.gstatic.com/s/balooda2/v26/2-ci9J9j0IaUMQZwAJyJQubdoKFD.woff2",

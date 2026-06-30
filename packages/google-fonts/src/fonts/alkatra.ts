@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alkatra";
 
 const FACES = {
-  "bengali": {
+  bengali: {
     "400-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRP6J5wok.woff2",
     "500-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRP6J5wok.woff2",
     "600-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRP6J5wok.woff2",
     "700-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRP6J5wok.woff2",
   },
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRO2J5wok.woff2",
     "500-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRO2J5wok.woff2",
     "600-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRO2J5wok.woff2",
     "700-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRO2J5wok.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJROyJ5w.woff2",
     "500-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJROyJ5w.woff2",
     "600-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJROyJ5w.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJROKJ5wok.woff2",
     "700-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJROKJ5wok.woff2",
   },
-  "oriya": {
+  oriya: {
     "400-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRPWJ5wok.woff2",
     "500-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRPWJ5wok.woff2",
     "600-normal": "https://fonts.gstatic.com/s/alkatra/v5/r05bGLZA5qhCYsyJRPWJ5wok.woff2",

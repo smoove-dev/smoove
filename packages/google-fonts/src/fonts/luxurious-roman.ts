@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Luxurious Roman";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/luxuriousroman/v10/buEupou_ZcP1w0yTKxJJokVSmbpaZQ0l.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/luxuriousroman/v10/buEupou_ZcP1w0yTKxJJokVSmbpaZQ0l.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/luxuriousroman/v10/buEupou_ZcP1w0yTKxJJokVSmbpaaw0lSo8.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/luxuriousroman/v10/buEupou_ZcP1w0yTKxJJokVSmbpaaw0lSo8.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/luxuriousroman/v10/buEupou_ZcP1w0yTKxJJokVSmbpaag0lSo8.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/luxuriousroman/v10/buEupou_ZcP1w0yTKxJJokVSmbpaag0lSo8.woff2",
   },
 } as const;
 
 export type LuxuriousRomanWeight = "400";
 export type LuxuriousRomanStyle = "normal";
 export type LuxuriousRomanSubset = "latin" | "latin-ext" | "vietnamese";
-export type LuxuriousRomanOptions = GoogleFontOptions<LuxuriousRomanWeight, LuxuriousRomanStyle, LuxuriousRomanSubset>;
+export type LuxuriousRomanOptions = GoogleFontOptions<
+  LuxuriousRomanWeight,
+  LuxuriousRomanStyle,
+  LuxuriousRomanSubset
+>;
 
 /**
  * Luxurious Roman — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LuxuriousRoman extends GoogleFont<LuxuriousRomanWeight, LuxuriousRomanStyle, LuxuriousRomanSubset> {
+export default class LuxuriousRoman extends GoogleFont<
+  LuxuriousRomanWeight,
+  LuxuriousRomanStyle,
+  LuxuriousRomanSubset
+> {
   constructor(options?: LuxuriousRomanOptions) {
     super(FAMILY, FACES, options);
   }

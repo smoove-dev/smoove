@@ -4,20 +4,27 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Josefin Slab";
 
 const FACES = {
-  "latin": {
-    "100-italic": "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
+  latin: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
     "100-normal": "https://fonts.gstatic.com/s/josefinslab/v29/lW-5wjwOK3Ps5GSJlNNkMalnqg6v.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
     "200-normal": "https://fonts.gstatic.com/s/josefinslab/v29/lW-5wjwOK3Ps5GSJlNNkMalnqg6v.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
     "300-normal": "https://fonts.gstatic.com/s/josefinslab/v29/lW-5wjwOK3Ps5GSJlNNkMalnqg6v.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
     "400-normal": "https://fonts.gstatic.com/s/josefinslab/v29/lW-5wjwOK3Ps5GSJlNNkMalnqg6v.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
     "500-normal": "https://fonts.gstatic.com/s/josefinslab/v29/lW-5wjwOK3Ps5GSJlNNkMalnqg6v.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
     "600-normal": "https://fonts.gstatic.com/s/josefinslab/v29/lW-5wjwOK3Ps5GSJlNNkMalnqg6v.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/josefinslab/v29/lW-nwjwOK3Ps5GSJlNNkMalnrz6tDs8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/josefinslab/v29/lW-5wjwOK3Ps5GSJlNNkMalnqg6v.woff2",
   },
 } as const;
@@ -25,13 +32,21 @@ const FACES = {
 export type JosefinSlabWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700";
 export type JosefinSlabStyle = "italic" | "normal";
 export type JosefinSlabSubset = "latin";
-export type JosefinSlabOptions = GoogleFontOptions<JosefinSlabWeight, JosefinSlabStyle, JosefinSlabSubset>;
+export type JosefinSlabOptions = GoogleFontOptions<
+  JosefinSlabWeight,
+  JosefinSlabStyle,
+  JosefinSlabSubset
+>;
 
 /**
  * Josefin Slab — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class JosefinSlab extends GoogleFont<JosefinSlabWeight, JosefinSlabStyle, JosefinSlabSubset> {
+export default class JosefinSlab extends GoogleFont<
+  JosefinSlabWeight,
+  JosefinSlabStyle,
+  JosefinSlabSubset
+> {
   constructor(options?: JosefinSlabOptions) {
     super(FAMILY, FACES, options);
   }

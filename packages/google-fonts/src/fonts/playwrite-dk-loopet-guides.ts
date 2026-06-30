@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite DK Loopet Guides";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/playwritedkloopetguides/v1/4iC46LlmYsRPlQ1zDEvT8weoW-sI8-h9xxN83W-Cb5tj.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritedkloopetguides/v1/4iC46LlmYsRPlQ1zDEvT8weoW-sI8-h9xxN83W-Cb5tj.woff2",
   },
 } as const;
 
 export type PlaywriteDKLoopetGuidesWeight = "400";
 export type PlaywriteDKLoopetGuidesStyle = "normal";
 export type PlaywriteDKLoopetGuidesSubset = "fallback";
-export type PlaywriteDKLoopetGuidesOptions = GoogleFontOptions<PlaywriteDKLoopetGuidesWeight, PlaywriteDKLoopetGuidesStyle, PlaywriteDKLoopetGuidesSubset>;
+export type PlaywriteDKLoopetGuidesOptions = GoogleFontOptions<
+  PlaywriteDKLoopetGuidesWeight,
+  PlaywriteDKLoopetGuidesStyle,
+  PlaywriteDKLoopetGuidesSubset
+>;
 
 /**
  * Playwrite DK Loopet Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteDKLoopetGuides extends GoogleFont<PlaywriteDKLoopetGuidesWeight, PlaywriteDKLoopetGuidesStyle, PlaywriteDKLoopetGuidesSubset> {
+export default class PlaywriteDKLoopetGuides extends GoogleFont<
+  PlaywriteDKLoopetGuidesWeight,
+  PlaywriteDKLoopetGuidesStyle,
+  PlaywriteDKLoopetGuidesSubset
+> {
   constructor(options?: PlaywriteDKLoopetGuidesOptions) {
     super(FAMILY, FACES, options);
   }

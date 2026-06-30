@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Francois One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/francoisone/v22/_Xmr-H4zszafZw3A-KPSZut9wQiR.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/francoisone/v22/_Xmr-H4zszafZw3A-KPSZut9zwiRi_Y.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/francoisone/v22/_Xmr-H4zszafZw3A-KPSZut9zwiRi_Y.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/francoisone/v22/_Xmr-H4zszafZw3A-KPSZut9zgiRi_Y.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/francoisone/v22/_Xmr-H4zszafZw3A-KPSZut9zgiRi_Y.woff2",
   },
 } as const;
 
 export type FrancoisOneWeight = "400";
 export type FrancoisOneStyle = "normal";
 export type FrancoisOneSubset = "latin" | "latin-ext" | "vietnamese";
-export type FrancoisOneOptions = GoogleFontOptions<FrancoisOneWeight, FrancoisOneStyle, FrancoisOneSubset>;
+export type FrancoisOneOptions = GoogleFontOptions<
+  FrancoisOneWeight,
+  FrancoisOneStyle,
+  FrancoisOneSubset
+>;
 
 /**
  * Francois One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FrancoisOne extends GoogleFont<FrancoisOneWeight, FrancoisOneStyle, FrancoisOneSubset> {
+export default class FrancoisOne extends GoogleFont<
+  FrancoisOneWeight,
+  FrancoisOneStyle,
+  FrancoisOneSubset
+> {
   constructor(options?: FrancoisOneOptions) {
     super(FAMILY, FACES, options);
   }

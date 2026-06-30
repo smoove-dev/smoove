@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bentham";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bentham/v20/VdGeAZQPEpYfmHglGWsxCQ.woff2",
   },
   "latin-ext": {

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alyamama";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "300-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogIHtxEwQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogIHtxEwQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogIHtxEwQ.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogIHtxEwQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogIHtxEwQ.woff2",
   },
-  "greek": {
+  greek: {
     "300-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogOHtxEwQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogOHtxEwQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogOHtxEwQ.woff2",
@@ -22,7 +22,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogOHtxEwQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogOHtxEwQ.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogNHtw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogNHtw.woff2",
     "500-normal": "https://fonts.gstatic.com/s/alyamama/v2/snfps0a6-txy62q5QogNHtw.woff2",

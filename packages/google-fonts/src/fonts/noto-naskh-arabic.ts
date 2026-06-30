@@ -4,48 +4,76 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Naskh Arabic";
 
 const FACES = {
-  "arabic": {
-    "400-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2DHV20Lg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2DHV20Lg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2DHV20Lg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2DHV20Lg.woff2",
+  arabic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2DHV20Lg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2DHV20Lg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2DHV20Lg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2DHV20Lg.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2GHV0.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2GHV0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2GHV0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2GHV0.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2GHV0.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2GHV0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2GHV0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2GHV0.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2IHV20Lg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2IHV20Lg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2IHV20Lg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2IHV20Lg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2IHV20Lg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2IHV20Lg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2IHV20Lg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN2IHV20Lg.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN36HV20Lg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN36HV20Lg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN36HV20Lg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN36HV20Lg.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN36HV20Lg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN36HV20Lg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN36HV20Lg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN36HV20Lg.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN3oHV20Lg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN3oHV20Lg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN3oHV20Lg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN3oHV20Lg.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN3oHV20Lg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN3oHV20Lg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN3oHV20Lg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notonaskharabic/v44/RrQKbpV-9Dd1b1OAGA6M9PkyDuVBeN3oHV20Lg.woff2",
   },
 } as const;
 
 export type NotoNaskhArabicWeight = "400" | "500" | "600" | "700";
 export type NotoNaskhArabicStyle = "normal";
 export type NotoNaskhArabicSubset = "arabic" | "latin" | "latin-ext" | "math" | "symbols";
-export type NotoNaskhArabicOptions = GoogleFontOptions<NotoNaskhArabicWeight, NotoNaskhArabicStyle, NotoNaskhArabicSubset>;
+export type NotoNaskhArabicOptions = GoogleFontOptions<
+  NotoNaskhArabicWeight,
+  NotoNaskhArabicStyle,
+  NotoNaskhArabicSubset
+>;
 
 /**
  * Noto Naskh Arabic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoNaskhArabic extends GoogleFont<NotoNaskhArabicWeight, NotoNaskhArabicStyle, NotoNaskhArabicSubset> {
+export default class NotoNaskhArabic extends GoogleFont<
+  NotoNaskhArabicWeight,
+  NotoNaskhArabicStyle,
+  NotoNaskhArabicSubset
+> {
   constructor(options?: NotoNaskhArabicOptions) {
     super(FAMILY, FACES, options);
   }

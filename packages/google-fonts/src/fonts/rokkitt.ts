@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rokkitt";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/rokkitt/v39/qFdG35qfgYFjGy5hkEOydP7P.woff2",
     "100-normal": "https://fonts.gstatic.com/s/rokkitt/v39/qFdE35qfgYFjGy5hkEaCdg.woff2",
     "200-italic": "https://fonts.gstatic.com/s/rokkitt/v39/qFdG35qfgYFjGy5hkEOydP7P.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/rokkitt/v39/qFdG35qfgYFjGy5hkEOyev7P-h4.woff2",
     "900-normal": "https://fonts.gstatic.com/s/rokkitt/v39/qFdE35qfgYFjGy5hkEiCdubL.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/rokkitt/v39/qFdG35qfgYFjGy5hkEOye_7P-h4.woff2",
     "100-normal": "https://fonts.gstatic.com/s/rokkitt/v39/qFdE35qfgYFjGy5hkEmCdubL.woff2",
     "200-italic": "https://fonts.gstatic.com/s/rokkitt/v39/qFdG35qfgYFjGy5hkEOye_7P-h4.woff2",

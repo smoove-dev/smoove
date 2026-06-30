@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Takri";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstakri/v25/TuGJUVpzXI5FBtUq5a8bnKIOdTwgM-XX.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstakri/v25/TuGJUVpzXI5FBtUq5a8bnKIOdTwgM-XX.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstakri/v25/TuGJUVpzXI5FBtUq5a8bnKIOdTwgPeXX7kg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstakri/v25/TuGJUVpzXI5FBtUq5a8bnKIOdTwgPeXX7kg.woff2",
   },
-  "takri": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstakri/v25/TuGJUVpzXI5FBtUq5a8bnKIOdTwgR-XX7kg.woff2",
+  takri: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstakri/v25/TuGJUVpzXI5FBtUq5a8bnKIOdTwgR-XX7kg.woff2",
   },
 } as const;
 
 export type NotoSansTakriWeight = "400";
 export type NotoSansTakriStyle = "normal";
 export type NotoSansTakriSubset = "latin" | "latin-ext" | "takri";
-export type NotoSansTakriOptions = GoogleFontOptions<NotoSansTakriWeight, NotoSansTakriStyle, NotoSansTakriSubset>;
+export type NotoSansTakriOptions = GoogleFontOptions<
+  NotoSansTakriWeight,
+  NotoSansTakriStyle,
+  NotoSansTakriSubset
+>;
 
 /**
  * Noto Sans Takri — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansTakri extends GoogleFont<NotoSansTakriWeight, NotoSansTakriStyle, NotoSansTakriSubset> {
+export default class NotoSansTakri extends GoogleFont<
+  NotoSansTakriWeight,
+  NotoSansTakriStyle,
+  NotoSansTakriSubset
+> {
   constructor(options?: NotoSansTakriOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,35 +4,59 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Anek Tamil";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-VU88.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-bU897Eg.woff2",
   },
-  "tamil": {
-    "100-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
+  tamil: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/anektamil/v18/XLY2IZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW2-DU897Eg.woff2",
   },
 } as const;
 
@@ -45,7 +69,11 @@ export type AnekTamilOptions = GoogleFontOptions<AnekTamilWeight, AnekTamilStyle
  * Anek Tamil — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AnekTamil extends GoogleFont<AnekTamilWeight, AnekTamilStyle, AnekTamilSubset> {
+export default class AnekTamil extends GoogleFont<
+  AnekTamilWeight,
+  AnekTamilStyle,
+  AnekTamilSubset
+> {
   constructor(options?: AnekTamilOptions) {
     super(FAMILY, FACES, options);
   }

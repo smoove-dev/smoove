@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Khojki";
 
 const FACES = {
-  "khojki": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI64ypb4eA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI64ypb4eA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI64ypb4eA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI64ypb4eA.woff2",
+  khojki: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI64ypb4eA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI64ypb4eA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI64ypb4eA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI64ypb4eA.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7AypY.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7AypY.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7AypY.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7AypY.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7AypY.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7AypY.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7AypY.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7AypY.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7Oypb4eA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7Oypb4eA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7Oypb4eA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7Oypb4eA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7Oypb4eA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7Oypb4eA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7Oypb4eA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifkhojki/v13/I_u0MoOduATTei9aP90ctmPGxP2rBI7Oypb4eA.woff2",
   },
 } as const;
 
 export type NotoSerifKhojkiWeight = "400" | "500" | "600" | "700";
 export type NotoSerifKhojkiStyle = "normal";
 export type NotoSerifKhojkiSubset = "khojki" | "latin" | "latin-ext";
-export type NotoSerifKhojkiOptions = GoogleFontOptions<NotoSerifKhojkiWeight, NotoSerifKhojkiStyle, NotoSerifKhojkiSubset>;
+export type NotoSerifKhojkiOptions = GoogleFontOptions<
+  NotoSerifKhojkiWeight,
+  NotoSerifKhojkiStyle,
+  NotoSerifKhojkiSubset
+>;
 
 /**
  * Noto Serif Khojki — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifKhojki extends GoogleFont<NotoSerifKhojkiWeight, NotoSerifKhojkiStyle, NotoSerifKhojkiSubset> {
+export default class NotoSerifKhojki extends GoogleFont<
+  NotoSerifKhojkiWeight,
+  NotoSerifKhojkiStyle,
+  NotoSerifKhojkiSubset
+> {
   constructor(options?: NotoSerifKhojkiOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gidugu";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gidugu/v28/L0x8DFMkk1Uf6w3hu_qn.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/gidugu/v28/L0x8DFMkk1Uf6w3htfqndSk.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/gidugu/v28/L0x8DFMkk1Uf6w3hp_qndSk.woff2",
   },
 } as const;

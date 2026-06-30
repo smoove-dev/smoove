@@ -4,33 +4,45 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Pixels";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikpixels/v3/SlGXmQOaupkIeSx4CEpB7AdiaxwQWgo.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikpixels/v3/SlGXmQOaupkIeSx4CEpB7AdiaxwQWgo.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikpixels/v3/SlGXmQOaupkIeSx4CEpB7AdiYhwQWgo.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikpixels/v3/SlGXmQOaupkIeSx4CEpB7AdiYhwQWgo.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikpixels/v3/SlGXmQOaupkIeSx4CEpB7AdibRwQWgo.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikpixels/v3/SlGXmQOaupkIeSx4CEpB7AdibRwQWgo.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rubikpixels/v3/SlGXmQOaupkIeSx4CEpB7AdibxwQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikpixels/v3/SlGXmQOaupkIeSx4CEpB7AdiYRwQWgo.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikpixels/v3/SlGXmQOaupkIeSx4CEpB7AdiYRwQWgo.woff2",
   },
 } as const;
 
 export type RubikPixelsWeight = "400";
 export type RubikPixelsStyle = "normal";
 export type RubikPixelsSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikPixelsOptions = GoogleFontOptions<RubikPixelsWeight, RubikPixelsStyle, RubikPixelsSubset>;
+export type RubikPixelsOptions = GoogleFontOptions<
+  RubikPixelsWeight,
+  RubikPixelsStyle,
+  RubikPixelsSubset
+>;
 
 /**
  * Rubik Pixels — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikPixels extends GoogleFont<RubikPixelsWeight, RubikPixelsStyle, RubikPixelsSubset> {
+export default class RubikPixels extends GoogleFont<
+  RubikPixelsWeight,
+  RubikPixelsStyle,
+  RubikPixelsSubset
+> {
   constructor(options?: RubikPixelsOptions) {
     super(FAMILY, FACES, options);
   }

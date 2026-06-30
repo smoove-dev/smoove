@@ -4,30 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Edu NSW ACT Hand Pre";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY3KcA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY3KcA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY3KcA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY3KcA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY3KcA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY3KcA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY3KcA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY3KcA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY5KcCsww.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY5KcCsww.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY5KcCsww.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY5KcCsww.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY5KcCsww.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY5KcCsww.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY5KcCsww.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/edunswacthandpre/v3/kmKiZrI-ExGJWUmupHwGgw6Qw4svl-MsLgY5KcCsww.woff2",
   },
 } as const;
 
 export type EduNSWACTHandPreWeight = "400" | "500" | "600" | "700";
 export type EduNSWACTHandPreStyle = "normal";
 export type EduNSWACTHandPreSubset = "latin" | "latin-ext";
-export type EduNSWACTHandPreOptions = GoogleFontOptions<EduNSWACTHandPreWeight, EduNSWACTHandPreStyle, EduNSWACTHandPreSubset>;
+export type EduNSWACTHandPreOptions = GoogleFontOptions<
+  EduNSWACTHandPreWeight,
+  EduNSWACTHandPreStyle,
+  EduNSWACTHandPreSubset
+>;
 
 /**
  * Edu NSW ACT Hand Pre — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EduNSWACTHandPre extends GoogleFont<EduNSWACTHandPreWeight, EduNSWACTHandPreStyle, EduNSWACTHandPreSubset> {
+export default class EduNSWACTHandPre extends GoogleFont<
+  EduNSWACTHandPreWeight,
+  EduNSWACTHandPreStyle,
+  EduNSWACTHandPreSubset
+> {
   constructor(options?: EduNSWACTHandPreOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Agdasima";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/agdasima/v5/PN_zRfyxp2f1fUCgAPg9pTk.woff2",
     "700-normal": "https://fonts.gstatic.com/s/agdasima/v5/PN_0Rfyxp2f1fUCgAPCGgCzU3v0.woff2",
   },

@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nanum Brush Script";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/nanumbrushscript/v26/wXK2E2wfpokopxzthSqPbcR5_gVaxazCiapq.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/nanumbrushscript/v26/wXK2E2wfpokopxzthSqPbcR5_gVaxazCiapq.woff2",
   },
 } as const;
 
 export type NanumBrushScriptWeight = "400";
 export type NanumBrushScriptStyle = "normal";
 export type NanumBrushScriptSubset = "latin";
-export type NanumBrushScriptOptions = GoogleFontOptions<NanumBrushScriptWeight, NanumBrushScriptStyle, NanumBrushScriptSubset>;
+export type NanumBrushScriptOptions = GoogleFontOptions<
+  NanumBrushScriptWeight,
+  NanumBrushScriptStyle,
+  NanumBrushScriptSubset
+>;
 
 /**
  * Nanum Brush Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NanumBrushScript extends GoogleFont<NanumBrushScriptWeight, NanumBrushScriptStyle, NanumBrushScriptSubset> {
+export default class NanumBrushScript extends GoogleFont<
+  NanumBrushScriptWeight,
+  NanumBrushScriptStyle,
+  NanumBrushScriptSubset
+> {
   constructor(options?: NanumBrushScriptOptions) {
     super(FAMILY, FACES, options);
   }

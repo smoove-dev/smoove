@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Varela";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/varela/v17/DPEtYwqExx0AWHX5Ax4E.woff2",
   },
   "latin-ext": {

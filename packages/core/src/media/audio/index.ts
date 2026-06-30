@@ -2,7 +2,7 @@ import Konva from "konva";
 import { getComposition } from "../../engine/composition.js";
 import { detectEnvironment, getEnvironment } from "../../engine/environment.js";
 import { getDefaultAudioSourceFactory } from "../../engine/runtime-defaults.js";
-import { type ReadonlySignal, type Signal, createSignal } from "../../engine/signal.js";
+import { createSignal, type ReadonlySignal, type Signal } from "../../engine/signal.js";
 import { AUDIO_MARK, MEDIA_MARK } from "../media-marker.js";
 import type { MediaTiming } from "../media-time.js";
 import type { AudioDriver, AudioDriverContext } from "./audio-driver.js";

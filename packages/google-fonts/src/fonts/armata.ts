@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Armata";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/armata/v21/gokvH63_HV5jQ-ENkzR2.woff2",
   },
   "latin-ext": {

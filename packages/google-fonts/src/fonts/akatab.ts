@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Akatab";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/akatab/v9/VuJwdNrK3Z7gqJE_X4b4.woff2",
     "500-normal": "https://fonts.gstatic.com/s/akatab/v9/VuJzdNrK3Z7gqJE3rKXtO6lj.woff2",
     "600-normal": "https://fonts.gstatic.com/s/akatab/v9/VuJzdNrK3Z7gqJE3gKLtO6lj.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/akatab/v9/VuJzdNrK3Z7gqJE3-KDtNaljWRo.woff2",
     "900-normal": "https://fonts.gstatic.com/s/akatab/v9/VuJzdNrK3Z7gqJE33KHtNaljWRo.woff2",
   },
-  "tifinagh": {
+  tifinagh: {
     "400-normal": "https://fonts.gstatic.com/s/akatab/v9/VuJwdNrK3Z7gqJE_f4b4BIg.woff2",
     "500-normal": "https://fonts.gstatic.com/s/akatab/v9/VuJzdNrK3Z7gqJE3rKXtG6ljWRo.woff2",
     "600-normal": "https://fonts.gstatic.com/s/akatab/v9/VuJzdNrK3Z7gqJE3gKLtG6ljWRo.woff2",

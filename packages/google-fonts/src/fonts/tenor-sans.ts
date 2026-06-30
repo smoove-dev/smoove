@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tenor Sans";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/tenorsans/v21/bx6ANxqUneKx06UkIXISn3F4Cl2I.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tenorsans/v21/bx6ANxqUneKx06UkIXISn3V4Cg.woff2",
   },
   "latin-ext": {
@@ -24,7 +24,11 @@ export type TenorSansOptions = GoogleFontOptions<TenorSansWeight, TenorSansStyle
  * Tenor Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TenorSans extends GoogleFont<TenorSansWeight, TenorSansStyle, TenorSansSubset> {
+export default class TenorSans extends GoogleFont<
+  TenorSansWeight,
+  TenorSansStyle,
+  TenorSansSubset
+> {
   constructor(options?: TenorSansOptions) {
     super(FAMILY, FACES, options);
   }

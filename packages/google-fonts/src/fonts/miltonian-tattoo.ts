@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Miltonian Tattoo";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/miltoniantattoo/v34/EvOUzBRL0o0kCxF-lcMCQxlpVsA_JwT2MQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/miltoniantattoo/v34/EvOUzBRL0o0kCxF-lcMCQxlpVsA_JwT2MQ.woff2",
   },
 } as const;
 
 export type MiltonianTattooWeight = "400";
 export type MiltonianTattooStyle = "normal";
 export type MiltonianTattooSubset = "latin";
-export type MiltonianTattooOptions = GoogleFontOptions<MiltonianTattooWeight, MiltonianTattooStyle, MiltonianTattooSubset>;
+export type MiltonianTattooOptions = GoogleFontOptions<
+  MiltonianTattooWeight,
+  MiltonianTattooStyle,
+  MiltonianTattooSubset
+>;
 
 /**
  * Miltonian Tattoo — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MiltonianTattoo extends GoogleFont<MiltonianTattooWeight, MiltonianTattooStyle, MiltonianTattooSubset> {
+export default class MiltonianTattoo extends GoogleFont<
+  MiltonianTattooWeight,
+  MiltonianTattooStyle,
+  MiltonianTattooSubset
+> {
   constructor(options?: MiltonianTattooOptions) {
     super(FAMILY, FACES, options);
   }

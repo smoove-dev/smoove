@@ -4,26 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cherry Swash";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/cherryswash/v22/i7dNIFByZjaNAMxtZcnfAy5MR3K_.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cherryswash/v22/i7dSIFByZjaNAMxtZcnfAy5E_FeqHCSR.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cherryswash/v22/i7dSIFByZjaNAMxtZcnfAy5E_FeqHCSR.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/cherryswash/v22/i7dNIFByZjaNAMxtZcnfAy5MSXK_IwU.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cherryswash/v22/i7dSIFByZjaNAMxtZcnfAy5E_FeqEiSRV3U.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cherryswash/v22/i7dNIFByZjaNAMxtZcnfAy5MSXK_IwU.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cherryswash/v22/i7dSIFByZjaNAMxtZcnfAy5E_FeqEiSRV3U.woff2",
   },
 } as const;
 
 export type CherrySwashWeight = "400" | "700";
 export type CherrySwashStyle = "normal";
 export type CherrySwashSubset = "latin" | "latin-ext";
-export type CherrySwashOptions = GoogleFontOptions<CherrySwashWeight, CherrySwashStyle, CherrySwashSubset>;
+export type CherrySwashOptions = GoogleFontOptions<
+  CherrySwashWeight,
+  CherrySwashStyle,
+  CherrySwashSubset
+>;
 
 /**
  * Cherry Swash — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CherrySwash extends GoogleFont<CherrySwashWeight, CherrySwashStyle, CherrySwashSubset> {
+export default class CherrySwash extends GoogleFont<
+  CherrySwashWeight,
+  CherrySwashStyle,
+  CherrySwashSubset
+> {
   constructor(options?: CherrySwashOptions) {
     super(FAMILY, FACES, options);
   }

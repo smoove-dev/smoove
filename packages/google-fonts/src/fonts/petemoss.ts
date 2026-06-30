@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Petemoss";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/petemoss/v9/A2BZn5tA2xgtGWHZgykZuqc.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/petemoss/v9/A2BZn5tA2xgtGWHZgykXuqfNUg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/petemoss/v9/A2BZn5tA2xgtGWHZgykWuqfNUg.woff2",
   },
 } as const;

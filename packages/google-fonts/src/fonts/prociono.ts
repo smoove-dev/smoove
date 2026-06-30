@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Prociono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/prociono/v28/r05YGLlR-KxAf9GGO_uuwjc.woff2",
   },
 } as const;

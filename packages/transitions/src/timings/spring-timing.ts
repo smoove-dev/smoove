@@ -1,5 +1,5 @@
 import type { Timing } from "../types.js";
-import { type SpringConfig, measureSpring, spring } from "./spring/index.js";
+import { measureSpring, type SpringConfig, spring } from "./spring/index.js";
 
 export type SpringTimingOptions = {
   config?: Partial<SpringConfig>;

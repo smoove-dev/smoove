@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Dhurjati";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/dhurjati/v27/_6_8ED3gSeatXfFiFU31QqU.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/dhurjati/v27/_6_8ED3gSeatXfFiFU3pQqUduQ.woff2",
   },
 } as const;

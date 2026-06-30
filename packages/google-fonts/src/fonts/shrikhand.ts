@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Shrikhand";
 
 const FACES = {
-  "gujarati": {
+  gujarati: {
     "400-normal": "https://fonts.gstatic.com/s/shrikhand/v17/a8IbNovtLWfR7T7bMJwrGIKR4zg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/shrikhand/v17/a8IbNovtLWfR7T7bMJwrA4KR.woff2",
   },
   "latin-ext": {
@@ -24,7 +24,11 @@ export type ShrikhandOptions = GoogleFontOptions<ShrikhandWeight, ShrikhandStyle
  * Shrikhand — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Shrikhand extends GoogleFont<ShrikhandWeight, ShrikhandStyle, ShrikhandSubset> {
+export default class Shrikhand extends GoogleFont<
+  ShrikhandWeight,
+  ShrikhandStyle,
+  ShrikhandSubset
+> {
   constructor(options?: ShrikhandOptions) {
     super(FAMILY, FACES, options);
   }

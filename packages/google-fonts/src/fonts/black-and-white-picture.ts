@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Black And White Picture";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/blackandwhitepicture/v30/TwMe-JAERlQd3ooUHBUXGmrmioKjjnRSFO-NqL5AZ8I.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/blackandwhitepicture/v30/TwMe-JAERlQd3ooUHBUXGmrmioKjjnRSFO-NqL5AZ8I.woff2",
   },
 } as const;
 
 export type BlackAndWhitePictureWeight = "400";
 export type BlackAndWhitePictureStyle = "normal";
 export type BlackAndWhitePictureSubset = "latin";
-export type BlackAndWhitePictureOptions = GoogleFontOptions<BlackAndWhitePictureWeight, BlackAndWhitePictureStyle, BlackAndWhitePictureSubset>;
+export type BlackAndWhitePictureOptions = GoogleFontOptions<
+  BlackAndWhitePictureWeight,
+  BlackAndWhitePictureStyle,
+  BlackAndWhitePictureSubset
+>;
 
 /**
  * Black And White Picture — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BlackAndWhitePicture extends GoogleFont<BlackAndWhitePictureWeight, BlackAndWhitePictureStyle, BlackAndWhitePictureSubset> {
+export default class BlackAndWhitePicture extends GoogleFont<
+  BlackAndWhitePictureWeight,
+  BlackAndWhitePictureStyle,
+  BlackAndWhitePictureSubset
+> {
   constructor(options?: BlackAndWhitePictureOptions) {
     super(FAMILY, FACES, options);
   }

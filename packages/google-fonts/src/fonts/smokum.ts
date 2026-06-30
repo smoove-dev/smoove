@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Smokum";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/smokum/v30/TK3iWkUbAhopmrd2GT8G.woff2",
   },
   "latin-ext": {

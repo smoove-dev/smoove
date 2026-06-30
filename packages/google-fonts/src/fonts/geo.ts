@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Geo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/geo/v23/CSRx4zRZluflLUplaj0.woff2",
     "400-normal": "https://fonts.gstatic.com/s/geo/v23/CSRz4zRZluflKHpn.woff2",
   },

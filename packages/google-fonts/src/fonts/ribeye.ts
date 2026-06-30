@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ribeye";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ribeye/v27/L0x8DFMxk1MP9R3hu_qn.woff2",
   },
   "latin-ext": {

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Ottoman Siyaq";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifottomansiyaq/v2/fC1yPZ9IYnzRhTrrc4s8cSvYI0eozzaFOQ01qoH7IbIB.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifottomansiyaq/v2/fC1yPZ9IYnzRhTrrc4s8cSvYI0eozzaFOQ01qoH7IbIB.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifottomansiyaq/v2/fC1yPZ9IYnzRhTrrc4s8cSvYI0eozzaFOQ01qoH7L7IB40k.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifottomansiyaq/v2/fC1yPZ9IYnzRhTrrc4s8cSvYI0eozzaFOQ01qoH7L7IB40k.woff2",
   },
   "ottoman-siyaq-numbers": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifottomansiyaq/v2/fC1yPZ9IYnzRhTrrc4s8cSvYI0eozzaFOQ01qoH7lZMk3nAZ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifottomansiyaq/v2/fC1yPZ9IYnzRhTrrc4s8cSvYI0eozzaFOQ01qoH7lZMk3nAZ.woff2",
   },
 } as const;
 
 export type NotoSerifOttomanSiyaqWeight = "400";
 export type NotoSerifOttomanSiyaqStyle = "normal";
 export type NotoSerifOttomanSiyaqSubset = "latin" | "latin-ext" | "ottoman-siyaq-numbers";
-export type NotoSerifOttomanSiyaqOptions = GoogleFontOptions<NotoSerifOttomanSiyaqWeight, NotoSerifOttomanSiyaqStyle, NotoSerifOttomanSiyaqSubset>;
+export type NotoSerifOttomanSiyaqOptions = GoogleFontOptions<
+  NotoSerifOttomanSiyaqWeight,
+  NotoSerifOttomanSiyaqStyle,
+  NotoSerifOttomanSiyaqSubset
+>;
 
 /**
  * Noto Serif Ottoman Siyaq — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifOttomanSiyaq extends GoogleFont<NotoSerifOttomanSiyaqWeight, NotoSerifOttomanSiyaqStyle, NotoSerifOttomanSiyaqSubset> {
+export default class NotoSerifOttomanSiyaq extends GoogleFont<
+  NotoSerifOttomanSiyaqWeight,
+  NotoSerifOttomanSiyaqStyle,
+  NotoSerifOttomanSiyaqSubset
+> {
   constructor(options?: NotoSerifOttomanSiyaqOptions) {
     super(FAMILY, FACES, options);
   }

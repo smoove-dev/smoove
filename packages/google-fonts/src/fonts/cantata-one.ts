@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cantata One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/cantataone/v16/PlI5Fl60Nb5obNzNe2jslWxDvcE.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type CantataOneWeight = "400";
 export type CantataOneStyle = "normal";
 export type CantataOneSubset = "latin" | "latin-ext";
-export type CantataOneOptions = GoogleFontOptions<CantataOneWeight, CantataOneStyle, CantataOneSubset>;
+export type CantataOneOptions = GoogleFontOptions<
+  CantataOneWeight,
+  CantataOneStyle,
+  CantataOneSubset
+>;
 
 /**
  * Cantata One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CantataOne extends GoogleFont<CantataOneWeight, CantataOneStyle, CantataOneSubset> {
+export default class CantataOne extends GoogleFont<
+  CantataOneWeight,
+  CantataOneStyle,
+  CantataOneSubset
+> {
   constructor(options?: CantataOneOptions) {
     super(FAMILY, FACES, options);
   }

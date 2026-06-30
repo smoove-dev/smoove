@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Emblema One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/emblemaone/v22/nKKT-GQ0F5dSY8vzG0rOELRGFF8.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type EmblemaOneWeight = "400";
 export type EmblemaOneStyle = "normal";
 export type EmblemaOneSubset = "latin" | "latin-ext";
-export type EmblemaOneOptions = GoogleFontOptions<EmblemaOneWeight, EmblemaOneStyle, EmblemaOneSubset>;
+export type EmblemaOneOptions = GoogleFontOptions<
+  EmblemaOneWeight,
+  EmblemaOneStyle,
+  EmblemaOneSubset
+>;
 
 /**
  * Emblema One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EmblemaOne extends GoogleFont<EmblemaOneWeight, EmblemaOneStyle, EmblemaOneSubset> {
+export default class EmblemaOne extends GoogleFont<
+  EmblemaOneWeight,
+  EmblemaOneStyle,
+  EmblemaOneSubset
+> {
   constructor(options?: EmblemaOneOptions) {
     super(FAMILY, FACES, options);
   }

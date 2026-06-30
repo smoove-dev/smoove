@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Caveat Brush";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/caveatbrush/v12/EYq0maZfwr9S9-ETZc3fKXt8XLOS.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/caveatbrush/v12/EYq0maZfwr9S9-ETZc3fKXt8UrOS43o.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/caveatbrush/v12/EYq0maZfwr9S9-ETZc3fKXt8UrOS43o.woff2",
   },
 } as const;
 
 export type CaveatBrushWeight = "400";
 export type CaveatBrushStyle = "normal";
 export type CaveatBrushSubset = "latin" | "latin-ext";
-export type CaveatBrushOptions = GoogleFontOptions<CaveatBrushWeight, CaveatBrushStyle, CaveatBrushSubset>;
+export type CaveatBrushOptions = GoogleFontOptions<
+  CaveatBrushWeight,
+  CaveatBrushStyle,
+  CaveatBrushSubset
+>;
 
 /**
  * Caveat Brush — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CaveatBrush extends GoogleFont<CaveatBrushWeight, CaveatBrushStyle, CaveatBrushSubset> {
+export default class CaveatBrush extends GoogleFont<
+  CaveatBrushWeight,
+  CaveatBrushStyle,
+  CaveatBrushSubset
+> {
   constructor(options?: CaveatBrushOptions) {
     super(FAMILY, FACES, options);
   }

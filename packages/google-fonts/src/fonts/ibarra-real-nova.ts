@@ -4,38 +4,62 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ibarra Real Nova";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oE_Rq.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHtYEQ.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oE_Rq.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHtYEQ.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oE_Rq.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHtYEQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oE_Rq.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHtYEQ.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oE_Rq.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHtYEQ.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oE_Rq.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHtYEQ.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oE_Rq.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHtYEQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oE_Rq.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHtYEQ.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oHfRqDuE.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHVYEexu.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oHfRqDuE.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHVYEexu.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oHfRqDuE.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHVYEexu.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oHfRqDuE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHVYEexu.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oHfRqDuE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHVYEexu.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oHfRqDuE.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHVYEexu.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oHfRqDuE.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHVYEexu.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlZdQiA-DBIDCcaWtQzL4BZHoiDkH5oHfRqDuE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ibarrarealnova/v30/sZlfdQiA-DBIDCcaWtQzL4BZHoiDkHVYEexu.woff2",
   },
 } as const;
 
 export type IbarraRealNovaWeight = "400" | "500" | "600" | "700";
 export type IbarraRealNovaStyle = "italic" | "normal";
 export type IbarraRealNovaSubset = "latin" | "latin-ext";
-export type IbarraRealNovaOptions = GoogleFontOptions<IbarraRealNovaWeight, IbarraRealNovaStyle, IbarraRealNovaSubset>;
+export type IbarraRealNovaOptions = GoogleFontOptions<
+  IbarraRealNovaWeight,
+  IbarraRealNovaStyle,
+  IbarraRealNovaSubset
+>;
 
 /**
  * Ibarra Real Nova — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IbarraRealNova extends GoogleFont<IbarraRealNovaWeight, IbarraRealNovaStyle, IbarraRealNovaSubset> {
+export default class IbarraRealNova extends GoogleFont<
+  IbarraRealNovaWeight,
+  IbarraRealNovaStyle,
+  IbarraRealNovaSubset
+> {
   constructor(options?: IbarraRealNovaOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Henny Penny";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/hennypenny/v18/wXKvE3UZookzsxz_kjGSfPQtvXI.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type HennyPennyWeight = "400";
 export type HennyPennyStyle = "normal";
 export type HennyPennySubset = "latin";
-export type HennyPennyOptions = GoogleFontOptions<HennyPennyWeight, HennyPennyStyle, HennyPennySubset>;
+export type HennyPennyOptions = GoogleFontOptions<
+  HennyPennyWeight,
+  HennyPennyStyle,
+  HennyPennySubset
+>;
 
 /**
  * Henny Penny — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HennyPenny extends GoogleFont<HennyPennyWeight, HennyPennyStyle, HennyPennySubset> {
+export default class HennyPenny extends GoogleFont<
+  HennyPennyWeight,
+  HennyPennyStyle,
+  HennyPennySubset
+> {
   constructor(options?: HennyPennyOptions) {
     super(FAMILY, FACES, options);
   }

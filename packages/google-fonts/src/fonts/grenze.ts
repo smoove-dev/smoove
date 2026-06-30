@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Grenze";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/grenze/v18/O4ZRFGb7hR12BxqH_VIksgg.woff2",
     "100-normal": "https://fonts.gstatic.com/s/grenze/v18/O4ZTFGb7hR12BxqH-GIm.woff2",
     "200-italic": "https://fonts.gstatic.com/s/grenze/v18/O4ZRFGb7hR12BxqH_VIksgg.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/grenze/v18/O4ZRFGb7hR12BxqH_VIqsggqlg.woff2",
     "900-normal": "https://fonts.gstatic.com/s/grenze/v18/O4ZTFGb7hR12BxqH9mImqgw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/grenze/v18/O4ZRFGb7hR12BxqH_VIrsggqlg.woff2",
     "100-normal": "https://fonts.gstatic.com/s/grenze/v18/O4ZTFGb7hR12BxqH92Imqgw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/grenze/v18/O4ZRFGb7hR12BxqH_VIrsggqlg.woff2",

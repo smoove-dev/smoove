@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Della Respira";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/dellarespira/v24/RLp5K5v44KaueWI6iEJQBiGPdf4Yug.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/dellarespira/v24/RLp5K5v44KaueWI6iEJQBiGPdf4Yug.woff2",
   },
 } as const;
 
 export type DellaRespiraWeight = "400";
 export type DellaRespiraStyle = "normal";
 export type DellaRespiraSubset = "latin";
-export type DellaRespiraOptions = GoogleFontOptions<DellaRespiraWeight, DellaRespiraStyle, DellaRespiraSubset>;
+export type DellaRespiraOptions = GoogleFontOptions<
+  DellaRespiraWeight,
+  DellaRespiraStyle,
+  DellaRespiraSubset
+>;
 
 /**
  * Della Respira — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DellaRespira extends GoogleFont<DellaRespiraWeight, DellaRespiraStyle, DellaRespiraSubset> {
+export default class DellaRespira extends GoogleFont<
+  DellaRespiraWeight,
+  DellaRespiraStyle,
+  DellaRespiraSubset
+> {
   constructor(options?: DellaRespiraOptions) {
     super(FAMILY, FACES, options);
   }

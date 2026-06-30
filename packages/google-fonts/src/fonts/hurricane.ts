@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hurricane";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/hurricane/v9/pe0sMIuULZxTolZ5YldCBfe_.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/hurricane/v9/pe0sMIuULZxTolZ5YldCC_e_O98.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/hurricane/v9/pe0sMIuULZxTolZ5YldCCve_O98.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type HurricaneOptions = GoogleFontOptions<HurricaneWeight, HurricaneStyle
  * Hurricane — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Hurricane extends GoogleFont<HurricaneWeight, HurricaneStyle, HurricaneSubset> {
+export default class Hurricane extends GoogleFont<
+  HurricaneWeight,
+  HurricaneStyle,
+  HurricaneSubset
+> {
   constructor(options?: HurricaneOptions) {
     super(FAMILY, FACES, options);
   }

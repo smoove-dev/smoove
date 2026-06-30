@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Comme";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/comme/v4/8QIHdirKhMbn-su5uI0.woff2",
     "200-normal": "https://fonts.gstatic.com/s/comme/v4/8QIHdirKhMbn-su5uI0.woff2",
     "300-normal": "https://fonts.gstatic.com/s/comme/v4/8QIHdirKhMbn-su5uI0.woff2",

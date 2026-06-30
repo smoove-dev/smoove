@@ -4,32 +4,50 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Shippori Mincho B1";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK2E2wCr44tulPdnn-xbIpJ9RgT9-nCiapq.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKeol_2XKg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKVo5_2XKg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKMo9_2XKg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKLox_2XKg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK2E2wCr44tulPdnn-xbIpJ9RgT9-nCiapq.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKeol_2XKg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKVo5_2XKg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKMo9_2XKg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKLox_2XKg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK2E2wCr44tulPdnn-xbIpJ9RgT9-nCh6pq5lM.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKeol_13Kg1H4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKVo5_13Kg1H4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKMo9_13Kg1H4.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKLox_13Kg1H4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK2E2wCr44tulPdnn-xbIpJ9RgT9-nCh6pq5lM.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKeol_13Kg1H4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKVo5_13Kg1H4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKMo9_13Kg1H4.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/shipporiminchob1/v24/wXK1E2wCr44tulPdnn-xbIpJ9RgT9-nKLox_13Kg1H4.woff2",
   },
 } as const;
 
 export type ShipporiMinchoB1Weight = "400" | "500" | "600" | "700" | "800";
 export type ShipporiMinchoB1Style = "normal";
 export type ShipporiMinchoB1Subset = "latin" | "latin-ext";
-export type ShipporiMinchoB1Options = GoogleFontOptions<ShipporiMinchoB1Weight, ShipporiMinchoB1Style, ShipporiMinchoB1Subset>;
+export type ShipporiMinchoB1Options = GoogleFontOptions<
+  ShipporiMinchoB1Weight,
+  ShipporiMinchoB1Style,
+  ShipporiMinchoB1Subset
+>;
 
 /**
  * Shippori Mincho B1 — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ShipporiMinchoB1 extends GoogleFont<ShipporiMinchoB1Weight, ShipporiMinchoB1Style, ShipporiMinchoB1Subset> {
+export default class ShipporiMinchoB1 extends GoogleFont<
+  ShipporiMinchoB1Weight,
+  ShipporiMinchoB1Style,
+  ShipporiMinchoB1Subset
+> {
   constructor(options?: ShipporiMinchoB1Options) {
     super(FAMILY, FACES, options);
   }

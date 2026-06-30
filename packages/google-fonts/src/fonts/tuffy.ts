@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tuffy";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2GY56bHkJl7oxxLYtOzdYe.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tuffy/v1/1q2IY56bHkJl7oxwHY1WyQ.woff2",
     "700-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2DY56bHkJl7oxxJTRr2O0_gXzg.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2DY56bHkJl7oxxJTRr2OQ_gXzg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/tuffy/v1/1q2FY56bHkJl7oTPOJhk6OsnhQ.woff2",
   },
-  "greek": {
+  greek: {
     "400-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2GY56bHkJl7oxxLYxOzdYe.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tuffy/v1/1q2IY56bHkJl7ox3HY1WyQ.woff2",
     "700-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2DY56bHkJl7oxxJTRr2Oo_gXzg.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2DY56bHkJl7oxxJTRr2OU_gXzg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/tuffy/v1/1q2FY56bHkJl7oTPOJhl6OsnhQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2GY56bHkJl7oxxLY9OzQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tuffy/v1/1q2IY56bHkJl7ox0HY0.woff2",
     "700-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2DY56bHkJl7oxxJTRr2Ok_gQ.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2DY56bHkJl7oxxJTRr2Oc_gXzg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/tuffy/v1/1q2FY56bHkJl7oTPOJhn6OsnhQ.woff2",
   },
-  "phoenician": {
+  phoenician: {
     "400-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2GY56bHkJl7oxxLc9OzdYe.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tuffy/v1/1q2IY56bHkJl7ow0HY1WyQ.woff2",
     "700-italic": "https://fonts.gstatic.com/s/tuffy/v1/1q2DY56bHkJl7oxxJTRr2Kk_gXzg.woff2",
@@ -50,7 +50,14 @@ const FACES = {
 
 export type TuffyWeight = "400" | "700";
 export type TuffyStyle = "italic" | "normal";
-export type TuffySubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "phoenician";
+export type TuffySubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "phoenician";
 export type TuffyOptions = GoogleFontOptions<TuffyWeight, TuffyStyle, TuffySubset>;
 
 /**

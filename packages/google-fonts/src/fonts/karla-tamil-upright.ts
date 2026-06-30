@@ -4,22 +4,32 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Karla Tamil Upright";
 
 const FACES = {
-  "tamil": {
-    "400-normal": "https://fonts.gstatic.com/s/karlatamilupright/v2/IFS4HfVMk95HnY0u6SeQ_cHoozW_3U5XkAN3hQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/karlatamilupright/v2/IFS1HfVMk95HnY0u6SeQ_cHoozW_3U5XmK5SkLYFLQ.woff2",
+  tamil: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/karlatamilupright/v2/IFS4HfVMk95HnY0u6SeQ_cHoozW_3U5XkAN3hQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/karlatamilupright/v2/IFS1HfVMk95HnY0u6SeQ_cHoozW_3U5XmK5SkLYFLQ.woff2",
   },
 } as const;
 
 export type KarlaTamilUprightWeight = "400" | "700";
 export type KarlaTamilUprightStyle = "normal";
 export type KarlaTamilUprightSubset = "tamil";
-export type KarlaTamilUprightOptions = GoogleFontOptions<KarlaTamilUprightWeight, KarlaTamilUprightStyle, KarlaTamilUprightSubset>;
+export type KarlaTamilUprightOptions = GoogleFontOptions<
+  KarlaTamilUprightWeight,
+  KarlaTamilUprightStyle,
+  KarlaTamilUprightSubset
+>;
 
 /**
  * Karla Tamil Upright — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KarlaTamilUpright extends GoogleFont<KarlaTamilUprightWeight, KarlaTamilUprightStyle, KarlaTamilUprightSubset> {
+export default class KarlaTamilUpright extends GoogleFont<
+  KarlaTamilUprightWeight,
+  KarlaTamilUprightStyle,
+  KarlaTamilUprightSubset
+> {
   constructor(options?: KarlaTamilUprightOptions) {
     super(FAMILY, FACES, options);
   }

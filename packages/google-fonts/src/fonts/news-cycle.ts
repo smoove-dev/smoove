@@ -4,46 +4,63 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "News Cycle";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR64z1Qlv-GDxkbKVQ_fOQKTet_.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNBeudwk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNBeudwk.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR64z1Qlv-GDxkbKVQ_fO0KTet_.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNleudwk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNleudwk.woff2",
   },
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR64z1Qlv-GDxkbKVQ_fOMKTet_.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNdeudwk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNdeudwk.woff2",
   },
   "greek-ext": {
     "400-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR64z1Qlv-GDxkbKVQ_fOwKTet_.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNheudwk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNheudwk.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR64z1Qlv-GDxkbKVQ_fOAKTQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNReuQ.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR64z1Qlv-GDxkbKVQ_fO4KTet_.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNpeudwk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNpeudwk.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR64z1Qlv-GDxkbKVQ_fO8KTet_.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNteudwk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/newscycle/v26/CSR54z1Qlv-GDxkbKVQ_dFsvWNteudwk.woff2",
   },
 } as const;
 
 export type NewsCycleWeight = "400" | "700";
 export type NewsCycleStyle = "normal";
-export type NewsCycleSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "vietnamese";
+export type NewsCycleSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type NewsCycleOptions = GoogleFontOptions<NewsCycleWeight, NewsCycleStyle, NewsCycleSubset>;
 
 /**
  * News Cycle — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NewsCycle extends GoogleFont<NewsCycleWeight, NewsCycleStyle, NewsCycleSubset> {
+export default class NewsCycle extends GoogleFont<
+  NewsCycleWeight,
+  NewsCycleStyle,
+  NewsCycleSubset
+> {
   constructor(options?: NewsCycleOptions) {
     super(FAMILY, FACES, options);
   }

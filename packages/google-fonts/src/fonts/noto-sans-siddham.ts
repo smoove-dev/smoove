@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Siddham";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssiddham/v21/OZpZg-FwqiNLe9PELUikxTWDoCCeGpnamXM.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssiddham/v21/OZpZg-FwqiNLe9PELUikxTWDoCCeGpnamXM.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssiddham/v21/OZpZg-FwqiNLe9PELUikxTWDoCCeGpnUmXMs9w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssiddham/v21/OZpZg-FwqiNLe9PELUikxTWDoCCeGpnUmXMs9w.woff2",
   },
-  "siddham": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssiddham/v21/OZpZg-FwqiNLe9PELUikxTWDoCCeGplVuFYRzn8.woff2",
+  siddham: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssiddham/v21/OZpZg-FwqiNLe9PELUikxTWDoCCeGplVuFYRzn8.woff2",
   },
 } as const;
 
 export type NotoSansSiddhamWeight = "400";
 export type NotoSansSiddhamStyle = "normal";
 export type NotoSansSiddhamSubset = "latin" | "latin-ext" | "siddham";
-export type NotoSansSiddhamOptions = GoogleFontOptions<NotoSansSiddhamWeight, NotoSansSiddhamStyle, NotoSansSiddhamSubset>;
+export type NotoSansSiddhamOptions = GoogleFontOptions<
+  NotoSansSiddhamWeight,
+  NotoSansSiddhamStyle,
+  NotoSansSiddhamSubset
+>;
 
 /**
  * Noto Sans Siddham — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansSiddham extends GoogleFont<NotoSansSiddhamWeight, NotoSansSiddhamStyle, NotoSansSiddhamSubset> {
+export default class NotoSansSiddham extends GoogleFont<
+  NotoSansSiddhamWeight,
+  NotoSansSiddhamStyle,
+  NotoSansSiddhamSubset
+> {
   constructor(options?: NotoSansSiddhamOptions) {
     super(FAMILY, FACES, options);
   }

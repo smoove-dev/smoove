@@ -7,13 +7,13 @@ const FACES = {
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/alatsi/v14/TK3iWkUJAxQ2nLN2FD8Ghe4.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/alatsi/v14/TK3iWkUJAxQ2nLN2GT8G.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/alatsi/v14/TK3iWkUJAxQ2nLN2Fz8Ghe4.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/alatsi/v14/TK3iWkUJAxQ2nLN2Fj8Ghe4.woff2",
   },
 } as const;

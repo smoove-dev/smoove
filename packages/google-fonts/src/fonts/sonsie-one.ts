@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sonsie One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sonsieone/v22/PbymFmP_EAnPqbKaoc18UVy20w.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type SonsieOneOptions = GoogleFontOptions<SonsieOneWeight, SonsieOneStyle
  * Sonsie One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SonsieOne extends GoogleFont<SonsieOneWeight, SonsieOneStyle, SonsieOneSubset> {
+export default class SonsieOne extends GoogleFont<
+  SonsieOneWeight,
+  SonsieOneStyle,
+  SonsieOneSubset
+> {
   constructor(options?: SonsieOneOptions) {
     super(FAMILY, FACES, options);
   }

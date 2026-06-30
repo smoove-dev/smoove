@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Homemade Apple";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/homemadeapple/v24/Qw3EZQFXECDrI2q789EKQZJob0x6XHg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/homemadeapple/v24/Qw3EZQFXECDrI2q789EKQZJob0x6XHg.woff2",
   },
 } as const;
 
 export type HomemadeAppleWeight = "400";
 export type HomemadeAppleStyle = "normal";
 export type HomemadeAppleSubset = "latin";
-export type HomemadeAppleOptions = GoogleFontOptions<HomemadeAppleWeight, HomemadeAppleStyle, HomemadeAppleSubset>;
+export type HomemadeAppleOptions = GoogleFontOptions<
+  HomemadeAppleWeight,
+  HomemadeAppleStyle,
+  HomemadeAppleSubset
+>;
 
 /**
  * Homemade Apple — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HomemadeApple extends GoogleFont<HomemadeAppleWeight, HomemadeAppleStyle, HomemadeAppleSubset> {
+export default class HomemadeApple extends GoogleFont<
+  HomemadeAppleWeight,
+  HomemadeAppleStyle,
+  HomemadeAppleSubset
+> {
   constructor(options?: HomemadeAppleOptions) {
     super(FAMILY, FACES, options);
   }

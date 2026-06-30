@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Molengo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/molengo/v17/I_uuMpWeuBzZNBtQXbNakw.woff2",
   },
   "latin-ext": {

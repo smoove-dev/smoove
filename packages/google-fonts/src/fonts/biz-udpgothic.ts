@@ -4,34 +4,50 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "BIZ UDPGothic";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/bizudpgothic/v16/hES36X5pHAIBjmS84VL0Bue87nYGQFkM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/bizudpgothic/v16/hESq6X5pHAIBjmS84VL0Bue85skjVWItTTBC.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bizudpgothic/v16/hES36X5pHAIBjmS84VL0Bue87nYGQFkM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/bizudpgothic/v16/hESq6X5pHAIBjmS84VL0Bue85skjVWItTTBC.woff2",
   },
   "greek-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/bizudpgothic/v16/hES36X5pHAIBjmS84VL0Bue87n4GQFkM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/bizudpgothic/v16/hESq6X5pHAIBjmS84VL0Bue85skjVWotTTBC.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bizudpgothic/v16/hES36X5pHAIBjmS84VL0Bue87n4GQFkM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/bizudpgothic/v16/hESq6X5pHAIBjmS84VL0Bue85skjVWotTTBC.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/bizudpgothic/v16/hES36X5pHAIBjmS84VL0Bue87nIGQA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/bizudpgothic/v16/hESq6X5pHAIBjmS84VL0Bue85skjVWYtTQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bizudpgothic/v16/hES36X5pHAIBjmS84VL0Bue87nIGQA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/bizudpgothic/v16/hESq6X5pHAIBjmS84VL0Bue85skjVWYtTQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/bizudpgothic/v16/hES36X5pHAIBjmS84VL0Bue87nwGQFkM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/bizudpgothic/v16/hESq6X5pHAIBjmS84VL0Bue85skjVWgtTTBC.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bizudpgothic/v16/hES36X5pHAIBjmS84VL0Bue87nwGQFkM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/bizudpgothic/v16/hESq6X5pHAIBjmS84VL0Bue85skjVWgtTTBC.woff2",
   },
 } as const;
 
 export type BIZUDPGothicWeight = "400" | "700";
 export type BIZUDPGothicStyle = "normal";
 export type BIZUDPGothicSubset = "cyrillic" | "greek-ext" | "latin" | "latin-ext";
-export type BIZUDPGothicOptions = GoogleFontOptions<BIZUDPGothicWeight, BIZUDPGothicStyle, BIZUDPGothicSubset>;
+export type BIZUDPGothicOptions = GoogleFontOptions<
+  BIZUDPGothicWeight,
+  BIZUDPGothicStyle,
+  BIZUDPGothicSubset
+>;
 
 /**
  * BIZ UDPGothic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BIZUDPGothic extends GoogleFont<BIZUDPGothicWeight, BIZUDPGothicStyle, BIZUDPGothicSubset> {
+export default class BIZUDPGothic extends GoogleFont<
+  BIZUDPGothicWeight,
+  BIZUDPGothicStyle,
+  BIZUDPGothicSubset
+> {
   constructor(options?: BIZUDPGothicOptions) {
     super(FAMILY, FACES, options);
   }

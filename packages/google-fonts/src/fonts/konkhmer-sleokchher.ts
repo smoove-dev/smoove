@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Konkhmer Sleokchher";
 
 const FACES = {
-  "khmer": {
-    "400-normal": "https://fonts.gstatic.com/s/konkhmersleokchher/v3/_Xmw-GE-rjmabA_M-aPOZOsCrUv825LFE3J-7X0d.woff2",
+  khmer: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/konkhmersleokchher/v3/_Xmw-GE-rjmabA_M-aPOZOsCrUv825LFE3J-7X0d.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/konkhmersleokchher/v3/_Xmw-GE-rjmabA_M-aPOZOsCrUv825LFE3l-7Q.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/konkhmersleokchher/v3/_Xmw-GE-rjmabA_M-aPOZOsCrUv825LFE3l-7Q.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/konkhmersleokchher/v3/_Xmw-GE-rjmabA_M-aPOZOsCrUv825LFE3d-7X0d.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/konkhmersleokchher/v3/_Xmw-GE-rjmabA_M-aPOZOsCrUv825LFE3d-7X0d.woff2",
   },
 } as const;
 
 export type KonkhmerSleokchherWeight = "400";
 export type KonkhmerSleokchherStyle = "normal";
 export type KonkhmerSleokchherSubset = "khmer" | "latin" | "latin-ext";
-export type KonkhmerSleokchherOptions = GoogleFontOptions<KonkhmerSleokchherWeight, KonkhmerSleokchherStyle, KonkhmerSleokchherSubset>;
+export type KonkhmerSleokchherOptions = GoogleFontOptions<
+  KonkhmerSleokchherWeight,
+  KonkhmerSleokchherStyle,
+  KonkhmerSleokchherSubset
+>;
 
 /**
  * Konkhmer Sleokchher — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KonkhmerSleokchher extends GoogleFont<KonkhmerSleokchherWeight, KonkhmerSleokchherStyle, KonkhmerSleokchherSubset> {
+export default class KonkhmerSleokchher extends GoogleFont<
+  KonkhmerSleokchherWeight,
+  KonkhmerSleokchherStyle,
+  KonkhmerSleokchherSubset
+> {
   constructor(options?: KonkhmerSleokchherOptions) {
     super(FAMILY, FACES, options);
   }

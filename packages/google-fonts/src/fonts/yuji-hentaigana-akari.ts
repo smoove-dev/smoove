@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yuji Hentaigana Akari";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/yujihentaiganaakari/v14/cY9bfiyVT0VB6QuhWKOrpr6z58lnb_zYFnL4QjbP.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/yujihentaiganaakari/v14/cY9bfiyVT0VB6QuhWKOrpr6z58lnb_zYFnL4QjbP.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/yujihentaiganaakari/v14/cY9bfiyVT0VB6QuhWKOrpr6z58lnb_zYFnL4TDbPPYA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/yujihentaiganaakari/v14/cY9bfiyVT0VB6QuhWKOrpr6z58lnb_zYFnL4TDbPPYA.woff2",
   },
 } as const;
 
 export type YujiHentaiganaAkariWeight = "400";
 export type YujiHentaiganaAkariStyle = "normal";
 export type YujiHentaiganaAkariSubset = "latin" | "latin-ext";
-export type YujiHentaiganaAkariOptions = GoogleFontOptions<YujiHentaiganaAkariWeight, YujiHentaiganaAkariStyle, YujiHentaiganaAkariSubset>;
+export type YujiHentaiganaAkariOptions = GoogleFontOptions<
+  YujiHentaiganaAkariWeight,
+  YujiHentaiganaAkariStyle,
+  YujiHentaiganaAkariSubset
+>;
 
 /**
  * Yuji Hentaigana Akari — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class YujiHentaiganaAkari extends GoogleFont<YujiHentaiganaAkariWeight, YujiHentaiganaAkariStyle, YujiHentaiganaAkariSubset> {
+export default class YujiHentaiganaAkari extends GoogleFont<
+  YujiHentaiganaAkariWeight,
+  YujiHentaiganaAkariStyle,
+  YujiHentaiganaAkariSubset
+> {
   constructor(options?: YujiHentaiganaAkariOptions) {
     super(FAMILY, FACES, options);
   }

@@ -1,4 +1,4 @@
-import { Composition, Rect, Sequence, Text, interpolate } from "@smoove/core";
+import { Composition, interpolate, Rect, Sequence, Text } from "@smoove/core";
 
 /**
  * One sequence, eight bars, the same rise-and-fall tween offset by a per-index

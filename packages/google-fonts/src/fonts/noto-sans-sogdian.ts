@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Sogdian";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssogdian/v17/taiQGn5iC4--qtsfi4Jp6eHPnfxQBr-5NG8.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssogdian/v17/taiQGn5iC4--qtsfi4Jp6eHPnfxQBr-5NG8.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssogdian/v17/taiQGn5iC4--qtsfi4Jp6eHPnfxQBr-3NG-6Hg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssogdian/v17/taiQGn5iC4--qtsfi4Jp6eHPnfxQBr-3NG-6Hg.woff2",
   },
-  "sogdian": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssogdian/v17/taiQGn5iC4--qtsfi4Jp6eHPnfxQBr_LNG-6Hg.woff2",
+  sogdian: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssogdian/v17/taiQGn5iC4--qtsfi4Jp6eHPnfxQBr_LNG-6Hg.woff2",
   },
 } as const;
 
 export type NotoSansSogdianWeight = "400";
 export type NotoSansSogdianStyle = "normal";
 export type NotoSansSogdianSubset = "latin" | "latin-ext" | "sogdian";
-export type NotoSansSogdianOptions = GoogleFontOptions<NotoSansSogdianWeight, NotoSansSogdianStyle, NotoSansSogdianSubset>;
+export type NotoSansSogdianOptions = GoogleFontOptions<
+  NotoSansSogdianWeight,
+  NotoSansSogdianStyle,
+  NotoSansSogdianSubset
+>;
 
 /**
  * Noto Sans Sogdian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansSogdian extends GoogleFont<NotoSansSogdianWeight, NotoSansSogdianStyle, NotoSansSogdianSubset> {
+export default class NotoSansSogdian extends GoogleFont<
+  NotoSansSogdianWeight,
+  NotoSansSogdianStyle,
+  NotoSansSogdianSubset
+> {
   constructor(options?: NotoSansSogdianOptions) {
     super(FAMILY, FACES, options);
   }

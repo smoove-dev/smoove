@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Iceberg";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/iceberg/v26/8QIJdijAiM7o-qnZiI8Eqg.woff2",
   },
 } as const;

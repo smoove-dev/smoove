@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ga Maamli";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gamaamli/v3/uU9NCBsQ4c-DPW1Yo3rh3dSD.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/gamaamli/v3/uU9NCBsQ4c-DPW1Yo3rh09SDulI.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/gamaamli/v3/uU9NCBsQ4c-DPW1Yo3rh0tSDulI.woff2",
   },
 } as const;

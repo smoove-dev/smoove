@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Tai Le";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstaile/v19/vEFK2-VODB8RrNDvZSUmVxEATwR5wtW_Wg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstaile/v19/vEFK2-VODB8RrNDvZSUmVxEATwR5wtW_Wg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstaile/v19/vEFK2-VODB8RrNDvZSUmVxEATwR5wtu_Wo7H.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstaile/v19/vEFK2-VODB8RrNDvZSUmVxEATwR5wtu_Wo7H.woff2",
   },
   "tai-le": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstaile/v19/vEFK2-VODB8RrNDvZSUmVxEATwR5wpm_Wo7H.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstaile/v19/vEFK2-VODB8RrNDvZSUmVxEATwR5wpm_Wo7H.woff2",
   },
 } as const;
 
 export type NotoSansTaiLeWeight = "400";
 export type NotoSansTaiLeStyle = "normal";
 export type NotoSansTaiLeSubset = "latin" | "latin-ext" | "tai-le";
-export type NotoSansTaiLeOptions = GoogleFontOptions<NotoSansTaiLeWeight, NotoSansTaiLeStyle, NotoSansTaiLeSubset>;
+export type NotoSansTaiLeOptions = GoogleFontOptions<
+  NotoSansTaiLeWeight,
+  NotoSansTaiLeStyle,
+  NotoSansTaiLeSubset
+>;
 
 /**
  * Noto Sans Tai Le — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansTaiLe extends GoogleFont<NotoSansTaiLeWeight, NotoSansTaiLeStyle, NotoSansTaiLeSubset> {
+export default class NotoSansTaiLe extends GoogleFont<
+  NotoSansTaiLeWeight,
+  NotoSansTaiLeStyle,
+  NotoSansTaiLeSubset
+> {
   constructor(options?: NotoSansTaiLeOptions) {
     super(FAMILY, FACES, options);
   }

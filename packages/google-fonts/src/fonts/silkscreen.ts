@@ -4,26 +4,35 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Silkscreen";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/silkscreen/v6/m8JXjfVPf62XiF7kO-i9YLNlaw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/silkscreen/v6/m8JUjfVPf62XiF7kO-i9aAhAfmyi2A.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/silkscreen/v6/m8JXjfVPf62XiF7kO-i9YL1la1OD.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/silkscreen/v6/m8JUjfVPf62XiF7kO-i9aAhAfmKi2Oud.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/silkscreen/v6/m8JUjfVPf62XiF7kO-i9aAhAfmKi2Oud.woff2",
   },
 } as const;
 
 export type SilkscreenWeight = "400" | "700";
 export type SilkscreenStyle = "normal";
 export type SilkscreenSubset = "latin" | "latin-ext";
-export type SilkscreenOptions = GoogleFontOptions<SilkscreenWeight, SilkscreenStyle, SilkscreenSubset>;
+export type SilkscreenOptions = GoogleFontOptions<
+  SilkscreenWeight,
+  SilkscreenStyle,
+  SilkscreenSubset
+>;
 
 /**
  * Silkscreen — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Silkscreen extends GoogleFont<SilkscreenWeight, SilkscreenStyle, SilkscreenSubset> {
+export default class Silkscreen extends GoogleFont<
+  SilkscreenWeight,
+  SilkscreenStyle,
+  SilkscreenSubset
+> {
   constructor(options?: SilkscreenOptions) {
     super(FAMILY, FACES, options);
   }

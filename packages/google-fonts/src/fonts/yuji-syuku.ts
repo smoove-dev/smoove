@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yuji Syuku";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/yujisyuku/v8/BngNUXdTV3vO6Lw5ApOPmPTqw5iA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/yujisyuku/v8/BngNUXdTV3vO6Lw5ApOPmPDqww.woff2",
   },
   "latin-ext": {
@@ -24,7 +24,11 @@ export type YujiSyukuOptions = GoogleFontOptions<YujiSyukuWeight, YujiSyukuStyle
  * Yuji Syuku — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class YujiSyuku extends GoogleFont<YujiSyukuWeight, YujiSyukuStyle, YujiSyukuSubset> {
+export default class YujiSyuku extends GoogleFont<
+  YujiSyukuWeight,
+  YujiSyukuStyle,
+  YujiSyukuSubset
+> {
   constructor(options?: YujiSyukuOptions) {
     super(FAMILY, FACES, options);
   }

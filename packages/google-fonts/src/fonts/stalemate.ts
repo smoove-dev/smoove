@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Stalemate";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/stalemate/v24/taiIGmZ_EJq97-UfkZRZva6t.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type StalemateOptions = GoogleFontOptions<StalemateWeight, StalemateStyle
  * Stalemate — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Stalemate extends GoogleFont<StalemateWeight, StalemateStyle, StalemateSubset> {
+export default class Stalemate extends GoogleFont<
+  StalemateWeight,
+  StalemateStyle,
+  StalemateSubset
+> {
   constructor(options?: StalemateOptions) {
     super(FAMILY, FACES, options);
   }

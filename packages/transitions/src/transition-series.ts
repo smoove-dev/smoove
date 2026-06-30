@@ -1,9 +1,9 @@
 import {
   type Composition,
+  computeOffsets,
   type OffsetScene,
   Sequence,
   type SequenceProvider,
-  computeOffsets,
 } from "@smoove/core";
 import Konva from "konva";
 import { getCompositor } from "./gl/compositor.js";

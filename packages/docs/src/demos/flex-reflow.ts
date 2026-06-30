@@ -1,4 +1,4 @@
-import { Composition, Flex, Rect, Sequence, Text, interpolate } from "@smoove/core";
+import { Composition, Flex, interpolate, Rect, Sequence, Text } from "@smoove/core";
 
 /**
  * One Flex row, reflowed straight from the frame. The updater never touches an

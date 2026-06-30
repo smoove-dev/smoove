@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Barriecito";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/barriecito/v18/WWXXlj-CbBOSLY2QTuY_GdIoYg.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/barriecito/v18/WWXXlj-CbBOSLY2QTuY_GdwoYjTO.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/barriecito/v18/WWXXlj-CbBOSLY2QTuY_Gd0oYjTO.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type BarriecitoWeight = "400";
 export type BarriecitoStyle = "normal";
 export type BarriecitoSubset = "latin" | "latin-ext" | "vietnamese";
-export type BarriecitoOptions = GoogleFontOptions<BarriecitoWeight, BarriecitoStyle, BarriecitoSubset>;
+export type BarriecitoOptions = GoogleFontOptions<
+  BarriecitoWeight,
+  BarriecitoStyle,
+  BarriecitoSubset
+>;
 
 /**
  * Barriecito — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Barriecito extends GoogleFont<BarriecitoWeight, BarriecitoStyle, BarriecitoSubset> {
+export default class Barriecito extends GoogleFont<
+  BarriecitoWeight,
+  BarriecitoStyle,
+  BarriecitoSubset
+> {
   constructor(options?: BarriecitoOptions) {
     super(FAMILY, FACES, options);
   }

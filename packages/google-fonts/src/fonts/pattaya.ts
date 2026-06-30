@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pattaya";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/pattaya/v18/ea8ZadcqV_zkHY-XBdOt9lZE.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/pattaya/v18/ea8ZadcqV_zkHY-XBdet9g.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/pattaya/v18/ea8ZadcqV_zkHY-XBdmt9lZE.woff2",
   },
-  "thai": {
+  thai: {
     "400-normal": "https://fonts.gstatic.com/s/pattaya/v18/ea8ZadcqV_zkHY-XBcOt9lZE.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/pattaya/v18/ea8ZadcqV_zkHY-XBdit9lZE.woff2",
   },
 } as const;

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Caudex";
 
 const FACES = {
-  "greek": {
+  greek: {
     "400-italic": "https://fonts.gstatic.com/s/caudex/v19/esDS311QOP6BJUr4yMKAtbo-Ew.woff2",
     "400-normal": "https://fonts.gstatic.com/s/caudex/v19/esDQ311QOP6BJUr4zvKBrb4.woff2",
     "700-italic": "https://fonts.gstatic.com/s/caudex/v19/esDV311QOP6BJUr4yMo4kK8CMpWeGQ.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/caudex/v19/esDV311QOP6BJUr4yMo4kK8NMpWeGQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/caudex/v19/esDT311QOP6BJUrwdteUnp8DKpE.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/caudex/v19/esDS311QOP6BJUr4yMKDtbo.woff2",
     "400-normal": "https://fonts.gstatic.com/s/caudex/v19/esDQ311QOP6BJUr4zfKB.woff2",
     "700-italic": "https://fonts.gstatic.com/s/caudex/v19/esDV311QOP6BJUr4yMo4kK8BMpU.woff2",
@@ -28,13 +28,13 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/caudex/v19/esDV311QOP6BJUr4yMo4kK8PMpWeGQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/caudex/v19/esDT311QOP6BJUrwdteUnJ8DKpE.woff2",
   },
-  "runic": {
+  runic: {
     "400-italic": "https://fonts.gstatic.com/s/caudex/v19/esDS311QOP6BJUr4yMK3tbo-Ew.woff2",
     "400-normal": "https://fonts.gstatic.com/s/caudex/v19/esDQ311QOP6BJUr4-fKBrb4.woff2",
     "700-italic": "https://fonts.gstatic.com/s/caudex/v19/esDV311QOP6BJUr4yMo4kK81MpWeGQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/caudex/v19/esDT311QOP6BJUrwdteUpp8DKpE.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/caudex/v19/esDS311QOP6BJUr4yMKMtbo-Ew.woff2",
     "400-normal": "https://fonts.gstatic.com/s/caudex/v19/esDQ311QOP6BJUr4wvKBrb4.woff2",
     "700-italic": "https://fonts.gstatic.com/s/caudex/v19/esDV311QOP6BJUr4yMo4kK8OMpWeGQ.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Exile";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/exile/v1/pxiKyp0xqNtbjCsfFJU.woff2",
   },
   "latin-ext": {

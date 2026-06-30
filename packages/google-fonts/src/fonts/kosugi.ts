@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kosugi";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/kosugi/v19/pxiFyp4_v8FCjlIIN7D7T1o.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kosugi/v19/pxiFyp4_v8FCjlIIM7D7.woff2",
   },
   "latin-ext": {

@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Patrick Hand";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/patrickhand/v25/LDI1apSQOAYtSuYWp8ZhfYe8XsLL.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/patrickhand/v25/LDI1apSQOAYtSuYWp8ZhfYe8UMLLq7s.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/patrickhand/v25/LDI1apSQOAYtSuYWp8ZhfYe8UMLLq7s.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/patrickhand/v25/LDI1apSQOAYtSuYWp8ZhfYe8UcLLq7s.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/patrickhand/v25/LDI1apSQOAYtSuYWp8ZhfYe8UcLLq7s.woff2",
   },
 } as const;
 
 export type PatrickHandWeight = "400";
 export type PatrickHandStyle = "normal";
 export type PatrickHandSubset = "latin" | "latin-ext" | "vietnamese";
-export type PatrickHandOptions = GoogleFontOptions<PatrickHandWeight, PatrickHandStyle, PatrickHandSubset>;
+export type PatrickHandOptions = GoogleFontOptions<
+  PatrickHandWeight,
+  PatrickHandStyle,
+  PatrickHandSubset
+>;
 
 /**
  * Patrick Hand — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PatrickHand extends GoogleFont<PatrickHandWeight, PatrickHandStyle, PatrickHandSubset> {
+export default class PatrickHand extends GoogleFont<
+  PatrickHandWeight,
+  PatrickHandStyle,
+  PatrickHandSubset
+> {
   constructor(options?: PatrickHandOptions) {
     super(FAMILY, FACES, options);
   }

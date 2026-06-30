@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Birthstone";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/birthstone/v16/8AtsGs2xO4yLRhy87sv_LL7zjA.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/birthstone/v16/8AtsGs2xO4yLRhy87sv_LLDzjCfZ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/birthstone/v16/8AtsGs2xO4yLRhy87sv_LLHzjCfZ.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type BirthstoneWeight = "400";
 export type BirthstoneStyle = "normal";
 export type BirthstoneSubset = "latin" | "latin-ext" | "vietnamese";
-export type BirthstoneOptions = GoogleFontOptions<BirthstoneWeight, BirthstoneStyle, BirthstoneSubset>;
+export type BirthstoneOptions = GoogleFontOptions<
+  BirthstoneWeight,
+  BirthstoneStyle,
+  BirthstoneSubset
+>;
 
 /**
  * Birthstone — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Birthstone extends GoogleFont<BirthstoneWeight, BirthstoneStyle, BirthstoneSubset> {
+export default class Birthstone extends GoogleFont<
+  BirthstoneWeight,
+  BirthstoneStyle,
+  BirthstoneSubset
+> {
   constructor(options?: BirthstoneOptions) {
     super(FAMILY, FACES, options);
   }

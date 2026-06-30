@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Kannada";
 
 const FACES = {
-  "kannada": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
+  kannada: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCTY4CEsI.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCV44C.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifkannada/v30/v6-JGZHLJFKIhClqUYqXDiWqpxQxWSPCWY4CEsI.woff2",
   },
 } as const;
 
-export type NotoSerifKannadaWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSerifKannadaWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSerifKannadaStyle = "normal";
 export type NotoSerifKannadaSubset = "kannada" | "latin" | "latin-ext";
-export type NotoSerifKannadaOptions = GoogleFontOptions<NotoSerifKannadaWeight, NotoSerifKannadaStyle, NotoSerifKannadaSubset>;
+export type NotoSerifKannadaOptions = GoogleFontOptions<
+  NotoSerifKannadaWeight,
+  NotoSerifKannadaStyle,
+  NotoSerifKannadaSubset
+>;
 
 /**
  * Noto Serif Kannada — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifKannada extends GoogleFont<NotoSerifKannadaWeight, NotoSerifKannadaStyle, NotoSerifKannadaSubset> {
+export default class NotoSerifKannada extends GoogleFont<
+  NotoSerifKannadaWeight,
+  NotoSerifKannadaStyle,
+  NotoSerifKannadaSubset
+> {
   constructor(options?: NotoSerifKannadaOptions) {
     super(FAMILY, FACES, options);
   }

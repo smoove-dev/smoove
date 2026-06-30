@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Raleway Dots";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ralewaydots/v19/6NUR8FifJg6AfQvzpshgwJ8UzvVE.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/ralewaydots/v19/6NUR8FifJg6AfQvzpshgwJ8UwPVERtw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ralewaydots/v19/6NUR8FifJg6AfQvzpshgwJ8UwPVERtw.woff2",
   },
 } as const;
 
 export type RalewayDotsWeight = "400";
 export type RalewayDotsStyle = "normal";
 export type RalewayDotsSubset = "latin" | "latin-ext";
-export type RalewayDotsOptions = GoogleFontOptions<RalewayDotsWeight, RalewayDotsStyle, RalewayDotsSubset>;
+export type RalewayDotsOptions = GoogleFontOptions<
+  RalewayDotsWeight,
+  RalewayDotsStyle,
+  RalewayDotsSubset
+>;
 
 /**
  * Raleway Dots — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RalewayDots extends GoogleFont<RalewayDotsWeight, RalewayDotsStyle, RalewayDotsSubset> {
+export default class RalewayDots extends GoogleFont<
+  RalewayDotsWeight,
+  RalewayDotsStyle,
+  RalewayDotsSubset
+> {
   constructor(options?: RalewayDotsOptions) {
     super(FAMILY, FACES, options);
   }

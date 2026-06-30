@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Oxygen";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/oxygen/v16/2sDcZG1Wl4LcnbuCJW8zaGW5.woff2",
     "400-normal": "https://fonts.gstatic.com/s/oxygen/v16/2sDfZG1Wl4LcnbuKjk0m.woff2",
     "700-normal": "https://fonts.gstatic.com/s/oxygen/v16/2sDcZG1Wl4LcnbuCNWgzaGW5.woff2",

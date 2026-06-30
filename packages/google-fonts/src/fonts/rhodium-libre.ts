@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rhodium Libre";
 
 const FACES = {
-  "devanagari": {
-    "400-normal": "https://fonts.gstatic.com/s/rhodiumlibre/v21/1q2AY5adA0tn_ukeHcQHqpx6lELBe72g.woff2",
+  devanagari: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rhodiumlibre/v21/1q2AY5adA0tn_ukeHcQHqpx6lELBe72g.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rhodiumlibre/v21/1q2AY5adA0tn_ukeHcQHqpx6lEPBew.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rhodiumlibre/v21/1q2AY5adA0tn_ukeHcQHqpx6lEPBew.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rhodiumlibre/v21/1q2AY5adA0tn_ukeHcQHqpx6lE3Be72g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rhodiumlibre/v21/1q2AY5adA0tn_ukeHcQHqpx6lE3Be72g.woff2",
   },
 } as const;
 
 export type RhodiumLibreWeight = "400";
 export type RhodiumLibreStyle = "normal";
 export type RhodiumLibreSubset = "devanagari" | "latin" | "latin-ext";
-export type RhodiumLibreOptions = GoogleFontOptions<RhodiumLibreWeight, RhodiumLibreStyle, RhodiumLibreSubset>;
+export type RhodiumLibreOptions = GoogleFontOptions<
+  RhodiumLibreWeight,
+  RhodiumLibreStyle,
+  RhodiumLibreSubset
+>;
 
 /**
  * Rhodium Libre — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RhodiumLibre extends GoogleFont<RhodiumLibreWeight, RhodiumLibreStyle, RhodiumLibreSubset> {
+export default class RhodiumLibre extends GoogleFont<
+  RhodiumLibreWeight,
+  RhodiumLibreStyle,
+  RhodiumLibreSubset
+> {
   constructor(options?: RhodiumLibreOptions) {
     super(FAMILY, FACES, options);
   }

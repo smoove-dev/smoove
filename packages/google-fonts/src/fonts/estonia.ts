@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Estonia";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/estonia/v13/7Au_p_4ijSecA1yHOCX2zw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/estonia/v13/7Au_p_4ijSecA1yHOCv2z3wM.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/estonia/v13/7Au_p_4ijSecA1yHOCr2z3wM.woff2",
   },
 } as const;

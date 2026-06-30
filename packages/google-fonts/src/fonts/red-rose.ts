@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Red Rose";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/redrose/v25/QdVVSTYiLBjouPgEUYLjmQQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/redrose/v25/QdVVSTYiLBjouPgEUYLjmQQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/redrose/v25/QdVVSTYiLBjouPgEUYLjmQQ.woff2",
@@ -18,7 +18,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/redrose/v25/QdVVSTYiLBjouPgEUYLtmQRYkg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/redrose/v25/QdVVSTYiLBjouPgEUYLtmQRYkg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-normal": "https://fonts.gstatic.com/s/redrose/v25/QdVVSTYiLBjouPgEUYLsmQRYkg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/redrose/v25/QdVVSTYiLBjouPgEUYLsmQRYkg.woff2",
     "500-normal": "https://fonts.gstatic.com/s/redrose/v25/QdVVSTYiLBjouPgEUYLsmQRYkg.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Girassol";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/girassol/v24/JTUUjIo_-DK48laaNB9KxWs.woff2",
   },
   "latin-ext": {

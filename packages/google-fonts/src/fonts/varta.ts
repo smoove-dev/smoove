@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Varta";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/varta/v25/Qw3TZQpJHj_6LxvYtvQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/varta/v25/Qw3TZQpJHj_6LxvYtvQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/varta/v25/Qw3TZQpJHj_6LxvYtvQ.woff2",
@@ -18,7 +18,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/varta/v25/Qw3TZQpJHj_6LxvWtvRzMA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/varta/v25/Qw3TZQpJHj_6LxvWtvRzMA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-normal": "https://fonts.gstatic.com/s/varta/v25/Qw3TZQpJHj_6LxvXtvRzMA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/varta/v25/Qw3TZQpJHj_6LxvXtvRzMA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/varta/v25/Qw3TZQpJHj_6LxvXtvRzMA.woff2",

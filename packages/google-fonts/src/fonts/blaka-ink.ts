@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Blaka Ink";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/blakaink/v10/AlZy_zVVtpj22Znag2cRd335bB1boA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/blakaink/v10/AlZy_zVVtpj22Znag2cRcn35BB4.woff2",
   },
   "latin-ext": {

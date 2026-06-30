@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kodchasan";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlIgNCr9ec.woff2",
     "200-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeR1CQhuCp.woff2",
     "300-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUksg9Cr9ec.woff2",
@@ -19,45 +19,60 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeM1SQhuCp.woff2",
   },
   "latin-ext": {
-    "200-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlIgNCl9ec-oA.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlIgNCl9ec-oA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeR1CQiOCp7eM.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUksg9Cl9ec-oA.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUksg9Cl9ec-oA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeI1OQiOCp7eM.woff2",
     "400-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cX3aUPOAJv9sG4I-DJWjUGJocWU1A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cXxaUPOAJv9sG4I-DJWhnGFucE.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUl0gtCl9ec-oA.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUl0gtCl9ec-oA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJee1KQiOCp7eM.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlYhdCl9ec-oA.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlYhdCl9ec-oA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeV1WQiOCp7eM.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUk8hNCl9ec-oA.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUk8hNCl9ec-oA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeM1SQiOCp7eM.woff2",
   },
-  "thai": {
-    "200-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlIgNC_9ec-oA.woff2",
+  thai: {
+    "200-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlIgNC_9ec-oA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeR1CQkuCp7eM.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUksg9C_9ec-oA.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUksg9C_9ec-oA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeI1OQkuCp7eM.woff2",
     "400-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cX3aUPOAJv9sG4I-DJWjUGTocWU1A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cXxaUPOAJv9sG4I-DJWnHGFucE.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUl0gtC_9ec-oA.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUl0gtC_9ec-oA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJee1KQkuCp7eM.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlYhdC_9ec-oA.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlYhdC_9ec-oA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeV1WQkuCp7eM.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUk8hNC_9ec-oA.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUk8hNC_9ec-oA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeM1SQkuCp7eM.woff2",
   },
-  "vietnamese": {
-    "200-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlIgNCk9ec-oA.woff2",
+  vietnamese: {
+    "200-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlIgNCk9ec-oA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeR1CQieCp7eM.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUksg9Ck9ec-oA.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUksg9Ck9ec-oA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeI1OQieCp7eM.woff2",
     "400-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cX3aUPOAJv9sG4I-DJWjUGIocWU1A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cXxaUPOAJv9sG4I-DJWh3GFucE.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUl0gtCk9ec-oA.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUl0gtCk9ec-oA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJee1KQieCp7eM.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlYhdCk9ec-oA.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUlYhdCk9ec-oA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeV1WQieCp7eM.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUk8hNCk9ec-oA.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/kodchasan/v20/1cXqaUPOAJv9sG4I-DJWjUk8hNCk9ec-oA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/kodchasan/v20/1cX0aUPOAJv9sG4I-DJeM1SQieCp7eM.woff2",
   },
 } as const;
@@ -71,7 +86,11 @@ export type KodchasanOptions = GoogleFontOptions<KodchasanWeight, KodchasanStyle
  * Kodchasan — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Kodchasan extends GoogleFont<KodchasanWeight, KodchasanStyle, KodchasanSubset> {
+export default class Kodchasan extends GoogleFont<
+  KodchasanWeight,
+  KodchasanStyle,
+  KodchasanSubset
+> {
   constructor(options?: KodchasanOptions) {
     super(FAMILY, FACES, options);
   }

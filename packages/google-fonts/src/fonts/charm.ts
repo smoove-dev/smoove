@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Charm";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/charm/v14/7cHmv4oii5K0MdYoK-4.woff2",
     "700-normal": "https://fonts.gstatic.com/s/charm/v14/7cHrv4oii5K0Md6TDvs7wH8.woff2",
   },
@@ -12,11 +12,11 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/charm/v14/7cHmv4oii5K0MdYmK-4E4Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/charm/v14/7cHrv4oii5K0Md6TDvs1wH8RnA.woff2",
   },
-  "thai": {
+  thai: {
     "400-normal": "https://fonts.gstatic.com/s/charm/v14/7cHmv4oii5K0MdY8K-4E4Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/charm/v14/7cHrv4oii5K0Md6TDvsvwH8RnA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/charm/v14/7cHmv4oii5K0MdYnK-4E4Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/charm/v14/7cHrv4oii5K0Md6TDvs0wH8RnA.woff2",
   },

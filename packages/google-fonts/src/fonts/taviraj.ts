@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Taviraj";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/taviraj/v15/ahcdv8Cj3ylylTXzTOwTM_l2pUk.woff2",
     "100-normal": "https://fonts.gstatic.com/s/taviraj/v15/ahcbv8Cj3ylylTXzRIobUMl0.woff2",
     "200-italic": "https://fonts.gstatic.com/s/taviraj/v15/ahcev8Cj3ylylTXzTOwTn-hhgmy9.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/taviraj/v15/ahcev8Cj3ylylTXzTOwT0-5hjGy9m0s.woff2",
     "900-normal": "https://fonts.gstatic.com/s/taviraj/v15/ahccv8Cj3ylylTXzRGoMR-BRgHS5.woff2",
   },
-  "thai": {
+  thai: {
     "100-italic": "https://fonts.gstatic.com/s/taviraj/v15/ahcdv8Cj3ylylTXzTOwTM_lipUmAog.woff2",
     "100-normal": "https://fonts.gstatic.com/s/taviraj/v15/ahcbv8Cj3ylylTXzRIobRMl0vU0.woff2",
     "200-italic": "https://fonts.gstatic.com/s/taviraj/v15/ahcev8Cj3ylylTXzTOwTn-hhlmy9m0s.woff2",
@@ -64,7 +64,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/taviraj/v15/ahcev8Cj3ylylTXzTOwT0-5hlmy9m0s.woff2",
     "900-normal": "https://fonts.gstatic.com/s/taviraj/v15/ahccv8Cj3ylylTXzRGoMR_pRgHS5.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/taviraj/v15/ahcdv8Cj3ylylTXzTOwTM_l5pUmAog.woff2",
     "100-normal": "https://fonts.gstatic.com/s/taviraj/v15/ahcbv8Cj3ylylTXzRIobX8l0vU0.woff2",
     "200-italic": "https://fonts.gstatic.com/s/taviraj/v15/ahcev8Cj3ylylTXzTOwTn-hhjWy9m0s.woff2",

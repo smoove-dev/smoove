@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Foldit";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/foldit/v8/aFTV7PF3Y3c9WdjnoT21.woff2",
     "200-normal": "https://fonts.gstatic.com/s/foldit/v8/aFTV7PF3Y3c9WdjnoT21.woff2",
     "300-normal": "https://fonts.gstatic.com/s/foldit/v8/aFTV7PF3Y3c9WdjnoT21.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/foldit/v8/aFTV7PF3Y3c9Wdjnrz21OYU.woff2",
     "900-normal": "https://fonts.gstatic.com/s/foldit/v8/aFTV7PF3Y3c9Wdjnrz21OYU.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/foldit/v8/aFTV7PF3Y3c9Wdjnrj21OYU.woff2",
     "200-normal": "https://fonts.gstatic.com/s/foldit/v8/aFTV7PF3Y3c9Wdjnrj21OYU.woff2",
     "300-normal": "https://fonts.gstatic.com/s/foldit/v8/aFTV7PF3Y3c9Wdjnrj21OYU.woff2",

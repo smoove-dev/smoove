@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ribeye Marrow";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/ribeyemarrow/v26/GFDsWApshnqMRO2JdtRZ2d0vIAsZVA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ribeyemarrow/v26/GFDsWApshnqMRO2JdtRZ2d0vIAsZVA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/ribeyemarrow/v26/GFDsWApshnqMRO2JdtRZ2d0vIAUZVFgK.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ribeyemarrow/v26/GFDsWApshnqMRO2JdtRZ2d0vIAUZVFgK.woff2",
   },
 } as const;
 
 export type RibeyeMarrowWeight = "400";
 export type RibeyeMarrowStyle = "normal";
 export type RibeyeMarrowSubset = "latin" | "latin-ext";
-export type RibeyeMarrowOptions = GoogleFontOptions<RibeyeMarrowWeight, RibeyeMarrowStyle, RibeyeMarrowSubset>;
+export type RibeyeMarrowOptions = GoogleFontOptions<
+  RibeyeMarrowWeight,
+  RibeyeMarrowStyle,
+  RibeyeMarrowSubset
+>;
 
 /**
  * Ribeye Marrow — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RibeyeMarrow extends GoogleFont<RibeyeMarrowWeight, RibeyeMarrowStyle, RibeyeMarrowSubset> {
+export default class RibeyeMarrow extends GoogleFont<
+  RibeyeMarrowWeight,
+  RibeyeMarrowStyle,
+  RibeyeMarrowSubset
+> {
   constructor(options?: RibeyeMarrowOptions) {
     super(FAMILY, FACES, options);
   }

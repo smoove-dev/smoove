@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Diplomata";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/diplomata/v33/Cn-0JtiMXwhNwp-wKxyvZ2ZZ.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type DiplomataOptions = GoogleFontOptions<DiplomataWeight, DiplomataStyle
  * Diplomata — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Diplomata extends GoogleFont<DiplomataWeight, DiplomataStyle, DiplomataSubset> {
+export default class Diplomata extends GoogleFont<
+  DiplomataWeight,
+  DiplomataStyle,
+  DiplomataSubset
+> {
   constructor(options?: DiplomataOptions) {
     super(FAMILY, FACES, options);
   }

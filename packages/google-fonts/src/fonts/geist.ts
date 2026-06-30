@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Geist";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-italic": "https://fonts.gstatic.com/s/geist/v5/gyB8hwUxId8gMEwZKFOHP7Tc.woff2",
     "100-normal": "https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwYGFWfOw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/geist/v5/gyB8hwUxId8gMEwZKFOHP7Tc.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/geist/v5/gyB8hwUxId8gMEwZKFqHP7Tc.woff2",
     "900-normal": "https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwRGFWfOw.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/geist/v5/gyB8hwUxId8gMEwZKFeHPw.woff2",
     "100-normal": "https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwcGFU.woff2",
     "200-italic": "https://fonts.gstatic.com/s/geist/v5/gyB8hwUxId8gMEwZKFeHPw.woff2",
@@ -84,7 +84,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/geist/v5/gyB8hwUxId8gMEwZKFmHP7Tc.woff2",
     "900-normal": "https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwSGFWfOw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/geist/v5/gyB8hwUxId8gMEwZKFiHP7Tc.woff2",
     "100-normal": "https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwTGFWfOw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/geist/v5/gyB8hwUxId8gMEwZKFiHP7Tc.woff2",

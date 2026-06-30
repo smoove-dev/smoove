@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Crushed";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/crushed/v32/U9Mc6dym6WXImTlFf14VuQ.woff2",
   },
   "latin-ext": {

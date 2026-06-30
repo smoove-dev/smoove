@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Allkin";
 
 const FACES = {
-  "fallback": {
+  fallback: {
     "400-normal": "https://fonts.gstatic.com/s/allkin/v10/ieV_2Y5KIGmGKpnzKA.woff2",
   },
 } as const;

@@ -4,14 +4,17 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ballet";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/ballet/v30/QGYyz_MYZA-HM4NjuGOVnUEXme1I4Xi3O4a0Ew.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ballet/v30/QGYyz_MYZA-HM4NjuGOVnUEXme1I4Xi3O4a0Ew.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/ballet/v30/QGYyz_MYZA-HM4NjuGOVnUEXme1I4Xi3O4i0ExAo.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ballet/v30/QGYyz_MYZA-HM4NjuGOVnUEXme1I4Xi3O4i0ExAo.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/ballet/v30/QGYyz_MYZA-HM4NjuGOVnUEXme1I4Xi3O4m0ExAo.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ballet/v30/QGYyz_MYZA-HM4NjuGOVnUEXme1I4Xi3O4m0ExAo.woff2",
   },
 } as const;
 

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Osmanya";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansosmanya/v20/8vIS7xs32H97qzQKnzfeWzUyUpOJmw6jTY8.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansosmanya/v20/8vIS7xs32H97qzQKnzfeWzUyUpOJmw6jTY8.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansosmanya/v20/8vIS7xs32H97qzQKnzfeWzUyUpOJmw6tTY_9CQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansosmanya/v20/8vIS7xs32H97qzQKnzfeWzUyUpOJmw6tTY_9CQ.woff2",
   },
-  "osmanya": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansosmanya/v20/8vIS7xs32H97qzQKnzfeWzUyUpOJmw60TY_9CQ.woff2",
+  osmanya: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansosmanya/v20/8vIS7xs32H97qzQKnzfeWzUyUpOJmw60TY_9CQ.woff2",
   },
 } as const;
 
 export type NotoSansOsmanyaWeight = "400";
 export type NotoSansOsmanyaStyle = "normal";
 export type NotoSansOsmanyaSubset = "latin" | "latin-ext" | "osmanya";
-export type NotoSansOsmanyaOptions = GoogleFontOptions<NotoSansOsmanyaWeight, NotoSansOsmanyaStyle, NotoSansOsmanyaSubset>;
+export type NotoSansOsmanyaOptions = GoogleFontOptions<
+  NotoSansOsmanyaWeight,
+  NotoSansOsmanyaStyle,
+  NotoSansOsmanyaSubset
+>;
 
 /**
  * Noto Sans Osmanya — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansOsmanya extends GoogleFont<NotoSansOsmanyaWeight, NotoSansOsmanyaStyle, NotoSansOsmanyaSubset> {
+export default class NotoSansOsmanya extends GoogleFont<
+  NotoSansOsmanyaWeight,
+  NotoSansOsmanyaStyle,
+  NotoSansOsmanyaSubset
+> {
   constructor(options?: NotoSansOsmanyaOptions) {
     super(FAMILY, FACES, options);
   }

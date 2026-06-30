@@ -4,34 +4,50 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tai Heritage Pro";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlfdQid-zgaNiNIYcUzJMU3IYyNkHtYEQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlYdQid-zgaNiNIYcUzJMU3IYyNmMB9BNNPMw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlfdQid-zgaNiNIYcUzJMU3IYyNkHtYEQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlYdQid-zgaNiNIYcUzJMU3IYyNmMB9BNNPMw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlfdQid-zgaNiNIYcUzJMU3IYyNkHVYEexu.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlYdQid-zgaNiNIYcUzJMU3IYyNmMB9BN1PM9hj.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlfdQid-zgaNiNIYcUzJMU3IYyNkHVYEexu.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlYdQid-zgaNiNIYcUzJMU3IYyNmMB9BN1PM9hj.woff2",
   },
   "tai-viet": {
-    "400-normal": "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlfdQid-zgaNiNIYcUzJMU3IYyNkDFYEexu.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlYdQid-zgaNiNIYcUzJMU3IYyNmMB9BJlPM9hj.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlfdQid-zgaNiNIYcUzJMU3IYyNkDFYEexu.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlYdQid-zgaNiNIYcUzJMU3IYyNmMB9BJlPM9hj.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlfdQid-zgaNiNIYcUzJMU3IYyNkHRYEexu.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlYdQid-zgaNiNIYcUzJMU3IYyNmMB9BNxPM9hj.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlfdQid-zgaNiNIYcUzJMU3IYyNkHRYEexu.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/taiheritagepro/v9/sZlYdQid-zgaNiNIYcUzJMU3IYyNmMB9BNxPM9hj.woff2",
   },
 } as const;
 
 export type TaiHeritageProWeight = "400" | "700";
 export type TaiHeritageProStyle = "normal";
 export type TaiHeritageProSubset = "latin" | "latin-ext" | "tai-viet" | "vietnamese";
-export type TaiHeritageProOptions = GoogleFontOptions<TaiHeritageProWeight, TaiHeritageProStyle, TaiHeritageProSubset>;
+export type TaiHeritageProOptions = GoogleFontOptions<
+  TaiHeritageProWeight,
+  TaiHeritageProStyle,
+  TaiHeritageProSubset
+>;
 
 /**
  * Tai Heritage Pro — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TaiHeritagePro extends GoogleFont<TaiHeritageProWeight, TaiHeritageProStyle, TaiHeritageProSubset> {
+export default class TaiHeritagePro extends GoogleFont<
+  TaiHeritageProWeight,
+  TaiHeritageProStyle,
+  TaiHeritageProSubset
+> {
   constructor(options?: TaiHeritageProOptions) {
     super(FAMILY, FACES, options);
   }

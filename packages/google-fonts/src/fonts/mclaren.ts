@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "McLaren";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mclaren/v19/2EbnL-ZuAXFqZFXIeYEV8g.woff2",
   },
   "latin-ext": {

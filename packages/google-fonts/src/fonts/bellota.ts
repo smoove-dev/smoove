@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bellota";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "300-italic": "https://fonts.gstatic.com/s/bellota/v17/MwQxbhXl3_qEpiwAKJBjHGEvjpFLlXs.woff2",
     "300-normal": "https://fonts.gstatic.com/s/bellota/v17/MwQzbhXl3_qEpiwAID55oGAfiIlP.woff2",
     "400-italic": "https://fonts.gstatic.com/s/bellota/v17/MwQ0bhXl3_qEpiwAKJBrs0M6tbA.woff2",
@@ -12,7 +12,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/bellota/v17/MwQxbhXl3_qEpiwAKJBjDGYvjpFLlXs.woff2",
     "700-normal": "https://fonts.gstatic.com/s/bellota/v17/MwQzbhXl3_qEpiwAIC5-oGAfiIlP.woff2",
   },
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/bellota/v17/MwQxbhXl3_qEpiwAKJBjHGEvipFL.woff2",
     "300-normal": "https://fonts.gstatic.com/s/bellota/v17/MwQzbhXl3_qEpiwAID55oGQfiA.woff2",
     "400-italic": "https://fonts.gstatic.com/s/bellota/v17/MwQ0bhXl3_qEpiwAKJBrt0M6.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/bellota/v17/MwQxbhXl3_qEpiwAKJBjDGYvhJFLlXs.woff2",
     "700-normal": "https://fonts.gstatic.com/s/bellota/v17/MwQzbhXl3_qEpiwAIC5-oGofiIlP.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-italic": "https://fonts.gstatic.com/s/bellota/v17/MwQxbhXl3_qEpiwAKJBjHGEvhZFLlXs.woff2",
     "300-normal": "https://fonts.gstatic.com/s/bellota/v17/MwQzbhXl3_qEpiwAID55oGsfiIlP.woff2",
     "400-italic": "https://fonts.gstatic.com/s/bellota/v17/MwQ0bhXl3_qEpiwAKJBruEM6tbA.woff2",

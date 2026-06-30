@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Inspiration";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/inspiration/v7/x3dkckPPZa6L4wIg5cZOEsoBlys.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/inspiration/v7/x3dkckPPZa6L4wIg5cZOEsoPlyvVBA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/inspiration/v7/x3dkckPPZa6L4wIg5cZOEsoOlyvVBA.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type InspirationWeight = "400";
 export type InspirationStyle = "normal";
 export type InspirationSubset = "latin" | "latin-ext" | "vietnamese";
-export type InspirationOptions = GoogleFontOptions<InspirationWeight, InspirationStyle, InspirationSubset>;
+export type InspirationOptions = GoogleFontOptions<
+  InspirationWeight,
+  InspirationStyle,
+  InspirationSubset
+>;
 
 /**
  * Inspiration — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Inspiration extends GoogleFont<InspirationWeight, InspirationStyle, InspirationSubset> {
+export default class Inspiration extends GoogleFont<
+  InspirationWeight,
+  InspirationStyle,
+  InspirationSubset
+> {
   constructor(options?: InspirationOptions) {
     super(FAMILY, FACES, options);
   }

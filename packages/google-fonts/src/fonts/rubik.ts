@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "300-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnXu61F3f.woff2",
     "300-normal": "https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nErXyi0A.woff2",
     "400-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnXu61F3f.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnXu61F3f.woff2",
     "900-normal": "https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nErXyi0A.woff2",
   },
-  "cyrillic": {
+  cyrillic: {
     "300-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnXq61F3f.woff2",
     "300-normal": "https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nFrXyi0A.woff2",
     "400-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnXq61F3f.woff2",
@@ -52,7 +52,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnXO61F3f.woff2",
     "900-normal": "https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nMrXyi0A.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "300-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnXy61F3f.woff2",
     "300-normal": "https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nDrXyi0A.woff2",
     "400-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnXy61F3f.woff2",
@@ -68,7 +68,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnXy61F3f.woff2",
     "900-normal": "https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nDrXyi0A.woff2",
   },
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnX661A.woff2",
     "300-normal": "https://fonts.gstatic.com/s/rubik/v31/iJWKBXyIfDnIV7nBrXw.woff2",
     "400-italic": "https://fonts.gstatic.com/s/rubik/v31/iJWEBXyIfDnIV7nEnX661A.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ceviche One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/cevicheone/v17/gyB4hws1IcA6JzR-GB_JX5zabYo.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type CevicheOneWeight = "400";
 export type CevicheOneStyle = "normal";
 export type CevicheOneSubset = "latin" | "latin-ext";
-export type CevicheOneOptions = GoogleFontOptions<CevicheOneWeight, CevicheOneStyle, CevicheOneSubset>;
+export type CevicheOneOptions = GoogleFontOptions<
+  CevicheOneWeight,
+  CevicheOneStyle,
+  CevicheOneSubset
+>;
 
 /**
  * Ceviche One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CevicheOne extends GoogleFont<CevicheOneWeight, CevicheOneStyle, CevicheOneSubset> {
+export default class CevicheOne extends GoogleFont<
+  CevicheOneWeight,
+  CevicheOneStyle,
+  CevicheOneSubset
+> {
   constructor(options?: CevicheOneOptions) {
     super(FAMILY, FACES, options);
   }

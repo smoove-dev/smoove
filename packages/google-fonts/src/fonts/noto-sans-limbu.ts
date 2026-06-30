@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Limbu";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslimbu/v26/3JnlSDv90Gmq2mrzckOBBRRoNJVT18t2.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslimbu/v26/3JnlSDv90Gmq2mrzckOBBRRoNJVT18t2.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslimbu/v26/3JnlSDv90Gmq2mrzckOBBRRoNJVT2ct2CHQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslimbu/v26/3JnlSDv90Gmq2mrzckOBBRRoNJVT2ct2CHQ.woff2",
   },
-  "limbu": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslimbu/v26/3JnlSDv90Gmq2mrzckOBBRRoNJVT4st2CHQ.woff2",
+  limbu: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslimbu/v26/3JnlSDv90Gmq2mrzckOBBRRoNJVT4st2CHQ.woff2",
   },
 } as const;
 
 export type NotoSansLimbuWeight = "400";
 export type NotoSansLimbuStyle = "normal";
 export type NotoSansLimbuSubset = "latin" | "latin-ext" | "limbu";
-export type NotoSansLimbuOptions = GoogleFontOptions<NotoSansLimbuWeight, NotoSansLimbuStyle, NotoSansLimbuSubset>;
+export type NotoSansLimbuOptions = GoogleFontOptions<
+  NotoSansLimbuWeight,
+  NotoSansLimbuStyle,
+  NotoSansLimbuSubset
+>;
 
 /**
  * Noto Sans Limbu — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansLimbu extends GoogleFont<NotoSansLimbuWeight, NotoSansLimbuStyle, NotoSansLimbuSubset> {
+export default class NotoSansLimbu extends GoogleFont<
+  NotoSansLimbuWeight,
+  NotoSansLimbuStyle,
+  NotoSansLimbuSubset
+> {
   constructor(options?: NotoSansLimbuOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,30 +4,44 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Qwitcher Grypen";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxicypclp9tDilN9RrC5BSI1dZmbT2lB.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxiZypclp9tDilN9RrC5BSI1dZmT9ExUrU6t.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxicypclp9tDilN9RrC5BSI1dZmbT2lB.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxiZypclp9tDilN9RrC5BSI1dZmT9ExUrU6t.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxicypclp9tDilN9RrC5BSI1dZmbQWlBkm8.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxiZypclp9tDilN9RrC5BSI1dZmT9ExUo06tnvM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxicypclp9tDilN9RrC5BSI1dZmbQWlBkm8.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxiZypclp9tDilN9RrC5BSI1dZmT9ExUo06tnvM.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxicypclp9tDilN9RrC5BSI1dZmbQGlBkm8.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxiZypclp9tDilN9RrC5BSI1dZmT9ExUok6tnvM.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxicypclp9tDilN9RrC5BSI1dZmbQGlBkm8.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/qwitchergrypen/v8/pxiZypclp9tDilN9RrC5BSI1dZmT9ExUok6tnvM.woff2",
   },
 } as const;
 
 export type QwitcherGrypenWeight = "400" | "700";
 export type QwitcherGrypenStyle = "normal";
 export type QwitcherGrypenSubset = "latin" | "latin-ext" | "vietnamese";
-export type QwitcherGrypenOptions = GoogleFontOptions<QwitcherGrypenWeight, QwitcherGrypenStyle, QwitcherGrypenSubset>;
+export type QwitcherGrypenOptions = GoogleFontOptions<
+  QwitcherGrypenWeight,
+  QwitcherGrypenStyle,
+  QwitcherGrypenSubset
+>;
 
 /**
  * Qwitcher Grypen — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class QwitcherGrypen extends GoogleFont<QwitcherGrypenWeight, QwitcherGrypenStyle, QwitcherGrypenSubset> {
+export default class QwitcherGrypen extends GoogleFont<
+  QwitcherGrypenWeight,
+  QwitcherGrypenStyle,
+  QwitcherGrypenSubset
+> {
   constructor(options?: QwitcherGrypenOptions) {
     super(FAMILY, FACES, options);
   }

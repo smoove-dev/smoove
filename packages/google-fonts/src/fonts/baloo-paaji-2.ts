@@ -4,46 +4,74 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Baloo Paaji 2";
 
 const FACES = {
-  "gurmukhi": {
-    "400-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUHaaHjyV.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUHaaHjyV.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUHaaHjyV.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUHaaHjyV.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUHaaHjyV.woff2",
+  gurmukhi: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUHaaHjyV.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUHaaHjyV.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUHaaHjyV.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUHaaHjyV.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUHaaHjyV.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFWaHg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFWaHg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFWaHg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFWaHg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFWaHg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFWaHg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFWaHg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFWaHg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFWaHg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFWaHg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFuaHjyV.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFuaHjyV.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFuaHjyV.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFuaHjyV.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFuaHjyV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFuaHjyV.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFuaHjyV.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFuaHjyV.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFuaHjyV.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFuaHjyV.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFqaHjyV.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFqaHjyV.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFqaHjyV.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFqaHjyV.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFqaHjyV.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFqaHjyV.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFqaHjyV.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFqaHjyV.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFqaHjyV.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/baloopaaji2/v29/i7dMIFFzbz-QHZUdV9_UGWZuUFqaHjyV.woff2",
   },
 } as const;
 
 export type BalooPaaji2Weight = "400" | "500" | "600" | "700" | "800";
 export type BalooPaaji2Style = "normal";
 export type BalooPaaji2Subset = "gurmukhi" | "latin" | "latin-ext" | "vietnamese";
-export type BalooPaaji2Options = GoogleFontOptions<BalooPaaji2Weight, BalooPaaji2Style, BalooPaaji2Subset>;
+export type BalooPaaji2Options = GoogleFontOptions<
+  BalooPaaji2Weight,
+  BalooPaaji2Style,
+  BalooPaaji2Subset
+>;
 
 /**
  * Baloo Paaji 2 — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BalooPaaji2 extends GoogleFont<BalooPaaji2Weight, BalooPaaji2Style, BalooPaaji2Subset> {
+export default class BalooPaaji2 extends GoogleFont<
+  BalooPaaji2Weight,
+  BalooPaaji2Style,
+  BalooPaaji2Subset
+> {
   constructor(options?: BalooPaaji2Options) {
     super(FAMILY, FACES, options);
   }

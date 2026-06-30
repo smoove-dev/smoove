@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fredericka the Great";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/frederickathegreat/v23/9Bt33CxNwt7aOctW2xjbCstzwVKsIBVV--Sjxbc.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/frederickathegreat/v23/9Bt33CxNwt7aOctW2xjbCstzwVKsIBVV--Sjxbc.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/frederickathegreat/v23/9Bt33CxNwt7aOctW2xjbCstzwVKsIBVV--StxbcVcg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/frederickathegreat/v23/9Bt33CxNwt7aOctW2xjbCstzwVKsIBVV--StxbcVcg.woff2",
   },
 } as const;
 
 export type FrederickaTheGreatWeight = "400";
 export type FrederickaTheGreatStyle = "normal";
 export type FrederickaTheGreatSubset = "latin" | "latin-ext";
-export type FrederickaTheGreatOptions = GoogleFontOptions<FrederickaTheGreatWeight, FrederickaTheGreatStyle, FrederickaTheGreatSubset>;
+export type FrederickaTheGreatOptions = GoogleFontOptions<
+  FrederickaTheGreatWeight,
+  FrederickaTheGreatStyle,
+  FrederickaTheGreatSubset
+>;
 
 /**
  * Fredericka the Great — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FrederickaTheGreat extends GoogleFont<FrederickaTheGreatWeight, FrederickaTheGreatStyle, FrederickaTheGreatSubset> {
+export default class FrederickaTheGreat extends GoogleFont<
+  FrederickaTheGreatWeight,
+  FrederickaTheGreatStyle,
+  FrederickaTheGreatSubset
+> {
   constructor(options?: FrederickaTheGreatOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Allison";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/allison/v13/X7nl4b88AP2nkbvZCCGa4Q.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/allison/v13/X7nl4b88AP2nkbvZCC-a4fTg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/allison/v13/X7nl4b88AP2nkbvZCC6a4fTg.woff2",
   },
 } as const;

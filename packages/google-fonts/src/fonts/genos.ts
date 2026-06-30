@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Genos";
 
 const FACES = {
-  "cherokee": {
+  cherokee: {
     "100-italic": "https://fonts.gstatic.com/s/genos/v16/SlGQmQqPqpUOYRwqcSYEhUxz.woff2",
     "100-normal": "https://fonts.gstatic.com/s/genos/v16/SlGemQqPqpUOYRw8QTccgQ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/genos/v16/SlGQmQqPqpUOYRwqcSYEhUxz.woff2",
@@ -24,7 +24,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/genos/v16/SlGQmQqPqpUOYRwqcSYEhUxz.woff2",
     "900-normal": "https://fonts.gstatic.com/s/genos/v16/SlGemQqPqpUOYRw8QTccgQ.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/genos/v16/SlGQmQqPqpUOYRwqcTUEhQ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/genos/v16/SlGemQqPqpUOYRwvQTc.woff2",
     "200-italic": "https://fonts.gstatic.com/s/genos/v16/SlGQmQqPqpUOYRwqcTUEhQ.woff2",
@@ -64,7 +64,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/genos/v16/SlGQmQqPqpUOYRwqcTsEhUxz.woff2",
     "900-normal": "https://fonts.gstatic.com/s/genos/v16/SlGemQqPqpUOYRwhQTccgQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/genos/v16/SlGQmQqPqpUOYRwqcToEhUxz.woff2",
     "100-normal": "https://fonts.gstatic.com/s/genos/v16/SlGemQqPqpUOYRwgQTccgQ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/genos/v16/SlGQmQqPqpUOYRwqcToEhUxz.woff2",

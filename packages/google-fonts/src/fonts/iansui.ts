@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Iansui";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/iansui/v13/w8gbH2UoTuUp5bOqiiuC.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/iansui/v13/w8gbH2UoTuUp5bOqhCuC5Fc.woff2",
   },
-  "symbols2": {
+  symbols2: {
     "400-normal": "https://fonts.gstatic.com/s/iansui/v13/w8gbH2UoTuUp5bOqMAqn2W4O.woff2",
   },
 } as const;

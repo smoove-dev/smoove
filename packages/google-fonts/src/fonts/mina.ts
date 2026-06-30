@@ -4,11 +4,11 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mina";
 
 const FACES = {
-  "bengali": {
+  bengali: {
     "400-normal": "https://fonts.gstatic.com/s/mina/v14/-nFzOGc18vARnypp7x3y.woff2",
     "700-normal": "https://fonts.gstatic.com/s/mina/v14/-nF8OGc18vARl4NM-jDT9qOk.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mina/v14/-nFzOGc18vARnzhp7w.woff2",
     "700-normal": "https://fonts.gstatic.com/s/mina/v14/-nF8OGc18vARl4NM-iLT9g.woff2",
   },

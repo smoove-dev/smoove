@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Keania One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/keaniaone/v26/zOL54pXJk65E8pXardnu-cNkvg.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type KeaniaOneOptions = GoogleFontOptions<KeaniaOneWeight, KeaniaOneStyle
  * Keania One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KeaniaOne extends GoogleFont<KeaniaOneWeight, KeaniaOneStyle, KeaniaOneSubset> {
+export default class KeaniaOne extends GoogleFont<
+  KeaniaOneWeight,
+  KeaniaOneStyle,
+  KeaniaOneSubset
+> {
   constructor(options?: KeaniaOneOptions) {
     super(FAMILY, FACES, options);
   }

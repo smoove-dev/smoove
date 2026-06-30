@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite DE SAS Guides";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/playwritedesasguides/v1/8At5GtCjPp-GWR2h9cC6ePzz2l6LJ3VZaPNi15BB.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritedesasguides/v1/8At5GtCjPp-GWR2h9cC6ePzz2l6LJ3VZaPNi15BB.woff2",
   },
 } as const;
 
 export type PlaywriteDESASGuidesWeight = "400";
 export type PlaywriteDESASGuidesStyle = "normal";
 export type PlaywriteDESASGuidesSubset = "fallback";
-export type PlaywriteDESASGuidesOptions = GoogleFontOptions<PlaywriteDESASGuidesWeight, PlaywriteDESASGuidesStyle, PlaywriteDESASGuidesSubset>;
+export type PlaywriteDESASGuidesOptions = GoogleFontOptions<
+  PlaywriteDESASGuidesWeight,
+  PlaywriteDESASGuidesStyle,
+  PlaywriteDESASGuidesSubset
+>;
 
 /**
  * Playwrite DE SAS Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteDESASGuides extends GoogleFont<PlaywriteDESASGuidesWeight, PlaywriteDESASGuidesStyle, PlaywriteDESASGuidesSubset> {
+export default class PlaywriteDESASGuides extends GoogleFont<
+  PlaywriteDESASGuidesWeight,
+  PlaywriteDESASGuidesStyle,
+  PlaywriteDESASGuidesSubset
+> {
   constructor(options?: PlaywriteDESASGuidesOptions) {
     super(FAMILY, FACES, options);
   }

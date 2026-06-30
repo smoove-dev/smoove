@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Atomic Age";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/atomicage/v29/f0Xz0eug6sdmRFkYZZGL18bn9A.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type AtomicAgeOptions = GoogleFontOptions<AtomicAgeWeight, AtomicAgeStyle
  * Atomic Age — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AtomicAge extends GoogleFont<AtomicAgeWeight, AtomicAgeStyle, AtomicAgeSubset> {
+export default class AtomicAge extends GoogleFont<
+  AtomicAgeWeight,
+  AtomicAgeStyle,
+  AtomicAgeSubset
+> {
   constructor(options?: AtomicAgeOptions) {
     super(FAMILY, FACES, options);
   }

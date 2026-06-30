@@ -4,12 +4,12 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Amiko";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/amiko/v15/WwkQxPq1DFK04uqjeV_8MQ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/amiko/v15/WwkdxPq1DFK04uJ9XUrCEIUwUQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/amiko/v15/WwkdxPq1DFK04uIZXErCEIUwUQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/amiko/v15/WwkQxPq1DFK04uqieV8.woff2",
     "600-normal": "https://fonts.gstatic.com/s/amiko/v15/WwkdxPq1DFK04uJ9XUrDEIU.woff2",
     "700-normal": "https://fonts.gstatic.com/s/amiko/v15/WwkdxPq1DFK04uIZXErDEIU.woff2",

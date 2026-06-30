@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Balinese";
 
 const FACES = {
-  "balinese": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifbalinese/v21/QdVKSS0-JginysQSRvuCmUMB_wVeQAxXdZgDdyap.woff2",
+  balinese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifbalinese/v21/QdVKSS0-JginysQSRvuCmUMB_wVeQAxXdZgDdyap.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifbalinese/v21/QdVKSS0-JginysQSRvuCmUMB_wVeQAxXdb8Ddw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifbalinese/v21/QdVKSS0-JginysQSRvuCmUMB_wVeQAxXdb8Ddw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifbalinese/v21/QdVKSS0-JginysQSRvuCmUMB_wVeQAxXdbEDdyap.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifbalinese/v21/QdVKSS0-JginysQSRvuCmUMB_wVeQAxXdbEDdyap.woff2",
   },
 } as const;
 
 export type NotoSerifBalineseWeight = "400";
 export type NotoSerifBalineseStyle = "normal";
 export type NotoSerifBalineseSubset = "balinese" | "latin" | "latin-ext";
-export type NotoSerifBalineseOptions = GoogleFontOptions<NotoSerifBalineseWeight, NotoSerifBalineseStyle, NotoSerifBalineseSubset>;
+export type NotoSerifBalineseOptions = GoogleFontOptions<
+  NotoSerifBalineseWeight,
+  NotoSerifBalineseStyle,
+  NotoSerifBalineseSubset
+>;
 
 /**
  * Noto Serif Balinese — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifBalinese extends GoogleFont<NotoSerifBalineseWeight, NotoSerifBalineseStyle, NotoSerifBalineseSubset> {
+export default class NotoSerifBalinese extends GoogleFont<
+  NotoSerifBalineseWeight,
+  NotoSerifBalineseStyle,
+  NotoSerifBalineseSubset
+> {
   constructor(options?: NotoSerifBalineseOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,11 +4,11 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kadwa";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/kadwa/v13/rnCm-x5V0g7ipiTBT8YGsw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/kadwa/v13/rnCr-x5V0g7ipix7atM4knj-SA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kadwa/v13/rnCm-x5V0g7ipiTAT8Y.woff2",
     "700-normal": "https://fonts.gstatic.com/s/kadwa/v13/rnCr-x5V0g7ipix7atM5kng.woff2",
   },

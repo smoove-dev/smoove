@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Dogra";
 
 const FACES = {
-  "dogra": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifdogra/v24/MQpP-XquKMC7ROPP3QOOlm7xPu3fK6ycBb7Kiw.woff2",
+  dogra: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifdogra/v24/MQpP-XquKMC7ROPP3QOOlm7xPu3fK6ycBb7Kiw.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifdogra/v24/MQpP-XquKMC7ROPP3QOOlm7xPu3fKym9IA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifdogra/v24/MQpP-XquKMC7ROPP3QOOlm7xPu3fKym9IA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifdogra/v24/MQpP-XquKMC7ROPP3QOOlm7xPu3fKye9IIPz.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifdogra/v24/MQpP-XquKMC7ROPP3QOOlm7xPu3fKye9IIPz.woff2",
   },
 } as const;
 
 export type NotoSerifDograWeight = "400";
 export type NotoSerifDograStyle = "normal";
 export type NotoSerifDograSubset = "dogra" | "latin" | "latin-ext";
-export type NotoSerifDograOptions = GoogleFontOptions<NotoSerifDograWeight, NotoSerifDograStyle, NotoSerifDograSubset>;
+export type NotoSerifDograOptions = GoogleFontOptions<
+  NotoSerifDograWeight,
+  NotoSerifDograStyle,
+  NotoSerifDograSubset
+>;
 
 /**
  * Noto Serif Dogra — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifDogra extends GoogleFont<NotoSerifDograWeight, NotoSerifDograStyle, NotoSerifDograSubset> {
+export default class NotoSerifDogra extends GoogleFont<
+  NotoSerifDograWeight,
+  NotoSerifDograStyle,
+  NotoSerifDograSubset
+> {
   constructor(options?: NotoSerifDograOptions) {
     super(FAMILY, FACES, options);
   }

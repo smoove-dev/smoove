@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Arsenal";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/arsenal/v13/wXKpE3kQtZQ4pF3D513sBsQvpXY.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arsenal/v13/wXKrE3kQtZQ4pF3D51zcANwr.woff2",
     "700-italic": "https://fonts.gstatic.com/s/arsenal/v13/wXKsE3kQtZQ4pF3D513kueE6nlc2jdk.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/arsenal/v13/wXKsE3kQtZQ4pF3D513kueE6l1c2jdk.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arsenal/v13/wXKuE3kQtZQ4pF3D7-P5Fe4KmE8y.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/arsenal/v13/wXKpE3kQtZQ4pF3D513sAsQv.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arsenal/v13/wXKrE3kQtZQ4pF3D51jcAA.woff2",
     "700-italic": "https://fonts.gstatic.com/s/arsenal/v13/wXKsE3kQtZQ4pF3D513kueE6mlc2.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/arsenal/v13/wXKsE3kQtZQ4pF3D513kueE6lFc2jdk.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arsenal/v13/wXKuE3kQtZQ4pF3D7-P5Fe0KmE8y.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/arsenal/v13/wXKpE3kQtZQ4pF3D513sDcQvpXY.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arsenal/v13/wXKrE3kQtZQ4pF3D51fcANwr.woff2",
     "700-italic": "https://fonts.gstatic.com/s/arsenal/v13/wXKsE3kQtZQ4pF3D513kueE6lVc2jdk.woff2",

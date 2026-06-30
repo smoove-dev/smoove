@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Stoke";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/stoke/v26/z7NXdRb7aTMfKNvFVjxF9Jk.woff2",
     "400-normal": "https://fonts.gstatic.com/s/stoke/v26/z7NadRb7aTMfKNNudCk.woff2",
   },

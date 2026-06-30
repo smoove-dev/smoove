@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Convergence";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/convergence/v16/rax5HiePvdgXPmmMHcIPYShdu08.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/convergence/v16/rax5HiePvdgXPmmMHcIPYShTu0_g8A.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/convergence/v16/rax5HiePvdgXPmmMHcIPYShTu0_g8A.woff2",
   },
 } as const;
 
 export type ConvergenceWeight = "400";
 export type ConvergenceStyle = "normal";
 export type ConvergenceSubset = "latin" | "latin-ext";
-export type ConvergenceOptions = GoogleFontOptions<ConvergenceWeight, ConvergenceStyle, ConvergenceSubset>;
+export type ConvergenceOptions = GoogleFontOptions<
+  ConvergenceWeight,
+  ConvergenceStyle,
+  ConvergenceSubset
+>;
 
 /**
  * Convergence — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Convergence extends GoogleFont<ConvergenceWeight, ConvergenceStyle, ConvergenceSubset> {
+export default class Convergence extends GoogleFont<
+  ConvergenceWeight,
+  ConvergenceStyle,
+  ConvergenceSubset
+> {
   constructor(options?: ConvergenceOptions) {
     super(FAMILY, FACES, options);
   }

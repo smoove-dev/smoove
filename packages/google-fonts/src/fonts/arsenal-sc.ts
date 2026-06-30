@@ -4,19 +4,21 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Arsenal SC";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dnckLHea6e5BEtsfxibNgWtA7oPQI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dlckLHea6e5BEtsfxibNkmshbs.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/arsenalsc/v1/x3d4ckLHea6e5BEtsfxibNgeCyv9BiM2I2Y.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/arsenalsc/v1/x3d4ckLHea6e5BEtsfxibNgeCyv9BiM2I2Y.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dmckLHea6e5BEtsfxiZGYDpy3NADsy.woff2",
   },
   "cyrillic-ext": {
     "400-italic": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dnckLHea6e5BEtsfxibNgWvQ7oPQI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dlckLHea6e5BEtsfxibNAmshbs.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/arsenalsc/v1/x3d4ckLHea6e5BEtsfxibNgeCyv9DyM2I2Y.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/arsenalsc/v1/x3d4ckLHea6e5BEtsfxibNgeCyv9DyM2I2Y.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dmckLHea6e5BEtsfxiZGYDpyTNADsy.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dnckLHea6e5BEtsfxibNgWsA7o.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dlckLHea6e5BEtsfxibN0msg.woff2",
     "700-italic": "https://fonts.gstatic.com/s/arsenalsc/v1/x3d4ckLHea6e5BEtsfxibNgeCyv9AiM2.woff2",
@@ -25,13 +27,15 @@ const FACES = {
   "latin-ext": {
     "400-italic": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dnckLHea6e5BEtsfxibNgWvg7oPQI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dlckLHea6e5BEtsfxibNMmshbs.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/arsenalsc/v1/x3d4ckLHea6e5BEtsfxibNgeCyv9DCM2I2Y.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/arsenalsc/v1/x3d4ckLHea6e5BEtsfxibNgeCyv9DCM2I2Y.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dmckLHea6e5BEtsfxiZGYDpyfNADsy.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dnckLHea6e5BEtsfxibNgWvw7oPQI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dlckLHea6e5BEtsfxibNImshbs.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/arsenalsc/v1/x3d4ckLHea6e5BEtsfxibNgeCyv9DSM2I2Y.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/arsenalsc/v1/x3d4ckLHea6e5BEtsfxibNgeCyv9DSM2I2Y.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arsenalsc/v1/x3dmckLHea6e5BEtsfxiZGYDpybNADsy.woff2",
   },
 } as const;
@@ -45,7 +49,11 @@ export type ArsenalSCOptions = GoogleFontOptions<ArsenalSCWeight, ArsenalSCStyle
  * Arsenal SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ArsenalSC extends GoogleFont<ArsenalSCWeight, ArsenalSCStyle, ArsenalSCSubset> {
+export default class ArsenalSC extends GoogleFont<
+  ArsenalSCWeight,
+  ArsenalSCStyle,
+  ArsenalSCSubset
+> {
   constructor(options?: ArsenalSCOptions) {
     super(FAMILY, FACES, options);
   }

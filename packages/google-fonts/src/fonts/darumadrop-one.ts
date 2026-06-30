@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Darumadrop One";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/darumadropone/v14/cY9cfjeIW11dpCKgRLi675a87LhADpI.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/darumadropone/v14/cY9cfjeIW11dpCKgRLi675a87LhADpI.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/darumadropone/v14/cY9cfjeIW11dpCKgRLi675a87LhODpKBZQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/darumadropone/v14/cY9cfjeIW11dpCKgRLi675a87LhODpKBZQ.woff2",
   },
 } as const;
 
 export type DarumadropOneWeight = "400";
 export type DarumadropOneStyle = "normal";
 export type DarumadropOneSubset = "latin" | "latin-ext";
-export type DarumadropOneOptions = GoogleFontOptions<DarumadropOneWeight, DarumadropOneStyle, DarumadropOneSubset>;
+export type DarumadropOneOptions = GoogleFontOptions<
+  DarumadropOneWeight,
+  DarumadropOneStyle,
+  DarumadropOneSubset
+>;
 
 /**
  * Darumadrop One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DarumadropOne extends GoogleFont<DarumadropOneWeight, DarumadropOneStyle, DarumadropOneSubset> {
+export default class DarumadropOne extends GoogleFont<
+  DarumadropOneWeight,
+  DarumadropOneStyle,
+  DarumadropOneSubset
+> {
   constructor(options?: DarumadropOneOptions) {
     super(FAMILY, FACES, options);
   }

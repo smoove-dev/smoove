@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Estedad";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "100-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJDEvDlh.woff2",
     "200-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJDEvDlh.woff2",
     "300-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJDEvDlh.woff2",
@@ -15,7 +15,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJDEvDlh.woff2",
     "900-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJDEvDlh.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJXEvA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJXEvA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJXEvA.woff2",
@@ -37,7 +37,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJvEvDlh.woff2",
     "900-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJvEvDlh.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJrEvDlh.woff2",
     "200-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJrEvDlh.woff2",
     "300-normal": "https://fonts.gstatic.com/s/estedad/v3/QdVWSTk1OgitjvYTJJrEvDlh.woff2",

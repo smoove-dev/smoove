@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pridi";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDdZG5JnZLfkc1SiH0kT0A.woff2",
     "300-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDdZG5JnZLfkc02i30kT0A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDQZG5JnZLfkcWdqWg.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDdZG5JnZLfkc1CjX0qT0CEAg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDdZG5JnZLfkc0mjH0qT0CEAg.woff2",
   },
-  "thai": {
+  thai: {
     "200-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDdZG5JnZLfkc1SiH0wT0CEAg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDdZG5JnZLfkc02i30wT0CEAg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDQZG5JnZLfkcWJqWgbbg.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDdZG5JnZLfkc1CjX0wT0CEAg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDdZG5JnZLfkc0mjH0wT0CEAg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDdZG5JnZLfkc1SiH0rT0CEAg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDdZG5JnZLfkc02i30rT0CEAg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/pridi/v15/2sDQZG5JnZLfkcWSqWgbbg.woff2",

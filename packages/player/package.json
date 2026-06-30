@@ -24,7 +24,9 @@
     "./standalone": "./dist/player.global.js",
     "./styles.css": "./dist/player.css"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build && vite build --mode standalone",
     "dev": "vite build --watch",

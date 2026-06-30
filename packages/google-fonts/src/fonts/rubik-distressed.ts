@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Distressed";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikdistressed/v1/GFDxWBdsmnqAVqjtUsZf2dcrQ2ldQWMra-VB.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikdistressed/v1/GFDxWBdsmnqAVqjtUsZf2dcrQ2ldQWMra-VB.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikdistressed/v1/GFDxWBdsmnqAVqjtUsZf2dcrQ2ldQWora-VB.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikdistressed/v1/GFDxWBdsmnqAVqjtUsZf2dcrQ2ldQWora-VB.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikdistressed/v1/GFDxWBdsmnqAVqjtUsZf2dcrQ2ldQWUra-VB.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikdistressed/v1/GFDxWBdsmnqAVqjtUsZf2dcrQ2ldQWUra-VB.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikdistressed/v1/GFDxWBdsmnqAVqjtUsZf2dcrQ2ldQWcraw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikdistressed/v1/GFDxWBdsmnqAVqjtUsZf2dcrQ2ldQWcraw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikdistressed/v1/GFDxWBdsmnqAVqjtUsZf2dcrQ2ldQWkra-VB.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikdistressed/v1/GFDxWBdsmnqAVqjtUsZf2dcrQ2ldQWkra-VB.woff2",
   },
 } as const;
 
 export type RubikDistressedWeight = "400";
 export type RubikDistressedStyle = "normal";
 export type RubikDistressedSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikDistressedOptions = GoogleFontOptions<RubikDistressedWeight, RubikDistressedStyle, RubikDistressedSubset>;
+export type RubikDistressedOptions = GoogleFontOptions<
+  RubikDistressedWeight,
+  RubikDistressedStyle,
+  RubikDistressedSubset
+>;
 
 /**
  * Rubik Distressed — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikDistressed extends GoogleFont<RubikDistressedWeight, RubikDistressedStyle, RubikDistressedSubset> {
+export default class RubikDistressed extends GoogleFont<
+  RubikDistressedWeight,
+  RubikDistressedStyle,
+  RubikDistressedSubset
+> {
   constructor(options?: RubikDistressedOptions) {
     super(FAMILY, FACES, options);
   }

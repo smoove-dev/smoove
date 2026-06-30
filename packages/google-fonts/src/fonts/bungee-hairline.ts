@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bungee Hairline";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/bungeehairline/v26/snfys0G548t04270a_ljTLUVrv-LZxec.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bungeehairline/v26/snfys0G548t04270a_ljTLUVrv-LZxec.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/bungeehairline/v26/snfys0G548t04270a_ljTLUVrv-LaRecc5Y.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bungeehairline/v26/snfys0G548t04270a_ljTLUVrv-LaRecc5Y.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/bungeehairline/v26/snfys0G548t04270a_ljTLUVrv-LaBecc5Y.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bungeehairline/v26/snfys0G548t04270a_ljTLUVrv-LaBecc5Y.woff2",
   },
 } as const;
 
 export type BungeeHairlineWeight = "400";
 export type BungeeHairlineStyle = "normal";
 export type BungeeHairlineSubset = "latin" | "latin-ext" | "vietnamese";
-export type BungeeHairlineOptions = GoogleFontOptions<BungeeHairlineWeight, BungeeHairlineStyle, BungeeHairlineSubset>;
+export type BungeeHairlineOptions = GoogleFontOptions<
+  BungeeHairlineWeight,
+  BungeeHairlineStyle,
+  BungeeHairlineSubset
+>;
 
 /**
  * Bungee Hairline — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BungeeHairline extends GoogleFont<BungeeHairlineWeight, BungeeHairlineStyle, BungeeHairlineSubset> {
+export default class BungeeHairline extends GoogleFont<
+  BungeeHairlineWeight,
+  BungeeHairlineStyle,
+  BungeeHairlineSubset
+> {
   constructor(options?: BungeeHairlineOptions) {
     super(FAMILY, FACES, options);
   }

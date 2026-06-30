@@ -13,10 +13,12 @@
     "format": "biome format --write ."
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "typescript": "^5.6.3"
+    "@biomejs/biome": "^2.5.1",
+    "typescript": "^6.0.3"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["gl"]
+    "onlyBuiltDependencies": [
+      "gl"
+    ]
   }
 }

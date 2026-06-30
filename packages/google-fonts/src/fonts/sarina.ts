@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sarina";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sarina/v25/-F6wfjF3ITQwasLRKUrV.woff2",
   },
   "latin-ext": {

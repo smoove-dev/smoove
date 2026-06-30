@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mandali";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mandali/v16/LhWlMVbYOfASNfNUZF4_ZQ.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/mandali/v16/LhWlMVbYOfASNfNUZEI_Zcdc.woff2",
   },
 } as const;

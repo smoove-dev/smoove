@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zhi Mang Xing";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/zhimangxing/v19/f0Xw0ey79sErYFtWQ9a2rq-g4aAnfA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zhimangxing/v19/f0Xw0ey79sErYFtWQ9a2rq-g4aAnfA.woff2",
   },
 } as const;
 
 export type ZhiMangXingWeight = "400";
 export type ZhiMangXingStyle = "normal";
 export type ZhiMangXingSubset = "latin";
-export type ZhiMangXingOptions = GoogleFontOptions<ZhiMangXingWeight, ZhiMangXingStyle, ZhiMangXingSubset>;
+export type ZhiMangXingOptions = GoogleFontOptions<
+  ZhiMangXingWeight,
+  ZhiMangXingStyle,
+  ZhiMangXingSubset
+>;
 
 /**
  * Zhi Mang Xing — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZhiMangXing extends GoogleFont<ZhiMangXingWeight, ZhiMangXingStyle, ZhiMangXingSubset> {
+export default class ZhiMangXing extends GoogleFont<
+  ZhiMangXingWeight,
+  ZhiMangXingStyle,
+  ZhiMangXingSubset
+> {
   constructor(options?: ZhiMangXingOptions) {
     super(FAMILY, FACES, options);
   }

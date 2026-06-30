@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yomogi";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/yomogi/v13/VuJwdNrS2ZL7rpo_W4b4BIg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/yomogi/v13/VuJwdNrS2ZL7rpo_X4b4.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/yomogi/v13/VuJwdNrS2ZL7rpo_UYb4BIg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/yomogi/v13/VuJwdNrS2ZL7rpo_UIb4BIg.woff2",
   },
 } as const;

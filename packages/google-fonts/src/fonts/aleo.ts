@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Aleo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/aleo/v16/c4mh1nF8G8_swAj50xVs.woff2",
     "100-normal": "https://fonts.gstatic.com/s/aleo/v16/c4mv1nF8G8_swA3J0Q.woff2",
     "200-italic": "https://fonts.gstatic.com/s/aleo/v16/c4mh1nF8G8_swAj50xVs.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/aleo/v16/c4mh1nF8G8_swAj53RVsooY.woff2",
     "900-normal": "https://fonts.gstatic.com/s/aleo/v16/c4mv1nF8G8_swAPJ0Q1o.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/aleo/v16/c4mh1nF8G8_swAj53BVsooY.woff2",
     "100-normal": "https://fonts.gstatic.com/s/aleo/v16/c4mv1nF8G8_swALJ0Q1o.woff2",
     "200-italic": "https://fonts.gstatic.com/s/aleo/v16/c4mh1nF8G8_swAj53BVsooY.woff2",

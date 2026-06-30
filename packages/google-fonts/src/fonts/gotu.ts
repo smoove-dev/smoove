@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gotu";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/gotu/v18/o-0FIpksx3QOpHsBi7h6.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gotu/v18/o-0FIpksx3QOpHoBiw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/gotu/v18/o-0FIpksx3QOpHQBi7h6.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/gotu/v18/o-0FIpksx3QOpHUBi7h6.woff2",
   },
 } as const;

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Martel";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "200-normal": "https://fonts.gstatic.com/s/martel/v12/PN_yRfK9oXHga0XVqekqgxzWxvk.woff2",
     "300-normal": "https://fonts.gstatic.com/s/martel/v12/PN_yRfK9oXHga0XVzeoqgxzWxvk.woff2",
     "400-normal": "https://fonts.gstatic.com/s/martel/v12/PN_xRfK9oXHga0XdZ8g_vT0.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/martel/v12/PN_yRfK9oXHga0XVwe4qgxzWxvk.woff2",
     "900-normal": "https://fonts.gstatic.com/s/martel/v12/PN_yRfK9oXHga0XV5e8qgxzWxvk.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/martel/v12/PN_yRfK9oXHga0XVqekqghzW.woff2",
     "300-normal": "https://fonts.gstatic.com/s/martel/v12/PN_yRfK9oXHga0XVzeoqghzW.woff2",
     "400-normal": "https://fonts.gstatic.com/s/martel/v12/PN_xRfK9oXHga0XdZsg_.woff2",

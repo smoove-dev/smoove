@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Eagle Lake";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/eaglelake/v26/ptRMTiqbbuNJDOiKj9wG1On4KA.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type EagleLakeOptions = GoogleFontOptions<EagleLakeWeight, EagleLakeStyle
  * Eagle Lake — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EagleLake extends GoogleFont<EagleLakeWeight, EagleLakeStyle, EagleLakeSubset> {
+export default class EagleLake extends GoogleFont<
+  EagleLakeWeight,
+  EagleLakeStyle,
+  EagleLakeSubset
+> {
   constructor(options?: EagleLakeOptions) {
     super(FAMILY, FACES, options);
   }

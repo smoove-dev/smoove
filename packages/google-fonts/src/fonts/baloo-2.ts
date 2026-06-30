@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Baloo 2";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51ncANwr.woff2",
     "500-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51ncANwr.woff2",
     "600-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51ncANwr.woff2",
     "700-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51ncANwr.woff2",
     "800-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51ncANwr.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51jcAA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51jcAA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51jcAA.woff2",
@@ -25,7 +25,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51bcANwr.woff2",
     "800-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51bcANwr.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51fcANwr.woff2",
     "500-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51fcANwr.woff2",
     "600-normal": "https://fonts.gstatic.com/s/baloo2/v23/wXKrE3kTposypRyd51fcANwr.woff2",

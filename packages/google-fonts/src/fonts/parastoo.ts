@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Parastoo";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrShiRwxw.woff2",
     "500-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrShiRwxw.woff2",
     "600-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrShiRwxw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrShiRwxw.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrXhiQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrXhiQ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrXhiQ.woff2",
@@ -22,7 +22,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrZhiRwxw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrZhiRwxw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrYhiRwxw.woff2",
     "500-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrYhiRwxw.woff2",
     "600-normal": "https://fonts.gstatic.com/s/parastoo/v3/-F6yfj90ITQ4d9euQXrYhiRwxw.woff2",

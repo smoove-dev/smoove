@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Scheherazade New";
 
 const FACES = {
-  "arabic": {
-    "400-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaZrFhTvxVnHDvUkUiHg8jprP4DOwFmO24p.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM_dFLlQI-bKn.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM9tCLlQI-bKn.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM79DLlQI-bKn.woff2",
+  arabic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaZrFhTvxVnHDvUkUiHg8jprP4DOwFmO24p.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM_dFLlQI-bKn.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM9tCLlQI-bKn.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM79DLlQI-bKn.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaZrFhTvxVnHDvUkUiHg8jprP4DOwRmOw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM_dFLlEI-Q.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM9tCLlEI-Q.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM79DLlEI-Q.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaZrFhTvxVnHDvUkUiHg8jprP4DOwRmOw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM_dFLlEI-Q.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM9tCLlEI-Q.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM79DLlEI-Q.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaZrFhTvxVnHDvUkUiHg8jprP4DOwpmO24p.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM_dFLl8I-bKn.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM9tCLl8I-bKn.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM79DLl8I-bKn.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaZrFhTvxVnHDvUkUiHg8jprP4DOwpmO24p.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM_dFLl8I-bKn.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM9tCLl8I-bKn.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/scheherazadenew/v21/4UaerFhTvxVnHDvUkUiHg8jprP4DM79DLl8I-bKn.woff2",
   },
 } as const;
 
 export type ScheherazadeNewWeight = "400" | "500" | "600" | "700";
 export type ScheherazadeNewStyle = "normal";
 export type ScheherazadeNewSubset = "arabic" | "latin" | "latin-ext";
-export type ScheherazadeNewOptions = GoogleFontOptions<ScheherazadeNewWeight, ScheherazadeNewStyle, ScheherazadeNewSubset>;
+export type ScheherazadeNewOptions = GoogleFontOptions<
+  ScheherazadeNewWeight,
+  ScheherazadeNewStyle,
+  ScheherazadeNewSubset
+>;
 
 /**
  * Scheherazade New — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ScheherazadeNew extends GoogleFont<ScheherazadeNewWeight, ScheherazadeNewStyle, ScheherazadeNewSubset> {
+export default class ScheherazadeNew extends GoogleFont<
+  ScheherazadeNewWeight,
+  ScheherazadeNewStyle,
+  ScheherazadeNewSubset
+> {
   constructor(options?: ScheherazadeNewOptions) {
     super(FAMILY, FACES, options);
   }

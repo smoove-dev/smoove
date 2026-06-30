@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Love Ya Like A Sister";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/loveyalikeasister/v23/R70EjzUBlOqPeouhFDfR80-0FhOqJubN-BeL9Xxd.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/loveyalikeasister/v23/R70EjzUBlOqPeouhFDfR80-0FhOqJubN-BeL9Xxd.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/loveyalikeasister/v23/R70EjzUBlOqPeouhFDfR80-0FhOqJubN-BeL-3xdgGE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/loveyalikeasister/v23/R70EjzUBlOqPeouhFDfR80-0FhOqJubN-BeL-3xdgGE.woff2",
   },
 } as const;
 
 export type LoveYaLikeASisterWeight = "400";
 export type LoveYaLikeASisterStyle = "normal";
 export type LoveYaLikeASisterSubset = "latin" | "latin-ext";
-export type LoveYaLikeASisterOptions = GoogleFontOptions<LoveYaLikeASisterWeight, LoveYaLikeASisterStyle, LoveYaLikeASisterSubset>;
+export type LoveYaLikeASisterOptions = GoogleFontOptions<
+  LoveYaLikeASisterWeight,
+  LoveYaLikeASisterStyle,
+  LoveYaLikeASisterSubset
+>;
 
 /**
  * Love Ya Like A Sister — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LoveYaLikeASister extends GoogleFont<LoveYaLikeASisterWeight, LoveYaLikeASisterStyle, LoveYaLikeASisterSubset> {
+export default class LoveYaLikeASister extends GoogleFont<
+  LoveYaLikeASisterWeight,
+  LoveYaLikeASisterStyle,
+  LoveYaLikeASisterSubset
+> {
   constructor(options?: LoveYaLikeASisterOptions) {
     super(FAMILY, FACES, options);
   }

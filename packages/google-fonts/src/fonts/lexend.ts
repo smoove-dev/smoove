@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lexend";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/lexend/v26/wlpwgwvFAVdoq2_v-6QU.woff2",
     "200-normal": "https://fonts.gstatic.com/s/lexend/v26/wlpwgwvFAVdoq2_v-6QU.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lexend/v26/wlpwgwvFAVdoq2_v-6QU.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/lexend/v26/wlpwgwvFAVdoq2_v9aQU4Wc.woff2",
     "900-normal": "https://fonts.gstatic.com/s/lexend/v26/wlpwgwvFAVdoq2_v9aQU4Wc.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/lexend/v26/wlpwgwvFAVdoq2_v9KQU4Wc.woff2",
     "200-normal": "https://fonts.gstatic.com/s/lexend/v26/wlpwgwvFAVdoq2_v9KQU4Wc.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lexend/v26/wlpwgwvFAVdoq2_v9KQU4Wc.woff2",

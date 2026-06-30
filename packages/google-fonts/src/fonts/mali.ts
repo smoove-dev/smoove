@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mali";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/mali/v13/N0bX2SRONuN4SCj8wlVgJv7S.woff2",
     "200-normal": "https://fonts.gstatic.com/s/mali/v13/N0bV2SRONuN4QOLlGlNQJA.woff2",
     "300-italic": "https://fonts.gstatic.com/s/mali/v13/N0bX2SRONuN4SCj8plZgJv7S.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/mali/v13/N0bX2SRONuN4SCj8tlFgKP7SodY.woff2",
     "700-normal": "https://fonts.gstatic.com/s/mali/v13/N0bV2SRONuN4QJbhGl1QJObW.woff2",
   },
-  "thai": {
+  thai: {
     "200-italic": "https://fonts.gstatic.com/s/mali/v13/N0bX2SRONuN4SCj8wlVgMv7SodY.woff2",
     "200-normal": "https://fonts.gstatic.com/s/mali/v13/N0bV2SRONuN4QOLlGkdQJObW.woff2",
     "300-italic": "https://fonts.gstatic.com/s/mali/v13/N0bX2SRONuN4SCj8plZgMv7SodY.woff2",
@@ -46,7 +46,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/mali/v13/N0bX2SRONuN4SCj8tlFgMv7SodY.woff2",
     "700-normal": "https://fonts.gstatic.com/s/mali/v13/N0bV2SRONuN4QJbhGkdQJObW.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-italic": "https://fonts.gstatic.com/s/mali/v13/N0bX2SRONuN4SCj8wlVgKf7SodY.woff2",
     "200-normal": "https://fonts.gstatic.com/s/mali/v13/N0bV2SRONuN4QOLlGlxQJObW.woff2",
     "300-italic": "https://fonts.gstatic.com/s/mali/v13/N0bX2SRONuN4SCj8plZgKf7SodY.woff2",

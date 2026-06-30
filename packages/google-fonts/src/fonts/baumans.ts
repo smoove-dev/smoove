@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Baumans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/baumans/v18/-W_-XJj9QyTd3Qfpd_04aw.woff2",
   },
 } as const;

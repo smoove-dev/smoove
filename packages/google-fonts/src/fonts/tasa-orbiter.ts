@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "TASA Orbiter";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2QtzZ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2QtzZ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2QtzZ.woff2",
@@ -12,24 +12,37 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2QtzZ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2TNzZ5P0.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2TNzZ5P0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2TNzZ5P0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2TNzZ5P0.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2TNzZ5P0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2TNzZ5P0.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2TNzZ5P0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2TNzZ5P0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2TNzZ5P0.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/tasaorbiter/v2/3XFtErw3860rsdSUVZx78hP2TNzZ5P0.woff2",
   },
 } as const;
 
 export type TASAOrbiterWeight = "400" | "500" | "600" | "700" | "800";
 export type TASAOrbiterStyle = "normal";
 export type TASAOrbiterSubset = "latin" | "latin-ext";
-export type TASAOrbiterOptions = GoogleFontOptions<TASAOrbiterWeight, TASAOrbiterStyle, TASAOrbiterSubset>;
+export type TASAOrbiterOptions = GoogleFontOptions<
+  TASAOrbiterWeight,
+  TASAOrbiterStyle,
+  TASAOrbiterSubset
+>;
 
 /**
  * TASA Orbiter — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TASAOrbiter extends GoogleFont<TASAOrbiterWeight, TASAOrbiterStyle, TASAOrbiterSubset> {
+export default class TASAOrbiter extends GoogleFont<
+  TASAOrbiterWeight,
+  TASAOrbiterStyle,
+  TASAOrbiterSubset
+> {
   constructor(options?: TASAOrbiterOptions) {
     super(FAMILY, FACES, options);
   }

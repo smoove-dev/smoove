@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Old Uyghur";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifolduyghur/v4/v6-KGZbLJFKIhClqUYqXDiGnrVoFRCW6JdwXLeOf.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifolduyghur/v4/v6-KGZbLJFKIhClqUYqXDiGnrVoFRCW6JdwXLeOf.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifolduyghur/v4/v6-KGZbLJFKIhClqUYqXDiGnrVoFRCW6JdwXI-OfJ2w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifolduyghur/v4/v6-KGZbLJFKIhClqUYqXDiGnrVoFRCW6JdwXI-OfJ2w.woff2",
   },
   "old-uyghur": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifolduyghur/v4/v6-KGZbLJFKIhClqUYqXDiGnrVoFRCW6JdwXm8K6GlWM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifolduyghur/v4/v6-KGZbLJFKIhClqUYqXDiGnrVoFRCW6JdwXm8K6GlWM.woff2",
   },
 } as const;
 
 export type NotoSerifOldUyghurWeight = "400";
 export type NotoSerifOldUyghurStyle = "normal";
 export type NotoSerifOldUyghurSubset = "latin" | "latin-ext" | "old-uyghur";
-export type NotoSerifOldUyghurOptions = GoogleFontOptions<NotoSerifOldUyghurWeight, NotoSerifOldUyghurStyle, NotoSerifOldUyghurSubset>;
+export type NotoSerifOldUyghurOptions = GoogleFontOptions<
+  NotoSerifOldUyghurWeight,
+  NotoSerifOldUyghurStyle,
+  NotoSerifOldUyghurSubset
+>;
 
 /**
  * Noto Serif Old Uyghur — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifOldUyghur extends GoogleFont<NotoSerifOldUyghurWeight, NotoSerifOldUyghurStyle, NotoSerifOldUyghurSubset> {
+export default class NotoSerifOldUyghur extends GoogleFont<
+  NotoSerifOldUyghurWeight,
+  NotoSerifOldUyghurStyle,
+  NotoSerifOldUyghurSubset
+> {
   constructor(options?: NotoSerifOldUyghurOptions) {
     super(FAMILY, FACES, options);
   }

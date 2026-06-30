@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rosario";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/rosario/v35/xfuz0WDhWW_fOEoY2FbNzybH.woff2",
     "300-normal": "https://fonts.gstatic.com/s/rosario/v35/xfux0WDhWW_fOEoY2FP9zQ.woff2",
     "400-italic": "https://fonts.gstatic.com/s/rosario/v35/xfuz0WDhWW_fOEoY2FbNzybH.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/rosario/v35/xfuz0WDhWW_fOEoY2FbNwSbHhL4.woff2",
     "700-normal": "https://fonts.gstatic.com/s/rosario/v35/xfux0WDhWW_fOEoY2F39zT7D.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-italic": "https://fonts.gstatic.com/s/rosario/v35/xfuz0WDhWW_fOEoY2FbNwCbHhL4.woff2",
     "300-normal": "https://fonts.gstatic.com/s/rosario/v35/xfux0WDhWW_fOEoY2Fz9zT7D.woff2",
     "400-italic": "https://fonts.gstatic.com/s/rosario/v35/xfuz0WDhWW_fOEoY2FbNwCbHhL4.woff2",

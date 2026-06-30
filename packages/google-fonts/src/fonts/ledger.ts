@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ledger";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/ledger/v17/j8_q6-HK1L3if_sBmMrxLTA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ledger/v17/j8_q6-HK1L3if_sBnMrx.woff2",
   },
   "latin-ext": {

@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gloria Hallelujah";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/gloriahallelujah/v24/LYjYdHv3kUk9BMV96EIswT9DIbW-MIS11zM.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/gloriahallelujah/v24/LYjYdHv3kUk9BMV96EIswT9DIbW-MIS11zM.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/gloriahallelujah/v24/LYjYdHv3kUk9BMV96EIswT9DIbW-MIS71zO0vg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gloriahallelujah/v24/LYjYdHv3kUk9BMV96EIswT9DIbW-MIS71zO0vg.woff2",
   },
 } as const;
 
 export type GloriaHallelujahWeight = "400";
 export type GloriaHallelujahStyle = "normal";
 export type GloriaHallelujahSubset = "latin" | "latin-ext";
-export type GloriaHallelujahOptions = GoogleFontOptions<GloriaHallelujahWeight, GloriaHallelujahStyle, GloriaHallelujahSubset>;
+export type GloriaHallelujahOptions = GoogleFontOptions<
+  GloriaHallelujahWeight,
+  GloriaHallelujahStyle,
+  GloriaHallelujahSubset
+>;
 
 /**
  * Gloria Hallelujah — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GloriaHallelujah extends GoogleFont<GloriaHallelujahWeight, GloriaHallelujahStyle, GloriaHallelujahSubset> {
+export default class GloriaHallelujah extends GoogleFont<
+  GloriaHallelujahWeight,
+  GloriaHallelujahStyle,
+  GloriaHallelujahSubset
+> {
   constructor(options?: GloriaHallelujahOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sevillana";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sevillana/v25/KFOlCnWFscmDt1Bfiy1fBBc4.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type SevillanaOptions = GoogleFontOptions<SevillanaWeight, SevillanaStyle
  * Sevillana — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Sevillana extends GoogleFont<SevillanaWeight, SevillanaStyle, SevillanaSubset> {
+export default class Sevillana extends GoogleFont<
+  SevillanaWeight,
+  SevillanaStyle,
+  SevillanaSubset
+> {
   constructor(options?: SevillanaOptions) {
     super(FAMILY, FACES, options);
   }

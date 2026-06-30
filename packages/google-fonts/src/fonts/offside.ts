@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Offside";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/offside/v26/HI_KiYMWKa9QrAykc5boRw.woff2",
   },
   "latin-ext": {

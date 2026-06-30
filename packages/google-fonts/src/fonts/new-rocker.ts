@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "New Rocker";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/newrocker/v17/MwQzbhjp3-HImzcCU_cJoGQfiA.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type NewRockerOptions = GoogleFontOptions<NewRockerWeight, NewRockerStyle
  * New Rocker — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NewRocker extends GoogleFont<NewRockerWeight, NewRockerStyle, NewRockerSubset> {
+export default class NewRocker extends GoogleFont<
+  NewRockerWeight,
+  NewRockerStyle,
+  NewRockerSubset
+> {
   constructor(options?: NewRockerOptions) {
     super(FAMILY, FACES, options);
   }

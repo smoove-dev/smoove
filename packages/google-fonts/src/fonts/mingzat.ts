@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mingzat";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mingzat/v12/0QIgMX5C-o-oWWyvNtxumg.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/mingzat/v12/0QIgMX5C-o-oWWyvNtJumsmv.woff2",
   },
-  "lepcha": {
+  lepcha: {
     "400-normal": "https://fonts.gstatic.com/s/mingzat/v12/0QIgMX5C-o-oWWyvNuRumsmv.woff2",
   },
 } as const;

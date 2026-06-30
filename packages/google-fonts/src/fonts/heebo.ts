@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Heebo";
 
 const FACES = {
-  "hebrew": {
+  hebrew: {
     "100-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H0TbFzsQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H0TbFzsQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H0TbFzsQ.woff2",
@@ -15,7 +15,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H0TbFzsQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H0TbFzsQ.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H2TbE.woff2",
     "200-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H2TbE.woff2",
     "300-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H2TbE.woff2",
@@ -37,7 +37,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H4TbFzsQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9H4TbFzsQ.woff2",
   },
-  "math": {
+  math: {
     "100-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9GKTbFzsQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9GKTbFzsQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9GKTbFzsQ.woff2",
@@ -48,7 +48,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9GKTbFzsQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9GKTbFzsQ.woff2",
   },
-  "symbols": {
+  symbols: {
     "100-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9GYTbFzsQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9GYTbFzsQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/heebo/v28/NGS6v5_NC0k9P9GYTbFzsQ.woff2",

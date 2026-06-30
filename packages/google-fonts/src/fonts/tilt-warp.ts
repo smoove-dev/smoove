@@ -4,14 +4,17 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tilt Warp";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/tiltwarp/v18/AlZc_zVDs5XpmO7yn3w7flUoytXJp3z29uEwmEMLEJljLXvT8UJSZQB2C1Y.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiltwarp/v18/AlZc_zVDs5XpmO7yn3w7flUoytXJp3z29uEwmEMLEJljLXvT8UJSZQB2C1Y.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/tiltwarp/v18/AlZc_zVDs5XpmO7yn3w7flUoytXJp3z29uEwmEMLEJljLXvT8UJSZQB4C1b8GA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiltwarp/v18/AlZc_zVDs5XpmO7yn3w7flUoytXJp3z29uEwmEMLEJljLXvT8UJSZQB4C1b8GA.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/tiltwarp/v18/AlZc_zVDs5XpmO7yn3w7flUoytXJp3z29uEwmEMLEJljLXvT8UJSZQB5C1b8GA.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiltwarp/v18/AlZc_zVDs5XpmO7yn3w7flUoytXJp3z29uEwmEMLEJljLXvT8UJSZQB5C1b8GA.woff2",
   },
 } as const;
 

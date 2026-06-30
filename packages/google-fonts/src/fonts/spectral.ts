@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Spectral";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "200-italic": "https://fonts.gstatic.com/s/spectral/v15/rnCu-xNNww_2s0amA9M8qrXHWfCFXUIJ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/spectral/v15/rnCs-xNNww_2s0amA9v2s23FafadWQ.woff2",
     "300-italic": "https://fonts.gstatic.com/s/spectral/v15/rnCu-xNNww_2s0amA9M8qtHEWfCFXUIJ.woff2",
@@ -36,7 +36,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/spectral/v15/rnCu-xNNww_2s0amA9M8qt3AWfmFXUIJ.woff2",
     "800-normal": "https://fonts.gstatic.com/s/spectral/v15/rnCs-xNNww_2s0amA9uetG3MafadWQ.woff2",
   },
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/spectral/v15/rnCu-xNNww_2s0amA9M8qrXHWfSFXQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/spectral/v15/rnCs-xNNww_2s0amA9v2s23BafY.woff2",
     "300-italic": "https://fonts.gstatic.com/s/spectral/v15/rnCu-xNNww_2s0amA9M8qtHEWfSFXQ.woff2",
@@ -68,7 +68,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/spectral/v15/rnCu-xNNww_2s0amA9M8qt3AWfqFXUIJ.woff2",
     "800-normal": "https://fonts.gstatic.com/s/spectral/v15/rnCs-xNNww_2s0amA9uetG3PafadWQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-italic": "https://fonts.gstatic.com/s/spectral/v15/rnCu-xNNww_2s0amA9M8qrXHWfuFXUIJ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/spectral/v15/rnCs-xNNww_2s0amA9v2s23OafadWQ.woff2",
     "300-italic": "https://fonts.gstatic.com/s/spectral/v15/rnCu-xNNww_2s0amA9M8qtHEWfuFXUIJ.woff2",

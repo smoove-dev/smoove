@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Germania One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/germaniaone/v21/Fh4yPjrqIyv2ucM2qzBjeS3uywhP.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type GermaniaOneWeight = "400";
 export type GermaniaOneStyle = "normal";
 export type GermaniaOneSubset = "latin";
-export type GermaniaOneOptions = GoogleFontOptions<GermaniaOneWeight, GermaniaOneStyle, GermaniaOneSubset>;
+export type GermaniaOneOptions = GoogleFontOptions<
+  GermaniaOneWeight,
+  GermaniaOneStyle,
+  GermaniaOneSubset
+>;
 
 /**
  * Germania One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GermaniaOne extends GoogleFont<GermaniaOneWeight, GermaniaOneStyle, GermaniaOneSubset> {
+export default class GermaniaOne extends GoogleFont<
+  GermaniaOneWeight,
+  GermaniaOneStyle,
+  GermaniaOneSubset
+> {
   constructor(options?: GermaniaOneOptions) {
     super(FAMILY, FACES, options);
   }

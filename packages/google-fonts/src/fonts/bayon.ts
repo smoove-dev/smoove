@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bayon";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "400-normal": "https://fonts.gstatic.com/s/bayon/v36/9XUrlJNmn0LPFm-lMBc0dw.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bayon/v36/9XUrlJNmn0LPFm-uMBc.woff2",
   },
 } as const;

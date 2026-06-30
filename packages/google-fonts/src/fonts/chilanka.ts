@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Chilanka";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/chilanka/v23/WWXRlj2DZQiMJYaYRoJXKdA.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/chilanka/v23/WWXRlj2DZQiMJYaYRoJZKdAwZg.woff2",
   },
-  "malayalam": {
+  malayalam: {
     "400-normal": "https://fonts.gstatic.com/s/chilanka/v23/WWXRlj2DZQiMJYaYRoJPKdAwZg.woff2",
   },
 } as const;

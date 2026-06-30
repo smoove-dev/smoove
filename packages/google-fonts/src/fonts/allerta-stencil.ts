@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Allerta Stencil";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/allertastencil/v24/HTx0L209KT-LmIE9N7OR6eiycOe1_Db2.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/allertastencil/v24/HTx0L209KT-LmIE9N7OR6eiycOe1_Db2.woff2",
   },
 } as const;
 
 export type AllertaStencilWeight = "400";
 export type AllertaStencilStyle = "normal";
 export type AllertaStencilSubset = "latin";
-export type AllertaStencilOptions = GoogleFontOptions<AllertaStencilWeight, AllertaStencilStyle, AllertaStencilSubset>;
+export type AllertaStencilOptions = GoogleFontOptions<
+  AllertaStencilWeight,
+  AllertaStencilStyle,
+  AllertaStencilSubset
+>;
 
 /**
  * Allerta Stencil — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AllertaStencil extends GoogleFont<AllertaStencilWeight, AllertaStencilStyle, AllertaStencilSubset> {
+export default class AllertaStencil extends GoogleFont<
+  AllertaStencilWeight,
+  AllertaStencilStyle,
+  AllertaStencilSubset
+> {
   constructor(options?: AllertaStencilOptions) {
     super(FAMILY, FACES, options);
   }

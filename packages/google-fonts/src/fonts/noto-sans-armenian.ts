@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Armenian";
 
 const FACES = {
-  "armenian": {
-    "100-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
+  armenian: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxZhVoDur.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYhVoA.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosansarmenian/v47/ZgN7jOZKPa7CHqq0h37c7ReDUubm2SEdFXp7ig73qtTY5idbxYZVoDur.woff2",
   },
 } as const;
 
-export type NotoSansArmenianWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSansArmenianWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSansArmenianStyle = "normal";
 export type NotoSansArmenianSubset = "armenian" | "latin" | "latin-ext";
-export type NotoSansArmenianOptions = GoogleFontOptions<NotoSansArmenianWeight, NotoSansArmenianStyle, NotoSansArmenianSubset>;
+export type NotoSansArmenianOptions = GoogleFontOptions<
+  NotoSansArmenianWeight,
+  NotoSansArmenianStyle,
+  NotoSansArmenianSubset
+>;
 
 /**
  * Noto Sans Armenian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansArmenian extends GoogleFont<NotoSansArmenianWeight, NotoSansArmenianStyle, NotoSansArmenianSubset> {
+export default class NotoSansArmenian extends GoogleFont<
+  NotoSansArmenianWeight,
+  NotoSansArmenianStyle,
+  NotoSansArmenianSubset
+> {
   constructor(options?: NotoSansArmenianOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cal Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/calsans/v2/fdN99sWUv3gWqXxqqRBctFs.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/calsans/v2/fdN99sWUv3gWqXxqqRBStFs04A.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/calsans/v2/fdN99sWUv3gWqXxqqRBTtFs04A.woff2",
   },
 } as const;

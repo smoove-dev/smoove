@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Reggae One";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/reggaeone/v19/7r3DqX5msMIkeuwJwOJtza1B59H-.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/reggaeone/v19/7r3DqX5msMIkeuwJwOJtzalB5w.woff2",
   },
   "latin-ext": {
@@ -24,7 +24,11 @@ export type ReggaeOneOptions = GoogleFontOptions<ReggaeOneWeight, ReggaeOneStyle
  * Reggae One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ReggaeOne extends GoogleFont<ReggaeOneWeight, ReggaeOneStyle, ReggaeOneSubset> {
+export default class ReggaeOne extends GoogleFont<
+  ReggaeOneWeight,
+  ReggaeOneStyle,
+  ReggaeOneSubset
+> {
   constructor(options?: ReggaeOneOptions) {
     super(FAMILY, FACES, options);
   }

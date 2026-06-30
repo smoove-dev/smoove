@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ruluko";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ruluko/v22/xMQVuFNZVaODtm0ZDK-y.woff2",
   },
   "latin-ext": {

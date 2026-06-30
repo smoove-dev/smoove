@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cambay";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-italic": "https://fonts.gstatic.com/s/cambay/v14/SLXLc1rY6H0_ZDs2bI6K59ZMaA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cambay/v14/SLXJc1rY6H0_ZDs2aL6J_9I.woff2",
     "700-italic": "https://fonts.gstatic.com/s/cambay/v14/SLXMc1rY6H0_ZDs2bIYwwsNySXtdkA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cambay/v14/SLXKc1rY6H0_ZDs-0pucwfNxUX8.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/cambay/v14/SLXLc1rY6H0_ZDs2bI6L59Y.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cambay/v14/SLXJc1rY6H0_ZDs2ab6J.woff2",
     "700-italic": "https://fonts.gstatic.com/s/cambay/v14/SLXMc1rY6H0_ZDs2bIYwwsNzSXs.woff2",

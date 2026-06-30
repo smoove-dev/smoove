@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Marko One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/markoone/v24/9Btq3DFG0cnVM5lw1haqLZ8e.woff2",
   },
 } as const;

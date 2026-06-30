@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Microbe";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmicrobe/v2/UqyWK8oPP3hjw6ANS9rM3PsZQswQaZgi.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmicrobe/v2/UqyWK8oPP3hjw6ANS9rM3PsZQswQaZgi.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmicrobe/v2/UqyWK8oPP3hjw6ANS9rM3PsZQsUQaZgi.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmicrobe/v2/UqyWK8oPP3hjw6ANS9rM3PsZQsUQaZgi.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmicrobe/v2/UqyWK8oPP3hjw6ANS9rM3PsZQsoQaZgi.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmicrobe/v2/UqyWK8oPP3hjw6ANS9rM3PsZQsoQaZgi.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmicrobe/v2/UqyWK8oPP3hjw6ANS9rM3PsZQsgQaQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmicrobe/v2/UqyWK8oPP3hjw6ANS9rM3PsZQsgQaQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmicrobe/v2/UqyWK8oPP3hjw6ANS9rM3PsZQsYQaZgi.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmicrobe/v2/UqyWK8oPP3hjw6ANS9rM3PsZQsYQaZgi.woff2",
   },
 } as const;
 
 export type RubikMicrobeWeight = "400";
 export type RubikMicrobeStyle = "normal";
 export type RubikMicrobeSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikMicrobeOptions = GoogleFontOptions<RubikMicrobeWeight, RubikMicrobeStyle, RubikMicrobeSubset>;
+export type RubikMicrobeOptions = GoogleFontOptions<
+  RubikMicrobeWeight,
+  RubikMicrobeStyle,
+  RubikMicrobeSubset
+>;
 
 /**
  * Rubik Microbe — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikMicrobe extends GoogleFont<RubikMicrobeWeight, RubikMicrobeStyle, RubikMicrobeSubset> {
+export default class RubikMicrobe extends GoogleFont<
+  RubikMicrobeWeight,
+  RubikMicrobeStyle,
+  RubikMicrobeSubset
+> {
   constructor(options?: RubikMicrobeOptions) {
     super(FAMILY, FACES, options);
   }

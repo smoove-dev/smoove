@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Marker Hatch";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmarkerhatch/v1/QldTNSFQsh0B_bFXXWv6LAt-jswapJHgD7Qj80E.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmarkerhatch/v1/QldTNSFQsh0B_bFXXWv6LAt-jswapJHgD7Qj80E.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmarkerhatch/v1/QldTNSFQsh0B_bFXXWv6LAt-jswapJHgBrQj80E.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmarkerhatch/v1/QldTNSFQsh0B_bFXXWv6LAt-jswapJHgBrQj80E.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmarkerhatch/v1/QldTNSFQsh0B_bFXXWv6LAt-jswapJHgCbQj80E.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmarkerhatch/v1/QldTNSFQsh0B_bFXXWv6LAt-jswapJHgCbQj80E.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmarkerhatch/v1/QldTNSFQsh0B_bFXXWv6LAt-jswapJHgC7Qj.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmarkerhatch/v1/QldTNSFQsh0B_bFXXWv6LAt-jswapJHgC7Qj.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmarkerhatch/v1/QldTNSFQsh0B_bFXXWv6LAt-jswapJHgBbQj80E.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmarkerhatch/v1/QldTNSFQsh0B_bFXXWv6LAt-jswapJHgBbQj80E.woff2",
   },
 } as const;
 
 export type RubikMarkerHatchWeight = "400";
 export type RubikMarkerHatchStyle = "normal";
 export type RubikMarkerHatchSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikMarkerHatchOptions = GoogleFontOptions<RubikMarkerHatchWeight, RubikMarkerHatchStyle, RubikMarkerHatchSubset>;
+export type RubikMarkerHatchOptions = GoogleFontOptions<
+  RubikMarkerHatchWeight,
+  RubikMarkerHatchStyle,
+  RubikMarkerHatchSubset
+>;
 
 /**
  * Rubik Marker Hatch — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikMarkerHatch extends GoogleFont<RubikMarkerHatchWeight, RubikMarkerHatchStyle, RubikMarkerHatchSubset> {
+export default class RubikMarkerHatch extends GoogleFont<
+  RubikMarkerHatchWeight,
+  RubikMarkerHatchStyle,
+  RubikMarkerHatchSubset
+> {
   constructor(options?: RubikMarkerHatchOptions) {
     super(FAMILY, FACES, options);
   }

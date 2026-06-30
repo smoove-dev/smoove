@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tirra";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tirra/v2/WBLrrEnNakREGoPC1gA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/tirra/v2/WBLmrEnNakREGosx9RXSe2A.woff2",
     "600-normal": "https://fonts.gstatic.com/s/tirra/v2/WBLmrEnNakREGosd8hXSe2A.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/tirra/v2/WBLmrEnNakREGotl8BXce2DwLQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/tirra/v2/WBLmrEnNakREGotB8RXce2DwLQ.woff2",
   },
-  "tifinagh": {
+  tifinagh: {
     "400-normal": "https://fonts.gstatic.com/s/tirra/v2/WBLrrEnNakREGoPi1gDtWg.woff2",
     "500-normal": "https://fonts.gstatic.com/s/tirra/v2/WBLmrEnNakREGosx9RXye2DwLQ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/tirra/v2/WBLmrEnNakREGosd8hXye2DwLQ.woff2",

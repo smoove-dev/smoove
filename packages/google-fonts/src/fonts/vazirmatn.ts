@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Vazirmatn";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "100-normal": "https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2",
     "200-normal": "https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2",
     "300-normal": "https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2",
@@ -15,7 +15,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2",
     "900-normal": "https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlHcWW.woff2",
     "200-normal": "https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlHcWW.woff2",
     "300-normal": "https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlHcWW.woff2",
@@ -48,7 +48,11 @@ export type VazirmatnOptions = GoogleFontOptions<VazirmatnWeight, VazirmatnStyle
  * Vazirmatn — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Vazirmatn extends GoogleFont<VazirmatnWeight, VazirmatnStyle, VazirmatnSubset> {
+export default class Vazirmatn extends GoogleFont<
+  VazirmatnWeight,
+  VazirmatnStyle,
+  VazirmatnSubset
+> {
   constructor(options?: VazirmatnOptions) {
     super(FAMILY, FACES, options);
   }

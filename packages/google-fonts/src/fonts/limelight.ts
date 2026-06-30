@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Limelight";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/limelight/v21/XLYkIZL7aopJVbZJHDuoOulH.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type LimelightOptions = GoogleFontOptions<LimelightWeight, LimelightStyle
  * Limelight — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Limelight extends GoogleFont<LimelightWeight, LimelightStyle, LimelightSubset> {
+export default class Limelight extends GoogleFont<
+  LimelightWeight,
+  LimelightStyle,
+  LimelightSubset
+> {
   constructor(options?: LimelightOptions) {
     super(FAMILY, FACES, options);
   }

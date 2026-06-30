@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gilda Display";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/gildadisplay/v20/t5tmIRoYMoaYG0WEOh7HwMeR3T7Prw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/gildadisplay/v20/t5tmIRoYMoaYG0WEOh7HwMeR3T7Prw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/gildadisplay/v20/t5tmIRoYMoaYG0WEOh7HwMeR3TDPr6OH.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gildadisplay/v20/t5tmIRoYMoaYG0WEOh7HwMeR3TDPr6OH.woff2",
   },
 } as const;
 
 export type GildaDisplayWeight = "400";
 export type GildaDisplayStyle = "normal";
 export type GildaDisplaySubset = "latin" | "latin-ext";
-export type GildaDisplayOptions = GoogleFontOptions<GildaDisplayWeight, GildaDisplayStyle, GildaDisplaySubset>;
+export type GildaDisplayOptions = GoogleFontOptions<
+  GildaDisplayWeight,
+  GildaDisplayStyle,
+  GildaDisplaySubset
+>;
 
 /**
  * Gilda Display — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GildaDisplay extends GoogleFont<GildaDisplayWeight, GildaDisplayStyle, GildaDisplaySubset> {
+export default class GildaDisplay extends GoogleFont<
+  GildaDisplayWeight,
+  GildaDisplayStyle,
+  GildaDisplaySubset
+> {
   constructor(options?: GildaDisplayOptions) {
     super(FAMILY, FACES, options);
   }

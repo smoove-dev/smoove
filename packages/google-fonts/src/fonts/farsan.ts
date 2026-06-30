@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Farsan";
 
 const FACES = {
-  "gujarati": {
+  gujarati: {
     "400-normal": "https://fonts.gstatic.com/s/farsan/v24/VEMwRoJ0vY_zsyzKxqWo9DU.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/farsan/v24/VEMwRoJ0vY_zsyzK3aWo.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/farsan/v24/VEMwRoJ0vY_zsyzK06Wo9DU.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/farsan/v24/VEMwRoJ0vY_zsyzK0qWo9DU.woff2",
   },
 } as const;

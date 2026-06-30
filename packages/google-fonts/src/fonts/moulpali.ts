@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Moulpali";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "400-normal": "https://fonts.gstatic.com/s/moulpali/v33/H4ckBXKMl9HagUWymxY2yL6Agw.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/moulpali/v33/H4ckBXKMl9HagUWymxY9yL4.woff2",
   },
 } as const;

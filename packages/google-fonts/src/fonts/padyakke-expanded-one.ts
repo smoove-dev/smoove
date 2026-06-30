@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Padyakke Expanded One";
 
 const FACES = {
-  "kannada": {
-    "400-normal": "https://fonts.gstatic.com/s/padyakkeexpandedone/v8/K2FvfY9El_tbR0JfHb6WWvrBaU6XAUvC4IAoJa5llDg.woff2",
+  kannada: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/padyakkeexpandedone/v8/K2FvfY9El_tbR0JfHb6WWvrBaU6XAUvC4IAoJa5llDg.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/padyakkeexpandedone/v8/K2FvfY9El_tbR0JfHb6WWvrBaU6XAUvC4IAoP65l.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/padyakkeexpandedone/v8/K2FvfY9El_tbR0JfHb6WWvrBaU6XAUvC4IAoP65l.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/padyakkeexpandedone/v8/K2FvfY9El_tbR0JfHb6WWvrBaU6XAUvC4IAoMa5llDg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/padyakkeexpandedone/v8/K2FvfY9El_tbR0JfHb6WWvrBaU6XAUvC4IAoMa5llDg.woff2",
   },
 } as const;
 
 export type PadyakkeExpandedOneWeight = "400";
 export type PadyakkeExpandedOneStyle = "normal";
 export type PadyakkeExpandedOneSubset = "kannada" | "latin" | "latin-ext";
-export type PadyakkeExpandedOneOptions = GoogleFontOptions<PadyakkeExpandedOneWeight, PadyakkeExpandedOneStyle, PadyakkeExpandedOneSubset>;
+export type PadyakkeExpandedOneOptions = GoogleFontOptions<
+  PadyakkeExpandedOneWeight,
+  PadyakkeExpandedOneStyle,
+  PadyakkeExpandedOneSubset
+>;
 
 /**
  * Padyakke Expanded One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PadyakkeExpandedOne extends GoogleFont<PadyakkeExpandedOneWeight, PadyakkeExpandedOneStyle, PadyakkeExpandedOneSubset> {
+export default class PadyakkeExpandedOne extends GoogleFont<
+  PadyakkeExpandedOneWeight,
+  PadyakkeExpandedOneStyle,
+  PadyakkeExpandedOneSubset
+> {
   constructor(options?: PadyakkeExpandedOneOptions) {
     super(FAMILY, FACES, options);
   }

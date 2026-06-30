@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Chicle";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/chicle/v27/lJwG-pw9i2dqU-Bzzmiv.woff2",
   },
   "latin-ext": {

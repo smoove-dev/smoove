@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Grand Hotel";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/grandhotel/v21/7Au7p_IgjDKdCRWuR1azplQKGFw.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type GrandHotelWeight = "400";
 export type GrandHotelStyle = "normal";
 export type GrandHotelSubset = "latin" | "latin-ext";
-export type GrandHotelOptions = GoogleFontOptions<GrandHotelWeight, GrandHotelStyle, GrandHotelSubset>;
+export type GrandHotelOptions = GoogleFontOptions<
+  GrandHotelWeight,
+  GrandHotelStyle,
+  GrandHotelSubset
+>;
 
 /**
  * Grand Hotel — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GrandHotel extends GoogleFont<GrandHotelWeight, GrandHotelStyle, GrandHotelSubset> {
+export default class GrandHotel extends GoogleFont<
+  GrandHotelWeight,
+  GrandHotelStyle,
+  GrandHotelSubset
+> {
   constructor(options?: GrandHotelOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mirza";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/mirza/v19/co3ImWlikiN5EtrfIsaAsg.woff2",
     "500-normal": "https://fonts.gstatic.com/s/mirza/v19/co3FmWlikiN5EtIpAdO6k6bxog.woff2",
     "600-normal": "https://fonts.gstatic.com/s/mirza/v19/co3FmWlikiN5EtIFBtO6k6bxog.woff2",
     "700-normal": "https://fonts.gstatic.com/s/mirza/v19/co3FmWlikiN5EtJhB9O6k6bxog.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mirza/v19/co3ImWlikiN5EtraIsY.woff2",
     "500-normal": "https://fonts.gstatic.com/s/mirza/v19/co3FmWlikiN5EtIpAdO_k6Y.woff2",
     "600-normal": "https://fonts.gstatic.com/s/mirza/v19/co3FmWlikiN5EtIFBtO_k6Y.woff2",

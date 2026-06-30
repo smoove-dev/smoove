@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "IM Fell Double Pica SC";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/imfelldoublepicasc/v21/neIazDmuiMkFo6zj_sHpQ8teNbWlwBB_hXjJ0YoOew.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/imfelldoublepicasc/v21/neIazDmuiMkFo6zj_sHpQ8teNbWlwBB_hXjJ0YoOew.woff2",
   },
 } as const;
 
 export type IMFellDoublePicaSCWeight = "400";
 export type IMFellDoublePicaSCStyle = "normal";
 export type IMFellDoublePicaSCSubset = "latin";
-export type IMFellDoublePicaSCOptions = GoogleFontOptions<IMFellDoublePicaSCWeight, IMFellDoublePicaSCStyle, IMFellDoublePicaSCSubset>;
+export type IMFellDoublePicaSCOptions = GoogleFontOptions<
+  IMFellDoublePicaSCWeight,
+  IMFellDoublePicaSCStyle,
+  IMFellDoublePicaSCSubset
+>;
 
 /**
  * IM Fell Double Pica SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IMFellDoublePicaSC extends GoogleFont<IMFellDoublePicaSCWeight, IMFellDoublePicaSCStyle, IMFellDoublePicaSCSubset> {
+export default class IMFellDoublePicaSC extends GoogleFont<
+  IMFellDoublePicaSCWeight,
+  IMFellDoublePicaSCStyle,
+  IMFellDoublePicaSCSubset
+> {
   constructor(options?: IMFellDoublePicaSCOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,33 +4,50 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kaisei HarunoUmi";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_RiZQSLqBQoAHhK_C6N_nzy_jcKsjzsf8u.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcIj_QpMQPw1C9.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcInfWpMQPw1C9.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_RiZQSLqBQoAHhK_C6N_nzy_jcKsjzsf8u.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcIj_QpMQPw1C9.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcInfWpMQPw1C9.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_RiZQSLqBQoAHhK_C6N_nzy_jcKszzsQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcIj_QpMAPww.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcInfWpMAPww.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_RiZQSLqBQoAHhK_C6N_nzy_jcKszzsQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcIj_QpMAPww.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcInfWpMAPww.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_RiZQSLqBQoAHhK_C6N_nzy_jcKsLzsf8u.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcIj_QpM4Pw1C9.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcInfWpM4Pw1C9.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_RiZQSLqBQoAHhK_C6N_nzy_jcKsLzsf8u.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcIj_QpM4Pw1C9.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kaiseiharunoumi/v11/HI_WiZQSLqBQoAHhK_C6N_nzy_jcInfWpM4Pw1C9.woff2",
   },
 } as const;
 
 export type KaiseiHarunoUmiWeight = "400" | "500" | "700";
 export type KaiseiHarunoUmiStyle = "normal";
 export type KaiseiHarunoUmiSubset = "cyrillic" | "latin" | "latin-ext";
-export type KaiseiHarunoUmiOptions = GoogleFontOptions<KaiseiHarunoUmiWeight, KaiseiHarunoUmiStyle, KaiseiHarunoUmiSubset>;
+export type KaiseiHarunoUmiOptions = GoogleFontOptions<
+  KaiseiHarunoUmiWeight,
+  KaiseiHarunoUmiStyle,
+  KaiseiHarunoUmiSubset
+>;
 
 /**
  * Kaisei HarunoUmi — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KaiseiHarunoUmi extends GoogleFont<KaiseiHarunoUmiWeight, KaiseiHarunoUmiStyle, KaiseiHarunoUmiSubset> {
+export default class KaiseiHarunoUmi extends GoogleFont<
+  KaiseiHarunoUmiWeight,
+  KaiseiHarunoUmiStyle,
+  KaiseiHarunoUmiSubset
+> {
   constructor(options?: KaiseiHarunoUmiOptions) {
     super(FAMILY, FACES, options);
   }

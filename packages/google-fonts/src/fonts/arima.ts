@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Arima";
 
 const FACES = {
-  "greek": {
+  greek: {
     "100-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CL_oC-Nw.woff2",
     "200-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CL_oC-Nw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CL_oC-Nw.woff2",
@@ -22,7 +22,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CE_oC-Nw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CE_oC-Nw.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CI_oA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CI_oA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CI_oA.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CG_oC-Nw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CG_oC-Nw.woff2",
   },
-  "malayalam": {
+  malayalam: {
     "100-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CQ_oC-Nw.woff2",
     "200-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CQ_oC-Nw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CQ_oC-Nw.woff2",
@@ -49,7 +49,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CQ_oC-Nw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CQ_oC-Nw.woff2",
   },
-  "tamil": {
+  tamil: {
     "100-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9Ce_oC-Nw.woff2",
     "200-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9Ce_oC-Nw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9Ce_oC-Nw.woff2",
@@ -58,7 +58,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9Ce_oC-Nw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9Ce_oC-Nw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CH_oC-Nw.woff2",
     "200-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CH_oC-Nw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/arima/v7/neIFzCqmt4Aup9CH_oC-Nw.woff2",
@@ -71,7 +71,14 @@ const FACES = {
 
 export type ArimaWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700";
 export type ArimaStyle = "normal";
-export type ArimaSubset = "greek" | "greek-ext" | "latin" | "latin-ext" | "malayalam" | "tamil" | "vietnamese";
+export type ArimaSubset =
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "malayalam"
+  | "tamil"
+  | "vietnamese";
 export type ArimaOptions = GoogleFontOptions<ArimaWeight, ArimaStyle, ArimaSubset>;
 
 /**

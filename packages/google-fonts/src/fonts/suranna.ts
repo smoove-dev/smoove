@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Suranna";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/suranna/v15/gokuH6ztGkFjWe58hBNTTg.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/suranna/v15/gokuH6ztGkFjWe58hA9TTlKm.woff2",
   },
 } as const;

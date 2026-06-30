@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Forum";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/forum/v19/6aey4Ky-Vb8Ew8IVOpIq3g.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/forum/v19/6aey4Ky-Vb8Ew8IcOpIq3g.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/forum/v19/6aey4Ky-Vb8Ew8IROpI.woff2",
   },
   "latin-ext": {

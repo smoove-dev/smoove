@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Hatran";
 
 const FACES = {
-  "hatran": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanshatran/v17/A2BBn4Ne0RgnVF3Lnko-0sOBIfL_qFQci1TJ1Q.woff2",
+  hatran: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanshatran/v17/A2BBn4Ne0RgnVF3Lnko-0sOBIfL_qFQci1TJ1Q.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanshatran/v17/A2BBn4Ne0RgnVF3Lnko-0sOBIfL_qMg9rg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanshatran/v17/A2BBn4Ne0RgnVF3Lnko-0sOBIfL_qMg9rg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanshatran/v17/A2BBn4Ne0RgnVF3Lnko-0sOBIfL_qMY9rmnw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanshatran/v17/A2BBn4Ne0RgnVF3Lnko-0sOBIfL_qMY9rmnw.woff2",
   },
 } as const;
 
 export type NotoSansHatranWeight = "400";
 export type NotoSansHatranStyle = "normal";
 export type NotoSansHatranSubset = "hatran" | "latin" | "latin-ext";
-export type NotoSansHatranOptions = GoogleFontOptions<NotoSansHatranWeight, NotoSansHatranStyle, NotoSansHatranSubset>;
+export type NotoSansHatranOptions = GoogleFontOptions<
+  NotoSansHatranWeight,
+  NotoSansHatranStyle,
+  NotoSansHatranSubset
+>;
 
 /**
  * Noto Sans Hatran — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansHatran extends GoogleFont<NotoSansHatranWeight, NotoSansHatranStyle, NotoSansHatranSubset> {
+export default class NotoSansHatran extends GoogleFont<
+  NotoSansHatranWeight,
+  NotoSansHatranStyle,
+  NotoSansHatranSubset
+> {
   constructor(options?: NotoSansHatranOptions) {
     super(FAMILY, FACES, options);
   }

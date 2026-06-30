@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tulpen One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tulpenone/v26/dFa6ZfeC474skLgesc0Cajo6_Q.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type TulpenOneOptions = GoogleFontOptions<TulpenOneWeight, TulpenOneStyle
  * Tulpen One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TulpenOne extends GoogleFont<TulpenOneWeight, TulpenOneStyle, TulpenOneSubset> {
+export default class TulpenOne extends GoogleFont<
+  TulpenOneWeight,
+  TulpenOneStyle,
+  TulpenOneSubset
+> {
   constructor(options?: TulpenOneOptions) {
     super(FAMILY, FACES, options);
   }

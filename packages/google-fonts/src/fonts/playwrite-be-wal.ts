@@ -4,24 +4,36 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite BE WAL";
 
 const FACES = {
-  "fallback": {
-    "100-normal": "https://fonts.gstatic.com/s/playwritebewal/v7/DtV4Jwq5QbIzyrA6DHdJ2BksuUmahwU.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playwritebewal/v7/DtV4Jwq5QbIzyrA6DHdJ2BksuUmahwU.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playwritebewal/v7/DtV4Jwq5QbIzyrA6DHdJ2BksuUmahwU.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playwritebewal/v7/DtV4Jwq5QbIzyrA6DHdJ2BksuUmahwU.woff2",
+  fallback: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/playwritebewal/v7/DtV4Jwq5QbIzyrA6DHdJ2BksuUmahwU.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playwritebewal/v7/DtV4Jwq5QbIzyrA6DHdJ2BksuUmahwU.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playwritebewal/v7/DtV4Jwq5QbIzyrA6DHdJ2BksuUmahwU.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritebewal/v7/DtV4Jwq5QbIzyrA6DHdJ2BksuUmahwU.woff2",
   },
 } as const;
 
 export type PlaywriteBEWALWeight = "100" | "200" | "300" | "400";
 export type PlaywriteBEWALStyle = "normal";
 export type PlaywriteBEWALSubset = "fallback";
-export type PlaywriteBEWALOptions = GoogleFontOptions<PlaywriteBEWALWeight, PlaywriteBEWALStyle, PlaywriteBEWALSubset>;
+export type PlaywriteBEWALOptions = GoogleFontOptions<
+  PlaywriteBEWALWeight,
+  PlaywriteBEWALStyle,
+  PlaywriteBEWALSubset
+>;
 
 /**
  * Playwrite BE WAL — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteBEWAL extends GoogleFont<PlaywriteBEWALWeight, PlaywriteBEWALStyle, PlaywriteBEWALSubset> {
+export default class PlaywriteBEWAL extends GoogleFont<
+  PlaywriteBEWALWeight,
+  PlaywriteBEWALStyle,
+  PlaywriteBEWALSubset
+> {
   constructor(options?: PlaywriteBEWALOptions) {
     super(FAMILY, FACES, options);
   }

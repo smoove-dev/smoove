@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Radley";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/radley/v24/LYjBdGzinEIjCN1NojNHjV8.woff2",
     "400-normal": "https://fonts.gstatic.com/s/radley/v24/LYjDdGzinEIjCN1NpwNF.woff2",
   },

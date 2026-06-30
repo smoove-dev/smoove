@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Multani";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmultani/v22/9Bty3ClF38_RfOpe1gCaZ8p30BOFO2Azr_E.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmultani/v22/9Bty3ClF38_RfOpe1gCaZ8p30BOFO2Azr_E.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmultani/v22/9Bty3ClF38_RfOpe1gCaZ8p30BOFO2A9r_Gc5A.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmultani/v22/9Bty3ClF38_RfOpe1gCaZ8p30BOFO2A9r_Gc5A.woff2",
   },
-  "multani": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmultani/v22/9Bty3ClF38_RfOpe1gCaZ8p30BOFO2BNr_Gc5A.woff2",
+  multani: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmultani/v22/9Bty3ClF38_RfOpe1gCaZ8p30BOFO2BNr_Gc5A.woff2",
   },
 } as const;
 
 export type NotoSansMultaniWeight = "400";
 export type NotoSansMultaniStyle = "normal";
 export type NotoSansMultaniSubset = "latin" | "latin-ext" | "multani";
-export type NotoSansMultaniOptions = GoogleFontOptions<NotoSansMultaniWeight, NotoSansMultaniStyle, NotoSansMultaniSubset>;
+export type NotoSansMultaniOptions = GoogleFontOptions<
+  NotoSansMultaniWeight,
+  NotoSansMultaniStyle,
+  NotoSansMultaniSubset
+>;
 
 /**
  * Noto Sans Multani — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansMultani extends GoogleFont<NotoSansMultaniWeight, NotoSansMultaniStyle, NotoSansMultaniSubset> {
+export default class NotoSansMultani extends GoogleFont<
+  NotoSansMultaniWeight,
+  NotoSansMultaniStyle,
+  NotoSansMultaniSubset
+> {
   constructor(options?: NotoSansMultaniOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Siemreap";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "400-normal": "https://fonts.gstatic.com/s/siemreap/v30/Gg82N5oFbgLvHAfNl1YXlg4.woff2",
   },
 } as const;

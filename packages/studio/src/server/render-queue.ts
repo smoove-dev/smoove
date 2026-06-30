@@ -1,8 +1,8 @@
 import type { Composition } from "@smoove/core";
 import {
-  type SetupOptions,
   renderComposition,
   renderStill,
+  type SetupOptions,
   setupServerRendering,
 } from "@smoove/renderer";
 import { makeJobId } from "../lib/ids.js";

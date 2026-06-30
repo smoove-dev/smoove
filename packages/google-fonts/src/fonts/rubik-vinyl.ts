@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Vinyl";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/rubikvinyl/v1/iJWABXKIfDnIV4mQ5BfjvXXdzI1Gzg.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/rubikvinyl/v1/iJWABXKIfDnIV4mQ5BfjvXXUzI1Gzg.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/rubikvinyl/v1/iJWABXKIfDnIV4mQ5BfjvXXbzI1Gzg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rubikvinyl/v1/iJWABXKIfDnIV4mQ5BfjvXXZzI0.woff2",
   },
   "latin-ext": {
@@ -24,13 +24,21 @@ const FACES = {
 export type RubikVinylWeight = "400";
 export type RubikVinylStyle = "normal";
 export type RubikVinylSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikVinylOptions = GoogleFontOptions<RubikVinylWeight, RubikVinylStyle, RubikVinylSubset>;
+export type RubikVinylOptions = GoogleFontOptions<
+  RubikVinylWeight,
+  RubikVinylStyle,
+  RubikVinylSubset
+>;
 
 /**
  * Rubik Vinyl — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikVinyl extends GoogleFont<RubikVinylWeight, RubikVinylStyle, RubikVinylSubset> {
+export default class RubikVinyl extends GoogleFont<
+  RubikVinylWeight,
+  RubikVinylStyle,
+  RubikVinylSubset
+> {
   constructor(options?: RubikVinylOptions) {
     super(FAMILY, FACES, options);
   }

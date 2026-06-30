@@ -1,4 +1,4 @@
-import { Block, Composition, Easing, Flex, Image, Sequence, interpolate } from "@smoove/core";
+import { Block, Composition, Easing, Flex, Image, interpolate, Sequence } from "@smoove/core";
 import Konva from "konva";
 
 const width = 1280;

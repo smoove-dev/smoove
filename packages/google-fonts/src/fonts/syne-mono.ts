@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Syne Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/synemono/v16/K2FzfZNHj_FHBmRbFvHDJaql.woff2",
   },
   "latin-ext": {

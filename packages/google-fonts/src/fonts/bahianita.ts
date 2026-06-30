@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bahianita";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bahianita/v23/yYLr0hTb3vuqqsBUgxWdwjHU.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/bahianita/v23/yYLr0hTb3vuqqsBUgxWdzDHU6NI.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/bahianita/v23/yYLr0hTb3vuqqsBUgxWdzTHU6NI.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type BahianitaOptions = GoogleFontOptions<BahianitaWeight, BahianitaStyle
  * Bahianita — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Bahianita extends GoogleFont<BahianitaWeight, BahianitaStyle, BahianitaSubset> {
+export default class Bahianita extends GoogleFont<
+  BahianitaWeight,
+  BahianitaStyle,
+  BahianitaSubset
+> {
   constructor(options?: BahianitaOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,14 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jaro";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jaro/v8/ea8DadQwV_r_Rv3-7zZMCGhQgVr1SmCrPvw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/jaro/v8/ea8DadQwV_r_Rv3-7zZMCGhQgVr1SmClPvzlpQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/jaro/v8/ea8DadQwV_r_Rv3-7zZMCGhQgVr1SmClPvzlpQ.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/jaro/v8/ea8DadQwV_r_Rv3-7zZMCGhQgVr1SmCkPvzlpQ.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/jaro/v8/ea8DadQwV_r_Rv3-7zZMCGhQgVr1SmCkPvzlpQ.woff2",
   },
 } as const;
 

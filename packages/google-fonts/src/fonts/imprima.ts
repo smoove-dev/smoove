@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Imprima";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/imprima/v19/VEMxRoN7sY3yuy-7yoKNyQ.woff2",
   },
   "latin-ext": {

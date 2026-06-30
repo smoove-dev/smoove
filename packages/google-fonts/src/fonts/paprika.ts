@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Paprika";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/paprika/v24/8QIJdijZitv49rDfiI8Eqg.woff2",
   },
   "latin-ext": {

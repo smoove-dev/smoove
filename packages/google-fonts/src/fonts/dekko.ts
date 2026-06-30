@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Dekko";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/dekko/v23/46khlb_wWjfSrutDTUrcfg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/dekko/v23/46khlb_wWjfSrutCTUo.woff2",
   },
   "latin-ext": {

@@ -4,26 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zilla Slab Highlight";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/zillaslabhighlight/v21/gNMbW2BrTpK8-inLtBJgMMfbm6uNVDvRxitPaWE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zillaslabhighlight/v21/gNMUW2BrTpK8-inLtBJgMMfbm6uNVDvRxiP0THT_aGQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zillaslabhighlight/v21/gNMbW2BrTpK8-inLtBJgMMfbm6uNVDvRxitPaWE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zillaslabhighlight/v21/gNMUW2BrTpK8-inLtBJgMMfbm6uNVDvRxiP0THT_aGQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/zillaslabhighlight/v21/gNMbW2BrTpK8-inLtBJgMMfbm6uNVDvRxitBaWHASQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zillaslabhighlight/v21/gNMUW2BrTpK8-inLtBJgMMfbm6uNVDvRxiP0THTxaGR10A.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zillaslabhighlight/v21/gNMbW2BrTpK8-inLtBJgMMfbm6uNVDvRxitBaWHASQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zillaslabhighlight/v21/gNMUW2BrTpK8-inLtBJgMMfbm6uNVDvRxiP0THTxaGR10A.woff2",
   },
 } as const;
 
 export type ZillaSlabHighlightWeight = "400" | "700";
 export type ZillaSlabHighlightStyle = "normal";
 export type ZillaSlabHighlightSubset = "latin" | "latin-ext";
-export type ZillaSlabHighlightOptions = GoogleFontOptions<ZillaSlabHighlightWeight, ZillaSlabHighlightStyle, ZillaSlabHighlightSubset>;
+export type ZillaSlabHighlightOptions = GoogleFontOptions<
+  ZillaSlabHighlightWeight,
+  ZillaSlabHighlightStyle,
+  ZillaSlabHighlightSubset
+>;
 
 /**
  * Zilla Slab Highlight — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZillaSlabHighlight extends GoogleFont<ZillaSlabHighlightWeight, ZillaSlabHighlightStyle, ZillaSlabHighlightSubset> {
+export default class ZillaSlabHighlight extends GoogleFont<
+  ZillaSlabHighlightWeight,
+  ZillaSlabHighlightStyle,
+  ZillaSlabHighlightSubset
+> {
   constructor(options?: ZillaSlabHighlightOptions) {
     super(FAMILY, FACES, options);
   }

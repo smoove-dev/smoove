@@ -4,14 +4,18 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite GB J";
 
 const FACES = {
-  "fallback": {
-    "100-italic": "https://fonts.gstatic.com/s/playwritegbj/v11/k3kLo8wSPe9dzQ1UGbvobAPhY7KP0Qo.woff2",
+  fallback: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/playwritegbj/v11/k3kLo8wSPe9dzQ1UGbvobAPhY7KP0Qo.woff2",
     "100-normal": "https://fonts.gstatic.com/s/playwritegbj/v11/k3kJo8wSPe9dzQ1UGbvobAPhY4KI.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/playwritegbj/v11/k3kLo8wSPe9dzQ1UGbvobAPhY7KP0Qo.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/playwritegbj/v11/k3kLo8wSPe9dzQ1UGbvobAPhY7KP0Qo.woff2",
     "200-normal": "https://fonts.gstatic.com/s/playwritegbj/v11/k3kJo8wSPe9dzQ1UGbvobAPhY4KI.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/playwritegbj/v11/k3kLo8wSPe9dzQ1UGbvobAPhY7KP0Qo.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/playwritegbj/v11/k3kLo8wSPe9dzQ1UGbvobAPhY7KP0Qo.woff2",
     "300-normal": "https://fonts.gstatic.com/s/playwritegbj/v11/k3kJo8wSPe9dzQ1UGbvobAPhY4KI.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/playwritegbj/v11/k3kLo8wSPe9dzQ1UGbvobAPhY7KP0Qo.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/playwritegbj/v11/k3kLo8wSPe9dzQ1UGbvobAPhY7KP0Qo.woff2",
     "400-normal": "https://fonts.gstatic.com/s/playwritegbj/v11/k3kJo8wSPe9dzQ1UGbvobAPhY4KI.woff2",
   },
 } as const;
@@ -19,13 +23,21 @@ const FACES = {
 export type PlaywriteGBJWeight = "100" | "200" | "300" | "400";
 export type PlaywriteGBJStyle = "italic" | "normal";
 export type PlaywriteGBJSubset = "fallback";
-export type PlaywriteGBJOptions = GoogleFontOptions<PlaywriteGBJWeight, PlaywriteGBJStyle, PlaywriteGBJSubset>;
+export type PlaywriteGBJOptions = GoogleFontOptions<
+  PlaywriteGBJWeight,
+  PlaywriteGBJStyle,
+  PlaywriteGBJSubset
+>;
 
 /**
  * Playwrite GB J — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteGBJ extends GoogleFont<PlaywriteGBJWeight, PlaywriteGBJStyle, PlaywriteGBJSubset> {
+export default class PlaywriteGBJ extends GoogleFont<
+  PlaywriteGBJWeight,
+  PlaywriteGBJStyle,
+  PlaywriteGBJSubset
+> {
   constructor(options?: PlaywriteGBJOptions) {
     super(FAMILY, FACES, options);
   }

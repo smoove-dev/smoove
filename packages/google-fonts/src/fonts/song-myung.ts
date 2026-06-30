@@ -4,8 +4,9 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Song Myung";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/songmyung/v22/1cX2aUDWAJH5-EIC7DIhr1TCk8qivo10xPFih_f6G0tP6mooOg.119.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/songmyung/v22/1cX2aUDWAJH5-EIC7DIhr1TCk8qivo10xPFih_f6G0tP6mooOg.119.woff2",
   },
 } as const;
 
@@ -18,7 +19,11 @@ export type SongMyungOptions = GoogleFontOptions<SongMyungWeight, SongMyungStyle
  * Song Myung — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SongMyung extends GoogleFont<SongMyungWeight, SongMyungStyle, SongMyungSubset> {
+export default class SongMyung extends GoogleFont<
+  SongMyungWeight,
+  SongMyungStyle,
+  SongMyungSubset
+> {
   constructor(options?: SongMyungOptions) {
     super(FAMILY, FACES, options);
   }

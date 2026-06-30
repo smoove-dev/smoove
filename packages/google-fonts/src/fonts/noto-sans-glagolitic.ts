@@ -5,35 +5,55 @@ const FAMILY = "Noto Sans Glagolitic";
 
 const FACES = {
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HRA6gie7g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HRA6gie7g.woff2",
   },
-  "glagolitic": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HTLyy2j12o.woff2",
+  glagolitic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HTLyy2j12o.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HRN6gg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HRN6gg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HRD6gie7g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HRD6gie7g.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HQx6gie7g.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HQx6gie7g.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HQj6gie7g.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansglagolitic/v19/1q2ZY4-BBFBst88SU_tOj4J-4yuNF_HI4HQj6gie7g.woff2",
   },
 } as const;
 
 export type NotoSansGlagoliticWeight = "400";
 export type NotoSansGlagoliticStyle = "normal";
-export type NotoSansGlagoliticSubset = "cyrillic-ext" | "glagolitic" | "latin" | "latin-ext" | "math" | "symbols";
-export type NotoSansGlagoliticOptions = GoogleFontOptions<NotoSansGlagoliticWeight, NotoSansGlagoliticStyle, NotoSansGlagoliticSubset>;
+export type NotoSansGlagoliticSubset =
+  | "cyrillic-ext"
+  | "glagolitic"
+  | "latin"
+  | "latin-ext"
+  | "math"
+  | "symbols";
+export type NotoSansGlagoliticOptions = GoogleFontOptions<
+  NotoSansGlagoliticWeight,
+  NotoSansGlagoliticStyle,
+  NotoSansGlagoliticSubset
+>;
 
 /**
  * Noto Sans Glagolitic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansGlagolitic extends GoogleFont<NotoSansGlagoliticWeight, NotoSansGlagoliticStyle, NotoSansGlagoliticSubset> {
+export default class NotoSansGlagolitic extends GoogleFont<
+  NotoSansGlagoliticWeight,
+  NotoSansGlagoliticStyle,
+  NotoSansGlagoliticSubset
+> {
   constructor(options?: NotoSansGlagoliticOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "IM Fell DW Pica SC";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/imfelldwpicasc/v21/0ybjGCAu5PfqkvtGVU15aBhXz3EUrnTm_xKL.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/imfelldwpicasc/v21/0ybjGCAu5PfqkvtGVU15aBhXz3EUrnTm_xKL.woff2",
   },
 } as const;
 
 export type IMFellDWPicaSCWeight = "400";
 export type IMFellDWPicaSCStyle = "normal";
 export type IMFellDWPicaSCSubset = "latin";
-export type IMFellDWPicaSCOptions = GoogleFontOptions<IMFellDWPicaSCWeight, IMFellDWPicaSCStyle, IMFellDWPicaSCSubset>;
+export type IMFellDWPicaSCOptions = GoogleFontOptions<
+  IMFellDWPicaSCWeight,
+  IMFellDWPicaSCStyle,
+  IMFellDWPicaSCSubset
+>;
 
 /**
  * IM Fell DW Pica SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IMFellDWPicaSC extends GoogleFont<IMFellDWPicaSCWeight, IMFellDWPicaSCStyle, IMFellDWPicaSCSubset> {
+export default class IMFellDWPicaSC extends GoogleFont<
+  IMFellDWPicaSCWeight,
+  IMFellDWPicaSCStyle,
+  IMFellDWPicaSCSubset
+> {
   constructor(options?: IMFellDWPicaSCOptions) {
     super(FAMILY, FACES, options);
   }

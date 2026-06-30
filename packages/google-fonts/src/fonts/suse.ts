@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "SUSE";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/suse/v4/MwQ3bhb078Wt2VpxP7J-.woff2",
     "100-normal": "https://fonts.gstatic.com/s/suse/v4/MwQ5bhb078Wt2V9BPQ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/suse/v4/MwQ3bhb078Wt2VpxP7J-.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/suse/v4/MwQ3bhb078Wt2VpxMbJ-iGI.woff2",
     "900-normal": "https://fonts.gstatic.com/s/suse/v4/MwQ5bhb078Wt2VFBPap6.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/suse/v4/MwQ3bhb078Wt2VpxMLJ-iGI.woff2",
     "100-normal": "https://fonts.gstatic.com/s/suse/v4/MwQ5bhb078Wt2VBBPap6.woff2",
     "200-italic": "https://fonts.gstatic.com/s/suse/v4/MwQ3bhb078Wt2VpxMLJ-iGI.woff2",

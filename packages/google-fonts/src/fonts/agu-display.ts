@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Agu Display";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/agudisplay/v3/iJWXBXKbbi6BeMC1_RX7qF_V5E7aciGRRWUwX4fdlqVK.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/agudisplay/v3/iJWXBXKbbi6BeMC1_RX7qF_V5E7aciGRRWUwX4fdlqVK.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/agudisplay/v3/iJWXBXKbbi6BeMC1_RX7qF_V5E7aciGRRWUwX4fdmKVKA6w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/agudisplay/v3/iJWXBXKbbi6BeMC1_RX7qF_V5E7aciGRRWUwX4fdmKVKA6w.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/agudisplay/v3/iJWXBXKbbi6BeMC1_RX7qF_V5E7aciGRRWUwX4fdmaVKA6w.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/agudisplay/v3/iJWXBXKbbi6BeMC1_RX7qF_V5E7aciGRRWUwX4fdmaVKA6w.woff2",
   },
 } as const;
 
 export type AguDisplayWeight = "400";
 export type AguDisplayStyle = "normal";
 export type AguDisplaySubset = "latin" | "latin-ext" | "vietnamese";
-export type AguDisplayOptions = GoogleFontOptions<AguDisplayWeight, AguDisplayStyle, AguDisplaySubset>;
+export type AguDisplayOptions = GoogleFontOptions<
+  AguDisplayWeight,
+  AguDisplayStyle,
+  AguDisplaySubset
+>;
 
 /**
  * Agu Display — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AguDisplay extends GoogleFont<AguDisplayWeight, AguDisplayStyle, AguDisplaySubset> {
+export default class AguDisplay extends GoogleFont<
+  AguDisplayWeight,
+  AguDisplayStyle,
+  AguDisplaySubset
+> {
   constructor(options?: AguDisplayOptions) {
     super(FAMILY, FACES, options);
   }

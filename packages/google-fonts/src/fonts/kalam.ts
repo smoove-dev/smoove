@@ -4,12 +4,12 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kalam";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "300-normal": "https://fonts.gstatic.com/s/kalam/v18/YA9Qr0Wd4kDdMtD6GjLNkiQ4tg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kalam/v18/YA9dr0Wd4kDdMthQOCfzsw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/kalam/v18/YA9Qr0Wd4kDdMtDqHTLNkiQ4tg.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/kalam/v18/YA9Qr0Wd4kDdMtD6GjLMkiQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kalam/v18/YA9dr0Wd4kDdMthROCc.woff2",
     "700-normal": "https://fonts.gstatic.com/s/kalam/v18/YA9Qr0Wd4kDdMtDqHTLMkiQ.woff2",

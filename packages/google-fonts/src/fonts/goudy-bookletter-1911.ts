@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Goudy Bookletter 1911";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/goudybookletter1911/v21/sykt-z54laciWfKv-kX8krex0jDiD2HbY6IJshzW.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/goudybookletter1911/v21/sykt-z54laciWfKv-kX8krex0jDiD2HbY6IJshzW.woff2",
   },
 } as const;
 
 export type GoudyBookletter1911Weight = "400";
 export type GoudyBookletter1911Style = "normal";
 export type GoudyBookletter1911Subset = "latin";
-export type GoudyBookletter1911Options = GoogleFontOptions<GoudyBookletter1911Weight, GoudyBookletter1911Style, GoudyBookletter1911Subset>;
+export type GoudyBookletter1911Options = GoogleFontOptions<
+  GoudyBookletter1911Weight,
+  GoudyBookletter1911Style,
+  GoudyBookletter1911Subset
+>;
 
 /**
  * Goudy Bookletter 1911 — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GoudyBookletter1911 extends GoogleFont<GoudyBookletter1911Weight, GoudyBookletter1911Style, GoudyBookletter1911Subset> {
+export default class GoudyBookletter1911 extends GoogleFont<
+  GoudyBookletter1911Weight,
+  GoudyBookletter1911Style,
+  GoudyBookletter1911Subset
+> {
   constructor(options?: GoudyBookletter1911Options) {
     super(FAMILY, FACES, options);
   }

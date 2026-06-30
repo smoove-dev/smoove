@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Short Stack";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/shortstack/v16/bMrzmS2X6p0jZC6EcmPFX9SVe34.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type ShortStackWeight = "400";
 export type ShortStackStyle = "normal";
 export type ShortStackSubset = "latin";
-export type ShortStackOptions = GoogleFontOptions<ShortStackWeight, ShortStackStyle, ShortStackSubset>;
+export type ShortStackOptions = GoogleFontOptions<
+  ShortStackWeight,
+  ShortStackStyle,
+  ShortStackSubset
+>;
 
 /**
  * Short Stack — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ShortStack extends GoogleFont<ShortStackWeight, ShortStackStyle, ShortStackSubset> {
+export default class ShortStack extends GoogleFont<
+  ShortStackWeight,
+  ShortStackStyle,
+  ShortStackSubset
+> {
   constructor(options?: ShortStackOptions) {
     super(FAMILY, FACES, options);
   }

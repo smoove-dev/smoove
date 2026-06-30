@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jost";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-italic": "https://fonts.gstatic.com/s/jost/v20/92zUtBhPNqw73oHt5D4hTxM.woff2",
     "100-normal": "https://fonts.gstatic.com/s/jost/v20/92zatBhPNqw73oDd4iYl.woff2",
     "200-italic": "https://fonts.gstatic.com/s/jost/v20/92zUtBhPNqw73oHt5D4hTxM.woff2",
@@ -24,7 +24,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/jost/v20/92zUtBhPNqw73oHt5D4hTxM.woff2",
     "900-normal": "https://fonts.gstatic.com/s/jost/v20/92zatBhPNqw73oDd4iYl.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/jost/v20/92zUtBhPNqw73oHt4D4h.woff2",
     "100-normal": "https://fonts.gstatic.com/s/jost/v20/92zatBhPNqw73oTd4g.woff2",
     "200-italic": "https://fonts.gstatic.com/s/jost/v20/92zUtBhPNqw73oHt4D4h.woff2",

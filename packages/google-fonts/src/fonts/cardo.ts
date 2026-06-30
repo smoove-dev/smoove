@@ -4,12 +4,12 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cardo";
 
 const FACES = {
-  "gothic": {
+  gothic: {
     "400-italic": "https://fonts.gstatic.com/s/cardo/v21/wlpxgwjKBV1pqhv97LQx3F5O.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cardo/v21/wlp_gwjKBV1pqhvP3IEp2A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cardo/v21/wlpygwjKBV1pqhND-ZQh-WN3aQ.woff2",
   },
-  "greek": {
+  greek: {
     "400-italic": "https://fonts.gstatic.com/s/cardo/v21/wlpxgwjKBV1pqhv97IAx3F5O.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cardo/v21/wlp_gwjKBV1pqhv73IEp2A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cardo/v21/wlpygwjKBV1pqhND-ZQV-WN3aQ.woff2",
@@ -19,12 +19,12 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/cardo/v21/wlp_gwjKBV1pqhv03IEp2A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cardo/v21/wlpygwjKBV1pqhND-ZQa-WN3aQ.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-italic": "https://fonts.gstatic.com/s/cardo/v21/wlpxgwjKBV1pqhv97IEx3F5O.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cardo/v21/wlp_gwjKBV1pqhv63IEp2A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cardo/v21/wlpygwjKBV1pqhND-ZQU-WN3aQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/cardo/v21/wlpxgwjKBV1pqhv97IMx3A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cardo/v21/wlp_gwjKBV1pqhv43IE.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cardo/v21/wlpygwjKBV1pqhND-ZQW-WM.woff2",
@@ -39,7 +39,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/cardo/v21/wlp_gwjKBV1pqhu63IEp2A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cardo/v21/wlpygwjKBV1pqhND-ZRU-WN3aQ.woff2",
   },
-  "runic": {
+  runic: {
     "400-italic": "https://fonts.gstatic.com/s/cardo/v21/wlpxgwjKBV1pqhv97Lcx3F5O.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cardo/v21/wlp_gwjKBV1pqhvM3IEp2A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cardo/v21/wlpygwjKBV1pqhND-ZQi-WN3aQ.woff2",
@@ -48,7 +48,15 @@ const FACES = {
 
 export type CardoWeight = "400" | "700";
 export type CardoStyle = "italic" | "normal";
-export type CardoSubset = "gothic" | "greek" | "greek-ext" | "hebrew" | "latin" | "latin-ext" | "old-italic" | "runic";
+export type CardoSubset =
+  | "gothic"
+  | "greek"
+  | "greek-ext"
+  | "hebrew"
+  | "latin"
+  | "latin-ext"
+  | "old-italic"
+  | "runic";
 export type CardoOptions = GoogleFontOptions<CardoWeight, CardoStyle, CardoSubset>;
 
 /**

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Scope One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/scopeone/v15/WBLnrEXKYFlGHrOKmGDFXEXN.woff2",
   },
   "latin-ext": {

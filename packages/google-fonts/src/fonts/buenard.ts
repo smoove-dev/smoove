@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Buenard";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/buenard/v22/OD5DuM6Cyma8FnnsDzD3qQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/buenard/v22/OD5DuM6Cyma8FnnsDzD3qQ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/buenard/v22/OD5DuM6Cyma8FnnsDzD3qQ.woff2",

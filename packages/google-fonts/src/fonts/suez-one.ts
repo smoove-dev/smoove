@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Suez One";
 
 const FACES = {
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/suezone/v15/taiJGmd_EZ6rqscQgOFMmouQ-A.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/suezone/v15/taiJGmd_EZ6rqscQgOFOmos.woff2",
   },
   "latin-ext": {

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Warnes";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/warnes/v29/pONn1hc0GsW6sW5-oSq3.woff2",
   },
   "latin-ext": {

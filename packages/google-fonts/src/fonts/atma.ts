@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Atma";
 
 const FACES = {
-  "bengali": {
+  bengali: {
     "300-normal": "https://fonts.gstatic.com/s/atma/v19/uK_z4rqWc-Eoo8JzGiI3P8ed.woff2",
     "400-normal": "https://fonts.gstatic.com/s/atma/v19/uK_84rqWc-Eoq3tRDw8W.woff2",
     "500-normal": "https://fonts.gstatic.com/s/atma/v19/uK_z4rqWc-Eoo5pyGiI3P8ed.woff2",
     "600-normal": "https://fonts.gstatic.com/s/atma/v19/uK_z4rqWc-Eoo7Z1GiI3P8ed.woff2",
     "700-normal": "https://fonts.gstatic.com/s/atma/v19/uK_z4rqWc-Eoo9J0GiI3P8ed.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/atma/v19/uK_z4rqWc-Eoo8JzGjA3Pw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/atma/v19/uK_84rqWc-Eoq2lRDw.woff2",
     "500-normal": "https://fonts.gstatic.com/s/atma/v19/uK_z4rqWc-Eoo5pyGjA3Pw.woff2",

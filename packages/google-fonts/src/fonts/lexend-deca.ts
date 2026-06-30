@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lexend Deca";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/lexenddeca/v25/K2F1fZFYk-dHSE0UPPuwQ5qnJy8.woff2",
     "200-normal": "https://fonts.gstatic.com/s/lexenddeca/v25/K2F1fZFYk-dHSE0UPPuwQ5qnJy8.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lexenddeca/v25/K2F1fZFYk-dHSE0UPPuwQ5qnJy8.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/lexenddeca/v25/K2F1fZFYk-dHSE0UPPuwQ5qpJy_KZA.woff2",
     "900-normal": "https://fonts.gstatic.com/s/lexenddeca/v25/K2F1fZFYk-dHSE0UPPuwQ5qpJy_KZA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/lexenddeca/v25/K2F1fZFYk-dHSE0UPPuwQ5qoJy_KZA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/lexenddeca/v25/K2F1fZFYk-dHSE0UPPuwQ5qoJy_KZA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lexenddeca/v25/K2F1fZFYk-dHSE0UPPuwQ5qoJy_KZA.woff2",
@@ -39,16 +39,33 @@ const FACES = {
   },
 } as const;
 
-export type LexendDecaWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type LexendDecaWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type LexendDecaStyle = "normal";
 export type LexendDecaSubset = "latin" | "latin-ext" | "vietnamese";
-export type LexendDecaOptions = GoogleFontOptions<LexendDecaWeight, LexendDecaStyle, LexendDecaSubset>;
+export type LexendDecaOptions = GoogleFontOptions<
+  LexendDecaWeight,
+  LexendDecaStyle,
+  LexendDecaSubset
+>;
 
 /**
  * Lexend Deca — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LexendDeca extends GoogleFont<LexendDecaWeight, LexendDecaStyle, LexendDecaSubset> {
+export default class LexendDeca extends GoogleFont<
+  LexendDecaWeight,
+  LexendDecaStyle,
+  LexendDecaSubset
+> {
   constructor(options?: LexendDecaOptions) {
     super(FAMILY, FACES, options);
   }

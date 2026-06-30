@@ -4,30 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Edu AU VIC WA NT Dots";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VC6-o.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VC6-o.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VC6-o.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VC6-o.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VC6-o.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VC6-o.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VC6-o.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VC6-o.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VBa-oAFU.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VBa-oAFU.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VBa-oAFU.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VBa-oAFU.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VBa-oAFU.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VBa-oAFU.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VBa-oAFU.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/eduauvicwantdots/v4/S6ujw5FFVDKI3kwwDUbsPHCpzZNhzrA3or3VBa-oAFU.woff2",
   },
 } as const;
 
 export type EduAUVICWANTDotsWeight = "400" | "500" | "600" | "700";
 export type EduAUVICWANTDotsStyle = "normal";
 export type EduAUVICWANTDotsSubset = "latin" | "latin-ext";
-export type EduAUVICWANTDotsOptions = GoogleFontOptions<EduAUVICWANTDotsWeight, EduAUVICWANTDotsStyle, EduAUVICWANTDotsSubset>;
+export type EduAUVICWANTDotsOptions = GoogleFontOptions<
+  EduAUVICWANTDotsWeight,
+  EduAUVICWANTDotsStyle,
+  EduAUVICWANTDotsSubset
+>;
 
 /**
  * Edu AU VIC WA NT Dots — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EduAUVICWANTDots extends GoogleFont<EduAUVICWANTDotsWeight, EduAUVICWANTDotsStyle, EduAUVICWANTDotsSubset> {
+export default class EduAUVICWANTDots extends GoogleFont<
+  EduAUVICWANTDotsWeight,
+  EduAUVICWANTDotsStyle,
+  EduAUVICWANTDotsSubset
+> {
   constructor(options?: EduAUVICWANTDotsOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Astloch";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/astloch/v27/TuGRUVJ8QI5GSeUjm9sbzQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/astloch/v27/TuGUUVJ8QI5GSeUjk2A-2MRFAg.woff2",
   },

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Vampiro One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/vampiroone/v19/gokqH6DoDl5yXvJytFsdLnqguPk.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type VampiroOneWeight = "400";
 export type VampiroOneStyle = "normal";
 export type VampiroOneSubset = "latin" | "latin-ext";
-export type VampiroOneOptions = GoogleFontOptions<VampiroOneWeight, VampiroOneStyle, VampiroOneSubset>;
+export type VampiroOneOptions = GoogleFontOptions<
+  VampiroOneWeight,
+  VampiroOneStyle,
+  VampiroOneSubset
+>;
 
 /**
  * Vampiro One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class VampiroOne extends GoogleFont<VampiroOneWeight, VampiroOneStyle, VampiroOneSubset> {
+export default class VampiroOne extends GoogleFont<
+  VampiroOneWeight,
+  VampiroOneStyle,
+  VampiroOneSubset
+> {
   constructor(options?: VampiroOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,39 +4,62 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zen Kaku Gothic New";
 
 const FACES = {
-  "cyrillic": {
-    "300-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqpdKWWfYTVlM.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMYW2drQpDw0GjzrVNFf_valaDBcznOojhoTFz5.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqs9LWWfYTVlM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqodNWWfYTVlM.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqr9PWWfYTVlM.woff2",
+  cyrillic: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqpdKWWfYTVlM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMYW2drQpDw0GjzrVNFf_valaDBcznOojhoTFz5.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqs9LWWfYTVlM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqodNWWfYTVlM.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqr9PWWfYTVlM.woff2",
   },
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqpdKWWPYTQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMYW2drQpDw0GjzrVNFf_valaDBcznOojxoTA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqs9LWWPYTQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqodNWWPYTQ.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqr9PWWPYTQ.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqpdKWWPYTQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMYW2drQpDw0GjzrVNFf_valaDBcznOojxoTA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqs9LWWPYTQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqodNWWPYTQ.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqr9PWWPYTQ.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqpdKWW3YTVlM.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMYW2drQpDw0GjzrVNFf_valaDBcznOojJoTFz5.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqs9LWW3YTVlM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqodNWW3YTVlM.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqr9PWW3YTVlM.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqpdKWW3YTVlM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMYW2drQpDw0GjzrVNFf_valaDBcznOojJoTFz5.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqs9LWW3YTVlM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqodNWW3YTVlM.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/zenkakugothicnew/v18/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqr9PWW3YTVlM.woff2",
   },
 } as const;
 
 export type ZenKakuGothicNewWeight = "300" | "400" | "500" | "700" | "900";
 export type ZenKakuGothicNewStyle = "normal";
 export type ZenKakuGothicNewSubset = "cyrillic" | "latin" | "latin-ext";
-export type ZenKakuGothicNewOptions = GoogleFontOptions<ZenKakuGothicNewWeight, ZenKakuGothicNewStyle, ZenKakuGothicNewSubset>;
+export type ZenKakuGothicNewOptions = GoogleFontOptions<
+  ZenKakuGothicNewWeight,
+  ZenKakuGothicNewStyle,
+  ZenKakuGothicNewSubset
+>;
 
 /**
  * Zen Kaku Gothic New — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZenKakuGothicNew extends GoogleFont<ZenKakuGothicNewWeight, ZenKakuGothicNewStyle, ZenKakuGothicNewSubset> {
+export default class ZenKakuGothicNew extends GoogleFont<
+  ZenKakuGothicNewWeight,
+  ZenKakuGothicNewStyle,
+  ZenKakuGothicNewSubset
+> {
   constructor(options?: ZenKakuGothicNewOptions) {
     super(FAMILY, FACES, options);
   }

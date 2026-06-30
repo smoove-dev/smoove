@@ -4,30 +4,41 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Oranienbaum";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/oranienbaum/v16/OZpHg_txtzZKMuXLIVrx-0zk5E3Hdg.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/oranienbaum/v16/OZpHg_txtzZKMuXLIVrx-0zk5E3Hdg.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/oranienbaum/v16/OZpHg_txtzZKMuXLIVrx-0zt5E3Hdg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/oranienbaum/v16/OZpHg_txtzZKMuXLIVrx-0zt5E3Hdg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/oranienbaum/v16/OZpHg_txtzZKMuXLIVrx-0zg5E0.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/oranienbaum/v16/OZpHg_txtzZKMuXLIVrx-0zu5E3Hdg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/oranienbaum/v16/OZpHg_txtzZKMuXLIVrx-0zu5E3Hdg.woff2",
   },
 } as const;
 
 export type OranienbaumWeight = "400";
 export type OranienbaumStyle = "normal";
 export type OranienbaumSubset = "cyrillic" | "cyrillic-ext" | "latin" | "latin-ext";
-export type OranienbaumOptions = GoogleFontOptions<OranienbaumWeight, OranienbaumStyle, OranienbaumSubset>;
+export type OranienbaumOptions = GoogleFontOptions<
+  OranienbaumWeight,
+  OranienbaumStyle,
+  OranienbaumSubset
+>;
 
 /**
  * Oranienbaum — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Oranienbaum extends GoogleFont<OranienbaumWeight, OranienbaumStyle, OranienbaumSubset> {
+export default class Oranienbaum extends GoogleFont<
+  OranienbaumWeight,
+  OranienbaumStyle,
+  OranienbaumSubset
+> {
   constructor(options?: OranienbaumOptions) {
     super(FAMILY, FACES, options);
   }

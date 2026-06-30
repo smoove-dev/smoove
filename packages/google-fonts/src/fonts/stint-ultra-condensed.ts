@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Stint Ultra Condensed";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/stintultracondensed/v25/-W_gXIrsVjjeyEnPC45qD2NoFPtBE0xCh2AOrR8P.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/stintultracondensed/v25/-W_gXIrsVjjeyEnPC45qD2NoFPtBE0xCh2AOrR8P.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/stintultracondensed/v25/-W_gXIrsVjjeyEnPC45qD2NoFPtBE0xCh2AOox8P6cM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/stintultracondensed/v25/-W_gXIrsVjjeyEnPC45qD2NoFPtBE0xCh2AOox8P6cM.woff2",
   },
 } as const;
 
 export type StintUltraCondensedWeight = "400";
 export type StintUltraCondensedStyle = "normal";
 export type StintUltraCondensedSubset = "latin" | "latin-ext";
-export type StintUltraCondensedOptions = GoogleFontOptions<StintUltraCondensedWeight, StintUltraCondensedStyle, StintUltraCondensedSubset>;
+export type StintUltraCondensedOptions = GoogleFontOptions<
+  StintUltraCondensedWeight,
+  StintUltraCondensedStyle,
+  StintUltraCondensedSubset
+>;
 
 /**
  * Stint Ultra Condensed — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class StintUltraCondensed extends GoogleFont<StintUltraCondensedWeight, StintUltraCondensedStyle, StintUltraCondensedSubset> {
+export default class StintUltraCondensed extends GoogleFont<
+  StintUltraCondensedWeight,
+  StintUltraCondensedStyle,
+  StintUltraCondensedSubset
+> {
   constructor(options?: StintUltraCondensedOptions) {
     super(FAMILY, FACES, options);
   }

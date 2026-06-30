@@ -11,7 +11,10 @@ import { useScrubSurface } from "./use-scrub-surface.js";
 export function Scrubber({
   showRuler = true,
   className,
-}: { showRuler?: boolean; className?: string }) {
+}: {
+  showRuler?: boolean;
+  className?: string;
+}) {
   const store = useStudio();
   const { frame, total, fps, durSec } = usePlayback();
   const region = useSignalValue(store.region);

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Schoolbell";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/schoolbell/v18/92zQtBZWOrcgoe-fgnJIZxUa6w.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type SchoolbellWeight = "400";
 export type SchoolbellStyle = "normal";
 export type SchoolbellSubset = "latin";
-export type SchoolbellOptions = GoogleFontOptions<SchoolbellWeight, SchoolbellStyle, SchoolbellSubset>;
+export type SchoolbellOptions = GoogleFontOptions<
+  SchoolbellWeight,
+  SchoolbellStyle,
+  SchoolbellSubset
+>;
 
 /**
  * Schoolbell — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Schoolbell extends GoogleFont<SchoolbellWeight, SchoolbellStyle, SchoolbellSubset> {
+export default class Schoolbell extends GoogleFont<
+  SchoolbellWeight,
+  SchoolbellStyle,
+  SchoolbellSubset
+> {
   constructor(options?: SchoolbellOptions) {
     super(FAMILY, FACES, options);
   }

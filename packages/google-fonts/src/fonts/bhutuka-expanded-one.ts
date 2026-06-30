@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "BhuTuka Expanded One";
 
 const FACES = {
-  "gurmukhi": {
-    "400-normal": "https://fonts.gstatic.com/s/bhutukaexpandedone/v9/SLXXc0jZ4WUJcClHTtv0t7IaDRsBsWRiJByz-JkPRQ.woff2",
+  gurmukhi: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bhutukaexpandedone/v9/SLXXc0jZ4WUJcClHTtv0t7IaDRsBsWRiJByz-JkPRQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/bhutukaexpandedone/v9/SLXXc0jZ4WUJcClHTtv0t7IaDRsBsWRiJByQ-Jk.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bhutukaexpandedone/v9/SLXXc0jZ4WUJcClHTtv0t7IaDRsBsWRiJByQ-Jk.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/bhutukaexpandedone/v9/SLXXc0jZ4WUJcClHTtv0t7IaDRsBsWRiJBye-JkPRQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bhutukaexpandedone/v9/SLXXc0jZ4WUJcClHTtv0t7IaDRsBsWRiJBye-JkPRQ.woff2",
   },
 } as const;
 
 export type BhuTukaExpandedOneWeight = "400";
 export type BhuTukaExpandedOneStyle = "normal";
 export type BhuTukaExpandedOneSubset = "gurmukhi" | "latin" | "latin-ext";
-export type BhuTukaExpandedOneOptions = GoogleFontOptions<BhuTukaExpandedOneWeight, BhuTukaExpandedOneStyle, BhuTukaExpandedOneSubset>;
+export type BhuTukaExpandedOneOptions = GoogleFontOptions<
+  BhuTukaExpandedOneWeight,
+  BhuTukaExpandedOneStyle,
+  BhuTukaExpandedOneSubset
+>;
 
 /**
  * BhuTuka Expanded One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BhuTukaExpandedOne extends GoogleFont<BhuTukaExpandedOneWeight, BhuTukaExpandedOneStyle, BhuTukaExpandedOneSubset> {
+export default class BhuTukaExpandedOne extends GoogleFont<
+  BhuTukaExpandedOneWeight,
+  BhuTukaExpandedOneStyle,
+  BhuTukaExpandedOneSubset
+> {
   constructor(options?: BhuTukaExpandedOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Irish Grover";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/irishgrover/v23/buExpoi6YtLz2QW7LA4flVgv__RP.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type IrishGroverWeight = "400";
 export type IrishGroverStyle = "normal";
 export type IrishGroverSubset = "latin";
-export type IrishGroverOptions = GoogleFontOptions<IrishGroverWeight, IrishGroverStyle, IrishGroverSubset>;
+export type IrishGroverOptions = GoogleFontOptions<
+  IrishGroverWeight,
+  IrishGroverStyle,
+  IrishGroverSubset
+>;
 
 /**
  * Irish Grover — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IrishGrover extends GoogleFont<IrishGroverWeight, IrishGroverStyle, IrishGroverSubset> {
+export default class IrishGrover extends GoogleFont<
+  IrishGroverWeight,
+  IrishGroverStyle,
+  IrishGroverSubset
+> {
   constructor(options?: IrishGroverOptions) {
     super(FAMILY, FACES, options);
   }

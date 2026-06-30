@@ -4,24 +4,36 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite FR Moderne";
 
 const FACES = {
-  "fallback": {
-    "100-normal": "https://fonts.gstatic.com/s/playwritefrmoderne/v11/3y9-6awucz3w5m4FFTzKolJRXhUk_u1yWs-o.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playwritefrmoderne/v11/3y9-6awucz3w5m4FFTzKolJRXhUk_u1yWs-o.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playwritefrmoderne/v11/3y9-6awucz3w5m4FFTzKolJRXhUk_u1yWs-o.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playwritefrmoderne/v11/3y9-6awucz3w5m4FFTzKolJRXhUk_u1yWs-o.woff2",
+  fallback: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/playwritefrmoderne/v11/3y9-6awucz3w5m4FFTzKolJRXhUk_u1yWs-o.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playwritefrmoderne/v11/3y9-6awucz3w5m4FFTzKolJRXhUk_u1yWs-o.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playwritefrmoderne/v11/3y9-6awucz3w5m4FFTzKolJRXhUk_u1yWs-o.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritefrmoderne/v11/3y9-6awucz3w5m4FFTzKolJRXhUk_u1yWs-o.woff2",
   },
 } as const;
 
 export type PlaywriteFRModerneWeight = "100" | "200" | "300" | "400";
 export type PlaywriteFRModerneStyle = "normal";
 export type PlaywriteFRModerneSubset = "fallback";
-export type PlaywriteFRModerneOptions = GoogleFontOptions<PlaywriteFRModerneWeight, PlaywriteFRModerneStyle, PlaywriteFRModerneSubset>;
+export type PlaywriteFRModerneOptions = GoogleFontOptions<
+  PlaywriteFRModerneWeight,
+  PlaywriteFRModerneStyle,
+  PlaywriteFRModerneSubset
+>;
 
 /**
  * Playwrite FR Moderne — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteFRModerne extends GoogleFont<PlaywriteFRModerneWeight, PlaywriteFRModerneStyle, PlaywriteFRModerneSubset> {
+export default class PlaywriteFRModerne extends GoogleFont<
+  PlaywriteFRModerneWeight,
+  PlaywriteFRModerneStyle,
+  PlaywriteFRModerneSubset
+> {
   constructor(options?: PlaywriteFRModerneOptions) {
     super(FAMILY, FACES, options);
   }

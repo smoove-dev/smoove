@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Diphylleia";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/diphylleia/v2/DtVmJxCtRKMixK4_HXsIilss6w.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type DiphylleiaWeight = "400";
 export type DiphylleiaStyle = "normal";
 export type DiphylleiaSubset = "latin" | "latin-ext";
-export type DiphylleiaOptions = GoogleFontOptions<DiphylleiaWeight, DiphylleiaStyle, DiphylleiaSubset>;
+export type DiphylleiaOptions = GoogleFontOptions<
+  DiphylleiaWeight,
+  DiphylleiaStyle,
+  DiphylleiaSubset
+>;
 
 /**
  * Diphylleia — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Diphylleia extends GoogleFont<DiphylleiaWeight, DiphylleiaStyle, DiphylleiaSubset> {
+export default class Diphylleia extends GoogleFont<
+  DiphylleiaWeight,
+  DiphylleiaStyle,
+  DiphylleiaSubset
+> {
   constructor(options?: DiphylleiaOptions) {
     super(FAMILY, FACES, options);
   }

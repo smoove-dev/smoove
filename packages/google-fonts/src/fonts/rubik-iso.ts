@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Iso";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/rubikiso/v2/x3dickHUfr-S4VAI4sAxf_oDjy8.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/rubikiso/v2/x3dickHUfr-S4VAI4sAxdvoDjy8.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/rubikiso/v2/x3dickHUfr-S4VAI4sAxefoDjy8.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rubikiso/v2/x3dickHUfr-S4VAI4sAxe_oD.woff2",
   },
   "latin-ext": {

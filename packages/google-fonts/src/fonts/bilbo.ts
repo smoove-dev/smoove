@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bilbo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bilbo/v21/o-0EIpgpwWwZ220mroU.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/bilbo/v21/o-0EIpgpwWwZ220oroVD4w.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/bilbo/v21/o-0EIpgpwWwZ220proVD4w.woff2",
   },
 } as const;

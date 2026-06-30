@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Average Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/averagesans/v17/1Ptpg8fLXP2dlAXR-HlJJNJ_AtCb.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/averagesans/v17/1Ptpg8fLXP2dlAXR-HlJJNJ_DNCb_Vo.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/averagesans/v17/1Ptpg8fLXP2dlAXR-HlJJNJ_DNCb_Vo.woff2",
   },
 } as const;
 
 export type AverageSansWeight = "400";
 export type AverageSansStyle = "normal";
 export type AverageSansSubset = "latin" | "latin-ext";
-export type AverageSansOptions = GoogleFontOptions<AverageSansWeight, AverageSansStyle, AverageSansSubset>;
+export type AverageSansOptions = GoogleFontOptions<
+  AverageSansWeight,
+  AverageSansStyle,
+  AverageSansSubset
+>;
 
 /**
  * Average Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AverageSans extends GoogleFont<AverageSansWeight, AverageSansStyle, AverageSansSubset> {
+export default class AverageSans extends GoogleFont<
+  AverageSansWeight,
+  AverageSansStyle,
+  AverageSansSubset
+> {
   constructor(options?: AverageSansOptions) {
     super(FAMILY, FACES, options);
   }

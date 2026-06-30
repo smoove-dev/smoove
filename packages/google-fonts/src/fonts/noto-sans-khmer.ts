@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Khmer";
 
 const FACES = {
-  "khmer": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
+  khmer: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1IFeh7j.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1kFeg.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanskhmer/v29/ijwCs5roRME5LLRxjsRb-gssOenAyendxrgV2c-Zw-9vR1cFeh7j.woff2",
   },
 } as const;
 
-export type NotoSansKhmerWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSansKhmerWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSansKhmerStyle = "normal";
 export type NotoSansKhmerSubset = "khmer" | "latin" | "latin-ext";
-export type NotoSansKhmerOptions = GoogleFontOptions<NotoSansKhmerWeight, NotoSansKhmerStyle, NotoSansKhmerSubset>;
+export type NotoSansKhmerOptions = GoogleFontOptions<
+  NotoSansKhmerWeight,
+  NotoSansKhmerStyle,
+  NotoSansKhmerSubset
+>;
 
 /**
  * Noto Sans Khmer — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansKhmer extends GoogleFont<NotoSansKhmerWeight, NotoSansKhmerStyle, NotoSansKhmerSubset> {
+export default class NotoSansKhmer extends GoogleFont<
+  NotoSansKhmerWeight,
+  NotoSansKhmerStyle,
+  NotoSansKhmerSubset
+> {
   constructor(options?: NotoSansKhmerOptions) {
     super(FAMILY, FACES, options);
   }

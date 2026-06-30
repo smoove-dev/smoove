@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lusitana";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lusitana/v14/CSR84z9ShvucWzsMKyhdTOI.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lusitana/v14/CSR74z9ShvucWzsMKyDmafctaNY.woff2",
   },

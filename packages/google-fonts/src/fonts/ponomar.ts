@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ponomar";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/ponomar/v5/or3iQ6zp3fKD2wImXJfXA4g8.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/ponomar/v5/or3iQ6zp3fKD2wImXJ7XA4g8.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ponomar/v5/or3iQ6zp3fKD2wImXJPXAw.woff2",
   },
 } as const;

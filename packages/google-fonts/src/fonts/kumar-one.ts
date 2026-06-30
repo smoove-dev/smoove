@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kumar One";
 
 const FACES = {
-  "gujarati": {
+  gujarati: {
     "400-normal": "https://fonts.gstatic.com/s/kumarone/v25/bMr1mS-P958wYi6YaGe2KOSXY3o.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kumarone/v25/bMr1mS-P958wYi6YaGe2M-SX.woff2",
   },
   "latin-ext": {

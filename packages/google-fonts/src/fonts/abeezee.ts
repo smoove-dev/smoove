@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "ABeeZee";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/abeezee/v23/esDT31xSG-6AGleN2tCUkp8D.woff2",
     "400-normal": "https://fonts.gstatic.com/s/abeezee/v23/esDR31xSG-6AGleN2tWkkA.woff2",
   },

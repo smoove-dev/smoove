@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Whisper";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/whisper/v7/q5uHsoqtKftx74K9qi5IBg.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/whisper/v7/q5uHsoqtKftx74K9qiBIBixd.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/whisper/v7/q5uHsoqtKftx74K9qiFIBixd.woff2",
   },
 } as const;

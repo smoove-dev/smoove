@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Maven Pro";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mavenpro/v40/7Au9p_AqnyWWAxW2Wk3GzWQI.woff2",
     "500-normal": "https://fonts.gstatic.com/s/mavenpro/v40/7Au9p_AqnyWWAxW2Wk3GzWQI.woff2",
     "600-normal": "https://fonts.gstatic.com/s/mavenpro/v40/7Au9p_AqnyWWAxW2Wk3GzWQI.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/mavenpro/v40/7Au9p_AqnyWWAxW2Wk3Gw2QIAFg.woff2",
     "900-normal": "https://fonts.gstatic.com/s/mavenpro/v40/7Au9p_AqnyWWAxW2Wk3Gw2QIAFg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/mavenpro/v40/7Au9p_AqnyWWAxW2Wk3GwmQIAFg.woff2",
     "500-normal": "https://fonts.gstatic.com/s/mavenpro/v40/7Au9p_AqnyWWAxW2Wk3GwmQIAFg.woff2",
     "600-normal": "https://fonts.gstatic.com/s/mavenpro/v40/7Au9p_AqnyWWAxW2Wk3GwmQIAFg.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sarabun";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/sarabun/v17/DtVnJx26TKEr37c9aBBx_kwLzg0.woff2",
     "100-normal": "https://fonts.gstatic.com/s/sarabun/v17/DtVhJx26TKEr37c9YHZ5nXwJ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/sarabun/v17/DtVkJx26TKEr37c9aBBxUl0c6SjT.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/sarabun/v17/DtVkJx26TKEr37c9aBBxOloc5yjTnwE.woff2",
     "800-normal": "https://fonts.gstatic.com/s/sarabun/v17/DtVmJx26TKEr37c9YLJvilUs6zDX.woff2",
   },
-  "thai": {
+  thai: {
     "100-italic": "https://fonts.gstatic.com/s/sarabun/v17/DtVnJx26TKEr37c9aBBx_kwfzg3upg.woff2",
     "100-normal": "https://fonts.gstatic.com/s/sarabun/v17/DtVhJx26TKEr37c9YHZ5iXwJ1gk.woff2",
     "200-italic": "https://fonts.gstatic.com/s/sarabun/v17/DtVkJx26TKEr37c9aBBxUl0c_SjTnwE.woff2",
@@ -58,7 +58,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/sarabun/v17/DtVkJx26TKEr37c9aBBxOloc_SjTnwE.woff2",
     "800-normal": "https://fonts.gstatic.com/s/sarabun/v17/DtVmJx26TKEr37c9YLJvik8s6zDX.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/sarabun/v17/DtVnJx26TKEr37c9aBBx_kwEzg3upg.woff2",
     "100-normal": "https://fonts.gstatic.com/s/sarabun/v17/DtVhJx26TKEr37c9YHZ5knwJ1gk.woff2",
     "200-italic": "https://fonts.gstatic.com/s/sarabun/v17/DtVkJx26TKEr37c9aBBxUl0c5ijTnwE.woff2",

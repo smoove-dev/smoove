@@ -4,29 +4,41 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zilla Slab";
 
 const FACES = {
-  "latin": {
-    "300-italic": "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CVHaZWXB3.woff2",
+  latin: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CVHaZWXB3.woff2",
     "300-normal": "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYpEY6HOpWw.woff2",
     "400-italic": "https://fonts.gstatic.com/s/zillaslab/v12/dFa4ZfeM_74wlPZtksIFaj8K_1SM.woff2",
     "400-normal": "https://fonts.gstatic.com/s/zillaslab/v12/dFa6ZfeM_74wlPZtksIFajo6_Q.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CDHeZWXB3.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CDHeZWXB3.woff2",
     "500-normal": "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYskZ6HOpWw.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CIHCZWXB3.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CIHCZWXB3.woff2",
     "600-normal": "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYuUe6HOpWw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CRHGZWXB3.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CRHGZWXB3.woff2",
     "700-normal": "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYoEf6HOpWw.woff2",
   },
   "latin-ext": {
-    "300-italic": "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CVHaZV3B3Taw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYpEY6H2pW2hz.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CVHaZV3B3Taw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYpEY6H2pW2hz.woff2",
     "400-italic": "https://fonts.gstatic.com/s/zillaslab/v12/dFa4ZfeM_74wlPZtksIFaj8K8VSMZlE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/zillaslab/v12/dFa6ZfeM_74wlPZtksIFajQ6_UyI.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CDHeZV3B3Taw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYskZ6H2pW2hz.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CIHCZV3B3Taw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYuUe6H2pW2hz.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CRHGZV3B3Taw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYoEf6H2pW2hz.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CDHeZV3B3Taw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYskZ6H2pW2hz.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CIHCZV3B3Taw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYuUe6H2pW2hz.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFanZfeM_74wlPZtksIFaj8CRHGZV3B3Taw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zillaslab/v12/dFa5ZfeM_74wlPZtksIFYoEf6H2pW2hz.woff2",
   },
 } as const;
 
@@ -39,7 +51,11 @@ export type ZillaSlabOptions = GoogleFontOptions<ZillaSlabWeight, ZillaSlabStyle
  * Zilla Slab — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZillaSlab extends GoogleFont<ZillaSlabWeight, ZillaSlabStyle, ZillaSlabSubset> {
+export default class ZillaSlab extends GoogleFont<
+  ZillaSlabWeight,
+  ZillaSlabStyle,
+  ZillaSlabSubset
+> {
   constructor(options?: ZillaSlabOptions) {
     super(FAMILY, FACES, options);
   }

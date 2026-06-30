@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Gemstones";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikgemstones/v1/zrf90HrL0-_8Xb4DFM2rUkWbOVr-iyPHmi0.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikgemstones/v1/zrf90HrL0-_8Xb4DFM2rUkWbOVr-iyPHmi0.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikgemstones/v1/zrf90HrL0-_8Xb4DFM2rUkWbOVr-giPHmi0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikgemstones/v1/zrf90HrL0-_8Xb4DFM2rUkWbOVr-giPHmi0.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikgemstones/v1/zrf90HrL0-_8Xb4DFM2rUkWbOVr-jSPHmi0.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikgemstones/v1/zrf90HrL0-_8Xb4DFM2rUkWbOVr-jSPHmi0.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikgemstones/v1/zrf90HrL0-_8Xb4DFM2rUkWbOVr-jyPH.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikgemstones/v1/zrf90HrL0-_8Xb4DFM2rUkWbOVr-jyPH.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikgemstones/v1/zrf90HrL0-_8Xb4DFM2rUkWbOVr-gSPHmi0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikgemstones/v1/zrf90HrL0-_8Xb4DFM2rUkWbOVr-gSPHmi0.woff2",
   },
 } as const;
 
 export type RubikGemstonesWeight = "400";
 export type RubikGemstonesStyle = "normal";
 export type RubikGemstonesSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikGemstonesOptions = GoogleFontOptions<RubikGemstonesWeight, RubikGemstonesStyle, RubikGemstonesSubset>;
+export type RubikGemstonesOptions = GoogleFontOptions<
+  RubikGemstonesWeight,
+  RubikGemstonesStyle,
+  RubikGemstonesSubset
+>;
 
 /**
  * Rubik Gemstones — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikGemstones extends GoogleFont<RubikGemstonesWeight, RubikGemstonesStyle, RubikGemstonesSubset> {
+export default class RubikGemstones extends GoogleFont<
+  RubikGemstonesWeight,
+  RubikGemstonesStyle,
+  RubikGemstonesSubset
+> {
   constructor(options?: RubikGemstonesOptions) {
     super(FAMILY, FACES, options);
   }

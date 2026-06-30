@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Puppies Play";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/puppiesplay/v11/wlp2gwHZEV99rG6M3NR9uB9fbwhT.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/puppiesplay/v11/wlp2gwHZEV99rG6M3NR9uB9fYQhTM_I.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/puppiesplay/v11/wlp2gwHZEV99rG6M3NR9uB9fYQhTM_I.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/puppiesplay/v11/wlp2gwHZEV99rG6M3NR9uB9fYAhTM_I.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/puppiesplay/v11/wlp2gwHZEV99rG6M3NR9uB9fYAhTM_I.woff2",
   },
 } as const;
 
 export type PuppiesPlayWeight = "400";
 export type PuppiesPlayStyle = "normal";
 export type PuppiesPlaySubset = "latin" | "latin-ext" | "vietnamese";
-export type PuppiesPlayOptions = GoogleFontOptions<PuppiesPlayWeight, PuppiesPlayStyle, PuppiesPlaySubset>;
+export type PuppiesPlayOptions = GoogleFontOptions<
+  PuppiesPlayWeight,
+  PuppiesPlayStyle,
+  PuppiesPlaySubset
+>;
 
 /**
  * Puppies Play — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PuppiesPlay extends GoogleFont<PuppiesPlayWeight, PuppiesPlayStyle, PuppiesPlaySubset> {
+export default class PuppiesPlay extends GoogleFont<
+  PuppiesPlayWeight,
+  PuppiesPlayStyle,
+  PuppiesPlaySubset
+> {
   constructor(options?: PuppiesPlayOptions) {
     super(FAMILY, FACES, options);
   }

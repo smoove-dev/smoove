@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alien Block";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/alienblock/v2/JIA3UVFjdXpFsgA7S8BAOyOlNTQ.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type AlienBlockWeight = "400";
 export type AlienBlockStyle = "normal";
 export type AlienBlockSubset = "latin" | "latin-ext";
-export type AlienBlockOptions = GoogleFontOptions<AlienBlockWeight, AlienBlockStyle, AlienBlockSubset>;
+export type AlienBlockOptions = GoogleFontOptions<
+  AlienBlockWeight,
+  AlienBlockStyle,
+  AlienBlockSubset
+>;
 
 /**
  * Alien Block — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AlienBlock extends GoogleFont<AlienBlockWeight, AlienBlockStyle, AlienBlockSubset> {
+export default class AlienBlock extends GoogleFont<
+  AlienBlockWeight,
+  AlienBlockStyle,
+  AlienBlockSubset
+> {
   constructor(options?: AlienBlockOptions) {
     super(FAMILY, FACES, options);
   }

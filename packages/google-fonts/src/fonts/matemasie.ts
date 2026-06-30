@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Matemasie";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/matemasie/v4/OD5BuMCN3ne3Gmr7dlLHq0C5.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type MatemasieOptions = GoogleFontOptions<MatemasieWeight, MatemasieStyle
  * Matemasie — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Matemasie extends GoogleFont<MatemasieWeight, MatemasieStyle, MatemasieSubset> {
+export default class Matemasie extends GoogleFont<
+  MatemasieWeight,
+  MatemasieStyle,
+  MatemasieSubset
+> {
   constructor(options?: MatemasieOptions) {
     super(FAMILY, FACES, options);
   }

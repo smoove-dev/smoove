@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rum Raisin";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rumraisin/v24/nwpRtKu3Ih8D5avB4h2uF3iCyg.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type RumRaisinOptions = GoogleFontOptions<RumRaisinWeight, RumRaisinStyle
  * Rum Raisin — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RumRaisin extends GoogleFont<RumRaisinWeight, RumRaisinStyle, RumRaisinSubset> {
+export default class RumRaisin extends GoogleFont<
+  RumRaisinWeight,
+  RumRaisinStyle,
+  RumRaisinSubset
+> {
   constructor(options?: RumRaisinOptions) {
     super(FAMILY, FACES, options);
   }

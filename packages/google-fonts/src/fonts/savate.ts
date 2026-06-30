@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Savate";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/savate/v5/QdVVSTgjKAqpnvJnNoLjmQQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/savate/v5/QdVXSTgjKAqpnvJnM7Lh.woff2",
     "300-italic": "https://fonts.gstatic.com/s/savate/v5/QdVVSTgjKAqpnvJnNoLjmQQ.woff2",

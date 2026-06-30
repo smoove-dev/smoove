@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Avestan";
 
 const FACES = {
-  "avestan": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansavestan/v22/bWti7ejKfBziStx7lIzKOLQZKhIJkxvuQgW7jg.woff2",
+  avestan: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansavestan/v22/bWti7ejKfBziStx7lIzKOLQZKhIJkxvuQgW7jg.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansavestan/v22/bWti7ejKfBziStx7lIzKOLQZKhIJkxu6QgU.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansavestan/v22/bWti7ejKfBziStx7lIzKOLQZKhIJkxu6QgU.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansavestan/v22/bWti7ejKfBziStx7lIzKOLQZKhIJkxu0QgW7jg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansavestan/v22/bWti7ejKfBziStx7lIzKOLQZKhIJkxu0QgW7jg.woff2",
   },
 } as const;
 
 export type NotoSansAvestanWeight = "400";
 export type NotoSansAvestanStyle = "normal";
 export type NotoSansAvestanSubset = "avestan" | "latin" | "latin-ext";
-export type NotoSansAvestanOptions = GoogleFontOptions<NotoSansAvestanWeight, NotoSansAvestanStyle, NotoSansAvestanSubset>;
+export type NotoSansAvestanOptions = GoogleFontOptions<
+  NotoSansAvestanWeight,
+  NotoSansAvestanStyle,
+  NotoSansAvestanSubset
+>;
 
 /**
  * Noto Sans Avestan — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansAvestan extends GoogleFont<NotoSansAvestanWeight, NotoSansAvestanStyle, NotoSansAvestanSubset> {
+export default class NotoSansAvestan extends GoogleFont<
+  NotoSansAvestanWeight,
+  NotoSansAvestanStyle,
+  NotoSansAvestanSubset
+> {
   constructor(options?: NotoSansAvestanOptions) {
     super(FAMILY, FACES, options);
   }

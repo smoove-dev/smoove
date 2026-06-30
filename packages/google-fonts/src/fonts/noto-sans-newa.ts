@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Newa";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnewa/v18/7r3fqXp6utEsO9pI4f8ok8sWg_n4ot8.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnewa/v18/7r3fqXp6utEsO9pI4f8ok8sWg_n4ot8.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnewa/v18/7r3fqXp6utEsO9pI4f8ok8sWg_n2ot8h5g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnewa/v18/7r3fqXp6utEsO9pI4f8ok8sWg_n2ot8h5g.woff2",
   },
-  "newa": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnewa/v18/7r3fqXp6utEsO9pI4f8ok8sWg_mSot8h5g.woff2",
+  newa: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnewa/v18/7r3fqXp6utEsO9pI4f8ok8sWg_mSot8h5g.woff2",
   },
 } as const;
 
 export type NotoSansNewaWeight = "400";
 export type NotoSansNewaStyle = "normal";
 export type NotoSansNewaSubset = "latin" | "latin-ext" | "newa";
-export type NotoSansNewaOptions = GoogleFontOptions<NotoSansNewaWeight, NotoSansNewaStyle, NotoSansNewaSubset>;
+export type NotoSansNewaOptions = GoogleFontOptions<
+  NotoSansNewaWeight,
+  NotoSansNewaStyle,
+  NotoSansNewaSubset
+>;
 
 /**
  * Noto Sans Newa — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansNewa extends GoogleFont<NotoSansNewaWeight, NotoSansNewaStyle, NotoSansNewaSubset> {
+export default class NotoSansNewa extends GoogleFont<
+  NotoSansNewaWeight,
+  NotoSansNewaStyle,
+  NotoSansNewaSubset
+> {
   constructor(options?: NotoSansNewaOptions) {
     super(FAMILY, FACES, options);
   }

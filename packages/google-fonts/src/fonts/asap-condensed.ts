@@ -4,72 +4,128 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Asap Condensed";
 
 const FACES = {
-  "latin": {
-    "200-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUIFFummIow.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9DSVlDims.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOVGummIow.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8nSllDims.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxifypY1o9NHyXh3WvSbGSggdOeJWE5krw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxidypY1o9NHyXh3WvSbGSggdOeMaEw.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUL1HummIow.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9_S1lDims.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUJFAummIow.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9TTFlDims.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUPVBummIow.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO83TVlDims.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOlCummIow.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8rTllDims.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUM1DummIow.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8PT1lDims.woff2",
+  latin: {
+    "200-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUIFFummIow.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9DSVlDims.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOVGummIow.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8nSllDims.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxifypY1o9NHyXh3WvSbGSggdOeJWE5krw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxidypY1o9NHyXh3WvSbGSggdOeMaEw.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUL1HummIow.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9_S1lDims.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUJFAummIow.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9TTFlDims.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUPVBummIow.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO83TVlDims.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOlCummIow.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8rTllDims.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUM1DummIow.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8PT1lDims.woff2",
   },
   "latin-ext": {
-    "200-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUIFFumeIo8pO.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9DSVlNimuQpw.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOVGumeIo8pO.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8nSllNimuQpw.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxifypY1o9NHyXh3WvSbGSggdOeJWEBkr1ap.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxidypY1o9NHyXh3WvSbGSggdOeCaEx8qw.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUL1HumeIo8pO.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9_S1lNimuQpw.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUJFAumeIo8pO.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9TTFlNimuQpw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUPVBumeIo8pO.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO83TVlNimuQpw.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOlCumeIo8pO.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8rTllNimuQpw.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUM1DumeIo8pO.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8PT1lNimuQpw.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUIFFumeIo8pO.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9DSVlNimuQpw.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOVGumeIo8pO.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8nSllNimuQpw.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxifypY1o9NHyXh3WvSbGSggdOeJWEBkr1ap.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxidypY1o9NHyXh3WvSbGSggdOeCaEx8qw.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUL1HumeIo8pO.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9_S1lNimuQpw.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUJFAumeIo8pO.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9TTFlNimuQpw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUPVBumeIo8pO.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO83TVlNimuQpw.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOlCumeIo8pO.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8rTllNimuQpw.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUM1DumeIo8pO.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8PT1lNimuQpw.woff2",
   },
-  "vietnamese": {
-    "200-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUIFFumaIo8pO.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9DSVlMimuQpw.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOVGumaIo8pO.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8nSllMimuQpw.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxifypY1o9NHyXh3WvSbGSggdOeJWEFkr1ap.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxidypY1o9NHyXh3WvSbGSggdOeDaEx8qw.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUL1HumaIo8pO.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9_S1lMimuQpw.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUJFAumaIo8pO.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9TTFlMimuQpw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUPVBumaIo8pO.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO83TVlMimuQpw.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOlCumaIo8pO.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8rTllMimuQpw.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUM1DumaIo8pO.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8PT1lMimuQpw.woff2",
+  vietnamese: {
+    "200-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUIFFumaIo8pO.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9DSVlMimuQpw.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOVGumaIo8pO.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8nSllMimuQpw.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxifypY1o9NHyXh3WvSbGSggdOeJWEFkr1ap.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxidypY1o9NHyXh3WvSbGSggdOeDaEx8qw.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUL1HumaIo8pO.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9_S1lMimuQpw.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUJFAumaIo8pO.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO9TTFlMimuQpw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUPVBumaIo8pO.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO83TVlMimuQpw.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUOlCumaIo8pO.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8rTllMimuQpw.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxiYypY1o9NHyXh3WvSbGSggdOeJUM1DumaIo8pO.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/asapcondensed/v18/pxieypY1o9NHyXh3WvSbGSggdO8PT1lMimuQpw.woff2",
   },
 } as const;
 
 export type AsapCondensedWeight = "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type AsapCondensedStyle = "italic" | "normal";
 export type AsapCondensedSubset = "latin" | "latin-ext" | "vietnamese";
-export type AsapCondensedOptions = GoogleFontOptions<AsapCondensedWeight, AsapCondensedStyle, AsapCondensedSubset>;
+export type AsapCondensedOptions = GoogleFontOptions<
+  AsapCondensedWeight,
+  AsapCondensedStyle,
+  AsapCondensedSubset
+>;
 
 /**
  * Asap Condensed — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AsapCondensed extends GoogleFont<AsapCondensedWeight, AsapCondensedStyle, AsapCondensedSubset> {
+export default class AsapCondensed extends GoogleFont<
+  AsapCondensedWeight,
+  AsapCondensedStyle,
+  AsapCondensedSubset
+> {
   constructor(options?: AsapCondensedOptions) {
     super(FAMILY, FACES, options);
   }

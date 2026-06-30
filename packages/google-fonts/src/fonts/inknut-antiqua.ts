@@ -4,45 +4,74 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Inknut Antiqua";
 
 const FACES = {
-  "devanagari": {
-    "300-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2vwoj_Zhs4YA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GSYax7VC4ot_qNB4nYpBdaKUUF4J3BRw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU33w4j_Zhs4YA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU3bxIj_Zhs4YA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2_xYj_Zhs4YA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2jxoj_Zhs4YA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2Hx4j_Zhs4YA.woff2",
+  devanagari: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2vwoj_Zhs4YA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GSYax7VC4ot_qNB4nYpBdaKUUF4J3BRw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU33w4j_Zhs4YA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU3bxIj_Zhs4YA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2_xYj_Zhs4YA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2jxoj_Zhs4YA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2Hx4j_Zhs4YA.woff2",
   },
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2vwoj-Zhs.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GSYax7VC4ot_qNB4nYpBdaKUUE4J0.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU33w4j-Zhs.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU3bxIj-Zhs.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2_xYj-Zhs.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2jxoj-Zhs.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2Hx4j-Zhs.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2vwoj-Zhs.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GSYax7VC4ot_qNB4nYpBdaKUUE4J0.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU33w4j-Zhs.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU3bxIj-Zhs.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2_xYj-Zhs.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2jxoj-Zhs.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2Hx4j-Zhs.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2vwojwZhs4YA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GSYax7VC4ot_qNB4nYpBdaKUUK4J3BRw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU33w4jwZhs4YA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU3bxIjwZhs4YA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2_xYjwZhs4YA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2jxojwZhs4YA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2Hx4jwZhs4YA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2vwojwZhs4YA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GSYax7VC4ot_qNB4nYpBdaKUUK4J3BRw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU33w4jwZhs4YA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU3bxIjwZhs4YA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2_xYjwZhs4YA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2jxojwZhs4YA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/inknutantiqua/v16/Y4GRYax7VC4ot_qNB4nYpBdaKU2Hx4jwZhs4YA.woff2",
   },
 } as const;
 
 export type InknutAntiquaWeight = "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type InknutAntiquaStyle = "normal";
 export type InknutAntiquaSubset = "devanagari" | "latin" | "latin-ext";
-export type InknutAntiquaOptions = GoogleFontOptions<InknutAntiquaWeight, InknutAntiquaStyle, InknutAntiquaSubset>;
+export type InknutAntiquaOptions = GoogleFontOptions<
+  InknutAntiquaWeight,
+  InknutAntiquaStyle,
+  InknutAntiquaSubset
+>;
 
 /**
  * Inknut Antiqua — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class InknutAntiqua extends GoogleFont<InknutAntiquaWeight, InknutAntiquaStyle, InknutAntiquaSubset> {
+export default class InknutAntiqua extends GoogleFont<
+  InknutAntiquaWeight,
+  InknutAntiquaStyle,
+  InknutAntiquaSubset
+> {
   constructor(options?: InknutAntiquaOptions) {
     super(FAMILY, FACES, options);
   }

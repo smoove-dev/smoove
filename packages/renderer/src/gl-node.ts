@@ -3,8 +3,9 @@
 // (this renderer is server-only, so that stub must never reach it). Vite/Node
 // still resolve "module" to the real Node builtin in the SSR/server runtime.
 // biome-ignore lint/style/useNodejsImportProtocol: bare "module" deliberately dodges a `node:module` client alias.
+
+import { type GlPlatform, transpileTo100, VERTEX_SHADER_100 } from "@smoove/transitions";
 import { createRequire } from "module";
-import { type GlPlatform, VERTEX_SHADER_100, transpileTo100 } from "@smoove/transitions";
 import { Canvas } from "skia-canvas";
 
 const require = createRequire(import.meta.url);

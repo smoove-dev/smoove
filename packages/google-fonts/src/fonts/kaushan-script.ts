@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kaushan Script";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/kaushanscript/v19/vm8vdRfvXFLG3OLnsO15WYS5DG74wNI.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/kaushanscript/v19/vm8vdRfvXFLG3OLnsO15WYS5DG74wNI.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/kaushanscript/v19/vm8vdRfvXFLG3OLnsO15WYS5DG72wNJHMw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kaushanscript/v19/vm8vdRfvXFLG3OLnsO15WYS5DG72wNJHMw.woff2",
   },
 } as const;
 
 export type KaushanScriptWeight = "400";
 export type KaushanScriptStyle = "normal";
 export type KaushanScriptSubset = "latin" | "latin-ext";
-export type KaushanScriptOptions = GoogleFontOptions<KaushanScriptWeight, KaushanScriptStyle, KaushanScriptSubset>;
+export type KaushanScriptOptions = GoogleFontOptions<
+  KaushanScriptWeight,
+  KaushanScriptStyle,
+  KaushanScriptSubset
+>;
 
 /**
  * Kaushan Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KaushanScript extends GoogleFont<KaushanScriptWeight, KaushanScriptStyle, KaushanScriptSubset> {
+export default class KaushanScript extends GoogleFont<
+  KaushanScriptWeight,
+  KaushanScriptStyle,
+  KaushanScriptSubset
+> {
   constructor(options?: KaushanScriptOptions) {
     super(FAMILY, FACES, options);
   }

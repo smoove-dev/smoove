@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Murecho";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqipIBixd.woff2",
     "200-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqipIBixd.woff2",
     "300-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqipIBixd.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqiNIBixd.woff2",
     "900-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqiNIBixd.woff2",
   },
-  "greek": {
+  greek: {
     "100-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqi1IBixd.woff2",
     "200-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqi1IBixd.woff2",
     "300-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqi1IBixd.woff2",
@@ -37,7 +37,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqi1IBixd.woff2",
     "900-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqi1IBixd.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqi5IBg.woff2",
     "200-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqi5IBg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/murecho/v17/q5uHsoq3NOBn_I-gqi5IBg.woff2",

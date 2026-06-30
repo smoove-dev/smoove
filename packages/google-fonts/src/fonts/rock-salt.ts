@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rock Salt";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rocksalt/v24/MwQ0bhv11fWD6QsAVOZrt0M6.woff2",
   },
 } as const;

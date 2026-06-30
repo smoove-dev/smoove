@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Quantico";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/quantico/v19/rax4HiSdp9cPL3KIF7xuFD96ng.woff2",
     "400-normal": "https://fonts.gstatic.com/s/quantico/v19/rax-HiSdp9cPL3KIF7xrJD0.woff2",
     "700-italic": "https://fonts.gstatic.com/s/quantico/v19/rax7HiSdp9cPL3KIF7xuHIRfi0349A.woff2",

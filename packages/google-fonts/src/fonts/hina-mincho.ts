@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hina Mincho";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/hinamincho/v16/2sDaZGBRhpXa2Jjz5w5LAFW_I7glZQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/hinamincho/v16/2sDaZGBRhpXa2Jjz5w5LAFW7I7g.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/hinamincho/v16/2sDaZGBRhpXa2Jjz5w5LAFW1I7glZQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/hinamincho/v16/2sDaZGBRhpXa2Jjz5w5LAFW0I7glZQ.woff2",
   },
 } as const;
@@ -21,13 +21,21 @@ const FACES = {
 export type HinaMinchoWeight = "400";
 export type HinaMinchoStyle = "normal";
 export type HinaMinchoSubset = "cyrillic" | "latin" | "latin-ext" | "vietnamese";
-export type HinaMinchoOptions = GoogleFontOptions<HinaMinchoWeight, HinaMinchoStyle, HinaMinchoSubset>;
+export type HinaMinchoOptions = GoogleFontOptions<
+  HinaMinchoWeight,
+  HinaMinchoStyle,
+  HinaMinchoSubset
+>;
 
 /**
  * Hina Mincho — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HinaMincho extends GoogleFont<HinaMinchoWeight, HinaMinchoStyle, HinaMinchoSubset> {
+export default class HinaMincho extends GoogleFont<
+  HinaMinchoWeight,
+  HinaMinchoStyle,
+  HinaMinchoSubset
+> {
   constructor(options?: HinaMinchoOptions) {
     super(FAMILY, FACES, options);
   }

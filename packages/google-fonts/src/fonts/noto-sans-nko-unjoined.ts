@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans NKo Unjoined";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuxpFw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuxpFw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuxpFw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuxpFw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuxpFw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuxpFw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuxpFw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuxpFw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuJpF5Mv.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuJpF5Mv.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuJpF5Mv.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuJpF5Mv.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuJpF5Mv.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuJpF5Mv.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuJpF5Mv.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFuJpF5Mv.woff2",
   },
-  "nko": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFodpF5Mv.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFodpF5Mv.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFodpF5Mv.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFodpF5Mv.woff2",
+  nko: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFodpF5Mv.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFodpF5Mv.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFodpF5Mv.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansnkounjoined/v4/MCoCzBjx1d3VUhJFK9MYlNCXJ6VvqwGPz3szFodpF5Mv.woff2",
   },
 } as const;
 
 export type NotoSansNKoUnjoinedWeight = "400" | "500" | "600" | "700";
 export type NotoSansNKoUnjoinedStyle = "normal";
 export type NotoSansNKoUnjoinedSubset = "latin" | "latin-ext" | "nko";
-export type NotoSansNKoUnjoinedOptions = GoogleFontOptions<NotoSansNKoUnjoinedWeight, NotoSansNKoUnjoinedStyle, NotoSansNKoUnjoinedSubset>;
+export type NotoSansNKoUnjoinedOptions = GoogleFontOptions<
+  NotoSansNKoUnjoinedWeight,
+  NotoSansNKoUnjoinedStyle,
+  NotoSansNKoUnjoinedSubset
+>;
 
 /**
  * Noto Sans NKo Unjoined — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansNKoUnjoined extends GoogleFont<NotoSansNKoUnjoinedWeight, NotoSansNKoUnjoinedStyle, NotoSansNKoUnjoinedSubset> {
+export default class NotoSansNKoUnjoined extends GoogleFont<
+  NotoSansNKoUnjoinedWeight,
+  NotoSansNKoUnjoinedStyle,
+  NotoSansNKoUnjoinedSubset
+> {
   constructor(options?: NotoSansNKoUnjoinedOptions) {
     super(FAMILY, FACES, options);
   }

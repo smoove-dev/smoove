@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Paytone One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/paytoneone/v25/0nksC9P7MfYHj2oFtYm2ChTtgPs.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/paytoneone/v25/0nksC9P7MfYHj2oFtYm2ChTjgPvNiA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/paytoneone/v25/0nksC9P7MfYHj2oFtYm2ChTigPvNiA.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type PaytoneOneWeight = "400";
 export type PaytoneOneStyle = "normal";
 export type PaytoneOneSubset = "latin" | "latin-ext" | "vietnamese";
-export type PaytoneOneOptions = GoogleFontOptions<PaytoneOneWeight, PaytoneOneStyle, PaytoneOneSubset>;
+export type PaytoneOneOptions = GoogleFontOptions<
+  PaytoneOneWeight,
+  PaytoneOneStyle,
+  PaytoneOneSubset
+>;
 
 /**
  * Paytone One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PaytoneOne extends GoogleFont<PaytoneOneWeight, PaytoneOneStyle, PaytoneOneSubset> {
+export default class PaytoneOne extends GoogleFont<
+  PaytoneOneWeight,
+  PaytoneOneStyle,
+  PaytoneOneSubset
+> {
   constructor(options?: PaytoneOneOptions) {
     super(FAMILY, FACES, options);
   }

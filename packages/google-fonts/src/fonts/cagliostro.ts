@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cagliostro";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/cagliostro/v22/ZgNWjP5HM73BV5amnX-TvGLOMg.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type CagliostroWeight = "400";
 export type CagliostroStyle = "normal";
 export type CagliostroSubset = "latin";
-export type CagliostroOptions = GoogleFontOptions<CagliostroWeight, CagliostroStyle, CagliostroSubset>;
+export type CagliostroOptions = GoogleFontOptions<
+  CagliostroWeight,
+  CagliostroStyle,
+  CagliostroSubset
+>;
 
 /**
  * Cagliostro — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Cagliostro extends GoogleFont<CagliostroWeight, CagliostroStyle, CagliostroSubset> {
+export default class Cagliostro extends GoogleFont<
+  CagliostroWeight,
+  CagliostroStyle,
+  CagliostroSubset
+> {
   constructor(options?: CagliostroOptions) {
     super(FAMILY, FACES, options);
   }

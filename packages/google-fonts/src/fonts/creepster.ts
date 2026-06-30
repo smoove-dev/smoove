@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Creepster";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/creepster/v13/AlZy_zVUqJz4yMrniH4Rcn35.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type CreepsterOptions = GoogleFontOptions<CreepsterWeight, CreepsterStyle
  * Creepster — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Creepster extends GoogleFont<CreepsterWeight, CreepsterStyle, CreepsterSubset> {
+export default class Creepster extends GoogleFont<
+  CreepsterWeight,
+  CreepsterStyle,
+  CreepsterSubset
+> {
   constructor(options?: CreepsterOptions) {
     super(FAMILY, FACES, options);
   }

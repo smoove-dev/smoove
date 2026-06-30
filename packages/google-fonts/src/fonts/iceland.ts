@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Iceland";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/iceland/v22/rax9HiuFsdMNOnWPaKtMAQ.woff2",
   },
 } as const;

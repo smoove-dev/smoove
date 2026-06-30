@@ -5,53 +5,89 @@ const FAMILY = "IBM Plex Sans Devanagari";
 
 const FACES = {
   "cyrillic-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXB3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HMXj6W8nACA.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HnWngcez9MV0.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H-Wrgcez9MV0.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXH3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_PX0j1Q80.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HoWvgcez9MV0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HjWzgcez9MV0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H6W3gcez9MV0.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXB3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HMXj6W8nACA.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HnWngcez9MV0.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H-Wrgcez9MV0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXH3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_PX0j1Q80.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HoWvgcez9MV0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HjWzgcez9MV0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H6W3gcez9MV0.woff2",
   },
-  "devanagari": {
-    "100-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXB3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HMXj2W8nACA.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HnWngfez9MV0.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H-Wrgfez9MV0.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXH3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_PU0j1Q80.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HoWvgfez9MV0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HjWzgfez9MV0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H6W3gfez9MV0.woff2",
+  devanagari: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXB3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HMXj2W8nACA.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HnWngfez9MV0.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H-Wrgfez9MV0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXH3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_PU0j1Q80.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HoWvgfez9MV0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HjWzgfez9MV0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H6W3gfez9MV0.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXB3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HMXj3W8k.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HnWngfOz9.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H-WrgfOz9.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXH3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_PUkj1.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HoWvgfOz9.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HjWzgfOz9.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H6W3gfOz9.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXB3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HMXj3W8k.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HnWngfOz9.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H-WrgfOz9.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXH3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_PUkj1.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HoWvgfOz9.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HjWzgfOz9.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H6W3gfOz9.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXB3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HMXj5W8nACA.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HnWngcuz9MV0.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H-Wrgcuz9MV0.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXH3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_PXEj1Q80.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HoWvgcuz9MV0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HjWzgcuz9MV0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H6W3gcuz9MV0.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXB3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HMXj5W8nACA.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HnWngcuz9MV0.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H-Wrgcuz9MV0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXH3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_PXEj1Q80.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HoWvgcuz9MV0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_HjWzgcuz9MV0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ibmplexsansdevanagari/v12/XRXA3JCMvG4IDoS9SubXB6W-UX5iehIMBFR2-O_H6W3gcuz9MV0.woff2",
   },
 } as const;
 
 export type IBMPlexSansDevanagariWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700";
 export type IBMPlexSansDevanagariStyle = "normal";
 export type IBMPlexSansDevanagariSubset = "cyrillic-ext" | "devanagari" | "latin" | "latin-ext";
-export type IBMPlexSansDevanagariOptions = GoogleFontOptions<IBMPlexSansDevanagariWeight, IBMPlexSansDevanagariStyle, IBMPlexSansDevanagariSubset>;
+export type IBMPlexSansDevanagariOptions = GoogleFontOptions<
+  IBMPlexSansDevanagariWeight,
+  IBMPlexSansDevanagariStyle,
+  IBMPlexSansDevanagariSubset
+>;
 
 /**
  * IBM Plex Sans Devanagari — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IBMPlexSansDevanagari extends GoogleFont<IBMPlexSansDevanagariWeight, IBMPlexSansDevanagariStyle, IBMPlexSansDevanagariSubset> {
+export default class IBMPlexSansDevanagari extends GoogleFont<
+  IBMPlexSansDevanagariWeight,
+  IBMPlexSansDevanagariStyle,
+  IBMPlexSansDevanagariSubset
+> {
   constructor(options?: IBMPlexSansDevanagariOptions) {
     super(FAMILY, FACES, options);
   }

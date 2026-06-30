@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Moon Dance";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/moondance/v8/WBLgrEbUbFlYW9ekmGawS2LoKQ.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/moondance/v8/WBLgrEbUbFlYW9ekmGawS2zoKfio.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/moondance/v8/WBLgrEbUbFlYW9ekmGawS23oKfio.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type MoonDanceOptions = GoogleFontOptions<MoonDanceWeight, MoonDanceStyle
  * Moon Dance — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MoonDance extends GoogleFont<MoonDanceWeight, MoonDanceStyle, MoonDanceSubset> {
+export default class MoonDance extends GoogleFont<
+  MoonDanceWeight,
+  MoonDanceStyle,
+  MoonDanceSubset
+> {
   constructor(options?: MoonDanceOptions) {
     super(FAMILY, FACES, options);
   }

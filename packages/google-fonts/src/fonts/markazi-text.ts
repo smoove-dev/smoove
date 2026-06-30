@@ -4,42 +4,62 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Markazi Text";
 
 const FACES = {
-  "arabic": {
-    "400-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVpHWVF1E.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVpHWVF1E.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVpHWVF1E.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVpHWVF1E.woff2",
+  arabic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVpHWVF1E.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVpHWVF1E.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVpHWVF1E.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVpHWVF1E.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVoXWV.woff2",
     "500-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVoXWV.woff2",
     "600-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVoXWV.woff2",
     "700-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVoXWV.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVr3WVF1E.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVr3WVF1E.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVr3WVF1E.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVr3WVF1E.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVr3WVF1E.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVr3WVF1E.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVr3WVF1E.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVr3WVF1E.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVrnWVF1E.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVrnWVF1E.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVrnWVF1E.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVrnWVF1E.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVrnWVF1E.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVrnWVF1E.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVrnWVF1E.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/markazitext/v28/syk0-ydym6AtQaiEtX7yhqbVrnWVF1E.woff2",
   },
 } as const;
 
 export type MarkaziTextWeight = "400" | "500" | "600" | "700";
 export type MarkaziTextStyle = "normal";
 export type MarkaziTextSubset = "arabic" | "latin" | "latin-ext" | "vietnamese";
-export type MarkaziTextOptions = GoogleFontOptions<MarkaziTextWeight, MarkaziTextStyle, MarkaziTextSubset>;
+export type MarkaziTextOptions = GoogleFontOptions<
+  MarkaziTextWeight,
+  MarkaziTextStyle,
+  MarkaziTextSubset
+>;
 
 /**
  * Markazi Text — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MarkaziText extends GoogleFont<MarkaziTextWeight, MarkaziTextStyle, MarkaziTextSubset> {
+export default class MarkaziText extends GoogleFont<
+  MarkaziTextWeight,
+  MarkaziTextStyle,
+  MarkaziTextSubset
+> {
   constructor(options?: MarkaziTextOptions) {
     super(FAMILY, FACES, options);
   }

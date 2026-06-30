@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jomolhari";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jomolhari/v21/EvONzA1M1Iw_CBd2hsQyEFgY.woff2",
   },
-  "tibetan": {
+  tibetan: {
     "400-normal": "https://fonts.gstatic.com/s/jomolhari/v21/EvONzA1M1Iw_CBd2hsQyBVgYGq4.woff2",
   },
 } as const;
@@ -21,7 +21,11 @@ export type JomolhariOptions = GoogleFontOptions<JomolhariWeight, JomolhariStyle
  * Jomolhari — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Jomolhari extends GoogleFont<JomolhariWeight, JomolhariStyle, JomolhariSubset> {
+export default class Jomolhari extends GoogleFont<
+  JomolhariWeight,
+  JomolhariStyle,
+  JomolhariSubset
+> {
   constructor(options?: JomolhariOptions) {
     super(FAMILY, FACES, options);
   }

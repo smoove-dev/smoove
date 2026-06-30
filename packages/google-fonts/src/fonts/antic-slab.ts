@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Antic Slab";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/anticslab/v17/bWt97fPFfRzkCa9Jlp6IacVcXA.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type AnticSlabOptions = GoogleFontOptions<AnticSlabWeight, AnticSlabStyle
  * Antic Slab — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AnticSlab extends GoogleFont<AnticSlabWeight, AnticSlabStyle, AnticSlabSubset> {
+export default class AnticSlab extends GoogleFont<
+  AnticSlabWeight,
+  AnticSlabStyle,
+  AnticSlabSubset
+> {
   constructor(options?: AnticSlabOptions) {
     super(FAMILY, FACES, options);
   }

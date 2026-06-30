@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Poly";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/poly/v18/MQpV-W6wKNitdLK6qErt.woff2",
     "400-normal": "https://fonts.gstatic.com/s/poly/v18/MQpb-W6wKNitdLeKqg.woff2",
   },

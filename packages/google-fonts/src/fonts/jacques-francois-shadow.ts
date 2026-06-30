@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jacques Francois Shadow";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/jacquesfrancoisshadow/v27/KR1FBtOz8PKTMk-kqdkLVrvR0ECFrB6Pin-2_p8Suno.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/jacquesfrancoisshadow/v27/KR1FBtOz8PKTMk-kqdkLVrvR0ECFrB6Pin-2_p8Suno.woff2",
   },
 } as const;
 
 export type JacquesFrancoisShadowWeight = "400";
 export type JacquesFrancoisShadowStyle = "normal";
 export type JacquesFrancoisShadowSubset = "latin";
-export type JacquesFrancoisShadowOptions = GoogleFontOptions<JacquesFrancoisShadowWeight, JacquesFrancoisShadowStyle, JacquesFrancoisShadowSubset>;
+export type JacquesFrancoisShadowOptions = GoogleFontOptions<
+  JacquesFrancoisShadowWeight,
+  JacquesFrancoisShadowStyle,
+  JacquesFrancoisShadowSubset
+>;
 
 /**
  * Jacques Francois Shadow — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class JacquesFrancoisShadow extends GoogleFont<JacquesFrancoisShadowWeight, JacquesFrancoisShadowStyle, JacquesFrancoisShadowSubset> {
+export default class JacquesFrancoisShadow extends GoogleFont<
+  JacquesFrancoisShadowWeight,
+  JacquesFrancoisShadowStyle,
+  JacquesFrancoisShadowSubset
+> {
   constructor(options?: JacquesFrancoisShadowOptions) {
     super(FAMILY, FACES, options);
   }

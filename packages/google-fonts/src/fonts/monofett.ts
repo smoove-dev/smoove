@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Monofett";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/monofett/v24/mFTyWbofw6zc9NtnW73Vsx0.woff2",
   },
   "latin-ext": {

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Balthazar";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/balthazar/v18/d6lKkaajS8Gm4CVQjFEfzh7p.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type BalthazarOptions = GoogleFontOptions<BalthazarWeight, BalthazarStyle
  * Balthazar — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Balthazar extends GoogleFont<BalthazarWeight, BalthazarStyle, BalthazarSubset> {
+export default class Balthazar extends GoogleFont<
+  BalthazarWeight,
+  BalthazarStyle,
+  BalthazarSubset
+> {
   constructor(options?: BalthazarOptions) {
     super(FAMILY, FACES, options);
   }

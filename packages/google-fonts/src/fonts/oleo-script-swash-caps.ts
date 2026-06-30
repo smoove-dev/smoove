@@ -4,26 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Oleo Script Swash Caps";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/oleoscriptswashcaps/v14/Noaj6Vb-w5SFbTTAsZP_7JkCS08K-jCzDn_HAX2kSA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/oleoscriptswashcaps/v14/Noag6Vb-w5SFbTTAsZP_7JkCS08K-jCzDn_HCcaBXYImng.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/oleoscriptswashcaps/v14/Noaj6Vb-w5SFbTTAsZP_7JkCS08K-jCzDn_HAX2kSA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/oleoscriptswashcaps/v14/Noag6Vb-w5SFbTTAsZP_7JkCS08K-jCzDn_HCcaBXYImng.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/oleoscriptswashcaps/v14/Noaj6Vb-w5SFbTTAsZP_7JkCS08K-jCzDn_HAXOkSL0H.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/oleoscriptswashcaps/v14/Noag6Vb-w5SFbTTAsZP_7JkCS08K-jCzDn_HCcaBXYwmnuT5.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/oleoscriptswashcaps/v14/Noaj6Vb-w5SFbTTAsZP_7JkCS08K-jCzDn_HAXOkSL0H.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/oleoscriptswashcaps/v14/Noag6Vb-w5SFbTTAsZP_7JkCS08K-jCzDn_HCcaBXYwmnuT5.woff2",
   },
 } as const;
 
 export type OleoScriptSwashCapsWeight = "400" | "700";
 export type OleoScriptSwashCapsStyle = "normal";
 export type OleoScriptSwashCapsSubset = "latin" | "latin-ext";
-export type OleoScriptSwashCapsOptions = GoogleFontOptions<OleoScriptSwashCapsWeight, OleoScriptSwashCapsStyle, OleoScriptSwashCapsSubset>;
+export type OleoScriptSwashCapsOptions = GoogleFontOptions<
+  OleoScriptSwashCapsWeight,
+  OleoScriptSwashCapsStyle,
+  OleoScriptSwashCapsSubset
+>;
 
 /**
  * Oleo Script Swash Caps — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class OleoScriptSwashCaps extends GoogleFont<OleoScriptSwashCapsWeight, OleoScriptSwashCapsStyle, OleoScriptSwashCapsSubset> {
+export default class OleoScriptSwashCaps extends GoogleFont<
+  OleoScriptSwashCapsWeight,
+  OleoScriptSwashCapsStyle,
+  OleoScriptSwashCapsSubset
+> {
   constructor(options?: OleoScriptSwashCapsOptions) {
     super(FAMILY, FACES, options);
   }

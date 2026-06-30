@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ojuju";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9Apbpkur4k.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9Apbpkur4k.woff2",
     "400-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9Apbpkur4k.woff2",
@@ -22,7 +22,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9Apbpkgr4kw3A.woff2",
     "800-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9Apbpkgr4kw3A.woff2",
   },
-  "math": {
+  math: {
     "200-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9ApbplSr4kw3A.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9ApbplSr4kw3A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9ApbplSr4kw3A.woff2",
@@ -31,7 +31,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9ApbplSr4kw3A.woff2",
     "800-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9ApbplSr4kw3A.woff2",
   },
-  "symbols": {
+  symbols: {
     "200-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9ApbplAr4kw3A.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9ApbplAr4kw3A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9ApbplAr4kw3A.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9ApbplAr4kw3A.woff2",
     "800-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9ApbplAr4kw3A.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9Apbpkhr4kw3A.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9Apbpkhr4kw3A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/ojuju/v5/7r3IqXF7v9Apbpkhr4kw3A.woff2",

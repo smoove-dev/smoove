@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite BE VLG Guides";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/playwritebevlgguides/v2/EYqjmb1Mz6hO4edaU9qKGFZMDd_Q-zwwK__U1u9D.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritebevlgguides/v2/EYqjmb1Mz6hO4edaU9qKGFZMDd_Q-zwwK__U1u9D.woff2",
   },
 } as const;
 
 export type PlaywriteBEVLGGuidesWeight = "400";
 export type PlaywriteBEVLGGuidesStyle = "normal";
 export type PlaywriteBEVLGGuidesSubset = "fallback";
-export type PlaywriteBEVLGGuidesOptions = GoogleFontOptions<PlaywriteBEVLGGuidesWeight, PlaywriteBEVLGGuidesStyle, PlaywriteBEVLGGuidesSubset>;
+export type PlaywriteBEVLGGuidesOptions = GoogleFontOptions<
+  PlaywriteBEVLGGuidesWeight,
+  PlaywriteBEVLGGuidesStyle,
+  PlaywriteBEVLGGuidesSubset
+>;
 
 /**
  * Playwrite BE VLG Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteBEVLGGuides extends GoogleFont<PlaywriteBEVLGGuidesWeight, PlaywriteBEVLGGuidesStyle, PlaywriteBEVLGGuidesSubset> {
+export default class PlaywriteBEVLGGuides extends GoogleFont<
+  PlaywriteBEVLGGuidesWeight,
+  PlaywriteBEVLGGuidesStyle,
+  PlaywriteBEVLGGuidesSubset
+> {
   constructor(options?: PlaywriteBEVLGGuidesOptions) {
     super(FAMILY, FACES, options);
   }

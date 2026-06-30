@@ -4,22 +4,32 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite AT Guides";
 
 const FACES = {
-  "fallback": {
-    "400-italic": "https://fonts.gstatic.com/s/playwriteatguides/v1/QdVISS0gJR2xneUeQPfE-FVA1BlZQRpBdboDdw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playwriteatguides/v1/QdVKSS0gJR2xneUeQPfE-FVA1BlZQRpBRb0.woff2",
+  fallback: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/playwriteatguides/v1/QdVISS0gJR2xneUeQPfE-FVA1BlZQRpBdboDdw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwriteatguides/v1/QdVKSS0gJR2xneUeQPfE-FVA1BlZQRpBRb0.woff2",
   },
 } as const;
 
 export type PlaywriteATGuidesWeight = "400";
 export type PlaywriteATGuidesStyle = "italic" | "normal";
 export type PlaywriteATGuidesSubset = "fallback";
-export type PlaywriteATGuidesOptions = GoogleFontOptions<PlaywriteATGuidesWeight, PlaywriteATGuidesStyle, PlaywriteATGuidesSubset>;
+export type PlaywriteATGuidesOptions = GoogleFontOptions<
+  PlaywriteATGuidesWeight,
+  PlaywriteATGuidesStyle,
+  PlaywriteATGuidesSubset
+>;
 
 /**
  * Playwrite AT Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteATGuides extends GoogleFont<PlaywriteATGuidesWeight, PlaywriteATGuidesStyle, PlaywriteATGuidesSubset> {
+export default class PlaywriteATGuides extends GoogleFont<
+  PlaywriteATGuidesWeight,
+  PlaywriteATGuidesStyle,
+  PlaywriteATGuidesSubset
+> {
   constructor(options?: PlaywriteATGuidesOptions) {
     super(FAMILY, FACES, options);
   }

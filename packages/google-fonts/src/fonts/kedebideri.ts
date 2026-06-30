@@ -6,13 +6,18 @@ const FAMILY = "Kedebideri";
 const FACES = {
   "beria-erfe": {
     "400-normal": "https://fonts.gstatic.com/s/kedebideri/v6/t5tlIR0UPo6ZGAykNh_evBjp7TzXqw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etFLr3Yfuip6-ew.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etH7s3Yfuip6-ew.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etBrt3Yfuip6-ew.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etAbu3Yfuip6-ew.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etCLv3Yfuip6-ew.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etFLr3Yfuip6-ew.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etH7s3Yfuip6-ew.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etBrt3Yfuip6-ew.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etAbu3Yfuip6-ew.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etCLv3Yfuip6-ew.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kedebideri/v6/t5tlIR0UPo6ZGAykNh_evKHIyA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etFLr3T7Prw.woff2",
     "600-normal": "https://fonts.gstatic.com/s/kedebideri/v6/t5tmIR0UPo6ZGAykNh_etH7s3T7Prw.woff2",
@@ -25,13 +30,21 @@ const FACES = {
 export type KedebideriWeight = "400" | "500" | "600" | "700" | "800" | "900";
 export type KedebideriStyle = "normal";
 export type KedebideriSubset = "beria-erfe" | "latin";
-export type KedebideriOptions = GoogleFontOptions<KedebideriWeight, KedebideriStyle, KedebideriSubset>;
+export type KedebideriOptions = GoogleFontOptions<
+  KedebideriWeight,
+  KedebideriStyle,
+  KedebideriSubset
+>;
 
 /**
  * Kedebideri — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Kedebideri extends GoogleFont<KedebideriWeight, KedebideriStyle, KedebideriSubset> {
+export default class Kedebideri extends GoogleFont<
+  KedebideriWeight,
+  KedebideriStyle,
+  KedebideriSubset
+> {
   constructor(options?: KedebideriOptions) {
     super(FAMILY, FACES, options);
   }

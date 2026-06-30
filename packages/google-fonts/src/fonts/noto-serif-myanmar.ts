@@ -4,29 +4,55 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Myanmar";
 
 const FACES = {
-  "myanmar": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJudM7F2Yv76aBKKs-bHMQfAHUw3jnNwCD1WdQ.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNbDH8YPH3.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNCDL8YPH3.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJsdM7F2Yv76aBKKs-bHMQfAHUw3jnFvRDp.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNUDP8YPH3.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNfDT8YPH3.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNGDX8YPH3.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNBDb8YPH3.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNIDf8YPH3.woff2",
+  myanmar: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJudM7F2Yv76aBKKs-bHMQfAHUw3jnNwCD1WdQ.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNbDH8YPH3.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNCDL8YPH3.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJsdM7F2Yv76aBKKs-bHMQfAHUw3jnFvRDp.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNUDP8YPH3.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNfDT8YPH3.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNGDX8YPH3.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNBDb8YPH3.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifmyanmar/v14/VuJvdM7F2Yv76aBKKs-bHMQfAHUw3jnNIDf8YPH3.woff2",
   },
 } as const;
 
-export type NotoSerifMyanmarWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSerifMyanmarWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSerifMyanmarStyle = "normal";
 export type NotoSerifMyanmarSubset = "myanmar";
-export type NotoSerifMyanmarOptions = GoogleFontOptions<NotoSerifMyanmarWeight, NotoSerifMyanmarStyle, NotoSerifMyanmarSubset>;
+export type NotoSerifMyanmarOptions = GoogleFontOptions<
+  NotoSerifMyanmarWeight,
+  NotoSerifMyanmarStyle,
+  NotoSerifMyanmarSubset
+>;
 
 /**
  * Noto Serif Myanmar — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifMyanmar extends GoogleFont<NotoSerifMyanmarWeight, NotoSerifMyanmarStyle, NotoSerifMyanmarSubset> {
+export default class NotoSerifMyanmar extends GoogleFont<
+  NotoSerifMyanmarWeight,
+  NotoSerifMyanmarStyle,
+  NotoSerifMyanmarSubset
+> {
   constructor(options?: NotoSerifMyanmarOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Elbasan";
 
 const FACES = {
-  "elbasan": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanselbasan/v17/-F6rfiZqLzI2JPCgQBnw400qp1trvEcUp-8tFQ.woff2",
+  elbasan: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanselbasan/v17/-F6rfiZqLzI2JPCgQBnw400qp1trvEcUp-8tFQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanselbasan/v17/-F6rfiZqLzI2JPCgQBnw400qp1trvEdip-8.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanselbasan/v17/-F6rfiZqLzI2JPCgQBnw400qp1trvEdip-8.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanselbasan/v17/-F6rfiZqLzI2JPCgQBnw400qp1trvEdsp-8tFQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanselbasan/v17/-F6rfiZqLzI2JPCgQBnw400qp1trvEdsp-8tFQ.woff2",
   },
 } as const;
 
 export type NotoSansElbasanWeight = "400";
 export type NotoSansElbasanStyle = "normal";
 export type NotoSansElbasanSubset = "elbasan" | "latin" | "latin-ext";
-export type NotoSansElbasanOptions = GoogleFontOptions<NotoSansElbasanWeight, NotoSansElbasanStyle, NotoSansElbasanSubset>;
+export type NotoSansElbasanOptions = GoogleFontOptions<
+  NotoSansElbasanWeight,
+  NotoSansElbasanStyle,
+  NotoSansElbasanSubset
+>;
 
 /**
  * Noto Sans Elbasan — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansElbasan extends GoogleFont<NotoSansElbasanWeight, NotoSansElbasanStyle, NotoSansElbasanSubset> {
+export default class NotoSansElbasan extends GoogleFont<
+  NotoSansElbasanWeight,
+  NotoSansElbasanStyle,
+  NotoSansElbasanSubset
+> {
   constructor(options?: NotoSansElbasanOptions) {
     super(FAMILY, FACES, options);
   }

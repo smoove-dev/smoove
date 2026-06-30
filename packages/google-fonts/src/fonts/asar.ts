@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Asar";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/asar/v24/sZlLdRyI6TBIbkAaDYlT.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/asar/v24/sZlLdRyI6TBIbkEaDQ.woff2",
   },
   "latin-ext": {

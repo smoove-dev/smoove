@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Volkhov";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/volkhov/v18/SlGSmQieoJcKemNecTA0h1R3.woff2",
     "400-normal": "https://fonts.gstatic.com/s/volkhov/v18/SlGQmQieoJcKemNecTUEhQ.woff2",
     "700-italic": "https://fonts.gstatic.com/s/volkhov/v18/SlGXmQieoJcKemNecTA8PHFibxwQ.woff2",

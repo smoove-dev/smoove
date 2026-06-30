@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Special Gothic Condensed One";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/specialgothiccondensedone/v2/R70Njzwei_mJM7OsFDzX7EL9NBO6IPvd-Avolzh49w7PYZx15A.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/specialgothiccondensedone/v2/R70Njzwei_mJM7OsFDzX7EL9NBO6IPvd-Avolzh49w7PYZx15A.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/specialgothiccondensedone/v2/R70Njzwei_mJM7OsFDzX7EL9NBO6IPvd-Avolzh49w7PYZJ15Ltx.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/specialgothiccondensedone/v2/R70Njzwei_mJM7OsFDzX7EL9NBO6IPvd-Avolzh49w7PYZJ15Ltx.woff2",
   },
 } as const;
 
 export type SpecialGothicCondensedOneWeight = "400";
 export type SpecialGothicCondensedOneStyle = "normal";
 export type SpecialGothicCondensedOneSubset = "latin" | "latin-ext";
-export type SpecialGothicCondensedOneOptions = GoogleFontOptions<SpecialGothicCondensedOneWeight, SpecialGothicCondensedOneStyle, SpecialGothicCondensedOneSubset>;
+export type SpecialGothicCondensedOneOptions = GoogleFontOptions<
+  SpecialGothicCondensedOneWeight,
+  SpecialGothicCondensedOneStyle,
+  SpecialGothicCondensedOneSubset
+>;
 
 /**
  * Special Gothic Condensed One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SpecialGothicCondensedOne extends GoogleFont<SpecialGothicCondensedOneWeight, SpecialGothicCondensedOneStyle, SpecialGothicCondensedOneSubset> {
+export default class SpecialGothicCondensedOne extends GoogleFont<
+  SpecialGothicCondensedOneWeight,
+  SpecialGothicCondensedOneStyle,
+  SpecialGothicCondensedOneSubset
+> {
   constructor(options?: SpecialGothicCondensedOneOptions) {
     super(FAMILY, FACES, options);
   }

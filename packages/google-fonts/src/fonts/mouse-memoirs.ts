@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mouse Memoirs";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/mousememoirs/v19/t5tmIRoSNJ-PH0WNNgDYxdSb3T7Prw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/mousememoirs/v19/t5tmIRoSNJ-PH0WNNgDYxdSb3T7Prw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/mousememoirs/v19/t5tmIRoSNJ-PH0WNNgDYxdSb3TDPr6OH.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/mousememoirs/v19/t5tmIRoSNJ-PH0WNNgDYxdSb3TDPr6OH.woff2",
   },
 } as const;
 
 export type MouseMemoirsWeight = "400";
 export type MouseMemoirsStyle = "normal";
 export type MouseMemoirsSubset = "latin" | "latin-ext";
-export type MouseMemoirsOptions = GoogleFontOptions<MouseMemoirsWeight, MouseMemoirsStyle, MouseMemoirsSubset>;
+export type MouseMemoirsOptions = GoogleFontOptions<
+  MouseMemoirsWeight,
+  MouseMemoirsStyle,
+  MouseMemoirsSubset
+>;
 
 /**
  * Mouse Memoirs — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MouseMemoirs extends GoogleFont<MouseMemoirsWeight, MouseMemoirsStyle, MouseMemoirsSubset> {
+export default class MouseMemoirs extends GoogleFont<
+  MouseMemoirsWeight,
+  MouseMemoirsStyle,
+  MouseMemoirsSubset
+> {
   constructor(options?: MouseMemoirsOptions) {
     super(FAMILY, FACES, options);
   }

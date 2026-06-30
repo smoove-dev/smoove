@@ -1,4 +1,4 @@
-import { Block, Composition, Rect, Sequence, Text, interpolate } from "@smoove/core";
+import { Block, Composition, interpolate, Rect, Sequence, Text } from "@smoove/core";
 
 /**
  * cornerRadius shapes: a sharp box, a uniformly rounded one, per-corner radii

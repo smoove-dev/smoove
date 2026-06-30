@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Reddit Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/redditmono/v5/oPWL_kRmmu4oQ88oo13o4-rLRjs.woff2",
     "300-normal": "https://fonts.gstatic.com/s/redditmono/v5/oPWL_kRmmu4oQ88oo13o4-rLRjs.woff2",
     "400-normal": "https://fonts.gstatic.com/s/redditmono/v5/oPWL_kRmmu4oQ88oo13o4-rLRjs.woff2",
@@ -24,7 +24,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/redditmono/v5/oPWL_kRmmu4oQ88oo13o4-rFRjtPRw.woff2",
     "900-normal": "https://fonts.gstatic.com/s/redditmono/v5/oPWL_kRmmu4oQ88oo13o4-rFRjtPRw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-normal": "https://fonts.gstatic.com/s/redditmono/v5/oPWL_kRmmu4oQ88oo13o4-rERjtPRw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/redditmono/v5/oPWL_kRmmu4oQ88oo13o4-rERjtPRw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/redditmono/v5/oPWL_kRmmu4oQ88oo13o4-rERjtPRw.woff2",
@@ -39,13 +39,21 @@ const FACES = {
 export type RedditMonoWeight = "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type RedditMonoStyle = "normal";
 export type RedditMonoSubset = "latin" | "latin-ext" | "vietnamese";
-export type RedditMonoOptions = GoogleFontOptions<RedditMonoWeight, RedditMonoStyle, RedditMonoSubset>;
+export type RedditMonoOptions = GoogleFontOptions<
+  RedditMonoWeight,
+  RedditMonoStyle,
+  RedditMonoSubset
+>;
 
 /**
  * Reddit Mono — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RedditMono extends GoogleFont<RedditMonoWeight, RedditMonoStyle, RedditMonoSubset> {
+export default class RedditMono extends GoogleFont<
+  RedditMonoWeight,
+  RedditMonoStyle,
+  RedditMonoSubset
+> {
   constructor(options?: RedditMonoOptions) {
     super(FAMILY, FACES, options);
   }

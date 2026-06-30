@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Merienda";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/merienda/v22/gNMHW3x8Qoy5_mf8uWMFMIo.woff2",
     "400-normal": "https://fonts.gstatic.com/s/merienda/v22/gNMHW3x8Qoy5_mf8uWMFMIo.woff2",
     "500-normal": "https://fonts.gstatic.com/s/merienda/v22/gNMHW3x8Qoy5_mf8uWMFMIo.woff2",
@@ -22,7 +22,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/merienda/v22/gNMHW3x8Qoy5_mf8uWMLMIqK_Q.woff2",
     "900-normal": "https://fonts.gstatic.com/s/merienda/v22/gNMHW3x8Qoy5_mf8uWMLMIqK_Q.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-normal": "https://fonts.gstatic.com/s/merienda/v22/gNMHW3x8Qoy5_mf8uWMKMIqK_Q.woff2",
     "400-normal": "https://fonts.gstatic.com/s/merienda/v22/gNMHW3x8Qoy5_mf8uWMKMIqK_Q.woff2",
     "500-normal": "https://fonts.gstatic.com/s/merienda/v22/gNMHW3x8Qoy5_mf8uWMKMIqK_Q.woff2",

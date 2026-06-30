@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Princess Sofia";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/princesssofia/v27/qWczB6yguIb8DZ_GXZst16n7GSz8kjQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/princesssofia/v27/qWczB6yguIb8DZ_GXZst16n7GSz8kjQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/princesssofia/v27/qWczB6yguIb8DZ_GXZst16n7GSzykjQYug.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/princesssofia/v27/qWczB6yguIb8DZ_GXZst16n7GSzykjQYug.woff2",
   },
 } as const;
 
 export type PrincessSofiaWeight = "400";
 export type PrincessSofiaStyle = "normal";
 export type PrincessSofiaSubset = "latin" | "latin-ext";
-export type PrincessSofiaOptions = GoogleFontOptions<PrincessSofiaWeight, PrincessSofiaStyle, PrincessSofiaSubset>;
+export type PrincessSofiaOptions = GoogleFontOptions<
+  PrincessSofiaWeight,
+  PrincessSofiaStyle,
+  PrincessSofiaSubset
+>;
 
 /**
  * Princess Sofia — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PrincessSofia extends GoogleFont<PrincessSofiaWeight, PrincessSofiaStyle, PrincessSofiaSubset> {
+export default class PrincessSofia extends GoogleFont<
+  PrincessSofiaWeight,
+  PrincessSofiaStyle,
+  PrincessSofiaSubset
+> {
   constructor(options?: PrincessSofiaOptions) {
     super(FAMILY, FACES, options);
   }

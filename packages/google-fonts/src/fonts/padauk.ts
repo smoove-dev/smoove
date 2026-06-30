@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Padauk";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/padauk/v17/RrQRboJg-id7OnbxbEXh.woff2",
     "700-normal": "https://fonts.gstatic.com/s/padauk/v17/RrQSboJg-id7Onb512D005hF.woff2",
   },
@@ -12,7 +12,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/padauk/v17/RrQRboJg-id7OnbxYkXh7Lk.woff2",
     "700-normal": "https://fonts.gstatic.com/s/padauk/v17/RrQSboJg-id7Onb512D03ZhFV4Y.woff2",
   },
-  "myanmar": {
+  myanmar: {
     "400-normal": "https://fonts.gstatic.com/s/padauk/v17/RrQRboJg-id7OnbxckXh7Lk.woff2",
     "700-normal": "https://fonts.gstatic.com/s/padauk/v17/RrQSboJg-id7Onb512D0zZhFV4Y.woff2",
   },

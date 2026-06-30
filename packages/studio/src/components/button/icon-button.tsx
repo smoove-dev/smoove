@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes, type ReactNode, forwardRef } from "react";
+import { type ButtonHTMLAttributes, forwardRef, type ReactNode } from "react";
 import { cva } from "../../lib/cva.js";
 import { Icon } from "../icon/icon.js";
 import type { IconName } from "../icon/paths.js";

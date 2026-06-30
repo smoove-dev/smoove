@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "PT Sans";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/ptsans/v18/jizYRExUiTo99u79D0e0w8mIEDQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/ptsans/v18/jizaRExUiTo99u79D0aExdGM.woff2",
     "700-italic": "https://fonts.gstatic.com/s/ptsans/v18/jizdRExUiTo99u79D0e8fOydKxUdwzM.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/ptsans/v18/jizdRExUiTo99u79D0e8fOydIhUdwzM.woff2",
     "700-normal": "https://fonts.gstatic.com/s/ptsans/v18/jizfRExUiTo99u79B_mh0OOtLQ0Z.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/ptsans/v18/jizYRExUiTo99u79D0e0x8mI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/ptsans/v18/jizaRExUiTo99u79D0KExQ.woff2",
     "700-italic": "https://fonts.gstatic.com/s/ptsans/v18/jizdRExUiTo99u79D0e8fOydLxUd.woff2",

@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Symbols";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn7yK4.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzn1yK6L2Q.woff2",
   },
-  "symbols": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
+  symbols: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanssymbols/v47/rP2dp3q65FkAtHfwd-eIS2brbDN6gzmVyK6L2Q.woff2",
   },
 } as const;
 
-export type NotoSansSymbolsWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSansSymbolsWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSansSymbolsStyle = "normal";
 export type NotoSansSymbolsSubset = "latin" | "latin-ext" | "symbols";
-export type NotoSansSymbolsOptions = GoogleFontOptions<NotoSansSymbolsWeight, NotoSansSymbolsStyle, NotoSansSymbolsSubset>;
+export type NotoSansSymbolsOptions = GoogleFontOptions<
+  NotoSansSymbolsWeight,
+  NotoSansSymbolsStyle,
+  NotoSansSymbolsSubset
+>;
 
 /**
  * Noto Sans Symbols — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansSymbols extends GoogleFont<NotoSansSymbolsWeight, NotoSansSymbolsStyle, NotoSansSymbolsSubset> {
+export default class NotoSansSymbols extends GoogleFont<
+  NotoSansSymbolsWeight,
+  NotoSansSymbolsStyle,
+  NotoSansSymbolsSubset
+> {
   constructor(options?: NotoSansSymbolsOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fjord One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/fjordone/v22/zOL-4pbEnKBY_9S1jNKb7uRB.woff2",
   },
 } as const;

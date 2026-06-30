@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Julee";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/julee/v26/TuGfUVB3RpZPQ5ZMq9k.woff2",
   },
   "latin-ext": {

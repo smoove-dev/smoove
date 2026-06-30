@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Libre Caslon Display";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/librecaslondisplay/v18/TuGOUUFxWphYQ6YI6q9Xp61FQzxDRKmzr1lWfxk.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/librecaslondisplay/v18/TuGOUUFxWphYQ6YI6q9Xp61FQzxDRKmzr1lWfxk.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/librecaslondisplay/v18/TuGOUUFxWphYQ6YI6q9Xp61FQzxDRKmzr1lYfxldCA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/librecaslondisplay/v18/TuGOUUFxWphYQ6YI6q9Xp61FQzxDRKmzr1lYfxldCA.woff2",
   },
 } as const;
 
 export type LibreCaslonDisplayWeight = "400";
 export type LibreCaslonDisplayStyle = "normal";
 export type LibreCaslonDisplaySubset = "latin" | "latin-ext";
-export type LibreCaslonDisplayOptions = GoogleFontOptions<LibreCaslonDisplayWeight, LibreCaslonDisplayStyle, LibreCaslonDisplaySubset>;
+export type LibreCaslonDisplayOptions = GoogleFontOptions<
+  LibreCaslonDisplayWeight,
+  LibreCaslonDisplayStyle,
+  LibreCaslonDisplaySubset
+>;
 
 /**
  * Libre Caslon Display — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LibreCaslonDisplay extends GoogleFont<LibreCaslonDisplayWeight, LibreCaslonDisplayStyle, LibreCaslonDisplaySubset> {
+export default class LibreCaslonDisplay extends GoogleFont<
+  LibreCaslonDisplayWeight,
+  LibreCaslonDisplayStyle,
+  LibreCaslonDisplaySubset
+> {
   constructor(options?: LibreCaslonDisplayOptions) {
     super(FAMILY, FACES, options);
   }

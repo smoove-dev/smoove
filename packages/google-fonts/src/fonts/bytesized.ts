@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bytesized";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bytesized/v1/goksH6L8FkdnROln8XBjTEqi.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type BytesizedOptions = GoogleFontOptions<BytesizedWeight, BytesizedStyle
  * Bytesized — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Bytesized extends GoogleFont<BytesizedWeight, BytesizedStyle, BytesizedSubset> {
+export default class Bytesized extends GoogleFont<
+  BytesizedWeight,
+  BytesizedStyle,
+  BytesizedSubset
+> {
   constructor(options?: BytesizedOptions) {
     super(FAMILY, FACES, options);
   }

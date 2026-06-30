@@ -16,7 +16,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/teachers/v6/H4ciBXKVncXVmUGsgRY4-LCYh563.woff2",
     "800-normal": "https://fonts.gstatic.com/s/teachers/v6/H4ckBXKVncXVmUGsgRYxyL6Agw.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/teachers/v6/H4ciBXKVncXVmUGsgRY4-LyYhw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/teachers/v6/H4ckBXKVncXVmUGsgRY9yL4.woff2",
     "500-italic": "https://fonts.gstatic.com/s/teachers/v6/H4ciBXKVncXVmUGsgRY4-LyYhw.woff2",

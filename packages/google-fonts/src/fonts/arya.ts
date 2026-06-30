@@ -4,11 +4,11 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Arya";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/arya/v21/ga6CawNG-HJdxUD_-Ieq.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arya/v21/ga6NawNG-HJdzfra7bmLaWg3.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/arya/v21/ga6CawNG-HJdxUH_-A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arya/v21/ga6NawNG-HJdzfra7biLaQ.woff2",
   },

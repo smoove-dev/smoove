@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gelasio";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/gelasio/v14/cIf_MaFfvUQxTTqS9CuRY0ED.woff2",
     "400-normal": "https://fonts.gstatic.com/s/gelasio/v14/cIf9MaFfvUQxTTqS9C6hYQ.woff2",
     "500-italic": "https://fonts.gstatic.com/s/gelasio/v14/cIf_MaFfvUQxTTqS9CuRY0ED.woff2",
@@ -24,7 +24,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/gelasio/v14/cIf_MaFfvUQxTTqS9CuRbUEDoIs.woff2",
     "700-normal": "https://fonts.gstatic.com/s/gelasio/v14/cIf9MaFfvUQxTTqS9CChYVkH.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/gelasio/v14/cIf_MaFfvUQxTTqS9CuRbEEDoIs.woff2",
     "400-normal": "https://fonts.gstatic.com/s/gelasio/v14/cIf9MaFfvUQxTTqS9CGhYVkH.woff2",
     "500-italic": "https://fonts.gstatic.com/s/gelasio/v14/cIf_MaFfvUQxTTqS9CuRbEEDoIs.woff2",

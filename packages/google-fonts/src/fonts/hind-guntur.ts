@@ -4,39 +4,59 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hind Guntur";
 
 const FACES = {
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yGn2c0ld0.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yGn2c0ld0.woff2",
     "400-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKvE3UZrok56nvamSuJd_QtvXI.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zenmc0ld0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zymWc0ld0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yWmGc0ld0.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zenmc0ld0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zymWc0ld0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yWmGc0ld0.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yGn2c6ld3qjw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yGn2c6ld3qjw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKvE3UZrok56nvamSuJd_QjvXILtA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zenmc6ld3qjw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zymWc6ld3qjw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yWmGc6ld3qjw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zenmc6ld3qjw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zymWc6ld3qjw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yWmGc6ld3qjw.woff2",
   },
-  "telugu": {
-    "300-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yGn2cold3qjw.woff2",
+  telugu: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yGn2cold3qjw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKvE3UZrok56nvamSuJd_QxvXILtA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zenmcold3qjw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zymWcold3qjw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yWmGcold3qjw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zenmcold3qjw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_zymWcold3qjw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/hindguntur/v14/wXKyE3UZrok56nvamSuJd_yWmGcold3qjw.woff2",
   },
 } as const;
 
 export type HindGunturWeight = "300" | "400" | "500" | "600" | "700";
 export type HindGunturStyle = "normal";
 export type HindGunturSubset = "latin" | "latin-ext" | "telugu";
-export type HindGunturOptions = GoogleFontOptions<HindGunturWeight, HindGunturStyle, HindGunturSubset>;
+export type HindGunturOptions = GoogleFontOptions<
+  HindGunturWeight,
+  HindGunturStyle,
+  HindGunturSubset
+>;
 
 /**
  * Hind Guntur — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HindGuntur extends GoogleFont<HindGunturWeight, HindGunturStyle, HindGunturSubset> {
+export default class HindGuntur extends GoogleFont<
+  HindGunturWeight,
+  HindGunturStyle,
+  HindGunturSubset
+> {
   constructor(options?: HindGunturOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Sora Sompeng";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPyE7g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPyE7g.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPyE7g.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPyE7g.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPyE7g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPyE7g.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPyE7g.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPyE7g.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPKE7tgt.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPKE7tgt.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPKE7tgt.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPKE7tgt.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPKE7tgt.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPKE7tgt.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPKE7tgt.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAPKE7tgt.woff2",
   },
   "sora-sompeng": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAJGE7tgt.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAJGE7tgt.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAJGE7tgt.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAJGE7tgt.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAJGE7tgt.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAJGE7tgt.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAJGE7tgt.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssorasompeng/v26/PlIsFkO5O6RzLfvNNVSioxM2_OTrEhPyDLolAJGE7tgt.woff2",
   },
 } as const;
 
 export type NotoSansSoraSompengWeight = "400" | "500" | "600" | "700";
 export type NotoSansSoraSompengStyle = "normal";
 export type NotoSansSoraSompengSubset = "latin" | "latin-ext" | "sora-sompeng";
-export type NotoSansSoraSompengOptions = GoogleFontOptions<NotoSansSoraSompengWeight, NotoSansSoraSompengStyle, NotoSansSoraSompengSubset>;
+export type NotoSansSoraSompengOptions = GoogleFontOptions<
+  NotoSansSoraSompengWeight,
+  NotoSansSoraSompengStyle,
+  NotoSansSoraSompengSubset
+>;
 
 /**
  * Noto Sans Sora Sompeng — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansSoraSompeng extends GoogleFont<NotoSansSoraSompengWeight, NotoSansSoraSompengStyle, NotoSansSoraSompengSubset> {
+export default class NotoSansSoraSompeng extends GoogleFont<
+  NotoSansSoraSompengWeight,
+  NotoSansSoraSompengStyle,
+  NotoSansSoraSompengSubset
+> {
   constructor(options?: NotoSansSoraSompengOptions) {
     super(FAMILY, FACES, options);
   }

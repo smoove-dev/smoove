@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Allura";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/allura/v23/9oRPNYsQpS4zjuA_iwgW.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/allura/v23/9oRPNYsQpS4zjuA_hQgWDto.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/allura/v23/9oRPNYsQpS4zjuA_hAgWDto.woff2",
   },
 } as const;

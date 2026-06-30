@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Simonetta";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/simonetta/v29/x3dkckHVYrCU5BU15c4xfsoBlys.woff2",
     "400-normal": "https://fonts.gstatic.com/s/simonetta/v29/x3dickHVYrCU5BU15c4xe_oD.woff2",
     "900-italic": "https://fonts.gstatic.com/s/simonetta/v29/x3d5ckHVYrCU5BU15c4xfsKCsD7qJQY.woff2",
@@ -13,7 +13,8 @@ const FACES = {
   "latin-ext": {
     "400-italic": "https://fonts.gstatic.com/s/simonetta/v29/x3dkckHVYrCU5BU15c4xfsoPlyvVBA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/simonetta/v29/x3dickHVYrCU5BU15c4xdfoDjy8.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/simonetta/v29/x3d5ckHVYrCU5BU15c4xfsKCsD7kJQYLGg.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/simonetta/v29/x3d5ckHVYrCU5BU15c4xfsKCsD7kJQYLGg.woff2",
     "900-normal": "https://fonts.gstatic.com/s/simonetta/v29/x3dnckHVYrCU5BU15c45-N0Wvg7oPQI.woff2",
   },
 } as const;
@@ -27,7 +28,11 @@ export type SimonettaOptions = GoogleFontOptions<SimonettaWeight, SimonettaStyle
  * Simonetta — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Simonetta extends GoogleFont<SimonettaWeight, SimonettaStyle, SimonettaSubset> {
+export default class Simonetta extends GoogleFont<
+  SimonettaWeight,
+  SimonettaStyle,
+  SimonettaSubset
+> {
   constructor(options?: SimonettaOptions) {
     super(FAMILY, FACES, options);
   }

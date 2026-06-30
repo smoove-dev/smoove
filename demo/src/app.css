@@ -14,7 +14,10 @@ body {
   display: grid;
   place-items: center;
   color: #6b6a78;
-  font: 600 13px "Hanken Grotesk", system-ui, sans-serif;
+  font:
+    600 13px "Hanken Grotesk",
+    system-ui,
+    sans-serif;
   letter-spacing: 0.04em;
 }
 

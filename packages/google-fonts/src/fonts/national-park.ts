@@ -4,45 +4,74 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "National Park";
 
 const FACES = {
-  "latin": {
-    "200-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
+  latin: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01oVTw.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01QVTyX-.woff2",
   },
-  "vietnamese": {
-    "200-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
+  vietnamese: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/nationalpark/v4/GftD7vJOtg4NO-gmoY4nmcqP01UVTyX-.woff2",
   },
 } as const;
 
 export type NationalParkWeight = "200" | "300" | "400" | "500" | "600" | "700" | "800";
 export type NationalParkStyle = "normal";
 export type NationalParkSubset = "latin" | "latin-ext" | "vietnamese";
-export type NationalParkOptions = GoogleFontOptions<NationalParkWeight, NationalParkStyle, NationalParkSubset>;
+export type NationalParkOptions = GoogleFontOptions<
+  NationalParkWeight,
+  NationalParkStyle,
+  NationalParkSubset
+>;
 
 /**
  * National Park — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NationalPark extends GoogleFont<NationalParkWeight, NationalParkStyle, NationalParkSubset> {
+export default class NationalPark extends GoogleFont<
+  NationalParkWeight,
+  NationalParkStyle,
+  NationalParkSubset
+> {
   constructor(options?: NationalParkOptions) {
     super(FAMILY, FACES, options);
   }

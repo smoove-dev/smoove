@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alike";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/alike/v22/HI_EiYEYI6BIoHjGQ5Q.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/alike/v22/HI_EiYEYI6BIoHjIQ5TwQw.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/alike/v22/HI_EiYEYI6BIoHi6Q5TwQw.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/alike/v22/HI_EiYEYI6BIoHioQ5TwQw.woff2",
   },
 } as const;

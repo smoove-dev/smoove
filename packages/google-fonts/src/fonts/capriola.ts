@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Capriola";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/capriola/v15/wXKoE3YSppcvo1PDlk_7JeE.woff2",
   },
   "latin-ext": {

@@ -12,44 +12,40 @@ import "./loop-button.js";
 import "./fullscreen-button.js";
 import "./progress.js";
 
-// Host
-export { SmoovePlayer } from "./smoove-player.js";
-
 // Layout containers
 export {
-  SmoovePlayerOverlay,
   SmoovePlayerControls,
   SmoovePlayerControlsRow,
+  SmoovePlayerOverlay,
   SmoovePlayerSpace,
 } from "./containers.js";
-
-// Controls
-export { SmoovePlayerPlayButton } from "./play-button.js";
-export { SmoovePlayerPlayToggleButton } from "./play-toggle-button.js";
-export { SmoovePlayerSoundControl } from "./sound-control.js";
-export { SmoovePlayerTime } from "./time.js";
-export { SmoovePlayerLoopButton } from "./loop-button.js";
-export { SmoovePlayerFullscreenButton } from "./fullscreen-button.js";
-export { SmoovePlayerProgress } from "./progress.js";
-
 // State sharing
-export { playerContext, getPlayerApi } from "./context.js";
-export type { PlayerApi, PlayerState } from "./player-api.js";
+export { getPlayerApi, playerContext } from "./context.js";
 export { createDefaultControls } from "./default-controls.js";
-
 // Event detail payloads
 export type {
   FrameUpdateDetail,
-  TimeUpdateDetail,
-  SeekedDetail,
+  FullscreenChangeDetail,
+  LoadedDetail,
+  LoadStartDetail,
+  MuteChangeDetail,
+  PlayerErrorDetail,
   PlayPauseDetail,
   RateChangeDetail,
-  VolumeChangeDetail,
-  MuteChangeDetail,
-  FullscreenChangeDetail,
   ScaleChangeDetail,
-  PlayerErrorDetail,
-  LoadStartDetail,
-  LoadedDetail,
+  SeekedDetail,
   SmoovePlayerEventMap,
+  TimeUpdateDetail,
+  VolumeChangeDetail,
 } from "./events.js";
+export { SmoovePlayerFullscreenButton } from "./fullscreen-button.js";
+export { SmoovePlayerLoopButton } from "./loop-button.js";
+// Controls
+export { SmoovePlayerPlayButton } from "./play-button.js";
+export { SmoovePlayerPlayToggleButton } from "./play-toggle-button.js";
+export type { PlayerApi, PlayerState } from "./player-api.js";
+export { SmoovePlayerProgress } from "./progress.js";
+// Host
+export { SmoovePlayer } from "./smoove-player.js";
+export { SmoovePlayerSoundControl } from "./sound-control.js";
+export { SmoovePlayerTime } from "./time.js";

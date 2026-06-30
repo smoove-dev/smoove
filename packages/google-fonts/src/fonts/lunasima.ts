@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lunasima";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO-EBvPh9RSOj7JFDwmcd831Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO5EBvPh9RSOj7JFDSZVMoM9E8niA.woff2",
   },
@@ -12,7 +12,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO-EBvPh9RSOj7JFDwvcd831Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO5EBvPh9RSOj7JFDSZVMoF9E8niA.woff2",
   },
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO-EBvPh9RSOj7JFDwhcd831Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO5EBvPh9RSOj7JFDSZVMoL9E8niA.woff2",
   },
@@ -20,11 +20,11 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO-EBvPh9RSOj7JFDwucd831Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO5EBvPh9RSOj7JFDSZVMoE9E8niA.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO-EBvPh9RSOj7JFDwgcd831Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO5EBvPh9RSOj7JFDSZVMoK9E8niA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO-EBvPh9RSOj7JFDwicd8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO5EBvPh9RSOj7JFDSZVMoI9E8.woff2",
   },
@@ -32,7 +32,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO-EBvPh9RSOj7JFDwscd831Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO5EBvPh9RSOj7JFDSZVMoG9E8niA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO-EBvPh9RSOj7JFDwtcd831Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lunasima/v1/wEO5EBvPh9RSOj7JFDSZVMoH9E8niA.woff2",
   },
@@ -40,7 +40,15 @@ const FACES = {
 
 export type LunasimaWeight = "400" | "700";
 export type LunasimaStyle = "normal";
-export type LunasimaSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "hebrew" | "latin" | "latin-ext" | "vietnamese";
+export type LunasimaSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "hebrew"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type LunasimaOptions = GoogleFontOptions<LunasimaWeight, LunasimaStyle, LunasimaSubset>;
 
 /**

@@ -4,35 +4,59 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cairo Play";
 
 const FACES = {
-  "arabic": {
-    "200-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
+  arabic: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKnzHo0ug.woff2",
   },
-  "latin": {
-    "200-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
+  latin: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKizHo.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/cairoplay/v13/wXK7E3QSpo4vpRz_mz6FP-8iaauCLt_Hjopv3kKszHo0ug.woff2",
   },
 } as const;
 
@@ -45,7 +69,11 @@ export type CairoPlayOptions = GoogleFontOptions<CairoPlayWeight, CairoPlayStyle
  * Cairo Play — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CairoPlay extends GoogleFont<CairoPlayWeight, CairoPlayStyle, CairoPlaySubset> {
+export default class CairoPlay extends GoogleFont<
+  CairoPlayWeight,
+  CairoPlayStyle,
+  CairoPlaySubset
+> {
   constructor(options?: CairoPlayOptions) {
     super(FAMILY, FACES, options);
   }

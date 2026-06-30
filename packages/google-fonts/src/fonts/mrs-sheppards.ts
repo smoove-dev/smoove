@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mrs Sheppards";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/mrssheppards/v25/PN_2Rfm9snC0XUGoEZhb91ig7v_7yw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/mrssheppards/v25/PN_2Rfm9snC0XUGoEZhb91ig7v_7yw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/mrssheppards/v25/PN_2Rfm9snC0XUGoEZhb91ig7vH7y0Mi.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/mrssheppards/v25/PN_2Rfm9snC0XUGoEZhb91ig7vH7y0Mi.woff2",
   },
 } as const;
 
 export type MrsSheppardsWeight = "400";
 export type MrsSheppardsStyle = "normal";
 export type MrsSheppardsSubset = "latin" | "latin-ext";
-export type MrsSheppardsOptions = GoogleFontOptions<MrsSheppardsWeight, MrsSheppardsStyle, MrsSheppardsSubset>;
+export type MrsSheppardsOptions = GoogleFontOptions<
+  MrsSheppardsWeight,
+  MrsSheppardsStyle,
+  MrsSheppardsSubset
+>;
 
 /**
  * Mrs Sheppards — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MrsSheppards extends GoogleFont<MrsSheppardsWeight, MrsSheppardsStyle, MrsSheppardsSubset> {
+export default class MrsSheppards extends GoogleFont<
+  MrsSheppardsWeight,
+  MrsSheppardsStyle,
+  MrsSheppardsSubset
+> {
   constructor(options?: MrsSheppardsOptions) {
     super(FAMILY, FACES, options);
   }

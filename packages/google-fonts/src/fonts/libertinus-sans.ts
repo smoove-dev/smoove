@@ -4,53 +4,89 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Libertinus Sans";
 
 const FACES = {
-  "cyrillic": {
-    "400-italic": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfS1dRUYw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8jdfUzdA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB9vFpWik.woff2",
+  cyrillic: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfS1dRUYw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8jdfUzdA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB9vFpWik.woff2",
   },
   "cyrillic-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfb1dRUYw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8hNfUzdA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB__FpWik.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfb1dRUYw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8hNfUzdA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB__FpWik.woff2",
   },
-  "greek": {
-    "400-italic": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfV1dRUYw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8itfUzdA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB8fFpWik.woff2",
+  greek: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfV1dRUYw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8itfUzdA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB8fFpWik.woff2",
   },
   "greek-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfa1dRUYw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8hdfUzdA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB_vFpWik.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfa1dRUYw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8hdfUzdA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB_vFpWik.woff2",
   },
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfW1dQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8idfU.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB8vFp.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfW1dQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8idfU.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB8vFp.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfY1dRUYw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8h9fUzdA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB_PFpWik.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfY1dRUYw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8h9fUzdA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB_PFpWik.woff2",
   },
-  "vietnamese": {
-    "400-italic": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfZ1dRUYw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8htfUzdA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB_fFpWik.woff2",
+  vietnamese: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Jr0-a6k7ZLbw_dle4knJh2cq8jOfZ1dRUYw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Lr0-a6k7ZLbw_dle4knJh2cq8htfUzdA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/libertinussans/v1/YA9Or0-a6k7ZLbw_dle4knJh2cq0MvLB_fFpWik.woff2",
   },
 } as const;
 
 export type LibertinusSansWeight = "400" | "700";
 export type LibertinusSansStyle = "italic" | "normal";
-export type LibertinusSansSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "vietnamese";
-export type LibertinusSansOptions = GoogleFontOptions<LibertinusSansWeight, LibertinusSansStyle, LibertinusSansSubset>;
+export type LibertinusSansSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
+export type LibertinusSansOptions = GoogleFontOptions<
+  LibertinusSansWeight,
+  LibertinusSansStyle,
+  LibertinusSansSubset
+>;
 
 /**
  * Libertinus Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LibertinusSans extends GoogleFont<LibertinusSansWeight, LibertinusSansStyle, LibertinusSansSubset> {
+export default class LibertinusSans extends GoogleFont<
+  LibertinusSansWeight,
+  LibertinusSansStyle,
+  LibertinusSansSubset
+> {
   constructor(options?: LibertinusSansOptions) {
     super(FAMILY, FACES, options);
   }

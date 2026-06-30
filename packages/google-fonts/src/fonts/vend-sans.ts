@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Vend Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/vendsans/v1/E21j_d7ijufNwCJPEUscUT9XKu8.woff2",
     "300-normal": "https://fonts.gstatic.com/s/vendsans/v1/E21l_d7ijufNwCJPEUscVA9V.woff2",
     "400-italic": "https://fonts.gstatic.com/s/vendsans/v1/E21j_d7ijufNwCJPEUscUT9XKu8.woff2",

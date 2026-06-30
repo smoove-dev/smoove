@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fuggles";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/fuggles/v14/k3kQo8UEJOlD1hpOfdnoLg.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/fuggles/v14/k3kQo8UEJOlD1hpOfdfoLnnA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/fuggles/v14/k3kQo8UEJOlD1hpOfdboLnnA.woff2",
   },
 } as const;

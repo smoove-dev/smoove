@@ -4,46 +4,72 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Host Grotesk";
 
 const FACES = {
-  "latin": {
-    "300-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
+  latin: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
     "300-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
     "400-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
     "500-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
     "600-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
     "700-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjkyUk.woff2",
     "800-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2",
   },
   "latin-ext": {
-    "300-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3fmWBnlCJ3U42vbbfdwMjZoWjqyUnwrw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2",
   },
 } as const;
 
 export type HostGroteskWeight = "300" | "400" | "500" | "600" | "700" | "800";
 export type HostGroteskStyle = "italic" | "normal";
 export type HostGroteskSubset = "latin" | "latin-ext";
-export type HostGroteskOptions = GoogleFontOptions<HostGroteskWeight, HostGroteskStyle, HostGroteskSubset>;
+export type HostGroteskOptions = GoogleFontOptions<
+  HostGroteskWeight,
+  HostGroteskStyle,
+  HostGroteskSubset
+>;
 
 /**
  * Host Grotesk — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HostGrotesk extends GoogleFont<HostGroteskWeight, HostGroteskStyle, HostGroteskSubset> {
+export default class HostGrotesk extends GoogleFont<
+  HostGroteskWeight,
+  HostGroteskStyle,
+  HostGroteskSubset
+> {
   constructor(options?: HostGroteskOptions) {
     super(FAMILY, FACES, options);
   }

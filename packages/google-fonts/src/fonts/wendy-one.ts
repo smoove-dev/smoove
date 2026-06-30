@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Wendy One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/wendyone/v20/2sDcZGJOipXfgfXV5wgzaGW5.woff2",
   },
   "latin-ext": {

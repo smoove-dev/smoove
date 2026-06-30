@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "B612 Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/b612mono/v16/kmK5Zq85QVWbN1eW6lJV1T7fguA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/b612mono/v16/kmK_Zq85QVWbN1eW6lJV0A7d.woff2",
     "700-italic": "https://fonts.gstatic.com/s/b612mono/v16/kmKkZq85QVWbN1eW6lJV1TZkp_VMl7Y.woff2",

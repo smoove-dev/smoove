@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Parisienne";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/parisienne/v14/E21i_d3kivvAkxhLEVZpQyhwDw.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type ParisienneWeight = "400";
 export type ParisienneStyle = "normal";
 export type ParisienneSubset = "latin" | "latin-ext";
-export type ParisienneOptions = GoogleFontOptions<ParisienneWeight, ParisienneStyle, ParisienneSubset>;
+export type ParisienneOptions = GoogleFontOptions<
+  ParisienneWeight,
+  ParisienneStyle,
+  ParisienneSubset
+>;
 
 /**
  * Parisienne — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Parisienne extends GoogleFont<ParisienneWeight, ParisienneStyle, ParisienneSubset> {
+export default class Parisienne extends GoogleFont<
+  ParisienneWeight,
+  ParisienneStyle,
+  ParisienneSubset
+> {
   constructor(options?: ParisienneOptions) {
     super(FAMILY, FACES, options);
   }

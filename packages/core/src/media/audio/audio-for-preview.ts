@@ -2,8 +2,8 @@ import type { WrappedAudioBuffer } from "mediabunny";
 import type { MediaTiming } from "../media-time.js";
 import { getMediaTime } from "../media-time.js";
 import type { AudioDriver, AudioDriverContext } from "./audio-driver.js";
-import { type SchedulableAudioSource, isSchedulable } from "./audio-source-mediabunny.js";
-import { type SharedAudioContext, getSharedAudioContext } from "./shared-audio-context.js";
+import { isSchedulable, type SchedulableAudioSource } from "./audio-source-mediabunny.js";
+import { getSharedAudioContext, type SharedAudioContext } from "./shared-audio-context.js";
 
 /** Keep roughly this many seconds of audio scheduled ahead of the context clock. */
 const SCHEDULE_AHEAD = 1.0;

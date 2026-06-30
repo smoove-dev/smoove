@@ -2,7 +2,7 @@ import { type ReactNode, useEffect, useState } from "react";
 import { useComposition } from "../../hooks/use-composition.js";
 import { useStudio } from "../../hooks/use-studio.js";
 import { cn } from "../../lib/cn.js";
-import { FORMATS, QUALITY, RES_PRESETS, estMB, prettyMB } from "../../lib/constants.js";
+import { estMB, FORMATS, prettyMB, QUALITY, RES_PRESETS } from "../../lib/constants.js";
 import { fmtTime } from "../../lib/format.js";
 import { useSignalValue } from "../../signals/signal-bridge.js";
 import { Button } from "../button/button.js";

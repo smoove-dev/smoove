@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "La Belle Aurore";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/labelleaurore/v23/RrQIbot8-mNYKnGNDkWlocovHeI4HO2E.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/labelleaurore/v23/RrQIbot8-mNYKnGNDkWlocovHeI4HO2E.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/labelleaurore/v23/RrQIbot8-mNYKnGNDkWlocovHeI4Eu2EBVk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/labelleaurore/v23/RrQIbot8-mNYKnGNDkWlocovHeI4Eu2EBVk.woff2",
   },
 } as const;
 
 export type LaBelleAuroreWeight = "400";
 export type LaBelleAuroreStyle = "normal";
 export type LaBelleAuroreSubset = "latin" | "latin-ext";
-export type LaBelleAuroreOptions = GoogleFontOptions<LaBelleAuroreWeight, LaBelleAuroreStyle, LaBelleAuroreSubset>;
+export type LaBelleAuroreOptions = GoogleFontOptions<
+  LaBelleAuroreWeight,
+  LaBelleAuroreStyle,
+  LaBelleAuroreSubset
+>;
 
 /**
  * La Belle Aurore — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LaBelleAurore extends GoogleFont<LaBelleAuroreWeight, LaBelleAuroreStyle, LaBelleAuroreSubset> {
+export default class LaBelleAurore extends GoogleFont<
+  LaBelleAuroreWeight,
+  LaBelleAuroreStyle,
+  LaBelleAuroreSubset
+> {
   constructor(options?: LaBelleAuroreOptions) {
     super(FAMILY, FACES, options);
   }

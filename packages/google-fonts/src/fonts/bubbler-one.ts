@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bubbler One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bubblerone/v22/f0Xy0eqj68ppQV9KBLmAotHA0aI.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type BubblerOneWeight = "400";
 export type BubblerOneStyle = "normal";
 export type BubblerOneSubset = "latin" | "latin-ext";
-export type BubblerOneOptions = GoogleFontOptions<BubblerOneWeight, BubblerOneStyle, BubblerOneSubset>;
+export type BubblerOneOptions = GoogleFontOptions<
+  BubblerOneWeight,
+  BubblerOneStyle,
+  BubblerOneSubset
+>;
 
 /**
  * Bubbler One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BubblerOne extends GoogleFont<BubblerOneWeight, BubblerOneStyle, BubblerOneSubset> {
+export default class BubblerOne extends GoogleFont<
+  BubblerOneWeight,
+  BubblerOneStyle,
+  BubblerOneSubset
+> {
   constructor(options?: BubblerOneOptions) {
     super(FAMILY, FACES, options);
   }

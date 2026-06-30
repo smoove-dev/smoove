@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Unbounded";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "200-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwv8ZfrxE.woff2",
     "300-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwv8ZfrxE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwv8ZfrxE.woff2",
@@ -24,7 +24,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwtsZfrxE.woff2",
     "900-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwtsZfrxE.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwu8Zf.woff2",
     "300-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwu8Zf.woff2",
     "400-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwu8Zf.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwtcZfrxE.woff2",
     "900-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwtcZfrxE.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwtMZfrxE.woff2",
     "300-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwtMZfrxE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwtMZfrxE.woff2",
@@ -65,7 +65,11 @@ export type UnboundedOptions = GoogleFontOptions<UnboundedWeight, UnboundedStyle
  * Unbounded — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Unbounded extends GoogleFont<UnboundedWeight, UnboundedStyle, UnboundedSubset> {
+export default class Unbounded extends GoogleFont<
+  UnboundedWeight,
+  UnboundedStyle,
+  UnboundedSubset
+> {
   constructor(options?: UnboundedOptions) {
     super(FAMILY, FACES, options);
   }

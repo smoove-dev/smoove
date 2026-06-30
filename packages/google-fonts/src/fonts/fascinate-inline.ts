@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fascinate Inline";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/fascinateinline/v24/jVyR7mzzB3zc-jp6QCAu60poNqIy5grIfA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/fascinateinline/v24/jVyR7mzzB3zc-jp6QCAu60poNqIy5grIfA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/fascinateinline/v24/jVyR7mzzB3zc-jp6QCAu60poNqIy5gTIfCXx.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/fascinateinline/v24/jVyR7mzzB3zc-jp6QCAu60poNqIy5gTIfCXx.woff2",
   },
 } as const;
 
 export type FascinateInlineWeight = "400";
 export type FascinateInlineStyle = "normal";
 export type FascinateInlineSubset = "latin" | "latin-ext";
-export type FascinateInlineOptions = GoogleFontOptions<FascinateInlineWeight, FascinateInlineStyle, FascinateInlineSubset>;
+export type FascinateInlineOptions = GoogleFontOptions<
+  FascinateInlineWeight,
+  FascinateInlineStyle,
+  FascinateInlineSubset
+>;
 
 /**
  * Fascinate Inline — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FascinateInline extends GoogleFont<FascinateInlineWeight, FascinateInlineStyle, FascinateInlineSubset> {
+export default class FascinateInline extends GoogleFont<
+  FascinateInlineWeight,
+  FascinateInlineStyle,
+  FascinateInlineSubset
+> {
   constructor(options?: FascinateInlineOptions) {
     super(FAMILY, FACES, options);
   }

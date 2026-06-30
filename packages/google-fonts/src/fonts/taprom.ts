@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Taprom";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "400-normal": "https://fonts.gstatic.com/s/taprom/v29/UcCn3F82JHycULb1TyM2y0k.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/taprom/v29/UcCn3F82JHycULb1RCM2.woff2",
   },
 } as const;

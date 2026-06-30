@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Water Brush";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/waterbrush/v6/AYCPpXPqc8cJWLhp4hywKEJt5vM.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/waterbrush/v6/AYCPpXPqc8cJWLhp4hywKEJj5vO_5Q.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/waterbrush/v6/AYCPpXPqc8cJWLhp4hywKEJi5vO_5Q.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type WaterBrushWeight = "400";
 export type WaterBrushStyle = "normal";
 export type WaterBrushSubset = "latin" | "latin-ext" | "vietnamese";
-export type WaterBrushOptions = GoogleFontOptions<WaterBrushWeight, WaterBrushStyle, WaterBrushSubset>;
+export type WaterBrushOptions = GoogleFontOptions<
+  WaterBrushWeight,
+  WaterBrushStyle,
+  WaterBrushSubset
+>;
 
 /**
  * Water Brush — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class WaterBrush extends GoogleFont<WaterBrushWeight, WaterBrushStyle, WaterBrushSubset> {
+export default class WaterBrush extends GoogleFont<
+  WaterBrushWeight,
+  WaterBrushStyle,
+  WaterBrushSubset
+> {
   constructor(options?: WaterBrushOptions) {
     super(FAMILY, FACES, options);
   }

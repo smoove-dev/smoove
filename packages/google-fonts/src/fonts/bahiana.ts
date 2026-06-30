@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bahiana";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bahiana/v25/uU9PCBUV4YenPWJU3xTR3w.woff2",
   },
   "latin-ext": {

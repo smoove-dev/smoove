@@ -1,4 +1,4 @@
-import { Block, Composition, Rect, Sequence, Text, interpolate } from "@smoove/core";
+import { Block, Composition, interpolate, Rect, Sequence, Text } from "@smoove/core";
 
 /**
  * Borders on Block: a solid line, a dashed line, and a thicker stroke.

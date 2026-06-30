@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kelly Slab";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/kellyslab/v18/-W_7XJX0Rz3cxUnJC5t6fkALfq0k.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kellyslab/v18/-W_7XJX0Rz3cxUnJC5t6fkQLfg.woff2",
   },
   "latin-ext": {
@@ -24,7 +24,11 @@ export type KellySlabOptions = GoogleFontOptions<KellySlabWeight, KellySlabStyle
  * Kelly Slab — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KellySlab extends GoogleFont<KellySlabWeight, KellySlabStyle, KellySlabSubset> {
+export default class KellySlab extends GoogleFont<
+  KellySlabWeight,
+  KellySlabStyle,
+  KellySlabSubset
+> {
   constructor(options?: KellySlabOptions) {
     super(FAMILY, FACES, options);
   }

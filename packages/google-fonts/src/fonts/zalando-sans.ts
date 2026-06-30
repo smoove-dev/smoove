@@ -4,72 +4,128 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zalando Sans";
 
 const FACES = {
-  "latin": {
-    "200-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
+  latin: {
+    "200-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_dfyk.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPbPdw.woff2",
   },
   "latin-ext": {
-    "200-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_e_ykT_A.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPjPd-Sg.woff2",
   },
-  "vietnamese": {
-    "200-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
+  vietnamese: {
+    "200-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZP7-Asy1Em_lq_aK3hpr-7p3m1_EcrANmrLqEupLP_evykT_A.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/zalandosans/v3/FwZJ7-Asy1Em_lq_aK3hpr-RrktWHD54lnesO2lsfPnPd-Sg.woff2",
   },
 } as const;
 
 export type ZalandoSansWeight = "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type ZalandoSansStyle = "italic" | "normal";
 export type ZalandoSansSubset = "latin" | "latin-ext" | "vietnamese";
-export type ZalandoSansOptions = GoogleFontOptions<ZalandoSansWeight, ZalandoSansStyle, ZalandoSansSubset>;
+export type ZalandoSansOptions = GoogleFontOptions<
+  ZalandoSansWeight,
+  ZalandoSansStyle,
+  ZalandoSansSubset
+>;
 
 /**
  * Zalando Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZalandoSans extends GoogleFont<ZalandoSansWeight, ZalandoSansStyle, ZalandoSansSubset> {
+export default class ZalandoSans extends GoogleFont<
+  ZalandoSansWeight,
+  ZalandoSansStyle,
+  ZalandoSansSubset
+> {
   constructor(options?: ZalandoSansOptions) {
     super(FAMILY, FACES, options);
   }

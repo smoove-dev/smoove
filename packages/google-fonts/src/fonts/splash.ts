@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Splash";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/splash/v8/KtksAL2RZoDkbU6Ro_nH.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/splash/v8/KtksAL2RZoDkbU6RrfnHBdQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/splash/v8/KtksAL2RZoDkbU6RrPnHBdQ.woff2",
   },
 } as const;

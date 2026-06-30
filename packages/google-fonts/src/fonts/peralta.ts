@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Peralta";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/peralta/v21/hYkJPu0-RP_9d3kRKxcrrw.woff2",
   },
   "latin-ext": {

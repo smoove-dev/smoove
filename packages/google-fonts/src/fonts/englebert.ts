@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Englebert";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/englebert/v24/xn7iYH8w2XGrC8AR4HSBSP3Z.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type EnglebertOptions = GoogleFontOptions<EnglebertWeight, EnglebertStyle
  * Englebert — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Englebert extends GoogleFont<EnglebertWeight, EnglebertStyle, EnglebertSubset> {
+export default class Englebert extends GoogleFont<
+  EnglebertWeight,
+  EnglebertStyle,
+  EnglebertSubset
+> {
   constructor(options?: EnglebertOptions) {
     super(FAMILY, FACES, options);
   }

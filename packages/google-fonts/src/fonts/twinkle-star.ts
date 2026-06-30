@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Twinkle Star";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/twinklestar/v8/pe0pMI6IL4dPoFl9LGEmY6WqBP5v.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/twinklestar/v8/pe0pMI6IL4dPoFl9LGEmY6WqCv5vS1U.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/twinklestar/v8/pe0pMI6IL4dPoFl9LGEmY6WqCv5vS1U.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/twinklestar/v8/pe0pMI6IL4dPoFl9LGEmY6WqC_5vS1U.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/twinklestar/v8/pe0pMI6IL4dPoFl9LGEmY6WqC_5vS1U.woff2",
   },
 } as const;
 
 export type TwinkleStarWeight = "400";
 export type TwinkleStarStyle = "normal";
 export type TwinkleStarSubset = "latin" | "latin-ext" | "vietnamese";
-export type TwinkleStarOptions = GoogleFontOptions<TwinkleStarWeight, TwinkleStarStyle, TwinkleStarSubset>;
+export type TwinkleStarOptions = GoogleFontOptions<
+  TwinkleStarWeight,
+  TwinkleStarStyle,
+  TwinkleStarSubset
+>;
 
 /**
  * Twinkle Star — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TwinkleStar extends GoogleFont<TwinkleStarWeight, TwinkleStarStyle, TwinkleStarSubset> {
+export default class TwinkleStar extends GoogleFont<
+  TwinkleStarWeight,
+  TwinkleStarStyle,
+  TwinkleStarSubset
+> {
   constructor(options?: TwinkleStarOptions) {
     super(FAMILY, FACES, options);
   }

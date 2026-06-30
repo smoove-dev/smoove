@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Gothic";
 
 const FACES = {
-  "gothic": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansgothic/v17/TuGKUUVzXI5FBtUq5a8bj6wRbzxTJPXy03FQ.woff2",
+  gothic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgothic/v17/TuGKUUVzXI5FBtUq5a8bj6wRbzxTJPXy03FQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansgothic/v17/TuGKUUVzXI5FBtUq5a8bj6wRbzxTJMLy0w.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgothic/v17/TuGKUUVzXI5FBtUq5a8bj6wRbzxTJMLy0w.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansgothic/v17/TuGKUUVzXI5FBtUq5a8bj6wRbzxTJMzy03FQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgothic/v17/TuGKUUVzXI5FBtUq5a8bj6wRbzxTJMzy03FQ.woff2",
   },
 } as const;
 
 export type NotoSansGothicWeight = "400";
 export type NotoSansGothicStyle = "normal";
 export type NotoSansGothicSubset = "gothic" | "latin" | "latin-ext";
-export type NotoSansGothicOptions = GoogleFontOptions<NotoSansGothicWeight, NotoSansGothicStyle, NotoSansGothicSubset>;
+export type NotoSansGothicOptions = GoogleFontOptions<
+  NotoSansGothicWeight,
+  NotoSansGothicStyle,
+  NotoSansGothicSubset
+>;
 
 /**
  * Noto Sans Gothic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansGothic extends GoogleFont<NotoSansGothicWeight, NotoSansGothicStyle, NotoSansGothicSubset> {
+export default class NotoSansGothic extends GoogleFont<
+  NotoSansGothicWeight,
+  NotoSansGothicStyle,
+  NotoSansGothicSubset
+> {
   constructor(options?: NotoSansGothicOptions) {
     super(FAMILY, FACES, options);
   }

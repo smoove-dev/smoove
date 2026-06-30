@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nova Oval";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/novaoval/v26/jAnEgHdmANHvPenMaswyNoWg.woff2",
   },
   "latin-ext": {

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gabriela";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/gabriela/v23/qkBWXvsO6sreR8E-b8m9xLt3mQ.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/gabriela/v23/qkBWXvsO6sreR8E-b8m0xLt3mQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gabriela/v23/qkBWXvsO6sreR8E-b8m5xLs.woff2",
   },
   "latin-ext": {

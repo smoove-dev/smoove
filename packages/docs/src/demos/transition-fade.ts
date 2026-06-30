@@ -1,5 +1,5 @@
 import { Composition, Rect, type Sequence, Text } from "@smoove/core";
-import { TransitionSeries, fade, linearTiming } from "@smoove/transitions";
+import { fade, linearTiming, TransitionSeries } from "@smoove/transitions";
 
 /**
  * TransitionSeries is Series with overlap. Three scenes play in order, joined by

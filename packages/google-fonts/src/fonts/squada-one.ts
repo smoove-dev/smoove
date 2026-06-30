@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Squada One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/squadaone/v20/BCasqZ8XsOrx4mcOk6Mtaac2WQ.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type SquadaOneOptions = GoogleFontOptions<SquadaOneWeight, SquadaOneStyle
  * Squada One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SquadaOne extends GoogleFont<SquadaOneWeight, SquadaOneStyle, SquadaOneSubset> {
+export default class SquadaOne extends GoogleFont<
+  SquadaOneWeight,
+  SquadaOneStyle,
+  SquadaOneSubset
+> {
   constructor(options?: SquadaOneOptions) {
     super(FAMILY, FACES, options);
   }

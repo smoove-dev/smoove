@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pavanam";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/pavanam/v13/BXRrvF_aiezLh0xPPOxa9A.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/pavanam/v13/BXRrvF_aiezLh0xPPOJa9Ff0.woff2",
   },
-  "tamil": {
+  tamil: {
     "400-normal": "https://fonts.gstatic.com/s/pavanam/v13/BXRrvF_aiezLh0xPPPpa9Ff0.woff2",
   },
 } as const;

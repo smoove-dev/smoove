@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Momo Trust Display";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/momotrustdisplay/v2/WWXPlieNYgyPZLyBUuEkKZFhFHyjqb1emGZM.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/momotrustdisplay/v2/WWXPlieNYgyPZLyBUuEkKZFhFHyjqb1emGZM.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/momotrustdisplay/v2/WWXPlieNYgyPZLyBUuEkKZFhFHyjqb1elmZMBgM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/momotrustdisplay/v2/WWXPlieNYgyPZLyBUuEkKZFhFHyjqb1elmZMBgM.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/momotrustdisplay/v2/WWXPlieNYgyPZLyBUuEkKZFhFHyjqb1el2ZMBgM.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/momotrustdisplay/v2/WWXPlieNYgyPZLyBUuEkKZFhFHyjqb1el2ZMBgM.woff2",
   },
 } as const;
 
 export type MomoTrustDisplayWeight = "400";
 export type MomoTrustDisplayStyle = "normal";
 export type MomoTrustDisplaySubset = "latin" | "latin-ext" | "vietnamese";
-export type MomoTrustDisplayOptions = GoogleFontOptions<MomoTrustDisplayWeight, MomoTrustDisplayStyle, MomoTrustDisplaySubset>;
+export type MomoTrustDisplayOptions = GoogleFontOptions<
+  MomoTrustDisplayWeight,
+  MomoTrustDisplayStyle,
+  MomoTrustDisplaySubset
+>;
 
 /**
  * Momo Trust Display — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MomoTrustDisplay extends GoogleFont<MomoTrustDisplayWeight, MomoTrustDisplayStyle, MomoTrustDisplaySubset> {
+export default class MomoTrustDisplay extends GoogleFont<
+  MomoTrustDisplayWeight,
+  MomoTrustDisplayStyle,
+  MomoTrustDisplaySubset
+> {
   constructor(options?: MomoTrustDisplayOptions) {
     super(FAMILY, FACES, options);
   }

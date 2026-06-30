@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Buginese";
 
 const FACES = {
-  "buginese": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbuginese/v21/esDM30ldNv-KYGGJpKGk18phe_7Da6_QmvGFbLk.woff2",
+  buginese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbuginese/v21/esDM30ldNv-KYGGJpKGk18phe_7Da6_QmvGFbLk.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbuginese/v21/esDM30ldNv-KYGGJpKGk18phe_7Da6_QsvGF.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbuginese/v21/esDM30ldNv-KYGGJpKGk18phe_7Da6_QsvGF.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbuginese/v21/esDM30ldNv-KYGGJpKGk18phe_7Da6_QvPGFbLk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbuginese/v21/esDM30ldNv-KYGGJpKGk18phe_7Da6_QvPGFbLk.woff2",
   },
 } as const;
 
 export type NotoSansBugineseWeight = "400";
 export type NotoSansBugineseStyle = "normal";
 export type NotoSansBugineseSubset = "buginese" | "latin" | "latin-ext";
-export type NotoSansBugineseOptions = GoogleFontOptions<NotoSansBugineseWeight, NotoSansBugineseStyle, NotoSansBugineseSubset>;
+export type NotoSansBugineseOptions = GoogleFontOptions<
+  NotoSansBugineseWeight,
+  NotoSansBugineseStyle,
+  NotoSansBugineseSubset
+>;
 
 /**
  * Noto Sans Buginese — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansBuginese extends GoogleFont<NotoSansBugineseWeight, NotoSansBugineseStyle, NotoSansBugineseSubset> {
+export default class NotoSansBuginese extends GoogleFont<
+  NotoSansBugineseWeight,
+  NotoSansBugineseStyle,
+  NotoSansBugineseSubset
+> {
   constructor(options?: NotoSansBugineseOptions) {
     super(FAMILY, FACES, options);
   }

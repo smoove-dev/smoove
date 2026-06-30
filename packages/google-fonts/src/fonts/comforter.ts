@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Comforter";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/comforter/v9/H4clBXOCl8nQnlaql3Qq65u9uqc.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/comforter/v9/H4clBXOCl8nQnlaql3Qq75u9.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/comforter/v9/H4clBXOCl8nQnlaql3Qq4Zu9uqc.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/comforter/v9/H4clBXOCl8nQnlaql3Qq4Ju9uqc.woff2",
   },
 } as const;
@@ -27,7 +27,11 @@ export type ComforterOptions = GoogleFontOptions<ComforterWeight, ComforterStyle
  * Comforter — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Comforter extends GoogleFont<ComforterWeight, ComforterStyle, ComforterSubset> {
+export default class Comforter extends GoogleFont<
+  ComforterWeight,
+  ComforterStyle,
+  ComforterSubset
+> {
   constructor(options?: ComforterOptions) {
     super(FAMILY, FACES, options);
   }

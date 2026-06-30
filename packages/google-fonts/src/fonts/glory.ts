@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Glory";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/glory/v18/q5uHsoi9Lf1w5vfNqi5IBg.woff2",
     "100-normal": "https://fonts.gstatic.com/s/glory/v18/q5uJsoi9Lf1w5vfImiw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/glory/v18/q5uHsoi9Lf1w5vfNqi5IBg.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/glory/v18/q5uHsoi9Lf1w5vfNqiBIBixd.woff2",
     "800-normal": "https://fonts.gstatic.com/s/glory/v18/q5uJsoi9Lf1w5vfGmixQAg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/glory/v18/q5uHsoi9Lf1w5vfNqiFIBixd.woff2",
     "100-normal": "https://fonts.gstatic.com/s/glory/v18/q5uJsoi9Lf1w5vfHmixQAg.woff2",
     "200-italic": "https://fonts.gstatic.com/s/glory/v18/q5uHsoi9Lf1w5vfNqiFIBixd.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mitr";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiEypw5ucZF8fMZJJfecg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiEypw5ucZF8ZcaJJfecg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiLypw5ucZF-Tw4MQ.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiEypw5ucZF8eMcJJnecmNE.woff2",
     "700-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiEypw5ucZF8YcdJJnecmNE.woff2",
   },
-  "thai": {
+  thai: {
     "200-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiEypw5ucZF8fMZJIPecmNE.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiEypw5ucZF8ZcaJIPecmNE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiLypw5ucZF-Sg4Maj_.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiEypw5ucZF8eMcJIPecmNE.woff2",
     "700-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiEypw5ucZF8YcdJIPecmNE.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiEypw5ucZF8fMZJJjecmNE.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiEypw5ucZF8ZcaJJjecmNE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mitr/v13/pxiLypw5ucZF-TM4Maj_.woff2",

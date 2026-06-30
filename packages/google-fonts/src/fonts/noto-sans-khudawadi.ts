@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Khudawadi";
 
 const FACES = {
-  "khudawadi": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanskhudawadi/v23/fdNi9t6ZsWBZ2k5ltHN73zZ5hc8HANlHEkptVGXz.woff2",
+  khudawadi: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanskhudawadi/v23/fdNi9t6ZsWBZ2k5ltHN73zZ5hc8HANlHEkptVGXz.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanskhudawadi/v23/fdNi9t6ZsWBZ2k5ltHN73zZ5hc8HANlHEjNtVA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanskhudawadi/v23/fdNi9t6ZsWBZ2k5ltHN73zZ5hc8HANlHEjNtVA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanskhudawadi/v23/fdNi9t6ZsWBZ2k5ltHN73zZ5hc8HANlHEj1tVGXz.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanskhudawadi/v23/fdNi9t6ZsWBZ2k5ltHN73zZ5hc8HANlHEj1tVGXz.woff2",
   },
 } as const;
 
 export type NotoSansKhudawadiWeight = "400";
 export type NotoSansKhudawadiStyle = "normal";
 export type NotoSansKhudawadiSubset = "khudawadi" | "latin" | "latin-ext";
-export type NotoSansKhudawadiOptions = GoogleFontOptions<NotoSansKhudawadiWeight, NotoSansKhudawadiStyle, NotoSansKhudawadiSubset>;
+export type NotoSansKhudawadiOptions = GoogleFontOptions<
+  NotoSansKhudawadiWeight,
+  NotoSansKhudawadiStyle,
+  NotoSansKhudawadiSubset
+>;
 
 /**
  * Noto Sans Khudawadi — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansKhudawadi extends GoogleFont<NotoSansKhudawadiWeight, NotoSansKhudawadiStyle, NotoSansKhudawadiSubset> {
+export default class NotoSansKhudawadi extends GoogleFont<
+  NotoSansKhudawadiWeight,
+  NotoSansKhudawadiStyle,
+  NotoSansKhudawadiSubset
+> {
   constructor(options?: NotoSansKhudawadiOptions) {
     super(FAMILY, FACES, options);
   }

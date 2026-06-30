@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Oregano";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/oregano/v17/If2KXTPxciS3H4S2oZXlPBHK.woff2",
     "400-normal": "https://fonts.gstatic.com/s/oregano/v17/If2IXTPxciS3H4S2oZDVPg.woff2",
   },

@@ -1,16 +1,15 @@
 import Konva from "konva";
 import { stringToArray } from "konva/lib/shapes/Text.js";
 import { TICK_MARK } from "../../media/media-marker.js";
-import type { KMLayoutNode, LayoutBox } from "../contract.js";
-import type { MeasureContext } from "../contract.js";
-import { type FlexilyNode, applySize, parseSize, setTextWrapperMeasure } from "../flex/engine.js";
+import type { KMLayoutNode, LayoutBox, MeasureContext } from "../contract.js";
+import { applySize, type FlexilyNode, parseSize, setTextWrapperMeasure } from "../flex/engine.js";
 import type { SizeValue } from "../flex/types.js";
 import { Font, type FontFaceRef } from "./font.js";
 import {
-  type Geometry,
-  type LineRange,
   buildWordIndex,
   clamp,
+  type Geometry,
+  type LineRange,
   pickKonvaConfig,
   snapToWord,
 } from "./geometry.js";

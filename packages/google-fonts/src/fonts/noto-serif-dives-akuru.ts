@@ -5,26 +5,37 @@ const FAMILY = "Noto Serif Dives Akuru";
 
 const FACES = {
   "dives-akuru": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifdivesakuru/v8/QldfNSVMqAsHtsJ_TnD3aT03sMgd57ibeeZT2-vj7ohECw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifdivesakuru/v8/QldfNSVMqAsHtsJ_TnD3aT03sMgd57ibeeZT2-vj7ohECw.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifdivesakuru/v8/QldfNSVMqAsHtsJ_TnD3aT03sMgd57ibeeZT20fCyw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifdivesakuru/v8/QldfNSVMqAsHtsJ_TnD3aT03sMgd57ibeeZT20fCyw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifdivesakuru/v8/QldfNSVMqAsHtsJ_TnD3aT03sMgd57ibeeZT20nCy7V9.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifdivesakuru/v8/QldfNSVMqAsHtsJ_TnD3aT03sMgd57ibeeZT20nCy7V9.woff2",
   },
 } as const;
 
 export type NotoSerifDivesAkuruWeight = "400";
 export type NotoSerifDivesAkuruStyle = "normal";
 export type NotoSerifDivesAkuruSubset = "dives-akuru" | "latin" | "latin-ext";
-export type NotoSerifDivesAkuruOptions = GoogleFontOptions<NotoSerifDivesAkuruWeight, NotoSerifDivesAkuruStyle, NotoSerifDivesAkuruSubset>;
+export type NotoSerifDivesAkuruOptions = GoogleFontOptions<
+  NotoSerifDivesAkuruWeight,
+  NotoSerifDivesAkuruStyle,
+  NotoSerifDivesAkuruSubset
+>;
 
 /**
  * Noto Serif Dives Akuru — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifDivesAkuru extends GoogleFont<NotoSerifDivesAkuruWeight, NotoSerifDivesAkuruStyle, NotoSerifDivesAkuruSubset> {
+export default class NotoSerifDivesAkuru extends GoogleFont<
+  NotoSerifDivesAkuruWeight,
+  NotoSerifDivesAkuruStyle,
+  NotoSerifDivesAkuruSubset
+> {
   constructor(options?: NotoSerifDivesAkuruOptions) {
     super(FAMILY, FACES, options);
   }

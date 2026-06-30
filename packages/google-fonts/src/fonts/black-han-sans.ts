@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Black Han Sans";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/blackhansans/v24/ea8Aad44WunzF9a-dL6toA8r8kqSK3U.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/blackhansans/v24/ea8Aad44WunzF9a-dL6toA8r8kqSK3U.woff2",
   },
 } as const;
 
 export type BlackHanSansWeight = "400";
 export type BlackHanSansStyle = "normal";
 export type BlackHanSansSubset = "latin";
-export type BlackHanSansOptions = GoogleFontOptions<BlackHanSansWeight, BlackHanSansStyle, BlackHanSansSubset>;
+export type BlackHanSansOptions = GoogleFontOptions<
+  BlackHanSansWeight,
+  BlackHanSansStyle,
+  BlackHanSansSubset
+>;
 
 /**
  * Black Han Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BlackHanSans extends GoogleFont<BlackHanSansWeight, BlackHanSansStyle, BlackHanSansSubset> {
+export default class BlackHanSans extends GoogleFont<
+  BlackHanSansWeight,
+  BlackHanSansStyle,
+  BlackHanSansSubset
+> {
   constructor(options?: BlackHanSansOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Langar";
 
 const FACES = {
-  "gurmukhi": {
+  gurmukhi: {
     "400-normal": "https://fonts.gstatic.com/s/langar/v30/kJEyBukW7AIlgjGliT9Yx9s.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/langar/v30/kJEyBukW7AIlgjGlqj9Y.woff2",
   },
   "latin-ext": {

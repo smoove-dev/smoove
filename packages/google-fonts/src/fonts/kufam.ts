@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kufam";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-italic": "https://fonts.gstatic.com/s/kufam/v26/C8cj4cY7pG7w_q6AFjoxxkGE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kufam/v26/C8ct4cY7pG7w_q6AJj0pwg.woff2",
     "500-italic": "https://fonts.gstatic.com/s/kufam/v26/C8cj4cY7pG7w_q6AFjoxxkGE.woff2",
@@ -18,7 +18,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/kufam/v26/C8cj4cY7pG7w_q6AFjoxxkGE.woff2",
     "900-normal": "https://fonts.gstatic.com/s/kufam/v26/C8ct4cY7pG7w_q6AJj0pwg.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/kufam/v26/C8cj4cY7pG7w_q6AFj8xxg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kufam/v26/C8ct4cY7pG7w_q6FJj0.woff2",
     "500-italic": "https://fonts.gstatic.com/s/kufam/v26/C8cj4cY7pG7w_q6AFj8xxg.woff2",
@@ -46,7 +46,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/kufam/v26/C8cj4cY7pG7w_q6AFjExxkGE.woff2",
     "900-normal": "https://fonts.gstatic.com/s/kufam/v26/C8ct4cY7pG7w_q6LJj0pwg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/kufam/v26/C8cj4cY7pG7w_q6AFjAxxkGE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kufam/v26/C8ct4cY7pG7w_q6KJj0pwg.woff2",
     "500-italic": "https://fonts.gstatic.com/s/kufam/v26/C8cj4cY7pG7w_q6AFjAxxkGE.woff2",

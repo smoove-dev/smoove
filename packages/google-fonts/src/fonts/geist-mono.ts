@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Geist Mono";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItnBvjvks.woff2",
     "100-normal": "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrMdmgPn.woff2",
     "200-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItnBvjvks.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItlRvjvks.woff2",
     "900-normal": "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrodmgPn.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItmBvj.woff2",
     "100-normal": "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmg.woff2",
     "200-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItmBvj.woff2",
@@ -84,7 +84,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItlhvjvks.woff2",
     "900-normal": "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrkdmgPn.woff2",
   },
-  "symbols2": {
+  symbols2: {
     "100-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItIjrGg3IU.woff2",
     "100-normal": "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFg08vz7ehw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItIjrGg3IU.woff2",
@@ -104,7 +104,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItIjrGg3IU.woff2",
     "900-normal": "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFg08vz7ehw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItlxvjvks.woff2",
     "100-normal": "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrgdmgPn.woff2",
     "200-italic": "https://fonts.gstatic.com/s/geistmono/v6/or3lQ6H-1_WfwkMZI_qYFrItlxvjvks.woff2",
@@ -128,14 +128,24 @@ const FACES = {
 
 export type GeistMonoWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type GeistMonoStyle = "italic" | "normal";
-export type GeistMonoSubset = "cyrillic" | "cyrillic-ext" | "latin" | "latin-ext" | "symbols2" | "vietnamese";
+export type GeistMonoSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "latin"
+  | "latin-ext"
+  | "symbols2"
+  | "vietnamese";
 export type GeistMonoOptions = GoogleFontOptions<GeistMonoWeight, GeistMonoStyle, GeistMonoSubset>;
 
 /**
  * Geist Mono — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GeistMono extends GoogleFont<GeistMonoWeight, GeistMonoStyle, GeistMonoSubset> {
+export default class GeistMono extends GoogleFont<
+  GeistMonoWeight,
+  GeistMonoStyle,
+  GeistMonoSubset
+> {
   constructor(options?: GeistMonoOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Geostar Fill";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/geostarfill/v27/AMOWz4SWuWiXFfjEohxQ9osEVFi3.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type GeostarFillWeight = "400";
 export type GeostarFillStyle = "normal";
 export type GeostarFillSubset = "latin";
-export type GeostarFillOptions = GoogleFontOptions<GeostarFillWeight, GeostarFillStyle, GeostarFillSubset>;
+export type GeostarFillOptions = GoogleFontOptions<
+  GeostarFillWeight,
+  GeostarFillStyle,
+  GeostarFillSubset
+>;
 
 /**
  * Geostar Fill — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GeostarFill extends GoogleFont<GeostarFillWeight, GeostarFillStyle, GeostarFillSubset> {
+export default class GeostarFill extends GoogleFont<
+  GeostarFillWeight,
+  GeostarFillStyle,
+  GeostarFillSubset
+> {
   constructor(options?: GeostarFillOptions) {
     super(FAMILY, FACES, options);
   }

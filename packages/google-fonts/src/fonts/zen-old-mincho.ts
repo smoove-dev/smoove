@@ -4,46 +4,74 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zen Old Mincho";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss0ApVaYytLwxTqcxfMyBveybb0iXxi2g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4DqmlZ-9IQPg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4vrWlZ-9IQPg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5LrGlZ-9IQPg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5zrmlZ-9IQPg.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss0ApVaYytLwxTqcxfMyBveybb0iXxi2g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4DqmlZ-9IQPg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4vrWlZ-9IQPg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5LrGlZ-9IQPg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5zrmlZ-9IQPg.woff2",
   },
-  "greek": {
-    "400-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss0ApVaYytLwxTqcxfMyBveybbziXxi2g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4Dqmle-9IQPg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4vrWle-9IQPg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5LrGle-9IQPg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5zrmle-9IQPg.woff2",
+  greek: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss0ApVaYytLwxTqcxfMyBveybbziXxi2g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4Dqmle-9IQPg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4vrWle-9IQPg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5LrGle-9IQPg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5zrmle-9IQPg.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss0ApVaYytLwxTqcxfMyBveybbwiXw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4Dqmld-9I.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4vrWld-9I.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5LrGld-9I.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5zrmld-9I.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss0ApVaYytLwxTqcxfMyBveybbwiXw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4Dqmld-9I.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4vrWld-9I.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5LrGld-9I.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5zrmld-9I.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss0ApVaYytLwxTqcxfMyBveybb-iXxi2g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4DqmlT-9IQPg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4vrWlT-9IQPg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5LrGlT-9IQPg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5zrmlT-9IQPg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss0ApVaYytLwxTqcxfMyBveybb-iXxi2g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4DqmlT-9IQPg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb4vrWlT-9IQPg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5LrGlT-9IQPg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/zenoldmincho/v13/tss3ApVaYytLwxTqcxfMyBveyb5zrmlT-9IQPg.woff2",
   },
 } as const;
 
 export type ZenOldMinchoWeight = "400" | "500" | "600" | "700" | "900";
 export type ZenOldMinchoStyle = "normal";
 export type ZenOldMinchoSubset = "cyrillic" | "greek" | "latin" | "latin-ext";
-export type ZenOldMinchoOptions = GoogleFontOptions<ZenOldMinchoWeight, ZenOldMinchoStyle, ZenOldMinchoSubset>;
+export type ZenOldMinchoOptions = GoogleFontOptions<
+  ZenOldMinchoWeight,
+  ZenOldMinchoStyle,
+  ZenOldMinchoSubset
+>;
 
 /**
  * Zen Old Mincho — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZenOldMincho extends GoogleFont<ZenOldMinchoWeight, ZenOldMinchoStyle, ZenOldMinchoSubset> {
+export default class ZenOldMincho extends GoogleFont<
+  ZenOldMinchoWeight,
+  ZenOldMinchoStyle,
+  ZenOldMinchoSubset
+> {
   constructor(options?: ZenOldMinchoOptions) {
     super(FAMILY, FACES, options);
   }

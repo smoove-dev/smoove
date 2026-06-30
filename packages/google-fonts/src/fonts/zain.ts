@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zain";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "200-normal": "https://fonts.gstatic.com/s/zain/v4/sykz-y9lm7soOBrshSi3--rE.woff2",
     "300-italic": "https://fonts.gstatic.com/s/zain/v4/sykx-y9lm7soMND1OSiH_PLAnlQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/zain/v4/sykz-y9lm7soOH7vhSi3--rE.woff2",
@@ -14,7 +14,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/zain/v4/sykz-y9lm7soOHLrhSi3--rE.woff2",
     "900-normal": "https://fonts.gstatic.com/s/zain/v4/sykz-y9lm7soOFbqhSi3--rE.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/zain/v4/sykz-y9lm7soOBrshS23-w.woff2",
     "300-italic": "https://fonts.gstatic.com/s/zain/v4/sykx-y9lm7soMND1OSiH-fLA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/zain/v4/sykz-y9lm7soOH7vhS23-w.woff2",

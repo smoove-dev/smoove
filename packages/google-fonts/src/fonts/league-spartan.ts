@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "League Spartan";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ-LZmFDA.woff2",
   },
-  "vietnamese": {
-    "100-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
+  vietnamese: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZ_LZmFDA.woff2",
   },
 } as const;
 
-export type LeagueSpartanWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type LeagueSpartanWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type LeagueSpartanStyle = "normal";
 export type LeagueSpartanSubset = "latin" | "latin-ext" | "vietnamese";
-export type LeagueSpartanOptions = GoogleFontOptions<LeagueSpartanWeight, LeagueSpartanStyle, LeagueSpartanSubset>;
+export type LeagueSpartanOptions = GoogleFontOptions<
+  LeagueSpartanWeight,
+  LeagueSpartanStyle,
+  LeagueSpartanSubset
+>;
 
 /**
  * League Spartan — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LeagueSpartan extends GoogleFont<LeagueSpartanWeight, LeagueSpartanStyle, LeagueSpartanSubset> {
+export default class LeagueSpartan extends GoogleFont<
+  LeagueSpartanWeight,
+  LeagueSpartanStyle,
+  LeagueSpartanSubset
+> {
   constructor(options?: LeagueSpartanOptions) {
     super(FAMILY, FACES, options);
   }

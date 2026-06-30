@@ -1,4 +1,4 @@
-import { Composition, Rect, Sequence, Series, Text, interpolate } from "@smoove/core";
+import { Composition, interpolate, Rect, Sequence, Series, Text } from "@smoove/core";
 
 /**
  * Series lays scenes back-to-back and computes each Sequence's `from` for you.

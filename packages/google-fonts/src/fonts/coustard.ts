@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Coustard";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/coustard/v19/3XFpErgg3YsZ5fqUU-UIt2Q.woff2",
     "900-normal": "https://fonts.gstatic.com/s/coustard/v19/3XFuErgg3YsZ5fqUU-2LkHHhZfk.woff2",
   },

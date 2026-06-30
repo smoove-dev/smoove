@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lora";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LJftLp_A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMw77I-NP.woff2",
     "500-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LJftLp_A.woff2",
@@ -24,7 +24,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LLPtLp_A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwf7I-NP.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LIftL.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2",
     "500-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LIftL.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LL_tLp_A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwT7I-NP.woff2",
   },
-  "math": {
+  math: {
     "400-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LXftLp_A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuM3b7I-NP.woff2",
     "500-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LXftLp_A.woff2",
@@ -54,7 +54,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LXftLp_A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuM3b7I-NP.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LT_tLp_A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuM2T7I-NP.woff2",
     "500-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LT_tLp_A.woff2",
@@ -64,7 +64,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LT_tLp_A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuM2T7I-NP.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LLvtLp_A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwX7I-NP.woff2",
     "500-italic": "https://fonts.gstatic.com/s/lora/v37/0QIhMX1D_JOuMw_LLvtLp_A.woff2",
@@ -78,7 +78,14 @@ const FACES = {
 
 export type LoraWeight = "400" | "500" | "600" | "700";
 export type LoraStyle = "italic" | "normal";
-export type LoraSubset = "cyrillic" | "cyrillic-ext" | "latin" | "latin-ext" | "math" | "symbols" | "vietnamese";
+export type LoraSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "latin"
+  | "latin-ext"
+  | "math"
+  | "symbols"
+  | "vietnamese";
 export type LoraOptions = GoogleFontOptions<LoraWeight, LoraStyle, LoraSubset>;
 
 /**

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Spline Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/splinesans/v16/_6_7ED73Uf-2WfU2LzycEbAimC0.woff2",
     "400-normal": "https://fonts.gstatic.com/s/splinesans/v16/_6_7ED73Uf-2WfU2LzycEbAimC0.woff2",
     "500-normal": "https://fonts.gstatic.com/s/splinesans/v16/_6_7ED73Uf-2WfU2LzycEbAimC0.woff2",
@@ -23,13 +23,21 @@ const FACES = {
 export type SplineSansWeight = "300" | "400" | "500" | "600" | "700";
 export type SplineSansStyle = "normal";
 export type SplineSansSubset = "latin" | "latin-ext";
-export type SplineSansOptions = GoogleFontOptions<SplineSansWeight, SplineSansStyle, SplineSansSubset>;
+export type SplineSansOptions = GoogleFontOptions<
+  SplineSansWeight,
+  SplineSansStyle,
+  SplineSansSubset
+>;
 
 /**
  * Spline Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SplineSans extends GoogleFont<SplineSansWeight, SplineSansStyle, SplineSansSubset> {
+export default class SplineSans extends GoogleFont<
+  SplineSansWeight,
+  SplineSansStyle,
+  SplineSansSubset
+> {
   constructor(options?: SplineSansOptions) {
     super(FAMILY, FACES, options);
   }

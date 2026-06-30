@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Georgian";
 
 const FACES = {
-  "georgian": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
+  georgian: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev50sJmasg.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5rsJk.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifgeorgian/v29/VEMaRpd8s4nv8hG_qOzL7HOAw4nt0Sl_XxyaEduNMvi7T6Y4ev5lsJmasg.woff2",
   },
 } as const;
 
-export type NotoSerifGeorgianWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSerifGeorgianWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSerifGeorgianStyle = "normal";
 export type NotoSerifGeorgianSubset = "georgian" | "latin" | "latin-ext";
-export type NotoSerifGeorgianOptions = GoogleFontOptions<NotoSerifGeorgianWeight, NotoSerifGeorgianStyle, NotoSerifGeorgianSubset>;
+export type NotoSerifGeorgianOptions = GoogleFontOptions<
+  NotoSerifGeorgianWeight,
+  NotoSerifGeorgianStyle,
+  NotoSerifGeorgianSubset
+>;
 
 /**
  * Noto Serif Georgian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifGeorgian extends GoogleFont<NotoSerifGeorgianWeight, NotoSerifGeorgianStyle, NotoSerifGeorgianSubset> {
+export default class NotoSerifGeorgian extends GoogleFont<
+  NotoSerifGeorgianWeight,
+  NotoSerifGeorgianStyle,
+  NotoSerifGeorgianSubset
+> {
   constructor(options?: NotoSerifGeorgianOptions) {
     super(FAMILY, FACES, options);
   }

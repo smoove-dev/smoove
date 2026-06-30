@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Podkova";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJ3zJ7Kh.woff2",
     "500-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJ3zJ7Kh.woff2",
     "600-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJ3zJ7Kh.woff2",
@@ -18,7 +18,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJTzJ7Kh.woff2",
     "800-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJTzJ7Kh.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJnzJw.woff2",
     "500-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJnzJw.woff2",
     "600-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJnzJw.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJfzJ7Kh.woff2",
     "800-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJfzJ7Kh.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJbzJ7Kh.woff2",
     "500-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJbzJ7Kh.woff2",
     "600-normal": "https://fonts.gstatic.com/s/podkova/v33/K2FxfZ1EmftJSV9VaJbzJ7Kh.woff2",

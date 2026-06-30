@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Saurashtra";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssaurashtra/v24/ea8GacQ0Wfz_XKWXe6OtoA8w8zvmYwTef-nahBI.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssaurashtra/v24/ea8GacQ0Wfz_XKWXe6OtoA8w8zvmYwTef-nahBI.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssaurashtra/v24/ea8GacQ0Wfz_XKWXe6OtoA8w8zvmYwTef-nUhBLjSA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssaurashtra/v24/ea8GacQ0Wfz_XKWXe6OtoA8w8zvmYwTef-nUhBLjSA.woff2",
   },
-  "saurashtra": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssaurashtra/v24/ea8GacQ0Wfz_XKWXe6OtoA8w8zvmYwTef-mUhBLjSA.woff2",
+  saurashtra: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssaurashtra/v24/ea8GacQ0Wfz_XKWXe6OtoA8w8zvmYwTef-mUhBLjSA.woff2",
   },
 } as const;
 
 export type NotoSansSaurashtraWeight = "400";
 export type NotoSansSaurashtraStyle = "normal";
 export type NotoSansSaurashtraSubset = "latin" | "latin-ext" | "saurashtra";
-export type NotoSansSaurashtraOptions = GoogleFontOptions<NotoSansSaurashtraWeight, NotoSansSaurashtraStyle, NotoSansSaurashtraSubset>;
+export type NotoSansSaurashtraOptions = GoogleFontOptions<
+  NotoSansSaurashtraWeight,
+  NotoSansSaurashtraStyle,
+  NotoSansSaurashtraSubset
+>;
 
 /**
  * Noto Sans Saurashtra — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansSaurashtra extends GoogleFont<NotoSansSaurashtraWeight, NotoSansSaurashtraStyle, NotoSansSaurashtraSubset> {
+export default class NotoSansSaurashtra extends GoogleFont<
+  NotoSansSaurashtraWeight,
+  NotoSansSaurashtraStyle,
+  NotoSansSaurashtraSubset
+> {
   constructor(options?: NotoSansSaurashtraOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ramabhadra";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ramabhadra/v17/EYq2maBOwqRW9P1SQ83LShRMXg.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/ramabhadra/v17/EYq2maBOwqRW9P1SQ83LSghMXquW.woff2",
   },
 } as const;
@@ -15,13 +15,21 @@ const FACES = {
 export type RamabhadraWeight = "400";
 export type RamabhadraStyle = "normal";
 export type RamabhadraSubset = "latin" | "telugu";
-export type RamabhadraOptions = GoogleFontOptions<RamabhadraWeight, RamabhadraStyle, RamabhadraSubset>;
+export type RamabhadraOptions = GoogleFontOptions<
+  RamabhadraWeight,
+  RamabhadraStyle,
+  RamabhadraSubset
+>;
 
 /**
  * Ramabhadra — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Ramabhadra extends GoogleFont<RamabhadraWeight, RamabhadraStyle, RamabhadraSubset> {
+export default class Ramabhadra extends GoogleFont<
+  RamabhadraWeight,
+  RamabhadraStyle,
+  RamabhadraSubset
+> {
   constructor(options?: RamabhadraOptions) {
     super(FAMILY, FACES, options);
   }

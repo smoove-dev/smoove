@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Changa One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/changaone/v22/xfu20W3wXn3QLUJXhzq42ATSu5_f.woff2",
     "400-normal": "https://fonts.gstatic.com/s/changaone/v22/xfu00W3wXn3QLUJXhzq42AHiuQ.woff2",
   },
@@ -19,7 +19,11 @@ export type ChangaOneOptions = GoogleFontOptions<ChangaOneWeight, ChangaOneStyle
  * Changa One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ChangaOne extends GoogleFont<ChangaOneWeight, ChangaOneStyle, ChangaOneSubset> {
+export default class ChangaOne extends GoogleFont<
+  ChangaOneWeight,
+  ChangaOneStyle,
+  ChangaOneSubset
+> {
   constructor(options?: ChangaOneOptions) {
     super(FAMILY, FACES, options);
   }

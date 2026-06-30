@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Overlock SC";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/overlocksc/v25/1cX3aUHKGZrstGAY8nwVzEGHocU.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type OverlockSCWeight = "400";
 export type OverlockSCStyle = "normal";
 export type OverlockSCSubset = "latin" | "latin-ext";
-export type OverlockSCOptions = GoogleFontOptions<OverlockSCWeight, OverlockSCStyle, OverlockSCSubset>;
+export type OverlockSCOptions = GoogleFontOptions<
+  OverlockSCWeight,
+  OverlockSCStyle,
+  OverlockSCSubset
+>;
 
 /**
  * Overlock SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class OverlockSC extends GoogleFont<OverlockSCWeight, OverlockSCStyle, OverlockSCSubset> {
+export default class OverlockSC extends GoogleFont<
+  OverlockSCWeight,
+  OverlockSCStyle,
+  OverlockSCSubset
+> {
   constructor(options?: OverlockSCOptions) {
     super(FAMILY, FACES, options);
   }

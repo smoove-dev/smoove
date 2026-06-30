@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lilex";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFD0hc8Xa.woff2",
     "100-normal": "https://fonts.gstatic.com/s/lilex/v1/DPEiYwmezwMATATqJDs5dw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFD0hc8Xa.woff2",
@@ -36,7 +36,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFDQhc8Xa.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lilex/v1/DPEiYwmezwMATATjJDs5dw.woff2",
   },
-  "greek": {
+  greek: {
     "100-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFDohc8Xa.woff2",
     "100-normal": "https://fonts.gstatic.com/s/lilex/v1/DPEiYwmezwMATATtJDs5dw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFDohc8Xa.woff2",
@@ -52,7 +52,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFDohc8Xa.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lilex/v1/DPEiYwmezwMATATtJDs5dw.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFDkhcw.woff2",
     "100-normal": "https://fonts.gstatic.com/s/lilex/v1/DPEiYwmezwMATATuJDs.woff2",
     "200-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFDkhcw.woff2",
@@ -84,7 +84,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFDchc8Xa.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lilex/v1/DPEiYwmezwMATATgJDs5dw.woff2",
   },
-  "symbols2": {
+  symbols2: {
     "100-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFIMAVvjjsQ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/lilex/v1/DPEiYwmezwMATARUBR4ETvw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFIMAVvjjsQ.woff2",
@@ -100,7 +100,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFIMAVvjjsQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lilex/v1/DPEiYwmezwMATARUBR4ETvw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFDYhc8Xa.woff2",
     "100-normal": "https://fonts.gstatic.com/s/lilex/v1/DPEiYwmezwMATAThJDs5dw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/lilex/v1/DPEsYwmezwMATATrFDYhc8Xa.woff2",
@@ -120,7 +120,14 @@ const FACES = {
 
 export type LilexWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700";
 export type LilexStyle = "italic" | "normal";
-export type LilexSubset = "cyrillic" | "cyrillic-ext" | "greek" | "latin" | "latin-ext" | "symbols2" | "vietnamese";
+export type LilexSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "latin"
+  | "latin-ext"
+  | "symbols2"
+  | "vietnamese";
 export type LilexOptions = GoogleFontOptions<LilexWeight, LilexStyle, LilexSubset>;
 
 /**

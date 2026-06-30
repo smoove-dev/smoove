@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Neuton";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/neuton/v24/UMBQrPtMoH62xUZKAKkvfQr4.woff2",
     "300-normal": "https://fonts.gstatic.com/s/neuton/v24/UMBQrPtMoH62xUZKZKovfQr4.woff2",
     "400-italic": "https://fonts.gstatic.com/s/neuton/v24/UMBRrPtMoH62xUZCyrg4Wi8.woff2",

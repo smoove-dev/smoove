@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nixie One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/nixieone/v17/lW-8wjkKLXjg5y2o2uUYV-ty.woff2",
   },
 } as const;

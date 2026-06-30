@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Architects Daughter";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/architectsdaughter/v20/KtkxAKiDZI_td1Lkx62xHZHDtgO_Y-bvTYlg4w.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/architectsdaughter/v20/KtkxAKiDZI_td1Lkx62xHZHDtgO_Y-bvTYlg4w.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/architectsdaughter/v20/KtkxAKiDZI_td1Lkx62xHZHDtgO_Y-bvTYdg4_zg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/architectsdaughter/v20/KtkxAKiDZI_td1Lkx62xHZHDtgO_Y-bvTYdg4_zg.woff2",
   },
 } as const;
 
 export type ArchitectsDaughterWeight = "400";
 export type ArchitectsDaughterStyle = "normal";
 export type ArchitectsDaughterSubset = "latin" | "latin-ext";
-export type ArchitectsDaughterOptions = GoogleFontOptions<ArchitectsDaughterWeight, ArchitectsDaughterStyle, ArchitectsDaughterSubset>;
+export type ArchitectsDaughterOptions = GoogleFontOptions<
+  ArchitectsDaughterWeight,
+  ArchitectsDaughterStyle,
+  ArchitectsDaughterSubset
+>;
 
 /**
  * Architects Daughter — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ArchitectsDaughter extends GoogleFont<ArchitectsDaughterWeight, ArchitectsDaughterStyle, ArchitectsDaughterSubset> {
+export default class ArchitectsDaughter extends GoogleFont<
+  ArchitectsDaughterWeight,
+  ArchitectsDaughterStyle,
+  ArchitectsDaughterSubset
+> {
   constructor(options?: ArchitectsDaughterOptions) {
     super(FAMILY, FACES, options);
   }

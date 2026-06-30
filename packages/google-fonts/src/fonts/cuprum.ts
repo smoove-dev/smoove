@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cuprum";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/cuprum/v29/dg4m_pLmvrkcOkBNI9tEr7kVSg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cuprum/v29/dg4k_pLmvrkcOkBNIutCt70.woff2",
     "500-italic": "https://fonts.gstatic.com/s/cuprum/v29/dg4m_pLmvrkcOkBNI9tEr7kVSg.woff2",
@@ -24,7 +24,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/cuprum/v29/dg4m_pLmvrkcOkBNI9tNr7kVSg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cuprum/v29/dg4k_pLmvrkcOkBNK-tCt70.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/cuprum/v29/dg4m_pLmvrkcOkBNI9tAr7k.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cuprum/v29/dg4k_pLmvrkcOkBNJutC.woff2",
     "500-italic": "https://fonts.gstatic.com/s/cuprum/v29/dg4m_pLmvrkcOkBNI9tAr7k.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/cuprum/v29/dg4m_pLmvrkcOkBNI9tOr7kVSg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cuprum/v29/dg4k_pLmvrkcOkBNKOtCt70.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/cuprum/v29/dg4m_pLmvrkcOkBNI9tPr7kVSg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cuprum/v29/dg4k_pLmvrkcOkBNKetCt70.woff2",
     "500-italic": "https://fonts.gstatic.com/s/cuprum/v29/dg4m_pLmvrkcOkBNI9tPr7kVSg.woff2",

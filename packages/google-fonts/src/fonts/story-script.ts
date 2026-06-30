@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Story Script";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/storyscript/v3/mem5YaSw02SQ0OlzDuR8IskOUuhp.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/storyscript/v3/mem5YaSw02SQ0OlzDuR8IskOXOhpOqc.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/storyscript/v3/mem5YaSw02SQ0OlzDuR8IskOXOhpOqc.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/storyscript/v3/mem5YaSw02SQ0OlzDuR8IskOXehpOqc.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/storyscript/v3/mem5YaSw02SQ0OlzDuR8IskOXehpOqc.woff2",
   },
 } as const;
 
 export type StoryScriptWeight = "400";
 export type StoryScriptStyle = "normal";
 export type StoryScriptSubset = "latin" | "latin-ext" | "vietnamese";
-export type StoryScriptOptions = GoogleFontOptions<StoryScriptWeight, StoryScriptStyle, StoryScriptSubset>;
+export type StoryScriptOptions = GoogleFontOptions<
+  StoryScriptWeight,
+  StoryScriptStyle,
+  StoryScriptSubset
+>;
 
 /**
  * Story Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class StoryScript extends GoogleFont<StoryScriptWeight, StoryScriptStyle, StoryScriptSubset> {
+export default class StoryScript extends GoogleFont<
+  StoryScriptWeight,
+  StoryScriptStyle,
+  StoryScriptSubset
+> {
   constructor(options?: StoryScriptOptions) {
     super(FAMILY, FACES, options);
   }

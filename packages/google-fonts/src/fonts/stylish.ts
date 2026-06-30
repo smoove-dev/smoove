@@ -4,8 +4,9 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Stylish";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/stylish/v25/m8JSjfhPYriQkk7-foiRYr5LBQTwuLLyUZJAC6M3P8sGXg.119.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/stylish/v25/m8JSjfhPYriQkk7-foiRYr5LBQTwuLLyUZJAC6M3P8sGXg.119.woff2",
   },
 } as const;
 

@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Style Script";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/stylescript/v13/vm8xdRX3SV7Z0aPa88xzW5nZf176.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/stylescript/v13/vm8xdRX3SV7Z0aPa88xzW5nZcV762NY.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/stylescript/v13/vm8xdRX3SV7Z0aPa88xzW5nZcV762NY.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/stylescript/v13/vm8xdRX3SV7Z0aPa88xzW5nZcF762NY.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/stylescript/v13/vm8xdRX3SV7Z0aPa88xzW5nZcF762NY.woff2",
   },
 } as const;
 
 export type StyleScriptWeight = "400";
 export type StyleScriptStyle = "normal";
 export type StyleScriptSubset = "latin" | "latin-ext" | "vietnamese";
-export type StyleScriptOptions = GoogleFontOptions<StyleScriptWeight, StyleScriptStyle, StyleScriptSubset>;
+export type StyleScriptOptions = GoogleFontOptions<
+  StyleScriptWeight,
+  StyleScriptStyle,
+  StyleScriptSubset
+>;
 
 /**
  * Style Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class StyleScript extends GoogleFont<StyleScriptWeight, StyleScriptStyle, StyleScriptSubset> {
+export default class StyleScript extends GoogleFont<
+  StyleScriptWeight,
+  StyleScriptStyle,
+  StyleScriptSubset
+> {
   constructor(options?: StyleScriptOptions) {
     super(FAMILY, FACES, options);
   }

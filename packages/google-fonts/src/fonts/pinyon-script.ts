@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pinyon Script";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/pinyonscript/v24/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/pinyonscript/v24/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/pinyonscript/v24/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/pinyonscript/v24/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/pinyonscript/v24/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/pinyonscript/v24/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2",
   },
 } as const;
 
 export type PinyonScriptWeight = "400";
 export type PinyonScriptStyle = "normal";
 export type PinyonScriptSubset = "latin" | "latin-ext" | "vietnamese";
-export type PinyonScriptOptions = GoogleFontOptions<PinyonScriptWeight, PinyonScriptStyle, PinyonScriptSubset>;
+export type PinyonScriptOptions = GoogleFontOptions<
+  PinyonScriptWeight,
+  PinyonScriptStyle,
+  PinyonScriptSubset
+>;
 
 /**
  * Pinyon Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PinyonScript extends GoogleFont<PinyonScriptWeight, PinyonScriptStyle, PinyonScriptSubset> {
+export default class PinyonScript extends GoogleFont<
+  PinyonScriptWeight,
+  PinyonScriptStyle,
+  PinyonScriptSubset
+> {
   constructor(options?: PinyonScriptOptions) {
     super(FAMILY, FACES, options);
   }

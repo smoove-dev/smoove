@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Sundanese";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWWMPg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWWMPg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWWMPg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWWMPg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWWMPg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWWMPg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWWMPg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWWMPg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWuMPpkv.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWuMPpkv.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWuMPpkv.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWuMPpkv.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWuMPpkv.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWuMPpkv.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWuMPpkv.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgWuMPpkv.woff2",
   },
-  "sundanese": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgViMPpkv.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgViMPpkv.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgViMPpkv.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgViMPpkv.woff2",
+  sundanese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgViMPpkv.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgViMPpkv.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgViMPpkv.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssundanese/v28/FwZH7_84xUkosG2xJo2gm7nFwSLQkdymgViMPpkv.woff2",
   },
 } as const;
 
 export type NotoSansSundaneseWeight = "400" | "500" | "600" | "700";
 export type NotoSansSundaneseStyle = "normal";
 export type NotoSansSundaneseSubset = "latin" | "latin-ext" | "sundanese";
-export type NotoSansSundaneseOptions = GoogleFontOptions<NotoSansSundaneseWeight, NotoSansSundaneseStyle, NotoSansSundaneseSubset>;
+export type NotoSansSundaneseOptions = GoogleFontOptions<
+  NotoSansSundaneseWeight,
+  NotoSansSundaneseStyle,
+  NotoSansSundaneseSubset
+>;
 
 /**
  * Noto Sans Sundanese — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansSundanese extends GoogleFont<NotoSansSundaneseWeight, NotoSansSundaneseStyle, NotoSansSundaneseSubset> {
+export default class NotoSansSundanese extends GoogleFont<
+  NotoSansSundaneseWeight,
+  NotoSansSundaneseStyle,
+  NotoSansSundaneseSubset
+> {
   constructor(options?: NotoSansSundaneseOptions) {
     super(FAMILY, FACES, options);
   }

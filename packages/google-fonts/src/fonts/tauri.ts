@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tauri";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tauri/v20/TwMA-IISS0AM3LpSUnQ.woff2",
   },
   "latin-ext": {

@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cabin Condensed";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpMtK6mNhBK2err_hqkYhHRqmwqZ-LY.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwilMHN61d4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwiuMbN61d4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwi3MfN61d4.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpMtK6mNhBK2err_hqkYhHRqmwqZ-LY.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwilMHN61d4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwiuMbN61d4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwi3MfN61d4.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpMtK6mNhBK2err_hqkYhHRqmwqaeLY1HY.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwilMHN5Vd4yK0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwiuMbN5Vd4yK0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwi3MfN5Vd4yK0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpMtK6mNhBK2err_hqkYhHRqmwqaeLY1HY.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwilMHN5Vd4yK0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwiuMbN5Vd4yK0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwi3MfN5Vd4yK0.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpMtK6mNhBK2err_hqkYhHRqmwqaOLY1HY.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwilMHN5Fd4yK0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwiuMbN5Fd4yK0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwi3MfN5Fd4yK0.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpMtK6mNhBK2err_hqkYhHRqmwqaOLY1HY.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwilMHN5Fd4yK0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwiuMbN5Fd4yK0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cabincondensed/v21/nwpJtK6mNhBK2err_hqkYhHRqmwi3MfN5Fd4yK0.woff2",
   },
 } as const;
 
 export type CabinCondensedWeight = "400" | "500" | "600" | "700";
 export type CabinCondensedStyle = "normal";
 export type CabinCondensedSubset = "latin" | "latin-ext" | "vietnamese";
-export type CabinCondensedOptions = GoogleFontOptions<CabinCondensedWeight, CabinCondensedStyle, CabinCondensedSubset>;
+export type CabinCondensedOptions = GoogleFontOptions<
+  CabinCondensedWeight,
+  CabinCondensedStyle,
+  CabinCondensedSubset
+>;
 
 /**
  * Cabin Condensed — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CabinCondensed extends GoogleFont<CabinCondensedWeight, CabinCondensedStyle, CabinCondensedSubset> {
+export default class CabinCondensed extends GoogleFont<
+  CabinCondensedWeight,
+  CabinCondensedStyle,
+  CabinCondensedSubset
+> {
   constructor(options?: CabinCondensedOptions) {
     super(FAMILY, FACES, options);
   }

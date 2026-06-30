@@ -4,45 +4,71 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mukta Vaani";
 
 const FACES = {
-  "gujarati": {
-    "200-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXNV_Bf8O5LMQ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWpVPBf8O5LMQ.woff2",
+  gujarati: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXNV_Bf8O5LMQ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWpVPBf8O5LMQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3Jn5SD_-ynaxmxnEfVHPIG0ZduV70Q.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXxVfBf8O5LMQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXdUvBf8O5LMQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGW5U_Bf8O5LMQ.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWlUPBf8O5LMQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXxVfBf8O5LMQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXdUvBf8O5LMQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGW5U_Bf8O5LMQ.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWlUPBf8O5LMQ.woff2",
   },
-  "latin": {
-    "200-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXNV_BE8O4.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWpVPBE8O4.woff2",
+  latin: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXNV_BE8O4.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWpVPBE8O4.woff2",
     "400-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3Jn5SD_-ynaxmxnEfVHPIG0CduU.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXxVfBE8O4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXdUvBE8O4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGW5U_BE8O4.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWlUPBE8O4.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXxVfBE8O4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXdUvBE8O4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGW5U_BE8O4.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWlUPBE8O4.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXNV_BK8O5LMQ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWpVPBK8O5LMQ.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXNV_BK8O5LMQ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWpVPBK8O5LMQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3Jn5SD_-ynaxmxnEfVHPIG0MduV70Q.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXxVfBK8O5LMQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXdUvBK8O5LMQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGW5U_BK8O5LMQ.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWlUPBK8O5LMQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXxVfBK8O5LMQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGXdUvBK8O5LMQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGW5U_BK8O5LMQ.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/muktavaani/v15/3JnkSD_-ynaxmxnEfVHPIGWlUPBK8O5LMQ.woff2",
   },
 } as const;
 
 export type MuktaVaaniWeight = "200" | "300" | "400" | "500" | "600" | "700" | "800";
 export type MuktaVaaniStyle = "normal";
 export type MuktaVaaniSubset = "gujarati" | "latin" | "latin-ext";
-export type MuktaVaaniOptions = GoogleFontOptions<MuktaVaaniWeight, MuktaVaaniStyle, MuktaVaaniSubset>;
+export type MuktaVaaniOptions = GoogleFontOptions<
+  MuktaVaaniWeight,
+  MuktaVaaniStyle,
+  MuktaVaaniSubset
+>;
 
 /**
  * Mukta Vaani — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MuktaVaani extends GoogleFont<MuktaVaaniWeight, MuktaVaaniStyle, MuktaVaaniSubset> {
+export default class MuktaVaani extends GoogleFont<
+  MuktaVaaniWeight,
+  MuktaVaaniStyle,
+  MuktaVaaniSubset
+> {
   constructor(options?: MuktaVaaniOptions) {
     super(FAMILY, FACES, options);
   }

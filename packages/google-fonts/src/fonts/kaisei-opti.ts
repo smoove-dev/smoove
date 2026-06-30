@@ -4,33 +4,47 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kaisei Opti";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/kaiseiopti/v11/QldKNThJphYb8_g6c2nlIGld5qhWxg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGGqxb1t5_zIDQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGHiw71t5_zIDQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGGqxb1t5_zIDQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGHiw71t5_zIDQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kaiseiopti/v11/QldKNThJphYb8_g6c2nlIGlZ5qg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGGqxb1p5_w.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGHiw71p5_w.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGGqxb1p5_w.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGHiw71p5_w.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/kaiseiopti/v11/QldKNThJphYb8_g6c2nlIGlX5qhWxg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGGqxb1n5_zIDQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGHiw71n5_zIDQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGGqxb1n5_zIDQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kaiseiopti/v11/QldXNThJphYb8_g6c2nlIGHiw71n5_zIDQ.woff2",
   },
 } as const;
 
 export type KaiseiOptiWeight = "400" | "500" | "700";
 export type KaiseiOptiStyle = "normal";
 export type KaiseiOptiSubset = "cyrillic" | "latin" | "latin-ext";
-export type KaiseiOptiOptions = GoogleFontOptions<KaiseiOptiWeight, KaiseiOptiStyle, KaiseiOptiSubset>;
+export type KaiseiOptiOptions = GoogleFontOptions<
+  KaiseiOptiWeight,
+  KaiseiOptiStyle,
+  KaiseiOptiSubset
+>;
 
 /**
  * Kaisei Opti — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KaiseiOpti extends GoogleFont<KaiseiOptiWeight, KaiseiOptiStyle, KaiseiOptiSubset> {
+export default class KaiseiOpti extends GoogleFont<
+  KaiseiOptiWeight,
+  KaiseiOptiStyle,
+  KaiseiOptiSubset
+> {
   constructor(options?: KaiseiOptiOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Slabo 27px";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/slabo27px/v16/mFT0WbgBwKPR_Z4hGN2qgx8D1Q.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type Slabo27pxOptions = GoogleFontOptions<Slabo27pxWeight, Slabo27pxStyle
  * Slabo 27px — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Slabo27px extends GoogleFont<Slabo27pxWeight, Slabo27pxStyle, Slabo27pxSubset> {
+export default class Slabo27px extends GoogleFont<
+  Slabo27pxWeight,
+  Slabo27pxStyle,
+  Slabo27pxSubset
+> {
   constructor(options?: Slabo27pxOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pangolin";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/pangolin/v12/cY9GfjGcW0FPpi-tWMfJ79zqiA.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/pangolin/v12/cY9GfjGcW0FPpi-tWMfA79zqiA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/pangolin/v12/cY9GfjGcW0FPpi-tWMfN79w.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/pangolin/v12/cY9GfjGcW0FPpi-tWMfD79zqiA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/pangolin/v12/cY9GfjGcW0FPpi-tWMfC79zqiA.woff2",
   },
 } as const;

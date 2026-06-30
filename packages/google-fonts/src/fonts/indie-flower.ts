@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Indie Flower";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/indieflower/v24/m8JVjfNVeKWVnh3QMuKkFcZVaUuH.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/indieflower/v24/m8JVjfNVeKWVnh3QMuKkFcZVZ0uH5dI.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/indieflower/v24/m8JVjfNVeKWVnh3QMuKkFcZVZ0uH5dI.woff2",
   },
 } as const;
 
 export type IndieFlowerWeight = "400";
 export type IndieFlowerStyle = "normal";
 export type IndieFlowerSubset = "latin" | "latin-ext";
-export type IndieFlowerOptions = GoogleFontOptions<IndieFlowerWeight, IndieFlowerStyle, IndieFlowerSubset>;
+export type IndieFlowerOptions = GoogleFontOptions<
+  IndieFlowerWeight,
+  IndieFlowerStyle,
+  IndieFlowerSubset
+>;
 
 /**
  * Indie Flower — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IndieFlower extends GoogleFont<IndieFlowerWeight, IndieFlowerStyle, IndieFlowerSubset> {
+export default class IndieFlower extends GoogleFont<
+  IndieFlowerWeight,
+  IndieFlowerStyle,
+  IndieFlowerSubset
+> {
   constructor(options?: IndieFlowerOptions) {
     super(FAMILY, FACES, options);
   }

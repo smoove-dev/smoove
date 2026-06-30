@@ -4,30 +4,44 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Birthstone Bounce";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6XaxZF43lIvTWrktHOTBJZGH7dEdVOEoI.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6SaxZF43lIvTWrktHOTBJZGH7dEd29MZcXL5I.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6XaxZF43lIvTWrktHOTBJZGH7dEdVOEoI.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6SaxZF43lIvTWrktHOTBJZGH7dEd29MZcXL5I.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6XaxZF43lIvTWrktHOTBJZGH7dEdVAEoIoDg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6SaxZF43lIvTWrktHOTBJZGH7dEd29MZcZL5LFLg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6XaxZF43lIvTWrktHOTBJZGH7dEdVAEoIoDg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6SaxZF43lIvTWrktHOTBJZGH7dEd29MZcZL5LFLg.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6XaxZF43lIvTWrktHOTBJZGH7dEdVBEoIoDg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6SaxZF43lIvTWrktHOTBJZGH7dEd29MZcYL5LFLg.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6XaxZF43lIvTWrktHOTBJZGH7dEdVBEoIoDg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/birthstonebounce/v13/ga6SaxZF43lIvTWrktHOTBJZGH7dEd29MZcYL5LFLg.woff2",
   },
 } as const;
 
 export type BirthstoneBounceWeight = "400" | "500";
 export type BirthstoneBounceStyle = "normal";
 export type BirthstoneBounceSubset = "latin" | "latin-ext" | "vietnamese";
-export type BirthstoneBounceOptions = GoogleFontOptions<BirthstoneBounceWeight, BirthstoneBounceStyle, BirthstoneBounceSubset>;
+export type BirthstoneBounceOptions = GoogleFontOptions<
+  BirthstoneBounceWeight,
+  BirthstoneBounceStyle,
+  BirthstoneBounceSubset
+>;
 
 /**
  * Birthstone Bounce — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BirthstoneBounce extends GoogleFont<BirthstoneBounceWeight, BirthstoneBounceStyle, BirthstoneBounceSubset> {
+export default class BirthstoneBounce extends GoogleFont<
+  BirthstoneBounceWeight,
+  BirthstoneBounceStyle,
+  BirthstoneBounceSubset
+> {
   constructor(options?: BirthstoneBounceOptions) {
     super(FAMILY, FACES, options);
   }

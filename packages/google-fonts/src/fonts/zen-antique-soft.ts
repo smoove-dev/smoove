@@ -4,30 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zen Antique Soft";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/zenantiquesoft/v14/DtV4JwqzSL1q_KwnEWMc_3xfgW6itwNsk9i5.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenantiquesoft/v14/DtV4JwqzSL1q_KwnEWMc_3xfgW6itwNsk9i5.woff2",
   },
-  "greek": {
-    "400-normal": "https://fonts.gstatic.com/s/zenantiquesoft/v14/DtV4JwqzSL1q_KwnEWMc_3xfgW6itwRsk9i5.woff2",
+  greek: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenantiquesoft/v14/DtV4JwqzSL1q_KwnEWMc_3xfgW6itwRsk9i5.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/zenantiquesoft/v14/DtV4JwqzSL1q_KwnEWMc_3xfgW6itwdskw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenantiquesoft/v14/DtV4JwqzSL1q_KwnEWMc_3xfgW6itwdskw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/zenantiquesoft/v14/DtV4JwqzSL1q_KwnEWMc_3xfgW6itwlsk9i5.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenantiquesoft/v14/DtV4JwqzSL1q_KwnEWMc_3xfgW6itwlsk9i5.woff2",
   },
 } as const;
 
 export type ZenAntiqueSoftWeight = "400";
 export type ZenAntiqueSoftStyle = "normal";
 export type ZenAntiqueSoftSubset = "cyrillic" | "greek" | "latin" | "latin-ext";
-export type ZenAntiqueSoftOptions = GoogleFontOptions<ZenAntiqueSoftWeight, ZenAntiqueSoftStyle, ZenAntiqueSoftSubset>;
+export type ZenAntiqueSoftOptions = GoogleFontOptions<
+  ZenAntiqueSoftWeight,
+  ZenAntiqueSoftStyle,
+  ZenAntiqueSoftSubset
+>;
 
 /**
  * Zen Antique Soft — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZenAntiqueSoft extends GoogleFont<ZenAntiqueSoftWeight, ZenAntiqueSoftStyle, ZenAntiqueSoftSubset> {
+export default class ZenAntiqueSoft extends GoogleFont<
+  ZenAntiqueSoftWeight,
+  ZenAntiqueSoftStyle,
+  ZenAntiqueSoftSubset
+> {
   constructor(options?: ZenAntiqueSoftOptions) {
     super(FAMILY, FACES, options);
   }

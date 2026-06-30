@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kolker Brush";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kolkerbrush/v8/iJWDBXWRZjfKWdvmzwvvog3O66h7.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/kolkerbrush/v8/iJWDBXWRZjfKWdvmzwvvog3O5ah798o.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kolkerbrush/v8/iJWDBXWRZjfKWdvmzwvvog3O5ah798o.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/kolkerbrush/v8/iJWDBXWRZjfKWdvmzwvvog3O5Kh798o.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/kolkerbrush/v8/iJWDBXWRZjfKWdvmzwvvog3O5Kh798o.woff2",
   },
 } as const;
 
 export type KolkerBrushWeight = "400";
 export type KolkerBrushStyle = "normal";
 export type KolkerBrushSubset = "latin" | "latin-ext" | "vietnamese";
-export type KolkerBrushOptions = GoogleFontOptions<KolkerBrushWeight, KolkerBrushStyle, KolkerBrushSubset>;
+export type KolkerBrushOptions = GoogleFontOptions<
+  KolkerBrushWeight,
+  KolkerBrushStyle,
+  KolkerBrushSubset
+>;
 
 /**
  * Kolker Brush — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KolkerBrush extends GoogleFont<KolkerBrushWeight, KolkerBrushStyle, KolkerBrushSubset> {
+export default class KolkerBrush extends GoogleFont<
+  KolkerBrushWeight,
+  KolkerBrushStyle,
+  KolkerBrushSubset
+> {
   constructor(options?: KolkerBrushOptions) {
     super(FAMILY, FACES, options);
   }

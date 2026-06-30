@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Urbanist";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/urbanist/v18/L0x4DF02iFML4hGCyMqgXS9sjg.woff2",
     "100-normal": "https://fonts.gstatic.com/s/urbanist/v18/L0x-DF02iFML4hGCyMqlbS0.woff2",
     "200-italic": "https://fonts.gstatic.com/s/urbanist/v18/L0x4DF02iFML4hGCyMqgXS9sjg.woff2",

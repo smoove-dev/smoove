@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite NZ";
 
 const FACES = {
-  "fallback": {
+  fallback: {
     "100-normal": "https://fonts.gstatic.com/s/playwritenz/v12/d6lPkaOxRsyr_zZDmUYvh2TM0g.woff2",
     "200-normal": "https://fonts.gstatic.com/s/playwritenz/v12/d6lPkaOxRsyr_zZDmUYvh2TM0g.woff2",
     "300-normal": "https://fonts.gstatic.com/s/playwritenz/v12/d6lPkaOxRsyr_zZDmUYvh2TM0g.woff2",
@@ -15,13 +15,21 @@ const FACES = {
 export type PlaywriteNZWeight = "100" | "200" | "300" | "400";
 export type PlaywriteNZStyle = "normal";
 export type PlaywriteNZSubset = "fallback";
-export type PlaywriteNZOptions = GoogleFontOptions<PlaywriteNZWeight, PlaywriteNZStyle, PlaywriteNZSubset>;
+export type PlaywriteNZOptions = GoogleFontOptions<
+  PlaywriteNZWeight,
+  PlaywriteNZStyle,
+  PlaywriteNZSubset
+>;
 
 /**
  * Playwrite NZ — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteNZ extends GoogleFont<PlaywriteNZWeight, PlaywriteNZStyle, PlaywriteNZSubset> {
+export default class PlaywriteNZ extends GoogleFont<
+  PlaywriteNZWeight,
+  PlaywriteNZStyle,
+  PlaywriteNZSubset
+> {
   constructor(options?: PlaywriteNZOptions) {
     super(FAMILY, FACES, options);
   }

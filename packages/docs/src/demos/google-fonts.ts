@@ -1,4 +1,4 @@
-import { Composition, Sequence, Text, interpolate } from "@smoove/core";
+import { Composition, interpolate, Sequence, Text } from "@smoove/core";
 import PlayfairDisplay from "@smoove/google-fonts/playfair-display";
 
 /**

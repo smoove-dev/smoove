@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Esteban";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/esteban/v16/r05bGLZE-bdGdN-GROyJ5w.woff2",
   },
   "latin-ext": {

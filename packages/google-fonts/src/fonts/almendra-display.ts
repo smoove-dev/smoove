@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Almendra Display";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/almendradisplay/v33/0FlPVOGWl1Sb4O3tETtADHRRlZhzbSjUTg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/almendradisplay/v33/0FlPVOGWl1Sb4O3tETtADHRRlZhzbSjUTg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/almendradisplay/v33/0FlPVOGWl1Sb4O3tETtADHRRlZhzbSbUTher.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/almendradisplay/v33/0FlPVOGWl1Sb4O3tETtADHRRlZhzbSbUTher.woff2",
   },
 } as const;
 
 export type AlmendraDisplayWeight = "400";
 export type AlmendraDisplayStyle = "normal";
 export type AlmendraDisplaySubset = "latin" | "latin-ext";
-export type AlmendraDisplayOptions = GoogleFontOptions<AlmendraDisplayWeight, AlmendraDisplayStyle, AlmendraDisplaySubset>;
+export type AlmendraDisplayOptions = GoogleFontOptions<
+  AlmendraDisplayWeight,
+  AlmendraDisplayStyle,
+  AlmendraDisplaySubset
+>;
 
 /**
  * Almendra Display — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AlmendraDisplay extends GoogleFont<AlmendraDisplayWeight, AlmendraDisplayStyle, AlmendraDisplaySubset> {
+export default class AlmendraDisplay extends GoogleFont<
+  AlmendraDisplayWeight,
+  AlmendraDisplayStyle,
+  AlmendraDisplaySubset
+> {
   constructor(options?: AlmendraDisplayOptions) {
     super(FAMILY, FACES, options);
   }

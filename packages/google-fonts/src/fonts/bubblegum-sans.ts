@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bubblegum Sans";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/bubblegumsans/v22/AYCSpXb_Z9EORv1M5QTjEzMEteaAxII.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bubblegumsans/v22/AYCSpXb_Z9EORv1M5QTjEzMEteaAxII.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/bubblegumsans/v22/AYCSpXb_Z9EORv1M5QTjEzMEteaOxIL_bw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bubblegumsans/v22/AYCSpXb_Z9EORv1M5QTjEzMEteaOxIL_bw.woff2",
   },
 } as const;
 
 export type BubblegumSansWeight = "400";
 export type BubblegumSansStyle = "normal";
 export type BubblegumSansSubset = "latin" | "latin-ext";
-export type BubblegumSansOptions = GoogleFontOptions<BubblegumSansWeight, BubblegumSansStyle, BubblegumSansSubset>;
+export type BubblegumSansOptions = GoogleFontOptions<
+  BubblegumSansWeight,
+  BubblegumSansStyle,
+  BubblegumSansSubset
+>;
 
 /**
  * Bubblegum Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BubblegumSans extends GoogleFont<BubblegumSansWeight, BubblegumSansStyle, BubblegumSansSubset> {
+export default class BubblegumSans extends GoogleFont<
+  BubblegumSansWeight,
+  BubblegumSansStyle,
+  BubblegumSansSubset
+> {
   constructor(options?: BubblegumSansOptions) {
     super(FAMILY, FACES, options);
   }

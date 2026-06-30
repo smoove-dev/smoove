@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Castoro Titling";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/castorotitling/v10/buEupouwccj03leTfjUAhEZWlrNaZQ0l.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/castorotitling/v10/buEupouwccj03leTfjUAhEZWlrNaZQ0l.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/castorotitling/v10/buEupouwccj03leTfjUAhEZWlrNaaw0lSo8.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/castorotitling/v10/buEupouwccj03leTfjUAhEZWlrNaaw0lSo8.woff2",
   },
 } as const;
 
 export type CastoroTitlingWeight = "400";
 export type CastoroTitlingStyle = "normal";
 export type CastoroTitlingSubset = "latin" | "latin-ext";
-export type CastoroTitlingOptions = GoogleFontOptions<CastoroTitlingWeight, CastoroTitlingStyle, CastoroTitlingSubset>;
+export type CastoroTitlingOptions = GoogleFontOptions<
+  CastoroTitlingWeight,
+  CastoroTitlingStyle,
+  CastoroTitlingSubset
+>;
 
 /**
  * Castoro Titling — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CastoroTitling extends GoogleFont<CastoroTitlingWeight, CastoroTitlingStyle, CastoroTitlingSubset> {
+export default class CastoroTitling extends GoogleFont<
+  CastoroTitlingWeight,
+  CastoroTitlingStyle,
+  CastoroTitlingSubset
+> {
   constructor(options?: CastoroTitlingOptions) {
     super(FAMILY, FACES, options);
   }

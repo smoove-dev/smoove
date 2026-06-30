@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Amethysta";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/amethysta/v17/rP2Fp2K15kgb_F3ibfW4Hz-D.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type AmethystaOptions = GoogleFontOptions<AmethystaWeight, AmethystaStyle
  * Amethysta — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Amethysta extends GoogleFont<AmethystaWeight, AmethystaStyle, AmethystaSubset> {
+export default class Amethysta extends GoogleFont<
+  AmethystaWeight,
+  AmethystaStyle,
+  AmethystaSubset
+> {
   constructor(options?: AmethystaOptions) {
     super(FAMILY, FACES, options);
   }

@@ -2,12 +2,12 @@ import {
   Arc,
   Composition,
   Easing,
+  interpolate,
   Rect,
   RegularPolygon,
   Ring,
   Sequence,
   Star,
-  interpolate,
 } from "@smoove/core";
 import Konva from "konva";
 

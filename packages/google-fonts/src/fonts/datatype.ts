@@ -4,27 +4,45 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Datatype";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoP65l.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/datatype/v3/K2FvfZJQl-tDUlBEHaTYKmJIlpH1cGuNRqcoMa5llDg.woff2",
   },
 } as const;
 

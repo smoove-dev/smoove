@@ -4,14 +4,17 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tilt Neon";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/tiltneon/v12/E21L_d7gguXdwD9LEFY2WCeElCNtd-eBqpHp1TzrkJSmwpj5ndxquUK6UOc.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiltneon/v12/E21L_d7gguXdwD9LEFY2WCeElCNtd-eBqpHp1TzrkJSmwpj5ndxquUK6UOc.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/tiltneon/v12/E21L_d7gguXdwD9LEFY2WCeElCNtd-eBqpHp1TzrkJSmwpj5ndxquUK0UOeVJw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiltneon/v12/E21L_d7gguXdwD9LEFY2WCeElCNtd-eBqpHp1TzrkJSmwpj5ndxquUK0UOeVJw.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/tiltneon/v12/E21L_d7gguXdwD9LEFY2WCeElCNtd-eBqpHp1TzrkJSmwpj5ndxquUK1UOeVJw.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiltneon/v12/E21L_d7gguXdwD9LEFY2WCeElCNtd-eBqpHp1TzrkJSmwpj5ndxquUK1UOeVJw.woff2",
   },
 } as const;
 

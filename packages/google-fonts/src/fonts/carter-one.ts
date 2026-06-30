@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Carter One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/carterone/v18/q5uCsoe5IOB2-pXv9UcNExN8hA.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type CarterOneOptions = GoogleFontOptions<CarterOneWeight, CarterOneStyle
  * Carter One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CarterOne extends GoogleFont<CarterOneWeight, CarterOneStyle, CarterOneSubset> {
+export default class CarterOne extends GoogleFont<
+  CarterOneWeight,
+  CarterOneStyle,
+  CarterOneSubset
+> {
   constructor(options?: CarterOneOptions) {
     super(FAMILY, FACES, options);
   }

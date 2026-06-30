@@ -4,48 +4,80 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playpen Sans Deva";
 
 const FACES = {
-  "devanagari": {
-    "100-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
+  devanagari: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd5EpIjlg.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd4EpI.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/playpensansdeva/v4/vm8sdQj0UUbMxObnsO17RZ7pPBuJgcd2EpIjlg.woff2",
   },
 } as const;
 
 export type PlaypenSansDevaWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800";
 export type PlaypenSansDevaStyle = "normal";
 export type PlaypenSansDevaSubset = "devanagari" | "latin" | "latin-ext";
-export type PlaypenSansDevaOptions = GoogleFontOptions<PlaypenSansDevaWeight, PlaypenSansDevaStyle, PlaypenSansDevaSubset>;
+export type PlaypenSansDevaOptions = GoogleFontOptions<
+  PlaypenSansDevaWeight,
+  PlaypenSansDevaStyle,
+  PlaypenSansDevaSubset
+>;
 
 /**
  * Playpen Sans Deva — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaypenSansDeva extends GoogleFont<PlaypenSansDevaWeight, PlaypenSansDevaStyle, PlaypenSansDevaSubset> {
+export default class PlaypenSansDeva extends GoogleFont<
+  PlaypenSansDevaWeight,
+  PlaypenSansDevaStyle,
+  PlaypenSansDevaSubset
+> {
   constructor(options?: PlaypenSansDevaOptions) {
     super(FAMILY, FACES, options);
   }

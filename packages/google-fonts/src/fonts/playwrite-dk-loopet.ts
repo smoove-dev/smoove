@@ -4,24 +4,36 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite DK Loopet";
 
 const FACES = {
-  "fallback": {
-    "100-normal": "https://fonts.gstatic.com/s/playwritedkloopet/v6/memiYbuzy2qb3rtJGfM1FvY-GacDcsPvr64.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playwritedkloopet/v6/memiYbuzy2qb3rtJGfM1FvY-GacDcsPvr64.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playwritedkloopet/v6/memiYbuzy2qb3rtJGfM1FvY-GacDcsPvr64.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playwritedkloopet/v6/memiYbuzy2qb3rtJGfM1FvY-GacDcsPvr64.woff2",
+  fallback: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/playwritedkloopet/v6/memiYbuzy2qb3rtJGfM1FvY-GacDcsPvr64.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playwritedkloopet/v6/memiYbuzy2qb3rtJGfM1FvY-GacDcsPvr64.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playwritedkloopet/v6/memiYbuzy2qb3rtJGfM1FvY-GacDcsPvr64.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritedkloopet/v6/memiYbuzy2qb3rtJGfM1FvY-GacDcsPvr64.woff2",
   },
 } as const;
 
 export type PlaywriteDKLoopetWeight = "100" | "200" | "300" | "400";
 export type PlaywriteDKLoopetStyle = "normal";
 export type PlaywriteDKLoopetSubset = "fallback";
-export type PlaywriteDKLoopetOptions = GoogleFontOptions<PlaywriteDKLoopetWeight, PlaywriteDKLoopetStyle, PlaywriteDKLoopetSubset>;
+export type PlaywriteDKLoopetOptions = GoogleFontOptions<
+  PlaywriteDKLoopetWeight,
+  PlaywriteDKLoopetStyle,
+  PlaywriteDKLoopetSubset
+>;
 
 /**
  * Playwrite DK Loopet — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteDKLoopet extends GoogleFont<PlaywriteDKLoopetWeight, PlaywriteDKLoopetStyle, PlaywriteDKLoopetSubset> {
+export default class PlaywriteDKLoopet extends GoogleFont<
+  PlaywriteDKLoopetWeight,
+  PlaywriteDKLoopetStyle,
+  PlaywriteDKLoopetSubset
+> {
   constructor(options?: PlaywriteDKLoopetOptions) {
     super(FAMILY, FACES, options);
   }

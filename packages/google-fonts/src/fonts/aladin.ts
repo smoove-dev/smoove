@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Aladin";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/aladin/v26/ZgNSjPJFPrvJV5fF7i35.woff2",
   },
   "latin-ext": {

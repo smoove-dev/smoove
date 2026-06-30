@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Palanquin";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "100-normal": "https://fonts.gstatic.com/s/palanquin/v17/9XUhlJ90n1fBFg7ceXwUEmtO5LSWZw.woff2",
     "200-normal": "https://fonts.gstatic.com/s/palanquin/v17/9XUilJ90n1fBFg7ceXwUvnpYwpGrXi0.woff2",
     "300-normal": "https://fonts.gstatic.com/s/palanquin/v17/9XUilJ90n1fBFg7ceXwU2nlYwpGrXi0.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/palanquin/v17/9XUilJ90n1fBFg7ceXwUrn9YwpGrXi0.woff2",
     "700-normal": "https://fonts.gstatic.com/s/palanquin/v17/9XUilJ90n1fBFg7ceXwUyn5YwpGrXi0.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/palanquin/v17/9XUhlJ90n1fBFg7ceXwUEmtP5LQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/palanquin/v17/9XUilJ90n1fBFg7ceXwUvnpYw5Gr.woff2",
     "300-normal": "https://fonts.gstatic.com/s/palanquin/v17/9XUilJ90n1fBFg7ceXwU2nlYw5Gr.woff2",
@@ -42,7 +42,11 @@ export type PalanquinOptions = GoogleFontOptions<PalanquinWeight, PalanquinStyle
  * Palanquin — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Palanquin extends GoogleFont<PalanquinWeight, PalanquinStyle, PalanquinSubset> {
+export default class Palanquin extends GoogleFont<
+  PalanquinWeight,
+  PalanquinStyle,
+  PalanquinSubset
+> {
   constructor(options?: PalanquinOptions) {
     super(FAMILY, FACES, options);
   }

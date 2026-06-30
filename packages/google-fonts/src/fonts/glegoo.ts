@@ -4,11 +4,11 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Glegoo";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/glegoo/v17/_Xmt-HQyrTKWaw25jaOYMI8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/glegoo/v17/_Xmu-HQyrTKWaw2xN4aNDq5o_ik.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/glegoo/v17/_Xmt-HQyrTKWaw25jKOY.woff2",
     "700-normal": "https://fonts.gstatic.com/s/glegoo/v17/_Xmu-HQyrTKWaw2xN4aND65o.woff2",
   },

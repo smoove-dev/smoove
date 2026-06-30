@@ -4,10 +4,11 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Preahvihear";
 
 const FACES = {
-  "khmer": {
-    "400-normal": "https://fonts.gstatic.com/s/preahvihear/v32/6NUS8F-dNQeEYhzj7uluxvwI6dB5fw.woff2",
+  khmer: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/preahvihear/v32/6NUS8F-dNQeEYhzj7uluxvwI6dB5fw.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/preahvihear/v32/6NUS8F-dNQeEYhzj7uluxvwD6dA.woff2",
   },
 } as const;
@@ -15,13 +16,21 @@ const FACES = {
 export type PreahvihearWeight = "400";
 export type PreahvihearStyle = "normal";
 export type PreahvihearSubset = "khmer" | "latin";
-export type PreahvihearOptions = GoogleFontOptions<PreahvihearWeight, PreahvihearStyle, PreahvihearSubset>;
+export type PreahvihearOptions = GoogleFontOptions<
+  PreahvihearWeight,
+  PreahvihearStyle,
+  PreahvihearSubset
+>;
 
 /**
  * Preahvihear — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Preahvihear extends GoogleFont<PreahvihearWeight, PreahvihearStyle, PreahvihearSubset> {
+export default class Preahvihear extends GoogleFont<
+  PreahvihearWeight,
+  PreahvihearStyle,
+  PreahvihearSubset
+> {
   constructor(options?: PreahvihearOptions) {
     super(FAMILY, FACES, options);
   }

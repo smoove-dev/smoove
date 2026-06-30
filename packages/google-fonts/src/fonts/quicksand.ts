@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Quicksand";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/quicksand/v37/6xKtdSZaM9iE8KbpRA_hK1QN.woff2",
     "400-normal": "https://fonts.gstatic.com/s/quicksand/v37/6xKtdSZaM9iE8KbpRA_hK1QN.woff2",
     "500-normal": "https://fonts.gstatic.com/s/quicksand/v37/6xKtdSZaM9iE8KbpRA_hK1QN.woff2",
@@ -18,7 +18,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/quicksand/v37/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2",
     "700-normal": "https://fonts.gstatic.com/s/quicksand/v37/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-normal": "https://fonts.gstatic.com/s/quicksand/v37/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2",
     "400-normal": "https://fonts.gstatic.com/s/quicksand/v37/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2",
     "500-normal": "https://fonts.gstatic.com/s/quicksand/v37/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2",
@@ -36,7 +36,11 @@ export type QuicksandOptions = GoogleFontOptions<QuicksandWeight, QuicksandStyle
  * Quicksand — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Quicksand extends GoogleFont<QuicksandWeight, QuicksandStyle, QuicksandSubset> {
+export default class Quicksand extends GoogleFont<
+  QuicksandWeight,
+  QuicksandStyle,
+  QuicksandSubset
+> {
   constructor(options?: QuicksandOptions) {
     super(FAMILY, FACES, options);
   }

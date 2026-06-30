@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hi Melody";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/himelody/v19/46ktlbP8Vnz0pJcqCTb0eGVF.woff2",
   },
 } as const;

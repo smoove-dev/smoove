@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "NTR";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ntr/v19/RLpzK5Xy0ZjSH2Jt.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/ntr/v19/RLpzK5Xy0ZjSA2Jt1TA.woff2",
   },
 } as const;

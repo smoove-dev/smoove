@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sigmar";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sigmar/v9/hv-XlzJgIE8a85pkamw2.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/sigmar/v9/hv-XlzJgIE8a85pkZGw2ATE.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/sigmar/v9/hv-XlzJgIE8a85pkZWw2ATE.woff2",
   },
 } as const;

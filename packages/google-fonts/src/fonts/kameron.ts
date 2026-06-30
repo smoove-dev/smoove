@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kameron";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kameron/v18/vm82dR7vXErQxuzngLk6Lg.woff2",
     "500-normal": "https://fonts.gstatic.com/s/kameron/v18/vm82dR7vXErQxuzngLk6Lg.woff2",
     "600-normal": "https://fonts.gstatic.com/s/kameron/v18/vm82dR7vXErQxuzngLk6Lg.woff2",

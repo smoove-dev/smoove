@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Anaheim";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/anaheim/v17/8vII7w042Wp87g4G4UPeEQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/anaheim/v17/8vII7w042Wp87g4G4UPeEQ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/anaheim/v17/8vII7w042Wp87g4G4UPeEQ.woff2",
@@ -18,7 +18,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/anaheim/v17/8vII7w042Wp87g4G4U3eEX5e.woff2",
     "800-normal": "https://fonts.gstatic.com/s/anaheim/v17/8vII7w042Wp87g4G4U3eEX5e.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/anaheim/v17/8vII7w042Wp87g4G4UzeEX5e.woff2",
     "500-normal": "https://fonts.gstatic.com/s/anaheim/v17/8vII7w042Wp87g4G4UzeEX5e.woff2",
     "600-normal": "https://fonts.gstatic.com/s/anaheim/v17/8vII7w042Wp87g4G4UzeEX5e.woff2",

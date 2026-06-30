@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Crafty Girls";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/craftygirls/v16/va9B4kXI39VaDdlPJo8N_NveRhf6.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type CraftyGirlsWeight = "400";
 export type CraftyGirlsStyle = "normal";
 export type CraftyGirlsSubset = "latin";
-export type CraftyGirlsOptions = GoogleFontOptions<CraftyGirlsWeight, CraftyGirlsStyle, CraftyGirlsSubset>;
+export type CraftyGirlsOptions = GoogleFontOptions<
+  CraftyGirlsWeight,
+  CraftyGirlsStyle,
+  CraftyGirlsSubset
+>;
 
 /**
  * Crafty Girls — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CraftyGirls extends GoogleFont<CraftyGirlsWeight, CraftyGirlsStyle, CraftyGirlsSubset> {
+export default class CraftyGirls extends GoogleFont<
+  CraftyGirlsWeight,
+  CraftyGirlsStyle,
+  CraftyGirlsSubset
+> {
   constructor(options?: CraftyGirlsOptions) {
     super(FAMILY, FACES, options);
   }

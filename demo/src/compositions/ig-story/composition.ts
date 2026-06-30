@@ -1,4 +1,4 @@
-import { Block, Composition, Easing, Image, Sequence, interpolate } from "@smoove/core";
+import { Block, Composition, Easing, Image, interpolate, Sequence } from "@smoove/core";
 import Konva from "konva";
 
 const FPS = 60;

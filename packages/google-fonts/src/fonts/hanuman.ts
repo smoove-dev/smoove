@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hanuman";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "100-normal": "https://fonts.gstatic.com/s/hanuman/v24/VuJxdNvD15HhpJJBSKrdObFn.woff2",
     "200-normal": "https://fonts.gstatic.com/s/hanuman/v24/VuJxdNvD15HhpJJBSKrdObFn.woff2",
     "300-normal": "https://fonts.gstatic.com/s/hanuman/v24/VuJxdNvD15HhpJJBSKrdObFn.woff2",
@@ -15,7 +15,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/hanuman/v24/VuJxdNvD15HhpJJBSKrdObFn.woff2",
     "900-normal": "https://fonts.gstatic.com/s/hanuman/v24/VuJxdNvD15HhpJJBSKrdObFn.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/hanuman/v24/VuJxdNvD15HhpJJBSKHdOQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/hanuman/v24/VuJxdNvD15HhpJJBSKHdOQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/hanuman/v24/VuJxdNvD15HhpJJBSKHdOQ.woff2",

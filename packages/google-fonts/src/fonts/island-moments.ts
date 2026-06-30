@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Island Moments";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/islandmoments/v8/NaPBcZfVGvBdxIt7Ar0qzkXJF9TBKIk.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/islandmoments/v8/NaPBcZfVGvBdxIt7Ar0qzkXJF9TBKIk.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/islandmoments/v8/NaPBcZfVGvBdxIt7Ar0qzkXJF9TPKIlrZw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/islandmoments/v8/NaPBcZfVGvBdxIt7Ar0qzkXJF9TPKIlrZw.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/islandmoments/v8/NaPBcZfVGvBdxIt7Ar0qzkXJF9TOKIlrZw.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/islandmoments/v8/NaPBcZfVGvBdxIt7Ar0qzkXJF9TOKIlrZw.woff2",
   },
 } as const;
 
 export type IslandMomentsWeight = "400";
 export type IslandMomentsStyle = "normal";
 export type IslandMomentsSubset = "latin" | "latin-ext" | "vietnamese";
-export type IslandMomentsOptions = GoogleFontOptions<IslandMomentsWeight, IslandMomentsStyle, IslandMomentsSubset>;
+export type IslandMomentsOptions = GoogleFontOptions<
+  IslandMomentsWeight,
+  IslandMomentsStyle,
+  IslandMomentsSubset
+>;
 
 /**
  * Island Moments — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IslandMoments extends GoogleFont<IslandMomentsWeight, IslandMomentsStyle, IslandMomentsSubset> {
+export default class IslandMoments extends GoogleFont<
+  IslandMomentsWeight,
+  IslandMomentsStyle,
+  IslandMomentsSubset
+> {
   constructor(options?: IslandMomentsOptions) {
     super(FAMILY, FACES, options);
   }

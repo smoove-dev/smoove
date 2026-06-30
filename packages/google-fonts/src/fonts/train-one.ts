@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Train One";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/trainone/v16/gyB-hwkiNtc6KnxUVjW3OazYdY4.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/trainone/v16/gyB-hwkiNtc6KnxUVjW3PazY.woff2",
   },
   "latin-ext": {

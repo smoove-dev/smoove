@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Oxygen Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/oxygenmono/v15/h0GsssGg9FxgDgCjLeAd7hjYx-4.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type OxygenMonoWeight = "400";
 export type OxygenMonoStyle = "normal";
 export type OxygenMonoSubset = "latin" | "latin-ext";
-export type OxygenMonoOptions = GoogleFontOptions<OxygenMonoWeight, OxygenMonoStyle, OxygenMonoSubset>;
+export type OxygenMonoOptions = GoogleFontOptions<
+  OxygenMonoWeight,
+  OxygenMonoStyle,
+  OxygenMonoSubset
+>;
 
 /**
  * Oxygen Mono — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class OxygenMono extends GoogleFont<OxygenMonoWeight, OxygenMonoStyle, OxygenMonoSubset> {
+export default class OxygenMono extends GoogleFont<
+  OxygenMonoWeight,
+  OxygenMonoStyle,
+  OxygenMonoSubset
+> {
   constructor(options?: OxygenMonoOptions) {
     super(FAMILY, FACES, options);
   }

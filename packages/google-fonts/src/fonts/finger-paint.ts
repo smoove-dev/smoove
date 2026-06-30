@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Finger Paint";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/fingerpaint/v21/0QInMXVJ-o-oRn_7dron8YW-9JzT.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type FingerPaintWeight = "400";
 export type FingerPaintStyle = "normal";
 export type FingerPaintSubset = "latin";
-export type FingerPaintOptions = GoogleFontOptions<FingerPaintWeight, FingerPaintStyle, FingerPaintSubset>;
+export type FingerPaintOptions = GoogleFontOptions<
+  FingerPaintWeight,
+  FingerPaintStyle,
+  FingerPaintSubset
+>;
 
 /**
  * Finger Paint — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FingerPaint extends GoogleFont<FingerPaintWeight, FingerPaintStyle, FingerPaintSubset> {
+export default class FingerPaint extends GoogleFont<
+  FingerPaintWeight,
+  FingerPaintStyle,
+  FingerPaintSubset
+> {
   constructor(options?: FingerPaintOptions) {
     super(FAMILY, FACES, options);
   }

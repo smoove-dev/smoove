@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Elymaic";
 
 const FACES = {
-  "elymaic": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanselymaic/v18/UqyKK9YTJW5liNMhTMqe9vUFP65ZD7C_c8D59zQ.woff2",
+  elymaic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanselymaic/v18/UqyKK9YTJW5liNMhTMqe9vUFP65ZD7C_c8D59zQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanselymaic/v18/UqyKK9YTJW5liNMhTMqe9vUFP65ZD7AkUuU.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanselymaic/v18/UqyKK9YTJW5liNMhTMqe9vUFP65ZD7AkUuU.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanselymaic/v18/UqyKK9YTJW5liNMhTMqe9vUFP65ZD7AqUuXEzg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanselymaic/v18/UqyKK9YTJW5liNMhTMqe9vUFP65ZD7AqUuXEzg.woff2",
   },
 } as const;
 
 export type NotoSansElymaicWeight = "400";
 export type NotoSansElymaicStyle = "normal";
 export type NotoSansElymaicSubset = "elymaic" | "latin" | "latin-ext";
-export type NotoSansElymaicOptions = GoogleFontOptions<NotoSansElymaicWeight, NotoSansElymaicStyle, NotoSansElymaicSubset>;
+export type NotoSansElymaicOptions = GoogleFontOptions<
+  NotoSansElymaicWeight,
+  NotoSansElymaicStyle,
+  NotoSansElymaicSubset
+>;
 
 /**
  * Noto Sans Elymaic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansElymaic extends GoogleFont<NotoSansElymaicWeight, NotoSansElymaicStyle, NotoSansElymaicSubset> {
+export default class NotoSansElymaic extends GoogleFont<
+  NotoSansElymaicWeight,
+  NotoSansElymaicStyle,
+  NotoSansElymaicSubset
+> {
   constructor(options?: NotoSansElymaicOptions) {
     super(FAMILY, FACES, options);
   }

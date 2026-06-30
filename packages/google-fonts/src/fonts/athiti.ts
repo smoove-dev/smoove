@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Athiti";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0sMISdLIZIv1wAxDNCBfe_.woff2",
     "300-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0sMISdLIZIv1wAoDBCBfe_.woff2",
     "400-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0vMISdLIZIv1wICxJX.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0sMISdLIZIv1wA1DZCC_e_O98.woff2",
     "700-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0sMISdLIZIv1wAsDdCC_e_O98.woff2",
   },
-  "thai": {
+  thai: {
     "200-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0sMISdLIZIv1wAxDNCEfe_O98.woff2",
     "300-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0sMISdLIZIv1wAoDBCEfe_O98.woff2",
     "400-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0vMISdLIZIv1wIHxJXOtY.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0sMISdLIZIv1wA1DZCEfe_O98.woff2",
     "700-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0sMISdLIZIv1wAsDdCEfe_O98.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0sMISdLIZIv1wAxDNCCve_O98.woff2",
     "300-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0sMISdLIZIv1wAoDBCCve_O98.woff2",
     "400-normal": "https://fonts.gstatic.com/s/athiti/v14/pe0vMISdLIZIv1wIBBJXOtY.woff2",

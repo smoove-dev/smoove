@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Audiowide";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/audiowide/v22/l7gdbjpo0cum0ckerWCdlg_O.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type AudiowideOptions = GoogleFontOptions<AudiowideWeight, AudiowideStyle
  * Audiowide — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Audiowide extends GoogleFont<AudiowideWeight, AudiowideStyle, AudiowideSubset> {
+export default class Audiowide extends GoogleFont<
+  AudiowideWeight,
+  AudiowideStyle,
+  AudiowideSubset
+> {
   constructor(options?: AudiowideOptions) {
     super(FAMILY, FACES, options);
   }

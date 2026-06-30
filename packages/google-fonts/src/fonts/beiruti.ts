@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Beiruti";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "200-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSA1t4FZA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSA1t4FZA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSA1t4FZA.woff2",
@@ -14,7 +14,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSA1t4FZA.woff2",
     "900-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSA1t4FZA.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSAht4A.woff2",
     "300-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSAht4A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSAht4A.woff2",
@@ -34,7 +34,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSAZt4FZA.woff2",
     "900-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSAZt4FZA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSAdt4FZA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSAdt4FZA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/beiruti/v5/JTUXjIU69Cmr9FGcSAdt4FZA.woff2",

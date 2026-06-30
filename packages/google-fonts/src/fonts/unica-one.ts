@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Unica One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/unicaone/v20/DPEuYwWHyAYGVTSmalsRcd3e.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/unicaone/v20/DPEuYwWHyAYGVTSmalsRf93eiEY.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/unicaone/v20/DPEuYwWHyAYGVTSmalsRft3eiEY.woff2",
   },
 } as const;

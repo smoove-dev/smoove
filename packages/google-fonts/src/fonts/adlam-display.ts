@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "ADLaM Display";
 
 const FACES = {
-  "adlam": {
-    "400-normal": "https://fonts.gstatic.com/s/adlamdisplay/v1/KFOhCnGXkPOLlhx6jD8_b1ZEOqTSkLBP.woff2",
+  adlam: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/adlamdisplay/v1/KFOhCnGXkPOLlhx6jD8_b1ZEOqTSkLBP.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/adlamdisplay/v1/KFOhCnGXkPOLlhx6jD8_b1ZEOsbSkA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/adlamdisplay/v1/KFOhCnGXkPOLlhx6jD8_b1ZEOsbSkA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/adlamdisplay/v1/KFOhCnGXkPOLlhx6jD8_b1ZEOsjSkLBP.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/adlamdisplay/v1/KFOhCnGXkPOLlhx6jD8_b1ZEOsjSkLBP.woff2",
   },
 } as const;
 
 export type ADLaMDisplayWeight = "400";
 export type ADLaMDisplayStyle = "normal";
 export type ADLaMDisplaySubset = "adlam" | "latin" | "latin-ext";
-export type ADLaMDisplayOptions = GoogleFontOptions<ADLaMDisplayWeight, ADLaMDisplayStyle, ADLaMDisplaySubset>;
+export type ADLaMDisplayOptions = GoogleFontOptions<
+  ADLaMDisplayWeight,
+  ADLaMDisplayStyle,
+  ADLaMDisplaySubset
+>;
 
 /**
  * ADLaM Display — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ADLaMDisplay extends GoogleFont<ADLaMDisplayWeight, ADLaMDisplayStyle, ADLaMDisplaySubset> {
+export default class ADLaMDisplay extends GoogleFont<
+  ADLaMDisplayWeight,
+  ADLaMDisplayStyle,
+  ADLaMDisplaySubset
+> {
   constructor(options?: ADLaMDisplayOptions) {
     super(FAMILY, FACES, options);
   }

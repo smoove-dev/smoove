@@ -4,28 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Belanosima";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/belanosima/v4/3y9k6bI8ejDo_3MfCDSL9AdRFg.woff2",
     "600-normal": "https://fonts.gstatic.com/s/belanosima/v4/3y9n6bI8ejDo_3MfCDSL_Nh1A31gng.woff2",
     "700-normal": "https://fonts.gstatic.com/s/belanosima/v4/3y9n6bI8ejDo_3MfCDSL_Lx0A31gng.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/belanosima/v4/3y9k6bI8ejDo_3MfCDSL9AlRFkJB.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/belanosima/v4/3y9n6bI8ejDo_3MfCDSL_Nh1A3Ngnqcd.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/belanosima/v4/3y9n6bI8ejDo_3MfCDSL_Lx0A3Ngnqcd.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/belanosima/v4/3y9n6bI8ejDo_3MfCDSL_Nh1A3Ngnqcd.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/belanosima/v4/3y9n6bI8ejDo_3MfCDSL_Lx0A3Ngnqcd.woff2",
   },
 } as const;
 
 export type BelanosimaWeight = "400" | "600" | "700";
 export type BelanosimaStyle = "normal";
 export type BelanosimaSubset = "latin" | "latin-ext";
-export type BelanosimaOptions = GoogleFontOptions<BelanosimaWeight, BelanosimaStyle, BelanosimaSubset>;
+export type BelanosimaOptions = GoogleFontOptions<
+  BelanosimaWeight,
+  BelanosimaStyle,
+  BelanosimaSubset
+>;
 
 /**
  * Belanosima — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Belanosima extends GoogleFont<BelanosimaWeight, BelanosimaStyle, BelanosimaSubset> {
+export default class Belanosima extends GoogleFont<
+  BelanosimaWeight,
+  BelanosimaStyle,
+  BelanosimaSubset
+> {
   constructor(options?: BelanosimaOptions) {
     super(FAMILY, FACES, options);
   }

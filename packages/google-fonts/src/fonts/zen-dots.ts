@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zen Dots";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/zendots/v14/XRXX3ICfm00IGoesQdaDRs4.woff2",
   },
   "latin-ext": {

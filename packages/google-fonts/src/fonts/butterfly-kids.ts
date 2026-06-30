@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Butterfly Kids";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/butterflykids/v27/ll8lK2CWTjuqAsXDqlnIbMNs5R4dpRA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/butterflykids/v27/ll8lK2CWTjuqAsXDqlnIbMNs5R4dpRA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/butterflykids/v27/ll8lK2CWTjuqAsXDqlnIbMNs5R4TpRBbAQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/butterflykids/v27/ll8lK2CWTjuqAsXDqlnIbMNs5R4TpRBbAQ.woff2",
   },
 } as const;
 
 export type ButterflyKidsWeight = "400";
 export type ButterflyKidsStyle = "normal";
 export type ButterflyKidsSubset = "latin" | "latin-ext";
-export type ButterflyKidsOptions = GoogleFontOptions<ButterflyKidsWeight, ButterflyKidsStyle, ButterflyKidsSubset>;
+export type ButterflyKidsOptions = GoogleFontOptions<
+  ButterflyKidsWeight,
+  ButterflyKidsStyle,
+  ButterflyKidsSubset
+>;
 
 /**
  * Butterfly Kids — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ButterflyKids extends GoogleFont<ButterflyKidsWeight, ButterflyKidsStyle, ButterflyKidsSubset> {
+export default class ButterflyKids extends GoogleFont<
+  ButterflyKidsWeight,
+  ButterflyKidsStyle,
+  ButterflyKidsSubset
+> {
   constructor(options?: ButterflyKidsOptions) {
     super(FAMILY, FACES, options);
   }

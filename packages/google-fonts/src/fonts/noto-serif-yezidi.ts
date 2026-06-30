@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Yezidi";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGlrasc.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGlrasc.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGlrasc.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGlrasc.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGlrasc.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGlrasc.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGlrasc.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGlrasc.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGllasc3GA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGllasc3GA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGllasc3GA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGllasc3GA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGllasc3GA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGllasc3GA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGllasc3GA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGllasc3GA.woff2",
   },
-  "yezidi": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGkKasc3GA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGkKasc3GA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGkKasc3GA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGkKasc3GA.woff2",
+  yezidi: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGkKasc3GA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGkKasc3GA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGkKasc3GA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifyezidi/v23/XLY8IYr5bJNDGYxLBibeHZAn3B5KJGkKasc3GA.woff2",
   },
 } as const;
 
 export type NotoSerifYezidiWeight = "400" | "500" | "600" | "700";
 export type NotoSerifYezidiStyle = "normal";
 export type NotoSerifYezidiSubset = "latin" | "latin-ext" | "yezidi";
-export type NotoSerifYezidiOptions = GoogleFontOptions<NotoSerifYezidiWeight, NotoSerifYezidiStyle, NotoSerifYezidiSubset>;
+export type NotoSerifYezidiOptions = GoogleFontOptions<
+  NotoSerifYezidiWeight,
+  NotoSerifYezidiStyle,
+  NotoSerifYezidiSubset
+>;
 
 /**
  * Noto Serif Yezidi — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifYezidi extends GoogleFont<NotoSerifYezidiWeight, NotoSerifYezidiStyle, NotoSerifYezidiSubset> {
+export default class NotoSerifYezidi extends GoogleFont<
+  NotoSerifYezidiWeight,
+  NotoSerifYezidiStyle,
+  NotoSerifYezidiSubset
+> {
   constructor(options?: NotoSerifYezidiOptions) {
     super(FAMILY, FACES, options);
   }

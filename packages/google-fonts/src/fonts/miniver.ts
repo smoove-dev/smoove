@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Miniver";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/miniver/v27/eLGcP-PxIg-5H0vC37oIyg.woff2",
   },
 } as const;

@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Libre Barcode 39 Extended";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/librebarcode39extended/v30/8At7Gt6_O5yNS0-K4Nf5U922qSzhJ3dUdfJpwNUgTNNIOA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/librebarcode39extended/v30/8At7Gt6_O5yNS0-K4Nf5U922qSzhJ3dUdfJpwNUgTNNIOA.woff2",
   },
 } as const;
 
 export type LibreBarcode39ExtendedWeight = "400";
 export type LibreBarcode39ExtendedStyle = "normal";
 export type LibreBarcode39ExtendedSubset = "latin";
-export type LibreBarcode39ExtendedOptions = GoogleFontOptions<LibreBarcode39ExtendedWeight, LibreBarcode39ExtendedStyle, LibreBarcode39ExtendedSubset>;
+export type LibreBarcode39ExtendedOptions = GoogleFontOptions<
+  LibreBarcode39ExtendedWeight,
+  LibreBarcode39ExtendedStyle,
+  LibreBarcode39ExtendedSubset
+>;
 
 /**
  * Libre Barcode 39 Extended — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LibreBarcode39Extended extends GoogleFont<LibreBarcode39ExtendedWeight, LibreBarcode39ExtendedStyle, LibreBarcode39ExtendedSubset> {
+export default class LibreBarcode39Extended extends GoogleFont<
+  LibreBarcode39ExtendedWeight,
+  LibreBarcode39ExtendedStyle,
+  LibreBarcode39ExtendedSubset
+> {
   constructor(options?: LibreBarcode39ExtendedOptions) {
     super(FAMILY, FACES, options);
   }

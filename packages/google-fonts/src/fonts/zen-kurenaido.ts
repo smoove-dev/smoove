@@ -4,30 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zen Kurenaido";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/zenkurenaido/v19/3XFsEr0515BK2u6UUptu_gWJVf_82cRL.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenkurenaido/v19/3XFsEr0515BK2u6UUptu_gWJVf_82cRL.woff2",
   },
-  "greek": {
-    "400-normal": "https://fonts.gstatic.com/s/zenkurenaido/v19/3XFsEr0515BK2u6UUptu_gWJVfj82cRL.woff2",
+  greek: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenkurenaido/v19/3XFsEr0515BK2u6UUptu_gWJVfj82cRL.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/zenkurenaido/v19/3XFsEr0515BK2u6UUptu_gWJVfv82Q.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenkurenaido/v19/3XFsEr0515BK2u6UUptu_gWJVfv82Q.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/zenkurenaido/v19/3XFsEr0515BK2u6UUptu_gWJVfX82cRL.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zenkurenaido/v19/3XFsEr0515BK2u6UUptu_gWJVfX82cRL.woff2",
   },
 } as const;
 
 export type ZenKurenaidoWeight = "400";
 export type ZenKurenaidoStyle = "normal";
 export type ZenKurenaidoSubset = "cyrillic" | "greek" | "latin" | "latin-ext";
-export type ZenKurenaidoOptions = GoogleFontOptions<ZenKurenaidoWeight, ZenKurenaidoStyle, ZenKurenaidoSubset>;
+export type ZenKurenaidoOptions = GoogleFontOptions<
+  ZenKurenaidoWeight,
+  ZenKurenaidoStyle,
+  ZenKurenaidoSubset
+>;
 
 /**
  * Zen Kurenaido — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZenKurenaido extends GoogleFont<ZenKurenaidoWeight, ZenKurenaidoStyle, ZenKurenaidoSubset> {
+export default class ZenKurenaido extends GoogleFont<
+  ZenKurenaidoWeight,
+  ZenKurenaidoStyle,
+  ZenKurenaidoSubset
+> {
   constructor(options?: ZenKurenaidoOptions) {
     super(FAMILY, FACES, options);
   }

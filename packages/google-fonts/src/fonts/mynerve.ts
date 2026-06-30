@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mynerve";
 
 const FACES = {
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/mynerve/v8/P5sCzZKPdNjb4jt79CBkiK-u.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mynerve/v8/P5sCzZKPdNjb4jt79CNkiA.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/mynerve/v8/P5sCzZKPdNjb4jt79C1kiK-u.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/mynerve/v8/P5sCzZKPdNjb4jt79CxkiK-u.woff2",
   },
 } as const;

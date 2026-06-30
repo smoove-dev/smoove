@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Shadows Into Light Two";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/shadowsintolighttwo/v19/4iC86LVlZsRSjQhpWGedwyOoW-0A6_kpsyNmpAzHGQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/shadowsintolighttwo/v19/4iC86LVlZsRSjQhpWGedwyOoW-0A6_kpsyNmpAzHGQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/shadowsintolighttwo/v19/4iC86LVlZsRSjQhpWGedwyOoW-0A6_kpsyNmpALHGYNn.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/shadowsintolighttwo/v19/4iC86LVlZsRSjQhpWGedwyOoW-0A6_kpsyNmpALHGYNn.woff2",
   },
 } as const;
 
 export type ShadowsIntoLightTwoWeight = "400";
 export type ShadowsIntoLightTwoStyle = "normal";
 export type ShadowsIntoLightTwoSubset = "latin" | "latin-ext";
-export type ShadowsIntoLightTwoOptions = GoogleFontOptions<ShadowsIntoLightTwoWeight, ShadowsIntoLightTwoStyle, ShadowsIntoLightTwoSubset>;
+export type ShadowsIntoLightTwoOptions = GoogleFontOptions<
+  ShadowsIntoLightTwoWeight,
+  ShadowsIntoLightTwoStyle,
+  ShadowsIntoLightTwoSubset
+>;
 
 /**
  * Shadows Into Light Two — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ShadowsIntoLightTwo extends GoogleFont<ShadowsIntoLightTwoWeight, ShadowsIntoLightTwoStyle, ShadowsIntoLightTwoSubset> {
+export default class ShadowsIntoLightTwo extends GoogleFont<
+  ShadowsIntoLightTwoWeight,
+  ShadowsIntoLightTwoStyle,
+  ShadowsIntoLightTwoSubset
+> {
   constructor(options?: ShadowsIntoLightTwoOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Abyssinica SIL";
 
 const FACES = {
-  "ethiopic": {
-    "400-normal": "https://fonts.gstatic.com/s/abyssinicasil/v9/oY1H8ezOqK7iI3rK_45WKoc8J5UPDlKlAQ.woff2",
+  ethiopic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/abyssinicasil/v9/oY1H8ezOqK7iI3rK_45WKoc8J5UPDlKlAQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/abyssinicasil/v9/oY1H8ezOqK7iI3rK_45WKoc8J5UeDlI.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/abyssinicasil/v9/oY1H8ezOqK7iI3rK_45WKoc8J5UeDlI.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/abyssinicasil/v9/oY1H8ezOqK7iI3rK_45WKoc8J5UQDlKlAQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/abyssinicasil/v9/oY1H8ezOqK7iI3rK_45WKoc8J5UQDlKlAQ.woff2",
   },
 } as const;
 
 export type AbyssinicaSILWeight = "400";
 export type AbyssinicaSILStyle = "normal";
 export type AbyssinicaSILSubset = "ethiopic" | "latin" | "latin-ext";
-export type AbyssinicaSILOptions = GoogleFontOptions<AbyssinicaSILWeight, AbyssinicaSILStyle, AbyssinicaSILSubset>;
+export type AbyssinicaSILOptions = GoogleFontOptions<
+  AbyssinicaSILWeight,
+  AbyssinicaSILStyle,
+  AbyssinicaSILSubset
+>;
 
 /**
  * Abyssinica SIL — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AbyssinicaSIL extends GoogleFont<AbyssinicaSILWeight, AbyssinicaSILStyle, AbyssinicaSILSubset> {
+export default class AbyssinicaSIL extends GoogleFont<
+  AbyssinicaSILWeight,
+  AbyssinicaSILStyle,
+  AbyssinicaSILSubset
+> {
   constructor(options?: AbyssinicaSILOptions) {
     super(FAMILY, FACES, options);
   }

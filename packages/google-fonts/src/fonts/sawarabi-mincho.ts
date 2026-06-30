@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sawarabi Mincho";
 
 const FACES = {
-  "braille": {
-    "400-normal": "https://fonts.gstatic.com/s/sawarabimincho/v20/8QIRdiDaitzr7brc8ahpxt6GcIJjhINr7pwa.woff2",
+  braille: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sawarabimincho/v20/8QIRdiDaitzr7brc8ahpxt6GcIJjhINr7pwa.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/sawarabimincho/v20/8QIRdiDaitzr7brc8ahpxt6GcIJjKqJO.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sawarabimincho/v20/8QIRdiDaitzr7brc8ahpxt6GcIJjKqJO.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/sawarabimincho/v20/8QIRdiDaitzr7brc8ahpxt6GcIJjJKJO06U.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sawarabimincho/v20/8QIRdiDaitzr7brc8ahpxt6GcIJjJKJO06U.woff2",
   },
 } as const;
 
 export type SawarabiMinchoWeight = "400";
 export type SawarabiMinchoStyle = "normal";
 export type SawarabiMinchoSubset = "braille" | "latin" | "latin-ext";
-export type SawarabiMinchoOptions = GoogleFontOptions<SawarabiMinchoWeight, SawarabiMinchoStyle, SawarabiMinchoSubset>;
+export type SawarabiMinchoOptions = GoogleFontOptions<
+  SawarabiMinchoWeight,
+  SawarabiMinchoStyle,
+  SawarabiMinchoSubset
+>;
 
 /**
  * Sawarabi Mincho — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SawarabiMincho extends GoogleFont<SawarabiMinchoWeight, SawarabiMinchoStyle, SawarabiMinchoSubset> {
+export default class SawarabiMincho extends GoogleFont<
+  SawarabiMinchoWeight,
+  SawarabiMinchoStyle,
+  SawarabiMinchoSubset
+> {
   constructor(options?: SawarabiMinchoOptions) {
     super(FAMILY, FACES, options);
   }

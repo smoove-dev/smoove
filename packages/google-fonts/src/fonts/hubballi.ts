@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hubballi";
 
 const FACES = {
-  "kannada": {
+  kannada: {
     "400-normal": "https://fonts.gstatic.com/s/hubballi/v10/o-0JIpUj3WIZ1RFN55BmwhF9Yg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/hubballi/v10/o-0JIpUj3WIZ1RFN55B8whE.woff2",
   },
   "latin-ext": {

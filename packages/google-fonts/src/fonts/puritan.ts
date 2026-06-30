@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Puritan";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/puritan/v25/845aNMgkAJ2VTtIoxJjKRv6M.woff2",
     "400-normal": "https://fonts.gstatic.com/s/puritan/v25/845YNMgkAJ2VTtIoxJ36RA.woff2",
     "700-italic": "https://fonts.gstatic.com/s/puritan/v25/845fNMgkAJ2VTtIoxJjC_duZ-GLC.woff2",

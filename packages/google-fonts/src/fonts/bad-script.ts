@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bad Script";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/badscript/v18/6NUT8F6PJgbFWQn47_x7pO8kzO1A.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/badscript/v18/6NUT8F6PJgbFWQn47_x7pOYkzO1A.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/badscript/v18/6NUT8F6PJgbFWQn47_x7pOskzA.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/badscript/v18/6NUT8F6PJgbFWQn47_x7pOUkzO1A.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/badscript/v18/6NUT8F6PJgbFWQn47_x7pOQkzO1A.woff2",
   },
 } as const;
@@ -30,7 +30,11 @@ export type BadScriptOptions = GoogleFontOptions<BadScriptWeight, BadScriptStyle
  * Bad Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BadScript extends GoogleFont<BadScriptWeight, BadScriptStyle, BadScriptSubset> {
+export default class BadScript extends GoogleFont<
+  BadScriptWeight,
+  BadScriptStyle,
+  BadScriptSubset
+> {
   constructor(options?: BadScriptOptions) {
     super(FAMILY, FACES, options);
   }

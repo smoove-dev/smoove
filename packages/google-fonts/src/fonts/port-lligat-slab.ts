@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Port Lligat Slab";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/portlligatslab/v27/LDIpaoiQNgArA8kR7ulhZ8P_NYOsg70R9g.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/portlligatslab/v27/LDIpaoiQNgArA8kR7ulhZ8P_NYOsg70R9g.woff2",
   },
 } as const;
 
 export type PortLligatSlabWeight = "400";
 export type PortLligatSlabStyle = "normal";
 export type PortLligatSlabSubset = "latin";
-export type PortLligatSlabOptions = GoogleFontOptions<PortLligatSlabWeight, PortLligatSlabStyle, PortLligatSlabSubset>;
+export type PortLligatSlabOptions = GoogleFontOptions<
+  PortLligatSlabWeight,
+  PortLligatSlabStyle,
+  PortLligatSlabSubset
+>;
 
 /**
  * Port Lligat Slab — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PortLligatSlab extends GoogleFont<PortLligatSlabWeight, PortLligatSlabStyle, PortLligatSlabSubset> {
+export default class PortLligatSlab extends GoogleFont<
+  PortLligatSlabWeight,
+  PortLligatSlabStyle,
+  PortLligatSlabSubset
+> {
   constructor(options?: PortLligatSlabOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ysabeau SC";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiLpxORZ4.woff2",
     "200-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiLpxORZ4.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiLpxORZ4.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiLNxORZ4.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiLNxORZ4.woff2",
   },
-  "greek": {
+  greek: {
     "100-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiL1xORZ4.woff2",
     "200-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiL1xORZ4.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiL1xORZ4.woff2",
@@ -37,7 +37,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiL1xORZ4.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiL1xORZ4.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiL5xOQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiL5xOQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiL5xOQ.woff2",
@@ -59,7 +59,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiLBxORZ4.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiLBxORZ4.woff2",
   },
-  "math": {
+  math: {
     "100-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiMJxORZ4.woff2",
     "200-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiMJxORZ4.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiMJxORZ4.woff2",
@@ -70,7 +70,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiMJxORZ4.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiMJxORZ4.woff2",
   },
-  "symbols": {
+  symbols: {
     "100-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiNBxORZ4.woff2",
     "200-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiNBxORZ4.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiNBxORZ4.woff2",
@@ -81,7 +81,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiNBxORZ4.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiNBxORZ4.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiLFxORZ4.woff2",
     "200-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiLFxORZ4.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ysabeausc/v4/Noa36Uro3JCIKAbW46nMiLFxORZ4.woff2",
@@ -96,14 +96,26 @@ const FACES = {
 
 export type YsabeauSCWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type YsabeauSCStyle = "normal";
-export type YsabeauSCSubset = "cyrillic" | "cyrillic-ext" | "greek" | "latin" | "latin-ext" | "math" | "symbols" | "vietnamese";
+export type YsabeauSCSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "latin"
+  | "latin-ext"
+  | "math"
+  | "symbols"
+  | "vietnamese";
 export type YsabeauSCOptions = GoogleFontOptions<YsabeauSCWeight, YsabeauSCStyle, YsabeauSCSubset>;
 
 /**
  * Ysabeau SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class YsabeauSC extends GoogleFont<YsabeauSCWeight, YsabeauSCStyle, YsabeauSCSubset> {
+export default class YsabeauSC extends GoogleFont<
+  YsabeauSCWeight,
+  YsabeauSCStyle,
+  YsabeauSCSubset
+> {
   constructor(options?: YsabeauSCOptions) {
     super(FAMILY, FACES, options);
   }

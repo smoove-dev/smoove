@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gorditas";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gorditas/v24/ll8_K2aTVD26DsPEtTDvB68.woff2",
     "700-normal": "https://fonts.gstatic.com/s/gorditas/v24/ll84K2aTVD26DsPEtThUIroPtgs.woff2",
   },

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Monomakh";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/monomakh/v1/Wnz4HAk3Yh_SC3FACQYeggvsPQ.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/monomakh/v1/Wnz4HAk3Yh_SC3FACQYXggvsPQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/monomakh/v1/Wnz4HAk3Yh_SC3FACQYaggs.woff2",
   },
   "latin-ext": {

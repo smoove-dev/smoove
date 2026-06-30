@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Huninn";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/huninn/v8/OpNNnoINg9bQ4xkZjSvRvis.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/huninn/v8/OpNNnoINg9bQ4xkZiSvR.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/huninn/v8/OpNNnoINg9bQ4xkZhyvRvis.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/huninn/v8/OpNNnoINg9bQ4xkZhivRvis.woff2",
   },
 } as const;

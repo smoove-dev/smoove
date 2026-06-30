@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Unna";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/unna/v25/AYCKpXzofN0NOpo7l0nG.woff2",
     "400-normal": "https://fonts.gstatic.com/s/unna/v25/AYCEpXzofN0NOp8LlQ.woff2",
     "700-italic": "https://fonts.gstatic.com/s/unna/v25/AYCJpXzofN0NOpozLGzTR3Jv.woff2",

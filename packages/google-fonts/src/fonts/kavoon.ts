@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kavoon";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kavoon/v25/pxiFyp4_scRYhlUIM7D7.woff2",
   },
   "latin-ext": {

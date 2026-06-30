@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "MonteCarlo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/montecarlo/v13/buEzpo6-f9X01GadLA0G4C0f_Q.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/montecarlo/v13/buEzpo6-f9X01GadLA0G4CMf_exL.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/montecarlo/v13/buEzpo6-f9X01GadLA0G4CIf_exL.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type MonteCarloWeight = "400";
 export type MonteCarloStyle = "normal";
 export type MonteCarloSubset = "latin" | "latin-ext" | "vietnamese";
-export type MonteCarloOptions = GoogleFontOptions<MonteCarloWeight, MonteCarloStyle, MonteCarloSubset>;
+export type MonteCarloOptions = GoogleFontOptions<
+  MonteCarloWeight,
+  MonteCarloStyle,
+  MonteCarloSubset
+>;
 
 /**
  * MonteCarlo — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MonteCarlo extends GoogleFont<MonteCarloWeight, MonteCarloStyle, MonteCarloSubset> {
+export default class MonteCarlo extends GoogleFont<
+  MonteCarloWeight,
+  MonteCarloStyle,
+  MonteCarloSubset
+> {
   constructor(options?: MonteCarloOptions) {
     super(FAMILY, FACES, options);
   }

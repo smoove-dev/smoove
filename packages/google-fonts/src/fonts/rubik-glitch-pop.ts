@@ -4,39 +4,61 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Glitch Pop";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MCwenSHrV.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MCwenSHrV.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MCw6nSHrV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MCw6nSHrV.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MCwGnSHrV.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MCwGnSHrV.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MCwOnSA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MCwOnSA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MCw2nSHrV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MCw2nSHrV.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MC3-nSHrV.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MC3-nSHrV.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MC22nSHrV.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitchpop/v1/tDbX2pGHhFcM0gB3hN2elZLa3G-MC22nSHrV.woff2",
   },
 } as const;
 
 export type RubikGlitchPopWeight = "400";
 export type RubikGlitchPopStyle = "normal";
-export type RubikGlitchPopSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext" | "math" | "symbols";
-export type RubikGlitchPopOptions = GoogleFontOptions<RubikGlitchPopWeight, RubikGlitchPopStyle, RubikGlitchPopSubset>;
+export type RubikGlitchPopSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "hebrew"
+  | "latin"
+  | "latin-ext"
+  | "math"
+  | "symbols";
+export type RubikGlitchPopOptions = GoogleFontOptions<
+  RubikGlitchPopWeight,
+  RubikGlitchPopStyle,
+  RubikGlitchPopSubset
+>;
 
 /**
  * Rubik Glitch Pop — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikGlitchPop extends GoogleFont<RubikGlitchPopWeight, RubikGlitchPopStyle, RubikGlitchPopSubset> {
+export default class RubikGlitchPop extends GoogleFont<
+  RubikGlitchPopWeight,
+  RubikGlitchPopStyle,
+  RubikGlitchPopSubset
+> {
   constructor(options?: RubikGlitchPopOptions) {
     super(FAMILY, FACES, options);
   }

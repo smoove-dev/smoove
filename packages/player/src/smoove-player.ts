@@ -3,7 +3,7 @@ import type { Composition } from "@smoove/core";
 import { playerContext } from "./context.js";
 import { createDefaultControls } from "./default-controls.js";
 import type { PlayerApi, PlayerState } from "./player-api.js";
-import { type Signal, createSignal } from "./signal.js";
+import { createSignal, type Signal } from "./signal.js";
 
 const TIMEUPDATE_INTERVAL_MS = 250;
 const now = (): number => (typeof performance?.now === "function" ? performance.now() : Date.now());

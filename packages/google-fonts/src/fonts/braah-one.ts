@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Braah One";
 
 const FACES = {
-  "gurmukhi": {
+  gurmukhi: {
     "400-normal": "https://fonts.gstatic.com/s/braahone/v8/KFOlCnWUpt6LsxxxiylfJxc4EsA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/braahone/v8/KFOlCnWUpt6LsxxxiylfBBc4.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/braahone/v8/KFOlCnWUpt6LsxxxiylfChc4EsA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/braahone/v8/KFOlCnWUpt6LsxxxiylfCxc4EsA.woff2",
   },
 } as const;

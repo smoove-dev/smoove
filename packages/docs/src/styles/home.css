@@ -38,7 +38,9 @@ body {
   color: var(--ink-2);
   padding: 8px 13px;
   border-radius: var(--radius-control);
-  transition: color 0.15s, background-color 0.15s;
+  transition:
+    color 0.15s,
+    background-color 0.15s;
 }
 .home-header__links a:hover {
   color: var(--ink-1);
@@ -109,7 +111,8 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
     linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size: 52px 52px;
   mask-image: radial-gradient(ellipse 75% 55% at 50% 30%, #000 30%, transparent 75%);
@@ -249,7 +252,10 @@ body {
   border: 1px solid var(--line);
   border-radius: var(--radius-ui);
   background: var(--bg-1);
-  transition: border-color 0.16s, background-color 0.16s, transform 0.16s;
+  transition:
+    border-color 0.16s,
+    background-color 0.16s,
+    transform 0.16s;
 }
 .qcard:hover {
   border-color: var(--accent-line);
@@ -281,7 +287,9 @@ body {
 }
 .qcard__title .arr {
   color: var(--ink-3);
-  transition: transform 0.16s, color 0.16s;
+  transition:
+    transform 0.16s,
+    color 0.16s;
 }
 .qcard:hover .qcard__title .arr {
   transform: translateX(3px);

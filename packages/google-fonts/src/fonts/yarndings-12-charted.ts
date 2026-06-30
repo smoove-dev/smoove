@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yarndings 12 Charted";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/yarndings12charted/v4/eLGDP_DlKhO-DUfeqM4I_vDdJgmIh7hAvsbO2N4.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/yarndings12charted/v4/eLGDP_DlKhO-DUfeqM4I_vDdJgmIh7hAvsbO2N4.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/yarndings12charted/v4/eLGDP_DlKhO-DUfeqM4I_vDdJgmIh7hAvsay2N6tHQ.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/yarndings12charted/v4/eLGDP_DlKhO-DUfeqM4I_vDdJgmIh7hAvsay2N6tHQ.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/yarndings12charted/v4/eLGDP_DlKhO-DUfeqM4I_vDdJgmIh7hAvsag2N6tHQ.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/yarndings12charted/v4/eLGDP_DlKhO-DUfeqM4I_vDdJgmIh7hAvsag2N6tHQ.woff2",
   },
 } as const;
 
 export type Yarndings12ChartedWeight = "400";
 export type Yarndings12ChartedStyle = "normal";
 export type Yarndings12ChartedSubset = "latin" | "math" | "symbols";
-export type Yarndings12ChartedOptions = GoogleFontOptions<Yarndings12ChartedWeight, Yarndings12ChartedStyle, Yarndings12ChartedSubset>;
+export type Yarndings12ChartedOptions = GoogleFontOptions<
+  Yarndings12ChartedWeight,
+  Yarndings12ChartedStyle,
+  Yarndings12ChartedSubset
+>;
 
 /**
  * Yarndings 12 Charted — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Yarndings12Charted extends GoogleFont<Yarndings12ChartedWeight, Yarndings12ChartedStyle, Yarndings12ChartedSubset> {
+export default class Yarndings12Charted extends GoogleFont<
+  Yarndings12ChartedWeight,
+  Yarndings12ChartedStyle,
+  Yarndings12ChartedSubset
+> {
   constructor(options?: Yarndings12ChartedOptions) {
     super(FAMILY, FACES, options);
   }

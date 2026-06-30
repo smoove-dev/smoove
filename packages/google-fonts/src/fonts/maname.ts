@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Maname";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/maname/v2/gNMFW3J8RpCx9myI31MH.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/maname/v2/gNMFW3J8RpCx9myI0VMHKI4.woff2",
   },
-  "sinhala": {
+  sinhala: {
     "400-normal": "https://fonts.gstatic.com/s/maname/v2/gNMFW3J8RpCx9myIwlMHKI4.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/maname/v2/gNMFW3J8RpCx9myI0FMHKI4.woff2",
   },
 } as const;

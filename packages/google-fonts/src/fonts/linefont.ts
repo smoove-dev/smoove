@@ -4,16 +4,25 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Linefont";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/linefont/v10/dg47_pzpoqcLKUIzVfFMh1TF2rkhli25jn7YJw.woff2",
   },
 } as const;
 

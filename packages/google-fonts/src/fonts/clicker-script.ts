@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Clicker Script";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/clickerscript/v14/raxkHiKPvt8CMH6ZWP8PdlEq71rf0Ts.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/clickerscript/v14/raxkHiKPvt8CMH6ZWP8PdlEq71rf0Ts.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/clickerscript/v14/raxkHiKPvt8CMH6ZWP8PdlEq71rR0TukKQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/clickerscript/v14/raxkHiKPvt8CMH6ZWP8PdlEq71rR0TukKQ.woff2",
   },
 } as const;
 
 export type ClickerScriptWeight = "400";
 export type ClickerScriptStyle = "normal";
 export type ClickerScriptSubset = "latin" | "latin-ext";
-export type ClickerScriptOptions = GoogleFontOptions<ClickerScriptWeight, ClickerScriptStyle, ClickerScriptSubset>;
+export type ClickerScriptOptions = GoogleFontOptions<
+  ClickerScriptWeight,
+  ClickerScriptStyle,
+  ClickerScriptSubset
+>;
 
 /**
  * Clicker Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ClickerScript extends GoogleFont<ClickerScriptWeight, ClickerScriptStyle, ClickerScriptSubset> {
+export default class ClickerScript extends GoogleFont<
+  ClickerScriptWeight,
+  ClickerScriptStyle,
+  ClickerScriptSubset
+> {
   constructor(options?: ClickerScriptOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Play";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/play/v21/6aez4K2oVqwIvtE2H68T.woff2",
     "700-normal": "https://fonts.gstatic.com/s/play/v21/6ae84K2oVqwItm4TCpQy2knT.woff2",
   },
@@ -12,11 +12,11 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/play/v21/6aez4K2oVqwIvtg2H68T.woff2",
     "700-normal": "https://fonts.gstatic.com/s/play/v21/6ae84K2oVqwItm4TCp0y2knT.woff2",
   },
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/play/v21/6aez4K2oVqwIvtY2H68T.woff2",
     "700-normal": "https://fonts.gstatic.com/s/play/v21/6ae84K2oVqwItm4TCpMy2knT.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/play/v21/6aez4K2oVqwIvtU2Hw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/play/v21/6ae84K2oVqwItm4TCpAy2g.woff2",
   },
@@ -24,7 +24,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/play/v21/6aez4K2oVqwIvts2H68T.woff2",
     "700-normal": "https://fonts.gstatic.com/s/play/v21/6ae84K2oVqwItm4TCp4y2knT.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/play/v21/6aez4K2oVqwIvto2H68T.woff2",
     "700-normal": "https://fonts.gstatic.com/s/play/v21/6ae84K2oVqwItm4TCp8y2knT.woff2",
   },
@@ -32,7 +32,13 @@ const FACES = {
 
 export type PlayWeight = "400" | "700";
 export type PlayStyle = "normal";
-export type PlaySubset = "cyrillic" | "cyrillic-ext" | "greek" | "latin" | "latin-ext" | "vietnamese";
+export type PlaySubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type PlayOptions = GoogleFontOptions<PlayWeight, PlayStyle, PlaySubset>;
 
 /**

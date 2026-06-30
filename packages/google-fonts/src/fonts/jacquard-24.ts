@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jacquard 24";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jacquard24/v4/jVyO7nf_B2zO5jVpUGU8ljQDf8k.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type Jacquard24Weight = "400";
 export type Jacquard24Style = "normal";
 export type Jacquard24Subset = "latin" | "latin-ext";
-export type Jacquard24Options = GoogleFontOptions<Jacquard24Weight, Jacquard24Style, Jacquard24Subset>;
+export type Jacquard24Options = GoogleFontOptions<
+  Jacquard24Weight,
+  Jacquard24Style,
+  Jacquard24Subset
+>;
 
 /**
  * Jacquard 24 — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Jacquard24 extends GoogleFont<Jacquard24Weight, Jacquard24Style, Jacquard24Subset> {
+export default class Jacquard24 extends GoogleFont<
+  Jacquard24Weight,
+  Jacquard24Style,
+  Jacquard24Subset
+> {
   constructor(options?: Jacquard24Options) {
     super(FAMILY, FACES, options);
   }

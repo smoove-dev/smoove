@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Libre Barcode EAN13 Text";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/librebarcodeean13text/v25/wlpigxXFDU1_oCu9nfZytgIqSG0XRcJm_OQiB96_B2sl.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/librebarcodeean13text/v25/wlpigxXFDU1_oCu9nfZytgIqSG0XRcJm_OQiB96_B2sl.woff2",
   },
 } as const;
 
 export type LibreBarcodeEAN13TextWeight = "400";
 export type LibreBarcodeEAN13TextStyle = "normal";
 export type LibreBarcodeEAN13TextSubset = "latin";
-export type LibreBarcodeEAN13TextOptions = GoogleFontOptions<LibreBarcodeEAN13TextWeight, LibreBarcodeEAN13TextStyle, LibreBarcodeEAN13TextSubset>;
+export type LibreBarcodeEAN13TextOptions = GoogleFontOptions<
+  LibreBarcodeEAN13TextWeight,
+  LibreBarcodeEAN13TextStyle,
+  LibreBarcodeEAN13TextSubset
+>;
 
 /**
  * Libre Barcode EAN13 Text — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LibreBarcodeEAN13Text extends GoogleFont<LibreBarcodeEAN13TextWeight, LibreBarcodeEAN13TextStyle, LibreBarcodeEAN13TextSubset> {
+export default class LibreBarcodeEAN13Text extends GoogleFont<
+  LibreBarcodeEAN13TextWeight,
+  LibreBarcodeEAN13TextStyle,
+  LibreBarcodeEAN13TextSubset
+> {
   constructor(options?: LibreBarcodeEAN13TextOptions) {
     super(FAMILY, FACES, options);
   }

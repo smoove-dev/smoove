@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Exo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/exo/v25/4UaMrEtFpBISdk6h0Dc.woff2",
     "100-normal": "https://fonts.gstatic.com/s/exo/v25/4UaOrEtFpBISc36j.woff2",
     "200-italic": "https://fonts.gstatic.com/s/exo/v25/4UaMrEtFpBISdk6h0Dc.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/exo/v25/4UaMrEtFpBISdk6v0Dfe5g.woff2",
     "900-normal": "https://fonts.gstatic.com/s/exo/v25/4UaOrEtFpBISfX6jyDM.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/exo/v25/4UaMrEtFpBISdk6u0Dfe5g.woff2",
     "100-normal": "https://fonts.gstatic.com/s/exo/v25/4UaOrEtFpBISfH6jyDM.woff2",
     "200-italic": "https://fonts.gstatic.com/s/exo/v25/4UaMrEtFpBISdk6u0Dfe5g.woff2",

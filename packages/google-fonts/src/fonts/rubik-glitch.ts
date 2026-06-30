@@ -4,33 +4,45 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Glitch";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitch/v2/qkBSXv8b_srFRYQVYrDKh9ZfmyTGCNg.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitch/v2/qkBSXv8b_srFRYQVYrDKh9ZfmyTGCNg.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitch/v2/qkBSXv8b_srFRYQVYrDKh9ZfkiTGCNg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitch/v2/qkBSXv8b_srFRYQVYrDKh9ZfkiTGCNg.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitch/v2/qkBSXv8b_srFRYQVYrDKh9ZfnSTGCNg.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitch/v2/qkBSXv8b_srFRYQVYrDKh9ZfnSTGCNg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rubikglitch/v2/qkBSXv8b_srFRYQVYrDKh9ZfnyTG.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikglitch/v2/qkBSXv8b_srFRYQVYrDKh9ZfkSTGCNg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikglitch/v2/qkBSXv8b_srFRYQVYrDKh9ZfkSTGCNg.woff2",
   },
 } as const;
 
 export type RubikGlitchWeight = "400";
 export type RubikGlitchStyle = "normal";
 export type RubikGlitchSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikGlitchOptions = GoogleFontOptions<RubikGlitchWeight, RubikGlitchStyle, RubikGlitchSubset>;
+export type RubikGlitchOptions = GoogleFontOptions<
+  RubikGlitchWeight,
+  RubikGlitchStyle,
+  RubikGlitchSubset
+>;
 
 /**
  * Rubik Glitch — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikGlitch extends GoogleFont<RubikGlitchWeight, RubikGlitchStyle, RubikGlitchSubset> {
+export default class RubikGlitch extends GoogleFont<
+  RubikGlitchWeight,
+  RubikGlitchStyle,
+  RubikGlitchSubset
+> {
   constructor(options?: RubikGlitchOptions) {
     super(FAMILY, FACES, options);
   }

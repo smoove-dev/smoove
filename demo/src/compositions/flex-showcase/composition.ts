@@ -1,4 +1,4 @@
-import { Block, Composition, Easing, Flex, Sequence, interpolate } from "@smoove/core";
+import { Block, Composition, Easing, Flex, interpolate, Sequence } from "@smoove/core";
 import Konva from "konva";
 
 const PALETTE = ["#ff6b6b", "#ffd166", "#06d6a0", "#4ea1ff", "#c780ff"];

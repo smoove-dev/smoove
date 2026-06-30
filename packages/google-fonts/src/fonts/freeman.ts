@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Freeman";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/freeman/v1/S6u9w4NGQiLN8nh-SwiPGQ.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/freeman/v1/S6u9w4NGQiLN8nh-SwaPGR_p.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/freeman/v1/S6u9w4NGQiLN8nh-SwePGR_p.woff2",
   },
 } as const;

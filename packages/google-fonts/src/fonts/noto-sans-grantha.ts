@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Grantha";
 
 const FACES = {
-  "grantha": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansgrantha/v20/3y976akwcCjmsU8NDyrKo3IQfQ4o-o-cPs-oJNc.woff2",
+  grantha: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgrantha/v20/3y976akwcCjmsU8NDyrKo3IQfQ4o-o-cPs-oJNc.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansgrantha/v20/3y976akwcCjmsU8NDyrKo3IQfQ4o-o8bH-o.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgrantha/v20/3y976akwcCjmsU8NDyrKo3IQfQ4o-o8bH-o.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansgrantha/v20/3y976akwcCjmsU8NDyrKo3IQfQ4o-o8VH-qVHQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgrantha/v20/3y976akwcCjmsU8NDyrKo3IQfQ4o-o8VH-qVHQ.woff2",
   },
 } as const;
 
 export type NotoSansGranthaWeight = "400";
 export type NotoSansGranthaStyle = "normal";
 export type NotoSansGranthaSubset = "grantha" | "latin" | "latin-ext";
-export type NotoSansGranthaOptions = GoogleFontOptions<NotoSansGranthaWeight, NotoSansGranthaStyle, NotoSansGranthaSubset>;
+export type NotoSansGranthaOptions = GoogleFontOptions<
+  NotoSansGranthaWeight,
+  NotoSansGranthaStyle,
+  NotoSansGranthaSubset
+>;
 
 /**
  * Noto Sans Grantha — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansGrantha extends GoogleFont<NotoSansGranthaWeight, NotoSansGranthaStyle, NotoSansGranthaSubset> {
+export default class NotoSansGrantha extends GoogleFont<
+  NotoSansGranthaWeight,
+  NotoSansGranthaStyle,
+  NotoSansGranthaSubset
+> {
   constructor(options?: NotoSansGranthaOptions) {
     super(FAMILY, FACES, options);
   }

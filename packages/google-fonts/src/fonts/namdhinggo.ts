@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Namdhinggo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-mEGe3rbgg8Xzoy5-TPnKp4g.woff2",
     "500-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNoGK9yNQ8w.woff2",
     "600-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNq2N9yNQ8w.woff2",
@@ -13,30 +13,46 @@ const FACES = {
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-mEGe3rbgg8Xzoy5-TPnyp4hxx.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNoGK9y1Q87ZK.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNq2N9y1Q87ZK.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNsmM9y1Q87ZK.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNtWP9y1Q87ZK.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNoGK9y1Q87ZK.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNq2N9y1Q87ZK.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNsmM9y1Q87ZK.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNtWP9y1Q87ZK.woff2",
   },
-  "limbu": {
+  limbu: {
     "400-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-mEGe3rbgg8Xzoy5-TPkep4hxx.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNoGK9xZQ87ZK.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNq2N9xZQ87ZK.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNsmM9xZQ87ZK.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNtWP9xZQ87ZK.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNoGK9xZQ87ZK.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNq2N9xZQ87ZK.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNsmM9xZQ87ZK.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/namdhinggo/v2/uk-lEGe3rbgg8Xzoy5-TNtWP9xZQ87ZK.woff2",
   },
 } as const;
 
 export type NamdhinggoWeight = "400" | "500" | "600" | "700" | "800";
 export type NamdhinggoStyle = "normal";
 export type NamdhinggoSubset = "latin" | "latin-ext" | "limbu";
-export type NamdhinggoOptions = GoogleFontOptions<NamdhinggoWeight, NamdhinggoStyle, NamdhinggoSubset>;
+export type NamdhinggoOptions = GoogleFontOptions<
+  NamdhinggoWeight,
+  NamdhinggoStyle,
+  NamdhinggoSubset
+>;
 
 /**
  * Namdhinggo — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Namdhinggo extends GoogleFont<NamdhinggoWeight, NamdhinggoStyle, NamdhinggoSubset> {
+export default class Namdhinggo extends GoogleFont<
+  NamdhinggoWeight,
+  NamdhinggoStyle,
+  NamdhinggoSubset
+> {
   constructor(options?: NamdhinggoOptions) {
     super(FAMILY, FACES, options);
   }

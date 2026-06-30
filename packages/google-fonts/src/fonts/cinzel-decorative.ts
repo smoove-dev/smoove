@@ -4,28 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cinzel Decorative";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaCSScvJGqLYhG8nNt8KPPswUAPni7TTMw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaHSScvJGqLYhG8nNt8KPPswUAPniZoadlESTE.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaHSScvJGqLYhG8nNt8KPPswUAPniZQa9lESTE.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaCSScvJGqLYhG8nNt8KPPswUAPni7TTMw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaHSScvJGqLYhG8nNt8KPPswUAPniZoadlESTE.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaHSScvJGqLYhG8nNt8KPPswUAPniZQa9lESTE.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaCSScvJGqLYhG8nNt8KPPswUAPni7dTMx7aA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaHSScvJGqLYhG8nNt8KPPswUAPniZoadlKSTG7lQ.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaHSScvJGqLYhG8nNt8KPPswUAPniZQa9lKSTG7lQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaCSScvJGqLYhG8nNt8KPPswUAPni7dTMx7aA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaHSScvJGqLYhG8nNt8KPPswUAPniZoadlKSTG7lQ.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/cinzeldecorative/v19/daaHSScvJGqLYhG8nNt8KPPswUAPniZQa9lKSTG7lQ.woff2",
   },
 } as const;
 
 export type CinzelDecorativeWeight = "400" | "700" | "900";
 export type CinzelDecorativeStyle = "normal";
 export type CinzelDecorativeSubset = "latin" | "latin-ext";
-export type CinzelDecorativeOptions = GoogleFontOptions<CinzelDecorativeWeight, CinzelDecorativeStyle, CinzelDecorativeSubset>;
+export type CinzelDecorativeOptions = GoogleFontOptions<
+  CinzelDecorativeWeight,
+  CinzelDecorativeStyle,
+  CinzelDecorativeSubset
+>;
 
 /**
  * Cinzel Decorative — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CinzelDecorative extends GoogleFont<CinzelDecorativeWeight, CinzelDecorativeStyle, CinzelDecorativeSubset> {
+export default class CinzelDecorative extends GoogleFont<
+  CinzelDecorativeWeight,
+  CinzelDecorativeStyle,
+  CinzelDecorativeSubset
+> {
   constructor(options?: CinzelDecorativeOptions) {
     super(FAMILY, FACES, options);
   }

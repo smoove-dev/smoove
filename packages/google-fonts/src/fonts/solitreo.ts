@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Solitreo";
 
 const FACES = {
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/solitreo/v2/r05YGLlS5a9KYsyNO_uswjcdSg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/solitreo/v2/r05YGLlS5a9KYsyNO_uuwjc.woff2",
   },
   "latin-ext": {

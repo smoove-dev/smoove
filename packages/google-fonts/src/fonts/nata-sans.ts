@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nata Sans";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-y84avEU.woff2",
     "200-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-y84avEU.woff2",
     "300-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-y84avEU.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-ws4avEU.woff2",
     "900-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-ws4avEU.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-z84a.woff2",
     "200-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-z84a.woff2",
     "300-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-z84a.woff2",
@@ -48,7 +48,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-wc4avEU.woff2",
     "900-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-wc4avEU.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-wM4avEU.woff2",
     "200-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-wM4avEU.woff2",
     "300-normal": "https://fonts.gstatic.com/s/natasans/v1/1q2EY5KBClBit88SU_t-wM4avEU.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "ZCOOL KuaiLe";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/zcoolkuaile/v22/tssqApdaRQokwFjFJjvM6h2moYby.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type ZCOOLKuaiLeWeight = "400";
 export type ZCOOLKuaiLeStyle = "normal";
 export type ZCOOLKuaiLeSubset = "latin";
-export type ZCOOLKuaiLeOptions = GoogleFontOptions<ZCOOLKuaiLeWeight, ZCOOLKuaiLeStyle, ZCOOLKuaiLeSubset>;
+export type ZCOOLKuaiLeOptions = GoogleFontOptions<
+  ZCOOLKuaiLeWeight,
+  ZCOOLKuaiLeStyle,
+  ZCOOLKuaiLeSubset
+>;
 
 /**
  * ZCOOL KuaiLe — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZCOOLKuaiLe extends GoogleFont<ZCOOLKuaiLeWeight, ZCOOLKuaiLeStyle, ZCOOLKuaiLeSubset> {
+export default class ZCOOLKuaiLe extends GoogleFont<
+  ZCOOLKuaiLeWeight,
+  ZCOOLKuaiLeStyle,
+  ZCOOLKuaiLeSubset
+> {
   constructor(options?: ZCOOLKuaiLeOptions) {
     super(FAMILY, FACES, options);
   }

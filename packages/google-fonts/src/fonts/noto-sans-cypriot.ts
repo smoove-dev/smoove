@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Cypriot";
 
 const FACES = {
-  "cypriot": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanscypriot/v20/8AtzGta9PYqQDjyp79a6f8Cj-3a3cyJ0IZI_pQ.woff2",
+  cypriot: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscypriot/v20/8AtzGta9PYqQDjyp79a6f8Cj-3a3cyJ0IZI_pQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanscypriot/v20/8AtzGta9PYqQDjyp79a6f8Cj-3a3cyIrIZI.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscypriot/v20/8AtzGta9PYqQDjyp79a6f8Cj-3a3cyIrIZI.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanscypriot/v20/8AtzGta9PYqQDjyp79a6f8Cj-3a3cyIlIZI_pQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscypriot/v20/8AtzGta9PYqQDjyp79a6f8Cj-3a3cyIlIZI_pQ.woff2",
   },
 } as const;
 
 export type NotoSansCypriotWeight = "400";
 export type NotoSansCypriotStyle = "normal";
 export type NotoSansCypriotSubset = "cypriot" | "latin" | "latin-ext";
-export type NotoSansCypriotOptions = GoogleFontOptions<NotoSansCypriotWeight, NotoSansCypriotStyle, NotoSansCypriotSubset>;
+export type NotoSansCypriotOptions = GoogleFontOptions<
+  NotoSansCypriotWeight,
+  NotoSansCypriotStyle,
+  NotoSansCypriotSubset
+>;
 
 /**
  * Noto Sans Cypriot — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansCypriot extends GoogleFont<NotoSansCypriotWeight, NotoSansCypriotStyle, NotoSansCypriotSubset> {
+export default class NotoSansCypriot extends GoogleFont<
+  NotoSansCypriotWeight,
+  NotoSansCypriotStyle,
+  NotoSansCypriotSubset
+> {
   constructor(options?: NotoSansCypriotOptions) {
     super(FAMILY, FACES, options);
   }

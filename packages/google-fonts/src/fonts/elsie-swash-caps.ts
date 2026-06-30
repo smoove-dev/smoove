@@ -4,26 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Elsie Swash Caps";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/elsieswashcaps/v25/845DNN8xGZyVX5MVo_upKf7KnjK0Te3fKQ.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/elsieswashcaps/v25/845ENN8xGZyVX5MVo_upKf7KnjK0RW74PGqNTw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/elsieswashcaps/v25/845DNN8xGZyVX5MVo_upKf7KnjK0Te3fKQ.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/elsieswashcaps/v25/845ENN8xGZyVX5MVo_upKf7KnjK0RW74PGqNTw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/elsieswashcaps/v25/845DNN8xGZyVX5MVo_upKf7KnjK0TePfKVWs.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/elsieswashcaps/v25/845ENN8xGZyVX5MVo_upKf7KnjK0RW74PGSNT7aw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/elsieswashcaps/v25/845DNN8xGZyVX5MVo_upKf7KnjK0TePfKVWs.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/elsieswashcaps/v25/845ENN8xGZyVX5MVo_upKf7KnjK0RW74PGSNT7aw.woff2",
   },
 } as const;
 
 export type ElsieSwashCapsWeight = "400" | "900";
 export type ElsieSwashCapsStyle = "normal";
 export type ElsieSwashCapsSubset = "latin" | "latin-ext";
-export type ElsieSwashCapsOptions = GoogleFontOptions<ElsieSwashCapsWeight, ElsieSwashCapsStyle, ElsieSwashCapsSubset>;
+export type ElsieSwashCapsOptions = GoogleFontOptions<
+  ElsieSwashCapsWeight,
+  ElsieSwashCapsStyle,
+  ElsieSwashCapsSubset
+>;
 
 /**
  * Elsie Swash Caps — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ElsieSwashCaps extends GoogleFont<ElsieSwashCapsWeight, ElsieSwashCapsStyle, ElsieSwashCapsSubset> {
+export default class ElsieSwashCaps extends GoogleFont<
+  ElsieSwashCapsWeight,
+  ElsieSwashCapsStyle,
+  ElsieSwashCapsSubset
+> {
   constructor(options?: ElsieSwashCapsOptions) {
     super(FAMILY, FACES, options);
   }

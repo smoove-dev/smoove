@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Slackey";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/slackey/v29/N0bV2SdQO-5yM0-dGlNQJA.woff2",
   },
 } as const;

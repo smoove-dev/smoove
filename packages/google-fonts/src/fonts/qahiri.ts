@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Qahiri";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/qahiri/v11/tsssAp1RZy0C_hGeUXqgnnk.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/qahiri/v11/tsssAp1RZy0C_hGeVHqg.woff2",
   },
 } as const;

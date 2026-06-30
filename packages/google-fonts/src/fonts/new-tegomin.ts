@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "New Tegomin";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/newtegomin/v13/SLXMc1fV7Gd9USdBAfPlqcNzSXs.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type NewTegominWeight = "400";
 export type NewTegominStyle = "normal";
 export type NewTegominSubset = "latin" | "latin-ext";
-export type NewTegominOptions = GoogleFontOptions<NewTegominWeight, NewTegominStyle, NewTegominSubset>;
+export type NewTegominOptions = GoogleFontOptions<
+  NewTegominWeight,
+  NewTegominStyle,
+  NewTegominSubset
+>;
 
 /**
  * New Tegomin — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NewTegomin extends GoogleFont<NewTegominWeight, NewTegominStyle, NewTegominSubset> {
+export default class NewTegomin extends GoogleFont<
+  NewTegominWeight,
+  NewTegominStyle,
+  NewTegominSubset
+> {
   constructor(options?: NewTegominOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Norican";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/norican/v16/MwQ2bhXp1eSBqjkPKJVbtQ.woff2",
   },
   "latin-ext": {

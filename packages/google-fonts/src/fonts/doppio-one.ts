@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Doppio One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/doppioone/v14/Gg8wN5gSaBfyBw2MqCh-pgwrKQ.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type DoppioOneOptions = GoogleFontOptions<DoppioOneWeight, DoppioOneStyle
  * Doppio One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DoppioOne extends GoogleFont<DoppioOneWeight, DoppioOneStyle, DoppioOneSubset> {
+export default class DoppioOne extends GoogleFont<
+  DoppioOneWeight,
+  DoppioOneStyle,
+  DoppioOneSubset
+> {
   constructor(options?: DoppioOneOptions) {
     super(FAMILY, FACES, options);
   }

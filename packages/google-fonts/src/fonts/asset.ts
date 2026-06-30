@@ -7,16 +7,16 @@ const FACES = {
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/asset/v30/SLXGc1na-mM4cVIsTpu0xg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/asset/v30/SLXGc1na-mM4cVIhTps.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/asset/v30/SLXGc1na-mM4cVIvTpu0xg.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/asset/v30/SLXGc1na-mM4cVJdTpu0xg.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/asset/v30/SLXGc1na-mM4cVJPTpu0xg.woff2",
   },
 } as const;

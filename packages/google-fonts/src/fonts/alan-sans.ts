@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alan Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/alansans/v5/zOL-4pbDmq5Eu6ebjMSb7uRB.woff2",
     "400-normal": "https://fonts.gstatic.com/s/alansans/v5/zOL-4pbDmq5Eu6ebjMSb7uRB.woff2",
     "500-normal": "https://fonts.gstatic.com/s/alansans/v5/zOL-4pbDmq5Eu6ebjMSb7uRB.woff2",

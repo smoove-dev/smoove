@@ -8,7 +8,7 @@ const FACES = {
     "400-italic": "https://fonts.gstatic.com/s/fruktur/v28/SZc73FHsOru5QYsMTz_8n2LW0DI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/fruktur/v28/SZc53FHsOru5QYsMTzfMkHrS.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/fruktur/v28/SZc73FHsOru5QYsMTz_8kmLW.woff2",
     "400-normal": "https://fonts.gstatic.com/s/fruktur/v28/SZc53FHsOru5QYsMTzrMkA.woff2",
   },
@@ -16,7 +16,7 @@ const FACES = {
     "400-italic": "https://fonts.gstatic.com/s/fruktur/v28/SZc73FHsOru5QYsMTz_8nGLW0DI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/fruktur/v28/SZc53FHsOru5QYsMTzTMkHrS.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/fruktur/v28/SZc73FHsOru5QYsMTz_8nWLW0DI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/fruktur/v28/SZc53FHsOru5QYsMTzXMkHrS.woff2",
   },

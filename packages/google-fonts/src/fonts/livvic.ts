@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Livvic";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/livvic/v15/rnCt-x1S2hzjrlfXbdtaonrmTA.woff2",
     "100-normal": "https://fonts.gstatic.com/s/livvic/v15/rnCr-x1S2hzjrlffC9M5kng.woff2",
     "200-italic": "https://fonts.gstatic.com/s/livvic/v15/rnCs-x1S2hzjrlfXbdv2s23BafY.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/livvic/v15/rnCs-x1S2hzjrlfXbdu6tW3PafadWQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/livvic/v15/rnCq-x1S2hzjrlff68Quu13DcfI.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/livvic/v15/rnCt-x1S2hzjrlfXbdtaonXmTMuk.woff2",
     "100-normal": "https://fonts.gstatic.com/s/livvic/v15/rnCr-x1S2hzjrlffC9M2knj-SA.woff2",
     "200-italic": "https://fonts.gstatic.com/s/livvic/v15/rnCs-x1S2hzjrlfXbdv2s23OafadWQ.woff2",

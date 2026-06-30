@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Protest Strike";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/proteststrike/v2/0QI5MXdf4Y67Rn6vBog67ZjFlqzR2Ac.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/proteststrike/v2/0QI5MXdf4Y67Rn6vBog67ZjFlqzR2Ac.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/proteststrike/v2/0QI5MXdf4Y67Rn6vBog67ZjFlqzf2Ad-sw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/proteststrike/v2/0QI5MXdf4Y67Rn6vBog67ZjFlqzf2Ad-sw.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/proteststrike/v2/0QI5MXdf4Y67Rn6vBog67ZjFlqyt2Ad-sw.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/proteststrike/v2/0QI5MXdf4Y67Rn6vBog67ZjFlqyt2Ad-sw.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/proteststrike/v2/0QI5MXdf4Y67Rn6vBog67ZjFlqy_2Ad-sw.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/proteststrike/v2/0QI5MXdf4Y67Rn6vBog67ZjFlqy_2Ad-sw.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/proteststrike/v2/0QI5MXdf4Y67Rn6vBog67ZjFlqze2Ad-sw.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/proteststrike/v2/0QI5MXdf4Y67Rn6vBog67ZjFlqze2Ad-sw.woff2",
   },
 } as const;
 
 export type ProtestStrikeWeight = "400";
 export type ProtestStrikeStyle = "normal";
 export type ProtestStrikeSubset = "latin" | "latin-ext" | "math" | "symbols" | "vietnamese";
-export type ProtestStrikeOptions = GoogleFontOptions<ProtestStrikeWeight, ProtestStrikeStyle, ProtestStrikeSubset>;
+export type ProtestStrikeOptions = GoogleFontOptions<
+  ProtestStrikeWeight,
+  ProtestStrikeStyle,
+  ProtestStrikeSubset
+>;
 
 /**
  * Protest Strike — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ProtestStrike extends GoogleFont<ProtestStrikeWeight, ProtestStrikeStyle, ProtestStrikeSubset> {
+export default class ProtestStrike extends GoogleFont<
+  ProtestStrikeWeight,
+  ProtestStrikeStyle,
+  ProtestStrikeSubset
+> {
   constructor(options?: ProtestStrikeOptions) {
     super(FAMILY, FACES, options);
   }

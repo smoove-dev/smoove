@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jomhuria";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jomhuria/v22/Dxxp8j-TMXf-llKur1byOuA.woff2",
   },
   "latin-ext": {

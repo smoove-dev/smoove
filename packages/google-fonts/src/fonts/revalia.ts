@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Revalia";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/revalia/v24/WwkexPimBE2-4ZPESV3kNQ.woff2",
   },
   "latin-ext": {

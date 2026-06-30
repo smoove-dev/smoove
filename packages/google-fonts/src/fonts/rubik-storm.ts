@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Storm";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/rubikstorm/v1/eLGYP-_uPgO5Ag7ju9JaotL-RWTR9A.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/rubikstorm/v1/eLGYP-_uPgO5Ag7ju9JaotL3RWTR9A.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/rubikstorm/v1/eLGYP-_uPgO5Ag7ju9JaotL4RWTR9A.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rubikstorm/v1/eLGYP-_uPgO5Ag7ju9JaotL6RWQ.woff2",
   },
   "latin-ext": {
@@ -24,13 +24,21 @@ const FACES = {
 export type RubikStormWeight = "400";
 export type RubikStormStyle = "normal";
 export type RubikStormSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikStormOptions = GoogleFontOptions<RubikStormWeight, RubikStormStyle, RubikStormSubset>;
+export type RubikStormOptions = GoogleFontOptions<
+  RubikStormWeight,
+  RubikStormStyle,
+  RubikStormSubset
+>;
 
 /**
  * Rubik Storm — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikStorm extends GoogleFont<RubikStormWeight, RubikStormStyle, RubikStormSubset> {
+export default class RubikStorm extends GoogleFont<
+  RubikStormWeight,
+  RubikStormStyle,
+  RubikStormSubset
+> {
   constructor(options?: RubikStormOptions) {
     super(FAMILY, FACES, options);
   }

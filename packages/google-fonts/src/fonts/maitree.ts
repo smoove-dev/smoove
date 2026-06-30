@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Maitree";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQDmil5tffhpBrklhGNaJaivQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQDmil5tffhpBrklnWOaJaivQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQGmil5tffhpBrknt6sfQ.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQDmil5tffhpBrklgGIaJiivYdh.woff2",
     "700-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQDmil5tffhpBrklmWJaJiivYdh.woff2",
   },
-  "thai": {
+  thai: {
     "200-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQDmil5tffhpBrklhGNaIKivYdh.woff2",
     "300-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQDmil5tffhpBrklnWOaIKivYdh.woff2",
     "400-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQGmil5tffhpBrknsqsfamD.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQDmil5tffhpBrklgGIaIKivYdh.woff2",
     "700-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQDmil5tffhpBrklmWJaIKivYdh.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQDmil5tffhpBrklhGNaJmivYdh.woff2",
     "300-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQDmil5tffhpBrklnWOaJmivYdh.woff2",
     "400-normal": "https://fonts.gstatic.com/s/maitree/v11/MjQGmil5tffhpBrkntGsfamD.woff2",

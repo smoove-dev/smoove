@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Vidaloka";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/vidaloka/v19/7cHrv4c3ipenMKlEavs7wH8.woff2",
   },
 } as const;

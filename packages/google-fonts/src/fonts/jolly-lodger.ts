@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jolly Lodger";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jollylodger/v21/BXRsvFTAh_bGkA1uQ48dlB3lXuDS.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/jollylodger/v21/BXRsvFTAh_bGkA1uQ48dlB3lUODS7Zw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/jollylodger/v21/BXRsvFTAh_bGkA1uQ48dlB3lUODS7Zw.woff2",
   },
 } as const;
 
 export type JollyLodgerWeight = "400";
 export type JollyLodgerStyle = "normal";
 export type JollyLodgerSubset = "latin" | "latin-ext";
-export type JollyLodgerOptions = GoogleFontOptions<JollyLodgerWeight, JollyLodgerStyle, JollyLodgerSubset>;
+export type JollyLodgerOptions = GoogleFontOptions<
+  JollyLodgerWeight,
+  JollyLodgerStyle,
+  JollyLodgerSubset
+>;
 
 /**
  * Jolly Lodger — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class JollyLodger extends GoogleFont<JollyLodgerWeight, JollyLodgerStyle, JollyLodgerSubset> {
+export default class JollyLodger extends GoogleFont<
+  JollyLodgerWeight,
+  JollyLodgerStyle,
+  JollyLodgerSubset
+> {
   constructor(options?: JollyLodgerOptions) {
     super(FAMILY, FACES, options);
   }

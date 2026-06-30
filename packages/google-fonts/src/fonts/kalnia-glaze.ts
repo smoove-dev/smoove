@@ -4,36 +4,58 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kalnia Glaze";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEwAhg.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kalniaglaze/v5/wlpjgwHCBUNjrGrfu-hwowN1YyC-42Lu26VHf2LtEEIAhqSP.woff2",
   },
 } as const;
 
 export type KalniaGlazeWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700";
 export type KalniaGlazeStyle = "normal";
 export type KalniaGlazeSubset = "latin" | "latin-ext";
-export type KalniaGlazeOptions = GoogleFontOptions<KalniaGlazeWeight, KalniaGlazeStyle, KalniaGlazeSubset>;
+export type KalniaGlazeOptions = GoogleFontOptions<
+  KalniaGlazeWeight,
+  KalniaGlazeStyle,
+  KalniaGlazeSubset
+>;
 
 /**
  * Kalnia Glaze — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KalniaGlaze extends GoogleFont<KalniaGlazeWeight, KalniaGlazeStyle, KalniaGlazeSubset> {
+export default class KalniaGlaze extends GoogleFont<
+  KalniaGlazeWeight,
+  KalniaGlazeStyle,
+  KalniaGlazeSubset
+> {
   constructor(options?: KalniaGlazeOptions) {
     super(FAMILY, FACES, options);
   }

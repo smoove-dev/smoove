@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gurajada";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gurajada/v22/FwZY7-Qx308m-l-0Ke6H6Mk.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/gurajada/v22/FwZY7-Qx308m-l-0Ke6J6MmTpA.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/gurajada/v22/FwZY7-Qx308m-l-0Ke6b6MmTpA.woff2",
   },
 } as const;

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Caprasimo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/caprasimo/v6/esDT31JQOPuXIUGBp72Ukp8D.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type CaprasimoOptions = GoogleFontOptions<CaprasimoWeight, CaprasimoStyle
  * Caprasimo — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Caprasimo extends GoogleFont<CaprasimoWeight, CaprasimoStyle, CaprasimoSubset> {
+export default class Caprasimo extends GoogleFont<
+  CaprasimoWeight,
+  CaprasimoStyle,
+  CaprasimoSubset
+> {
   constructor(options?: CaprasimoOptions) {
     super(FAMILY, FACES, options);
   }

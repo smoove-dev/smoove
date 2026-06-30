@@ -1,6 +1,6 @@
 import type { Composition } from "../../engine/composition.js";
-import { getMediaTime } from "../media-time.js";
 import type { MediaTiming } from "../media-time.js";
+import { getMediaTime } from "../media-time.js";
 import type { VideoSource } from "./video-source.js";
 
 /** Resolved per-video timing — alias of the shared {@link MediaTiming}. */

@@ -5,26 +5,37 @@ const FAMILY = "Noto Sans Indic Siyaq Numbers";
 
 const FACES = {
   "indic-siyaq-numbers": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansindicsiyaqnumbers/v17/6xK5dTJFKcWIu4bpRBjRZRpsIYHabOeZ8UZLubTzpXNHKy0MF85YTos.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansindicsiyaqnumbers/v17/6xK5dTJFKcWIu4bpRBjRZRpsIYHabOeZ8UZLubTzpXNHKy0MF85YTos.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansindicsiyaqnumbers/v17/6xK5dTJFKcWIu4bpRBjRZRpsIYHabOeZ8UZLubTzpXNHKy2RNus.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansindicsiyaqnumbers/v17/6xK5dTJFKcWIu4bpRBjRZRpsIYHabOeZ8UZLubTzpXNHKy2RNus.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansindicsiyaqnumbers/v17/6xK5dTJFKcWIu4bpRBjRZRpsIYHabOeZ8UZLubTzpXNHKy2fNutldw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansindicsiyaqnumbers/v17/6xK5dTJFKcWIu4bpRBjRZRpsIYHabOeZ8UZLubTzpXNHKy2fNutldw.woff2",
   },
 } as const;
 
 export type NotoSansIndicSiyaqNumbersWeight = "400";
 export type NotoSansIndicSiyaqNumbersStyle = "normal";
 export type NotoSansIndicSiyaqNumbersSubset = "indic-siyaq-numbers" | "latin" | "latin-ext";
-export type NotoSansIndicSiyaqNumbersOptions = GoogleFontOptions<NotoSansIndicSiyaqNumbersWeight, NotoSansIndicSiyaqNumbersStyle, NotoSansIndicSiyaqNumbersSubset>;
+export type NotoSansIndicSiyaqNumbersOptions = GoogleFontOptions<
+  NotoSansIndicSiyaqNumbersWeight,
+  NotoSansIndicSiyaqNumbersStyle,
+  NotoSansIndicSiyaqNumbersSubset
+>;
 
 /**
  * Noto Sans Indic Siyaq Numbers — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansIndicSiyaqNumbers extends GoogleFont<NotoSansIndicSiyaqNumbersWeight, NotoSansIndicSiyaqNumbersStyle, NotoSansIndicSiyaqNumbersSubset> {
+export default class NotoSansIndicSiyaqNumbers extends GoogleFont<
+  NotoSansIndicSiyaqNumbersWeight,
+  NotoSansIndicSiyaqNumbersStyle,
+  NotoSansIndicSiyaqNumbersSubset
+> {
   constructor(options?: NotoSansIndicSiyaqNumbersOptions) {
     super(FAMILY, FACES, options);
   }

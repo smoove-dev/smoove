@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tenali Ramakrishna";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/tenaliramakrishna/v14/raxgHj6Yt9gAN3LLKs0BZVMo8jmwn1-ML5_r.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/tenaliramakrishna/v14/raxgHj6Yt9gAN3LLKs0BZVMo8jmwn1-ML5_r.woff2",
   },
-  "telugu": {
-    "400-normal": "https://fonts.gstatic.com/s/tenaliramakrishna/v14/raxgHj6Yt9gAN3LLKs0BZVMo8jmwn1-MM5_rYFE.woff2",
+  telugu: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/tenaliramakrishna/v14/raxgHj6Yt9gAN3LLKs0BZVMo8jmwn1-MM5_rYFE.woff2",
   },
 } as const;
 
 export type TenaliRamakrishnaWeight = "400";
 export type TenaliRamakrishnaStyle = "normal";
 export type TenaliRamakrishnaSubset = "latin" | "telugu";
-export type TenaliRamakrishnaOptions = GoogleFontOptions<TenaliRamakrishnaWeight, TenaliRamakrishnaStyle, TenaliRamakrishnaSubset>;
+export type TenaliRamakrishnaOptions = GoogleFontOptions<
+  TenaliRamakrishnaWeight,
+  TenaliRamakrishnaStyle,
+  TenaliRamakrishnaSubset
+>;
 
 /**
  * Tenali Ramakrishna — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TenaliRamakrishna extends GoogleFont<TenaliRamakrishnaWeight, TenaliRamakrishnaStyle, TenaliRamakrishnaSubset> {
+export default class TenaliRamakrishna extends GoogleFont<
+  TenaliRamakrishnaWeight,
+  TenaliRamakrishnaStyle,
+  TenaliRamakrishnaSubset
+> {
   constructor(options?: TenaliRamakrishnaOptions) {
     super(FAMILY, FACES, options);
   }

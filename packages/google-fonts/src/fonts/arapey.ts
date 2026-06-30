@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Arapey";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/arapey/v17/-W_9XJn-UDDA2RCKZeofTkY.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arapey/v17/-W__XJn-UDDA2RCKYNod.woff2",
   },

@@ -5,35 +5,55 @@ const FAMILY = "Noto Sans Gunjala Gondi";
 
 const FACES = {
   "gunjala-gondi": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5idlV4IjKw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5idlV4IjKw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5idlV4IjKw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5idlV4IjKw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5idlV4IjKw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5idlV4IjKw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5idlV4IjKw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5idlV4IjKw.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5icSV4I.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5icSV4I.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5icSV4I.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5icSV4I.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5icSV4I.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5icSV4I.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5icSV4I.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5icSV4I.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5iccV4IjKw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5iccV4IjKw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5iccV4IjKw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5iccV4IjKw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5iccV4IjKw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5iccV4IjKw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5iccV4IjKw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansgunjalagondi/v21/bWto7e7KfBziStx7lIzKPrcSMwcEnCv6DW7n5iccV4IjKw.woff2",
   },
 } as const;
 
 export type NotoSansGunjalaGondiWeight = "400" | "500" | "600" | "700";
 export type NotoSansGunjalaGondiStyle = "normal";
 export type NotoSansGunjalaGondiSubset = "gunjala-gondi" | "latin" | "latin-ext";
-export type NotoSansGunjalaGondiOptions = GoogleFontOptions<NotoSansGunjalaGondiWeight, NotoSansGunjalaGondiStyle, NotoSansGunjalaGondiSubset>;
+export type NotoSansGunjalaGondiOptions = GoogleFontOptions<
+  NotoSansGunjalaGondiWeight,
+  NotoSansGunjalaGondiStyle,
+  NotoSansGunjalaGondiSubset
+>;
 
 /**
  * Noto Sans Gunjala Gondi — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansGunjalaGondi extends GoogleFont<NotoSansGunjalaGondiWeight, NotoSansGunjalaGondiStyle, NotoSansGunjalaGondiSubset> {
+export default class NotoSansGunjalaGondi extends GoogleFont<
+  NotoSansGunjalaGondiWeight,
+  NotoSansGunjalaGondiStyle,
+  NotoSansGunjalaGondiSubset
+> {
   constructor(options?: NotoSansGunjalaGondiOptions) {
     super(FAMILY, FACES, options);
   }

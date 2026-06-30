@@ -4,48 +4,80 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Familjen Grotesk";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80jbs_.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHoEjw.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80jbs_.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHoEjw.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80jbs_.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHoEjw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80jbs_.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHoEjw.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80jbs_.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHoEjw.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80jbs_.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHoEjw.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80jbs_.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHoEjw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80jbs_.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHoEjw.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80g7s_xPE.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHQEj6M7.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80g7s_xPE.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHQEj6M7.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80g7s_xPE.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHQEj6M7.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80g7s_xPE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHQEj6M7.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80g7s_xPE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHQEj6M7.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80g7s_xPE.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHQEj6M7.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80g7s_xPE.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHQEj6M7.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80g7s_xPE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHQEj6M7.woff2",
   },
-  "vietnamese": {
-    "400-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80grs_xPE.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHUEj6M7.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80grs_xPE.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHUEj6M7.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80grs_xPE.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHUEj6M7.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80grs_xPE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHUEj6M7.woff2",
+  vietnamese: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80grs_xPE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHUEj6M7.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80grs_xPE.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHUEj6M7.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80grs_xPE.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHUEj6M7.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3AZR9ZHiDnImG6-NEMQ41wby8WbH80grs_xPE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/familjengrotesk/v11/Qw3GZR9ZHiDnImG6-NEMQ41wby8WbHUEj6M7.woff2",
   },
 } as const;
 
 export type FamiljenGroteskWeight = "400" | "500" | "600" | "700";
 export type FamiljenGroteskStyle = "italic" | "normal";
 export type FamiljenGroteskSubset = "latin" | "latin-ext" | "vietnamese";
-export type FamiljenGroteskOptions = GoogleFontOptions<FamiljenGroteskWeight, FamiljenGroteskStyle, FamiljenGroteskSubset>;
+export type FamiljenGroteskOptions = GoogleFontOptions<
+  FamiljenGroteskWeight,
+  FamiljenGroteskStyle,
+  FamiljenGroteskSubset
+>;
 
 /**
  * Familjen Grotesk — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FamiljenGrotesk extends GoogleFont<FamiljenGroteskWeight, FamiljenGroteskStyle, FamiljenGroteskSubset> {
+export default class FamiljenGrotesk extends GoogleFont<
+  FamiljenGroteskWeight,
+  FamiljenGroteskStyle,
+  FamiljenGroteskSubset
+> {
   constructor(options?: FamiljenGroteskOptions) {
     super(FAMILY, FACES, options);
   }

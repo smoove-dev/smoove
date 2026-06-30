@@ -4,14 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Danfo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/danfo/v5/snf3s0u_98t16THfK1Csj3N41ZqbYDeJTLdS.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/danfo/v5/snf3s0u_98t16THfK1Csj3N41ZqbYDeJQrdSkPo.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/danfo/v5/snf3s0u_98t16THfK1Csj3N41ZqbYDeJQrdSkPo.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/danfo/v5/snf3s0u_98t16THfK1Csj3N41ZqbYDeJQ7dSkPo.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/danfo/v5/snf3s0u_98t16THfK1Csj3N41ZqbYDeJQ7dSkPo.woff2",
   },
 } as const;
 

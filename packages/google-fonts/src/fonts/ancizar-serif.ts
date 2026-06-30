@@ -4,66 +4,116 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ancizar Serif";
 
 const FACES = {
-  "greek": {
-    "300-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
+  greek: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLylsm54Y.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vz7y0Mi.woff2",
   },
-  "latin": {
-    "300-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
+  latin: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLyVsm.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17v_7yw.woff2",
   },
   "latin-ext": {
-    "300-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_oRfmxrmD9dEi_Qbtf91W17vrLx1sm54Y.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/ancizarserif/v8/PN_2RfmxrmD9dEi_Qbtf91W17vH7y0Mi.woff2",
   },
 } as const;
 
 export type AncizarSerifWeight = "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type AncizarSerifStyle = "italic" | "normal";
 export type AncizarSerifSubset = "greek" | "latin" | "latin-ext";
-export type AncizarSerifOptions = GoogleFontOptions<AncizarSerifWeight, AncizarSerifStyle, AncizarSerifSubset>;
+export type AncizarSerifOptions = GoogleFontOptions<
+  AncizarSerifWeight,
+  AncizarSerifStyle,
+  AncizarSerifSubset
+>;
 
 /**
  * Ancizar Serif — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AncizarSerif extends GoogleFont<AncizarSerifWeight, AncizarSerifStyle, AncizarSerifSubset> {
+export default class AncizarSerif extends GoogleFont<
+  AncizarSerifWeight,
+  AncizarSerifStyle,
+  AncizarSerifSubset
+> {
   constructor(options?: AncizarSerifOptions) {
     super(FAMILY, FACES, options);
   }

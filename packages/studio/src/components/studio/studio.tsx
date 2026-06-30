@@ -2,7 +2,7 @@ import { Toast } from "@base-ui/react/toast";
 import { Tooltip } from "@base-ui/react/tooltip";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/cn.js";
-import { type StudioStore, createStore } from "../../store/store.js";
+import { createStore, type StudioStore } from "../../store/store.js";
 import type { Registry, RenderBackend } from "../../types.js";
 import { PortalContainerContext } from "../primitives/portal-context.js";
 import { StudioContext } from "./studio-context.js";

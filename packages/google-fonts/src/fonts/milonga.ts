@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Milonga";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/milonga/v24/SZc53FHnIaK9W5kfTzrMkA.woff2",
   },
   "latin-ext": {

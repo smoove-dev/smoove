@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sora";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/sora/v17/xMQbuFFYT72XzQUpDg.woff2",
     "200-normal": "https://fonts.gstatic.com/s/sora/v17/xMQbuFFYT72XzQUpDg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/sora/v17/xMQbuFFYT72XzQUpDg.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Moderustic";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "300-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQu3doKFD.woff2",
     "400-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQu3doKFD.woff2",
     "500-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQu3doKFD.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQuTdoKFD.woff2",
     "800-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQuTdoKFD.woff2",
   },
-  "greek": {
+  greek: {
     "300-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQurdoKFD.woff2",
     "400-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQurdoKFD.woff2",
     "500-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQurdoKFD.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQurdoKFD.woff2",
     "800-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQurdoKFD.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQundoA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQundoA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/moderustic/v3/2-ci9J9s3o6eLFNHFdXYQundoA.woff2",
@@ -49,13 +49,21 @@ const FACES = {
 export type ModerusticWeight = "300" | "400" | "500" | "600" | "700" | "800";
 export type ModerusticStyle = "normal";
 export type ModerusticSubset = "cyrillic" | "cyrillic-ext" | "greek" | "latin" | "latin-ext";
-export type ModerusticOptions = GoogleFontOptions<ModerusticWeight, ModerusticStyle, ModerusticSubset>;
+export type ModerusticOptions = GoogleFontOptions<
+  ModerusticWeight,
+  ModerusticStyle,
+  ModerusticSubset
+>;
 
 /**
  * Moderustic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Moderustic extends GoogleFont<ModerusticWeight, ModerusticStyle, ModerusticSubset> {
+export default class Moderustic extends GoogleFont<
+  ModerusticWeight,
+  ModerusticStyle,
+  ModerusticSubset
+> {
   constructor(options?: ModerusticOptions) {
     super(FAMILY, FACES, options);
   }

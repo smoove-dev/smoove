@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Big Shoulders Stencil";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhLKuQ.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFhzKuVoB.woff2",
   },
-  "vietnamese": {
-    "100-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
+  vietnamese: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/bigshouldersstencil/v4/TwMj-JIEQ1Je5sI6Bx1TKHD83rT3u3NSCfbFxqa9oQbR_CiZMgOzFh3KuVoB.woff2",
   },
 } as const;
 
-export type BigShouldersStencilWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type BigShouldersStencilWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type BigShouldersStencilStyle = "normal";
 export type BigShouldersStencilSubset = "latin" | "latin-ext" | "vietnamese";
-export type BigShouldersStencilOptions = GoogleFontOptions<BigShouldersStencilWeight, BigShouldersStencilStyle, BigShouldersStencilSubset>;
+export type BigShouldersStencilOptions = GoogleFontOptions<
+  BigShouldersStencilWeight,
+  BigShouldersStencilStyle,
+  BigShouldersStencilSubset
+>;
 
 /**
  * Big Shoulders Stencil — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BigShouldersStencil extends GoogleFont<BigShouldersStencilWeight, BigShouldersStencilStyle, BigShouldersStencilSubset> {
+export default class BigShouldersStencil extends GoogleFont<
+  BigShouldersStencilWeight,
+  BigShouldersStencilStyle,
+  BigShouldersStencilSubset
+> {
   constructor(options?: BigShouldersStencilOptions) {
     super(FAMILY, FACES, options);
   }

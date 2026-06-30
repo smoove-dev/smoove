@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bokor";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "400-normal": "https://fonts.gstatic.com/s/bokor/v32/m8JcjfpeeaqTiS2afojrcQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bokor/v32/m8JcjfpeeaqTiS2Rfog.woff2",
   },
 } as const;

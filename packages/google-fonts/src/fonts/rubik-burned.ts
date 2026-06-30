@@ -4,33 +4,45 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Burned";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikburned/v1/Jqzk5TmOVOqQHihKqPpscqnSHgGbOY4.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikburned/v1/Jqzk5TmOVOqQHihKqPpscqnSHgGbOY4.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikburned/v1/Jqzk5TmOVOqQHihKqPpscqnSFwGbOY4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikburned/v1/Jqzk5TmOVOqQHihKqPpscqnSFwGbOY4.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikburned/v1/Jqzk5TmOVOqQHihKqPpscqnSGAGbOY4.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikburned/v1/Jqzk5TmOVOqQHihKqPpscqnSGAGbOY4.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rubikburned/v1/Jqzk5TmOVOqQHihKqPpscqnSGgGb.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikburned/v1/Jqzk5TmOVOqQHihKqPpscqnSFAGbOY4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikburned/v1/Jqzk5TmOVOqQHihKqPpscqnSFAGbOY4.woff2",
   },
 } as const;
 
 export type RubikBurnedWeight = "400";
 export type RubikBurnedStyle = "normal";
 export type RubikBurnedSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikBurnedOptions = GoogleFontOptions<RubikBurnedWeight, RubikBurnedStyle, RubikBurnedSubset>;
+export type RubikBurnedOptions = GoogleFontOptions<
+  RubikBurnedWeight,
+  RubikBurnedStyle,
+  RubikBurnedSubset
+>;
 
 /**
  * Rubik Burned — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikBurned extends GoogleFont<RubikBurnedWeight, RubikBurnedStyle, RubikBurnedSubset> {
+export default class RubikBurned extends GoogleFont<
+  RubikBurnedWeight,
+  RubikBurnedStyle,
+  RubikBurnedSubset
+> {
   constructor(options?: RubikBurnedOptions) {
     super(FAMILY, FACES, options);
   }

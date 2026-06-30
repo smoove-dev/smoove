@@ -2,10 +2,10 @@ import {
   type BackgroundValue,
   Block,
   Composition,
+  interpolate,
   Rect,
   Sequence,
   Text,
-  interpolate,
 } from "@smoove/core";
 
 /**

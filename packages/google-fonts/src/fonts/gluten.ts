@@ -4,38 +4,65 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gluten";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDQhQw.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDohQ5cd.woff2",
   },
-  "vietnamese": {
-    "100-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
+  vietnamese: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/gluten/v18/HhyIU5gk9fW7OUdVIPh2zD_RSqQJ__A1zDshQ5cd.woff2",
   },
 } as const;
 

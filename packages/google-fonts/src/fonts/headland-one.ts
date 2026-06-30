@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Headland One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/headlandone/v17/yYLu0hHR2vKnp89Tk1TCq3TB1_NS.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/headlandone/v17/yYLu0hHR2vKnp89Tk1TCq3TB2fNSSZ0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/headlandone/v17/yYLu0hHR2vKnp89Tk1TCq3TB2fNSSZ0.woff2",
   },
 } as const;
 
 export type HeadlandOneWeight = "400";
 export type HeadlandOneStyle = "normal";
 export type HeadlandOneSubset = "latin" | "latin-ext";
-export type HeadlandOneOptions = GoogleFontOptions<HeadlandOneWeight, HeadlandOneStyle, HeadlandOneSubset>;
+export type HeadlandOneOptions = GoogleFontOptions<
+  HeadlandOneWeight,
+  HeadlandOneStyle,
+  HeadlandOneSubset
+>;
 
 /**
  * Headland One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HeadlandOne extends GoogleFont<HeadlandOneWeight, HeadlandOneStyle, HeadlandOneSubset> {
+export default class HeadlandOne extends GoogleFont<
+  HeadlandOneWeight,
+  HeadlandOneStyle,
+  HeadlandOneSubset
+> {
   constructor(options?: HeadlandOneOptions) {
     super(FAMILY, FACES, options);
   }

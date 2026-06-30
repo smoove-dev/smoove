@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "STIX Two Math";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/stixtwomath/v12/pONg1hwwL_6M9EkZySr_yteUi18.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type STIXTwoMathWeight = "400";
 export type STIXTwoMathStyle = "normal";
 export type STIXTwoMathSubset = "latin";
-export type STIXTwoMathOptions = GoogleFontOptions<STIXTwoMathWeight, STIXTwoMathStyle, STIXTwoMathSubset>;
+export type STIXTwoMathOptions = GoogleFontOptions<
+  STIXTwoMathWeight,
+  STIXTwoMathStyle,
+  STIXTwoMathSubset
+>;
 
 /**
  * STIX Two Math — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class STIXTwoMath extends GoogleFont<STIXTwoMathWeight, STIXTwoMathStyle, STIXTwoMathSubset> {
+export default class STIXTwoMath extends GoogleFont<
+  STIXTwoMathWeight,
+  STIXTwoMathStyle,
+  STIXTwoMathSubset
+> {
   constructor(options?: STIXTwoMathOptions) {
     super(FAMILY, FACES, options);
   }

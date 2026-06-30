@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Andika";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/andika/v27/mem9Ya6iyW-Lwqgwb4YWcrgmVA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/andika/v27/mem_Ya6iyW-LwqgwbrYQarw.woff2",
     "700-italic": "https://fonts.gstatic.com/s/andika/v27/mem6Ya6iyW-Lwqgwb46pV60ddc1UAw.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/andika/v27/mem6Ya6iyW-Lwqgwb46pV60Udc1UAw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/andika/v27/mem8Ya6iyW-Lwqg40ZMFWJ0bbck.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/andika/v27/mem9Ya6iyW-Lwqgwb4YScrg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/andika/v27/mem_Ya6iyW-LwqgwarYQ.woff2",
     "700-italic": "https://fonts.gstatic.com/s/andika/v27/mem6Ya6iyW-Lwqgwb46pV60Zdc0.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/andika/v27/mem6Ya6iyW-Lwqgwb46pV60Xdc1UAw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/andika/v27/mem8Ya6iyW-Lwqg40ZMFW50bbck.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/andika/v27/mem9Ya6iyW-Lwqgwb4YdcrgmVA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/andika/v27/mem_Ya6iyW-LwqgwZbYQarw.woff2",
     "700-italic": "https://fonts.gstatic.com/s/andika/v27/mem6Ya6iyW-Lwqgwb46pV60Wdc1UAw.woff2",

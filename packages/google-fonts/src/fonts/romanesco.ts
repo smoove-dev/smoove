@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Romanesco";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/romanesco/v22/w8gYH2ozQOY7_r_J7mSX23YK.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type RomanescoOptions = GoogleFontOptions<RomanescoWeight, RomanescoStyle
  * Romanesco — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Romanesco extends GoogleFont<RomanescoWeight, RomanescoStyle, RomanescoSubset> {
+export default class Romanesco extends GoogleFont<
+  RomanescoWeight,
+  RomanescoStyle,
+  RomanescoSubset
+> {
   constructor(options?: RomanescoOptions) {
     super(FAMILY, FACES, options);
   }

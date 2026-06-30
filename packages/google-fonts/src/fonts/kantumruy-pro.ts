@@ -4,66 +4,116 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kantumruy Pro";
 
 const FACES = {
-  "khmer": {
-    "100-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
+  khmer: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxcqWku2U.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEjBe72g.woff2",
   },
-  "latin": {
-    "100-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
+  latin: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxeaWk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlEPBew.woff2",
   },
   "latin-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2eY5aECkp34vEBSPFOmJxwlEbxd6Wku2U.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kantumruypro/v12/1q2AY5aECkp34vEBSPFOmJxwlE3Be72g.woff2",
   },
 } as const;
 
 export type KantumruyProWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700";
 export type KantumruyProStyle = "italic" | "normal";
 export type KantumruyProSubset = "khmer" | "latin" | "latin-ext";
-export type KantumruyProOptions = GoogleFontOptions<KantumruyProWeight, KantumruyProStyle, KantumruyProSubset>;
+export type KantumruyProOptions = GoogleFontOptions<
+  KantumruyProWeight,
+  KantumruyProStyle,
+  KantumruyProSubset
+>;
 
 /**
  * Kantumruy Pro — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KantumruyPro extends GoogleFont<KantumruyProWeight, KantumruyProStyle, KantumruyProSubset> {
+export default class KantumruyPro extends GoogleFont<
+  KantumruyProWeight,
+  KantumruyProStyle,
+  KantumruyProSubset
+> {
   constructor(options?: KantumruyProOptions) {
     super(FAMILY, FACES, options);
   }

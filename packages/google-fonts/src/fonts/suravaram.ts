@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Suravaram";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/suravaram/v23/_gP61R_usiY7SCym4xIwjGS0.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/suravaram/v23/_gP61R_usiY7SCym4xIwkGS0cv8.woff2",
   },
 } as const;
@@ -21,7 +21,11 @@ export type SuravaramOptions = GoogleFontOptions<SuravaramWeight, SuravaramStyle
  * Suravaram — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Suravaram extends GoogleFont<SuravaramWeight, SuravaramStyle, SuravaramSubset> {
+export default class Suravaram extends GoogleFont<
+  SuravaramWeight,
+  SuravaramStyle,
+  SuravaramSubset
+> {
   constructor(options?: SuravaramOptions) {
     super(FAMILY, FACES, options);
   }

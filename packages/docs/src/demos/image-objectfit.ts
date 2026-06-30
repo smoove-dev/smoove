@@ -1,4 +1,4 @@
-import { Composition, Easing, Image, Rect, Sequence, interpolate } from "@smoove/core";
+import { Composition, Easing, Image, interpolate, Rect, Sequence } from "@smoove/core";
 import Konva from "konva";
 
 /**

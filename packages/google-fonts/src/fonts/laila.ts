@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Laila";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "300-normal": "https://fonts.gstatic.com/s/laila/v20/LYjBdG_8nE8jDLzxojNGjV8XVQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/laila/v20/LYjMdG_8nE8jDLRbgCZ4rA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/laila/v20/LYjBdG_8nE8jDLypozNGjV8XVQ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/laila/v20/LYjBdG_8nE8jDLyFpDNGjV8XVQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/laila/v20/LYjBdG_8nE8jDLzhpTNGjV8XVQ.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/laila/v20/LYjBdG_8nE8jDLzxojNHjV8.woff2",
     "400-normal": "https://fonts.gstatic.com/s/laila/v20/LYjMdG_8nE8jDLRagCY.woff2",
     "500-normal": "https://fonts.gstatic.com/s/laila/v20/LYjBdG_8nE8jDLypozNHjV8.woff2",

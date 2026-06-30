@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ponnala";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ponnala/v3/w8gaH2QxQOU08bbbnQyn2Q.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/ponnala/v3/w8gaH2QxQOU08bbbnRCn2W4O.woff2",
   },
 } as const;

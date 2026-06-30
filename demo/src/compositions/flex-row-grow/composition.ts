@@ -1,4 +1,4 @@
-import { Composition, Easing, Flex, Image, Sequence, interpolate } from "@smoove/core";
+import { Composition, Easing, Flex, Image, interpolate, Sequence } from "@smoove/core";
 import Konva from "konva";
 
 const SEEDS = ["alps", "bay", "canyon", "dune"];

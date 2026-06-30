@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Khula";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "300-normal": "https://fonts.gstatic.com/s/khula/v17/OpNPnoEOns3V7G-ljBvSpi9NXw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/khula/v17/OpNCnoEOns3V7GcPrg7shw.woff2",
     "600-normal": "https://fonts.gstatic.com/s/khula/v17/OpNPnoEOns3V7G_RihvSpi9NXw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/khula/v17/OpNPnoEOns3V7G-1ixvSpi9NXw.woff2",
     "800-normal": "https://fonts.gstatic.com/s/khula/v17/OpNPnoEOns3V7G-piBvSpi9NXw.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/khula/v17/OpNPnoEOns3V7G-ljBvTpi8.woff2",
     "400-normal": "https://fonts.gstatic.com/s/khula/v17/OpNCnoEOns3V7GcOrg4.woff2",
     "600-normal": "https://fonts.gstatic.com/s/khula/v17/OpNPnoEOns3V7G_RihvTpi8.woff2",

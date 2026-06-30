@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gupter";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gupter/v18/2-cm9JNmxJqPO1QkZpy-.woff2",
     "500-normal": "https://fonts.gstatic.com/s/gupter/v18/2-cl9JNmxJqPO1Qslb-rVc74.woff2",
     "700-normal": "https://fonts.gstatic.com/s/gupter/v18/2-cl9JNmxJqPO1Qs3bmrVc74.woff2",

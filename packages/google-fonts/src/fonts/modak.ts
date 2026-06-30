@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Modak";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/modak/v21/EJRYQgs1XtIEskMB-hRp7w.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/modak/v21/EJRYQgs1XtIEskMA-hQ.woff2",
   },
   "latin-ext": {

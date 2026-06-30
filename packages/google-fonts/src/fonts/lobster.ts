@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lobster";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/lobster/v32/neILzCirqoswsqX9zoamM5Ez.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/lobster/v32/neILzCirqoswsqX9zo-mM5Ez.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lobster/v32/neILzCirqoswsqX9zoKmMw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/lobster/v32/neILzCirqoswsqX9zoymM5Ez.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/lobster/v32/neILzCirqoswsqX9zo2mM5Ez.woff2",
   },
 } as const;

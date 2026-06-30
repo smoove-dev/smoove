@@ -4,65 +4,119 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Georama";
 
 const FACES = {
-  "latin": {
-    "100-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
+  latin: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuxpFw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5QJu4.woff2",
   },
   "latin-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuJpF5Mv.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5eJu5xEw.woff2",
   },
-  "vietnamese": {
-    "100-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
+  vietnamese: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/georama/v15/MCoCzAn438bIEyxFVaIC0ZMQ72G6xnvmodYVFuNpF5Mv.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/georama/v15/MCoMzAn438bIEyxFf6swMnNpvPcUwW4u4w5fJu5xEw.woff2",
   },
 } as const;
 

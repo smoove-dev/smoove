@@ -11,7 +11,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_JWEdBEmnbJk.woff2",
     "800-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_ImHdBEmnbJk.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf9MaFWuVo-UTyP9C6hYQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_N2CdGYmnQ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_PGFdGYmnQ.woff2",
@@ -25,14 +25,14 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_JWEdGgmnbJk.woff2",
     "800-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_ImHdGgmnbJk.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf9MaFWuVo-UTyP9FKhYVkH.woff2",
     "500-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_N2CdBomnbJk.woff2",
     "600-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_PGFdBomnbJk.woff2",
     "700-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_JWEdBomnbJk.woff2",
     "800-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_ImHdBomnbJk.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf9MaFWuVo-UTyP9EChYVkH.woff2",
     "500-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_N2CdAgmnbJk.woff2",
     "600-normal": "https://fonts.gstatic.com/s/narnoor/v10/cIf4MaFWuVo-UTyP_PGFdAgmnbJk.woff2",

@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gideon Roman";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gideonroman/v13/e3tmeuGrVOys8sxzZgWlmXoQfEnX.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/gideonroman/v13/e3tmeuGrVOys8sxzZgWlmXoQcknXkvc.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gideonroman/v13/e3tmeuGrVOys8sxzZgWlmXoQcknXkvc.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/gideonroman/v13/e3tmeuGrVOys8sxzZgWlmXoQc0nXkvc.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/gideonroman/v13/e3tmeuGrVOys8sxzZgWlmXoQc0nXkvc.woff2",
   },
 } as const;
 
 export type GideonRomanWeight = "400";
 export type GideonRomanStyle = "normal";
 export type GideonRomanSubset = "latin" | "latin-ext" | "vietnamese";
-export type GideonRomanOptions = GoogleFontOptions<GideonRomanWeight, GideonRomanStyle, GideonRomanSubset>;
+export type GideonRomanOptions = GoogleFontOptions<
+  GideonRomanWeight,
+  GideonRomanStyle,
+  GideonRomanSubset
+>;
 
 /**
  * Gideon Roman — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GideonRoman extends GoogleFont<GideonRomanWeight, GideonRomanStyle, GideonRomanSubset> {
+export default class GideonRoman extends GoogleFont<
+  GideonRomanWeight,
+  GideonRomanStyle,
+  GideonRomanSubset
+> {
   constructor(options?: GideonRomanOptions) {
     super(FAMILY, FACES, options);
   }

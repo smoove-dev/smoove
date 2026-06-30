@@ -4,30 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sawarabi Gothic";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/sawarabigothic/v16/x3d4ckfVaqqa-BEj-I9mE65u3k39BiM2I2Y.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sawarabigothic/v16/x3d4ckfVaqqa-BEj-I9mE65u3k39BiM2I2Y.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/sawarabigothic/v16/x3d4ckfVaqqa-BEj-I9mE65u3k39AiM2.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sawarabigothic/v16/x3d4ckfVaqqa-BEj-I9mE65u3k39AiM2.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/sawarabigothic/v16/x3d4ckfVaqqa-BEj-I9mE65u3k39DCM2I2Y.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sawarabigothic/v16/x3d4ckfVaqqa-BEj-I9mE65u3k39DCM2I2Y.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/sawarabigothic/v16/x3d4ckfVaqqa-BEj-I9mE65u3k39DSM2I2Y.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sawarabigothic/v16/x3d4ckfVaqqa-BEj-I9mE65u3k39DSM2I2Y.woff2",
   },
 } as const;
 
 export type SawarabiGothicWeight = "400";
 export type SawarabiGothicStyle = "normal";
 export type SawarabiGothicSubset = "cyrillic" | "latin" | "latin-ext" | "vietnamese";
-export type SawarabiGothicOptions = GoogleFontOptions<SawarabiGothicWeight, SawarabiGothicStyle, SawarabiGothicSubset>;
+export type SawarabiGothicOptions = GoogleFontOptions<
+  SawarabiGothicWeight,
+  SawarabiGothicStyle,
+  SawarabiGothicSubset
+>;
 
 /**
  * Sawarabi Gothic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SawarabiGothic extends GoogleFont<SawarabiGothicWeight, SawarabiGothicStyle, SawarabiGothicSubset> {
+export default class SawarabiGothic extends GoogleFont<
+  SawarabiGothicWeight,
+  SawarabiGothicStyle,
+  SawarabiGothicSubset
+> {
   constructor(options?: SawarabiGothicOptions) {
     super(FAMILY, FACES, options);
   }

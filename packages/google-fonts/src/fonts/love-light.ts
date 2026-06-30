@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Love Light";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lovelight/v8/t5tlIR0TNJyZWimpNAXDvKHIyA.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/lovelight/v8/t5tlIR0TNJyZWimpNAXDvK_IyAHu.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/lovelight/v8/t5tlIR0TNJyZWimpNAXDvK7IyAHu.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type LoveLightOptions = GoogleFontOptions<LoveLightWeight, LoveLightStyle
  * Love Light — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LoveLight extends GoogleFont<LoveLightWeight, LoveLightStyle, LoveLightSubset> {
+export default class LoveLight extends GoogleFont<
+  LoveLightWeight,
+  LoveLightStyle,
+  LoveLightSubset
+> {
   constructor(options?: LoveLightOptions) {
     super(FAMILY, FACES, options);
   }

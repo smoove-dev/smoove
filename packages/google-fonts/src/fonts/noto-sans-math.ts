@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Math";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/notosansmath/v19/7Aump_cpkSecTWaHRlH2hyV5UHkD.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type NotoSansMathWeight = "400";
 export type NotoSansMathStyle = "normal";
 export type NotoSansMathSubset = "latin";
-export type NotoSansMathOptions = GoogleFontOptions<NotoSansMathWeight, NotoSansMathStyle, NotoSansMathSubset>;
+export type NotoSansMathOptions = GoogleFontOptions<
+  NotoSansMathWeight,
+  NotoSansMathStyle,
+  NotoSansMathSubset
+>;
 
 /**
  * Noto Sans Math — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansMath extends GoogleFont<NotoSansMathWeight, NotoSansMathStyle, NotoSansMathSubset> {
+export default class NotoSansMath extends GoogleFont<
+  NotoSansMathWeight,
+  NotoSansMathStyle,
+  NotoSansMathSubset
+> {
   constructor(options?: NotoSansMathOptions) {
     super(FAMILY, FACES, options);
   }

@@ -7,10 +7,10 @@
  * {@link MediabunnyVideoSource}) rely on `document`/WebCodecs and would throw in Node.
  */
 
-import { MediabunnyAudioSource } from "../media/audio/audio-source-mediabunny.js";
 import type { AudioSource, AudioSourceFactory } from "../media/audio/audio-source.js";
-import { MediabunnyVideoSource } from "../media/video/video-source-mediabunny.js";
+import { MediabunnyAudioSource } from "../media/audio/audio-source-mediabunny.js";
 import type { VideoSource, VideoSourceFactory } from "../media/video/video-source.js";
+import { MediabunnyVideoSource } from "../media/video/video-source-mediabunny.js";
 
 /** A drawable, loaded image with intrinsic dimensions — what {@link ImageLoader} resolves. */
 export type LoadedImage = CanvasImageSource & {

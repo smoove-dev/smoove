@@ -4,30 +4,44 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alumni Sans Inline One";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQDbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3IjcZb1.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQBbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3cTcw.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQDbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3IjcZb1.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQBbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3cTcw.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQDbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3Ijf5b1TYw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQBbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3kTc47x.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQDbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3Ijf5b1TYw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQBbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3kTc47x.woff2",
   },
-  "vietnamese": {
-    "400-italic": "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQDbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3Ijfpb1TYw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQBbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3gTc47x.woff2",
+  vietnamese: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQDbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3Ijfpb1TYw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/alumnisansinlineone/v7/RrQBbpJx9zZ3IXTBOASKp5gJAetBdaihcjbpP3gTc47x.woff2",
   },
 } as const;
 
 export type AlumniSansInlineOneWeight = "400";
 export type AlumniSansInlineOneStyle = "italic" | "normal";
 export type AlumniSansInlineOneSubset = "latin" | "latin-ext" | "vietnamese";
-export type AlumniSansInlineOneOptions = GoogleFontOptions<AlumniSansInlineOneWeight, AlumniSansInlineOneStyle, AlumniSansInlineOneSubset>;
+export type AlumniSansInlineOneOptions = GoogleFontOptions<
+  AlumniSansInlineOneWeight,
+  AlumniSansInlineOneStyle,
+  AlumniSansInlineOneSubset
+>;
 
 /**
  * Alumni Sans Inline One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AlumniSansInlineOne extends GoogleFont<AlumniSansInlineOneWeight, AlumniSansInlineOneStyle, AlumniSansInlineOneSubset> {
+export default class AlumniSansInlineOne extends GoogleFont<
+  AlumniSansInlineOneWeight,
+  AlumniSansInlineOneStyle,
+  AlumniSansInlineOneSubset
+> {
   constructor(options?: AlumniSansInlineOneOptions) {
     super(FAMILY, FACES, options);
   }

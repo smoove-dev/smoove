@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kumar One Outline";
 
 const FACES = {
-  "gujarati": {
-    "400-normal": "https://fonts.gstatic.com/s/kumaroneoutline/v20/Noao6VH62pyLP0fsrZ-v18wlUEcX9wDsTwqMEA.woff2",
+  gujarati: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/kumaroneoutline/v20/Noao6VH62pyLP0fsrZ-v18wlUEcX9wDsTwqMEA.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/kumaroneoutline/v20/Noao6VH62pyLP0fsrZ-v18wlUEcX9wD3Two.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/kumaroneoutline/v20/Noao6VH62pyLP0fsrZ-v18wlUEcX9wD3Two.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/kumaroneoutline/v20/Noao6VH62pyLP0fsrZ-v18wlUEcX9wD5TwqMEA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kumaroneoutline/v20/Noao6VH62pyLP0fsrZ-v18wlUEcX9wD5TwqMEA.woff2",
   },
 } as const;
 
 export type KumarOneOutlineWeight = "400";
 export type KumarOneOutlineStyle = "normal";
 export type KumarOneOutlineSubset = "gujarati" | "latin" | "latin-ext";
-export type KumarOneOutlineOptions = GoogleFontOptions<KumarOneOutlineWeight, KumarOneOutlineStyle, KumarOneOutlineSubset>;
+export type KumarOneOutlineOptions = GoogleFontOptions<
+  KumarOneOutlineWeight,
+  KumarOneOutlineStyle,
+  KumarOneOutlineSubset
+>;
 
 /**
  * Kumar One Outline — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KumarOneOutline extends GoogleFont<KumarOneOutlineWeight, KumarOneOutlineStyle, KumarOneOutlineSubset> {
+export default class KumarOneOutline extends GoogleFont<
+  KumarOneOutlineWeight,
+  KumarOneOutlineStyle,
+  KumarOneOutlineSubset
+> {
   constructor(options?: KumarOneOutlineOptions) {
     super(FAMILY, FACES, options);
   }

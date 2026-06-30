@@ -4,72 +4,128 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "TikTok Sans";
 
 const FACES = {
-  "cyrillic": {
-    "300-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
+  cyrillic: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBJB5OR2g.woff2",
   },
   "cyrillic-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBAB5OR2g.woff2",
   },
-  "greek": {
-    "300-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
+  greek: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBOB5OR2g.woff2",
   },
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBNB5M.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBDB5OR2g.woff2",
   },
-  "vietnamese": {
-    "300-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
+  vietnamese: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/tiktoksans/v8/70luu7g-Lm8OXGnh_Ow1sUfFMmlnhbRF425wxXH-UGeud7XItbaHtxhggMrrmAvSNAHtMV6x5NBCB5OR2g.woff2",
   },
 } as const;
 
 export type TikTokSansWeight = "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type TikTokSansStyle = "normal";
-export type TikTokSansSubset = "cyrillic" | "cyrillic-ext" | "greek" | "latin" | "latin-ext" | "vietnamese";
-export type TikTokSansOptions = GoogleFontOptions<TikTokSansWeight, TikTokSansStyle, TikTokSansSubset>;
+export type TikTokSansSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
+export type TikTokSansOptions = GoogleFontOptions<
+  TikTokSansWeight,
+  TikTokSansStyle,
+  TikTokSansSubset
+>;
 
 /**
  * TikTok Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TikTokSans extends GoogleFont<TikTokSansWeight, TikTokSansStyle, TikTokSansSubset> {
+export default class TikTokSans extends GoogleFont<
+  TikTokSansWeight,
+  TikTokSansStyle,
+  TikTokSansSubset
+> {
   constructor(options?: TikTokSansOptions) {
     super(FAMILY, FACES, options);
   }

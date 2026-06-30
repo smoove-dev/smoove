@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Edu QLD Hand";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/eduqldhand/v3/d6lPkaOkTtjy2QhuzWtup1r80Phh.woff2",
     "500-normal": "https://fonts.gstatic.com/s/eduqldhand/v3/d6lPkaOkTtjy2QhuzWtup1r80Phh.woff2",
     "600-normal": "https://fonts.gstatic.com/s/eduqldhand/v3/d6lPkaOkTtjy2QhuzWtup1r80Phh.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/eduqldhand/v3/d6lPkaOkTtjy2QhuzWtup1r83vhhvmQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/eduqldhand/v3/d6lPkaOkTtjy2QhuzWtup1r83vhhvmQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/eduqldhand/v3/d6lPkaOkTtjy2QhuzWtup1r83_hhvmQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/eduqldhand/v3/d6lPkaOkTtjy2QhuzWtup1r83_hhvmQ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/eduqldhand/v3/d6lPkaOkTtjy2QhuzWtup1r83_hhvmQ.woff2",
@@ -27,13 +27,21 @@ const FACES = {
 export type EduQLDHandWeight = "400" | "500" | "600" | "700";
 export type EduQLDHandStyle = "normal";
 export type EduQLDHandSubset = "latin" | "latin-ext" | "vietnamese";
-export type EduQLDHandOptions = GoogleFontOptions<EduQLDHandWeight, EduQLDHandStyle, EduQLDHandSubset>;
+export type EduQLDHandOptions = GoogleFontOptions<
+  EduQLDHandWeight,
+  EduQLDHandStyle,
+  EduQLDHandSubset
+>;
 
 /**
  * Edu QLD Hand — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EduQLDHand extends GoogleFont<EduQLDHandWeight, EduQLDHandStyle, EduQLDHandSubset> {
+export default class EduQLDHand extends GoogleFont<
+  EduQLDHandWeight,
+  EduQLDHandStyle,
+  EduQLDHandSubset
+> {
   constructor(options?: EduQLDHandOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lily Script One";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/lilyscriptone/v16/LhW9MV7ZMfIPdMxeBjBvFN8SXLSIhc6i.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/lilyscriptone/v16/LhW9MV7ZMfIPdMxeBjBvFN8SXLSIhc6i.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/lilyscriptone/v16/LhW9MV7ZMfIPdMxeBjBvFN8SXLSIi86icNs.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/lilyscriptone/v16/LhW9MV7ZMfIPdMxeBjBvFN8SXLSIi86icNs.woff2",
   },
 } as const;
 
 export type LilyScriptOneWeight = "400";
 export type LilyScriptOneStyle = "normal";
 export type LilyScriptOneSubset = "latin" | "latin-ext";
-export type LilyScriptOneOptions = GoogleFontOptions<LilyScriptOneWeight, LilyScriptOneStyle, LilyScriptOneSubset>;
+export type LilyScriptOneOptions = GoogleFontOptions<
+  LilyScriptOneWeight,
+  LilyScriptOneStyle,
+  LilyScriptOneSubset
+>;
 
 /**
  * Lily Script One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LilyScriptOne extends GoogleFont<LilyScriptOneWeight, LilyScriptOneStyle, LilyScriptOneSubset> {
+export default class LilyScriptOne extends GoogleFont<
+  LilyScriptOneWeight,
+  LilyScriptOneStyle,
+  LilyScriptOneSubset
+> {
   constructor(options?: LilyScriptOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Share Tech";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sharetech/v23/7cHtv4Uyi5K0OeZ7bohU8H0JmA.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type ShareTechOptions = GoogleFontOptions<ShareTechWeight, ShareTechStyle
  * Share Tech — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ShareTech extends GoogleFont<ShareTechWeight, ShareTechStyle, ShareTechSubset> {
+export default class ShareTech extends GoogleFont<
+  ShareTechWeight,
+  ShareTechStyle,
+  ShareTechSubset
+> {
   constructor(options?: ShareTechOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,26 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cossette Texte";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/cossettetexte/v3/S6ukw4pDXzTb-m1kPi_7eV-ciM0yzvE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cossettetexte/v3/S6unw4pDXzTb-m1kPi_7eV-ciMWJ6-Rf9ss.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cossettetexte/v3/S6ukw4pDXzTb-m1kPi_7eV-ciM0yzvE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cossettetexte/v3/S6unw4pDXzTb-m1kPi_7eV-ciMWJ6-Rf9ss.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/cossettetexte/v3/S6ukw4pDXzTb-m1kPi_7eV-ciM08zvFg1w.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cossettetexte/v3/S6unw4pDXzTb-m1kPi_7eV-ciMWJ6-RR9sv9DQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cossettetexte/v3/S6ukw4pDXzTb-m1kPi_7eV-ciM08zvFg1w.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cossettetexte/v3/S6unw4pDXzTb-m1kPi_7eV-ciMWJ6-RR9sv9DQ.woff2",
   },
 } as const;
 
 export type CossetteTexteWeight = "400" | "700";
 export type CossetteTexteStyle = "normal";
 export type CossetteTexteSubset = "latin" | "latin-ext";
-export type CossetteTexteOptions = GoogleFontOptions<CossetteTexteWeight, CossetteTexteStyle, CossetteTexteSubset>;
+export type CossetteTexteOptions = GoogleFontOptions<
+  CossetteTexteWeight,
+  CossetteTexteStyle,
+  CossetteTexteSubset
+>;
 
 /**
  * Cossette Texte — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CossetteTexte extends GoogleFont<CossetteTexteWeight, CossetteTexteStyle, CossetteTexteSubset> {
+export default class CossetteTexte extends GoogleFont<
+  CossetteTexteWeight,
+  CossetteTexteStyle,
+  CossetteTexteSubset
+> {
   constructor(options?: CossetteTexteOptions) {
     super(FAMILY, FACES, options);
   }

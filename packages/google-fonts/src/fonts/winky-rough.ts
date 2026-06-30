@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Winky Rough";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3T7Prw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/winkyrough/v4/t5tkIRwIMoSXA0WSPBjQxLbv7Tw.woff2",
     "400-italic": "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3T7Prw.woff2",
@@ -21,19 +21,26 @@ const FACES = {
     "900-normal": "https://fonts.gstatic.com/s/winkyrough/v4/t5tkIRwIMoSXA0WSPBjQxLbv7Tw.woff2",
   },
   "latin-ext": {
-    "300-italic": "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
     "300-normal": "https://fonts.gstatic.com/s/winkyrough/v4/t5tkIRwIMoSXA0WSPBjQxLbh7TzXqw.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
     "400-normal": "https://fonts.gstatic.com/s/winkyrough/v4/t5tkIRwIMoSXA0WSPBjQxLbh7TzXqw.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
     "500-normal": "https://fonts.gstatic.com/s/winkyrough/v4/t5tkIRwIMoSXA0WSPBjQxLbh7TzXqw.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
     "600-normal": "https://fonts.gstatic.com/s/winkyrough/v4/t5tkIRwIMoSXA0WSPBjQxLbh7TzXqw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
     "700-normal": "https://fonts.gstatic.com/s/winkyrough/v4/t5tkIRwIMoSXA0WSPBjQxLbh7TzXqw.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
     "800-normal": "https://fonts.gstatic.com/s/winkyrough/v4/t5tkIRwIMoSXA0WSPBjQxLbh7TzXqw.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/winkyrough/v4/t5tmIRwIMoSXA0WSPBjQxLbq3TDPr6OH.woff2",
     "900-normal": "https://fonts.gstatic.com/s/winkyrough/v4/t5tkIRwIMoSXA0WSPBjQxLbh7TzXqw.woff2",
   },
 } as const;
@@ -41,13 +48,21 @@ const FACES = {
 export type WinkyRoughWeight = "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type WinkyRoughStyle = "italic" | "normal";
 export type WinkyRoughSubset = "latin" | "latin-ext";
-export type WinkyRoughOptions = GoogleFontOptions<WinkyRoughWeight, WinkyRoughStyle, WinkyRoughSubset>;
+export type WinkyRoughOptions = GoogleFontOptions<
+  WinkyRoughWeight,
+  WinkyRoughStyle,
+  WinkyRoughSubset
+>;
 
 /**
  * Winky Rough — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class WinkyRough extends GoogleFont<WinkyRoughWeight, WinkyRoughStyle, WinkyRoughSubset> {
+export default class WinkyRough extends GoogleFont<
+  WinkyRoughWeight,
+  WinkyRoughStyle,
+  WinkyRoughSubset
+> {
   constructor(options?: WinkyRoughOptions) {
     super(FAMILY, FACES, options);
   }

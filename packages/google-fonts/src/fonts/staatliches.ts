@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Staatliches";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/staatliches/v15/HI_OiY8KO6hCsQSoAPmtMYebvpA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/staatliches/v15/HI_OiY8KO6hCsQSoAPmtMYeVvpCNOw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/staatliches/v15/HI_OiY8KO6hCsQSoAPmtMYeVvpCNOw.woff2",
   },
 } as const;
 
 export type StaatlichesWeight = "400";
 export type StaatlichesStyle = "normal";
 export type StaatlichesSubset = "latin" | "latin-ext";
-export type StaatlichesOptions = GoogleFontOptions<StaatlichesWeight, StaatlichesStyle, StaatlichesSubset>;
+export type StaatlichesOptions = GoogleFontOptions<
+  StaatlichesWeight,
+  StaatlichesStyle,
+  StaatlichesSubset
+>;
 
 /**
  * Staatliches — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Staatliches extends GoogleFont<StaatlichesWeight, StaatlichesStyle, StaatlichesSubset> {
+export default class Staatliches extends GoogleFont<
+  StaatlichesWeight,
+  StaatlichesStyle,
+  StaatlichesSubset
+> {
   constructor(options?: StaatlichesOptions) {
     super(FAMILY, FACES, options);
   }

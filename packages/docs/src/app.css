@@ -85,6 +85,8 @@ samp {
   display: grid;
   place-items: center;
   color: var(--color-fd-muted-foreground);
-  font: 600 13px system-ui, sans-serif;
+  font:
+    600 13px system-ui,
+    sans-serif;
   letter-spacing: 0.04em;
 }

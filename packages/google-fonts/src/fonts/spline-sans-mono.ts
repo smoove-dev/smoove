@@ -4,42 +4,70 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Spline Sans Mono";
 
 const FACES = {
-  "latin": {
-    "300-italic": "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5epmkWe.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5KZmA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5epmkWe.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5KZmA.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5epmkWe.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5KZmA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5epmkWe.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5KZmA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5epmkWe.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5KZmA.woff2",
+  latin: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5epmkWe.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5KZmA.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5epmkWe.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5KZmA.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5epmkWe.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5KZmA.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5epmkWe.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5KZmA.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5epmkWe.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5KZmA.woff2",
   },
   "latin-ext": {
-    "300-italic": "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5eplEWeyl0.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5yZmF2a.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5eplEWeyl0.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5yZmF2a.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5eplEWeyl0.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5yZmF2a.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5eplEWeyl0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5yZmF2a.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5eplEWeyl0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5yZmF2a.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5eplEWeyl0.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5yZmF2a.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5eplEWeyl0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5yZmF2a.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5eplEWeyl0.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5yZmF2a.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5eplEWeyl0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5yZmF2a.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70HjzAei_CDNLfgZxrW6wrZOF2WX5eplEWeyl0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/splinesansmono/v13/R70BjzAei_CDNLfgZxrW6wrZOF2WX5yZmF2a.woff2",
   },
 } as const;
 
 export type SplineSansMonoWeight = "300" | "400" | "500" | "600" | "700";
 export type SplineSansMonoStyle = "italic" | "normal";
 export type SplineSansMonoSubset = "latin" | "latin-ext";
-export type SplineSansMonoOptions = GoogleFontOptions<SplineSansMonoWeight, SplineSansMonoStyle, SplineSansMonoSubset>;
+export type SplineSansMonoOptions = GoogleFontOptions<
+  SplineSansMonoWeight,
+  SplineSansMonoStyle,
+  SplineSansMonoSubset
+>;
 
 /**
  * Spline Sans Mono — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SplineSansMono extends GoogleFont<SplineSansMonoWeight, SplineSansMonoStyle, SplineSansMonoSubset> {
+export default class SplineSansMono extends GoogleFont<
+  SplineSansMonoWeight,
+  SplineSansMonoStyle,
+  SplineSansMonoSubset
+> {
   constructor(options?: SplineSansMonoOptions) {
     super(FAMILY, FACES, options);
   }

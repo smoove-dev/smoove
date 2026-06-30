@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Platypi";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/platypi/v6/bMr1mSGU7pMlaX6-FgC2M-SX.woff2",
     "300-normal": "https://fonts.gstatic.com/s/platypi/v6/bMr3mSGU7pMlaX6-FgWGMQ.woff2",
     "400-italic": "https://fonts.gstatic.com/s/platypi/v6/bMr1mSGU7pMlaX6-FgC2M-SX.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/platypi/v6/bMr1mSGU7pMlaX6-FgC2PeSXY3o.woff2",
     "800-normal": "https://fonts.gstatic.com/s/platypi/v6/bMr3mSGU7pMlaX6-FguGMfyT.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-italic": "https://fonts.gstatic.com/s/platypi/v6/bMr1mSGU7pMlaX6-FgC2POSXY3o.woff2",
     "300-normal": "https://fonts.gstatic.com/s/platypi/v6/bMr3mSGU7pMlaX6-FgqGMfyT.woff2",
     "400-italic": "https://fonts.gstatic.com/s/platypi/v6/bMr1mSGU7pMlaX6-FgC2POSXY3o.woff2",

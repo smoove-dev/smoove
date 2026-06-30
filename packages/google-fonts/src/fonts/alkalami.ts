@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alkalami";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/alkalami/v8/zOL_4pfDmqRL95WXi6eJycF8ug.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/alkalami/v8/zOL_4pfDmqRL95WXi6eMycE.woff2",
   },
   "latin-ext": {

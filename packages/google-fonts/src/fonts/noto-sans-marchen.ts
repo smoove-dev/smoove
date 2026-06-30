@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Marchen";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmarchen/v21/aFTO7OZ_Y282EP-WyG6QTOX_C8WZMEhIma8.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmarchen/v21/aFTO7OZ_Y282EP-WyG6QTOX_C8WZMEhIma8.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmarchen/v21/aFTO7OZ_Y282EP-WyG6QTOX_C8WZMEhGma9GZQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmarchen/v21/aFTO7OZ_Y282EP-WyG6QTOX_C8WZMEhGma9GZQ.woff2",
   },
-  "marchen": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmarchen/v21/aFTO7OZ_Y282EP-WyG6QTOX_C8WZMEjXuIp7XLg.woff2",
+  marchen: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmarchen/v21/aFTO7OZ_Y282EP-WyG6QTOX_C8WZMEjXuIp7XLg.woff2",
   },
 } as const;
 
 export type NotoSansMarchenWeight = "400";
 export type NotoSansMarchenStyle = "normal";
 export type NotoSansMarchenSubset = "latin" | "latin-ext" | "marchen";
-export type NotoSansMarchenOptions = GoogleFontOptions<NotoSansMarchenWeight, NotoSansMarchenStyle, NotoSansMarchenSubset>;
+export type NotoSansMarchenOptions = GoogleFontOptions<
+  NotoSansMarchenWeight,
+  NotoSansMarchenStyle,
+  NotoSansMarchenSubset
+>;
 
 /**
  * Noto Sans Marchen — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansMarchen extends GoogleFont<NotoSansMarchenWeight, NotoSansMarchenStyle, NotoSansMarchenSubset> {
+export default class NotoSansMarchen extends GoogleFont<
+  NotoSansMarchenWeight,
+  NotoSansMarchenStyle,
+  NotoSansMarchenSubset
+> {
   constructor(options?: NotoSansMarchenOptions) {
     super(FAMILY, FACES, options);
   }

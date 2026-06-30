@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Damion";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/damion/v15/hv-XlzJ3KEUe_YZkamw2.woff2",
   },
   "latin-ext": {

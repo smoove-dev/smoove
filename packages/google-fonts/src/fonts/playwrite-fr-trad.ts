@@ -4,24 +4,36 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite FR Trad";
 
 const FACES = {
-  "fallback": {
-    "100-normal": "https://fonts.gstatic.com/s/playwritefrtrad/v13/sJoe3KxJjdGLJV3vyatrJE2pkQisWXkP.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playwritefrtrad/v13/sJoe3KxJjdGLJV3vyatrJE2pkQisWXkP.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playwritefrtrad/v13/sJoe3KxJjdGLJV3vyatrJE2pkQisWXkP.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playwritefrtrad/v13/sJoe3KxJjdGLJV3vyatrJE2pkQisWXkP.woff2",
+  fallback: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/playwritefrtrad/v13/sJoe3KxJjdGLJV3vyatrJE2pkQisWXkP.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playwritefrtrad/v13/sJoe3KxJjdGLJV3vyatrJE2pkQisWXkP.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playwritefrtrad/v13/sJoe3KxJjdGLJV3vyatrJE2pkQisWXkP.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritefrtrad/v13/sJoe3KxJjdGLJV3vyatrJE2pkQisWXkP.woff2",
   },
 } as const;
 
 export type PlaywriteFRTradWeight = "100" | "200" | "300" | "400";
 export type PlaywriteFRTradStyle = "normal";
 export type PlaywriteFRTradSubset = "fallback";
-export type PlaywriteFRTradOptions = GoogleFontOptions<PlaywriteFRTradWeight, PlaywriteFRTradStyle, PlaywriteFRTradSubset>;
+export type PlaywriteFRTradOptions = GoogleFontOptions<
+  PlaywriteFRTradWeight,
+  PlaywriteFRTradStyle,
+  PlaywriteFRTradSubset
+>;
 
 /**
  * Playwrite FR Trad — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteFRTrad extends GoogleFont<PlaywriteFRTradWeight, PlaywriteFRTradStyle, PlaywriteFRTradSubset> {
+export default class PlaywriteFRTrad extends GoogleFont<
+  PlaywriteFRTradWeight,
+  PlaywriteFRTradStyle,
+  PlaywriteFRTradSubset
+> {
   constructor(options?: PlaywriteFRTradOptions) {
     super(FAMILY, FACES, options);
   }

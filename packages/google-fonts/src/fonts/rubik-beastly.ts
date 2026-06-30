@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Beastly";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikbeastly/v11/0QImMXRd5oOmSC2ZQ7o9653X47_2_TpH.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikbeastly/v11/0QImMXRd5oOmSC2ZQ7o9653X47_2_TpH.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikbeastly/v11/0QImMXRd5oOmSC2ZQ7o9653X47b2_TpH.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikbeastly/v11/0QImMXRd5oOmSC2ZQ7o9653X47b2_TpH.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikbeastly/v11/0QImMXRd5oOmSC2ZQ7o9653X47n2_TpH.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikbeastly/v11/0QImMXRd5oOmSC2ZQ7o9653X47n2_TpH.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikbeastly/v11/0QImMXRd5oOmSC2ZQ7o9653X47v2_Q.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikbeastly/v11/0QImMXRd5oOmSC2ZQ7o9653X47v2_Q.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikbeastly/v11/0QImMXRd5oOmSC2ZQ7o9653X47X2_TpH.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikbeastly/v11/0QImMXRd5oOmSC2ZQ7o9653X47X2_TpH.woff2",
   },
 } as const;
 
 export type RubikBeastlyWeight = "400";
 export type RubikBeastlyStyle = "normal";
 export type RubikBeastlySubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikBeastlyOptions = GoogleFontOptions<RubikBeastlyWeight, RubikBeastlyStyle, RubikBeastlySubset>;
+export type RubikBeastlyOptions = GoogleFontOptions<
+  RubikBeastlyWeight,
+  RubikBeastlyStyle,
+  RubikBeastlySubset
+>;
 
 /**
  * Rubik Beastly — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikBeastly extends GoogleFont<RubikBeastlyWeight, RubikBeastlyStyle, RubikBeastlySubset> {
+export default class RubikBeastly extends GoogleFont<
+  RubikBeastlyWeight,
+  RubikBeastlyStyle,
+  RubikBeastlySubset
+> {
   constructor(options?: RubikBeastlyOptions) {
     super(FAMILY, FACES, options);
   }

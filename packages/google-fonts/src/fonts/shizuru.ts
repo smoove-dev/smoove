@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Shizuru";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/shizuru/v13/O4ZSFGfvnxFiCA3i70UDlw.woff2",
   },
 } as const;

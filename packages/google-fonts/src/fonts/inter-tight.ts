@@ -4,87 +4,123 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Inter Tight";
 
 const FACES = {
-  "cyrillic": {
-    "100-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
+  cyrillic: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
     "100-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsD8ah8QA.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
     "200-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsD8ah8QA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
     "300-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsD8ah8QA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
     "400-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsD8ah8QA.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
     "500-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsD8ah8QA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
     "600-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsD8ah8QA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
     "700-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsD8ah8QA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
     "800-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsD8ah8QA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwa5kRFe9.woff2",
     "900-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsD8ah8QA.woff2",
   },
   "cyrillic-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
     "100-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsK8ah8QA.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
     "200-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsK8ah8QA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
     "300-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsK8ah8QA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
     "400-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsK8ah8QA.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
     "500-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsK8ah8QA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
     "600-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsK8ah8QA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
     "700-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsK8ah8QA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
     "800-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsK8ah8QA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwadkRFe9.woff2",
     "900-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsK8ah8QA.woff2",
   },
-  "greek": {
-    "100-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
+  greek: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
     "100-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsE8ah8QA.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
     "200-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsE8ah8QA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
     "300-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsE8ah8QA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
     "400-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsE8ah8QA.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
     "500-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsE8ah8QA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
     "600-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsE8ah8QA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
     "700-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsE8ah8QA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
     "800-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsE8ah8QA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwalkRFe9.woff2",
     "900-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsE8ah8QA.woff2",
   },
   "greek-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
     "100-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsL8ah8QA.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
     "200-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsL8ah8QA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
     "300-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsL8ah8QA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
     "400-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsL8ah8QA.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
     "500-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsL8ah8QA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
     "600-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsL8ah8QA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
     "700-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsL8ah8QA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
     "800-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsL8ah8QA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaZkRFe9.woff2",
     "900-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsL8ah8QA.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwapkRA.woff2",
     "100-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsH8ag.woff2",
     "200-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwapkRA.woff2",
@@ -105,57 +141,99 @@ const FACES = {
     "900-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsH8ag.woff2",
   },
   "latin-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
     "100-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsJ8ah8QA.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
     "200-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsJ8ah8QA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
     "300-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsJ8ah8QA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
     "400-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsJ8ah8QA.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
     "500-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsJ8ah8QA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
     "600-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsJ8ah8QA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
     "700-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsJ8ah8QA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
     "800-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsJ8ah8QA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaRkRFe9.woff2",
     "900-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsJ8ah8QA.woff2",
   },
-  "vietnamese": {
-    "100-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
+  vietnamese: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
     "100-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsI8ah8QA.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
     "200-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsI8ah8QA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
     "300-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsI8ah8QA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
     "400-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsI8ah8QA.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
     "500-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsI8ah8QA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
     "600-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsI8ah8QA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
     "700-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsI8ah8QA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
     "800-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsI8ah8QA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/intertight/v9/NGSyv5HMAFg6IuGlBNMjxLsCwaVkRFe9.woff2",
     "900-normal": "https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsI8ah8QA.woff2",
   },
 } as const;
 
-export type InterTightWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type InterTightWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type InterTightStyle = "italic" | "normal";
-export type InterTightSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "vietnamese";
-export type InterTightOptions = GoogleFontOptions<InterTightWeight, InterTightStyle, InterTightSubset>;
+export type InterTightSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
+export type InterTightOptions = GoogleFontOptions<
+  InterTightWeight,
+  InterTightStyle,
+  InterTightSubset
+>;
 
 /**
  * Inter Tight — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class InterTight extends GoogleFont<InterTightWeight, InterTightStyle, InterTightSubset> {
+export default class InterTight extends GoogleFont<
+  InterTightWeight,
+  InterTightStyle,
+  InterTightSubset
+> {
   constructor(options?: InterTightOptions) {
     super(FAMILY, FACES, options);
   }

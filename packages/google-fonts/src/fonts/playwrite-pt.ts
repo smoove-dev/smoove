@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite PT";
 
 const FACES = {
-  "fallback": {
+  fallback: {
     "100-normal": "https://fonts.gstatic.com/s/playwritept/v10/6NUR8FidKwOcfRjj8ukv5LgkzA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/playwritept/v10/6NUR8FidKwOcfRjj8ukv5LgkzA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/playwritept/v10/6NUR8FidKwOcfRjj8ukv5LgkzA.woff2",
@@ -15,13 +15,21 @@ const FACES = {
 export type PlaywritePTWeight = "100" | "200" | "300" | "400";
 export type PlaywritePTStyle = "normal";
 export type PlaywritePTSubset = "fallback";
-export type PlaywritePTOptions = GoogleFontOptions<PlaywritePTWeight, PlaywritePTStyle, PlaywritePTSubset>;
+export type PlaywritePTOptions = GoogleFontOptions<
+  PlaywritePTWeight,
+  PlaywritePTStyle,
+  PlaywritePTSubset
+>;
 
 /**
  * Playwrite PT — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywritePT extends GoogleFont<PlaywritePTWeight, PlaywritePTStyle, PlaywritePTSubset> {
+export default class PlaywritePT extends GoogleFont<
+  PlaywritePTWeight,
+  PlaywritePTStyle,
+  PlaywritePTSubset
+> {
   constructor(options?: PlaywritePTOptions) {
     super(FAMILY, FACES, options);
   }

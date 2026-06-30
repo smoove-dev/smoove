@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kirang Haerang";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/kiranghaerang/v22/E21-_dn_gvvIjhYON1lpIU4-bfqoUvc.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/kiranghaerang/v22/E21-_dn_gvvIjhYON1lpIU4-bfqoUvc.woff2",
   },
 } as const;
 
 export type KirangHaerangWeight = "400";
 export type KirangHaerangStyle = "normal";
 export type KirangHaerangSubset = "latin";
-export type KirangHaerangOptions = GoogleFontOptions<KirangHaerangWeight, KirangHaerangStyle, KirangHaerangSubset>;
+export type KirangHaerangOptions = GoogleFontOptions<
+  KirangHaerangWeight,
+  KirangHaerangStyle,
+  KirangHaerangSubset
+>;
 
 /**
  * Kirang Haerang — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KirangHaerang extends GoogleFont<KirangHaerangWeight, KirangHaerangStyle, KirangHaerangSubset> {
+export default class KirangHaerang extends GoogleFont<
+  KirangHaerangWeight,
+  KirangHaerangStyle,
+  KirangHaerangSubset
+> {
   constructor(options?: KirangHaerangOptions) {
     super(FAMILY, FACES, options);
   }

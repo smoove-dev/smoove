@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gwendolyn";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gwendolyn/v9/qkBXXvoO_M3CSss-d7eu455K.woff2",
     "700-normal": "https://fonts.gstatic.com/s/gwendolyn/v9/qkBSXvoO_M3CSss-d7emWLtfnyTG.woff2",
   },
@@ -12,7 +12,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/gwendolyn/v9/qkBXXvoO_M3CSss-d7eu7Z5KoAU.woff2",
     "700-normal": "https://fonts.gstatic.com/s/gwendolyn/v9/qkBSXvoO_M3CSss-d7emWLtfkSTGCNg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/gwendolyn/v9/qkBXXvoO_M3CSss-d7eu7J5KoAU.woff2",
     "700-normal": "https://fonts.gstatic.com/s/gwendolyn/v9/qkBSXvoO_M3CSss-d7emWLtfkCTGCNg.woff2",
   },
@@ -27,7 +27,11 @@ export type GwendolynOptions = GoogleFontOptions<GwendolynWeight, GwendolynStyle
  * Gwendolyn — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Gwendolyn extends GoogleFont<GwendolynWeight, GwendolynStyle, GwendolynSubset> {
+export default class Gwendolyn extends GoogleFont<
+  GwendolynWeight,
+  GwendolynStyle,
+  GwendolynSubset
+> {
   constructor(options?: GwendolynOptions) {
     super(FAMILY, FACES, options);
   }

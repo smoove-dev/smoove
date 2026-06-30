@@ -4,28 +4,40 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Passion One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/passionone/v20/PbynFmL8HhTPqbjUzux3JEuR9ls.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/passionone/v20/Pby6FmL8HhTPqbjUzux3JEMq007vyJc.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/passionone/v20/Pby6FmL8HhTPqbjUzux3JEMS0U7vyJc.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/passionone/v20/Pby6FmL8HhTPqbjUzux3JEMq007vyJc.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/passionone/v20/Pby6FmL8HhTPqbjUzux3JEMS0U7vyJc.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/passionone/v20/PbynFmL8HhTPqbjUzux3JEuf9lvQ6Q.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/passionone/v20/Pby6FmL8HhTPqbjUzux3JEMq007hyJcsuA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/passionone/v20/Pby6FmL8HhTPqbjUzux3JEMS0U7hyJcsuA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/passionone/v20/Pby6FmL8HhTPqbjUzux3JEMq007hyJcsuA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/passionone/v20/Pby6FmL8HhTPqbjUzux3JEMS0U7hyJcsuA.woff2",
   },
 } as const;
 
 export type PassionOneWeight = "400" | "700" | "900";
 export type PassionOneStyle = "normal";
 export type PassionOneSubset = "latin" | "latin-ext";
-export type PassionOneOptions = GoogleFontOptions<PassionOneWeight, PassionOneStyle, PassionOneSubset>;
+export type PassionOneOptions = GoogleFontOptions<
+  PassionOneWeight,
+  PassionOneStyle,
+  PassionOneSubset
+>;
 
 /**
  * Passion One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PassionOne extends GoogleFont<PassionOneWeight, PassionOneStyle, PassionOneSubset> {
+export default class PassionOne extends GoogleFont<
+  PassionOneWeight,
+  PassionOneStyle,
+  PassionOneSubset
+> {
   constructor(options?: PassionOneOptions) {
     super(FAMILY, FACES, options);
   }

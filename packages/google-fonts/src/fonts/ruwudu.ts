@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ruwudu";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/ruwudu/v4/syky-y1tj6UzRKf9lwqSxtM.woff2",
     "500-normal": "https://fonts.gstatic.com/s/ruwudu/v4/sykx-y1tj6UzRKf1YSmH_PLAnlQ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/ruwudu/v4/sykx-y1tj6UzRKf1TS6H_PLAnlQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/ruwudu/v4/sykx-y1tj6UzRKf1KS-H_PLAnlQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ruwudu/v4/syky-y1tj6UzRKf9kgqS.woff2",
     "500-normal": "https://fonts.gstatic.com/s/ruwudu/v4/sykx-y1tj6UzRKf1YSmH-fLA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/ruwudu/v4/sykx-y1tj6UzRKf1TS6H-fLA.woff2",

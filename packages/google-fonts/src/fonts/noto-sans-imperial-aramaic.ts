@@ -5,26 +5,37 @@ const FAMILY = "Noto Sans Imperial Aramaic";
 
 const FACES = {
   "imperial-aramaic": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansimperialaramaic/v18/a8IMNpjwKmHXpgXbMIsbTc_kvks91LlLetBr5itQruc8nXcvPA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansimperialaramaic/v18/a8IMNpjwKmHXpgXbMIsbTc_kvks91LlLetBr5itQruc8nXcvPA.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansimperialaramaic/v18/a8IMNpjwKmHXpgXbMIsbTc_kvks91LlLetBr5itQrudhnXc.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansimperialaramaic/v18/a8IMNpjwKmHXpgXbMIsbTc_kvks91LlLetBr5itQrudhnXc.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansimperialaramaic/v18/a8IMNpjwKmHXpgXbMIsbTc_kvks91LlLetBr5itQrudvnXcvPA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansimperialaramaic/v18/a8IMNpjwKmHXpgXbMIsbTc_kvks91LlLetBr5itQrudvnXcvPA.woff2",
   },
 } as const;
 
 export type NotoSansImperialAramaicWeight = "400";
 export type NotoSansImperialAramaicStyle = "normal";
 export type NotoSansImperialAramaicSubset = "imperial-aramaic" | "latin" | "latin-ext";
-export type NotoSansImperialAramaicOptions = GoogleFontOptions<NotoSansImperialAramaicWeight, NotoSansImperialAramaicStyle, NotoSansImperialAramaicSubset>;
+export type NotoSansImperialAramaicOptions = GoogleFontOptions<
+  NotoSansImperialAramaicWeight,
+  NotoSansImperialAramaicStyle,
+  NotoSansImperialAramaicSubset
+>;
 
 /**
  * Noto Sans Imperial Aramaic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansImperialAramaic extends GoogleFont<NotoSansImperialAramaicWeight, NotoSansImperialAramaicStyle, NotoSansImperialAramaicSubset> {
+export default class NotoSansImperialAramaic extends GoogleFont<
+  NotoSansImperialAramaicWeight,
+  NotoSansImperialAramaicStyle,
+  NotoSansImperialAramaicSubset
+> {
   constructor(options?: NotoSansImperialAramaicOptions) {
     super(FAMILY, FACES, options);
   }

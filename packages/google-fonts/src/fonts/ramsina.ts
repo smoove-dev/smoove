@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ramsina";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ramsina/v3/daaYSTE-LGmCbhP9yLk_Qg.woff2",
   },
-  "syriac": {
+  syriac: {
     "400-normal": "https://fonts.gstatic.com/s/ramsina/v3/daaYSTE-LGmCbhP9yMo_QrmM.woff2",
   },
 } as const;

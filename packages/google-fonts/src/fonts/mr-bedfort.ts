@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mr Bedfort";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mrbedfort/v23/MQpR-WCtNZSWAdTMwBicpi2-XA.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type MrBedfortOptions = GoogleFontOptions<MrBedfortWeight, MrBedfortStyle
  * Mr Bedfort — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MrBedfort extends GoogleFont<MrBedfortWeight, MrBedfortStyle, MrBedfortSubset> {
+export default class MrBedfort extends GoogleFont<
+  MrBedfortWeight,
+  MrBedfortStyle,
+  MrBedfortSubset
+> {
   constructor(options?: MrBedfortOptions) {
     super(FAMILY, FACES, options);
   }

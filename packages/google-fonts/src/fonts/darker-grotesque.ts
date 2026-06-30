@@ -4,45 +4,74 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Darker Grotesque";
 
 const FACES = {
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7HUJA.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq7_UJFcK.woff2",
   },
-  "vietnamese": {
-    "300-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
+  vietnamese: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/darkergrotesque/v10/U9MH6cuh-mLQlC4BKCtayOfARkSVq77UJFcK.woff2",
   },
 } as const;
 
 export type DarkerGrotesqueWeight = "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type DarkerGrotesqueStyle = "normal";
 export type DarkerGrotesqueSubset = "latin" | "latin-ext" | "vietnamese";
-export type DarkerGrotesqueOptions = GoogleFontOptions<DarkerGrotesqueWeight, DarkerGrotesqueStyle, DarkerGrotesqueSubset>;
+export type DarkerGrotesqueOptions = GoogleFontOptions<
+  DarkerGrotesqueWeight,
+  DarkerGrotesqueStyle,
+  DarkerGrotesqueSubset
+>;
 
 /**
  * Darker Grotesque — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DarkerGrotesque extends GoogleFont<DarkerGrotesqueWeight, DarkerGrotesqueStyle, DarkerGrotesqueSubset> {
+export default class DarkerGrotesque extends GoogleFont<
+  DarkerGrotesqueWeight,
+  DarkerGrotesqueStyle,
+  DarkerGrotesqueSubset
+> {
   constructor(options?: DarkerGrotesqueOptions) {
     super(FAMILY, FACES, options);
   }

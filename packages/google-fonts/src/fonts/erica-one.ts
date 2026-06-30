@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Erica One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ericaone/v29/WBLnrEXccV9VGrOKmGDFXEXN.woff2",
   },
   "latin-ext": {

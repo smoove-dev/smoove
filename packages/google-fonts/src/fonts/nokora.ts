@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nokora";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "100-normal": "https://fonts.gstatic.com/s/nokora/v34/hYkIPuwgTubzaWxgNzAOkvY.woff2",
     "200-normal": "https://fonts.gstatic.com/s/nokora/v34/hYkIPuwgTubzaWxgNzAOkvY.woff2",
     "300-normal": "https://fonts.gstatic.com/s/nokora/v34/hYkIPuwgTubzaWxgNzAOkvY.woff2",
@@ -15,7 +15,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/nokora/v34/hYkIPuwgTubzaWxgNzAOkvY.woff2",
     "900-normal": "https://fonts.gstatic.com/s/nokora/v34/hYkIPuwgTubzaWxgNzAOkvY.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/nokora/v34/hYkIPuwgTubzaWxgPDAO.woff2",
     "200-normal": "https://fonts.gstatic.com/s/nokora/v34/hYkIPuwgTubzaWxgPDAO.woff2",
     "300-normal": "https://fonts.gstatic.com/s/nokora/v34/hYkIPuwgTubzaWxgPDAO.woff2",

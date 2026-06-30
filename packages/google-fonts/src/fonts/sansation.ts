@@ -4,23 +4,27 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sansation";
 
 const FACES = {
-  "cyrillic": {
-    "300-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KDVs_ceJGK9g.woff2",
+  cyrillic: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KDVs_ceJGK9g.woff2",
     "300-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjFdGPjnEg8DNA0z01YAVg_V__aYJU.woff2",
     "400-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjGdGPjnEg8DNA0z01Qr0osdNrnWQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjAdGPjnEg8DNA0z01QrnoqbN4.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KTUc_ceJGK9g.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KTUc_ceJGK9g.woff2",
     "700-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjFdGPjnEg8DNA0z01YEV8_V__aYJU.woff2",
   },
-  "greek": {
-    "300-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KDVs_beJGK9g.woff2",
+  greek: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KDVs_beJGK9g.woff2",
     "300-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjFdGPjnEg8DNA0z01YAVg_UP_aYJU.woff2",
     "400-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjGdGPjnEg8DNA0z01Qr0ordNrnWQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjAdGPjnEg8DNA0z01QqXoqbN4.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KTUc_beJGK9g.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KTUc_beJGK9g.woff2",
     "700-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjFdGPjnEg8DNA0z01YEV8_UP_aYJU.woff2",
   },
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KDVs_YeJE.woff2",
     "300-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjFdGPjnEg8DNA0z01YAVg_U__a.woff2",
     "400-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjGdGPjnEg8DNA0z01Qr0oodNo.woff2",
@@ -29,11 +33,13 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjFdGPjnEg8DNA0z01YEV8_U__a.woff2",
   },
   "latin-ext": {
-    "300-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KDVs_WeJGK9g.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KDVs_WeJGK9g.woff2",
     "300-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjFdGPjnEg8DNA0z01YAVg_Xf_aYJU.woff2",
     "400-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjGdGPjnEg8DNA0z01Qr0omdNrnWQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjAdGPjnEg8DNA0z01QpHoqbN4.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KTUc_WeJGK9g.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/sansation/v1/LYjbdGPjnEg8DNA0z01Qr0KTUc_WeJGK9g.woff2",
     "700-normal": "https://fonts.gstatic.com/s/sansation/v1/LYjFdGPjnEg8DNA0z01YEV8_Xf_aYJU.woff2",
   },
 } as const;
@@ -47,7 +53,11 @@ export type SansationOptions = GoogleFontOptions<SansationWeight, SansationStyle
  * Sansation — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Sansation extends GoogleFont<SansationWeight, SansationStyle, SansationSubset> {
+export default class Sansation extends GoogleFont<
+  SansationWeight,
+  SansationStyle,
+  SansationSubset
+> {
   constructor(options?: SansationOptions) {
     super(FAMILY, FACES, options);
   }

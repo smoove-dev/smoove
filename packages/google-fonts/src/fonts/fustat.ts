@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fustat";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "200-normal": "https://fonts.gstatic.com/s/fustat/v4/NaPZcZ_aHO9Iy5tLTfJCkyo.woff2",
     "300-normal": "https://fonts.gstatic.com/s/fustat/v4/NaPZcZ_aHO9Iy5tLTfJCkyo.woff2",
     "400-normal": "https://fonts.gstatic.com/s/fustat/v4/NaPZcZ_aHO9Iy5tLTfJCkyo.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/fustat/v4/NaPZcZ_aHO9Iy5tLTfJCkyo.woff2",
     "800-normal": "https://fonts.gstatic.com/s/fustat/v4/NaPZcZ_aHO9Iy5tLTfJCkyo.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/fustat/v4/NaPZcZ_aHO9Iy5tLSPJC.woff2",
     "300-normal": "https://fonts.gstatic.com/s/fustat/v4/NaPZcZ_aHO9Iy5tLSPJC.woff2",
     "400-normal": "https://fonts.gstatic.com/s/fustat/v4/NaPZcZ_aHO9Iy5tLSPJC.woff2",

@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rampart One";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/rampartone/v13/K2F1fZFGl_JSR1tAWNG9R5qjJy_KZA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rampartone/v13/K2F1fZFGl_JSR1tAWNG9R5qnJy8.woff2",
   },
   "latin-ext": {
@@ -18,13 +18,21 @@ const FACES = {
 export type RampartOneWeight = "400";
 export type RampartOneStyle = "normal";
 export type RampartOneSubset = "cyrillic" | "latin" | "latin-ext";
-export type RampartOneOptions = GoogleFontOptions<RampartOneWeight, RampartOneStyle, RampartOneSubset>;
+export type RampartOneOptions = GoogleFontOptions<
+  RampartOneWeight,
+  RampartOneStyle,
+  RampartOneSubset
+>;
 
 /**
  * Rampart One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RampartOne extends GoogleFont<RampartOneWeight, RampartOneStyle, RampartOneSubset> {
+export default class RampartOne extends GoogleFont<
+  RampartOneWeight,
+  RampartOneStyle,
+  RampartOneSubset
+> {
   constructor(options?: RampartOneOptions) {
     super(FAMILY, FACES, options);
   }

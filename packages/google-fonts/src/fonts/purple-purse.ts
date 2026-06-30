@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Purple Purse";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/purplepurse/v25/qWctB66gv53iAp-Vfs4My6qCfxz-.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/purplepurse/v25/qWctB66gv53iAp-Vfs4My6qCcRz-ijA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/purplepurse/v25/qWctB66gv53iAp-Vfs4My6qCcRz-ijA.woff2",
   },
 } as const;
 
 export type PurplePurseWeight = "400";
 export type PurplePurseStyle = "normal";
 export type PurplePurseSubset = "latin" | "latin-ext";
-export type PurplePurseOptions = GoogleFontOptions<PurplePurseWeight, PurplePurseStyle, PurplePurseSubset>;
+export type PurplePurseOptions = GoogleFontOptions<
+  PurplePurseWeight,
+  PurplePurseStyle,
+  PurplePurseSubset
+>;
 
 /**
  * Purple Purse — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PurplePurse extends GoogleFont<PurplePurseWeight, PurplePurseStyle, PurplePurseSubset> {
+export default class PurplePurse extends GoogleFont<
+  PurplePurseWeight,
+  PurplePurseStyle,
+  PurplePurseSubset
+> {
   constructor(options?: PurplePurseOptions) {
     super(FAMILY, FACES, options);
   }

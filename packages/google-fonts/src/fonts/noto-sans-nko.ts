@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans NKo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/notosansnko/v7/esDX31ZdNv-KYGGJpKGk2_RpApeGHQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnko/v7/esDX31ZdNv-KYGGJpKGk2_RpApmGHfLB.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnko/v7/esDX31ZdNv-KYGGJpKGk2_RpApmGHfLB.woff2",
   },
-  "nko": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnko/v7/esDX31ZdNv-KYGGJpKGk2_RpAvyGHfLB.woff2",
+  nko: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnko/v7/esDX31ZdNv-KYGGJpKGk2_RpAvyGHfLB.woff2",
   },
 } as const;
 
 export type NotoSansNKoWeight = "400";
 export type NotoSansNKoStyle = "normal";
 export type NotoSansNKoSubset = "latin" | "latin-ext" | "nko";
-export type NotoSansNKoOptions = GoogleFontOptions<NotoSansNKoWeight, NotoSansNKoStyle, NotoSansNKoSubset>;
+export type NotoSansNKoOptions = GoogleFontOptions<
+  NotoSansNKoWeight,
+  NotoSansNKoStyle,
+  NotoSansNKoSubset
+>;
 
 /**
  * Noto Sans NKo — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansNKo extends GoogleFont<NotoSansNKoWeight, NotoSansNKoStyle, NotoSansNKoSubset> {
+export default class NotoSansNKo extends GoogleFont<
+  NotoSansNKoWeight,
+  NotoSansNKoStyle,
+  NotoSansNKoSubset
+> {
   constructor(options?: NotoSansNKoOptions) {
     super(FAMILY, FACES, options);
   }

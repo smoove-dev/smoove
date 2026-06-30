@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Annie Use Your Telescope";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/annieuseyourtelescope/v20/daaLSS4tI2qYYl3Jq9s_Hu74xwktnlKxH6osGVGTkz3A.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/annieuseyourtelescope/v20/daaLSS4tI2qYYl3Jq9s_Hu74xwktnlKxH6osGVGTkz3A.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/annieuseyourtelescope/v20/daaLSS4tI2qYYl3Jq9s_Hu74xwktnlKxH6osGVGTnT3A7UU.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/annieuseyourtelescope/v20/daaLSS4tI2qYYl3Jq9s_Hu74xwktnlKxH6osGVGTnT3A7UU.woff2",
   },
 } as const;
 
 export type AnnieUseYourTelescopeWeight = "400";
 export type AnnieUseYourTelescopeStyle = "normal";
 export type AnnieUseYourTelescopeSubset = "latin" | "latin-ext";
-export type AnnieUseYourTelescopeOptions = GoogleFontOptions<AnnieUseYourTelescopeWeight, AnnieUseYourTelescopeStyle, AnnieUseYourTelescopeSubset>;
+export type AnnieUseYourTelescopeOptions = GoogleFontOptions<
+  AnnieUseYourTelescopeWeight,
+  AnnieUseYourTelescopeStyle,
+  AnnieUseYourTelescopeSubset
+>;
 
 /**
  * Annie Use Your Telescope — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AnnieUseYourTelescope extends GoogleFont<AnnieUseYourTelescopeWeight, AnnieUseYourTelescopeStyle, AnnieUseYourTelescopeSubset> {
+export default class AnnieUseYourTelescope extends GoogleFont<
+  AnnieUseYourTelescopeWeight,
+  AnnieUseYourTelescopeStyle,
+  AnnieUseYourTelescopeSubset
+> {
   constructor(options?: AnnieUseYourTelescopeOptions) {
     super(FAMILY, FACES, options);
   }

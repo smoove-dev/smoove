@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Coming Soon";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/comingsoon/v20/qWcuB6mzpYL7AJ2VfdQR1t-VWDk.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type ComingSoonWeight = "400";
 export type ComingSoonStyle = "normal";
 export type ComingSoonSubset = "latin";
-export type ComingSoonOptions = GoogleFontOptions<ComingSoonWeight, ComingSoonStyle, ComingSoonSubset>;
+export type ComingSoonOptions = GoogleFontOptions<
+  ComingSoonWeight,
+  ComingSoonStyle,
+  ComingSoonSubset
+>;
 
 /**
  * Coming Soon — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ComingSoon extends GoogleFont<ComingSoonWeight, ComingSoonStyle, ComingSoonSubset> {
+export default class ComingSoon extends GoogleFont<
+  ComingSoonWeight,
+  ComingSoonStyle,
+  ComingSoonSubset
+> {
   constructor(options?: ComingSoonOptions) {
     super(FAMILY, FACES, options);
   }

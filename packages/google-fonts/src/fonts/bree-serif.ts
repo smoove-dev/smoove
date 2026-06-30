@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bree Serif";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/breeserif/v18/4UaHrEJCrhhnVA3DgluA96rp5w.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type BreeSerifOptions = GoogleFontOptions<BreeSerifWeight, BreeSerifStyle
  * Bree Serif — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BreeSerif extends GoogleFont<BreeSerifWeight, BreeSerifStyle, BreeSerifSubset> {
+export default class BreeSerif extends GoogleFont<
+  BreeSerifWeight,
+  BreeSerifStyle,
+  BreeSerifSubset
+> {
   constructor(options?: BreeSerifOptions) {
     super(FAMILY, FACES, options);
   }

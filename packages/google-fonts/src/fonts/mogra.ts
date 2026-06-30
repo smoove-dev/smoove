@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mogra";
 
 const FACES = {
-  "gujarati": {
+  gujarati: {
     "400-normal": "https://fonts.gstatic.com/s/mogra/v22/f0X40eSs8c95TCokBPPWxg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mogra/v22/f0X40eSs8c95TCo_BPM.woff2",
   },
   "latin-ext": {

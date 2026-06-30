@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Flow Block";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/flowblock/v15/wlp0gwfPCEB65UmTk-d6yWVvbRBX.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/flowblock/v15/wlp0gwfPCEB65UmTk-d6yWxvbRBX.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/flowblock/v15/wlp0gwfPCEB65UmTk-d6yWFvbQ.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/flowblock/v15/wlp0gwfPCEB65UmTk-d6yW9vbRBX.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/flowblock/v15/wlp0gwfPCEB65UmTk-d6yW5vbRBX.woff2",
   },
 } as const;
@@ -30,7 +30,11 @@ export type FlowBlockOptions = GoogleFontOptions<FlowBlockWeight, FlowBlockStyle
  * Flow Block — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FlowBlock extends GoogleFont<FlowBlockWeight, FlowBlockStyle, FlowBlockSubset> {
+export default class FlowBlock extends GoogleFont<
+  FlowBlockWeight,
+  FlowBlockStyle,
+  FlowBlockSubset
+> {
   constructor(options?: FlowBlockOptions) {
     super(FAMILY, FACES, options);
   }

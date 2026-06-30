@@ -4,44 +4,74 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Titillium Web";
 
 const FACES = {
-  "latin": {
-    "200-italic": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbewI1DYZyc.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffAzHGItzYw.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbepI5DYZyc.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffGjEGItzYw.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPAcZTIAOhVxoMyOr9n_E7fdMbWD6xW.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPecZTIAOhVxoMyOr9n_E7fdMPmDQ.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbe0IhDYZyc.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffBzCGItzYw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbetIlDYZyc.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGItzYw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffEDBGItzYw.woff2",
+  latin: {
+    "200-italic":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbewI1DYZyc.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffAzHGItzYw.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbepI5DYZyc.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffGjEGItzYw.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPAcZTIAOhVxoMyOr9n_E7fdMbWD6xW.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPecZTIAOhVxoMyOr9n_E7fdMPmDQ.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbe0IhDYZyc.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffBzCGItzYw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbetIlDYZyc.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGItzYw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffEDBGItzYw.woff2",
   },
   "latin-ext": {
-    "200-italic": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbewI1Db5yciWM.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffAzHGIVzY4SY.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbepI5Db5yciWM.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffGjEGIVzY4SY.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPAcZTIAOhVxoMyOr9n_E7fdMbWAaxWXr0.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPecZTIAOhVxoMyOr9n_E7fdM3mDbRS.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbe0IhDb5yciWM.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffBzCGIVzY4SY.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbetIlDb5yciWM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGIVzY4SY.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffEDBGIVzY4SY.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbewI1Db5yciWM.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffAzHGIVzY4SY.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbepI5Db5yciWM.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffGjEGIVzY4SY.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPAcZTIAOhVxoMyOr9n_E7fdMbWAaxWXr0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPecZTIAOhVxoMyOr9n_E7fdM3mDbRS.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbe0IhDb5yciWM.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffBzCGIVzY4SY.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPFcZTIAOhVxoMyOr9n_E7fdMbetIlDb5yciWM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGIVzY4SY.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffEDBGIVzY4SY.woff2",
   },
 } as const;
 
 export type TitilliumWebWeight = "200" | "300" | "400" | "600" | "700" | "900";
 export type TitilliumWebStyle = "italic" | "normal";
 export type TitilliumWebSubset = "latin" | "latin-ext";
-export type TitilliumWebOptions = GoogleFontOptions<TitilliumWebWeight, TitilliumWebStyle, TitilliumWebSubset>;
+export type TitilliumWebOptions = GoogleFontOptions<
+  TitilliumWebWeight,
+  TitilliumWebStyle,
+  TitilliumWebSubset
+>;
 
 /**
  * Titillium Web — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TitilliumWeb extends GoogleFont<TitilliumWebWeight, TitilliumWebStyle, TitilliumWebSubset> {
+export default class TitilliumWeb extends GoogleFont<
+  TitilliumWebWeight,
+  TitilliumWebStyle,
+  TitilliumWebSubset
+> {
   constructor(options?: TitilliumWebOptions) {
     super(FAMILY, FACES, options);
   }

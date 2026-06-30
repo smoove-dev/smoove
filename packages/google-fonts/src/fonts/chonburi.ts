@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Chonburi";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/chonburi/v14/8AtqGs-wOpGRTBq66LWdHLw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/chonburi/v14/8AtqGs-wOpGRTBq66LWTHLzriA.woff2",
   },
-  "thai": {
+  thai: {
     "400-normal": "https://fonts.gstatic.com/s/chonburi/v14/8AtqGs-wOpGRTBq66LWJHLzriA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/chonburi/v14/8AtqGs-wOpGRTBq66LWSHLzriA.woff2",
   },
 } as const;

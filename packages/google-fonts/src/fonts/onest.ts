@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Onest";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-normal": "https://fonts.gstatic.com/s/onest/v9/gNMKW3F-SZuj7xmb-HY6EQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/onest/v9/gNMKW3F-SZuj7xmb-HY6EQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/onest/v9/gNMKW3F-SZuj7xmb-HY6EQ.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/onest/v9/gNMKW3F-SZuj7xmS-HY6EQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/onest/v9/gNMKW3F-SZuj7xmS-HY6EQ.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/onest/v9/gNMKW3F-SZuj7xmf-HY.woff2",
     "200-normal": "https://fonts.gstatic.com/s/onest/v9/gNMKW3F-SZuj7xmf-HY.woff2",
     "300-normal": "https://fonts.gstatic.com/s/onest/v9/gNMKW3F-SZuj7xmf-HY.woff2",

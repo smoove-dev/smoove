@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "DotGothic16";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/dotgothic16/v21/v6-QGYjBJFKgyw5nSoDAGH7I6X9oPA.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/dotgothic16/v21/v6-QGYjBJFKgyw5nSoDAGH7I6X9oPA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/dotgothic16/v21/v6-QGYjBJFKgyw5nSoDAGH7M6X8.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/dotgothic16/v21/v6-QGYjBJFKgyw5nSoDAGH7C6X9oPA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/dotgothic16/v21/v6-QGYjBJFKgyw5nSoDAGH7C6X9oPA.woff2",
   },
 } as const;
 
 export type DotGothic16Weight = "400";
 export type DotGothic16Style = "normal";
 export type DotGothic16Subset = "cyrillic" | "latin" | "latin-ext";
-export type DotGothic16Options = GoogleFontOptions<DotGothic16Weight, DotGothic16Style, DotGothic16Subset>;
+export type DotGothic16Options = GoogleFontOptions<
+  DotGothic16Weight,
+  DotGothic16Style,
+  DotGothic16Subset
+>;
 
 /**
  * DotGothic16 — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DotGothic16 extends GoogleFont<DotGothic16Weight, DotGothic16Style, DotGothic16Subset> {
+export default class DotGothic16 extends GoogleFont<
+  DotGothic16Weight,
+  DotGothic16Style,
+  DotGothic16Subset
+> {
   constructor(options?: DotGothic16Options) {
     super(FAMILY, FACES, options);
   }

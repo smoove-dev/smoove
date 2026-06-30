@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Almarai";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "300-normal": "https://fonts.gstatic.com/s/almarai/v19/tssoApxBaigK_hnnS_antnqWo572.woff2",
     "400-normal": "https://fonts.gstatic.com/s/almarai/v19/tsstApxBaigK_hnnQ1iFo0C3.woff2",
     "700-normal": "https://fonts.gstatic.com/s/almarai/v19/tssoApxBaigK_hnnS-agtnqWo572.woff2",
     "800-normal": "https://fonts.gstatic.com/s/almarai/v19/tssoApxBaigK_hnnS_qjtnqWo572.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/almarai/v19/tssoApxBaigK_hnnS_antn-Wow.woff2",
     "400-normal": "https://fonts.gstatic.com/s/almarai/v19/tsstApxBaigK_hnnQ12Fow.woff2",
     "700-normal": "https://fonts.gstatic.com/s/almarai/v19/tssoApxBaigK_hnnS-agtn-Wow.woff2",

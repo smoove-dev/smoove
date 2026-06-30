@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Macondo Swash Caps";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/macondoswashcaps/v26/6NUL8EaAJgGKZA7lpt941Z9s6ZYgDq6-fUAb.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/macondoswashcaps/v26/6NUL8EaAJgGKZA7lpt941Z9s6ZYgDq6-fUAb.woff2",
   },
 } as const;
 
 export type MacondoSwashCapsWeight = "400";
 export type MacondoSwashCapsStyle = "normal";
 export type MacondoSwashCapsSubset = "latin";
-export type MacondoSwashCapsOptions = GoogleFontOptions<MacondoSwashCapsWeight, MacondoSwashCapsStyle, MacondoSwashCapsSubset>;
+export type MacondoSwashCapsOptions = GoogleFontOptions<
+  MacondoSwashCapsWeight,
+  MacondoSwashCapsStyle,
+  MacondoSwashCapsSubset
+>;
 
 /**
  * Macondo Swash Caps — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MacondoSwashCaps extends GoogleFont<MacondoSwashCapsWeight, MacondoSwashCapsStyle, MacondoSwashCapsSubset> {
+export default class MacondoSwashCaps extends GoogleFont<
+  MacondoSwashCapsWeight,
+  MacondoSwashCapsStyle,
+  MacondoSwashCapsSubset
+> {
   constructor(options?: MacondoSwashCapsOptions) {
     super(FAMILY, FACES, options);
   }

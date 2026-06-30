@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Marhey";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "300-normal": "https://fonts.gstatic.com/s/marhey/v8/x3dhck7Laq-T7wlRk48kRNs.woff2",
     "400-normal": "https://fonts.gstatic.com/s/marhey/v8/x3dhck7Laq-T7wlRk48kRNs.woff2",
     "500-normal": "https://fonts.gstatic.com/s/marhey/v8/x3dhck7Laq-T7wlRk48kRNs.woff2",
     "600-normal": "https://fonts.gstatic.com/s/marhey/v8/x3dhck7Laq-T7wlRk48kRNs.woff2",
     "700-normal": "https://fonts.gstatic.com/s/marhey/v8/x3dhck7Laq-T7wlRk48kRNs.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/marhey/v8/x3dhck7Laq-T7wlRlo8k.woff2",
     "400-normal": "https://fonts.gstatic.com/s/marhey/v8/x3dhck7Laq-T7wlRlo8k.woff2",
     "500-normal": "https://fonts.gstatic.com/s/marhey/v8/x3dhck7Laq-T7wlRlo8k.woff2",

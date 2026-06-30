@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Moonrocks";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmoonrocks/v7/845ANMAmAI2VUZMLu_W0M7HqlDHXXsr6FGw.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmoonrocks/v7/845ANMAmAI2VUZMLu_W0M7HqlDHXXsr6FGw.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmoonrocks/v7/845ANMAmAI2VUZMLu_W0M7HqlDHXV8r6FGw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmoonrocks/v7/845ANMAmAI2VUZMLu_W0M7HqlDHXV8r6FGw.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmoonrocks/v7/845ANMAmAI2VUZMLu_W0M7HqlDHXWMr6FGw.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmoonrocks/v7/845ANMAmAI2VUZMLu_W0M7HqlDHXWMr6FGw.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmoonrocks/v7/845ANMAmAI2VUZMLu_W0M7HqlDHXWsr6.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmoonrocks/v7/845ANMAmAI2VUZMLu_W0M7HqlDHXWsr6.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikmoonrocks/v7/845ANMAmAI2VUZMLu_W0M7HqlDHXVMr6FGw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikmoonrocks/v7/845ANMAmAI2VUZMLu_W0M7HqlDHXVMr6FGw.woff2",
   },
 } as const;
 
 export type RubikMoonrocksWeight = "400";
 export type RubikMoonrocksStyle = "normal";
 export type RubikMoonrocksSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikMoonrocksOptions = GoogleFontOptions<RubikMoonrocksWeight, RubikMoonrocksStyle, RubikMoonrocksSubset>;
+export type RubikMoonrocksOptions = GoogleFontOptions<
+  RubikMoonrocksWeight,
+  RubikMoonrocksStyle,
+  RubikMoonrocksSubset
+>;
 
 /**
  * Rubik Moonrocks — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikMoonrocks extends GoogleFont<RubikMoonrocksWeight, RubikMoonrocksStyle, RubikMoonrocksSubset> {
+export default class RubikMoonrocks extends GoogleFont<
+  RubikMoonrocksWeight,
+  RubikMoonrocksStyle,
+  RubikMoonrocksSubset
+> {
   constructor(options?: RubikMoonrocksOptions) {
     super(FAMILY, FACES, options);
   }

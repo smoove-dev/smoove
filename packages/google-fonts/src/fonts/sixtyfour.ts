@@ -4,17 +4,21 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sixtyfour";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/sixtyfour/v3/OD5vuMCT1numDm3nakXtp2h4jg463t9haG_3mBkVsV20uFT3BAE5f43flSU.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sixtyfour/v3/OD5vuMCT1numDm3nakXtp2h4jg463t9haG_3mBkVsV20uFT3BAE5f43flSU.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/sixtyfour/v3/OD5vuMCT1numDm3nakXtp2h4jg463t9haG_3mBkVsV20uFT3BAE5f43RlSWJZg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sixtyfour/v3/OD5vuMCT1numDm3nakXtp2h4jg463t9haG_3mBkVsV20uFT3BAE5f43RlSWJZg.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/sixtyfour/v3/OD5vuMCT1numDm3nakXtp2h4jg463t9haG_3mBkVsV20uFT3BAE5f42jlSWJZg.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sixtyfour/v3/OD5vuMCT1numDm3nakXtp2h4jg463t9haG_3mBkVsV20uFT3BAE5f42jlSWJZg.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/sixtyfour/v3/OD5vuMCT1numDm3nakXtp2h4jg463t9haG_3mBkVsV20uFT3BAE5f42xlSWJZg.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sixtyfour/v3/OD5vuMCT1numDm3nakXtp2h4jg463t9haG_3mBkVsV20uFT3BAE5f42xlSWJZg.woff2",
   },
 } as const;
 
@@ -27,7 +31,11 @@ export type SixtyfourOptions = GoogleFontOptions<SixtyfourWeight, SixtyfourStyle
  * Sixtyfour — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Sixtyfour extends GoogleFont<SixtyfourWeight, SixtyfourStyle, SixtyfourSubset> {
+export default class Sixtyfour extends GoogleFont<
+  SixtyfourWeight,
+  SixtyfourStyle,
+  SixtyfourSubset
+> {
   constructor(options?: SixtyfourOptions) {
     super(FAMILY, FACES, options);
   }

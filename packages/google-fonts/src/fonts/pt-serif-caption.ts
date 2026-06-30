@@ -4,34 +4,50 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "PT Serif Caption";
 
 const FACES = {
-  "cyrillic": {
-    "400-italic": "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVj2ZhbGCW-JoW6S34pSDpqYKU019eLCwM9UvI.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVl2ZhbGCW-JoW6S34pSDpqYKU019a7DRs5.woff2",
+  cyrillic: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVj2ZhbGCW-JoW6S34pSDpqYKU019eLCwM9UvI.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVl2ZhbGCW-JoW6S34pSDpqYKU019a7DRs5.woff2",
   },
   "cyrillic-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVj2ZhbGCW-JoW6S34pSDpqYKU019eLAgM9UvI.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVl2ZhbGCW-JoW6S34pSDpqYKU019-7DRs5.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVj2ZhbGCW-JoW6S34pSDpqYKU019eLAgM9UvI.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVl2ZhbGCW-JoW6S34pSDpqYKU019-7DRs5.woff2",
   },
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVj2ZhbGCW-JoW6S34pSDpqYKU019eLDwM9.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVl2ZhbGCW-JoW6S34pSDpqYKU019K7DQ.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVj2ZhbGCW-JoW6S34pSDpqYKU019eLDwM9.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVl2ZhbGCW-JoW6S34pSDpqYKU019K7DQ.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVj2ZhbGCW-JoW6S34pSDpqYKU019eLAQM9UvI.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVl2ZhbGCW-JoW6S34pSDpqYKU019y7DRs5.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVj2ZhbGCW-JoW6S34pSDpqYKU019eLAQM9UvI.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ptserifcaption/v18/ieVl2ZhbGCW-JoW6S34pSDpqYKU019y7DRs5.woff2",
   },
 } as const;
 
 export type PTSerifCaptionWeight = "400";
 export type PTSerifCaptionStyle = "italic" | "normal";
 export type PTSerifCaptionSubset = "cyrillic" | "cyrillic-ext" | "latin" | "latin-ext";
-export type PTSerifCaptionOptions = GoogleFontOptions<PTSerifCaptionWeight, PTSerifCaptionStyle, PTSerifCaptionSubset>;
+export type PTSerifCaptionOptions = GoogleFontOptions<
+  PTSerifCaptionWeight,
+  PTSerifCaptionStyle,
+  PTSerifCaptionSubset
+>;
 
 /**
  * PT Serif Caption — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PTSerifCaption extends GoogleFont<PTSerifCaptionWeight, PTSerifCaptionStyle, PTSerifCaptionSubset> {
+export default class PTSerifCaption extends GoogleFont<
+  PTSerifCaptionWeight,
+  PTSerifCaptionStyle,
+  PTSerifCaptionSubset
+> {
   constructor(options?: PTSerifCaptionOptions) {
     super(FAMILY, FACES, options);
   }

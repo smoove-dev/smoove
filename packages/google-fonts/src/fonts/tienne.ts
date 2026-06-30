@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tienne";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tienne/v21/AYCKpX7pe9YCRP07l0nG.woff2",
     "700-normal": "https://fonts.gstatic.com/s/tienne/v21/AYCJpX7pe9YCRP0zLGzTR3Jv.woff2",
     "900-normal": "https://fonts.gstatic.com/s/tienne/v21/AYCJpX7pe9YCRP0zFG7TR3Jv.woff2",

@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Material Icons";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/materialicons/v145/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/materialicons/v145/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2",
   },
 } as const;
 
 export type MaterialIconsWeight = "400";
 export type MaterialIconsStyle = "normal";
 export type MaterialIconsSubset = "fallback";
-export type MaterialIconsOptions = GoogleFontOptions<MaterialIconsWeight, MaterialIconsStyle, MaterialIconsSubset>;
+export type MaterialIconsOptions = GoogleFontOptions<
+  MaterialIconsWeight,
+  MaterialIconsStyle,
+  MaterialIconsSubset
+>;
 
 /**
  * Material Icons — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MaterialIcons extends GoogleFont<MaterialIconsWeight, MaterialIconsStyle, MaterialIconsSubset> {
+export default class MaterialIcons extends GoogleFont<
+  MaterialIconsWeight,
+  MaterialIconsStyle,
+  MaterialIconsSubset
+> {
   constructor(options?: MaterialIconsOptions) {
     super(FAMILY, FACES, options);
   }

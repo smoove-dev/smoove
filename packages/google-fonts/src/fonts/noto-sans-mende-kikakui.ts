@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Mende Kikakui";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmendekikakui/v30/11hRGoLHz17aKjQCWj-JHcLvu2Q5zZrnkbNCLXx4YjM.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmendekikakui/v30/11hRGoLHz17aKjQCWj-JHcLvu2Q5zZrnkbNCLXx4YjM.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmendekikakui/v30/11hRGoLHz17aKjQCWj-JHcLvu2Q5zZrnkbNCLXx2YjN7AA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmendekikakui/v30/11hRGoLHz17aKjQCWj-JHcLvu2Q5zZrnkbNCLXx2YjN7AA.woff2",
   },
   "mende-kikakui": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmendekikakui/v30/11hRGoLHz17aKjQCWj-JHcLvu2Q5zZrnkbNCLXzqQxZGOW4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmendekikakui/v30/11hRGoLHz17aKjQCWj-JHcLvu2Q5zZrnkbNCLXzqQxZGOW4.woff2",
   },
 } as const;
 
 export type NotoSansMendeKikakuiWeight = "400";
 export type NotoSansMendeKikakuiStyle = "normal";
 export type NotoSansMendeKikakuiSubset = "latin" | "latin-ext" | "mende-kikakui";
-export type NotoSansMendeKikakuiOptions = GoogleFontOptions<NotoSansMendeKikakuiWeight, NotoSansMendeKikakuiStyle, NotoSansMendeKikakuiSubset>;
+export type NotoSansMendeKikakuiOptions = GoogleFontOptions<
+  NotoSansMendeKikakuiWeight,
+  NotoSansMendeKikakuiStyle,
+  NotoSansMendeKikakuiSubset
+>;
 
 /**
  * Noto Sans Mende Kikakui — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansMendeKikakui extends GoogleFont<NotoSansMendeKikakuiWeight, NotoSansMendeKikakuiStyle, NotoSansMendeKikakuiSubset> {
+export default class NotoSansMendeKikakui extends GoogleFont<
+  NotoSansMendeKikakuiWeight,
+  NotoSansMendeKikakuiStyle,
+  NotoSansMendeKikakuiSubset
+> {
   constructor(options?: NotoSansMendeKikakuiOptions) {
     super(FAMILY, FACES, options);
   }

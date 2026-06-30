@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "MedievalSharp";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/medievalsharp/v28/EvOJzAlL3oU5AQl2mP5KdgptMqhwMg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/medievalsharp/v28/EvOJzAlL3oU5AQl2mP5KdgptMqhwMg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/medievalsharp/v28/EvOJzAlL3oU5AQl2mP5KdgptMqZwMjvX.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/medievalsharp/v28/EvOJzAlL3oU5AQl2mP5KdgptMqZwMjvX.woff2",
   },
 } as const;
 
 export type MedievalSharpWeight = "400";
 export type MedievalSharpStyle = "normal";
 export type MedievalSharpSubset = "latin" | "latin-ext";
-export type MedievalSharpOptions = GoogleFontOptions<MedievalSharpWeight, MedievalSharpStyle, MedievalSharpSubset>;
+export type MedievalSharpOptions = GoogleFontOptions<
+  MedievalSharpWeight,
+  MedievalSharpStyle,
+  MedievalSharpSubset
+>;
 
 /**
  * MedievalSharp — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MedievalSharp extends GoogleFont<MedievalSharpWeight, MedievalSharpStyle, MedievalSharpSubset> {
+export default class MedievalSharp extends GoogleFont<
+  MedievalSharpWeight,
+  MedievalSharpStyle,
+  MedievalSharpSubset
+> {
   constructor(options?: MedievalSharpOptions) {
     super(FAMILY, FACES, options);
   }

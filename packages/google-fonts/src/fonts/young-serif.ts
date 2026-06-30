@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Young Serif";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/youngserif/v2/3qTpojO2nS2VtkB3KtkQZ1t93kY.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type YoungSerifWeight = "400";
 export type YoungSerifStyle = "normal";
 export type YoungSerifSubset = "latin" | "latin-ext";
-export type YoungSerifOptions = GoogleFontOptions<YoungSerifWeight, YoungSerifStyle, YoungSerifSubset>;
+export type YoungSerifOptions = GoogleFontOptions<
+  YoungSerifWeight,
+  YoungSerifStyle,
+  YoungSerifSubset
+>;
 
 /**
  * Young Serif — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class YoungSerif extends GoogleFont<YoungSerifWeight, YoungSerifStyle, YoungSerifSubset> {
+export default class YoungSerif extends GoogleFont<
+  YoungSerifWeight,
+  YoungSerifStyle,
+  YoungSerifSubset
+> {
   constructor(options?: YoungSerifOptions) {
     super(FAMILY, FACES, options);
   }

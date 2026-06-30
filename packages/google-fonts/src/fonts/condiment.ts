@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Condiment";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/condiment/v26/pONk1hggFNmwvXALyH6irIP5.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type CondimentOptions = GoogleFontOptions<CondimentWeight, CondimentStyle
  * Condiment — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Condiment extends GoogleFont<CondimentWeight, CondimentStyle, CondimentSubset> {
+export default class Condiment extends GoogleFont<
+  CondimentWeight,
+  CondimentStyle,
+  CondimentSubset
+> {
   constructor(options?: CondimentOptions) {
     super(FAMILY, FACES, options);
   }

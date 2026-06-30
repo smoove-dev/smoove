@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nova Cut";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/novacut/v26/KFOkCnSYu8mL-39LkVxIIzI.woff2",
   },
   "latin-ext": {

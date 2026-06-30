@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Herr Von Muellerhoff";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/herrvonmuellerhoff/v23/WBL6rFjRZkREW8WqmCWYLgCkQKXb4CAft0c99KM.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/herrvonmuellerhoff/v23/WBL6rFjRZkREW8WqmCWYLgCkQKXb4CAft0c99KM.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/herrvonmuellerhoff/v23/WBL6rFjRZkREW8WqmCWYLgCkQKXb4CAft0cz9KNo3Q.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/herrvonmuellerhoff/v23/WBL6rFjRZkREW8WqmCWYLgCkQKXb4CAft0cz9KNo3Q.woff2",
   },
 } as const;
 
 export type HerrVonMuellerhoffWeight = "400";
 export type HerrVonMuellerhoffStyle = "normal";
 export type HerrVonMuellerhoffSubset = "latin" | "latin-ext";
-export type HerrVonMuellerhoffOptions = GoogleFontOptions<HerrVonMuellerhoffWeight, HerrVonMuellerhoffStyle, HerrVonMuellerhoffSubset>;
+export type HerrVonMuellerhoffOptions = GoogleFontOptions<
+  HerrVonMuellerhoffWeight,
+  HerrVonMuellerhoffStyle,
+  HerrVonMuellerhoffSubset
+>;
 
 /**
  * Herr Von Muellerhoff — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HerrVonMuellerhoff extends GoogleFont<HerrVonMuellerhoffWeight, HerrVonMuellerhoffStyle, HerrVonMuellerhoffSubset> {
+export default class HerrVonMuellerhoff extends GoogleFont<
+  HerrVonMuellerhoffWeight,
+  HerrVonMuellerhoffStyle,
+  HerrVonMuellerhoffSubset
+> {
   constructor(options?: HerrVonMuellerhoffOptions) {
     super(FAMILY, FACES, options);
   }

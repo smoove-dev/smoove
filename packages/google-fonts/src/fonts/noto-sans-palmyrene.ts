@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Palmyrene";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanspalmyrene/v17/ZgNPjOdKPa7CHqq0h37c_ASCWvH93SFCDnWzZw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanspalmyrene/v17/ZgNPjOdKPa7CHqq0h37c_ASCWvH93SFCDnWzZw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanspalmyrene/v17/ZgNPjOdKPa7CHqq0h37c_ASCWvH93SFCDnuzZ6dN.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanspalmyrene/v17/ZgNPjOdKPa7CHqq0h37c_ASCWvH93SFCDnuzZ6dN.woff2",
   },
-  "palmyrene": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanspalmyrene/v17/ZgNPjOdKPa7CHqq0h37c_ASCWvH93SFCDviSQpp0rA.woff2",
+  palmyrene: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanspalmyrene/v17/ZgNPjOdKPa7CHqq0h37c_ASCWvH93SFCDviSQpp0rA.woff2",
   },
 } as const;
 
 export type NotoSansPalmyreneWeight = "400";
 export type NotoSansPalmyreneStyle = "normal";
 export type NotoSansPalmyreneSubset = "latin" | "latin-ext" | "palmyrene";
-export type NotoSansPalmyreneOptions = GoogleFontOptions<NotoSansPalmyreneWeight, NotoSansPalmyreneStyle, NotoSansPalmyreneSubset>;
+export type NotoSansPalmyreneOptions = GoogleFontOptions<
+  NotoSansPalmyreneWeight,
+  NotoSansPalmyreneStyle,
+  NotoSansPalmyreneSubset
+>;
 
 /**
  * Noto Sans Palmyrene — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansPalmyrene extends GoogleFont<NotoSansPalmyreneWeight, NotoSansPalmyreneStyle, NotoSansPalmyreneSubset> {
+export default class NotoSansPalmyrene extends GoogleFont<
+  NotoSansPalmyreneWeight,
+  NotoSansPalmyreneStyle,
+  NotoSansPalmyreneSubset
+> {
   constructor(options?: NotoSansPalmyreneOptions) {
     super(FAMILY, FACES, options);
   }

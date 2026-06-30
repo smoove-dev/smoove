@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Carattere";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/carattere/v8/4iCv6Kp1b9dXlgt_CkvjsGyN.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/carattere/v8/4iCv6Kp1b9dXlgt_CkvjvmyNL4U.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/carattere/v8/4iCv6Kp1b9dXlgt_Ckvjv2yNL4U.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type CarattereOptions = GoogleFontOptions<CarattereWeight, CarattereStyle
  * Carattere — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Carattere extends GoogleFont<CarattereWeight, CarattereStyle, CarattereSubset> {
+export default class Carattere extends GoogleFont<
+  CarattereWeight,
+  CarattereStyle,
+  CarattereSubset
+> {
   constructor(options?: CarattereOptions) {
     super(FAMILY, FACES, options);
   }

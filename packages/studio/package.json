@@ -25,7 +25,9 @@
     },
     "./styles.css": "./dist/styles/studio.css"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -b && pnpm run build:css",
     "build:css": "tailwindcss -i ./src/studio.css -o ./dist/styles/studio.css --minify",

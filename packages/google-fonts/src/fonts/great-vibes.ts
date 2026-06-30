@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Great Vibes";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/greatvibes/v21/RWmMoKWR9v4ksMfaWd_JN9XBiaQ6DQ.woff2",
   },
   "cyrillic-ext": {
@@ -13,27 +13,41 @@ const FACES = {
   "greek-ext": {
     "400-normal": "https://fonts.gstatic.com/s/greatvibes/v21/RWmMoKWR9v4ksMfaWd_JN9XJiaQ6DQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/greatvibes/v21/RWmMoKWR9v4ksMfaWd_JN9XFiaQ.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/greatvibes/v21/RWmMoKWR9v4ksMfaWd_JN9XLiaQ6DQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/greatvibes/v21/RWmMoKWR9v4ksMfaWd_JN9XKiaQ6DQ.woff2",
   },
 } as const;
 
 export type GreatVibesWeight = "400";
 export type GreatVibesStyle = "normal";
-export type GreatVibesSubset = "cyrillic" | "cyrillic-ext" | "greek-ext" | "latin" | "latin-ext" | "vietnamese";
-export type GreatVibesOptions = GoogleFontOptions<GreatVibesWeight, GreatVibesStyle, GreatVibesSubset>;
+export type GreatVibesSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
+export type GreatVibesOptions = GoogleFontOptions<
+  GreatVibesWeight,
+  GreatVibesStyle,
+  GreatVibesSubset
+>;
 
 /**
  * Great Vibes — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GreatVibes extends GoogleFont<GreatVibesWeight, GreatVibesStyle, GreatVibesSubset> {
+export default class GreatVibes extends GoogleFont<
+  GreatVibesWeight,
+  GreatVibesStyle,
+  GreatVibesSubset
+> {
   constructor(options?: GreatVibesOptions) {
     super(FAMILY, FACES, options);
   }

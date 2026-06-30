@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Megrim";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/megrim/v18/46kulbz5WjvLqJZVam_h.woff2",
   },
   "latin-ext": {

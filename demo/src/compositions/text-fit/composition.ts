@@ -1,4 +1,4 @@
-import { Block, Composition, Easing, Sequence, Text, interpolate } from "@smoove/core";
+import { Block, Composition, Easing, interpolate, Sequence, Text } from "@smoove/core";
 import Konva from "konva";
 
 const MUTED = "#7d8590";

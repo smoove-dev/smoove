@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Trade Winds";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tradewinds/v18/AYCPpXPpYNIIT7h8-QenM0Jt5vM.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type TradeWindsWeight = "400";
 export type TradeWindsStyle = "normal";
 export type TradeWindsSubset = "latin";
-export type TradeWindsOptions = GoogleFontOptions<TradeWindsWeight, TradeWindsStyle, TradeWindsSubset>;
+export type TradeWindsOptions = GoogleFontOptions<
+  TradeWindsWeight,
+  TradeWindsStyle,
+  TradeWindsSubset
+>;
 
 /**
  * Trade Winds — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TradeWinds extends GoogleFont<TradeWindsWeight, TradeWindsStyle, TradeWindsSubset> {
+export default class TradeWinds extends GoogleFont<
+  TradeWindsWeight,
+  TradeWindsStyle,
+  TradeWindsSubset
+> {
   constructor(options?: TradeWindsOptions) {
     super(FAMILY, FACES, options);
   }

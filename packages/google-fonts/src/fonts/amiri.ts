@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Amiri";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-italic": "https://fonts.gstatic.com/s/amiri/v30/J7afnpd8CGxBHpUrhLQY66NL.woff2",
     "400-normal": "https://fonts.gstatic.com/s/amiri/v30/J7aRnpd8CGxBHpUrtLMA7w.woff2",
     "700-italic": "https://fonts.gstatic.com/s/amiri/v30/J7aanpd8CGxBHpUrjAo9_plqHwAa.woff2",
     "700-normal": "https://fonts.gstatic.com/s/amiri/v30/J7acnpd8CGxBHp2VkaY6zp5yGw.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/amiri/v30/J7afnpd8CGxBHpUrhLEY6w.woff2",
     "400-normal": "https://fonts.gstatic.com/s/amiri/v30/J7aRnpd8CGxBHpUutLM.woff2",
     "700-italic": "https://fonts.gstatic.com/s/amiri/v30/J7aanpd8CGxBHpUrjAo9_pxqHw.woff2",

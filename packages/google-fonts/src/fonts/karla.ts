@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Karla";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/karla/v33/qkBVXvYC6trAT7RQHt6e4Q.woff2",
     "200-normal": "https://fonts.gstatic.com/s/karla/v33/qkBbXvYC6trAT7RVLtw.woff2",
     "300-italic": "https://fonts.gstatic.com/s/karla/v33/qkBVXvYC6trAT7RQHt6e4Q.woff2",

@@ -4,16 +4,18 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tiro Telugu";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/tirotelugu/v7/aFTS7PxlZWk2EPiSymjXdJSPeKrcWw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tirotelugu/v7/aFTQ7PxlZWk2EPiSymjXdJSKSKg.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/tirotelugu/v7/aFTS7PxlZWk2EPiSymjXdJSPeKTcW2BO.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/tirotelugu/v7/aFTS7PxlZWk2EPiSymjXdJSPeKTcW2BO.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tirotelugu/v7/aFTQ7PxlZWk2EPiSymjXdJSESKjEXw.woff2",
   },
-  "telugu": {
-    "400-italic": "https://fonts.gstatic.com/s/tirotelugu/v7/aFTS7PxlZWk2EPiSymjXdJSPeLbcW2BO.woff2",
+  telugu: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/tirotelugu/v7/aFTS7PxlZWk2EPiSymjXdJSPeLbcW2BO.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tirotelugu/v7/aFTQ7PxlZWk2EPiSymjXdJSWSKjEXw.woff2",
   },
 } as const;
@@ -21,13 +23,21 @@ const FACES = {
 export type TiroTeluguWeight = "400";
 export type TiroTeluguStyle = "italic" | "normal";
 export type TiroTeluguSubset = "latin" | "latin-ext" | "telugu";
-export type TiroTeluguOptions = GoogleFontOptions<TiroTeluguWeight, TiroTeluguStyle, TiroTeluguSubset>;
+export type TiroTeluguOptions = GoogleFontOptions<
+  TiroTeluguWeight,
+  TiroTeluguStyle,
+  TiroTeluguSubset
+>;
 
 /**
  * Tiro Telugu — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TiroTelugu extends GoogleFont<TiroTeluguWeight, TiroTeluguStyle, TiroTeluguSubset> {
+export default class TiroTelugu extends GoogleFont<
+  TiroTeluguWeight,
+  TiroTeluguStyle,
+  TiroTeluguSubset
+> {
   constructor(options?: TiroTeluguOptions) {
     super(FAMILY, FACES, options);
   }

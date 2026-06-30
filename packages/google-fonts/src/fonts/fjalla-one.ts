@@ -7,13 +7,13 @@ const FACES = {
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/fjallaone/v16/Yq6R-LCAWCX3-6Ky7FAFrOx6kigt.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/fjallaone/v16/Yq6R-LCAWCX3-6Ky7FAFrOF6kg.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/fjallaone/v16/Yq6R-LCAWCX3-6Ky7FAFrO96kigt.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/fjallaone/v16/Yq6R-LCAWCX3-6Ky7FAFrO56kigt.woff2",
   },
 } as const;
@@ -27,7 +27,11 @@ export type FjallaOneOptions = GoogleFontOptions<FjallaOneWeight, FjallaOneStyle
  * Fjalla One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FjallaOne extends GoogleFont<FjallaOneWeight, FjallaOneStyle, FjallaOneSubset> {
+export default class FjallaOne extends GoogleFont<
+  FjallaOneWeight,
+  FjallaOneStyle,
+  FjallaOneSubset
+> {
   constructor(options?: FjallaOneOptions) {
     super(FAMILY, FACES, options);
   }

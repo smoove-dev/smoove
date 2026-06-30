@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Molle";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/molle/v25/E21n_dL5hOXFhWEsbz8sVg.woff2",
   },
   "latin-ext": {

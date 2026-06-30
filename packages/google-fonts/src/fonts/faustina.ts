@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Faustina";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/faustina/v23/XLYjIZPxYpJfTbZAFV-6Lc5iow.woff2",
     "300-normal": "https://fonts.gstatic.com/s/faustina/v23/XLYlIZPxYpJfTbZAFV-_Hcw.woff2",
     "400-italic": "https://fonts.gstatic.com/s/faustina/v23/XLYjIZPxYpJfTbZAFV-6Lc5iow.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/faustina/v23/XLYjIZPxYpJfTbZAFV-6LcBio08v.woff2",
     "800-normal": "https://fonts.gstatic.com/s/faustina/v23/XLYlIZPxYpJfTbZAFV-xHcx6pw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-italic": "https://fonts.gstatic.com/s/faustina/v23/XLYjIZPxYpJfTbZAFV-6LcFio08v.woff2",
     "300-normal": "https://fonts.gstatic.com/s/faustina/v23/XLYlIZPxYpJfTbZAFV-wHcx6pw.woff2",
     "400-italic": "https://fonts.gstatic.com/s/faustina/v23/XLYjIZPxYpJfTbZAFV-6LcFio08v.woff2",

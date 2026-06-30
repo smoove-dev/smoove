@@ -5,72 +5,139 @@ const FAMILY = "Noto Sans Canadian Aboriginal";
 
 const FACES = {
   "canadian-aboriginal": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx15whAXAg.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1WwhA.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx1YwhAXAg.woff2",
   },
-  "math": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
+  math: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx0qwhAXAg.woff2",
   },
-  "symbols": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
+  symbols: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanscanadianaboriginal/v28/4C_gLjTuEqPj-8J01CwaGkiZ9os0iGVkezM1mUT-j_Lmlx04whAXAg.woff2",
   },
 } as const;
 
-export type NotoSansCanadianAboriginalWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSansCanadianAboriginalWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSansCanadianAboriginalStyle = "normal";
-export type NotoSansCanadianAboriginalSubset = "canadian-aboriginal" | "latin" | "latin-ext" | "math" | "symbols";
-export type NotoSansCanadianAboriginalOptions = GoogleFontOptions<NotoSansCanadianAboriginalWeight, NotoSansCanadianAboriginalStyle, NotoSansCanadianAboriginalSubset>;
+export type NotoSansCanadianAboriginalSubset =
+  | "canadian-aboriginal"
+  | "latin"
+  | "latin-ext"
+  | "math"
+  | "symbols";
+export type NotoSansCanadianAboriginalOptions = GoogleFontOptions<
+  NotoSansCanadianAboriginalWeight,
+  NotoSansCanadianAboriginalStyle,
+  NotoSansCanadianAboriginalSubset
+>;
 
 /**
  * Noto Sans Canadian Aboriginal — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansCanadianAboriginal extends GoogleFont<NotoSansCanadianAboriginalWeight, NotoSansCanadianAboriginalStyle, NotoSansCanadianAboriginalSubset> {
+export default class NotoSansCanadianAboriginal extends GoogleFont<
+  NotoSansCanadianAboriginalWeight,
+  NotoSansCanadianAboriginalStyle,
+  NotoSansCanadianAboriginalSubset
+> {
   constructor(options?: NotoSansCanadianAboriginalOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Harmattan";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/harmattan/v24/goksH6L2DkFvVvRp9XpjSUqioP0.woff2",
     "500-normal": "https://fonts.gstatic.com/s/harmattan/v24/gokpH6L2DkFvVvRp9Xprv2m3mtxFm6Q.woff2",
     "600-normal": "https://fonts.gstatic.com/s/harmattan/v24/gokpH6L2DkFvVvRp9Xprk263mtxFm6Q.woff2",
     "700-normal": "https://fonts.gstatic.com/s/harmattan/v24/gokpH6L2DkFvVvRp9Xpr92-3mtxFm6Q.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/harmattan/v24/goksH6L2DkFvVvRp9XpjTEqi.woff2",
     "500-normal": "https://fonts.gstatic.com/s/harmattan/v24/gokpH6L2DkFvVvRp9Xprv2m3n9xF.woff2",
     "600-normal": "https://fonts.gstatic.com/s/harmattan/v24/gokpH6L2DkFvVvRp9Xprk263n9xF.woff2",
@@ -33,7 +33,11 @@ export type HarmattanOptions = GoogleFontOptions<HarmattanWeight, HarmattanStyle
  * Harmattan — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Harmattan extends GoogleFont<HarmattanWeight, HarmattanStyle, HarmattanSubset> {
+export default class Harmattan extends GoogleFont<
+  HarmattanWeight,
+  HarmattanStyle,
+  HarmattanSubset
+> {
   constructor(options?: HarmattanOptions) {
     super(FAMILY, FACES, options);
   }

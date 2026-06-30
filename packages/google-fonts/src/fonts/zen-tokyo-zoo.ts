@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zen Tokyo Zoo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/zentokyozoo/v8/NGSyv5ffC0J_BK6aFNtr6sRvwapkRA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/zentokyozoo/v8/NGSyv5ffC0J_BK6aFNtr6sRvwaRkRFe9.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/zentokyozoo/v8/NGSyv5ffC0J_BK6aFNtr6sRvwaRkRFe9.woff2",
   },
 } as const;
 
 export type ZenTokyoZooWeight = "400";
 export type ZenTokyoZooStyle = "normal";
 export type ZenTokyoZooSubset = "latin" | "latin-ext";
-export type ZenTokyoZooOptions = GoogleFontOptions<ZenTokyoZooWeight, ZenTokyoZooStyle, ZenTokyoZooSubset>;
+export type ZenTokyoZooOptions = GoogleFontOptions<
+  ZenTokyoZooWeight,
+  ZenTokyoZooStyle,
+  ZenTokyoZooSubset
+>;
 
 /**
  * Zen Tokyo Zoo — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZenTokyoZoo extends GoogleFont<ZenTokyoZooWeight, ZenTokyoZooStyle, ZenTokyoZooSubset> {
+export default class ZenTokyoZoo extends GoogleFont<
+  ZenTokyoZooWeight,
+  ZenTokyoZooStyle,
+  ZenTokyoZooSubset
+> {
   constructor(options?: ZenTokyoZooOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,22 +4,31 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cabin Sketch";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/cabinsketch/v23/QGYpz_kZZAGCONcK2A4bGOj8mNhN.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cabinsketch/v23/QGY2z_kZZAGCONcK2A4bGOj0I_1Y5tjz.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cabinsketch/v23/QGY2z_kZZAGCONcK2A4bGOj0I_1Y5tjz.woff2",
   },
 } as const;
 
 export type CabinSketchWeight = "400" | "700";
 export type CabinSketchStyle = "normal";
 export type CabinSketchSubset = "latin";
-export type CabinSketchOptions = GoogleFontOptions<CabinSketchWeight, CabinSketchStyle, CabinSketchSubset>;
+export type CabinSketchOptions = GoogleFontOptions<
+  CabinSketchWeight,
+  CabinSketchStyle,
+  CabinSketchSubset
+>;
 
 /**
  * Cabin Sketch — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CabinSketch extends GoogleFont<CabinSketchWeight, CabinSketchStyle, CabinSketchSubset> {
+export default class CabinSketch extends GoogleFont<
+  CabinSketchWeight,
+  CabinSketchStyle,
+  CabinSketchSubset
+> {
   constructor(options?: CabinSketchOptions) {
     super(FAMILY, FACES, options);
   }

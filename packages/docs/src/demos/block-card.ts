@@ -1,4 +1,4 @@
-import { Block, Composition, Rect, Sequence, Text, interpolateColors } from "@smoove/core";
+import { Block, Composition, interpolateColors, Rect, Sequence, Text } from "@smoove/core";
 
 /**
  * A card built with Block: a Flex container that paints a gradient background,

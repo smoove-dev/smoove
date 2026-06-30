@@ -4,26 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sorts Mill Goudy";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/sortsmillgoudy/v16/Qw3AZR9MED_6PSuS_50nEaVrfzgEbH80jbs_.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sortsmillgoudy/v16/Qw3GZR9MED_6PSuS_50nEaVrfzgEbHoEjw.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/sortsmillgoudy/v16/Qw3AZR9MED_6PSuS_50nEaVrfzgEbH80jbs_.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sortsmillgoudy/v16/Qw3GZR9MED_6PSuS_50nEaVrfzgEbHoEjw.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/sortsmillgoudy/v16/Qw3AZR9MED_6PSuS_50nEaVrfzgEbH80g7s_xPE.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sortsmillgoudy/v16/Qw3GZR9MED_6PSuS_50nEaVrfzgEbHQEj6M7.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/sortsmillgoudy/v16/Qw3AZR9MED_6PSuS_50nEaVrfzgEbH80g7s_xPE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sortsmillgoudy/v16/Qw3GZR9MED_6PSuS_50nEaVrfzgEbHQEj6M7.woff2",
   },
 } as const;
 
 export type SortsMillGoudyWeight = "400";
 export type SortsMillGoudyStyle = "italic" | "normal";
 export type SortsMillGoudySubset = "latin" | "latin-ext";
-export type SortsMillGoudyOptions = GoogleFontOptions<SortsMillGoudyWeight, SortsMillGoudyStyle, SortsMillGoudySubset>;
+export type SortsMillGoudyOptions = GoogleFontOptions<
+  SortsMillGoudyWeight,
+  SortsMillGoudyStyle,
+  SortsMillGoudySubset
+>;
 
 /**
  * Sorts Mill Goudy — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SortsMillGoudy extends GoogleFont<SortsMillGoudyWeight, SortsMillGoudyStyle, SortsMillGoudySubset> {
+export default class SortsMillGoudy extends GoogleFont<
+  SortsMillGoudyWeight,
+  SortsMillGoudyStyle,
+  SortsMillGoudySubset
+> {
   constructor(options?: SortsMillGoudyOptions) {
     super(FAMILY, FACES, options);
   }

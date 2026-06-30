@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Shalimar";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/shalimar/v9/uU9MCBoE6I6iNWFUvQP2-vE.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/shalimar/v9/uU9MCBoE6I6iNWFUvQP4-vG-gw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/shalimar/v9/uU9MCBoE6I6iNWFUvQP5-vG-gw.woff2",
   },
 } as const;

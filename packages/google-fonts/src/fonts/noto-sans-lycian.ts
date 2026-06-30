@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Lycian";
 
 const FACES = {
-  "lycian": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslycian/v16/QldVNSNMqAsHtsJ7UmqxBQA9r8wA16TQCQ.woff2",
+  lycian: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslycian/v16/QldVNSNMqAsHtsJ7UmqxBQA9r8wA16TQCQ.woff2",
   },
 } as const;
 
 export type NotoSansLycianWeight = "400";
 export type NotoSansLycianStyle = "normal";
 export type NotoSansLycianSubset = "lycian";
-export type NotoSansLycianOptions = GoogleFontOptions<NotoSansLycianWeight, NotoSansLycianStyle, NotoSansLycianSubset>;
+export type NotoSansLycianOptions = GoogleFontOptions<
+  NotoSansLycianWeight,
+  NotoSansLycianStyle,
+  NotoSansLycianSubset
+>;
 
 /**
  * Noto Sans Lycian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansLycian extends GoogleFont<NotoSansLycianWeight, NotoSansLycianStyle, NotoSansLycianSubset> {
+export default class NotoSansLycian extends GoogleFont<
+  NotoSansLycianWeight,
+  NotoSansLycianStyle,
+  NotoSansLycianSubset
+> {
   constructor(options?: NotoSansLycianOptions) {
     super(FAMILY, FACES, options);
   }

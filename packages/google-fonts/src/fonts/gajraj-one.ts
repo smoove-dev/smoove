@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gajraj One";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/gajrajone/v7/1cX2aUDCDpXsuWVb1jIjn1eghPit.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gajrajone/v7/1cX2aUDCDpXsuWVb1jIjn1aghA.woff2",
   },
   "latin-ext": {
@@ -24,7 +24,11 @@ export type GajrajOneOptions = GoogleFontOptions<GajrajOneWeight, GajrajOneStyle
  * Gajraj One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GajrajOne extends GoogleFont<GajrajOneWeight, GajrajOneStyle, GajrajOneSubset> {
+export default class GajrajOne extends GoogleFont<
+  GajrajOneWeight,
+  GajrajOneStyle,
+  GajrajOneSubset
+> {
   constructor(options?: GajrajOneOptions) {
     super(FAMILY, FACES, options);
   }

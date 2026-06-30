@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite ZA Guides";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/playwritezaguides/v1/O4ZOFHPsmxlhCg3-iycDyEwy0BT1ribk2HU.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritezaguides/v1/O4ZOFHPsmxlhCg3-iycDyEwy0BT1ribk2HU.woff2",
   },
 } as const;
 
 export type PlaywriteZAGuidesWeight = "400";
 export type PlaywriteZAGuidesStyle = "normal";
 export type PlaywriteZAGuidesSubset = "fallback";
-export type PlaywriteZAGuidesOptions = GoogleFontOptions<PlaywriteZAGuidesWeight, PlaywriteZAGuidesStyle, PlaywriteZAGuidesSubset>;
+export type PlaywriteZAGuidesOptions = GoogleFontOptions<
+  PlaywriteZAGuidesWeight,
+  PlaywriteZAGuidesStyle,
+  PlaywriteZAGuidesSubset
+>;
 
 /**
  * Playwrite ZA Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteZAGuides extends GoogleFont<PlaywriteZAGuidesWeight, PlaywriteZAGuidesStyle, PlaywriteZAGuidesSubset> {
+export default class PlaywriteZAGuides extends GoogleFont<
+  PlaywriteZAGuidesWeight,
+  PlaywriteZAGuidesStyle,
+  PlaywriteZAGuidesSubset
+> {
   constructor(options?: PlaywriteZAGuidesOptions) {
     super(FAMILY, FACES, options);
   }

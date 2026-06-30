@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Syriac Western";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnLKoQ.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnIqoQEyE.woff2",
   },
-  "syriac": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
+  syriac: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanssyriacwestern/v2/ke82OhEEMVFsvCav8hWjbItd6Jf6MP7Z9spJZ6UnX6oQEyE.woff2",
   },
 } as const;
 
-export type NotoSansSyriacWesternWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSansSyriacWesternWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSansSyriacWesternStyle = "normal";
 export type NotoSansSyriacWesternSubset = "latin" | "latin-ext" | "syriac";
-export type NotoSansSyriacWesternOptions = GoogleFontOptions<NotoSansSyriacWesternWeight, NotoSansSyriacWesternStyle, NotoSansSyriacWesternSubset>;
+export type NotoSansSyriacWesternOptions = GoogleFontOptions<
+  NotoSansSyriacWesternWeight,
+  NotoSansSyriacWesternStyle,
+  NotoSansSyriacWesternSubset
+>;
 
 /**
  * Noto Sans Syriac Western — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansSyriacWestern extends GoogleFont<NotoSansSyriacWesternWeight, NotoSansSyriacWesternStyle, NotoSansSyriacWesternSubset> {
+export default class NotoSansSyriacWestern extends GoogleFont<
+  NotoSansSyriacWesternWeight,
+  NotoSansSyriacWesternStyle,
+  NotoSansSyriacWesternSubset
+> {
   constructor(options?: NotoSansSyriacWesternOptions) {
     super(FAMILY, FACES, options);
   }

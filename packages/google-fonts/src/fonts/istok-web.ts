@@ -4,19 +4,21 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Istok Web";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/istokweb/v26/3qTpojGmgSyUukBzKslpA1t53kYoaQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/istokweb/v26/3qTvojGmgSyUukBzKslpAmt_xkI.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/istokweb/v26/3qT0ojGmgSyUukBzKslpA1PG-1MTSBP8Mw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/istokweb/v26/3qT0ojGmgSyUukBzKslpA1PG-1MTSBP8Mw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/istokweb/v26/3qTqojGmgSyUukBzKslhvU5q_WMVUBc.woff2",
   },
   "cyrillic-ext": {
     "400-italic": "https://fonts.gstatic.com/s/istokweb/v26/3qTpojGmgSyUukBzKslpA1tw3kYoaQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/istokweb/v26/3qTvojGmgSyUukBzKslpC2t_xkI.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/istokweb/v26/3qT0ojGmgSyUukBzKslpA1PG-1MaSBP8Mw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/istokweb/v26/3qT0ojGmgSyUukBzKslpA1PG-1MaSBP8Mw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/istokweb/v26/3qTqojGmgSyUukBzKslhvU5q9GMVUBc.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/istokweb/v26/3qTpojGmgSyUukBzKslpA1t93kY.woff2",
     "400-normal": "https://fonts.gstatic.com/s/istokweb/v26/3qTvojGmgSyUukBzKslpBmt_.woff2",
     "700-italic": "https://fonts.gstatic.com/s/istokweb/v26/3qT0ojGmgSyUukBzKslpA1PG-1MXSBM.woff2",
@@ -25,7 +27,8 @@ const FACES = {
   "latin-ext": {
     "400-italic": "https://fonts.gstatic.com/s/istokweb/v26/3qTpojGmgSyUukBzKslpA1tz3kYoaQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/istokweb/v26/3qTvojGmgSyUukBzKslpCGt_xkI.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/istokweb/v26/3qT0ojGmgSyUukBzKslpA1PG-1MZSBP8Mw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/istokweb/v26/3qT0ojGmgSyUukBzKslpA1PG-1MZSBP8Mw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/istokweb/v26/3qTqojGmgSyUukBzKslhvU5q92MVUBc.woff2",
   },
 } as const;

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Engagement";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/engagement/v29/x3dlckLDZbqa7RUs9MFVbN0msg.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type EngagementWeight = "400";
 export type EngagementStyle = "normal";
 export type EngagementSubset = "latin" | "latin-ext";
-export type EngagementOptions = GoogleFontOptions<EngagementWeight, EngagementStyle, EngagementSubset>;
+export type EngagementOptions = GoogleFontOptions<
+  EngagementWeight,
+  EngagementStyle,
+  EngagementSubset
+>;
 
 /**
  * Engagement — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Engagement extends GoogleFont<EngagementWeight, EngagementStyle, EngagementSubset> {
+export default class Engagement extends GoogleFont<
+  EngagementWeight,
+  EngagementStyle,
+  EngagementSubset
+> {
   constructor(options?: EngagementOptions) {
     super(FAMILY, FACES, options);
   }

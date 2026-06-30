@@ -4,45 +4,74 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Stick No Bills";
 
 const FACES = {
-  "latin": {
-    "200-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
+  latin: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZv3Q4.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZh3Q6FYw.woff2",
   },
-  "sinhala": {
-    "200-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
+  sinhala: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/sticknobills/v17/bWth7ffXZwHuAa9Uld-oEK4QKnZy3Q6FYw.woff2",
   },
 } as const;
 
 export type StickNoBillsWeight = "200" | "300" | "400" | "500" | "600" | "700" | "800";
 export type StickNoBillsStyle = "normal";
 export type StickNoBillsSubset = "latin" | "latin-ext" | "sinhala";
-export type StickNoBillsOptions = GoogleFontOptions<StickNoBillsWeight, StickNoBillsStyle, StickNoBillsSubset>;
+export type StickNoBillsOptions = GoogleFontOptions<
+  StickNoBillsWeight,
+  StickNoBillsStyle,
+  StickNoBillsSubset
+>;
 
 /**
  * Stick No Bills — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class StickNoBills extends GoogleFont<StickNoBillsWeight, StickNoBillsStyle, StickNoBillsSubset> {
+export default class StickNoBills extends GoogleFont<
+  StickNoBillsWeight,
+  StickNoBillsStyle,
+  StickNoBillsSubset
+> {
   constructor(options?: StickNoBillsOptions) {
     super(FAMILY, FACES, options);
   }

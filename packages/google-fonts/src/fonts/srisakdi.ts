@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Srisakdi";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/srisakdi/v18/yMJRMIlvdpDbkB0A-gq7dy0.woff2",
     "700-normal": "https://fonts.gstatic.com/s/srisakdi/v18/yMJWMIlvdpDbkB0A-gIAUjh2qtA.woff2",
   },
@@ -12,11 +12,11 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/srisakdi/v18/yMJRMIlvdpDbkB0A-gq1dy1Jiw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/srisakdi/v18/yMJWMIlvdpDbkB0A-gIAUjh4qtBBWw.woff2",
   },
-  "thai": {
+  thai: {
     "400-normal": "https://fonts.gstatic.com/s/srisakdi/v18/yMJRMIlvdpDbkB0A-gqvdy1Jiw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/srisakdi/v18/yMJWMIlvdpDbkB0A-gIAUjhiqtBBWw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/srisakdi/v18/yMJRMIlvdpDbkB0A-gq0dy1Jiw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/srisakdi/v18/yMJWMIlvdpDbkB0A-gIAUjh5qtBBWw.woff2",
   },

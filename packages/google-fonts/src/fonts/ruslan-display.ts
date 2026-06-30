@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ruslan Display";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/ruslandisplay/v27/Gw6jwczl81XcIZuckK_e3Upfdwxon921vg.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ruslandisplay/v27/Gw6jwczl81XcIZuckK_e3Upfdwxon921vg.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/ruslandisplay/v27/Gw6jwczl81XcIZuckK_e3Upfdwxsn90.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ruslandisplay/v27/Gw6jwczl81XcIZuckK_e3Upfdwxsn90.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/ruslandisplay/v27/Gw6jwczl81XcIZuckK_e3Upfdwxin921vg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ruslandisplay/v27/Gw6jwczl81XcIZuckK_e3Upfdwxin921vg.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/ruslandisplay/v27/Gw6jwczl81XcIZuckK_e3UpfdwwQn921vg.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ruslandisplay/v27/Gw6jwczl81XcIZuckK_e3UpfdwwQn921vg.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/ruslandisplay/v27/Gw6jwczl81XcIZuckK_e3UpfdwwCn921vg.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ruslandisplay/v27/Gw6jwczl81XcIZuckK_e3UpfdwwCn921vg.woff2",
   },
 } as const;
 
 export type RuslanDisplayWeight = "400";
 export type RuslanDisplayStyle = "normal";
 export type RuslanDisplaySubset = "cyrillic" | "latin" | "latin-ext" | "math" | "symbols";
-export type RuslanDisplayOptions = GoogleFontOptions<RuslanDisplayWeight, RuslanDisplayStyle, RuslanDisplaySubset>;
+export type RuslanDisplayOptions = GoogleFontOptions<
+  RuslanDisplayWeight,
+  RuslanDisplayStyle,
+  RuslanDisplaySubset
+>;
 
 /**
  * Ruslan Display — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RuslanDisplay extends GoogleFont<RuslanDisplayWeight, RuslanDisplayStyle, RuslanDisplaySubset> {
+export default class RuslanDisplay extends GoogleFont<
+  RuslanDisplayWeight,
+  RuslanDisplayStyle,
+  RuslanDisplaySubset
+> {
   constructor(options?: RuslanDisplayOptions) {
     super(FAMILY, FACES, options);
   }

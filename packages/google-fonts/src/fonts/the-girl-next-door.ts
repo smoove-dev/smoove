@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "The Girl Next Door";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/thegirlnextdoor/v25/pe0zMJCIMIsBjFxqYBIcZ6_OI5oFHCY4ULF6.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/thegirlnextdoor/v25/pe0zMJCIMIsBjFxqYBIcZ6_OI5oFHCY4ULF6.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/thegirlnextdoor/v25/pe0zMJCIMIsBjFxqYBIcZ6_OI5oFHCY4XrF686Y.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/thegirlnextdoor/v25/pe0zMJCIMIsBjFxqYBIcZ6_OI5oFHCY4XrF686Y.woff2",
   },
 } as const;
 
 export type TheGirlNextDoorWeight = "400";
 export type TheGirlNextDoorStyle = "normal";
 export type TheGirlNextDoorSubset = "latin" | "latin-ext";
-export type TheGirlNextDoorOptions = GoogleFontOptions<TheGirlNextDoorWeight, TheGirlNextDoorStyle, TheGirlNextDoorSubset>;
+export type TheGirlNextDoorOptions = GoogleFontOptions<
+  TheGirlNextDoorWeight,
+  TheGirlNextDoorStyle,
+  TheGirlNextDoorSubset
+>;
 
 /**
  * The Girl Next Door — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TheGirlNextDoor extends GoogleFont<TheGirlNextDoorWeight, TheGirlNextDoorStyle, TheGirlNextDoorSubset> {
+export default class TheGirlNextDoor extends GoogleFont<
+  TheGirlNextDoorWeight,
+  TheGirlNextDoorStyle,
+  TheGirlNextDoorSubset
+> {
   constructor(options?: TheGirlNextDoorOptions) {
     super(FAMILY, FACES, options);
   }

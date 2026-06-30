@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Amaranth";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/amaranth/v19/KtkoALODe433f0j1zMnALdKCxg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/amaranth/v19/KtkuALODe433f0j1zMnFHdA.woff2",
     "700-italic": "https://fonts.gstatic.com/s/amaranth/v19/KtkrALODe433f0j1zMnAJWmn02P3Eg.woff2",

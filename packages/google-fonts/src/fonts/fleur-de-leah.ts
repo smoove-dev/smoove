@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fleur De Leah";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/fleurdeleah/v11/AYCNpXX7ftYZWLhv9UmPJTMC1vGn4Q.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/fleurdeleah/v11/AYCNpXX7ftYZWLhv9UmPJTMC1vGn4Q.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/fleurdeleah/v11/AYCNpXX7ftYZWLhv9UmPJTMC1v-n4b_G.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/fleurdeleah/v11/AYCNpXX7ftYZWLhv9UmPJTMC1v-n4b_G.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/fleurdeleah/v11/AYCNpXX7ftYZWLhv9UmPJTMC1v6n4b_G.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/fleurdeleah/v11/AYCNpXX7ftYZWLhv9UmPJTMC1v6n4b_G.woff2",
   },
 } as const;
 
 export type FleurDeLeahWeight = "400";
 export type FleurDeLeahStyle = "normal";
 export type FleurDeLeahSubset = "latin" | "latin-ext" | "vietnamese";
-export type FleurDeLeahOptions = GoogleFontOptions<FleurDeLeahWeight, FleurDeLeahStyle, FleurDeLeahSubset>;
+export type FleurDeLeahOptions = GoogleFontOptions<
+  FleurDeLeahWeight,
+  FleurDeLeahStyle,
+  FleurDeLeahSubset
+>;
 
 /**
  * Fleur De Leah — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FleurDeLeah extends GoogleFont<FleurDeLeahWeight, FleurDeLeahStyle, FleurDeLeahSubset> {
+export default class FleurDeLeah extends GoogleFont<
+  FleurDeLeahWeight,
+  FleurDeLeahStyle,
+  FleurDeLeahSubset
+> {
   constructor(options?: FleurDeLeahOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,42 +4,66 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "GFS Neohellenic";
 
 const FACES = {
-  "greek": {
-    "400-italic": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QITdiDOrfiq0b7R8O1Iw9WLcY5jL5JPy6EjUw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIRdiDOrfiq0b7R8O1Iw9WLcY5jKaJO06U.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIWdiDOrfiq0b7R8O1Iw9WLcY5jL5r37rQfcsBu9w.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIUdiDOrfiq0b7R8O1Iw9WLcY5rkYdb74QeasQ.woff2",
+  greek: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QITdiDOrfiq0b7R8O1Iw9WLcY5jL5JPy6EjUw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIRdiDOrfiq0b7R8O1Iw9WLcY5jKaJO06U.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIWdiDOrfiq0b7R8O1Iw9WLcY5jL5r37rQfcsBu9w.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIUdiDOrfiq0b7R8O1Iw9WLcY5rkYdb74QeasQ.woff2",
   },
   "greek-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QITdiDOrfiq0b7R8O1Iw9WLcY5jL5JAy6EjUw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIRdiDOrfiq0b7R8O1Iw9WLcY5jJqJO06U.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIWdiDOrfiq0b7R8O1Iw9WLcY5jL5r37rQQcsBu9w.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIUdiDOrfiq0b7R8O1Iw9WLcY5rkYdb4IQeasQ.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QITdiDOrfiq0b7R8O1Iw9WLcY5jL5JAy6EjUw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIRdiDOrfiq0b7R8O1Iw9WLcY5jJqJO06U.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIWdiDOrfiq0b7R8O1Iw9WLcY5jL5r37rQQcsBu9w.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIUdiDOrfiq0b7R8O1Iw9WLcY5rkYdb4IQeasQ.woff2",
   },
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QITdiDOrfiq0b7R8O1Iw9WLcY5jL5JMy6E.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIRdiDOrfiq0b7R8O1Iw9WLcY5jKqJO.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIWdiDOrfiq0b7R8O1Iw9WLcY5jL5r37rQccsA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIUdiDOrfiq0b7R8O1Iw9WLcY5rkYdb7IQe.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QITdiDOrfiq0b7R8O1Iw9WLcY5jL5JMy6E.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIRdiDOrfiq0b7R8O1Iw9WLcY5jKqJO.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIWdiDOrfiq0b7R8O1Iw9WLcY5jL5r37rQccsA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIUdiDOrfiq0b7R8O1Iw9WLcY5rkYdb7IQe.woff2",
   },
-  "vietnamese": {
-    "400-italic": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QITdiDOrfiq0b7R8O1Iw9WLcY5jL5JDy6EjUw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIRdiDOrfiq0b7R8O1Iw9WLcY5jJaJO06U.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIWdiDOrfiq0b7R8O1Iw9WLcY5jL5r37rQTcsBu9w.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIUdiDOrfiq0b7R8O1Iw9WLcY5rkYdb44QeasQ.woff2",
+  vietnamese: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QITdiDOrfiq0b7R8O1Iw9WLcY5jL5JDy6EjUw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIRdiDOrfiq0b7R8O1Iw9WLcY5jJaJO06U.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIWdiDOrfiq0b7R8O1Iw9WLcY5jL5r37rQTcsBu9w.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/gfsneohellenic/v27/8QIUdiDOrfiq0b7R8O1Iw9WLcY5rkYdb44QeasQ.woff2",
   },
 } as const;
 
 export type GFSNeohellenicWeight = "400" | "700";
 export type GFSNeohellenicStyle = "italic" | "normal";
 export type GFSNeohellenicSubset = "greek" | "greek-ext" | "latin" | "vietnamese";
-export type GFSNeohellenicOptions = GoogleFontOptions<GFSNeohellenicWeight, GFSNeohellenicStyle, GFSNeohellenicSubset>;
+export type GFSNeohellenicOptions = GoogleFontOptions<
+  GFSNeohellenicWeight,
+  GFSNeohellenicStyle,
+  GFSNeohellenicSubset
+>;
 
 /**
  * GFS Neohellenic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GFSNeohellenic extends GoogleFont<GFSNeohellenicWeight, GFSNeohellenicStyle, GFSNeohellenicSubset> {
+export default class GFSNeohellenic extends GoogleFont<
+  GFSNeohellenicWeight,
+  GFSNeohellenicStyle,
+  GFSNeohellenicSubset
+> {
   constructor(options?: GFSNeohellenicOptions) {
     super(FAMILY, FACES, options);
   }

@@ -2,10 +2,10 @@ import Konva from "konva";
 import type { AudioAsset } from "../media/audio/asset.js";
 import { type AudioChannel, AudioMixer } from "../media/audio/mixer.js";
 import { FONT_MARK, MEDIA_MARK } from "../media/media-marker.js";
-import { type Emitter, createEmitter } from "./emitter.js";
-import { type Environment, type EnvironmentMode, detectEnvironment } from "./environment.js";
+import { createEmitter, type Emitter } from "./emitter.js";
+import { detectEnvironment, type Environment, type EnvironmentMode } from "./environment.js";
 import { Sequence, type SequenceProvider } from "./sequence.js";
-import { type ReadonlySignal, type Signal, createSignal, derived } from "./signal.js";
+import { createSignal, derived, type ReadonlySignal, type Signal } from "./signal.js";
 
 /** A SequenceProvider duck-types on a `sequences()` method (Konva layers lack one). */
 function isSequenceProvider(x: Konva.Layer | SequenceProvider): x is SequenceProvider {

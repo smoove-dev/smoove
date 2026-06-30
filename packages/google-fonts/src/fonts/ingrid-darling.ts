@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ingrid Darling";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/ingriddarling/v7/LDIrapaJNxUtSuFdw-9yf4rCPvLJs78.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ingriddarling/v7/LDIrapaJNxUtSuFdw-9yf4rCPvLJs78.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/ingriddarling/v7/LDIrapaJNxUtSuFdw-9yf4rCPvLHs78J8g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ingriddarling/v7/LDIrapaJNxUtSuFdw-9yf4rCPvLHs78J8g.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/ingriddarling/v7/LDIrapaJNxUtSuFdw-9yf4rCPvLGs78J8g.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ingriddarling/v7/LDIrapaJNxUtSuFdw-9yf4rCPvLGs78J8g.woff2",
   },
 } as const;
 
 export type IngridDarlingWeight = "400";
 export type IngridDarlingStyle = "normal";
 export type IngridDarlingSubset = "latin" | "latin-ext" | "vietnamese";
-export type IngridDarlingOptions = GoogleFontOptions<IngridDarlingWeight, IngridDarlingStyle, IngridDarlingSubset>;
+export type IngridDarlingOptions = GoogleFontOptions<
+  IngridDarlingWeight,
+  IngridDarlingStyle,
+  IngridDarlingSubset
+>;
 
 /**
  * Ingrid Darling — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IngridDarling extends GoogleFont<IngridDarlingWeight, IngridDarlingStyle, IngridDarlingSubset> {
+export default class IngridDarling extends GoogleFont<
+  IngridDarlingWeight,
+  IngridDarlingStyle,
+  IngridDarlingSubset
+> {
   constructor(options?: IngridDarlingOptions) {
     super(FAMILY, FACES, options);
   }

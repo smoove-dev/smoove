@@ -10,7 +10,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/bjcree/v3/QldMNTVAjTwa8_QC5B2BYVlb_qw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/bjcree/v3/QldMNTVAjTwa8_QCgByBYVlb_qw.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bjcree/v3/QldPNTVAjTwa8_QKOzmU.woff2",
     "500-normal": "https://fonts.gstatic.com/s/bjcree/v3/QldMNTVAjTwa8_QCyBqBTllb.woff2",
     "600-normal": "https://fonts.gstatic.com/s/bjcree/v3/QldMNTVAjTwa8_QC5B2BTllb.woff2",

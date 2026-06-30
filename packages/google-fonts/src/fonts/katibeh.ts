@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Katibeh";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/katibeh/v22/ZGjXol5MQJog4bxDWC9bVQNd.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/katibeh/v22/ZGjXol5MQJog4bxDWCpbVQ.woff2",
   },
   "latin-ext": {

@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rammetto One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rammettoone/v21/LhWiMV3HOfMbMetJG3lQDppNNfGd.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rammettoone/v21/LhWiMV3HOfMbMetJG3lQDppNO_Gduu8.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rammettoone/v21/LhWiMV3HOfMbMetJG3lQDppNO_Gduu8.woff2",
   },
 } as const;
 
 export type RammettoOneWeight = "400";
 export type RammettoOneStyle = "normal";
 export type RammettoOneSubset = "latin" | "latin-ext";
-export type RammettoOneOptions = GoogleFontOptions<RammettoOneWeight, RammettoOneStyle, RammettoOneSubset>;
+export type RammettoOneOptions = GoogleFontOptions<
+  RammettoOneWeight,
+  RammettoOneStyle,
+  RammettoOneSubset
+>;
 
 /**
  * Rammetto One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RammettoOne extends GoogleFont<RammettoOneWeight, RammettoOneStyle, RammettoOneSubset> {
+export default class RammettoOne extends GoogleFont<
+  RammettoOneWeight,
+  RammettoOneStyle,
+  RammettoOneSubset
+> {
   constructor(options?: RammettoOneOptions) {
     super(FAMILY, FACES, options);
   }

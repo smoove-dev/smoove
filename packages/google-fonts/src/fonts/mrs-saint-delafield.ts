@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mrs Saint Delafield";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/mrssaintdelafield/v14/v6-IGZDIOVXH9xtmTZfRagunqBw5WC62QKknLw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/mrssaintdelafield/v14/v6-IGZDIOVXH9xtmTZfRagunqBw5WC62QKknLw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/mrssaintdelafield/v14/v6-IGZDIOVXH9xtmTZfRagunqBw5WC62QKcnL_ub.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/mrssaintdelafield/v14/v6-IGZDIOVXH9xtmTZfRagunqBw5WC62QKcnL_ub.woff2",
   },
 } as const;
 
 export type MrsSaintDelafieldWeight = "400";
 export type MrsSaintDelafieldStyle = "normal";
 export type MrsSaintDelafieldSubset = "latin" | "latin-ext";
-export type MrsSaintDelafieldOptions = GoogleFontOptions<MrsSaintDelafieldWeight, MrsSaintDelafieldStyle, MrsSaintDelafieldSubset>;
+export type MrsSaintDelafieldOptions = GoogleFontOptions<
+  MrsSaintDelafieldWeight,
+  MrsSaintDelafieldStyle,
+  MrsSaintDelafieldSubset
+>;
 
 /**
  * Mrs Saint Delafield — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MrsSaintDelafield extends GoogleFont<MrsSaintDelafieldWeight, MrsSaintDelafieldStyle, MrsSaintDelafieldSubset> {
+export default class MrsSaintDelafield extends GoogleFont<
+  MrsSaintDelafieldWeight,
+  MrsSaintDelafieldStyle,
+  MrsSaintDelafieldSubset
+> {
   constructor(options?: MrsSaintDelafieldOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Beau Rivage";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/beaurivage/v2/UcCi3FIgIG2bH4mMNWJUllgwP5s.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/beaurivage/v2/UcCi3FIgIG2bH4mMNWJUllg-P5tMKw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/beaurivage/v2/UcCi3FIgIG2bH4mMNWJUllg_P5tMKw.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type BeauRivageWeight = "400";
 export type BeauRivageStyle = "normal";
 export type BeauRivageSubset = "latin" | "latin-ext" | "vietnamese";
-export type BeauRivageOptions = GoogleFontOptions<BeauRivageWeight, BeauRivageStyle, BeauRivageSubset>;
+export type BeauRivageOptions = GoogleFontOptions<
+  BeauRivageWeight,
+  BeauRivageStyle,
+  BeauRivageSubset
+>;
 
 /**
  * Beau Rivage — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BeauRivage extends GoogleFont<BeauRivageWeight, BeauRivageStyle, BeauRivageSubset> {
+export default class BeauRivage extends GoogleFont<
+  BeauRivageWeight,
+  BeauRivageStyle,
+  BeauRivageSubset
+> {
   constructor(options?: BeauRivageOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Pau Cin Hau";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanspaucinhau/v21/x3d-cl3IZKmUqiMg_9wBLLtzl22EayN7ehIti0-r.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanspaucinhau/v21/x3d-cl3IZKmUqiMg_9wBLLtzl22EayN7ehIti0-r.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanspaucinhau/v21/x3d-cl3IZKmUqiMg_9wBLLtzl22EayN7ehIthU-rGMw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanspaucinhau/v21/x3d-cl3IZKmUqiMg_9wBLLtzl22EayN7ehIthU-rGMw.woff2",
   },
   "pau-cin-hau": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanspaucinhau/v21/x3d-cl3IZKmUqiMg_9wBLLtzl22EayN7ehItBW6OJfV1.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanspaucinhau/v21/x3d-cl3IZKmUqiMg_9wBLLtzl22EayN7ehItBW6OJfV1.woff2",
   },
 } as const;
 
 export type NotoSansPauCinHauWeight = "400";
 export type NotoSansPauCinHauStyle = "normal";
 export type NotoSansPauCinHauSubset = "latin" | "latin-ext" | "pau-cin-hau";
-export type NotoSansPauCinHauOptions = GoogleFontOptions<NotoSansPauCinHauWeight, NotoSansPauCinHauStyle, NotoSansPauCinHauSubset>;
+export type NotoSansPauCinHauOptions = GoogleFontOptions<
+  NotoSansPauCinHauWeight,
+  NotoSansPauCinHauStyle,
+  NotoSansPauCinHauSubset
+>;
 
 /**
  * Noto Sans Pau Cin Hau — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansPauCinHau extends GoogleFont<NotoSansPauCinHauWeight, NotoSansPauCinHauStyle, NotoSansPauCinHauSubset> {
+export default class NotoSansPauCinHau extends GoogleFont<
+  NotoSansPauCinHauWeight,
+  NotoSansPauCinHauStyle,
+  NotoSansPauCinHauSubset
+> {
   constructor(options?: NotoSansPauCinHauOptions) {
     super(FAMILY, FACES, options);
   }

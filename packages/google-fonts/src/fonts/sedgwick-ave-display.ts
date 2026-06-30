@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sedgwick Ave Display";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/sedgwickavedisplay/v23/xfuu0XPgU3jZPUoUo3ScvmPi-NapQ8OxM1c0fec.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sedgwickavedisplay/v23/xfuu0XPgU3jZPUoUo3ScvmPi-NapQ8OxM1c0fec.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/sedgwickavedisplay/v23/xfuu0XPgU3jZPUoUo3ScvmPi-NapQ8OxM1c6fecXOw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sedgwickavedisplay/v23/xfuu0XPgU3jZPUoUo3ScvmPi-NapQ8OxM1c6fecXOw.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/sedgwickavedisplay/v23/xfuu0XPgU3jZPUoUo3ScvmPi-NapQ8OxM1c7fecXOw.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sedgwickavedisplay/v23/xfuu0XPgU3jZPUoUo3ScvmPi-NapQ8OxM1c7fecXOw.woff2",
   },
 } as const;
 
 export type SedgwickAveDisplayWeight = "400";
 export type SedgwickAveDisplayStyle = "normal";
 export type SedgwickAveDisplaySubset = "latin" | "latin-ext" | "vietnamese";
-export type SedgwickAveDisplayOptions = GoogleFontOptions<SedgwickAveDisplayWeight, SedgwickAveDisplayStyle, SedgwickAveDisplaySubset>;
+export type SedgwickAveDisplayOptions = GoogleFontOptions<
+  SedgwickAveDisplayWeight,
+  SedgwickAveDisplayStyle,
+  SedgwickAveDisplaySubset
+>;
 
 /**
  * Sedgwick Ave Display — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SedgwickAveDisplay extends GoogleFont<SedgwickAveDisplayWeight, SedgwickAveDisplayStyle, SedgwickAveDisplaySubset> {
+export default class SedgwickAveDisplay extends GoogleFont<
+  SedgwickAveDisplayWeight,
+  SedgwickAveDisplayStyle,
+  SedgwickAveDisplaySubset
+> {
   constructor(options?: SedgwickAveDisplayOptions) {
     super(FAMILY, FACES, options);
   }

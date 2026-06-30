@@ -4,18 +4,27 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans SC";
 
 const FACES = {
-  "cyrillic": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
+  cyrillic: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRKoKIyQ4.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRLoKI.woff2",
     "200-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRLoKI.woff2",
     "300-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRLoKI.woff2",
@@ -27,39 +36,74 @@ const FACES = {
     "900-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRLoKI.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIIKIyQ4.woff2",
   },
-  "vietnamese": {
-    "100-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
+  vietnamese: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosanssc/v40/k3kXo84MPvpLmixcA63oeALRIYKIyQ4.woff2",
   },
 } as const;
 
-export type NotoSansSCWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSansSCWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSansSCStyle = "normal";
 export type NotoSansSCSubset = "cyrillic" | "latin" | "latin-ext" | "vietnamese";
-export type NotoSansSCOptions = GoogleFontOptions<NotoSansSCWeight, NotoSansSCStyle, NotoSansSCSubset>;
+export type NotoSansSCOptions = GoogleFontOptions<
+  NotoSansSCWeight,
+  NotoSansSCStyle,
+  NotoSansSCSubset
+>;
 
 /**
  * Noto Sans SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansSC extends GoogleFont<NotoSansSCWeight, NotoSansSCStyle, NotoSansSCSubset> {
+export default class NotoSansSC extends GoogleFont<
+  NotoSansSCWeight,
+  NotoSansSCStyle,
+  NotoSansSCSubset
+> {
   constructor(options?: NotoSansSCOptions) {
     super(FAMILY, FACES, options);
   }

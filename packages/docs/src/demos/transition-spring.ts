@@ -1,5 +1,5 @@
 import { Composition, Rect, type Sequence, Text } from "@smoove/core";
-import { TransitionSeries, slide, springTiming } from "@smoove/transitions";
+import { slide, springTiming, TransitionSeries } from "@smoove/transitions";
 
 /**
  * Timing reshapes the 0 to 1 progress a presentation reads. springTiming runs

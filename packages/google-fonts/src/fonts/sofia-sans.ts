@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sofia Sans";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-italic": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6T-LCVXSLy9uPBwlATrORKlDApcb8.woff2",
     "100-normal": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6R-LCVXSLy9uPBwlATrOV6kigt.woff2",
     "200-italic": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6T-LCVXSLy9uPBwlATrORKlDApcb8.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6T-LCVXSLy9uPBwlATrORKnTApcb8.woff2",
     "900-normal": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6R-LCVXSLy9uPBwlATrOx6kigt.woff2",
   },
-  "greek": {
+  greek: {
     "100-italic": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6T-LCVXSLy9uPBwlATrORKkzApcb8.woff2",
     "100-normal": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6R-LCVXSLy9uPBwlATrOJ6kigt.woff2",
     "200-italic": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6T-LCVXSLy9uPBwlATrORKkzApcb8.woff2",
@@ -64,7 +64,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6T-LCVXSLy9uPBwlATrORKkzApcb8.woff2",
     "900-normal": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6R-LCVXSLy9uPBwlATrOJ6kigt.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6T-LCVXSLy9uPBwlATrORKkDAp.woff2",
     "100-normal": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6R-LCVXSLy9uPBwlATrOF6kg.woff2",
     "200-italic": "https://fonts.gstatic.com/s/sofiasans/v20/Yq6T-LCVXSLy9uPBwlATrORKkDAp.woff2",
@@ -115,7 +115,11 @@ export type SofiaSansOptions = GoogleFontOptions<SofiaSansWeight, SofiaSansStyle
  * Sofia Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SofiaSans extends GoogleFont<SofiaSansWeight, SofiaSansStyle, SofiaSansSubset> {
+export default class SofiaSans extends GoogleFont<
+  SofiaSansWeight,
+  SofiaSansStyle,
+  SofiaSansSubset
+> {
   constructor(options?: SofiaSansOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Meow Script";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/meowscript/v6/0FlQVPqanlaJrtr8AnJ0ERcm2fw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/meowscript/v6/0FlQVPqanlaJrtr8AnJ0ERco2fwyfA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/meowscript/v6/0FlQVPqanlaJrtr8AnJ0ERcp2fwyfA.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type MeowScriptWeight = "400";
 export type MeowScriptStyle = "normal";
 export type MeowScriptSubset = "latin" | "latin-ext" | "vietnamese";
-export type MeowScriptOptions = GoogleFontOptions<MeowScriptWeight, MeowScriptStyle, MeowScriptSubset>;
+export type MeowScriptOptions = GoogleFontOptions<
+  MeowScriptWeight,
+  MeowScriptStyle,
+  MeowScriptSubset
+>;
 
 /**
  * Meow Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MeowScript extends GoogleFont<MeowScriptWeight, MeowScriptStyle, MeowScriptSubset> {
+export default class MeowScript extends GoogleFont<
+  MeowScriptWeight,
+  MeowScriptStyle,
+  MeowScriptSubset
+> {
   constructor(options?: MeowScriptOptions) {
     super(FAMILY, FACES, options);
   }

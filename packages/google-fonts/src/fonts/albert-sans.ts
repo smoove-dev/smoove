@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Albert Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFWaHg.woff2",
     "100-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZbYFc.woff2",
     "200-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFWaHg.woff2",
@@ -25,37 +25,63 @@ const FACES = {
     "900-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZbYFc.woff2",
   },
   "latin-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
     "100-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZVYFeCGg.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
     "200-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZVYFeCGg.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
     "300-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZVYFeCGg.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
     "400-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZVYFeCGg.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
     "500-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZVYFeCGg.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
     "600-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZVYFeCGg.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
     "700-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZVYFeCGg.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
     "800-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZVYFeCGg.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/albertsans/v4/i7dMIFdwYjGaAMFtZd_QA1ZeUFuaHjyV.woff2",
     "900-normal": "https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZVYFeCGg.woff2",
   },
 } as const;
 
-export type AlbertSansWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type AlbertSansWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type AlbertSansStyle = "italic" | "normal";
 export type AlbertSansSubset = "latin" | "latin-ext";
-export type AlbertSansOptions = GoogleFontOptions<AlbertSansWeight, AlbertSansStyle, AlbertSansSubset>;
+export type AlbertSansOptions = GoogleFontOptions<
+  AlbertSansWeight,
+  AlbertSansStyle,
+  AlbertSansSubset
+>;
 
 /**
  * Albert Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AlbertSans extends GoogleFont<AlbertSansWeight, AlbertSansStyle, AlbertSansSubset> {
+export default class AlbertSans extends GoogleFont<
+  AlbertSansWeight,
+  AlbertSansStyle,
+  AlbertSansSubset
+> {
   constructor(options?: AlbertSansOptions) {
     super(FAMILY, FACES, options);
   }

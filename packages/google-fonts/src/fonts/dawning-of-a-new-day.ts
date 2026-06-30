@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Dawning of a New Day";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/dawningofanewday/v22/t5t_IQMbOp2SEwuncwLRjMfIg1yYit_nAw8cj2M.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/dawningofanewday/v22/t5t_IQMbOp2SEwuncwLRjMfIg1yYit_nAw8cj2M.woff2",
   },
 } as const;
 
 export type DawningOfANewDayWeight = "400";
 export type DawningOfANewDayStyle = "normal";
 export type DawningOfANewDaySubset = "latin";
-export type DawningOfANewDayOptions = GoogleFontOptions<DawningOfANewDayWeight, DawningOfANewDayStyle, DawningOfANewDaySubset>;
+export type DawningOfANewDayOptions = GoogleFontOptions<
+  DawningOfANewDayWeight,
+  DawningOfANewDayStyle,
+  DawningOfANewDaySubset
+>;
 
 /**
  * Dawning of a New Day — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DawningOfANewDay extends GoogleFont<DawningOfANewDayWeight, DawningOfANewDayStyle, DawningOfANewDaySubset> {
+export default class DawningOfANewDay extends GoogleFont<
+  DawningOfANewDayWeight,
+  DawningOfANewDayStyle,
+  DawningOfANewDaySubset
+> {
   constructor(options?: DawningOfANewDayOptions) {
     super(FAMILY, FACES, options);
   }

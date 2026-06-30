@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ephesis";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ephesis/v11/uU9PCBUS8IerL2VG3xTR3w.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/ephesis/v11/uU9PCBUS8IerL2VG3xrR38yH.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/ephesis/v11/uU9PCBUS8IerL2VG3xvR38yH.woff2",
   },
 } as const;

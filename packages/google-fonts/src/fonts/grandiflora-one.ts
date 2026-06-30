@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Grandiflora One";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/grandifloraone/v4/0ybmGD0g27bCk_5MGWZcKWhxwnUk-hfz.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/grandifloraone/v4/0ybmGD0g27bCk_5MGWZcKWhxwnUk-hfz.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/grandifloraone/v4/0ybmGD0g27bCk_5MGWZcKWhxwnUk9BfzwDM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/grandifloraone/v4/0ybmGD0g27bCk_5MGWZcKWhxwnUk9BfzwDM.woff2",
   },
 } as const;
 
 export type GrandifloraOneWeight = "400";
 export type GrandifloraOneStyle = "normal";
 export type GrandifloraOneSubset = "latin" | "latin-ext";
-export type GrandifloraOneOptions = GoogleFontOptions<GrandifloraOneWeight, GrandifloraOneStyle, GrandifloraOneSubset>;
+export type GrandifloraOneOptions = GoogleFontOptions<
+  GrandifloraOneWeight,
+  GrandifloraOneStyle,
+  GrandifloraOneSubset
+>;
 
 /**
  * Grandiflora One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GrandifloraOne extends GoogleFont<GrandifloraOneWeight, GrandifloraOneStyle, GrandifloraOneSubset> {
+export default class GrandifloraOne extends GoogleFont<
+  GrandifloraOneWeight,
+  GrandifloraOneStyle,
+  GrandifloraOneSubset
+> {
   constructor(options?: GrandifloraOneOptions) {
     super(FAMILY, FACES, options);
   }

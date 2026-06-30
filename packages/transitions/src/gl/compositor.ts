@@ -1,5 +1,5 @@
 import type { GlUniforms } from "../types.js";
-import { type GlContext, VERTEX_SHADER, createProgram, createTexture } from "./shared.js";
+import { createProgram, createTexture, type GlContext, VERTEX_SHADER } from "./shared.js";
 
 type CanvasImage = HTMLCanvasElement | OffscreenCanvas;
 

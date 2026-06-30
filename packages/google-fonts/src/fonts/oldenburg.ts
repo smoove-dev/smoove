@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Oldenburg";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/oldenburg/v24/fC1jPY5JYWzbywv7c4VKVkSp.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type OldenburgOptions = GoogleFontOptions<OldenburgWeight, OldenburgStyle
  * Oldenburg — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Oldenburg extends GoogleFont<OldenburgWeight, OldenburgStyle, OldenburgSubset> {
+export default class Oldenburg extends GoogleFont<
+  OldenburgWeight,
+  OldenburgStyle,
+  OldenburgSubset
+> {
   constructor(options?: OldenburgOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yeseva One";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/yesevaone/v24/OpNJno4ck8vc-xYpwWWxlilVWyXD.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/yesevaone/v24/OpNJno4ck8vc-xYpwWWxliBVWyXD.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/yesevaone/v24/OpNJno4ck8vc-xYpwWWxli1VWw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/yesevaone/v24/OpNJno4ck8vc-xYpwWWxliNVWyXD.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/yesevaone/v24/OpNJno4ck8vc-xYpwWWxliJVWyXD.woff2",
   },
 } as const;
@@ -30,7 +30,11 @@ export type YesevaOneOptions = GoogleFontOptions<YesevaOneWeight, YesevaOneStyle
  * Yeseva One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class YesevaOne extends GoogleFont<YesevaOneWeight, YesevaOneStyle, YesevaOneSubset> {
+export default class YesevaOne extends GoogleFont<
+  YesevaOneWeight,
+  YesevaOneStyle,
+  YesevaOneSubset
+> {
   constructor(options?: YesevaOneOptions) {
     super(FAMILY, FACES, options);
   }

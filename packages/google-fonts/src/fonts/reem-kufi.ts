@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Reem Kufi";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzbWW5O7w.woff2",
     "500-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzbWW5O7w.woff2",
     "600-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzbWW5O7w.woff2",
     "700-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzbWW5O7w.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzaGW5.woff2",
     "500-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzaGW5.woff2",
     "600-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzaGW5.woff2",
@@ -22,7 +22,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzZmW5O7w.woff2",
     "700-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzZmW5O7w.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzZ2W5O7w.woff2",
     "500-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzZ2W5O7w.woff2",
     "600-normal": "https://fonts.gstatic.com/s/reemkufi/v28/2sDcZGJLip7W2J7v7wQzZ2W5O7w.woff2",

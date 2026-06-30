@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "League Script";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/leaguescript/v30/CSR54zpSlumSWj9CGVsoBZdeWNReuQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/leaguescript/v30/CSR54zpSlumSWj9CGVsoBZdeWNReuQ.woff2",
   },
 } as const;
 
 export type LeagueScriptWeight = "400";
 export type LeagueScriptStyle = "normal";
 export type LeagueScriptSubset = "latin";
-export type LeagueScriptOptions = GoogleFontOptions<LeagueScriptWeight, LeagueScriptStyle, LeagueScriptSubset>;
+export type LeagueScriptOptions = GoogleFontOptions<
+  LeagueScriptWeight,
+  LeagueScriptStyle,
+  LeagueScriptSubset
+>;
 
 /**
  * League Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LeagueScript extends GoogleFont<LeagueScriptWeight, LeagueScriptStyle, LeagueScriptSubset> {
+export default class LeagueScript extends GoogleFont<
+  LeagueScriptWeight,
+  LeagueScriptStyle,
+  LeagueScriptSubset
+> {
   constructor(options?: LeagueScriptOptions) {
     super(FAMILY, FACES, options);
   }

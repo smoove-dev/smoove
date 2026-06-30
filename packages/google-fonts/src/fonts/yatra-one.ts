@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yatra One";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/yatraone/v16/C8ch4copsHzj8p7NaF0BxVmAXRA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/yatraone/v16/C8ch4copsHzj8p7NaF0BxFmA.woff2",
   },
   "latin-ext": {

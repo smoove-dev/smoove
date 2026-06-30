@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hepta Slab";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/heptaslab/v25/ea8cadoyU_jkHdalebHv42llhA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/heptaslab/v25/ea8cadoyU_jkHdalebHv42llhA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/heptaslab/v25/ea8cadoyU_jkHdalebHv42llhA.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/heptaslab/v25/ea8cadoyU_jkHdalebHv42dlhGKU.woff2",
     "900-normal": "https://fonts.gstatic.com/s/heptaslab/v25/ea8cadoyU_jkHdalebHv42dlhGKU.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/heptaslab/v25/ea8cadoyU_jkHdalebHv42ZlhGKU.woff2",
     "200-normal": "https://fonts.gstatic.com/s/heptaslab/v25/ea8cadoyU_jkHdalebHv42ZlhGKU.woff2",
     "300-normal": "https://fonts.gstatic.com/s/heptaslab/v25/ea8cadoyU_jkHdalebHv42ZlhGKU.woff2",
@@ -48,7 +48,11 @@ export type HeptaSlabOptions = GoogleFontOptions<HeptaSlabWeight, HeptaSlabStyle
  * Hepta Slab — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HeptaSlab extends GoogleFont<HeptaSlabWeight, HeptaSlabStyle, HeptaSlabSubset> {
+export default class HeptaSlab extends GoogleFont<
+  HeptaSlabWeight,
+  HeptaSlabStyle,
+  HeptaSlabSubset
+> {
   constructor(options?: HeptaSlabOptions) {
     super(FAMILY, FACES, options);
   }

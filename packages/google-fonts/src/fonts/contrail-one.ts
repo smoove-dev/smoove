@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Contrail One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/contrailone/v21/eLGbP-j_JA-kG0_Zo51noaftYkHs.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type ContrailOneWeight = "400";
 export type ContrailOneStyle = "normal";
 export type ContrailOneSubset = "latin";
-export type ContrailOneOptions = GoogleFontOptions<ContrailOneWeight, ContrailOneStyle, ContrailOneSubset>;
+export type ContrailOneOptions = GoogleFontOptions<
+  ContrailOneWeight,
+  ContrailOneStyle,
+  ContrailOneSubset
+>;
 
 /**
  * Contrail One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ContrailOne extends GoogleFont<ContrailOneWeight, ContrailOneStyle, ContrailOneSubset> {
+export default class ContrailOne extends GoogleFont<
+  ContrailOneWeight,
+  ContrailOneStyle,
+  ContrailOneSubset
+> {
   constructor(options?: ContrailOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Besley";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/besley/v22/PlI-FlO1MaNwaNG8WTeF0Hk.woff2",
     "400-normal": "https://fonts.gstatic.com/s/besley/v22/PlI8FlO1MaNwaNG8XAeH.woff2",
     "500-italic": "https://fonts.gstatic.com/s/besley/v22/PlI-FlO1MaNwaNG8WTeF0Hk.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Wellfleet";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/wellfleet/v25/nuF7D_LfQJb3VYgX6eyj5GyK.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type WellfleetOptions = GoogleFontOptions<WellfleetWeight, WellfleetStyle
  * Wellfleet — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Wellfleet extends GoogleFont<WellfleetWeight, WellfleetStyle, WellfleetSubset> {
+export default class Wellfleet extends GoogleFont<
+  WellfleetWeight,
+  WellfleetStyle,
+  WellfleetSubset
+> {
   constructor(options?: WellfleetOptions) {
     super(FAMILY, FACES, options);
   }

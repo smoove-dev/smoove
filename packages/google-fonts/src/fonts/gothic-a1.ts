@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gothic A1";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR74z5ZnPydRjlCCwlCCPcpaNZGvQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCpOY6S_N7hOU.woff2",
     "300-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCwOU6S_N7hOU.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCzOE6QvN7hOU.woff2",
     "900-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlC6OA6QvN7hOU.woff2",
   },
-  "greek": {
+  greek: {
     "100-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR74z5ZnPydRjlCCwlCCPcuaNZGvQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCpOY6TPN7hOU.woff2",
     "300-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCwOU6TPN7hOU.woff2",
@@ -48,7 +48,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCzOE6Q_N7hOU.woff2",
     "900-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlC6OA6Q_N7hOU.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR74z5ZnPydRjlCCwlCCPctaNY.woff2",
     "200-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCpOY6T_N7.woff2",
     "300-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCwOU6T_N7.woff2",
@@ -70,7 +70,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCzOE6QfN7hOU.woff2",
     "900-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlC6OA6QfN7hOU.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR74z5ZnPydRjlCCwlCCPciaNZGvQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCpOY6QPN7hOU.woff2",
     "300-normal": "https://fonts.gstatic.com/s/gothica1/v18/CSR44z5ZnPydRjlCCwlCwOU6QPN7hOU.woff2",
@@ -85,7 +85,14 @@ const FACES = {
 
 export type GothicA1Weight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type GothicA1Style = "normal";
-export type GothicA1Subset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "vietnamese";
+export type GothicA1Subset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type GothicA1Options = GoogleFontOptions<GothicA1Weight, GothicA1Style, GothicA1Subset>;
 
 /**

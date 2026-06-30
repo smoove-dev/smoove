@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Changa";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "200-normal": "https://fonts.gstatic.com/s/changa/v29/2-cm9JNi2YuVOUckY5y-au8.woff2",
     "300-normal": "https://fonts.gstatic.com/s/changa/v29/2-cm9JNi2YuVOUckY5y-au8.woff2",
     "400-normal": "https://fonts.gstatic.com/s/changa/v29/2-cm9JNi2YuVOUckY5y-au8.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/changa/v29/2-cm9JNi2YuVOUckY5y-au8.woff2",
     "800-normal": "https://fonts.gstatic.com/s/changa/v29/2-cm9JNi2YuVOUckY5y-au8.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/changa/v29/2-cm9JNi2YuVOUckZpy-.woff2",
     "300-normal": "https://fonts.gstatic.com/s/changa/v29/2-cm9JNi2YuVOUckZpy-.woff2",
     "400-normal": "https://fonts.gstatic.com/s/changa/v29/2-cm9JNi2YuVOUckZpy-.woff2",

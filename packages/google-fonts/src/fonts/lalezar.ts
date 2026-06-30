@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lalezar";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/lalezar/v16/zrfl0HLVx-HwTP82YaL4IxL0.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lalezar/v16/zrfl0HLVx-HwTP82Yaf4Iw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/lalezar/v16/zrfl0HLVx-HwTP82Yan4IxL0.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/lalezar/v16/zrfl0HLVx-HwTP82Yaj4IxL0.woff2",
   },
 } as const;

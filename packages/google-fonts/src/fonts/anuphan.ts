@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Anuphan";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mWoDag.woff2",
     "200-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mWoDag.woff2",
     "300-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mWoDag.woff2",
@@ -22,7 +22,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mWQDan29.woff2",
     "700-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mWQDan29.woff2",
   },
-  "thai": {
+  thai: {
     "100-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mX4Dan29.woff2",
     "200-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mX4Dan29.woff2",
     "300-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mX4Dan29.woff2",
@@ -31,7 +31,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mX4Dan29.woff2",
     "700-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mX4Dan29.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mWUDan29.woff2",
     "200-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mWUDan29.woff2",
     "300-normal": "https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mWUDan29.woff2",

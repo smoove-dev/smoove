@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pirata One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/pirataone/v23/I_urMpiDvgLdLh0fAtofhi-Org.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type PirataOneOptions = GoogleFontOptions<PirataOneWeight, PirataOneStyle
  * Pirata One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PirataOne extends GoogleFont<PirataOneWeight, PirataOneStyle, PirataOneSubset> {
+export default class PirataOne extends GoogleFont<
+  PirataOneWeight,
+  PirataOneStyle,
+  PirataOneSubset
+> {
   constructor(options?: PirataOneOptions) {
     super(FAMILY, FACES, options);
   }

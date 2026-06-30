@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mochiy Pop P One";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/mochiypoppone/v12/Ktk2AKuPeY_td1-h9LayHYWCjAqyB4S9WA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/mochiypoppone/v12/Ktk2AKuPeY_td1-h9LayHYWCjAqyB4S9WA.woff2",
   },
 } as const;
 
 export type MochiyPopPOneWeight = "400";
 export type MochiyPopPOneStyle = "normal";
 export type MochiyPopPOneSubset = "latin";
-export type MochiyPopPOneOptions = GoogleFontOptions<MochiyPopPOneWeight, MochiyPopPOneStyle, MochiyPopPOneSubset>;
+export type MochiyPopPOneOptions = GoogleFontOptions<
+  MochiyPopPOneWeight,
+  MochiyPopPOneStyle,
+  MochiyPopPOneSubset
+>;
 
 /**
  * Mochiy Pop P One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MochiyPopPOne extends GoogleFont<MochiyPopPOneWeight, MochiyPopPOneStyle, MochiyPopPOneSubset> {
+export default class MochiyPopPOne extends GoogleFont<
+  MochiyPopPOneWeight,
+  MochiyPopPOneStyle,
+  MochiyPopPOneSubset
+> {
   constructor(options?: MochiyPopPOneOptions) {
     super(FAMILY, FACES, options);
   }

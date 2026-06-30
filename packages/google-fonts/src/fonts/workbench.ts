@@ -4,14 +4,17 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Workbench";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/workbench/v3/FeV8S05Gp6Et7FcfbPFK1rynGd_MxtkvNFmoUDFhgF2VKTGQk6vapeOM2mM.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/workbench/v3/FeV8S05Gp6Et7FcfbPFK1rynGd_MxtkvNFmoUDFhgF2VKTGQk6vapeOM2mM.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/workbench/v3/FeV8S05Gp6Et7FcfbPFK1rynGd_MxtkvNFmoUDFhgF2VKTGQk6vapePw2mOagQ.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/workbench/v3/FeV8S05Gp6Et7FcfbPFK1rynGd_MxtkvNFmoUDFhgF2VKTGQk6vapePw2mOagQ.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/workbench/v3/FeV8S05Gp6Et7FcfbPFK1rynGd_MxtkvNFmoUDFhgF2VKTGQk6vapePi2mOagQ.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/workbench/v3/FeV8S05Gp6Et7FcfbPFK1rynGd_MxtkvNFmoUDFhgF2VKTGQk6vapePi2mOagQ.woff2",
   },
 } as const;
 
@@ -24,7 +27,11 @@ export type WorkbenchOptions = GoogleFontOptions<WorkbenchWeight, WorkbenchStyle
  * Workbench — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Workbench extends GoogleFont<WorkbenchWeight, WorkbenchStyle, WorkbenchSubset> {
+export default class Workbench extends GoogleFont<
+  WorkbenchWeight,
+  WorkbenchStyle,
+  WorkbenchSubset
+> {
   constructor(options?: WorkbenchOptions) {
     super(FAMILY, FACES, options);
   }

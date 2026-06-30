@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bungee Spice";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/bungeespice/v15/nwpTtK2nIhxE0q-IwgSpZBqyyCg_MMA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bungeespice/v15/nwpTtK2nIhxE0q-IwgSpZBqyyCg_MMA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/bungeespice/v15/nwpTtK2nIhxE0q-IwgSpZBqyxig_WMON7g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bungeespice/v15/nwpTtK2nIhxE0q-IwgSpZBqyxig_WMON7g.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/bungeespice/v15/nwpTtK2nIhxE0q-IwgSpZBqyxyg_WMON7g.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bungeespice/v15/nwpTtK2nIhxE0q-IwgSpZBqyxyg_WMON7g.woff2",
   },
 } as const;
 
 export type BungeeSpiceWeight = "400";
 export type BungeeSpiceStyle = "normal";
 export type BungeeSpiceSubset = "latin" | "latin-ext" | "vietnamese";
-export type BungeeSpiceOptions = GoogleFontOptions<BungeeSpiceWeight, BungeeSpiceStyle, BungeeSpiceSubset>;
+export type BungeeSpiceOptions = GoogleFontOptions<
+  BungeeSpiceWeight,
+  BungeeSpiceStyle,
+  BungeeSpiceSubset
+>;
 
 /**
  * Bungee Spice — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BungeeSpice extends GoogleFont<BungeeSpiceWeight, BungeeSpiceStyle, BungeeSpiceSubset> {
+export default class BungeeSpice extends GoogleFont<
+  BungeeSpiceWeight,
+  BungeeSpiceStyle,
+  BungeeSpiceSubset
+> {
   constructor(options?: BungeeSpiceOptions) {
     super(FAMILY, FACES, options);
   }

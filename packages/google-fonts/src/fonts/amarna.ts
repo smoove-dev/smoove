@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Amarna";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/amarna/v2/MCoQzAj-18jIHCA0R7A_-p4.woff2",
     "100-normal": "https://fonts.gstatic.com/s/amarna/v2/MCoSzAj-18jIHCA0QoA9.woff2",
     "200-italic": "https://fonts.gstatic.com/s/amarna/v2/MCoQzAj-18jIHCA0R7A_-p4.woff2",

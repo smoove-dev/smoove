@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Mongolian";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmongolian/v23/VdGCAYADGIwE0EopZx8xQfHlgEAMsrTo9Lwq6g.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmongolian/v23/VdGCAYADGIwE0EopZx8xQfHlgEAMsrTo9Lwq6g.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmongolian/v23/VdGCAYADGIwE0EopZx8xQfHlgEAMsrTo9LIq6tav.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmongolian/v23/VdGCAYADGIwE0EopZx8xQfHlgEAMsrTo9LIq6tav.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmongolian/v23/VdGCAYADGIwE0EopZx8xQfHlgEAMsrTo9MAq6tav.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmongolian/v23/VdGCAYADGIwE0EopZx8xQfHlgEAMsrTo9MAq6tav.woff2",
   },
-  "mongolian": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmongolian/v23/VdGCAYADGIwE0EopZx8xQfHlgEAMsrTo9Jcq6tav.woff2",
+  mongolian: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmongolian/v23/VdGCAYADGIwE0EopZx8xQfHlgEAMsrTo9Jcq6tav.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmongolian/v23/VdGCAYADGIwE0EopZx8xQfHlgEAMsrTo9NIq6tav.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmongolian/v23/VdGCAYADGIwE0EopZx8xQfHlgEAMsrTo9NIq6tav.woff2",
   },
 } as const;
 
 export type NotoSansMongolianWeight = "400";
 export type NotoSansMongolianStyle = "normal";
 export type NotoSansMongolianSubset = "latin" | "latin-ext" | "math" | "mongolian" | "symbols";
-export type NotoSansMongolianOptions = GoogleFontOptions<NotoSansMongolianWeight, NotoSansMongolianStyle, NotoSansMongolianSubset>;
+export type NotoSansMongolianOptions = GoogleFontOptions<
+  NotoSansMongolianWeight,
+  NotoSansMongolianStyle,
+  NotoSansMongolianSubset
+>;
 
 /**
  * Noto Sans Mongolian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansMongolian extends GoogleFont<NotoSansMongolianWeight, NotoSansMongolianStyle, NotoSansMongolianSubset> {
+export default class NotoSansMongolian extends GoogleFont<
+  NotoSansMongolianWeight,
+  NotoSansMongolianStyle,
+  NotoSansMongolianSubset
+> {
   constructor(options?: NotoSansMongolianOptions) {
     super(FAMILY, FACES, options);
   }

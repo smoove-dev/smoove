@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nova Square";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/novasquare/v27/RrQUbo9-9DV7b06QHgSWsahHT4I.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type NovaSquareWeight = "400";
 export type NovaSquareStyle = "normal";
 export type NovaSquareSubset = "latin" | "latin-ext";
-export type NovaSquareOptions = GoogleFontOptions<NovaSquareWeight, NovaSquareStyle, NovaSquareSubset>;
+export type NovaSquareOptions = GoogleFontOptions<
+  NovaSquareWeight,
+  NovaSquareStyle,
+  NovaSquareSubset
+>;
 
 /**
  * Nova Square — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NovaSquare extends GoogleFont<NovaSquareWeight, NovaSquareStyle, NovaSquareSubset> {
+export default class NovaSquare extends GoogleFont<
+  NovaSquareWeight,
+  NovaSquareStyle,
+  NovaSquareSubset
+> {
   constructor(options?: NovaSquareOptions) {
     super(FAMILY, FACES, options);
   }

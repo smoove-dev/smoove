@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fira Mono";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bX2SlFPv1weGeLZDtgIv7SodY.woff2",
     "500-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDto1d3HmvfUWZA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDtondvHmvfUWZA.woff2",
@@ -14,7 +14,7 @@ const FACES = {
     "500-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDto1d3Hk_fUWZA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDtondvHk_fUWZA.woff2",
   },
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bX2SlFPv1weGeLZDtgJf7SodY.woff2",
     "500-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDto1d3HnffUWZA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDtondvHnffUWZA.woff2",
@@ -24,7 +24,7 @@ const FACES = {
     "500-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDto1d3HkvfUWZA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDtondvHkvfUWZA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bX2SlFPv1weGeLZDtgJv7S.woff2",
     "500-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDto1d3HnvfU.woff2",
     "700-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDtondvHnvfU.woff2",
@@ -34,7 +34,7 @@ const FACES = {
     "500-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDto1d3HkPfUWZA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDtondvHkPfUWZA.woff2",
   },
-  "symbols2": {
+  symbols2: {
     "400-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bX2SlFPv1weGeLZDtgnN_3nO_Q.woff2",
     "500-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDto1d3HJNbxZKlI.woff2",
     "700-normal": "https://fonts.gstatic.com/s/firamono/v16/N0bS2SlFPv1weGeLZDtondvHJNbxZKlI.woff2",
@@ -43,7 +43,14 @@ const FACES = {
 
 export type FiraMonoWeight = "400" | "500" | "700";
 export type FiraMonoStyle = "normal";
-export type FiraMonoSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "symbols2";
+export type FiraMonoSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "symbols2";
 export type FiraMonoOptions = GoogleFontOptions<FiraMonoWeight, FiraMonoStyle, FiraMonoSubset>;
 
 /**

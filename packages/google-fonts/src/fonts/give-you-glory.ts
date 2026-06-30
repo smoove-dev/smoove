@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Give You Glory";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/giveyouglory/v17/8QIQdiHOgt3vv4LR7ahjw9-XYf10DYc.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/giveyouglory/v17/8QIQdiHOgt3vv4LR7ahjw9-XYf10DYc.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/giveyouglory/v17/8QIQdiHOgt3vv4LR7ahjw9-XYf16DYdz6g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/giveyouglory/v17/8QIQdiHOgt3vv4LR7ahjw9-XYf16DYdz6g.woff2",
   },
 } as const;
 
 export type GiveYouGloryWeight = "400";
 export type GiveYouGloryStyle = "normal";
 export type GiveYouGlorySubset = "latin" | "latin-ext";
-export type GiveYouGloryOptions = GoogleFontOptions<GiveYouGloryWeight, GiveYouGloryStyle, GiveYouGlorySubset>;
+export type GiveYouGloryOptions = GoogleFontOptions<
+  GiveYouGloryWeight,
+  GiveYouGloryStyle,
+  GiveYouGlorySubset
+>;
 
 /**
  * Give You Glory — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GiveYouGlory extends GoogleFont<GiveYouGloryWeight, GiveYouGloryStyle, GiveYouGlorySubset> {
+export default class GiveYouGlory extends GoogleFont<
+  GiveYouGloryWeight,
+  GiveYouGloryStyle,
+  GiveYouGlorySubset
+> {
   constructor(options?: GiveYouGloryOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Codystar";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/codystar/v19/FwZf7-Q1xVk-40qxOuYsytyshUY.woff2",
     "400-normal": "https://fonts.gstatic.com/s/codystar/v19/FwZY7-Q1xVk-40qxOu6H6Mk.woff2",
   },

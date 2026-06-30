@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Farro";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/farro/v15/i7dJIFl3byGNHa3hNK65UEM.woff2",
     "400-normal": "https://fonts.gstatic.com/s/farro/v15/i7dEIFl3byGNHaVKFrs.woff2",
     "500-normal": "https://fonts.gstatic.com/s/farro/v15/i7dJIFl3byGNHa25Na65UEM.woff2",

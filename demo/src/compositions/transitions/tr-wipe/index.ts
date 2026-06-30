@@ -1,5 +1,5 @@
 import type { RegistryEntry } from "@smoove/studio";
-import { type WipeProps, schema } from "./schema.js";
+import { schema, type WipeProps } from "./schema.js";
 
 const entry: RegistryEntry<WipeProps> = {
   id: "tr-wipe",

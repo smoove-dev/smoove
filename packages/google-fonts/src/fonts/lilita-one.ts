@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lilita One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lilitaone/v17/i7dPIFZ9Zz-WBtRtedDbYEF8RQ.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type LilitaOneOptions = GoogleFontOptions<LilitaOneWeight, LilitaOneStyle
  * Lilita One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LilitaOne extends GoogleFont<LilitaOneWeight, LilitaOneStyle, LilitaOneSubset> {
+export default class LilitaOne extends GoogleFont<
+  LilitaOneWeight,
+  LilitaOneStyle,
+  LilitaOneSubset
+> {
   constructor(options?: LilitaOneOptions) {
     super(FAMILY, FACES, options);
   }

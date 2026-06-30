@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Palette Mosaic";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/palettemosaic/v13/AMOIz4aBvWuBFe3TohdW6YZ9MGi1690.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/palettemosaic/v13/AMOIz4aBvWuBFe3TohdW6YZ9MGi1690.woff2",
   },
 } as const;
 
 export type PaletteMosaicWeight = "400";
 export type PaletteMosaicStyle = "normal";
 export type PaletteMosaicSubset = "latin";
-export type PaletteMosaicOptions = GoogleFontOptions<PaletteMosaicWeight, PaletteMosaicStyle, PaletteMosaicSubset>;
+export type PaletteMosaicOptions = GoogleFontOptions<
+  PaletteMosaicWeight,
+  PaletteMosaicStyle,
+  PaletteMosaicSubset
+>;
 
 /**
  * Palette Mosaic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PaletteMosaic extends GoogleFont<PaletteMosaicWeight, PaletteMosaicStyle, PaletteMosaicSubset> {
+export default class PaletteMosaic extends GoogleFont<
+  PaletteMosaicWeight,
+  PaletteMosaicStyle,
+  PaletteMosaicSubset
+> {
   constructor(options?: PaletteMosaicOptions) {
     super(FAMILY, FACES, options);
   }

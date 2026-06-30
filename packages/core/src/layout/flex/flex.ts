@@ -1,11 +1,11 @@
 import { DIRECTION_LTR } from "flexily/classic";
 import Konva from "konva";
-import { type KMLayoutNode, type LayoutBox, isKMLayoutNode } from "../contract.js";
+import { isKMLayoutNode, type KMLayoutNode, type LayoutBox } from "../contract.js";
 import {
-  FlexilyNode,
   applyChildProps,
   applyContainerProps,
   applySize,
+  FlexilyNode,
   parseSize,
   setImageMeasure,
   setTextMeasure,

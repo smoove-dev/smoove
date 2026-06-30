@@ -4,66 +4,114 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Intel One Mono";
 
 const FACES = {
-  "latin": {
-    "300-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abSn3wVQGrk.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMg__chmzVS.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abT53wVQGrk.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgofchmzVS.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abTL3wVQGrk.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgk_chmzVS.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQn2AVQGrk.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgf_AhmzVS.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQe2AVQGrk.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgRvAhmzVS.woff2",
+  latin: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abSn3wVQGrk.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMg__chmzVS.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abT53wVQGrk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgofchmzVS.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abTL3wVQGrk.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgk_chmzVS.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQn2AVQGrk.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgf_AhmzVS.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQe2AVQGrk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgRvAhmzVS.woff2",
   },
   "latin-ext": {
-    "300-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abSn3wVeGrmHYA.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMg__chlTVSAr0.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abT53wVeGrmHYA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgofchlTVSAr0.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abTL3wVeGrmHYA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgk_chlTVSAr0.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQn2AVeGrmHYA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgf_AhlTVSAr0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQe2AVeGrmHYA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgRvAhlTVSAr0.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abSn3wVeGrmHYA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMg__chlTVSAr0.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abT53wVeGrmHYA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgofchlTVSAr0.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abTL3wVeGrmHYA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgk_chlTVSAr0.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQn2AVeGrmHYA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgf_AhlTVSAr0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQe2AVeGrmHYA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgRvAhlTVSAr0.woff2",
   },
-  "symbols2": {
-    "300-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abSn3wXqO5y6WSQ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMg__chIRR3P4S-.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abT53wXqO5y6WSQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgofchIRR3P4S-.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abTL3wXqO5y6WSQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgk_chIRR3P4S-.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQn2AXqO5y6WSQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgf_AhIRR3P4S-.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQe2AXqO5y6WSQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgRvAhIRR3P4S-.woff2",
+  symbols2: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abSn3wXqO5y6WSQ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMg__chIRR3P4S-.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abT53wXqO5y6WSQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgofchIRR3P4S-.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abTL3wXqO5y6WSQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgk_chIRR3P4S-.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQn2AXqO5y6WSQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgf_AhIRR3P4S-.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQe2AXqO5y6WSQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgRvAhIRR3P4S-.woff2",
   },
-  "vietnamese": {
-    "300-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abSn3wVfGrmHYA.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMg__chlDVSAr0.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abT53wVfGrmHYA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgofchlDVSAr0.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abTL3wVfGrmHYA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgk_chlDVSAr0.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQn2AVfGrmHYA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgf_AhlDVSAr0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQe2AVfGrmHYA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgRvAhlDVSAr0.woff2",
+  vietnamese: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abSn3wVfGrmHYA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMg__chlDVSAr0.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abT53wVfGrmHYA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgofchlDVSAr0.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abTL3wVfGrmHYA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgk_chlDVSAr0.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQn2AVfGrmHYA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgf_AhlDVSAr0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sUzZuLY8Lb_G1RikFkwPjBvsk1H4RE8-pZ5gQ1abQe2AVfGrmHYA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/intelonemono/v2/P5sWzZuLY8Lb_G1RikFkwPjBvuM8LXucmoHDSAMgRvAhlDVSAr0.woff2",
   },
 } as const;
 
 export type IntelOneMonoWeight = "300" | "400" | "500" | "600" | "700";
 export type IntelOneMonoStyle = "italic" | "normal";
 export type IntelOneMonoSubset = "latin" | "latin-ext" | "symbols2" | "vietnamese";
-export type IntelOneMonoOptions = GoogleFontOptions<IntelOneMonoWeight, IntelOneMonoStyle, IntelOneMonoSubset>;
+export type IntelOneMonoOptions = GoogleFontOptions<
+  IntelOneMonoWeight,
+  IntelOneMonoStyle,
+  IntelOneMonoSubset
+>;
 
 /**
  * Intel One Mono — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IntelOneMono extends GoogleFont<IntelOneMonoWeight, IntelOneMonoStyle, IntelOneMonoSubset> {
+export default class IntelOneMono extends GoogleFont<
+  IntelOneMonoWeight,
+  IntelOneMonoStyle,
+  IntelOneMonoSubset
+> {
   constructor(options?: IntelOneMonoOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Orbit";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/orbit/v3/_LOCmz7I-uHd2ljDcKY.woff2",
   },
   "latin-ext": {

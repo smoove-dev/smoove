@@ -4,12 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Linden Hill";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/lindenhill/v27/-F63fjxoKSg9Yc3hZgO8yjFK1i8q1w.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lindenhill/v27/-F61fjxoKSg9Yc3hZgO8yjFP5i0.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/lindenhill/v27/-F63fjxoKSg9Yc3hZgO8yjFK1iEq129k.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/lindenhill/v27/-F63fjxoKSg9Yc3hZgO8yjFK1iEq129k.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lindenhill/v27/-F61fjxoKSg9Yc3hZgO8yjFB5i0y0w.woff2",
   },
 } as const;
@@ -17,13 +18,21 @@ const FACES = {
 export type LindenHillWeight = "400";
 export type LindenHillStyle = "italic" | "normal";
 export type LindenHillSubset = "latin" | "latin-ext";
-export type LindenHillOptions = GoogleFontOptions<LindenHillWeight, LindenHillStyle, LindenHillSubset>;
+export type LindenHillOptions = GoogleFontOptions<
+  LindenHillWeight,
+  LindenHillStyle,
+  LindenHillSubset
+>;
 
 /**
  * Linden Hill — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LindenHill extends GoogleFont<LindenHillWeight, LindenHillStyle, LindenHillSubset> {
+export default class LindenHill extends GoogleFont<
+  LindenHillWeight,
+  LindenHillStyle,
+  LindenHillSubset
+> {
   constructor(options?: LindenHillOptions) {
     super(FAMILY, FACES, options);
   }

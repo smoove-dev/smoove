@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "El Messiri";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6MoiAAhLz.woff2",
     "500-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6MoiAAhLz.woff2",
     "600-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6MoiAAhLz.woff2",
     "700-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6MoiAAhLz.woff2",
   },
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6MomAAhLz.woff2",
     "500-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6MomAAhLz.woff2",
     "600-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6MomAAhLz.woff2",
     "700-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6MomAAhLz.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6Mo2AAg.woff2",
     "500-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6Mo2AAg.woff2",
     "600-normal": "https://fonts.gstatic.com/s/elmessiri/v25/K2F0fZBRmr9vQ1pHEey6Mo2AAg.woff2",
@@ -39,7 +39,11 @@ export type ElMessiriOptions = GoogleFontOptions<ElMessiriWeight, ElMessiriStyle
  * El Messiri — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ElMessiri extends GoogleFont<ElMessiriWeight, ElMessiriStyle, ElMessiriSubset> {
+export default class ElMessiri extends GoogleFont<
+  ElMessiriWeight,
+  ElMessiriStyle,
+  ElMessiriSubset
+> {
   constructor(options?: ElMessiriOptions) {
     super(FAMILY, FACES, options);
   }

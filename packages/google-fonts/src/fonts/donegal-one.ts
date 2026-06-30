@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Donegal One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/donegalone/v22/m8JWjfRYea-ZnFz6fsK9FaRCTm4.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type DonegalOneWeight = "400";
 export type DonegalOneStyle = "normal";
 export type DonegalOneSubset = "latin" | "latin-ext";
-export type DonegalOneOptions = GoogleFontOptions<DonegalOneWeight, DonegalOneStyle, DonegalOneSubset>;
+export type DonegalOneOptions = GoogleFontOptions<
+  DonegalOneWeight,
+  DonegalOneStyle,
+  DonegalOneSubset
+>;
 
 /**
  * Donegal One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DonegalOne extends GoogleFont<DonegalOneWeight, DonegalOneStyle, DonegalOneSubset> {
+export default class DonegalOne extends GoogleFont<
+  DonegalOneWeight,
+  DonegalOneStyle,
+  DonegalOneSubset
+> {
   constructor(options?: DonegalOneOptions) {
     super(FAMILY, FACES, options);
   }

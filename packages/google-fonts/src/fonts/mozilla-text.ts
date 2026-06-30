@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mozilla Text";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD7xNK.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD7xNK.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD7xNK.woff2",
@@ -13,25 +13,39 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD7xNK.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/mozillatext/v1/SZc-3FrnJ7S7WZIff2mJ7TbD4RNKuCc.woff2",
   },
 } as const;
 
 export type MozillaTextWeight = "200" | "300" | "400" | "500" | "600" | "700";
 export type MozillaTextStyle = "normal";
 export type MozillaTextSubset = "latin" | "latin-ext";
-export type MozillaTextOptions = GoogleFontOptions<MozillaTextWeight, MozillaTextStyle, MozillaTextSubset>;
+export type MozillaTextOptions = GoogleFontOptions<
+  MozillaTextWeight,
+  MozillaTextStyle,
+  MozillaTextSubset
+>;
 
 /**
  * Mozilla Text — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MozillaText extends GoogleFont<MozillaTextWeight, MozillaTextStyle, MozillaTextSubset> {
+export default class MozillaText extends GoogleFont<
+  MozillaTextWeight,
+  MozillaTextStyle,
+  MozillaTextSubset
+> {
   constructor(options?: MozillaTextOptions) {
     super(FAMILY, FACES, options);
   }

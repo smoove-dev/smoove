@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Tangut";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notoseriftangut/v19/xn76YGc72GKoTvER4Gn3b4m9Ern7El4yd8o.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoseriftangut/v19/xn76YGc72GKoTvER4Gn3b4m9Ern7El4yd8o.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notoseriftangut/v19/xn76YGc72GKoTvER4Gn3b4m9Ern7El48d8r92A.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoseriftangut/v19/xn76YGc72GKoTvER4Gn3b4m9Ern7El48d8r92A.woff2",
   },
-  "tangut": {
-    "400-normal": "https://fonts.gstatic.com/s/notoseriftangut/v19/xn76YGc72GKoTvER4Gn3b4m9Ern7El6wVu_A4b0.woff2",
+  tangut: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoseriftangut/v19/xn76YGc72GKoTvER4Gn3b4m9Ern7El6wVu_A4b0.woff2",
   },
 } as const;
 
 export type NotoSerifTangutWeight = "400";
 export type NotoSerifTangutStyle = "normal";
 export type NotoSerifTangutSubset = "latin" | "latin-ext" | "tangut";
-export type NotoSerifTangutOptions = GoogleFontOptions<NotoSerifTangutWeight, NotoSerifTangutStyle, NotoSerifTangutSubset>;
+export type NotoSerifTangutOptions = GoogleFontOptions<
+  NotoSerifTangutWeight,
+  NotoSerifTangutStyle,
+  NotoSerifTangutSubset
+>;
 
 /**
  * Noto Serif Tangut — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifTangut extends GoogleFont<NotoSerifTangutWeight, NotoSerifTangutStyle, NotoSerifTangutSubset> {
+export default class NotoSerifTangut extends GoogleFont<
+  NotoSerifTangutWeight,
+  NotoSerifTangutStyle,
+  NotoSerifTangutSubset
+> {
   constructor(options?: NotoSerifTangutOptions) {
     super(FAMILY, FACES, options);
   }

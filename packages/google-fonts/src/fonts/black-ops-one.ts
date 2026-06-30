@@ -5,29 +5,41 @@ const FAMILY = "Black Ops One";
 
 const FACES = {
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/blackopsone/v21/qWcsB6-ypo7xBdr6Xshe96H3aDbbtwkh.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/blackopsone/v21/qWcsB6-ypo7xBdr6Xshe96H3aDbbtwkh.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/blackopsone/v21/qWcsB6-ypo7xBdr6Xshe96H3aDvbtw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/blackopsone/v21/qWcsB6-ypo7xBdr6Xshe96H3aDvbtw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/blackopsone/v21/qWcsB6-ypo7xBdr6Xshe96H3aDXbtwkh.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/blackopsone/v21/qWcsB6-ypo7xBdr6Xshe96H3aDXbtwkh.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/blackopsone/v21/qWcsB6-ypo7xBdr6Xshe96H3aDTbtwkh.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/blackopsone/v21/qWcsB6-ypo7xBdr6Xshe96H3aDTbtwkh.woff2",
   },
 } as const;
 
 export type BlackOpsOneWeight = "400";
 export type BlackOpsOneStyle = "normal";
 export type BlackOpsOneSubset = "cyrillic-ext" | "latin" | "latin-ext" | "vietnamese";
-export type BlackOpsOneOptions = GoogleFontOptions<BlackOpsOneWeight, BlackOpsOneStyle, BlackOpsOneSubset>;
+export type BlackOpsOneOptions = GoogleFontOptions<
+  BlackOpsOneWeight,
+  BlackOpsOneStyle,
+  BlackOpsOneSubset
+>;
 
 /**
  * Black Ops One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BlackOpsOne extends GoogleFont<BlackOpsOneWeight, BlackOpsOneStyle, BlackOpsOneSubset> {
+export default class BlackOpsOne extends GoogleFont<
+  BlackOpsOneWeight,
+  BlackOpsOneStyle,
+  BlackOpsOneSubset
+> {
   constructor(options?: BlackOpsOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kapakana";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/kapakana/v19/sykw-yN0m6InS7OD9DqQ3tc.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kapakana/v19/sykw-yN0m6InS7OD9DqQ3tc.woff2",
   },

@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Teko";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "300-normal": "https://fonts.gstatic.com/s/teko/v23/LYjNdG7kmE0gfaJ9pRtB.woff2",
     "400-normal": "https://fonts.gstatic.com/s/teko/v23/LYjNdG7kmE0gfaJ9pRtB.woff2",
     "500-normal": "https://fonts.gstatic.com/s/teko/v23/LYjNdG7kmE0gfaJ9pRtB.woff2",
     "600-normal": "https://fonts.gstatic.com/s/teko/v23/LYjNdG7kmE0gfaJ9pRtB.woff2",
     "700-normal": "https://fonts.gstatic.com/s/teko/v23/LYjNdG7kmE0gfaJ9pRtB.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/teko/v23/LYjNdG7kmE0gfaN9pQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/teko/v23/LYjNdG7kmE0gfaN9pQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/teko/v23/LYjNdG7kmE0gfaN9pQ.woff2",

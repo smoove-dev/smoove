@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Potta One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/pottaone/v19/FeVSS05Bp6cy7xI-Yfxg2pRm.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/pottaone/v19/FeVSS05Bp6cy7xI-Yfxg1JRmq28.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/pottaone/v19/FeVSS05Bp6cy7xI-Yfxg1ZRmq28.woff2",
   },
 } as const;

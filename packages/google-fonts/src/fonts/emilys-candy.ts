@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Emilys Candy";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/emilyscandy/v21/2EbgL-1mD1Rnb0OGKudbk0yJqNZq.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/emilyscandy/v21/2EbgL-1mD1Rnb0OGKudbk0yJptZqb84.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/emilyscandy/v21/2EbgL-1mD1Rnb0OGKudbk0yJptZqb84.woff2",
   },
 } as const;
 
 export type EmilysCandyWeight = "400";
 export type EmilysCandyStyle = "normal";
 export type EmilysCandySubset = "latin" | "latin-ext";
-export type EmilysCandyOptions = GoogleFontOptions<EmilysCandyWeight, EmilysCandyStyle, EmilysCandySubset>;
+export type EmilysCandyOptions = GoogleFontOptions<
+  EmilysCandyWeight,
+  EmilysCandyStyle,
+  EmilysCandySubset
+>;
 
 /**
  * Emilys Candy — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EmilysCandy extends GoogleFont<EmilysCandyWeight, EmilysCandyStyle, EmilysCandySubset> {
+export default class EmilysCandy extends GoogleFont<
+  EmilysCandyWeight,
+  EmilysCandyStyle,
+  EmilysCandySubset
+> {
   constructor(options?: EmilysCandyOptions) {
     super(FAMILY, FACES, options);
   }

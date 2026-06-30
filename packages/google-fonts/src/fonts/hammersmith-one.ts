@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hammersmith One";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/hammersmithone/v18/qWcyB624q4L_C4jGQ9IK0O_dFlnrtREl.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/hammersmithone/v18/qWcyB624q4L_C4jGQ9IK0O_dFlnrtREl.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/hammersmithone/v18/qWcyB624q4L_C4jGQ9IK0O_dFlnruxElg4M.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/hammersmithone/v18/qWcyB624q4L_C4jGQ9IK0O_dFlnruxElg4M.woff2",
   },
 } as const;
 
 export type HammersmithOneWeight = "400";
 export type HammersmithOneStyle = "normal";
 export type HammersmithOneSubset = "latin" | "latin-ext";
-export type HammersmithOneOptions = GoogleFontOptions<HammersmithOneWeight, HammersmithOneStyle, HammersmithOneSubset>;
+export type HammersmithOneOptions = GoogleFontOptions<
+  HammersmithOneWeight,
+  HammersmithOneStyle,
+  HammersmithOneSubset
+>;
 
 /**
  * Hammersmith One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HammersmithOne extends GoogleFont<HammersmithOneWeight, HammersmithOneStyle, HammersmithOneSubset> {
+export default class HammersmithOne extends GoogleFont<
+  HammersmithOneWeight,
+  HammersmithOneStyle,
+  HammersmithOneSubset
+> {
   constructor(options?: HammersmithOneOptions) {
     super(FAMILY, FACES, options);
   }

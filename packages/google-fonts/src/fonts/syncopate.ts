@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Syncopate";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/syncopate/v24/pe0sMIuPIYBCpEV5eFdCBfe_.woff2",
     "700-normal": "https://fonts.gstatic.com/s/syncopate/v24/pe0pMIuPIYBCpEV5eFdKvtKqBP5v.woff2",
   },
@@ -23,7 +23,11 @@ export type SyncopateOptions = GoogleFontOptions<SyncopateWeight, SyncopateStyle
  * Syncopate — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Syncopate extends GoogleFont<SyncopateWeight, SyncopateStyle, SyncopateSubset> {
+export default class Syncopate extends GoogleFont<
+  SyncopateWeight,
+  SyncopateStyle,
+  SyncopateSubset
+> {
   constructor(options?: SyncopateOptions) {
     super(FAMILY, FACES, options);
   }

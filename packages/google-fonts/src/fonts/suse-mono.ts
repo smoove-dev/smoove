@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "SUSE Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/susemono/v1/y83fW4wN6yi9x2mTxJIcJiHGOHo.woff2",
     "100-normal": "https://fonts.gstatic.com/s/susemono/v1/y83ZW4wN6yi9x2mTxJIcIxHE.woff2",
     "200-italic": "https://fonts.gstatic.com/s/susemono/v1/y83fW4wN6yi9x2mTxJIcJiHGOHo.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/susemono/v1/y83fW4wN6yi9x2mTxJIcJiHIOHrSDQ.woff2",
     "800-normal": "https://fonts.gstatic.com/s/susemono/v1/y83ZW4wN6yi9x2mTxJIcLRHEIH4.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/susemono/v1/y83fW4wN6yi9x2mTxJIcJiHJOHrSDQ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/susemono/v1/y83ZW4wN6yi9x2mTxJIcLBHEIH4.woff2",
     "200-italic": "https://fonts.gstatic.com/s/susemono/v1/y83fW4wN6yi9x2mTxJIcJiHJOHrSDQ.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pompiere";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/pompiere/v21/VEMyRoxis5Dwuyeov5Wq7DE.woff2",
   },
 } as const;

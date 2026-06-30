@@ -4,30 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "WDXL Lubrifont JP N";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/wdxllubrifontjpn/v2/8At1GtSkFqazDiO949fzWta9_T-SVxJiEZQnoYhF.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/wdxllubrifontjpn/v2/8At1GtSkFqazDiO949fzWta9_T-SVxJiEZQnoYhF.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/wdxllubrifontjpn/v2/8At1GtSkFqazDiO949fzWta9_T-SVxJiEZAnoQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/wdxllubrifontjpn/v2/8At1GtSkFqazDiO949fzWta9_T-SVxJiEZAnoQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/wdxllubrifontjpn/v2/8At1GtSkFqazDiO949fzWta9_T-SVxJiEZ4noYhF.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/wdxllubrifontjpn/v2/8At1GtSkFqazDiO949fzWta9_T-SVxJiEZ4noYhF.woff2",
   },
-  "symbols2": {
-    "400-normal": "https://fonts.gstatic.com/s/wdxllubrifontjpn/v2/8At1GtSkFqazDiO949fzWta9_T-SVxJiESoGhLV8XQ.woff2",
+  symbols2: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/wdxllubrifontjpn/v2/8At1GtSkFqazDiO949fzWta9_T-SVxJiESoGhLV8XQ.woff2",
   },
 } as const;
 
 export type WDXLLubrifontJPNWeight = "400";
 export type WDXLLubrifontJPNStyle = "normal";
 export type WDXLLubrifontJPNSubset = "cyrillic" | "latin" | "latin-ext" | "symbols2";
-export type WDXLLubrifontJPNOptions = GoogleFontOptions<WDXLLubrifontJPNWeight, WDXLLubrifontJPNStyle, WDXLLubrifontJPNSubset>;
+export type WDXLLubrifontJPNOptions = GoogleFontOptions<
+  WDXLLubrifontJPNWeight,
+  WDXLLubrifontJPNStyle,
+  WDXLLubrifontJPNSubset
+>;
 
 /**
  * WDXL Lubrifont JP N — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class WDXLLubrifontJPN extends GoogleFont<WDXLLubrifontJPNWeight, WDXLLubrifontJPNStyle, WDXLLubrifontJPNSubset> {
+export default class WDXLLubrifontJPN extends GoogleFont<
+  WDXLLubrifontJPNWeight,
+  WDXLLubrifontJPNStyle,
+  WDXLLubrifontJPNSubset
+> {
   constructor(options?: WDXLLubrifontJPNOptions) {
     super(FAMILY, FACES, options);
   }

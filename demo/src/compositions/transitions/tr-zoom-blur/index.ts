@@ -1,5 +1,5 @@
 import type { RegistryEntry } from "@smoove/studio";
-import { type ZoomBlurProps, schema } from "./schema.js";
+import { schema, type ZoomBlurProps } from "./schema.js";
 
 const entry: RegistryEntry<ZoomBlurProps> = {
   id: "tr-zoom-blur",

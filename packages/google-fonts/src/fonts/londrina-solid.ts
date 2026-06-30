@@ -4,24 +4,36 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Londrina Solid";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/londrinasolid/v19/flUjRq6sw40kQEJxWNgkLuudGfs9GBEUsA.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/londrinasolid/v19/flUiRq6sw40kQEJxWNgkLuudGfv1CgYzlZw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/londrinasolid/v19/flUhRq6sw40kQEJxWNgkLuudGfNeKBM.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/londrinasolid/v19/flUiRq6sw40kQEJxWNgkLuudGfvdDwYzlZw.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/londrinasolid/v19/flUjRq6sw40kQEJxWNgkLuudGfs9GBEUsA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/londrinasolid/v19/flUiRq6sw40kQEJxWNgkLuudGfv1CgYzlZw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/londrinasolid/v19/flUhRq6sw40kQEJxWNgkLuudGfNeKBM.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/londrinasolid/v19/flUiRq6sw40kQEJxWNgkLuudGfvdDwYzlZw.woff2",
   },
 } as const;
 
 export type LondrinaSolidWeight = "100" | "300" | "400" | "900";
 export type LondrinaSolidStyle = "normal";
 export type LondrinaSolidSubset = "latin";
-export type LondrinaSolidOptions = GoogleFontOptions<LondrinaSolidWeight, LondrinaSolidStyle, LondrinaSolidSubset>;
+export type LondrinaSolidOptions = GoogleFontOptions<
+  LondrinaSolidWeight,
+  LondrinaSolidStyle,
+  LondrinaSolidSubset
+>;
 
 /**
  * Londrina Solid — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LondrinaSolid extends GoogleFont<LondrinaSolidWeight, LondrinaSolidStyle, LondrinaSolidSubset> {
+export default class LondrinaSolid extends GoogleFont<
+  LondrinaSolidWeight,
+  LondrinaSolidStyle,
+  LondrinaSolidSubset
+> {
   constructor(options?: LondrinaSolidOptions) {
     super(FAMILY, FACES, options);
   }

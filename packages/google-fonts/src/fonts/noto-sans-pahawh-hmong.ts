@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Pahawh Hmong";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanspahawhhmong/v21/bWtp7e_KfBziStx7lIzKKaMUOBEA3UPQDW7knzA1cg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanspahawhhmong/v21/bWtp7e_KfBziStx7lIzKKaMUOBEA3UPQDW7knzA1cg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanspahawhhmong/v21/bWtp7e_KfBziStx7lIzKKaMUOBEA3UPQDW7knz41cr8a.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanspahawhhmong/v21/bWtp7e_KfBziStx7lIzKKaMUOBEA3UPQDW7knz41cr8a.woff2",
   },
   "pahawh-hmong": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanspahawhhmong/v21/bWtp7e_KfBziStx7lIzKKaMUOBEA3UPQDW7kn7wUV4IjKw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanspahawhhmong/v21/bWtp7e_KfBziStx7lIzKKaMUOBEA3UPQDW7kn7wUV4IjKw.woff2",
   },
 } as const;
 
 export type NotoSansPahawhHmongWeight = "400";
 export type NotoSansPahawhHmongStyle = "normal";
 export type NotoSansPahawhHmongSubset = "latin" | "latin-ext" | "pahawh-hmong";
-export type NotoSansPahawhHmongOptions = GoogleFontOptions<NotoSansPahawhHmongWeight, NotoSansPahawhHmongStyle, NotoSansPahawhHmongSubset>;
+export type NotoSansPahawhHmongOptions = GoogleFontOptions<
+  NotoSansPahawhHmongWeight,
+  NotoSansPahawhHmongStyle,
+  NotoSansPahawhHmongSubset
+>;
 
 /**
  * Noto Sans Pahawh Hmong — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansPahawhHmong extends GoogleFont<NotoSansPahawhHmongWeight, NotoSansPahawhHmongStyle, NotoSansPahawhHmongSubset> {
+export default class NotoSansPahawhHmong extends GoogleFont<
+  NotoSansPahawhHmongWeight,
+  NotoSansPahawhHmongStyle,
+  NotoSansPahawhHmongSubset
+> {
   constructor(options?: NotoSansPahawhHmongOptions) {
     super(FAMILY, FACES, options);
   }

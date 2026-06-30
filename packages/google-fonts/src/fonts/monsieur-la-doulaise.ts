@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Monsieur La Doulaise";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/monsieurladoulaise/v20/_Xmz-GY4rjmCbQfc-aPRaa4pqV340p7EZm5ZyEA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/monsieurladoulaise/v20/_Xmz-GY4rjmCbQfc-aPRaa4pqV340p7EZm5ZyEA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/monsieurladoulaise/v20/_Xmz-GY4rjmCbQfc-aPRaa4pqV340p7EZm5XyEAk4A.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/monsieurladoulaise/v20/_Xmz-GY4rjmCbQfc-aPRaa4pqV340p7EZm5XyEAk4A.woff2",
   },
 } as const;
 
 export type MonsieurLaDoulaiseWeight = "400";
 export type MonsieurLaDoulaiseStyle = "normal";
 export type MonsieurLaDoulaiseSubset = "latin" | "latin-ext";
-export type MonsieurLaDoulaiseOptions = GoogleFontOptions<MonsieurLaDoulaiseWeight, MonsieurLaDoulaiseStyle, MonsieurLaDoulaiseSubset>;
+export type MonsieurLaDoulaiseOptions = GoogleFontOptions<
+  MonsieurLaDoulaiseWeight,
+  MonsieurLaDoulaiseStyle,
+  MonsieurLaDoulaiseSubset
+>;
 
 /**
  * Monsieur La Doulaise — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MonsieurLaDoulaise extends GoogleFont<MonsieurLaDoulaiseWeight, MonsieurLaDoulaiseStyle, MonsieurLaDoulaiseSubset> {
+export default class MonsieurLaDoulaise extends GoogleFont<
+  MonsieurLaDoulaiseWeight,
+  MonsieurLaDoulaiseStyle,
+  MonsieurLaDoulaiseSubset
+> {
   constructor(options?: MonsieurLaDoulaiseOptions) {
     super(FAMILY, FACES, options);
   }

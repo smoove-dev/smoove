@@ -4,11 +4,11 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sura";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/sura/v21/SZc23FL5PbyzJfheWgXt.woff2",
     "700-normal": "https://fonts.gstatic.com/s/sura/v21/SZc53FL5PbyzLUJ7TzvMkHrS.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sura/v21/SZc23FL5PbyzJfleWg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/sura/v21/SZc53FL5PbyzLUJ7TzrMkA.woff2",
   },

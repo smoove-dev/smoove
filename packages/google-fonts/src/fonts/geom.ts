@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Geom";
 
 const FACES = {
-  "greek": {
+  greek: {
     "300-italic": "https://fonts.gstatic.com/s/geom/v1/X7nk4bw6Cf6j8tanHAa_3M0.woff2",
     "300-normal": "https://fonts.gstatic.com/s/geom/v1/X7nq4bw6Cf6j8tCXHR67.woff2",
     "400-italic": "https://fonts.gstatic.com/s/geom/v1/X7nk4bw6Cf6j8tanHAa_3M0.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/geom/v1/X7nk4bw6Cf6j8tanHAa_3M0.woff2",
     "900-normal": "https://fonts.gstatic.com/s/geom/v1/X7nq4bw6Cf6j8tCXHR67.woff2",
   },
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/geom/v1/X7nk4bw6Cf6j8tanHwa_.woff2",
     "300-normal": "https://fonts.gstatic.com/s/geom/v1/X7nq4bw6Cf6j8tOXHQ.woff2",
     "400-italic": "https://fonts.gstatic.com/s/geom/v1/X7nk4bw6Cf6j8tanHwa_.woff2",

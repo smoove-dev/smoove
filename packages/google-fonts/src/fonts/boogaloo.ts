@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Boogaloo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/boogaloo/v25/kmK-Zq45GAvOdnaW6y1C9ys.woff2",
   },
 } as const;

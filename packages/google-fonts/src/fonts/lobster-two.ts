@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lobster Two";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/lobstertwo/v22/BngOUXZGTXPUvIoyV6yN5-fI1qeh5A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lobstertwo/v22/BngMUXZGTXPUvIoyV6yN5-fN5qU.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/lobstertwo/v22/BngTUXZGTXPUvIoyV6yN5-fI3hyE8R-ifg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/lobstertwo/v22/BngRUXZGTXPUvIoyV6yN5-92w7CGwR0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/lobstertwo/v22/BngTUXZGTXPUvIoyV6yN5-fI3hyE8R-ifg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/lobstertwo/v22/BngRUXZGTXPUvIoyV6yN5-92w7CGwR0.woff2",
   },
 } as const;
 
 export type LobsterTwoWeight = "400" | "700";
 export type LobsterTwoStyle = "italic" | "normal";
 export type LobsterTwoSubset = "latin";
-export type LobsterTwoOptions = GoogleFontOptions<LobsterTwoWeight, LobsterTwoStyle, LobsterTwoSubset>;
+export type LobsterTwoOptions = GoogleFontOptions<
+  LobsterTwoWeight,
+  LobsterTwoStyle,
+  LobsterTwoSubset
+>;
 
 /**
  * Lobster Two — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LobsterTwo extends GoogleFont<LobsterTwoWeight, LobsterTwoStyle, LobsterTwoSubset> {
+export default class LobsterTwo extends GoogleFont<
+  LobsterTwoWeight,
+  LobsterTwoStyle,
+  LobsterTwoSubset
+> {
   constructor(options?: LobsterTwoOptions) {
     super(FAMILY, FACES, options);
   }

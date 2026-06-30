@@ -4,38 +4,62 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sometype Mono";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRQ29G.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpShQQ.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRQ29G.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpShQQ.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRQ29G.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpShQQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRQ29G.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpShQQ.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRQ29G.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpShQQ.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRQ29G.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpShQQ.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRQ29G.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpShQQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRQ29G.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpShQQ.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRTW9Gzm8.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpqhQXdC.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRTW9Gzm8.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpqhQXdC.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRTW9Gzm8.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpqhQXdC.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRTW9Gzm8.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpqhQXdC.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRTW9Gzm8.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpqhQXdC.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRTW9Gzm8.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpqhQXdC.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRTW9Gzm8.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpqhQXdC.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lLu745KGk_R3uxyq0WrROhKpGRTW9Gzm8.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sometypemono/v4/70lVu745KGk_R3uxyq0WrROhKpqhQXdC.woff2",
   },
 } as const;
 
 export type SometypeMonoWeight = "400" | "500" | "600" | "700";
 export type SometypeMonoStyle = "italic" | "normal";
 export type SometypeMonoSubset = "latin" | "latin-ext";
-export type SometypeMonoOptions = GoogleFontOptions<SometypeMonoWeight, SometypeMonoStyle, SometypeMonoSubset>;
+export type SometypeMonoOptions = GoogleFontOptions<
+  SometypeMonoWeight,
+  SometypeMonoStyle,
+  SometypeMonoSubset
+>;
 
 /**
  * Sometype Mono — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SometypeMono extends GoogleFont<SometypeMonoWeight, SometypeMonoStyle, SometypeMonoSubset> {
+export default class SometypeMono extends GoogleFont<
+  SometypeMonoWeight,
+  SometypeMonoStyle,
+  SometypeMonoSubset
+> {
   constructor(options?: SometypeMonoOptions) {
     super(FAMILY, FACES, options);
   }

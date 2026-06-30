@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mada";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "200-normal": "https://fonts.gstatic.com/s/mada/v21/7Auwp_0qnzeSfTfGLRrX.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mada/v21/7Auwp_0qnzeSfTfGLRrX.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mada/v21/7Auwp_0qnzeSfTfGLRrX.woff2",
@@ -14,7 +14,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/mada/v21/7Auwp_0qnzeSfTfGLRrX.woff2",
     "900-normal": "https://fonts.gstatic.com/s/mada/v21/7Auwp_0qnzeSfTfGLRrX.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/mada/v21/7Auwp_0qnzeSfTLGLQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mada/v21/7Auwp_0qnzeSfTLGLQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mada/v21/7Auwp_0qnzeSfTLGLQ.woff2",

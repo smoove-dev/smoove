@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Itim";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/itim/v16/0nknC9ziJOYe8ANAkA.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/itim/v16/0nknC9ziJOYe8A1AkP7Z.woff2",
   },
-  "thai": {
+  thai: {
     "400-normal": "https://fonts.gstatic.com/s/itim/v16/0nknC9ziJOYe8BdAkP7Z.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/itim/v16/0nknC9ziJOYe8AxAkP7Z.woff2",
   },
 } as const;

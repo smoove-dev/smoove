@@ -4,34 +4,54 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Stack Sans Headline";
 
 const FACES = {
-  "latin": {
-    "200-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
+  latin: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38aevGw.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/stacksansheadline/v1/1Ptyg9jZXvmMnkLnuURbaukKZJTyrDV38amvG4w-.woff2",
   },
 } as const;
 
 export type StackSansHeadlineWeight = "200" | "300" | "400" | "500" | "600" | "700";
 export type StackSansHeadlineStyle = "normal";
 export type StackSansHeadlineSubset = "latin" | "latin-ext";
-export type StackSansHeadlineOptions = GoogleFontOptions<StackSansHeadlineWeight, StackSansHeadlineStyle, StackSansHeadlineSubset>;
+export type StackSansHeadlineOptions = GoogleFontOptions<
+  StackSansHeadlineWeight,
+  StackSansHeadlineStyle,
+  StackSansHeadlineSubset
+>;
 
 /**
  * Stack Sans Headline — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class StackSansHeadline extends GoogleFont<StackSansHeadlineWeight, StackSansHeadlineStyle, StackSansHeadlineSubset> {
+export default class StackSansHeadline extends GoogleFont<
+  StackSansHeadlineWeight,
+  StackSansHeadlineStyle,
+  StackSansHeadlineSubset
+> {
   constructor(options?: StackSansHeadlineOptions) {
     super(FAMILY, FACES, options);
   }

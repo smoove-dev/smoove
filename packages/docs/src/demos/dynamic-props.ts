@@ -1,11 +1,11 @@
 import {
   Composition,
   Flex,
+  interpolate,
+  interpolateColors,
   Rect,
   Sequence,
   Text,
-  interpolate,
-  interpolateColors,
 } from "@smoove/core";
 import Font from "@smoove/google-fonts/special-elite";
 

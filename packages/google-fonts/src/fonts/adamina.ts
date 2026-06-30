@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Adamina";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/adamina/v22/j8_r6-DH1bjoc-dwi-3UEA.woff2",
   },
 } as const;

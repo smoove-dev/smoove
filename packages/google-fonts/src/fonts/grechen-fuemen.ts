@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Grechen Fuemen";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/grechenfuemen/v11/vEFI2_tHEQ4d5ObgKxBzZh0MAVgb8tc.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/grechenfuemen/v11/vEFI2_tHEQ4d5ObgKxBzZh0MAVgb8tc.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/grechenfuemen/v11/vEFI2_tHEQ4d5ObgKxBzZh0MAVgV8tenXg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/grechenfuemen/v11/vEFI2_tHEQ4d5ObgKxBzZh0MAVgV8tenXg.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/grechenfuemen/v11/vEFI2_tHEQ4d5ObgKxBzZh0MAVgU8tenXg.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/grechenfuemen/v11/vEFI2_tHEQ4d5ObgKxBzZh0MAVgU8tenXg.woff2",
   },
 } as const;
 
 export type GrechenFuemenWeight = "400";
 export type GrechenFuemenStyle = "normal";
 export type GrechenFuemenSubset = "latin" | "latin-ext" | "vietnamese";
-export type GrechenFuemenOptions = GoogleFontOptions<GrechenFuemenWeight, GrechenFuemenStyle, GrechenFuemenSubset>;
+export type GrechenFuemenOptions = GoogleFontOptions<
+  GrechenFuemenWeight,
+  GrechenFuemenStyle,
+  GrechenFuemenSubset
+>;
 
 /**
  * Grechen Fuemen — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GrechenFuemen extends GoogleFont<GrechenFuemenWeight, GrechenFuemenStyle, GrechenFuemenSubset> {
+export default class GrechenFuemen extends GoogleFont<
+  GrechenFuemenWeight,
+  GrechenFuemenStyle,
+  GrechenFuemenSubset
+> {
   constructor(options?: GrechenFuemenOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yaldevi";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/yaldevi/v17/cY9Ffj6VW0NMrDWtJtDqyg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/yaldevi/v17/cY9Ffj6VW0NMrDWtJtDqyg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/yaldevi/v17/cY9Ffj6VW0NMrDWtJtDqyg.woff2",
@@ -20,7 +20,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/yaldevi/v17/cY9Ffj6VW0NMrDWtJt7qyuHT.woff2",
     "700-normal": "https://fonts.gstatic.com/s/yaldevi/v17/cY9Ffj6VW0NMrDWtJt7qyuHT.woff2",
   },
-  "sinhala": {
+  sinhala: {
     "200-normal": "https://fonts.gstatic.com/s/yaldevi/v17/cY9Ffj6VW0NMrDWtJs3qyuHT.woff2",
     "300-normal": "https://fonts.gstatic.com/s/yaldevi/v17/cY9Ffj6VW0NMrDWtJs3qyuHT.woff2",
     "400-normal": "https://fonts.gstatic.com/s/yaldevi/v17/cY9Ffj6VW0NMrDWtJs3qyuHT.woff2",

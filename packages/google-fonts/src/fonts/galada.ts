@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Galada";
 
 const FACES = {
-  "bengali": {
+  bengali: {
     "400-normal": "https://fonts.gstatic.com/s/galada/v21/H4cmBXyGmcjXlUXO5yY_0Lo.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/galada/v21/H4cmBXyGmcjXlUXO9SY_.woff2",
   },
 } as const;

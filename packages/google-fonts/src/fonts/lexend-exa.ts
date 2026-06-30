@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lexend Exa";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/lexendexa/v35/UMBXrPdOoHOnxExyjdBeai3dAw.woff2",
     "200-normal": "https://fonts.gstatic.com/s/lexendexa/v35/UMBXrPdOoHOnxExyjdBeai3dAw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lexendexa/v35/UMBXrPdOoHOnxExyjdBeai3dAw.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/lexendexa/v35/UMBXrPdOoHOnxExyjdBeaiPdA4M5.woff2",
     "900-normal": "https://fonts.gstatic.com/s/lexendexa/v35/UMBXrPdOoHOnxExyjdBeaiPdA4M5.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/lexendexa/v35/UMBXrPdOoHOnxExyjdBeaiLdA4M5.woff2",
     "200-normal": "https://fonts.gstatic.com/s/lexendexa/v35/UMBXrPdOoHOnxExyjdBeaiLdA4M5.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lexendexa/v35/UMBXrPdOoHOnxExyjdBeaiLdA4M5.woff2",
@@ -48,7 +48,11 @@ export type LexendExaOptions = GoogleFontOptions<LexendExaWeight, LexendExaStyle
  * Lexend Exa — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LexendExa extends GoogleFont<LexendExaWeight, LexendExaStyle, LexendExaSubset> {
+export default class LexendExa extends GoogleFont<
+  LexendExaWeight,
+  LexendExaStyle,
+  LexendExaSubset
+> {
   constructor(options?: LexendExaOptions) {
     super(FAMILY, FACES, options);
   }

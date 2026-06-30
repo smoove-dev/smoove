@@ -4,39 +4,62 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cormorant Upright";
 
 const FACES = {
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1N5piDrWdQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJrdM3I2Y35poFONtLdafkUCHw1y1vShDU.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MhpyDrWdQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MNoCDrWdQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1NpoSDrWdQ.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1N5piDrWdQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJrdM3I2Y35poFONtLdafkUCHw1y1vShDU.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MhpyDrWdQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MNoCDrWdQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1NpoSDrWdQ.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1N5piDlWdTKRA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJrdM3I2Y35poFONtLdafkUCHw1y1vchDXUeA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MhpyDlWdTKRA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MNoCDlWdTKRA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1NpoSDlWdTKRA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1N5piDlWdTKRA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJrdM3I2Y35poFONtLdafkUCHw1y1vchDXUeA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MhpyDlWdTKRA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MNoCDlWdTKRA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1NpoSDlWdTKRA.woff2",
   },
-  "vietnamese": {
-    "300-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1N5piDkWdTKRA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJrdM3I2Y35poFONtLdafkUCHw1y1vdhDXUeA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MhpyDkWdTKRA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MNoCDkWdTKRA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1NpoSDkWdTKRA.woff2",
+  vietnamese: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1N5piDkWdTKRA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJrdM3I2Y35poFONtLdafkUCHw1y1vdhDXUeA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MhpyDkWdTKRA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1MNoCDkWdTKRA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cormorantupright/v19/VuJudM3I2Y35poFONtLdafkUCHw1y1NpoSDkWdTKRA.woff2",
   },
 } as const;
 
 export type CormorantUprightWeight = "300" | "400" | "500" | "600" | "700";
 export type CormorantUprightStyle = "normal";
 export type CormorantUprightSubset = "latin" | "latin-ext" | "vietnamese";
-export type CormorantUprightOptions = GoogleFontOptions<CormorantUprightWeight, CormorantUprightStyle, CormorantUprightSubset>;
+export type CormorantUprightOptions = GoogleFontOptions<
+  CormorantUprightWeight,
+  CormorantUprightStyle,
+  CormorantUprightSubset
+>;
 
 /**
  * Cormorant Upright — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CormorantUpright extends GoogleFont<CormorantUprightWeight, CormorantUprightStyle, CormorantUprightSubset> {
+export default class CormorantUpright extends GoogleFont<
+  CormorantUprightWeight,
+  CormorantUprightStyle,
+  CormorantUprightSubset
+> {
   constructor(options?: CormorantUprightOptions) {
     super(FAMILY, FACES, options);
   }

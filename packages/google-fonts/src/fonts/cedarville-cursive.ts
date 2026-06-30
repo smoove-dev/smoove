@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cedarville Cursive";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/cedarvillecursive/v18/yYL00g_a2veiudhUmxjo5VKkoqA-B_nuIrpw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cedarvillecursive/v18/yYL00g_a2veiudhUmxjo5VKkoqA-B_nuIrpw.woff2",
   },
 } as const;
 
 export type CedarvilleCursiveWeight = "400";
 export type CedarvilleCursiveStyle = "normal";
 export type CedarvilleCursiveSubset = "latin";
-export type CedarvilleCursiveOptions = GoogleFontOptions<CedarvilleCursiveWeight, CedarvilleCursiveStyle, CedarvilleCursiveSubset>;
+export type CedarvilleCursiveOptions = GoogleFontOptions<
+  CedarvilleCursiveWeight,
+  CedarvilleCursiveStyle,
+  CedarvilleCursiveSubset
+>;
 
 /**
  * Cedarville Cursive — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CedarvilleCursive extends GoogleFont<CedarvilleCursiveWeight, CedarvilleCursiveStyle, CedarvilleCursiveSubset> {
+export default class CedarvilleCursive extends GoogleFont<
+  CedarvilleCursiveWeight,
+  CedarvilleCursiveStyle,
+  CedarvilleCursiveSubset
+> {
   constructor(options?: CedarvilleCursiveOptions) {
     super(FAMILY, FACES, options);
   }

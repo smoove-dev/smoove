@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "REM";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/rem/v4/Wnz1HAIoSDytZAAsQRM.woff2",
     "100-normal": "https://fonts.gstatic.com/s/rem/v4/Wnz3HAIoSDytYTAu.woff2",
     "200-italic": "https://fonts.gstatic.com/s/rem/v4/Wnz1HAIoSDytZAAsQRM.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/rem/v4/Wnz1HAIoSDytZAAiQRMlow.woff2",
     "900-normal": "https://fonts.gstatic.com/s/rem/v4/Wnz3HAIoSDytbzAuWRc.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/rem/v4/Wnz1HAIoSDytZAAjQRMlow.woff2",
     "100-normal": "https://fonts.gstatic.com/s/rem/v4/Wnz3HAIoSDytbjAuWRc.woff2",
     "200-italic": "https://fonts.gstatic.com/s/rem/v4/Wnz1HAIoSDytZAAjQRMlow.woff2",

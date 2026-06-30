@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Trocchi";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/trocchi/v19/qWcqB6WkuIDxDZLcPrxevQ.woff2",
   },
   "latin-ext": {

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yellowtail";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/yellowtail/v25/OZpGg_pnoDtINPfRIlLohlvHwQ.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type YellowtailWeight = "400";
 export type YellowtailStyle = "normal";
 export type YellowtailSubset = "latin" | "latin-ext";
-export type YellowtailOptions = GoogleFontOptions<YellowtailWeight, YellowtailStyle, YellowtailSubset>;
+export type YellowtailOptions = GoogleFontOptions<
+  YellowtailWeight,
+  YellowtailStyle,
+  YellowtailSubset
+>;
 
 /**
  * Yellowtail — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Yellowtail extends GoogleFont<YellowtailWeight, YellowtailStyle, YellowtailSubset> {
+export default class Yellowtail extends GoogleFont<
+  YellowtailWeight,
+  YellowtailStyle,
+  YellowtailSubset
+> {
   constructor(options?: YellowtailOptions) {
     super(FAMILY, FACES, options);
   }

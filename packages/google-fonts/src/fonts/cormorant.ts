@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cormorant";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "300-italic": "https://fonts.gstatic.com/s/cormorant/v24/H4cjBXOCl9bbnla_nHIq6qu7oqOOag.woff2",
     "300-normal": "https://fonts.gstatic.com/s/cormorant/v24/H4clBXOCl9bbnla_nHIq65u9uqc.woff2",
     "400-italic": "https://fonts.gstatic.com/s/cormorant/v24/H4cjBXOCl9bbnla_nHIq6qu7oqOOag.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/cormorant/v24/H4cjBXOCl9bbnla_nHIq6quyoqOOag.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cormorant/v24/H4clBXOCl9bbnla_nHIq4pu9uqc.woff2",
   },
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/cormorant/v24/H4cjBXOCl9bbnla_nHIq6qu_oqM.woff2",
     "300-normal": "https://fonts.gstatic.com/s/cormorant/v24/H4clBXOCl9bbnla_nHIq75u9.woff2",
     "400-italic": "https://fonts.gstatic.com/s/cormorant/v24/H4cjBXOCl9bbnla_nHIq6qu_oqM.woff2",
@@ -52,7 +52,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/cormorant/v24/H4cjBXOCl9bbnla_nHIq6quxoqOOag.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cormorant/v24/H4clBXOCl9bbnla_nHIq4Zu9uqc.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-italic": "https://fonts.gstatic.com/s/cormorant/v24/H4cjBXOCl9bbnla_nHIq6quwoqOOag.woff2",
     "300-normal": "https://fonts.gstatic.com/s/cormorant/v24/H4clBXOCl9bbnla_nHIq4Ju9uqc.woff2",
     "400-italic": "https://fonts.gstatic.com/s/cormorant/v24/H4cjBXOCl9bbnla_nHIq6quwoqOOag.woff2",
@@ -75,7 +75,11 @@ export type CormorantOptions = GoogleFontOptions<CormorantWeight, CormorantStyle
  * Cormorant — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Cormorant extends GoogleFont<CormorantWeight, CormorantStyle, CormorantSubset> {
+export default class Cormorant extends GoogleFont<
+  CormorantWeight,
+  CormorantStyle,
+  CormorantSubset
+> {
   constructor(options?: CormorantOptions) {
     super(FAMILY, FACES, options);
   }

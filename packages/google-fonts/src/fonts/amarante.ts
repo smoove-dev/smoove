@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Amarante";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/amarante/v30/xMQXuF1KTa6EvGx9bp-wAXs.woff2",
   },
   "latin-ext": {

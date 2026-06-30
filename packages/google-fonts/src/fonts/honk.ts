@@ -4,20 +4,25 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Honk";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/honk/v6/m8J7jftUea-XwTaemClumrBQbmvynOmXBji9zFhHRr8WFgV7pLFM.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/honk/v6/m8J7jftUea-XwTaemClumrBQbmvynOmXBji9zFhHRr8WFgV7pLFM.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/honk/v6/m8J7jftUea-XwTaemClumrBQbmvynOmXBji9zFhHRr8WFgV7qrFMSpQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/honk/v6/m8J7jftUea-XwTaemClumrBQbmvynOmXBji9zFhHRr8WFgV7qrFMSpQ.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/honk/v6/m8J7jftUea-XwTaemClumrBQbmvynOmXBji9zFhHRr8WFgV72LFMSpQ.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/honk/v6/m8J7jftUea-XwTaemClumrBQbmvynOmXBji9zFhHRr8WFgV72LFMSpQ.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/honk/v6/m8J7jftUea-XwTaemClumrBQbmvynOmXBji9zFhHRr8WFgV7yrFMSpQ.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/honk/v6/m8J7jftUea-XwTaemClumrBQbmvynOmXBji9zFhHRr8WFgV7yrFMSpQ.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/honk/v6/m8J7jftUea-XwTaemClumrBQbmvynOmXBji9zFhHRr8WFgV7q7FMSpQ.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/honk/v6/m8J7jftUea-XwTaemClumrBQbmvynOmXBji9zFhHRr8WFgV7q7FMSpQ.woff2",
   },
 } as const;
 

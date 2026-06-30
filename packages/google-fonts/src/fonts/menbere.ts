@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Menbere";
 
 const FACES = {
-  "ethiopic": {
+  ethiopic: {
     "100-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2V6KrI8L.woff2",
     "200-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2V6KrI8L.woff2",
     "300-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2V6KrI8L.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2V6KrI8L.woff2",
     "700-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2V6KrI8L.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2U-KrA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2U-KrA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2U-KrA.woff2",
@@ -31,7 +31,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2UGKrI8L.woff2",
     "700-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2UGKrI8L.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2UCKrI8L.woff2",
     "200-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2UCKrI8L.woff2",
     "300-normal": "https://fonts.gstatic.com/s/menbere/v1/lJwH-p0zhmBrWvcG2UCKrI8L.woff2",

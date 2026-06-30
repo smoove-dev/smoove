@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ma Shan Zheng";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/mashanzheng/v17/NaPecZTRCLxvwo41b4gvzkXadMPmDQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/mashanzheng/v17/NaPecZTRCLxvwo41b4gvzkXadMPmDQ.woff2",
   },
 } as const;
 
 export type MaShanZhengWeight = "400";
 export type MaShanZhengStyle = "normal";
 export type MaShanZhengSubset = "latin";
-export type MaShanZhengOptions = GoogleFontOptions<MaShanZhengWeight, MaShanZhengStyle, MaShanZhengSubset>;
+export type MaShanZhengOptions = GoogleFontOptions<
+  MaShanZhengWeight,
+  MaShanZhengStyle,
+  MaShanZhengSubset
+>;
 
 /**
  * Ma Shan Zheng — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MaShanZheng extends GoogleFont<MaShanZhengWeight, MaShanZhengStyle, MaShanZhengSubset> {
+export default class MaShanZheng extends GoogleFont<
+  MaShanZhengWeight,
+  MaShanZhengStyle,
+  MaShanZhengSubset
+> {
   constructor(options?: MaShanZhengOptions) {
     super(FAMILY, FACES, options);
   }

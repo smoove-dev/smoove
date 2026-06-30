@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Butcherman";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/butcherman/v25/2EbiL-thF0loflXUBOdb5zK5qg.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type ButchermanWeight = "400";
 export type ButchermanStyle = "normal";
 export type ButchermanSubset = "latin" | "latin-ext";
-export type ButchermanOptions = GoogleFontOptions<ButchermanWeight, ButchermanStyle, ButchermanSubset>;
+export type ButchermanOptions = GoogleFontOptions<
+  ButchermanWeight,
+  ButchermanStyle,
+  ButchermanSubset
+>;
 
 /**
  * Butcherman — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Butcherman extends GoogleFont<ButchermanWeight, ButchermanStyle, ButchermanSubset> {
+export default class Butcherman extends GoogleFont<
+  ButchermanWeight,
+  ButchermanStyle,
+  ButchermanSubset
+> {
   constructor(options?: ButchermanOptions) {
     super(FAMILY, FACES, options);
   }

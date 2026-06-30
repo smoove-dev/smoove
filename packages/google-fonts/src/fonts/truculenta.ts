@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Truculenta";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6Xth22p.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiW2p5eM.woff2",
   },
-  "vietnamese": {
-    "100-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
+  vietnamese: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/truculenta/v27/LhWKMVvBKusVIfNYGi1-WvRVyDdZeeiySNppcu32Mb2f06y6Oa21F6XtiG2p5eM.woff2",
   },
 } as const;
 
-export type TruculentaWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type TruculentaWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type TruculentaStyle = "normal";
 export type TruculentaSubset = "latin" | "latin-ext" | "vietnamese";
-export type TruculentaOptions = GoogleFontOptions<TruculentaWeight, TruculentaStyle, TruculentaSubset>;
+export type TruculentaOptions = GoogleFontOptions<
+  TruculentaWeight,
+  TruculentaStyle,
+  TruculentaSubset
+>;
 
 /**
  * Truculenta — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Truculenta extends GoogleFont<TruculentaWeight, TruculentaStyle, TruculentaSubset> {
+export default class Truculenta extends GoogleFont<
+  TruculentaWeight,
+  TruculentaStyle,
+  TruculentaSubset
+> {
   constructor(options?: TruculentaOptions) {
     super(FAMILY, FACES, options);
   }

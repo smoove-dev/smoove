@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ravi Prakash";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/raviprakash/v21/gokpH6fsDkVrF9Bv9X8SOAK3n9xF.woff2",
   },
-  "telugu": {
-    "400-normal": "https://fonts.gstatic.com/s/raviprakash/v21/gokpH6fsDkVrF9Bv9X8SOAK3g9xFm6Q.woff2",
+  telugu: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/raviprakash/v21/gokpH6fsDkVrF9Bv9X8SOAK3g9xFm6Q.woff2",
   },
 } as const;
 
 export type RaviPrakashWeight = "400";
 export type RaviPrakashStyle = "normal";
 export type RaviPrakashSubset = "latin" | "telugu";
-export type RaviPrakashOptions = GoogleFontOptions<RaviPrakashWeight, RaviPrakashStyle, RaviPrakashSubset>;
+export type RaviPrakashOptions = GoogleFontOptions<
+  RaviPrakashWeight,
+  RaviPrakashStyle,
+  RaviPrakashSubset
+>;
 
 /**
  * Ravi Prakash — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RaviPrakash extends GoogleFont<RaviPrakashWeight, RaviPrakashStyle, RaviPrakashSubset> {
+export default class RaviPrakash extends GoogleFont<
+  RaviPrakashWeight,
+  RaviPrakashStyle,
+  RaviPrakashSubset
+> {
   constructor(options?: RaviPrakashOptions) {
     super(FAMILY, FACES, options);
   }

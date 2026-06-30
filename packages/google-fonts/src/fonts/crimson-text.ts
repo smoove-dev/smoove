@@ -4,42 +4,67 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Crimson Text";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/crimsontext/v19/wlpogwHKFkZgtmSR3NB0oRJfajhRK_Y.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlpogwHKFkZgtmSR3NB0oRJfajhRK_Y.woff2",
     "400-normal": "https://fonts.gstatic.com/s/crimsontext/v19/wlp2gwHKFkZgtmSR3NB0oRJfbwhT.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajCOD-NS_LU.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJXsCxGDNNQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajDqDuNS_LU.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJX1C1GDNNQ.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajCOD-NS_LU.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJXsCxGDNNQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajDqDuNS_LU.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJX1C1GDNNQ.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/crimsontext/v19/wlpogwHKFkZgtmSR3NB0oRJfajhfK_Zt3Q.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/crimsontext/v19/wlp2gwHKFkZgtmSR3NB0oRJfYQhTM_I.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajCOD-Nc_LV_fg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJXsCxGAtNQ5LE.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajDqDuNc_LV_fg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJX1C1GAtNQ5LE.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlpogwHKFkZgtmSR3NB0oRJfajhfK_Zt3Q.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlp2gwHKFkZgtmSR3NB0oRJfYQhTM_I.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajCOD-Nc_LV_fg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJXsCxGAtNQ5LE.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajDqDuNc_LV_fg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJX1C1GAtNQ5LE.woff2",
   },
-  "vietnamese": {
-    "400-italic": "https://fonts.gstatic.com/s/crimsontext/v19/wlpogwHKFkZgtmSR3NB0oRJfajheK_Zt3Q.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/crimsontext/v19/wlp2gwHKFkZgtmSR3NB0oRJfYAhTM_I.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajCOD-Nd_LV_fg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJXsCxGA9NQ5LE.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajDqDuNd_LV_fg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJX1C1GA9NQ5LE.woff2",
+  vietnamese: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlpogwHKFkZgtmSR3NB0oRJfajheK_Zt3Q.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlp2gwHKFkZgtmSR3NB0oRJfYAhTM_I.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajCOD-Nd_LV_fg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJXsCxGA9NQ5LE.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajDqDuNd_LV_fg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJX1C1GA9NQ5LE.woff2",
   },
 } as const;
 
 export type CrimsonTextWeight = "400" | "600" | "700";
 export type CrimsonTextStyle = "italic" | "normal";
 export type CrimsonTextSubset = "latin" | "latin-ext" | "vietnamese";
-export type CrimsonTextOptions = GoogleFontOptions<CrimsonTextWeight, CrimsonTextStyle, CrimsonTextSubset>;
+export type CrimsonTextOptions = GoogleFontOptions<
+  CrimsonTextWeight,
+  CrimsonTextStyle,
+  CrimsonTextSubset
+>;
 
 /**
  * Crimson Text — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CrimsonText extends GoogleFont<CrimsonTextWeight, CrimsonTextStyle, CrimsonTextSubset> {
+export default class CrimsonText extends GoogleFont<
+  CrimsonTextWeight,
+  CrimsonTextStyle,
+  CrimsonTextSubset
+> {
   constructor(options?: CrimsonTextOptions) {
     super(FAMILY, FACES, options);
   }

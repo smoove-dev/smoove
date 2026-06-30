@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sirin Stencil";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/sirinstencil/v27/mem4YaWwznmLx-lzGfN7MdRyRc9MBw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sirinstencil/v27/mem4YaWwznmLx-lzGfN7MdRyRc9MBw.woff2",
   },
 } as const;
 
 export type SirinStencilWeight = "400";
 export type SirinStencilStyle = "normal";
 export type SirinStencilSubset = "latin";
-export type SirinStencilOptions = GoogleFontOptions<SirinStencilWeight, SirinStencilStyle, SirinStencilSubset>;
+export type SirinStencilOptions = GoogleFontOptions<
+  SirinStencilWeight,
+  SirinStencilStyle,
+  SirinStencilSubset
+>;
 
 /**
  * Sirin Stencil — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SirinStencil extends GoogleFont<SirinStencilWeight, SirinStencilStyle, SirinStencilSubset> {
+export default class SirinStencil extends GoogleFont<
+  SirinStencilWeight,
+  SirinStencilStyle,
+  SirinStencilSubset
+> {
   constructor(options?: SirinStencilOptions) {
     super(FAMILY, FACES, options);
   }

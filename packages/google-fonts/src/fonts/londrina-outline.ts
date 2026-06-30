@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Londrina Outline";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/londrinaoutline/v29/C8c44dM8vmb14dfsZxhetg3pDH-STu07rA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/londrinaoutline/v29/C8c44dM8vmb14dfsZxhetg3pDH-STu07rA.woff2",
   },
 } as const;
 
 export type LondrinaOutlineWeight = "400";
 export type LondrinaOutlineStyle = "normal";
 export type LondrinaOutlineSubset = "latin";
-export type LondrinaOutlineOptions = GoogleFontOptions<LondrinaOutlineWeight, LondrinaOutlineStyle, LondrinaOutlineSubset>;
+export type LondrinaOutlineOptions = GoogleFontOptions<
+  LondrinaOutlineWeight,
+  LondrinaOutlineStyle,
+  LondrinaOutlineSubset
+>;
 
 /**
  * Londrina Outline — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LondrinaOutline extends GoogleFont<LondrinaOutlineWeight, LondrinaOutlineStyle, LondrinaOutlineSubset> {
+export default class LondrinaOutline extends GoogleFont<
+  LondrinaOutlineWeight,
+  LondrinaOutlineStyle,
+  LondrinaOutlineSubset
+> {
   constructor(options?: LondrinaOutlineOptions) {
     super(FAMILY, FACES, options);
   }

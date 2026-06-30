@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Castoro";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/castoro/v20/1q2EY5yMCld3-O4cLYp-z84a.woff2",
     "400-normal": "https://fonts.gstatic.com/s/castoro/v20/1q2GY5yMCld3-O4cLY9OzQ.woff2",
   },

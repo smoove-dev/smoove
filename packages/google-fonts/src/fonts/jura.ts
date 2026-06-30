@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jura";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "300-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcBJURRD.woff2",
     "400-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcBJURRD.woff2",
     "500-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcBJURRD.woff2",
@@ -18,7 +18,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXclJURRD.woff2",
     "700-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXclJURRD.woff2",
   },
-  "greek": {
+  greek: {
     "300-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcdJURRD.woff2",
     "400-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcdJURRD.woff2",
     "500-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcdJURRD.woff2",
@@ -39,7 +39,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXYxJURRD.woff2",
     "700-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXYxJURRD.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcRJUQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcRJUQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcRJUQ.woff2",
@@ -53,7 +53,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcpJURRD.woff2",
     "700-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXcpJURRD.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXctJURRD.woff2",
     "400-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXctJURRD.woff2",
     "500-normal": "https://fonts.gstatic.com/s/jura/v34/z7NbdRfiaC4VXctJURRD.woff2",
@@ -64,7 +64,15 @@ const FACES = {
 
 export type JuraWeight = "300" | "400" | "500" | "600" | "700";
 export type JuraStyle = "normal";
-export type JuraSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "kayah-li" | "latin" | "latin-ext" | "vietnamese";
+export type JuraSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "kayah-li"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type JuraOptions = GoogleFontOptions<JuraWeight, JuraStyle, JuraSubset>;
 
 /**

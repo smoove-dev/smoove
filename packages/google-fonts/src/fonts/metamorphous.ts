@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Metamorphous";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/metamorphous/v22/Wnz8HA03aAXcC39ZEX5y133EOyqs.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/metamorphous/v22/Wnz8HA03aAXcC39ZEX5y133ENSqstTs.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/metamorphous/v22/Wnz8HA03aAXcC39ZEX5y133ENSqstTs.woff2",
   },
 } as const;
 
 export type MetamorphousWeight = "400";
 export type MetamorphousStyle = "normal";
 export type MetamorphousSubset = "latin" | "latin-ext";
-export type MetamorphousOptions = GoogleFontOptions<MetamorphousWeight, MetamorphousStyle, MetamorphousSubset>;
+export type MetamorphousOptions = GoogleFontOptions<
+  MetamorphousWeight,
+  MetamorphousStyle,
+  MetamorphousSubset
+>;
 
 /**
  * Metamorphous — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Metamorphous extends GoogleFont<MetamorphousWeight, MetamorphousStyle, MetamorphousSubset> {
+export default class Metamorphous extends GoogleFont<
+  MetamorphousWeight,
+  MetamorphousStyle,
+  MetamorphousSubset
+> {
   constructor(options?: MetamorphousOptions) {
     super(FAMILY, FACES, options);
   }

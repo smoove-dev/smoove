@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Shafarik";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/shafarik/v3/RWmLoKaF7PojpZXlW62vZMD6qA.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/shafarik/v3/RWmLoKaF7PojpZXlW62mZMD6qA.woff2",
   },
-  "glagolitic": {
+  glagolitic: {
     "400-normal": "https://fonts.gstatic.com/s/shafarik/v3/RWmLoKaF7PojpZXlW60tReXHkaA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/shafarik/v3/RWmLoKaF7PojpZXlW62rZMA.woff2",
   },
   "latin-ext": {

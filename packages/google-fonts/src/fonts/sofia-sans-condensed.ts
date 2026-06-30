@@ -4,118 +4,230 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sofia Sans Condensed";
 
 const FACES = {
-  "cyrillic": {
-    "100-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
+  cyrillic: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltf9fkxE.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcMptHleg.woff2",
   },
   "cyrillic-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt79fkxE.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcFptHleg.woff2",
   },
-  "greek": {
-    "100-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
+  greek: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltD9fkxE.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcLptHleg.woff2",
   },
-  "latin": {
-    "100-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
+  latin: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNltP9fg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcIptE.woff2",
   },
   "latin-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05KGKVS5aVKd567NYXawnFKJaTtoAuLnIcNlt39fkxE.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/sofiasanscondensed/v6/r05EGKVS5aVKd567NYXawnFKJaTtoAuLnIcGptHleg.woff2",
   },
 } as const;
 
-export type SofiaSansCondensedWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type SofiaSansCondensedWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type SofiaSansCondensedStyle = "italic" | "normal";
-export type SofiaSansCondensedSubset = "cyrillic" | "cyrillic-ext" | "greek" | "latin" | "latin-ext";
-export type SofiaSansCondensedOptions = GoogleFontOptions<SofiaSansCondensedWeight, SofiaSansCondensedStyle, SofiaSansCondensedSubset>;
+export type SofiaSansCondensedSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "latin"
+  | "latin-ext";
+export type SofiaSansCondensedOptions = GoogleFontOptions<
+  SofiaSansCondensedWeight,
+  SofiaSansCondensedStyle,
+  SofiaSansCondensedSubset
+>;
 
 /**
  * Sofia Sans Condensed — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SofiaSansCondensed extends GoogleFont<SofiaSansCondensedWeight, SofiaSansCondensedStyle, SofiaSansCondensedSubset> {
+export default class SofiaSansCondensed extends GoogleFont<
+  SofiaSansCondensedWeight,
+  SofiaSansCondensedStyle,
+  SofiaSansCondensedSubset
+> {
   constructor(options?: SofiaSansCondensedOptions) {
     super(FAMILY, FACES, options);
   }

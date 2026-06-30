@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Righteous";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/righteous/v18/1cXxaUPXBpj2rGoU7C9WiHGF.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type RighteousOptions = GoogleFontOptions<RighteousWeight, RighteousStyle
  * Righteous — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Righteous extends GoogleFont<RighteousWeight, RighteousStyle, RighteousSubset> {
+export default class Righteous extends GoogleFont<
+  RighteousWeight,
+  RighteousStyle,
+  RighteousSubset
+> {
   constructor(options?: RighteousOptions) {
     super(FAMILY, FACES, options);
   }

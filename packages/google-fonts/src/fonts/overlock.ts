@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Overlock";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/overlock/v19/Z9XTDmdMWRiN1_T9Z7Tc2O6skw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/overlock/v19/Z9XVDmdMWRiN1_T9Z7TZ6Ow.woff2",
     "700-italic": "https://fonts.gstatic.com/s/overlock/v19/Z9XQDmdMWRiN1_T9Z7Tc0FWJhr6j8Q.woff2",

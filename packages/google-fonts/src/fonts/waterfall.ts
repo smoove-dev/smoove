@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Waterfall";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/waterfall/v8/MCoRzAfo293fACdFKcwo3bv9.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/waterfall/v8/MCoRzAfo293fACdFKcwo07v9P_E.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/waterfall/v8/MCoRzAfo293fACdFKcwo0rv9P_E.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type WaterfallOptions = GoogleFontOptions<WaterfallWeight, WaterfallStyle
  * Waterfall — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Waterfall extends GoogleFont<WaterfallWeight, WaterfallStyle, WaterfallSubset> {
+export default class Waterfall extends GoogleFont<
+  WaterfallWeight,
+  WaterfallStyle,
+  WaterfallSubset
+> {
   constructor(options?: WaterfallOptions) {
     super(FAMILY, FACES, options);
   }

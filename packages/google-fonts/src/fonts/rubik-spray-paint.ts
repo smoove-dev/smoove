@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Spray Paint";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikspraypaint/v1/WnzhHBAoeBPUDTB4EWR82y6EXWPH-So9SIexZQ.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikspraypaint/v1/WnzhHBAoeBPUDTB4EWR82y6EXWPH-So9SIexZQ.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikspraypaint/v1/WnzhHBAoeBPUDTB4EWR82y6EXWPH-So0SIexZQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikspraypaint/v1/WnzhHBAoeBPUDTB4EWR82y6EXWPH-So0SIexZQ.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikspraypaint/v1/WnzhHBAoeBPUDTB4EWR82y6EXWPH-So7SIexZQ.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikspraypaint/v1/WnzhHBAoeBPUDTB4EWR82y6EXWPH-So7SIexZQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikspraypaint/v1/WnzhHBAoeBPUDTB4EWR82y6EXWPH-So5SIc.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikspraypaint/v1/WnzhHBAoeBPUDTB4EWR82y6EXWPH-So5SIc.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikspraypaint/v1/WnzhHBAoeBPUDTB4EWR82y6EXWPH-So3SIexZQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikspraypaint/v1/WnzhHBAoeBPUDTB4EWR82y6EXWPH-So3SIexZQ.woff2",
   },
 } as const;
 
 export type RubikSprayPaintWeight = "400";
 export type RubikSprayPaintStyle = "normal";
 export type RubikSprayPaintSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikSprayPaintOptions = GoogleFontOptions<RubikSprayPaintWeight, RubikSprayPaintStyle, RubikSprayPaintSubset>;
+export type RubikSprayPaintOptions = GoogleFontOptions<
+  RubikSprayPaintWeight,
+  RubikSprayPaintStyle,
+  RubikSprayPaintSubset
+>;
 
 /**
  * Rubik Spray Paint — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikSprayPaint extends GoogleFont<RubikSprayPaintWeight, RubikSprayPaintStyle, RubikSprayPaintSubset> {
+export default class RubikSprayPaint extends GoogleFont<
+  RubikSprayPaintWeight,
+  RubikSprayPaintStyle,
+  RubikSprayPaintSubset
+> {
   constructor(options?: RubikSprayPaintOptions) {
     super(FAMILY, FACES, options);
   }

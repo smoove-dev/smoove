@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jacquard 24 Charted";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/jacquard24charted/v5/mtGm4-dNK6HaudrE9VVKhENTsEXEYish4iNhMA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/jacquard24charted/v5/mtGm4-dNK6HaudrE9VVKhENTsEXEYish4iNhMA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/jacquard24charted/v5/mtGm4-dNK6HaudrE9VVKhENTsEXEYish4i1hMLJ_.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/jacquard24charted/v5/mtGm4-dNK6HaudrE9VVKhENTsEXEYish4i1hMLJ_.woff2",
   },
 } as const;
 
 export type Jacquard24ChartedWeight = "400";
 export type Jacquard24ChartedStyle = "normal";
 export type Jacquard24ChartedSubset = "latin" | "latin-ext";
-export type Jacquard24ChartedOptions = GoogleFontOptions<Jacquard24ChartedWeight, Jacquard24ChartedStyle, Jacquard24ChartedSubset>;
+export type Jacquard24ChartedOptions = GoogleFontOptions<
+  Jacquard24ChartedWeight,
+  Jacquard24ChartedStyle,
+  Jacquard24ChartedSubset
+>;
 
 /**
  * Jacquard 24 Charted — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Jacquard24Charted extends GoogleFont<Jacquard24ChartedWeight, Jacquard24ChartedStyle, Jacquard24ChartedSubset> {
+export default class Jacquard24Charted extends GoogleFont<
+  Jacquard24ChartedWeight,
+  Jacquard24ChartedStyle,
+  Jacquard24ChartedSubset
+> {
   constructor(options?: Jacquard24ChartedOptions) {
     super(FAMILY, FACES, options);
   }

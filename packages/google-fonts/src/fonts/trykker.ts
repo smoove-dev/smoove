@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Trykker";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/trykker/v22/KtktALyWZJXudUPztN7iOA.woff2",
   },
   "latin-ext": {

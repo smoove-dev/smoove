@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Medula One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/medulaone/v20/YA9Wr0qb5kjJM6l2V0yuoiYgsg.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type MedulaOneOptions = GoogleFontOptions<MedulaOneWeight, MedulaOneStyle
  * Medula One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MedulaOne extends GoogleFont<MedulaOneWeight, MedulaOneStyle, MedulaOneSubset> {
+export default class MedulaOne extends GoogleFont<
+  MedulaOneWeight,
+  MedulaOneStyle,
+  MedulaOneSubset
+> {
   constructor(options?: MedulaOneOptions) {
     super(FAMILY, FACES, options);
   }

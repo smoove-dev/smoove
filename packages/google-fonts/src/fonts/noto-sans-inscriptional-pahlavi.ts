@@ -5,26 +5,37 @@ const FAMILY = "Noto Sans Inscriptional Pahlavi";
 
 const FACES = {
   "inscriptional-pahlavi": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansinscriptionalpahlavi/v18/ll8UK3GaVDuxR-TEqFPIbsR79Xxz9WEKbwsjpz7VklYlC7FCZoGfOTYK.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansinscriptionalpahlavi/v18/ll8UK3GaVDuxR-TEqFPIbsR79Xxz9WEKbwsjpz7VklYlC7FCZoGfOTYK.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansinscriptionalpahlavi/v18/ll8UK3GaVDuxR-TEqFPIbsR79Xxz9WEKbwsjpz7VklYlC7FCZt2fOQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansinscriptionalpahlavi/v18/ll8UK3GaVDuxR-TEqFPIbsR79Xxz9WEKbwsjpz7VklYlC7FCZt2fOQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansinscriptionalpahlavi/v18/ll8UK3GaVDuxR-TEqFPIbsR79Xxz9WEKbwsjpz7VklYlC7FCZtOfOTYK.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansinscriptionalpahlavi/v18/ll8UK3GaVDuxR-TEqFPIbsR79Xxz9WEKbwsjpz7VklYlC7FCZtOfOTYK.woff2",
   },
 } as const;
 
 export type NotoSansInscriptionalPahlaviWeight = "400";
 export type NotoSansInscriptionalPahlaviStyle = "normal";
 export type NotoSansInscriptionalPahlaviSubset = "inscriptional-pahlavi" | "latin" | "latin-ext";
-export type NotoSansInscriptionalPahlaviOptions = GoogleFontOptions<NotoSansInscriptionalPahlaviWeight, NotoSansInscriptionalPahlaviStyle, NotoSansInscriptionalPahlaviSubset>;
+export type NotoSansInscriptionalPahlaviOptions = GoogleFontOptions<
+  NotoSansInscriptionalPahlaviWeight,
+  NotoSansInscriptionalPahlaviStyle,
+  NotoSansInscriptionalPahlaviSubset
+>;
 
 /**
  * Noto Sans Inscriptional Pahlavi — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansInscriptionalPahlavi extends GoogleFont<NotoSansInscriptionalPahlaviWeight, NotoSansInscriptionalPahlaviStyle, NotoSansInscriptionalPahlaviSubset> {
+export default class NotoSansInscriptionalPahlavi extends GoogleFont<
+  NotoSansInscriptionalPahlaviWeight,
+  NotoSansInscriptionalPahlaviStyle,
+  NotoSansInscriptionalPahlaviSubset
+> {
   constructor(options?: NotoSansInscriptionalPahlaviOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bpmf Iansui";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bpmfiansui/v6/yMJWMIp-dJTO0T8F_WnJPjh2qtA.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type BpmfIansuiWeight = "400";
 export type BpmfIansuiStyle = "normal";
 export type BpmfIansuiSubset = "latin" | "latin-ext";
-export type BpmfIansuiOptions = GoogleFontOptions<BpmfIansuiWeight, BpmfIansuiStyle, BpmfIansuiSubset>;
+export type BpmfIansuiOptions = GoogleFontOptions<
+  BpmfIansuiWeight,
+  BpmfIansuiStyle,
+  BpmfIansuiSubset
+>;
 
 /**
  * Bpmf Iansui — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BpmfIansui extends GoogleFont<BpmfIansuiWeight, BpmfIansuiStyle, BpmfIansuiSubset> {
+export default class BpmfIansui extends GoogleFont<
+  BpmfIansuiWeight,
+  BpmfIansuiStyle,
+  BpmfIansuiSubset
+> {
   constructor(options?: BpmfIansuiOptions) {
     super(FAMILY, FACES, options);
   }

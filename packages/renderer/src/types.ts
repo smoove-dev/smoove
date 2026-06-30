@@ -1,5 +1,4 @@
-import type { Composition } from "@smoove/core";
-import type { VideoSourceFactory } from "@smoove/core";
+import type { Composition, VideoSourceFactory } from "@smoove/core";
 import {
   QUALITY_HIGH,
   QUALITY_LOW,

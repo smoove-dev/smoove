@@ -4,32 +4,50 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "TASA Explorer";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFy3SYA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFy3SYA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFy3SYA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFy3SYA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFy3SYA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFy3SYA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFy3SYA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFy3SYA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFy3SYA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFy3SYA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFyPSYFOM.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFyPSYFOM.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFyPSYFOM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFyPSYFOM.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFyPSYFOM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFyPSYFOM.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFyPSYFOM.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFyPSYFOM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFyPSYFOM.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/tasaexplorer/v2/K2F3fZdAt8xjBmxMCPK8UO_SFyPSYFOM.woff2",
   },
 } as const;
 
 export type TASAExplorerWeight = "400" | "500" | "600" | "700" | "800";
 export type TASAExplorerStyle = "normal";
 export type TASAExplorerSubset = "latin" | "latin-ext";
-export type TASAExplorerOptions = GoogleFontOptions<TASAExplorerWeight, TASAExplorerStyle, TASAExplorerSubset>;
+export type TASAExplorerOptions = GoogleFontOptions<
+  TASAExplorerWeight,
+  TASAExplorerStyle,
+  TASAExplorerSubset
+>;
 
 /**
  * TASA Explorer — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TASAExplorer extends GoogleFont<TASAExplorerWeight, TASAExplorerStyle, TASAExplorerSubset> {
+export default class TASAExplorer extends GoogleFont<
+  TASAExplorerWeight,
+  TASAExplorerStyle,
+  TASAExplorerSubset
+> {
   constructor(options?: TASAExplorerOptions) {
     super(FAMILY, FACES, options);
   }

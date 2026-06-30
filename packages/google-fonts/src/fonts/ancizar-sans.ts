@@ -4,78 +4,140 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ancizar Sans";
 
 const FACES = {
-  "greek": {
-    "100-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
+  greek: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjBjl2daw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UwjAllk.woff2",
   },
-  "latin": {
-    "100-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
+  latin: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
     "100-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UAjA.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
     "200-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UAjA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UAjA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
     "400-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UAjA.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
     "500-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UAjA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
     "600-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UAjA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
     "700-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UAjA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
     "800-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UAjA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjCjl0.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8UAjA.woff2",
   },
   "latin-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC14PYtHY2vX3wj8IbE7Pxe8VTjMjl2daw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/ancizarsans/v8/fC1mPYtHY2vX3wj8IbE7Pxe8XgjAllk.woff2",
   },
 } as const;
 
-export type AncizarSansWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type AncizarSansWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type AncizarSansStyle = "italic" | "normal";
 export type AncizarSansSubset = "greek" | "latin" | "latin-ext";
-export type AncizarSansOptions = GoogleFontOptions<AncizarSansWeight, AncizarSansStyle, AncizarSansSubset>;
+export type AncizarSansOptions = GoogleFontOptions<
+  AncizarSansWeight,
+  AncizarSansStyle,
+  AncizarSansSubset
+>;
 
 /**
  * Ancizar Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AncizarSans extends GoogleFont<AncizarSansWeight, AncizarSansStyle, AncizarSansSubset> {
+export default class AncizarSans extends GoogleFont<
+  AncizarSansWeight,
+  AncizarSansStyle,
+  AncizarSansSubset
+> {
   constructor(options?: AncizarSansOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Solway";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/solway/v19/AMOTz46Cs2uTAOCuLlgpnccR.woff2",
     "400-normal": "https://fonts.gstatic.com/s/solway/v19/AMOQz46Cs2uTAOCmhXo8.woff2",
     "500-normal": "https://fonts.gstatic.com/s/solway/v19/AMOTz46Cs2uTAOCudlkpnccR.woff2",

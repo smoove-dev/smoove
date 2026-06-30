@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Caladea";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/caladea/v8/kJExBugZ7AAjhybUvR1N-Po3.woff2",
     "400-normal": "https://fonts.gstatic.com/s/caladea/v8/kJEzBugZ7AAjhybUvRh9-g.woff2",
     "700-italic": "https://fonts.gstatic.com/s/caladea/v8/kJE0BugZ7AAjhybUvR1FQ98iq8Zy.woff2",

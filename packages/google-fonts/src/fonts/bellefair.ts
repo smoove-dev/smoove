@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bellefair";
 
 const FACES = {
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/bellefair/v15/kJExBuYY6AAuhiXUxG1N-vo3lOc.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bellefair/v15/kJExBuYY6AAuhiXUxG1N-Po3.woff2",
   },
   "latin-ext": {
@@ -24,7 +24,11 @@ export type BellefairOptions = GoogleFontOptions<BellefairWeight, BellefairStyle
  * Bellefair — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Bellefair extends GoogleFont<BellefairWeight, BellefairStyle, BellefairSubset> {
+export default class Bellefair extends GoogleFont<
+  BellefairWeight,
+  BellefairStyle,
+  BellefairSubset
+> {
   constructor(options?: BellefairOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mohave";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/mohave/v13/7cHrv4ksjJunKqM_Cfs7wH8.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mohave/v13/7cHpv4ksjJunKqM_DMs5.woff2",
     "400-italic": "https://fonts.gstatic.com/s/mohave/v13/7cHrv4ksjJunKqM_Cfs7wH8.woff2",

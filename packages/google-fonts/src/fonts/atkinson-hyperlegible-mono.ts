@@ -4,50 +4,86 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Atkinson Hyperlegible Mono";
 
 const FACES = {
-  "latin": {
-    "200-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
+  latin: {
+    "200-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotF6JGQ.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKthFw.woff2",
   },
   "latin-ext": {
-    "200-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss6AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKotFCJGR0i.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegiblemono/v8/tss4AoFBci4C4gvhPXrt3wjT1MqSzhA4t7IIcncBiwKjhFyRHQ.woff2",
   },
 } as const;
 
 export type AtkinsonHyperlegibleMonoWeight = "200" | "300" | "400" | "500" | "600" | "700" | "800";
 export type AtkinsonHyperlegibleMonoStyle = "italic" | "normal";
 export type AtkinsonHyperlegibleMonoSubset = "latin" | "latin-ext";
-export type AtkinsonHyperlegibleMonoOptions = GoogleFontOptions<AtkinsonHyperlegibleMonoWeight, AtkinsonHyperlegibleMonoStyle, AtkinsonHyperlegibleMonoSubset>;
+export type AtkinsonHyperlegibleMonoOptions = GoogleFontOptions<
+  AtkinsonHyperlegibleMonoWeight,
+  AtkinsonHyperlegibleMonoStyle,
+  AtkinsonHyperlegibleMonoSubset
+>;
 
 /**
  * Atkinson Hyperlegible Mono — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AtkinsonHyperlegibleMono extends GoogleFont<AtkinsonHyperlegibleMonoWeight, AtkinsonHyperlegibleMonoStyle, AtkinsonHyperlegibleMonoSubset> {
+export default class AtkinsonHyperlegibleMono extends GoogleFont<
+  AtkinsonHyperlegibleMonoWeight,
+  AtkinsonHyperlegibleMonoStyle,
+  AtkinsonHyperlegibleMonoSubset
+> {
   constructor(options?: AtkinsonHyperlegibleMonoOptions) {
     super(FAMILY, FACES, options);
   }

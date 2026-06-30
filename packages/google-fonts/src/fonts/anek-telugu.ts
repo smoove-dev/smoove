@@ -4,48 +4,80 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Anek Telugu";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtPnVy.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtMHVyehY.woff2",
   },
-  "telugu": {
-    "100-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
+  telugu: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/anektelugu/v13/LhW2MVrUNvsddMtYGCx4FcVWOjlwE1WgXdoJ-5XtInVyehY.woff2",
   },
 } as const;
 
 export type AnekTeluguWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800";
 export type AnekTeluguStyle = "normal";
 export type AnekTeluguSubset = "latin" | "latin-ext" | "telugu";
-export type AnekTeluguOptions = GoogleFontOptions<AnekTeluguWeight, AnekTeluguStyle, AnekTeluguSubset>;
+export type AnekTeluguOptions = GoogleFontOptions<
+  AnekTeluguWeight,
+  AnekTeluguStyle,
+  AnekTeluguSubset
+>;
 
 /**
  * Anek Telugu — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AnekTelugu extends GoogleFont<AnekTeluguWeight, AnekTeluguStyle, AnekTeluguSubset> {
+export default class AnekTelugu extends GoogleFont<
+  AnekTeluguWeight,
+  AnekTeluguStyle,
+  AnekTeluguSubset
+> {
   constructor(options?: AnekTeluguOptions) {
     super(FAMILY, FACES, options);
   }

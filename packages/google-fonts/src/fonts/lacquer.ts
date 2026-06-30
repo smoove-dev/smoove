@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lacquer";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lacquer/v16/EYqzma1QwqpG4_BBN7iKXw.woff2",
   },
 } as const;

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Niconne";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/niconne/v16/w8gaH2QvRug1_rTfnQyn2Q.woff2",
   },
   "latin-ext": {

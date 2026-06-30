@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gowun Dodum";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gowundodum/v12/3Jn5SD_00GqwlBnWc1TUJG0CduU.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/gowundodum/v12/3Jn5SD_00GqwlBnWc1TUJG0MduV70Q.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/gowundodum/v12/3Jn5SD_00GqwlBnWc1TUJG0NduV70Q.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type GowunDodumWeight = "400";
 export type GowunDodumStyle = "normal";
 export type GowunDodumSubset = "latin" | "latin-ext" | "vietnamese";
-export type GowunDodumOptions = GoogleFontOptions<GowunDodumWeight, GowunDodumStyle, GowunDodumSubset>;
+export type GowunDodumOptions = GoogleFontOptions<
+  GowunDodumWeight,
+  GowunDodumStyle,
+  GowunDodumSubset
+>;
 
 /**
  * Gowun Dodum — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GowunDodum extends GoogleFont<GowunDodumWeight, GowunDodumStyle, GowunDodumSubset> {
+export default class GowunDodum extends GoogleFont<
+  GowunDodumWeight,
+  GowunDodumStyle,
+  GowunDodumSubset
+> {
   constructor(options?: GowunDodumOptions) {
     super(FAMILY, FACES, options);
   }

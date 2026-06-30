@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Mahajani";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmahajani/v20/-F6sfiVqLzI2JPCgQBnw60Agp0JrvD51gMoQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmahajani/v20/-F6sfiVqLzI2JPCgQBnw60Agp0JrvD51gMoQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmahajani/v20/-F6sfiVqLzI2JPCgQBnw60Agp0JrvD51jsoQLNg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmahajani/v20/-F6sfiVqLzI2JPCgQBnw60Agp0JrvD51jsoQLNg.woff2",
   },
-  "mahajani": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmahajani/v20/-F6sfiVqLzI2JPCgQBnw60Agp0JrvD51-soQLNg.woff2",
+  mahajani: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmahajani/v20/-F6sfiVqLzI2JPCgQBnw60Agp0JrvD51-soQLNg.woff2",
   },
 } as const;
 
 export type NotoSansMahajaniWeight = "400";
 export type NotoSansMahajaniStyle = "normal";
 export type NotoSansMahajaniSubset = "latin" | "latin-ext" | "mahajani";
-export type NotoSansMahajaniOptions = GoogleFontOptions<NotoSansMahajaniWeight, NotoSansMahajaniStyle, NotoSansMahajaniSubset>;
+export type NotoSansMahajaniOptions = GoogleFontOptions<
+  NotoSansMahajaniWeight,
+  NotoSansMahajaniStyle,
+  NotoSansMahajaniSubset
+>;
 
 /**
  * Noto Sans Mahajani — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansMahajani extends GoogleFont<NotoSansMahajaniWeight, NotoSansMahajaniStyle, NotoSansMahajaniSubset> {
+export default class NotoSansMahajani extends GoogleFont<
+  NotoSansMahajaniWeight,
+  NotoSansMahajaniStyle,
+  NotoSansMahajaniSubset
+> {
   constructor(options?: NotoSansMahajaniOptions) {
     super(FAMILY, FACES, options);
   }

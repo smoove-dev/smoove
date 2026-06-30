@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pochaevsk";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/pochaevsk/v5/55xuey9_OdX_Om7ReYgVo515ybk.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/pochaevsk/v5/55xuey9_OdX_Om7ReYgVqp15ybk.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/pochaevsk/v5/55xuey9_OdX_Om7ReYgVp515.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type PochaevskOptions = GoogleFontOptions<PochaevskWeight, PochaevskStyle
  * Pochaevsk — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Pochaevsk extends GoogleFont<PochaevskWeight, PochaevskStyle, PochaevskSubset> {
+export default class Pochaevsk extends GoogleFont<
+  PochaevskWeight,
+  PochaevskStyle,
+  PochaevskSubset
+> {
   constructor(options?: PochaevskOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bona Nova";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/bonanova/v12/B50LF7ZCpX7fcHfvIUB5iZJtNKuiLA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50NF7ZCpX7fcHfvIUB5iKJrLK8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50IF7ZCpX7fcHfvIUBxN4d-F46fFY8.woff2",
@@ -14,17 +14,17 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50NF7ZCpX7fcHfvIUB5gaJrLK8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50IF7ZCpX7fcHfvIUBxN4d-Ho6fFY8.woff2",
   },
-  "greek": {
+  greek: {
     "400-italic": "https://fonts.gstatic.com/s/bonanova/v12/B50LF7ZCpX7fcHfvIUB5iZJqNKuiLA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50NF7ZCpX7fcHfvIUB5j6JrLK8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50IF7ZCpX7fcHfvIUBxN4d-EI6fFY8.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-italic": "https://fonts.gstatic.com/s/bonanova/v12/B50LF7ZCpX7fcHfvIUB5iZJrNKuiLA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50NF7ZCpX7fcHfvIUB5jqJrLK8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50IF7ZCpX7fcHfvIUBxN4d-EY6fFY8.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/bonanova/v12/B50LF7ZCpX7fcHfvIUB5iZJpNKs.woff2",
     "400-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50NF7ZCpX7fcHfvIUB5jKJr.woff2",
     "700-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50IF7ZCpX7fcHfvIUBxN4d-E46f.woff2",
@@ -34,7 +34,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50NF7ZCpX7fcHfvIUB5gqJrLK8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50IF7ZCpX7fcHfvIUBxN4d-HY6fFY8.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/bonanova/v12/B50LF7ZCpX7fcHfvIUB5iZJmNKuiLA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50NF7ZCpX7fcHfvIUB5g6JrLK8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/bonanova/v12/B50IF7ZCpX7fcHfvIUBxN4d-HI6fFY8.woff2",
@@ -43,7 +43,14 @@ const FACES = {
 
 export type BonaNovaWeight = "400" | "700";
 export type BonaNovaStyle = "italic" | "normal";
-export type BonaNovaSubset = "cyrillic" | "cyrillic-ext" | "greek" | "hebrew" | "latin" | "latin-ext" | "vietnamese";
+export type BonaNovaSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "hebrew"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type BonaNovaOptions = GoogleFontOptions<BonaNovaWeight, BonaNovaStyle, BonaNovaSubset>;
 
 /**

@@ -4,22 +4,32 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nanum Gothic Coding";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/nanumgothiccoding/v27/8QIVdjzHisX_8vv59_xMxtPFW4IXROws-6M7Vw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/nanumgothiccoding/v27/8QIYdjzHisX_8vv59_xMxtPFW4IXROws8xgeQsJ28w.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/nanumgothiccoding/v27/8QIVdjzHisX_8vv59_xMxtPFW4IXROws-6M7Vw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/nanumgothiccoding/v27/8QIYdjzHisX_8vv59_xMxtPFW4IXROws8xgeQsJ28w.woff2",
   },
 } as const;
 
 export type NanumGothicCodingWeight = "400" | "700";
 export type NanumGothicCodingStyle = "normal";
 export type NanumGothicCodingSubset = "latin";
-export type NanumGothicCodingOptions = GoogleFontOptions<NanumGothicCodingWeight, NanumGothicCodingStyle, NanumGothicCodingSubset>;
+export type NanumGothicCodingOptions = GoogleFontOptions<
+  NanumGothicCodingWeight,
+  NanumGothicCodingStyle,
+  NanumGothicCodingSubset
+>;
 
 /**
  * Nanum Gothic Coding — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NanumGothicCoding extends GoogleFont<NanumGothicCodingWeight, NanumGothicCodingStyle, NanumGothicCodingSubset> {
+export default class NanumGothicCoding extends GoogleFont<
+  NanumGothicCodingWeight,
+  NanumGothicCodingStyle,
+  NanumGothicCodingSubset
+> {
   constructor(options?: NanumGothicCodingOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Italianno";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/italianno/v18/dg4n_p3sv6gCJkwzT6RXiJwo.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/italianno/v18/dg4n_p3sv6gCJkwzT6RXhpwocwM.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/italianno/v18/dg4n_p3sv6gCJkwzT6RXh5wocwM.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type ItaliannoOptions = GoogleFontOptions<ItaliannoWeight, ItaliannoStyle
  * Italianno — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Italianno extends GoogleFont<ItaliannoWeight, ItaliannoStyle, ItaliannoSubset> {
+export default class Italianno extends GoogleFont<
+  ItaliannoWeight,
+  ItaliannoStyle,
+  ItaliannoSubset
+> {
   constructor(options?: ItaliannoOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Metal Mania";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/metalmania/v23/RWmMoKWb4e8kqMfBUdPFJdXFiaQ.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type MetalManiaWeight = "400";
 export type MetalManiaStyle = "normal";
 export type MetalManiaSubset = "latin" | "latin-ext";
-export type MetalManiaOptions = GoogleFontOptions<MetalManiaWeight, MetalManiaStyle, MetalManiaSubset>;
+export type MetalManiaOptions = GoogleFontOptions<
+  MetalManiaWeight,
+  MetalManiaStyle,
+  MetalManiaSubset
+>;
 
 /**
  * Metal Mania — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MetalMania extends GoogleFont<MetalManiaWeight, MetalManiaStyle, MetalManiaSubset> {
+export default class MetalMania extends GoogleFont<
+  MetalManiaWeight,
+  MetalManiaStyle,
+  MetalManiaSubset
+> {
   constructor(options?: MetalManiaOptions) {
     super(FAMILY, FACES, options);
   }

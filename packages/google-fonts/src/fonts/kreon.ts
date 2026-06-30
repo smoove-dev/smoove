@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kreon";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/kreon/v40/t5tuIRIUKY-TFHXHc2g.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kreon/v40/t5tuIRIUKY-TFHXHc2g.woff2",
     "500-normal": "https://fonts.gstatic.com/s/kreon/v40/t5tuIRIUKY-TFHXHc2g.woff2",

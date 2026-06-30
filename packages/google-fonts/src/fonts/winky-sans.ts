@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Winky Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/winkysans/v3/ll87K2SDUiG1Hpf2p06bN6gYkS4f.woff2",
     "300-normal": "https://fonts.gstatic.com/s/winkysans/v3/ll85K2SDUiG1Hpf2p06bN60okw.woff2",
     "400-italic": "https://fonts.gstatic.com/s/winkysans/v3/ll87K2SDUiG1Hpf2p06bN6gYkS4f.woff2",
@@ -47,7 +47,11 @@ export type WinkySansOptions = GoogleFontOptions<WinkySansWeight, WinkySansStyle
  * Winky Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class WinkySans extends GoogleFont<WinkySansWeight, WinkySansStyle, WinkySansSubset> {
+export default class WinkySans extends GoogleFont<
+  WinkySansWeight,
+  WinkySansStyle,
+  WinkySansSubset
+> {
   constructor(options?: WinkySansOptions) {
     super(FAMILY, FACES, options);
   }

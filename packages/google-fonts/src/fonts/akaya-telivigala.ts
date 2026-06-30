@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Akaya Telivigala";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/akayatelivigala/v28/lJwc-oo_iG9wXqU3rCTD395tp0uiTdXXsQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/akayatelivigala/v28/lJwc-oo_iG9wXqU3rCTD395tp0uiTdXXsQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/akayatelivigala/v28/lJwc-oo_iG9wXqU3rCTD395tp0uiTdvXsbH0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/akayatelivigala/v28/lJwc-oo_iG9wXqU3rCTD395tp0uiTdvXsbH0.woff2",
   },
-  "telugu": {
-    "400-normal": "https://fonts.gstatic.com/s/akayatelivigala/v28/lJwc-oo_iG9wXqU3rCTD395tp0uiTcnXsbH0.woff2",
+  telugu: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/akayatelivigala/v28/lJwc-oo_iG9wXqU3rCTD395tp0uiTcnXsbH0.woff2",
   },
 } as const;
 
 export type AkayaTelivigalaWeight = "400";
 export type AkayaTelivigalaStyle = "normal";
 export type AkayaTelivigalaSubset = "latin" | "latin-ext" | "telugu";
-export type AkayaTelivigalaOptions = GoogleFontOptions<AkayaTelivigalaWeight, AkayaTelivigalaStyle, AkayaTelivigalaSubset>;
+export type AkayaTelivigalaOptions = GoogleFontOptions<
+  AkayaTelivigalaWeight,
+  AkayaTelivigalaStyle,
+  AkayaTelivigalaSubset
+>;
 
 /**
  * Akaya Telivigala — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AkayaTelivigala extends GoogleFont<AkayaTelivigalaWeight, AkayaTelivigalaStyle, AkayaTelivigalaSubset> {
+export default class AkayaTelivigala extends GoogleFont<
+  AkayaTelivigalaWeight,
+  AkayaTelivigalaStyle,
+  AkayaTelivigalaSubset
+> {
   constructor(options?: AkayaTelivigalaOptions) {
     super(FAMILY, FACES, options);
   }

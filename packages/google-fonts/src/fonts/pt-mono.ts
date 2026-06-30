@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "PT Mono";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/ptmono/v14/9oRONYoBnWILk-9AnCszM-Py.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/ptmono/v14/9oRONYoBnWILk-9AnCIzM-Py.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ptmono/v14/9oRONYoBnWILk-9AnC8zMw.woff2",
   },
   "latin-ext": {

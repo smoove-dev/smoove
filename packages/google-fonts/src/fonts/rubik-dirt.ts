@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Dirt";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/rubikdirt/v2/DtVmJxC7WLEj1uIXEWAdil8s6zDX.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/rubikdirt/v2/DtVmJxC7WLEj1uIXEWAdilYs6zDX.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/rubikdirt/v2/DtVmJxC7WLEj1uIXEWAdilks6zDX.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rubikdirt/v2/DtVmJxC7WLEj1uIXEWAdilss6w.woff2",
   },
   "latin-ext": {
@@ -30,7 +30,11 @@ export type RubikDirtOptions = GoogleFontOptions<RubikDirtWeight, RubikDirtStyle
  * Rubik Dirt — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikDirt extends GoogleFont<RubikDirtWeight, RubikDirtStyle, RubikDirtSubset> {
+export default class RubikDirt extends GoogleFont<
+  RubikDirtWeight,
+  RubikDirtStyle,
+  RubikDirtSubset
+> {
   constructor(options?: RubikDirtOptions) {
     super(FAMILY, FACES, options);
   }

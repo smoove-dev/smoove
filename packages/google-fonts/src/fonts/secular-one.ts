@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Secular One";
 
 const FACES = {
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/secularone/v14/8QINdiTajsj_87rMuMdKyqDgOOhLLA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/secularone/v14/8QINdiTajsj_87rMuMdKyqDiOOg.woff2",
   },
   "latin-ext": {
@@ -18,13 +18,21 @@ const FACES = {
 export type SecularOneWeight = "400";
 export type SecularOneStyle = "normal";
 export type SecularOneSubset = "hebrew" | "latin" | "latin-ext";
-export type SecularOneOptions = GoogleFontOptions<SecularOneWeight, SecularOneStyle, SecularOneSubset>;
+export type SecularOneOptions = GoogleFontOptions<
+  SecularOneWeight,
+  SecularOneStyle,
+  SecularOneSubset
+>;
 
 /**
  * Secular One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SecularOne extends GoogleFont<SecularOneWeight, SecularOneStyle, SecularOneSubset> {
+export default class SecularOne extends GoogleFont<
+  SecularOneWeight,
+  SecularOneStyle,
+  SecularOneSubset
+> {
   constructor(options?: SecularOneOptions) {
     super(FAMILY, FACES, options);
   }

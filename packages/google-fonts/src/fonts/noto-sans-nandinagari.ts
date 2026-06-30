@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Nandinagari";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnandinagari/v4/or38Q7733eiDljA1IufXSNFT-1KI5y10H4jlbJ5W.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnandinagari/v4/or38Q7733eiDljA1IufXSNFT-1KI5y10H4jlbJ5W.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnandinagari/v4/or38Q7733eiDljA1IufXSNFT-1KI5y10H4jlYp5W_C0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnandinagari/v4/or38Q7733eiDljA1IufXSNFT-1KI5y10H4jlYp5W_C0.woff2",
   },
-  "nandinagari": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnandinagari/v4/or38Q7733eiDljA1IufXSNFT-1KI5y10H4jl279zwRRT.woff2",
+  nandinagari: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnandinagari/v4/or38Q7733eiDljA1IufXSNFT-1KI5y10H4jl279zwRRT.woff2",
   },
 } as const;
 
 export type NotoSansNandinagariWeight = "400";
 export type NotoSansNandinagariStyle = "normal";
 export type NotoSansNandinagariSubset = "latin" | "latin-ext" | "nandinagari";
-export type NotoSansNandinagariOptions = GoogleFontOptions<NotoSansNandinagariWeight, NotoSansNandinagariStyle, NotoSansNandinagariSubset>;
+export type NotoSansNandinagariOptions = GoogleFontOptions<
+  NotoSansNandinagariWeight,
+  NotoSansNandinagariStyle,
+  NotoSansNandinagariSubset
+>;
 
 /**
  * Noto Sans Nandinagari — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansNandinagari extends GoogleFont<NotoSansNandinagariWeight, NotoSansNandinagariStyle, NotoSansNandinagariSubset> {
+export default class NotoSansNandinagari extends GoogleFont<
+  NotoSansNandinagariWeight,
+  NotoSansNandinagariStyle,
+  NotoSansNandinagariSubset
+> {
   constructor(options?: NotoSansNandinagariOptions) {
     super(FAMILY, FACES, options);
   }

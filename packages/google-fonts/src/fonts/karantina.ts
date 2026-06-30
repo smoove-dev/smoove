@@ -4,12 +4,12 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Karantina";
 
 const FACES = {
-  "hebrew": {
+  hebrew: {
     "300-normal": "https://fonts.gstatic.com/s/karantina/v13/buExpo24ccnh31GVMABxXCgv_fRPWiw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/karantina/v13/buE0po24ccnh31GVMAB59Qo6wNU.woff2",
     "700-normal": "https://fonts.gstatic.com/s/karantina/v13/buExpo24ccnh31GVMABxTC8v_fRPWiw.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/karantina/v13/buExpo24ccnh31GVMABxXCgv__RP.woff2",
     "400-normal": "https://fonts.gstatic.com/s/karantina/v13/buE0po24ccnh31GVMAB59wo6.woff2",
     "700-normal": "https://fonts.gstatic.com/s/karantina/v13/buExpo24ccnh31GVMABxTC8v__RP.woff2",
@@ -30,7 +30,11 @@ export type KarantinaOptions = GoogleFontOptions<KarantinaWeight, KarantinaStyle
  * Karantina — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Karantina extends GoogleFont<KarantinaWeight, KarantinaStyle, KarantinaSubset> {
+export default class Karantina extends GoogleFont<
+  KarantinaWeight,
+  KarantinaStyle,
+  KarantinaSubset
+> {
   constructor(options?: KarantinaOptions) {
     super(FAMILY, FACES, options);
   }

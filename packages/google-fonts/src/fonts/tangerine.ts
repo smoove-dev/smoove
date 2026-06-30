@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tangerine";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tangerine/v18/IurY6Y5j_oScZZow4VOxCZZM.woff2",
     "700-normal": "https://fonts.gstatic.com/s/tangerine/v18/Iurd6Y5j_oScZZow4VO5srNZi5FN.woff2",
   },
@@ -19,7 +19,11 @@ export type TangerineOptions = GoogleFontOptions<TangerineWeight, TangerineStyle
  * Tangerine — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Tangerine extends GoogleFont<TangerineWeight, TangerineStyle, TangerineSubset> {
+export default class Tangerine extends GoogleFont<
+  TangerineWeight,
+  TangerineStyle,
+  TangerineSubset
+> {
   constructor(options?: TangerineOptions) {
     super(FAMILY, FACES, options);
   }

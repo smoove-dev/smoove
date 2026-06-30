@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Karma";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "300-normal": "https://fonts.gstatic.com/s/karma/v18/va9F4kzAzMZRGLjDY_Z5sK32QA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/karma/v18/va9I4kzAzMZRGLBpQeNHkQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/karma/v18/va9F4kzAzMZRGLibYvZ5sK32QA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/karma/v18/va9F4kzAzMZRGLi3ZfZ5sK32QA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/karma/v18/va9F4kzAzMZRGLjTZPZ5sK32QA.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/karma/v18/va9F4kzAzMZRGLjDY_Z4sK0.woff2",
     "400-normal": "https://fonts.gstatic.com/s/karma/v18/va9I4kzAzMZRGLBoQeM.woff2",
     "500-normal": "https://fonts.gstatic.com/s/karma/v18/va9F4kzAzMZRGLibYvZ4sK0.woff2",

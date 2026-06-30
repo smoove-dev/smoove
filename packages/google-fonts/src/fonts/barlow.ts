@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Barlow";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/barlow/v13/7cHtv4kjgoGqM7E_CfNY8H0JmA.woff2",
     "100-normal": "https://fonts.gstatic.com/s/barlow/v13/7cHrv4kjgoGqM7E3b_s7wH8.woff2",
     "200-italic": "https://fonts.gstatic.com/s/barlow/v13/7cHsv4kjgoGqM7E_CfP04WouvTo.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/barlow/v13/7cHsv4kjgoGqM7E_CfO452ogvTobdw.woff2",
     "900-normal": "https://fonts.gstatic.com/s/barlow/v13/7cHqv4kjgoGqM7E3j-ws6VospT4.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/barlow/v13/7cHtv4kjgoGqM7E_CfNY8HIJmAci.woff2",
     "100-normal": "https://fonts.gstatic.com/s/barlow/v13/7cHrv4kjgoGqM7E3b_s0wH8RnA.woff2",
     "200-italic": "https://fonts.gstatic.com/s/barlow/v13/7cHsv4kjgoGqM7E_CfP04WohvTobdw.woff2",

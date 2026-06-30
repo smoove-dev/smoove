@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Strait";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/strait/v19/DtViJxy6WaEr1LZDfzJs.woff2",
   },
   "latin-ext": {

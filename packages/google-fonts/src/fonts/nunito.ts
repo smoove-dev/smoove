@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nunito";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "200-italic": "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaHRs71cA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIMeaBXso.woff2",
     "300-italic": "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaHRs71cA.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaORs71cA.woff2",
     "900-normal": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIOOaBXso.woff2",
   },
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaDRs4.woff2",
     "200-normal": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofINeaB.woff2",
     "300-italic": "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaDRs4.woff2",
@@ -76,7 +76,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaNRs71cA.woff2",
     "900-normal": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIO-aBXso.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-italic": "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaMRs71cA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIOuaBXso.woff2",
     "300-italic": "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaMRs71cA.woff2",

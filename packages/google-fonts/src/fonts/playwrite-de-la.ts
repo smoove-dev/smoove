@@ -4,24 +4,36 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite DE LA";
 
 const FACES = {
-  "fallback": {
-    "100-normal": "https://fonts.gstatic.com/s/playwritedela/v11/oY1G8e3fprboJ2HN4ogXTpFVJ8Q5Kw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playwritedela/v11/oY1G8e3fprboJ2HN4ogXTpFVJ8Q5Kw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playwritedela/v11/oY1G8e3fprboJ2HN4ogXTpFVJ8Q5Kw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playwritedela/v11/oY1G8e3fprboJ2HN4ogXTpFVJ8Q5Kw.woff2",
+  fallback: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/playwritedela/v11/oY1G8e3fprboJ2HN4ogXTpFVJ8Q5Kw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playwritedela/v11/oY1G8e3fprboJ2HN4ogXTpFVJ8Q5Kw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playwritedela/v11/oY1G8e3fprboJ2HN4ogXTpFVJ8Q5Kw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritedela/v11/oY1G8e3fprboJ2HN4ogXTpFVJ8Q5Kw.woff2",
   },
 } as const;
 
 export type PlaywriteDELAWeight = "100" | "200" | "300" | "400";
 export type PlaywriteDELAStyle = "normal";
 export type PlaywriteDELASubset = "fallback";
-export type PlaywriteDELAOptions = GoogleFontOptions<PlaywriteDELAWeight, PlaywriteDELAStyle, PlaywriteDELASubset>;
+export type PlaywriteDELAOptions = GoogleFontOptions<
+  PlaywriteDELAWeight,
+  PlaywriteDELAStyle,
+  PlaywriteDELASubset
+>;
 
 /**
  * Playwrite DE LA — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteDELA extends GoogleFont<PlaywriteDELAWeight, PlaywriteDELAStyle, PlaywriteDELASubset> {
+export default class PlaywriteDELA extends GoogleFont<
+  PlaywriteDELAWeight,
+  PlaywriteDELAStyle,
+  PlaywriteDELASubset
+> {
   constructor(options?: PlaywriteDELAOptions) {
     super(FAMILY, FACES, options);
   }

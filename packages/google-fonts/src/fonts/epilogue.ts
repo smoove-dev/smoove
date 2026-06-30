@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Epilogue";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/epilogue/v20/O4ZXFGj5hxF0EhjimlIhggoykg.woff2",
     "100-normal": "https://fonts.gstatic.com/s/epilogue/v20/O4ZRFGj5hxF0EhjimlIksgg.woff2",
     "200-italic": "https://fonts.gstatic.com/s/epilogue/v20/O4ZXFGj5hxF0EhjimlIhggoykg.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/epilogue/v20/O4ZXFGj5hxF0EhjimlIhggQyklmd.woff2",
     "900-normal": "https://fonts.gstatic.com/s/epilogue/v20/O4ZRFGj5hxF0EhjimlIqsggqlg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/epilogue/v20/O4ZXFGj5hxF0EhjimlIhggUyklmd.woff2",
     "100-normal": "https://fonts.gstatic.com/s/epilogue/v20/O4ZRFGj5hxF0EhjimlIrsggqlg.woff2",
     "200-italic": "https://fonts.gstatic.com/s/epilogue/v20/O4ZXFGj5hxF0EhjimlIhggUyklmd.woff2",

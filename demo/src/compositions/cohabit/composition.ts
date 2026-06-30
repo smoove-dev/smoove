@@ -3,16 +3,12 @@ import {
   Block,
   Composition,
   Easing,
+  interpolate,
   Sequence,
   type ShadowProps,
   Video,
-  interpolate,
 } from "@smoove/core";
 import Konva from "konva";
-import vo1Url from "../../files/film/VO1.wav";
-import vo2Url from "../../files/film/VO2.wav";
-import vo3Url from "../../files/film/VO3.wav";
-import vo4Url from "../../files/film/VO4.wav";
 import s1Music from "../../files/film/s1-audio.mp3";
 import s1aUrl from "../../files/film/s1a.mp4";
 import s1bUrl from "../../files/film/s1b.mp4";
@@ -28,6 +24,10 @@ import s4Music from "../../files/film/s4-audio.mp3";
 import s4aUrl from "../../files/film/s4a.mp4";
 import s4bUrl from "../../files/film/s4b.mp4";
 import s4cUrl from "../../files/film/s4c.mp4";
+import vo1Url from "../../files/film/VO1.wav";
+import vo2Url from "../../files/film/VO2.wav";
+import vo3Url from "../../files/film/VO3.wav";
+import vo4Url from "../../files/film/VO4.wav";
 import whooshAUrl from "../../files/film/whoosh-a.mp3";
 import whooshBUrl from "../../files/film/whoosh-b.mp3";
 import type { CohabitProps } from "./schema.js";

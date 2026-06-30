@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite BR Guides";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/playwritebrguides/v1/tssxAohQaiQS-wrnJz-F5CqW4dOezRwp-9I.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritebrguides/v1/tssxAohQaiQS-wrnJz-F5CqW4dOezRwp-9I.woff2",
   },
 } as const;
 
 export type PlaywriteBRGuidesWeight = "400";
 export type PlaywriteBRGuidesStyle = "normal";
 export type PlaywriteBRGuidesSubset = "fallback";
-export type PlaywriteBRGuidesOptions = GoogleFontOptions<PlaywriteBRGuidesWeight, PlaywriteBRGuidesStyle, PlaywriteBRGuidesSubset>;
+export type PlaywriteBRGuidesOptions = GoogleFontOptions<
+  PlaywriteBRGuidesWeight,
+  PlaywriteBRGuidesStyle,
+  PlaywriteBRGuidesSubset
+>;
 
 /**
  * Playwrite BR Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteBRGuides extends GoogleFont<PlaywriteBRGuidesWeight, PlaywriteBRGuidesStyle, PlaywriteBRGuidesSubset> {
+export default class PlaywriteBRGuides extends GoogleFont<
+  PlaywriteBRGuidesWeight,
+  PlaywriteBRGuidesStyle,
+  PlaywriteBRGuidesSubset
+> {
   constructor(options?: PlaywriteBRGuidesOptions) {
     super(FAMILY, FACES, options);
   }

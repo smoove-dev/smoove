@@ -5,19 +5,24 @@ const FAMILY = "Nabla";
 
 const FACES = {
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/nabla/v17/j8_D6-LI0Lvpe7Makz5UhJt9C3uqg_X_75gyGS4jAxsNIjrRBRpeFWR_n9w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/nabla/v17/j8_D6-LI0Lvpe7Makz5UhJt9C3uqg_X_75gyGS4jAxsNIjrRBRpeFWR_n9w.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/nabla/v17/j8_D6-LI0Lvpe7Makz5UhJt9C3uqg_X_75gyGS4jAxsNIjrRBRdeFQx8.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/nabla/v17/j8_D6-LI0Lvpe7Makz5UhJt9C3uqg_X_75gyGS4jAxsNIjrRBRdeFQx8.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/nabla/v17/j8_D6-LI0Lvpe7Makz5UhJt9C3uqg_X_75gyGS4jAxsNIjrRBRleFWR_n9w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/nabla/v17/j8_D6-LI0Lvpe7Makz5UhJt9C3uqg_X_75gyGS4jAxsNIjrRBRleFWR_n9w.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/nabla/v17/j8_D6-LI0Lvpe7Makz5UhJt9C3uqg_X_75gyGS4jAxsNIjrRBWteFWR_n9w.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/nabla/v17/j8_D6-LI0Lvpe7Makz5UhJt9C3uqg_X_75gyGS4jAxsNIjrRBWteFWR_n9w.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/nabla/v17/j8_D6-LI0Lvpe7Makz5UhJt9C3uqg_X_75gyGS4jAxsNIjrRBRheFWR_n9w.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/nabla/v17/j8_D6-LI0Lvpe7Makz5UhJt9C3uqg_X_75gyGS4jAxsNIjrRBRheFWR_n9w.woff2",
   },
 } as const;
 

@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Arbutus Slab";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/arbutusslab/v17/oY1Z8e7OuLXkJGbXtr5ba7ZlbKUc.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/arbutusslab/v17/oY1Z8e7OuLXkJGbXtr5ba7ZlYqUcFlY.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/arbutusslab/v17/oY1Z8e7OuLXkJGbXtr5ba7ZlYqUcFlY.woff2",
   },
 } as const;
 
 export type ArbutusSlabWeight = "400";
 export type ArbutusSlabStyle = "normal";
 export type ArbutusSlabSubset = "latin" | "latin-ext";
-export type ArbutusSlabOptions = GoogleFontOptions<ArbutusSlabWeight, ArbutusSlabStyle, ArbutusSlabSubset>;
+export type ArbutusSlabOptions = GoogleFontOptions<
+  ArbutusSlabWeight,
+  ArbutusSlabStyle,
+  ArbutusSlabSubset
+>;
 
 /**
  * Arbutus Slab — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ArbutusSlab extends GoogleFont<ArbutusSlabWeight, ArbutusSlabStyle, ArbutusSlabSubset> {
+export default class ArbutusSlab extends GoogleFont<
+  ArbutusSlabWeight,
+  ArbutusSlabStyle,
+  ArbutusSlabSubset
+> {
   constructor(options?: ArbutusSlabOptions) {
     super(FAMILY, FACES, options);
   }

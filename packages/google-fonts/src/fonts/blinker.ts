@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Blinker";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/blinker/v14/cIf_MaFatEE-VTaP_E2RY0ED.woff2",
     "200-normal": "https://fonts.gstatic.com/s/blinker/v14/cIf4MaFatEE-VTaP_OGAdGYmnQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/blinker/v14/cIf4MaFatEE-VTaP_IWDdGYmnQ.woff2",

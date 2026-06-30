@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Habibi";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/habibi/v22/CSR-4zFWkuqcTTNyTRhf.woff2",
   },
   "latin-ext": {

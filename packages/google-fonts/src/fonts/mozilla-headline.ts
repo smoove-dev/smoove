@@ -4,34 +4,54 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mozilla Headline";
 
 const FACES = {
-  "latin": {
-    "200-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
+  latin: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHNYMU.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/mozillaheadline/v1/QGY4z-UXahmCOps4kyMKGuSA9pYt2_P-w2kFrS88o6cVYTHDYMVmJQ.woff2",
   },
 } as const;
 
 export type MozillaHeadlineWeight = "200" | "300" | "400" | "500" | "600" | "700";
 export type MozillaHeadlineStyle = "normal";
 export type MozillaHeadlineSubset = "latin" | "latin-ext";
-export type MozillaHeadlineOptions = GoogleFontOptions<MozillaHeadlineWeight, MozillaHeadlineStyle, MozillaHeadlineSubset>;
+export type MozillaHeadlineOptions = GoogleFontOptions<
+  MozillaHeadlineWeight,
+  MozillaHeadlineStyle,
+  MozillaHeadlineSubset
+>;
 
 /**
  * Mozilla Headline — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MozillaHeadline extends GoogleFont<MozillaHeadlineWeight, MozillaHeadlineStyle, MozillaHeadlineSubset> {
+export default class MozillaHeadline extends GoogleFont<
+  MozillaHeadlineWeight,
+  MozillaHeadlineStyle,
+  MozillaHeadlineSubset
+> {
   constructor(options?: MozillaHeadlineOptions) {
     super(FAMILY, FACES, options);
   }

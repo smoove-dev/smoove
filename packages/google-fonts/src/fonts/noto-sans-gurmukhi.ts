@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Gurmukhi";
 
 const FACES = {
-  "gurmukhi": {
-    "100-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
+  gurmukhi: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSnsXn2CP.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlgXnw.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notosansgurmukhi/v29/w8gyH3EvQP81sInb43inmyN9zZ7hb7ATbSWo4q8dJ74a3cVrSlYXn2CP.woff2",
   },
 } as const;
 
-export type NotoSansGurmukhiWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSansGurmukhiWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSansGurmukhiStyle = "normal";
 export type NotoSansGurmukhiSubset = "gurmukhi" | "latin" | "latin-ext";
-export type NotoSansGurmukhiOptions = GoogleFontOptions<NotoSansGurmukhiWeight, NotoSansGurmukhiStyle, NotoSansGurmukhiSubset>;
+export type NotoSansGurmukhiOptions = GoogleFontOptions<
+  NotoSansGurmukhiWeight,
+  NotoSansGurmukhiStyle,
+  NotoSansGurmukhiSubset
+>;
 
 /**
  * Noto Sans Gurmukhi — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansGurmukhi extends GoogleFont<NotoSansGurmukhiWeight, NotoSansGurmukhiStyle, NotoSansGurmukhiSubset> {
+export default class NotoSansGurmukhi extends GoogleFont<
+  NotoSansGurmukhiWeight,
+  NotoSansGurmukhiStyle,
+  NotoSansGurmukhiSubset
+> {
   constructor(options?: NotoSansGurmukhiOptions) {
     super(FAMILY, FACES, options);
   }

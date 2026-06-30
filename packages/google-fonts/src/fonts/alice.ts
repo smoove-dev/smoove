@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alice";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/alice/v21/OpNCnoEEmtHa6GcKrg7shw.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/alice/v21/OpNCnoEEmtHa6GcDrg7shw.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/alice/v21/OpNCnoEEmtHa6GcOrg4.woff2",
   },
   "latin-ext": {

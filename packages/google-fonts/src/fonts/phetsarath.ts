@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Phetsarath";
 
 const FACES = {
-  "lao": {
+  lao: {
     "400-normal": "https://fonts.gstatic.com/s/phetsarath/v3/N0bQ2SpTP-plK0uWayAYMdD3nA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/phetsarath/v3/N0bT2SpTP-plK0uWayAYOWLSidnxZA.woff2",
   },
@@ -13,13 +13,21 @@ const FACES = {
 export type PhetsarathWeight = "400" | "700";
 export type PhetsarathStyle = "normal";
 export type PhetsarathSubset = "lao";
-export type PhetsarathOptions = GoogleFontOptions<PhetsarathWeight, PhetsarathStyle, PhetsarathSubset>;
+export type PhetsarathOptions = GoogleFontOptions<
+  PhetsarathWeight,
+  PhetsarathStyle,
+  PhetsarathSubset
+>;
 
 /**
  * Phetsarath — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Phetsarath extends GoogleFont<PhetsarathWeight, PhetsarathStyle, PhetsarathSubset> {
+export default class Phetsarath extends GoogleFont<
+  PhetsarathWeight,
+  PhetsarathStyle,
+  PhetsarathSubset
+> {
   constructor(options?: PhetsarathOptions) {
     super(FAMILY, FACES, options);
   }

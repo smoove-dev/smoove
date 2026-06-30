@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Dynalight";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/dynalight/v24/1Ptsg8LOU_aOmQvTsF44TYFq.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type DynalightOptions = GoogleFontOptions<DynalightWeight, DynalightStyle
  * Dynalight — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Dynalight extends GoogleFont<DynalightWeight, DynalightStyle, DynalightSubset> {
+export default class Dynalight extends GoogleFont<
+  DynalightWeight,
+  DynalightStyle,
+  DynalightSubset
+> {
   constructor(options?: DynalightOptions) {
     super(FAMILY, FACES, options);
   }

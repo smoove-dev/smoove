@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Dosis";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/dosis/v34/HhyaU5sn9vOmLzloC_U.woff2",
     "300-normal": "https://fonts.gstatic.com/s/dosis/v34/HhyaU5sn9vOmLzloC_U.woff2",
     "400-normal": "https://fonts.gstatic.com/s/dosis/v34/HhyaU5sn9vOmLzloC_U.woff2",
@@ -22,7 +22,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/dosis/v34/HhyaU5sn9vOmLzlmC_W6EQ.woff2",
     "800-normal": "https://fonts.gstatic.com/s/dosis/v34/HhyaU5sn9vOmLzlmC_W6EQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-normal": "https://fonts.gstatic.com/s/dosis/v34/HhyaU5sn9vOmLzlnC_W6EQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/dosis/v34/HhyaU5sn9vOmLzlnC_W6EQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/dosis/v34/HhyaU5sn9vOmLzlnC_W6EQ.woff2",

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Ahom";
 
 const FACES = {
-  "ahom": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifahom/v21/FeVIS0hfp6cprmEUffAW_fUL_ANOY80PMWGp.woff2",
+  ahom: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifahom/v21/FeVIS0hfp6cprmEUffAW_fUL_ANOY80PMWGp.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifahom/v21/FeVIS0hfp6cprmEUffAW_fUL_ANOxewq.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifahom/v21/FeVIS0hfp6cprmEUffAW_fUL_ANOxewq.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notoserifahom/v21/FeVIS0hfp6cprmEUffAW_fUL_ANOy-wqDFg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifahom/v21/FeVIS0hfp6cprmEUffAW_fUL_ANOy-wqDFg.woff2",
   },
 } as const;
 
 export type NotoSerifAhomWeight = "400";
 export type NotoSerifAhomStyle = "normal";
 export type NotoSerifAhomSubset = "ahom" | "latin" | "latin-ext";
-export type NotoSerifAhomOptions = GoogleFontOptions<NotoSerifAhomWeight, NotoSerifAhomStyle, NotoSerifAhomSubset>;
+export type NotoSerifAhomOptions = GoogleFontOptions<
+  NotoSerifAhomWeight,
+  NotoSerifAhomStyle,
+  NotoSerifAhomSubset
+>;
 
 /**
  * Noto Serif Ahom — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifAhom extends GoogleFont<NotoSerifAhomWeight, NotoSerifAhomStyle, NotoSerifAhomSubset> {
+export default class NotoSerifAhom extends GoogleFont<
+  NotoSerifAhomWeight,
+  NotoSerifAhomStyle,
+  NotoSerifAhomSubset
+> {
   constructor(options?: NotoSerifAhomOptions) {
     super(FAMILY, FACES, options);
   }

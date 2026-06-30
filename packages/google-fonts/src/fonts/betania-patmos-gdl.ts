@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Betania Patmos GDL";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/betaniapatmosgdl/v2/-nFhOHE6_uoR4VYoynWSh_bKTCFIT7tB0PD2.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/betaniapatmosgdl/v2/-nFhOHE6_uoR4VYoynWSh_bKTCFIT7tB0PD2.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/betaniapatmosgdl/v2/-nFhOHE6_uoR4VYoynWSh_bKTCFIT7tB3vD212k.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/betaniapatmosgdl/v2/-nFhOHE6_uoR4VYoynWSh_bKTCFIT7tB3vD212k.woff2",
   },
 } as const;
 
 export type BetaniaPatmosGDLWeight = "400";
 export type BetaniaPatmosGDLStyle = "normal";
 export type BetaniaPatmosGDLSubset = "latin" | "latin-ext";
-export type BetaniaPatmosGDLOptions = GoogleFontOptions<BetaniaPatmosGDLWeight, BetaniaPatmosGDLStyle, BetaniaPatmosGDLSubset>;
+export type BetaniaPatmosGDLOptions = GoogleFontOptions<
+  BetaniaPatmosGDLWeight,
+  BetaniaPatmosGDLStyle,
+  BetaniaPatmosGDLSubset
+>;
 
 /**
  * Betania Patmos GDL — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BetaniaPatmosGDL extends GoogleFont<BetaniaPatmosGDLWeight, BetaniaPatmosGDLStyle, BetaniaPatmosGDLSubset> {
+export default class BetaniaPatmosGDL extends GoogleFont<
+  BetaniaPatmosGDLWeight,
+  BetaniaPatmosGDLStyle,
+  BetaniaPatmosGDLSubset
+> {
   constructor(options?: BetaniaPatmosGDLOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite DE Grund Guides";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/playwritedegrundguides/v1/OD5RuNCQ02KrAHnha1L36CWcQ83dtK5BLxqexnduX9o.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwritedegrundguides/v1/OD5RuNCQ02KrAHnha1L36CWcQ83dtK5BLxqexnduX9o.woff2",
   },
 } as const;
 
 export type PlaywriteDEGrundGuidesWeight = "400";
 export type PlaywriteDEGrundGuidesStyle = "normal";
 export type PlaywriteDEGrundGuidesSubset = "fallback";
-export type PlaywriteDEGrundGuidesOptions = GoogleFontOptions<PlaywriteDEGrundGuidesWeight, PlaywriteDEGrundGuidesStyle, PlaywriteDEGrundGuidesSubset>;
+export type PlaywriteDEGrundGuidesOptions = GoogleFontOptions<
+  PlaywriteDEGrundGuidesWeight,
+  PlaywriteDEGrundGuidesStyle,
+  PlaywriteDEGrundGuidesSubset
+>;
 
 /**
  * Playwrite DE Grund Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteDEGrundGuides extends GoogleFont<PlaywriteDEGrundGuidesWeight, PlaywriteDEGrundGuidesStyle, PlaywriteDEGrundGuidesSubset> {
+export default class PlaywriteDEGrundGuides extends GoogleFont<
+  PlaywriteDEGrundGuidesWeight,
+  PlaywriteDEGrundGuidesStyle,
+  PlaywriteDEGrundGuidesSubset
+> {
   constructor(options?: PlaywriteDEGrundGuidesOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gidole";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/gidole/v24/sZlFdR6O8zVVEiMqC5FXe6E.woff2",
   },
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/gidole/v24/sZlFdR6O8zVVEiMqDJFXe6E.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gidole/v24/sZlFdR6O8zVVEiMqD5FX.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/gidole/v24/sZlFdR6O8zVVEiMqAZFXe6E.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/gidole/v24/sZlFdR6O8zVVEiMqAJFXe6E.woff2",
   },
 } as const;

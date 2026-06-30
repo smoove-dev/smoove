@@ -4,30 +4,41 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Varela Round";
 
 const FACES = {
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfpcuPP9g.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfpcuPP9g.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfp8uP.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfqcuPP9g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfqcuPP9g.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfqMuPP9g.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfqMuPP9g.woff2",
   },
 } as const;
 
 export type VarelaRoundWeight = "400";
 export type VarelaRoundStyle = "normal";
 export type VarelaRoundSubset = "hebrew" | "latin" | "latin-ext" | "vietnamese";
-export type VarelaRoundOptions = GoogleFontOptions<VarelaRoundWeight, VarelaRoundStyle, VarelaRoundSubset>;
+export type VarelaRoundOptions = GoogleFontOptions<
+  VarelaRoundWeight,
+  VarelaRoundStyle,
+  VarelaRoundSubset
+>;
 
 /**
  * Varela Round — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class VarelaRound extends GoogleFont<VarelaRoundWeight, VarelaRoundStyle, VarelaRoundSubset> {
+export default class VarelaRound extends GoogleFont<
+  VarelaRoundWeight,
+  VarelaRoundStyle,
+  VarelaRoundSubset
+> {
   constructor(options?: VarelaRoundOptions) {
     super(FAMILY, FACES, options);
   }

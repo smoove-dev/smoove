@@ -5,61 +5,114 @@ const FAMILY = "Noto Rashi Hebrew";
 
 const FACES = {
   "greek-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttL0Iiirw.woff2",
   },
-  "hebrew": {
-    "100-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
+  hebrew: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttF0Iiirw.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttH0Ig.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notorashihebrew/v28/EJRMQh82XsIK-QFmqXk4zvLwFVya0ttJ0Iiirw.woff2",
   },
 } as const;
 
-export type NotoRashiHebrewWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoRashiHebrewWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoRashiHebrewStyle = "normal";
 export type NotoRashiHebrewSubset = "greek-ext" | "hebrew" | "latin" | "latin-ext";
-export type NotoRashiHebrewOptions = GoogleFontOptions<NotoRashiHebrewWeight, NotoRashiHebrewStyle, NotoRashiHebrewSubset>;
+export type NotoRashiHebrewOptions = GoogleFontOptions<
+  NotoRashiHebrewWeight,
+  NotoRashiHebrewStyle,
+  NotoRashiHebrewSubset
+>;
 
 /**
  * Noto Rashi Hebrew — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoRashiHebrew extends GoogleFont<NotoRashiHebrewWeight, NotoRashiHebrewStyle, NotoRashiHebrewSubset> {
+export default class NotoRashiHebrew extends GoogleFont<
+  NotoRashiHebrewWeight,
+  NotoRashiHebrewStyle,
+  NotoRashiHebrewSubset
+> {
   constructor(options?: NotoRashiHebrewOptions) {
     super(FAMILY, FACES, options);
   }

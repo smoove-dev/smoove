@@ -4,30 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hedvig Letters Sans";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/hedvigletterssans/v2/CHy_V_PfGVjobSBkihHWDT98RVp37w8jcJpH3A.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/hedvigletterssans/v2/CHy_V_PfGVjobSBkihHWDT98RVp37w8jcJpH3A.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/hedvigletterssans/v2/CHy_V_PfGVjobSBkihHWDT98RVp37w8jcJRH3Awg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/hedvigletterssans/v2/CHy_V_PfGVjobSBkihHWDT98RVp37w8jcJRH3Awg.woff2",
   },
-  "math": {
-    "400-normal": "https://fonts.gstatic.com/s/hedvigletterssans/v2/CHy_V_PfGVjobSBkihHWDT98RVp37w8jcOZH3Awg.woff2",
+  math: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/hedvigletterssans/v2/CHy_V_PfGVjobSBkihHWDT98RVp37w8jcOZH3Awg.woff2",
   },
-  "symbols": {
-    "400-normal": "https://fonts.gstatic.com/s/hedvigletterssans/v2/CHy_V_PfGVjobSBkihHWDT98RVp37w8jcPRH3Awg.woff2",
+  symbols: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/hedvigletterssans/v2/CHy_V_PfGVjobSBkihHWDT98RVp37w8jcPRH3Awg.woff2",
   },
 } as const;
 
 export type HedvigLettersSansWeight = "400";
 export type HedvigLettersSansStyle = "normal";
 export type HedvigLettersSansSubset = "latin" | "latin-ext" | "math" | "symbols";
-export type HedvigLettersSansOptions = GoogleFontOptions<HedvigLettersSansWeight, HedvigLettersSansStyle, HedvigLettersSansSubset>;
+export type HedvigLettersSansOptions = GoogleFontOptions<
+  HedvigLettersSansWeight,
+  HedvigLettersSansStyle,
+  HedvigLettersSansSubset
+>;
 
 /**
  * Hedvig Letters Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HedvigLettersSans extends GoogleFont<HedvigLettersSansWeight, HedvigLettersSansStyle, HedvigLettersSansSubset> {
+export default class HedvigLettersSans extends GoogleFont<
+  HedvigLettersSansWeight,
+  HedvigLettersSansStyle,
+  HedvigLettersSansSubset
+> {
   constructor(options?: HedvigLettersSansOptions) {
     super(FAMILY, FACES, options);
   }

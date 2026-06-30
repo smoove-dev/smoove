@@ -4,29 +4,41 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kulim Park";
 
 const FACES = {
-  "latin": {
-    "200-italic": "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUKa9gZp0r.woff2",
+  latin: {
+    "200-italic":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUKa9gZp0r.woff2",
     "200-normal": "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjJYN8alQZA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUTaxgZp0r.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUTaxgZp0r.woff2",
     "300-normal": "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjPIO8alQZA.woff2",
     "400-italic": "https://fonts.gstatic.com/s/kulimpark/v15/fdN59secq3hflz1Uu3IwhFwc5o51.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kulimpark/v15/fdN79secq3hflz1Uu3IwhFks5A.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUOapgZp0r.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUOapgZp0r.woff2",
     "600-normal": "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjIYI8alQZA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUXatgZp0r.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUXatgZp0r.woff2",
     "700-normal": "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjOIJ8alQZA.woff2",
   },
   "latin-ext": {
-    "200-italic": "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUKa9gaJ0rOjU.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjJYN8adQZIUv.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUTaxgaJ0rOjU.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjPIO8adQZIUv.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUKa9gaJ0rOjU.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjJYN8adQZIUv.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUTaxgaJ0rOjU.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjPIO8adQZIUv.woff2",
     "400-italic": "https://fonts.gstatic.com/s/kulimpark/v15/fdN59secq3hflz1Uu3IwhFwc6I51Wbw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kulimpark/v15/fdN79secq3hflz1Uu3IwhFcs5JZx.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUOapgaJ0rOjU.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjIYI8adQZIUv.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUXatgaJ0rOjU.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjOIJ8adQZIUv.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUOapgaJ0rOjU.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjIYI8adQZIUv.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdNm9secq3hflz1Uu3IwhFwUXatgaJ0rOjU.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kulimpark/v15/fdN49secq3hflz1Uu3IwjOIJ8adQZIUv.woff2",
   },
 } as const;
 
@@ -39,7 +51,11 @@ export type KulimParkOptions = GoogleFontOptions<KulimParkWeight, KulimParkStyle
  * Kulim Park — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KulimPark extends GoogleFont<KulimParkWeight, KulimParkStyle, KulimParkSubset> {
+export default class KulimPark extends GoogleFont<
+  KulimParkWeight,
+  KulimParkStyle,
+  KulimParkSubset
+> {
   constructor(options?: KulimParkOptions) {
     super(FAMILY, FACES, options);
   }

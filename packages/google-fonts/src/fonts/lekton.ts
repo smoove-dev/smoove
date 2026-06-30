@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lekton";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/lekton/v21/SZc63FDmLaWmWpBuXS3rtUc.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lekton/v21/SZc43FDmLaWmWpBuWB3p.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lekton/v21/SZc73FDmLaWmWpBm4zj8kmLW.woff2",

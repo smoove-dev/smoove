@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Square Peg";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/squarepeg/v7/y83eW48Nzw6ZlUHc-phrNDbhHQ.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/squarepeg/v7/y83eW48Nzw6ZlUHc-phrNDjhHUfr.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/squarepeg/v7/y83eW48Nzw6ZlUHc-phrNDnhHUfr.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type SquarePegOptions = GoogleFontOptions<SquarePegWeight, SquarePegStyle
  * Square Peg — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SquarePeg extends GoogleFont<SquarePegWeight, SquarePegStyle, SquarePegSubset> {
+export default class SquarePeg extends GoogleFont<
+  SquarePegWeight,
+  SquarePegStyle,
+  SquarePegSubset
+> {
   constructor(options?: SquarePegOptions) {
     super(FAMILY, FACES, options);
   }

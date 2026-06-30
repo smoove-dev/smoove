@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Edu SA Hand";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/edusahand/v3/mem6YaOmw37C-ogAJfd7Nq0Zdc0.woff2",
     "500-normal": "https://fonts.gstatic.com/s/edusahand/v3/mem6YaOmw37C-ogAJfd7Nq0Zdc0.woff2",
     "600-normal": "https://fonts.gstatic.com/s/edusahand/v3/mem6YaOmw37C-ogAJfd7Nq0Zdc0.woff2",
@@ -27,7 +27,11 @@ export type EduSAHandOptions = GoogleFontOptions<EduSAHandWeight, EduSAHandStyle
  * Edu SA Hand — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EduSAHand extends GoogleFont<EduSAHandWeight, EduSAHandStyle, EduSAHandSubset> {
+export default class EduSAHand extends GoogleFont<
+  EduSAHandWeight,
+  EduSAHandStyle,
+  EduSAHandSubset
+> {
   constructor(options?: EduSAHandOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Aoboshi One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/aoboshione/v13/Gg8xN5kXaAXtHQrFxwl10xsMDGc.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type AoboshiOneWeight = "400";
 export type AoboshiOneStyle = "normal";
 export type AoboshiOneSubset = "latin" | "latin-ext";
-export type AoboshiOneOptions = GoogleFontOptions<AoboshiOneWeight, AoboshiOneStyle, AoboshiOneSubset>;
+export type AoboshiOneOptions = GoogleFontOptions<
+  AoboshiOneWeight,
+  AoboshiOneStyle,
+  AoboshiOneSubset
+>;
 
 /**
  * Aoboshi One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AoboshiOne extends GoogleFont<AoboshiOneWeight, AoboshiOneStyle, AoboshiOneSubset> {
+export default class AoboshiOne extends GoogleFont<
+  AoboshiOneWeight,
+  AoboshiOneStyle,
+  AoboshiOneSubset
+> {
   constructor(options?: AoboshiOneOptions) {
     super(FAMILY, FACES, options);
   }

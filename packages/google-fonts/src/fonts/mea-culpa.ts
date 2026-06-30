@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mea Culpa";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/meaculpa/v8/AMOTz4GcuWbEIuza8jspnccR.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/meaculpa/v8/AMOTz4GcuWbEIuza8jspk8cRa3k.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/meaculpa/v8/AMOTz4GcuWbEIuza8jspkscRa3k.woff2",
   },
 } as const;

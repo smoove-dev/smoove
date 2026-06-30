@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Poiret One";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/poiretone/v18/UqyVK80NJXN4zfRgbdfbo5pcV_cx.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/poiretone/v18/UqyVK80NJXN4zfRgbdfbo55cVw.woff2",
   },
   "latin-ext": {
@@ -24,7 +24,11 @@ export type PoiretOneOptions = GoogleFontOptions<PoiretOneWeight, PoiretOneStyle
  * Poiret One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PoiretOne extends GoogleFont<PoiretOneWeight, PoiretOneStyle, PoiretOneSubset> {
+export default class PoiretOne extends GoogleFont<
+  PoiretOneWeight,
+  PoiretOneStyle,
+  PoiretOneSubset
+> {
   constructor(options?: PoiretOneOptions) {
     super(FAMILY, FACES, options);
   }

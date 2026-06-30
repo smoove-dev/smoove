@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alegreya";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk967p56N1.woff2",
     "400-normal": "https://fonts.gstatic.com/s/alegreya/v39/4UaBrEBBsBhlBjvfkSLlx6jx4w.woff2",
     "500-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk967p56N1.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk96fp56N1.woff2",
     "900-normal": "https://fonts.gstatic.com/s/alegreya/v39/4UaBrEBBsBhlBjvfkSLsx6jx4w.woff2",
   },
-  "greek": {
+  greek: {
     "400-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk96np56N1.woff2",
     "400-normal": "https://fonts.gstatic.com/s/alegreya/v39/4UaBrEBBsBhlBjvfkSLix6jx4w.woff2",
     "500-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk96np56N1.woff2",
@@ -60,7 +60,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk96bp56N1.woff2",
     "900-normal": "https://fonts.gstatic.com/s/alegreya/v39/4UaBrEBBsBhlBjvfkSLtx6jx4w.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk96rp5w.woff2",
     "400-normal": "https://fonts.gstatic.com/s/alegreya/v39/4UaBrEBBsBhlBjvfkSLhx6g.woff2",
     "500-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk96rp5w.woff2",
@@ -88,7 +88,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk96Tp56N1.woff2",
     "900-normal": "https://fonts.gstatic.com/s/alegreya/v39/4UaBrEBBsBhlBjvfkSLvx6jx4w.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk96Xp56N1.woff2",
     "400-normal": "https://fonts.gstatic.com/s/alegreya/v39/4UaBrEBBsBhlBjvfkSLux6jx4w.woff2",
     "500-italic": "https://fonts.gstatic.com/s/alegreya/v39/4UaHrEBBsBhlBjvfkSLk96Xp56N1.woff2",
@@ -106,7 +106,14 @@ const FACES = {
 
 export type AlegreyaWeight = "400" | "500" | "600" | "700" | "800" | "900";
 export type AlegreyaStyle = "italic" | "normal";
-export type AlegreyaSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "vietnamese";
+export type AlegreyaSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type AlegreyaOptions = GoogleFontOptions<AlegreyaWeight, AlegreyaStyle, AlegreyaSubset>;
 
 /**

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bungee";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bungee/v17/N0bU2SZBIuF2PU_0DXR1.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/bungee/v17/N0bU2SZBIuF2PU_0A3R1Gd8.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/bungee/v17/N0bU2SZBIuF2PU_0AnR1Gd8.woff2",
   },
 } as const;

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Imperial Script";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/imperialscript/v8/5DCPAKrpzy_H98IV2ISnZBbGrVNfOuPk.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/imperialscript/v8/5DCPAKrpzy_H98IV2ISnZBbGrVNfOuPk.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/imperialscript/v8/5DCPAKrpzy_H98IV2ISnZBbGrVNfNOPkjts.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/imperialscript/v8/5DCPAKrpzy_H98IV2ISnZBbGrVNfNOPkjts.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/imperialscript/v8/5DCPAKrpzy_H98IV2ISnZBbGrVNfNePkjts.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/imperialscript/v8/5DCPAKrpzy_H98IV2ISnZBbGrVNfNePkjts.woff2",
   },
 } as const;
 
 export type ImperialScriptWeight = "400";
 export type ImperialScriptStyle = "normal";
 export type ImperialScriptSubset = "latin" | "latin-ext" | "vietnamese";
-export type ImperialScriptOptions = GoogleFontOptions<ImperialScriptWeight, ImperialScriptStyle, ImperialScriptSubset>;
+export type ImperialScriptOptions = GoogleFontOptions<
+  ImperialScriptWeight,
+  ImperialScriptStyle,
+  ImperialScriptSubset
+>;
 
 /**
  * Imperial Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ImperialScript extends GoogleFont<ImperialScriptWeight, ImperialScriptStyle, ImperialScriptSubset> {
+export default class ImperialScript extends GoogleFont<
+  ImperialScriptWeight,
+  ImperialScriptStyle,
+  ImperialScriptSubset
+> {
   constructor(options?: ImperialScriptOptions) {
     super(FAMILY, FACES, options);
   }

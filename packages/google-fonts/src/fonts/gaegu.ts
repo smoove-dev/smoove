@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gaegu";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/gaegu/v23/TuGSUVB6Up9NU57nicw86MY.woff2",
     "400-normal": "https://fonts.gstatic.com/s/gaegu/v23/TuGfUVB6Up9NU5ZMq9k.woff2",
     "700-normal": "https://fonts.gstatic.com/s/gaegu/v23/TuGSUVB6Up9NU573jsw86MY.woff2",

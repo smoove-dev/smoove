@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Manuale";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/manuale/v31/f0X00eas_8Z-TFZdNPT-wOHC.woff2",
     "300-normal": "https://fonts.gstatic.com/s/manuale/v31/f0X20eas_8Z-TFZdNPHOwg.woff2",
     "400-italic": "https://fonts.gstatic.com/s/manuale/v31/f0X00eas_8Z-TFZdNPT-wOHC.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/manuale/v31/f0X00eas_8Z-TFZdNPT-zuHCyaY.woff2",
     "800-normal": "https://fonts.gstatic.com/s/manuale/v31/f0X20eas_8Z-TFZdNP_OwvnG.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-italic": "https://fonts.gstatic.com/s/manuale/v31/f0X00eas_8Z-TFZdNPT-z-HCyaY.woff2",
     "300-normal": "https://fonts.gstatic.com/s/manuale/v31/f0X20eas_8Z-TFZdNP7OwvnG.woff2",
     "400-italic": "https://fonts.gstatic.com/s/manuale/v31/f0X00eas_8Z-TFZdNPT-z-HCyaY.woff2",

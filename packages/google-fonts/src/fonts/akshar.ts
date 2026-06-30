@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Akshar";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "300-normal": "https://fonts.gstatic.com/s/akshar/v17/Yq6V-LyHWTfz9rGCpR5lhOc.woff2",
     "400-normal": "https://fonts.gstatic.com/s/akshar/v17/Yq6V-LyHWTfz9rGCpR5lhOc.woff2",
     "500-normal": "https://fonts.gstatic.com/s/akshar/v17/Yq6V-LyHWTfz9rGCpR5lhOc.woff2",
     "600-normal": "https://fonts.gstatic.com/s/akshar/v17/Yq6V-LyHWTfz9rGCpR5lhOc.woff2",
     "700-normal": "https://fonts.gstatic.com/s/akshar/v17/Yq6V-LyHWTfz9rGCpR5lhOc.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/akshar/v17/Yq6V-LyHWTfz9rGCpB5l.woff2",
     "400-normal": "https://fonts.gstatic.com/s/akshar/v17/Yq6V-LyHWTfz9rGCpB5l.woff2",
     "500-normal": "https://fonts.gstatic.com/s/akshar/v17/Yq6V-LyHWTfz9rGCpB5l.woff2",

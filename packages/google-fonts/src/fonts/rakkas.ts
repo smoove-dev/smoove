@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rakkas";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/rakkas/v22/Qw3cZQlNHiblL3jPlNFOCeM.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rakkas/v22/Qw3cZQlNHiblL3jPkdFO.woff2",
   },
   "latin-ext": {

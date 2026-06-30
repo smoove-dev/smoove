@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Kawi";
 
 const FACES = {
-  "kawi": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3zNZwVDLIw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3zNZwVDLIw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3zNZwVDLIw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3zNZwVDLIw.woff2",
+  kawi: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3zNZwVDLIw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3zNZwVDLIw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3zNZwVDLIw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3zNZwVDLIw.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xsRiA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xsRiA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xsRiA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xsRiA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xsRiA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xsRiA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xsRiA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xsRiA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xiRiB-FQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xiRiB-FQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xiRiB-FQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xiRiB-FQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xiRiB-FQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xiRiB-FQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xiRiB-FQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosanskawi/v5/92zMtBJLNqsg7tCciW0EPHNNh3xiRiB-FQ.woff2",
   },
 } as const;
 
 export type NotoSansKawiWeight = "400" | "500" | "600" | "700";
 export type NotoSansKawiStyle = "normal";
 export type NotoSansKawiSubset = "kawi" | "latin" | "latin-ext";
-export type NotoSansKawiOptions = GoogleFontOptions<NotoSansKawiWeight, NotoSansKawiStyle, NotoSansKawiSubset>;
+export type NotoSansKawiOptions = GoogleFontOptions<
+  NotoSansKawiWeight,
+  NotoSansKawiStyle,
+  NotoSansKawiSubset
+>;
 
 /**
  * Noto Sans Kawi — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansKawi extends GoogleFont<NotoSansKawiWeight, NotoSansKawiStyle, NotoSansKawiSubset> {
+export default class NotoSansKawi extends GoogleFont<
+  NotoSansKawiWeight,
+  NotoSansKawiStyle,
+  NotoSansKawiSubset
+> {
   constructor(options?: NotoSansKawiOptions) {
     super(FAMILY, FACES, options);
   }

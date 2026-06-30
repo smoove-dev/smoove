@@ -1,4 +1,4 @@
-import { type TemplateResult, svg } from "lit";
+import { svg, type TemplateResult } from "lit";
 
 /**
  * Inline-SVG icon set, ported from the demo studio's icon sheet. Each entry is

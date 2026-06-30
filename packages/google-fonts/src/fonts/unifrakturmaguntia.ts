@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "UnifrakturMaguntia";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/unifrakturmaguntia/v22/WWXPlieVYwiGNomYU-ciRLRvEmK7oaVemGZM.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/unifrakturmaguntia/v22/WWXPlieVYwiGNomYU-ciRLRvEmK7oaVemGZM.woff2",
   },
 } as const;
 
 export type UnifrakturMaguntiaWeight = "400";
 export type UnifrakturMaguntiaStyle = "normal";
 export type UnifrakturMaguntiaSubset = "latin";
-export type UnifrakturMaguntiaOptions = GoogleFontOptions<UnifrakturMaguntiaWeight, UnifrakturMaguntiaStyle, UnifrakturMaguntiaSubset>;
+export type UnifrakturMaguntiaOptions = GoogleFontOptions<
+  UnifrakturMaguntiaWeight,
+  UnifrakturMaguntiaStyle,
+  UnifrakturMaguntiaSubset
+>;
 
 /**
  * UnifrakturMaguntia — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class UnifrakturMaguntia extends GoogleFont<UnifrakturMaguntiaWeight, UnifrakturMaguntiaStyle, UnifrakturMaguntiaSubset> {
+export default class UnifrakturMaguntia extends GoogleFont<
+  UnifrakturMaguntiaWeight,
+  UnifrakturMaguntiaStyle,
+  UnifrakturMaguntiaSubset
+> {
   constructor(options?: UnifrakturMaguntiaOptions) {
     super(FAMILY, FACES, options);
   }

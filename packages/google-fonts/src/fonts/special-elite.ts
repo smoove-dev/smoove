@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Special Elite";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/specialelite/v20/XLYgIZbkc4JPUL5CVArUVL0ntnAOSA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/specialelite/v20/XLYgIZbkc4JPUL5CVArUVL0ntnAOSA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/specialelite/v20/XLYgIZbkc4JPUL5CVArUVL0ntn4OSEFt.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/specialelite/v20/XLYgIZbkc4JPUL5CVArUVL0ntn4OSEFt.woff2",
   },
 } as const;
 
 export type SpecialEliteWeight = "400";
 export type SpecialEliteStyle = "normal";
 export type SpecialEliteSubset = "latin" | "latin-ext";
-export type SpecialEliteOptions = GoogleFontOptions<SpecialEliteWeight, SpecialEliteStyle, SpecialEliteSubset>;
+export type SpecialEliteOptions = GoogleFontOptions<
+  SpecialEliteWeight,
+  SpecialEliteStyle,
+  SpecialEliteSubset
+>;
 
 /**
  * Special Elite — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SpecialElite extends GoogleFont<SpecialEliteWeight, SpecialEliteStyle, SpecialEliteSubset> {
+export default class SpecialElite extends GoogleFont<
+  SpecialEliteWeight,
+  SpecialEliteStyle,
+  SpecialEliteSubset
+> {
   constructor(options?: SpecialEliteOptions) {
     super(FAMILY, FACES, options);
   }

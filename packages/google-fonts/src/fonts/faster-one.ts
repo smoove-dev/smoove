@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Faster One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/fasterone/v20/H4ciBXCHmdfClFb-vWhf-LyYhw.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type FasterOneOptions = GoogleFontOptions<FasterOneWeight, FasterOneStyle
  * Faster One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FasterOne extends GoogleFont<FasterOneWeight, FasterOneStyle, FasterOneSubset> {
+export default class FasterOne extends GoogleFont<
+  FasterOneWeight,
+  FasterOneStyle,
+  FasterOneSubset
+> {
   constructor(options?: FasterOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sassy Frass";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sassyfrass/v9/LhWhMVrGOe0FLb97BjhsE-9aEtQ.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/sassyfrass/v9/LhWhMVrGOe0FLb97BjhsE-9UEtSggw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/sassyfrass/v9/LhWhMVrGOe0FLb97BjhsE-9VEtSggw.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type SassyFrassWeight = "400";
 export type SassyFrassStyle = "normal";
 export type SassyFrassSubset = "latin" | "latin-ext" | "vietnamese";
-export type SassyFrassOptions = GoogleFontOptions<SassyFrassWeight, SassyFrassStyle, SassyFrassSubset>;
+export type SassyFrassOptions = GoogleFontOptions<
+  SassyFrassWeight,
+  SassyFrassStyle,
+  SassyFrassSubset
+>;
 
 /**
  * Sassy Frass — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SassyFrass extends GoogleFont<SassyFrassWeight, SassyFrassStyle, SassyFrassSubset> {
+export default class SassyFrass extends GoogleFont<
+  SassyFrassWeight,
+  SassyFrassStyle,
+  SassyFrassSubset
+> {
   constructor(options?: SassyFrassOptions) {
     super(FAMILY, FACES, options);
   }

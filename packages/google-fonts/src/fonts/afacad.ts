@@ -14,7 +14,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJwFlOk8yA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/afacad/v3/6NUX8FKMIQOGaw6ajKwKjO0.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJwIlOk.woff2",
     "400-normal": "https://fonts.gstatic.com/s/afacad/v3/6NUX8FKMIQOGaw6agawK.woff2",
     "500-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJwIlOk.woff2",
@@ -34,7 +34,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJwGlOk8yA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/afacad/v3/6NUX8FKMIQOGaw6aj6wKjO0.woff2",
   },
-  "math": {
+  math: {
     "400-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJx0lOk8yA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/afacad/v3/6NUX8FKMIQOGaw6a_awKjO0.woff2",
     "500-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJx0lOk8yA.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJx0lOk8yA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/afacad/v3/6NUX8FKMIQOGaw6a_awKjO0.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJxmlOk8yA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/afacad/v3/6NUX8FKMIQOGaw6a76wKjO0.woff2",
     "500-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJxmlOk8yA.woff2",
@@ -54,7 +54,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJxmlOk8yA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/afacad/v3/6NUX8FKMIQOGaw6a76wKjO0.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJwHlOk8yA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/afacad/v3/6NUX8FKMIQOGaw6ajqwKjO0.woff2",
     "500-italic": "https://fonts.gstatic.com/s/afacad/v3/6NUV8FKMIQOGaw6ahJwHlOk8yA.woff2",
@@ -68,7 +68,13 @@ const FACES = {
 
 export type AfacadWeight = "400" | "500" | "600" | "700";
 export type AfacadStyle = "italic" | "normal";
-export type AfacadSubset = "cyrillic-ext" | "latin" | "latin-ext" | "math" | "symbols" | "vietnamese";
+export type AfacadSubset =
+  | "cyrillic-ext"
+  | "latin"
+  | "latin-ext"
+  | "math"
+  | "symbols"
+  | "vietnamese";
 export type AfacadOptions = GoogleFontOptions<AfacadWeight, AfacadStyle, AfacadSubset>;
 
 /**

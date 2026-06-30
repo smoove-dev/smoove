@@ -7,7 +7,7 @@ const FACES = {
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/gloock/v8/Iurb6YFw84WUY4NJhRakNrc.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gloock/v8/Iurb6YFw84WUY4NJiBak.woff2",
   },
   "latin-ext": {

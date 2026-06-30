@@ -4,48 +4,88 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Reddit Sans Condensed";
 
 const FACES = {
-  "latin": {
-    "200-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
+  latin: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1auJH.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZOJHa74.woff2",
   },
-  "vietnamese": {
-    "200-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
+  vietnamese: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/redditsanscondensed/v5/m8JMjepOc6WYkkm2Dey9A5QGAQXmuL3va5I1ZeJHa74.woff2",
   },
 } as const;
 
-export type RedditSansCondensedWeight = "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type RedditSansCondensedWeight =
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type RedditSansCondensedStyle = "normal";
 export type RedditSansCondensedSubset = "latin" | "latin-ext" | "vietnamese";
-export type RedditSansCondensedOptions = GoogleFontOptions<RedditSansCondensedWeight, RedditSansCondensedStyle, RedditSansCondensedSubset>;
+export type RedditSansCondensedOptions = GoogleFontOptions<
+  RedditSansCondensedWeight,
+  RedditSansCondensedStyle,
+  RedditSansCondensedSubset
+>;
 
 /**
  * Reddit Sans Condensed — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RedditSansCondensed extends GoogleFont<RedditSansCondensedWeight, RedditSansCondensedStyle, RedditSansCondensedSubset> {
+export default class RedditSansCondensed extends GoogleFont<
+  RedditSansCondensedWeight,
+  RedditSansCondensedStyle,
+  RedditSansCondensedSubset
+> {
   constructor(options?: RedditSansCondensedOptions) {
     super(FAMILY, FACES, options);
   }

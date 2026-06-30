@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Reenie Beanie";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/reeniebeanie/v22/z7NSdR76eDkaJKZJFkkjuvWxXPq1qw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/reeniebeanie/v22/z7NSdR76eDkaJKZJFkkjuvWxXPq1qw.woff2",
   },
 } as const;
 
 export type ReenieBeanieWeight = "400";
 export type ReenieBeanieStyle = "normal";
 export type ReenieBeanieSubset = "latin";
-export type ReenieBeanieOptions = GoogleFontOptions<ReenieBeanieWeight, ReenieBeanieStyle, ReenieBeanieSubset>;
+export type ReenieBeanieOptions = GoogleFontOptions<
+  ReenieBeanieWeight,
+  ReenieBeanieStyle,
+  ReenieBeanieSubset
+>;
 
 /**
  * Reenie Beanie — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ReenieBeanie extends GoogleFont<ReenieBeanieWeight, ReenieBeanieStyle, ReenieBeanieSubset> {
+export default class ReenieBeanie extends GoogleFont<
+  ReenieBeanieWeight,
+  ReenieBeanieStyle,
+  ReenieBeanieSubset
+> {
   constructor(options?: ReenieBeanieOptions) {
     super(FAMILY, FACES, options);
   }

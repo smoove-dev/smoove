@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Coptic";
 
 const FACES = {
-  "coptic": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanscoptic/v22/iJWfBWmUZi_OHPqn4wq6kgqumOEd3-W1VV0x.woff2",
+  coptic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscoptic/v22/iJWfBWmUZi_OHPqn4wq6kgqumOEd3-W1VV0x.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanscoptic/v22/iJWfBWmUZi_OHPqn4wq6kgqumOEd38y1VQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscoptic/v22/iJWfBWmUZi_OHPqn4wq6kgqumOEd38y1VQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanscoptic/v22/iJWfBWmUZi_OHPqn4wq6kgqumOEd38K1VV0x.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanscoptic/v22/iJWfBWmUZi_OHPqn4wq6kgqumOEd38K1VV0x.woff2",
   },
 } as const;
 
 export type NotoSansCopticWeight = "400";
 export type NotoSansCopticStyle = "normal";
 export type NotoSansCopticSubset = "coptic" | "latin" | "latin-ext";
-export type NotoSansCopticOptions = GoogleFontOptions<NotoSansCopticWeight, NotoSansCopticStyle, NotoSansCopticSubset>;
+export type NotoSansCopticOptions = GoogleFontOptions<
+  NotoSansCopticWeight,
+  NotoSansCopticStyle,
+  NotoSansCopticSubset
+>;
 
 /**
  * Noto Sans Coptic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansCoptic extends GoogleFont<NotoSansCopticWeight, NotoSansCopticStyle, NotoSansCopticSubset> {
+export default class NotoSansCoptic extends GoogleFont<
+  NotoSansCopticWeight,
+  NotoSansCopticStyle,
+  NotoSansCopticSubset
+> {
   constructor(options?: NotoSansCopticOptions) {
     super(FAMILY, FACES, options);
   }

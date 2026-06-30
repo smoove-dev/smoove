@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Akt";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCi2Qv1SI.woff2",
     "200-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCi2Qv1SI.woff2",
     "300-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCi2Qv1SI.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCgmQv1SI.woff2",
     "900-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCgmQv1SI.woff2",
   },
-  "greek": {
+  greek: {
     "100-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCjGQv1SI.woff2",
     "200-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCjGQv1SI.woff2",
     "300-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCjGQv1SI.woff2",
@@ -48,7 +48,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCg2Qv1SI.woff2",
     "900-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCg2Qv1SI.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCj2Qv.woff2",
     "200-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCj2Qv.woff2",
     "300-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCj2Qv.woff2",
@@ -70,7 +70,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCgWQv1SI.woff2",
     "900-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCgWQv1SI.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCgGQv1SI.woff2",
     "200-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCgGQv1SI.woff2",
     "300-normal": "https://fonts.gstatic.com/s/akt/v2/d6lEkaygQdnCgGQv1SI.woff2",
@@ -85,7 +85,14 @@ const FACES = {
 
 export type AktWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type AktStyle = "normal";
-export type AktSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "vietnamese";
+export type AktSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type AktOptions = GoogleFontOptions<AktWeight, AktStyle, AktSubset>;
 
 /**

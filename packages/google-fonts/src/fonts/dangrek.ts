@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Dangrek";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "400-normal": "https://fonts.gstatic.com/s/dangrek/v33/LYjCdG30nEgoH8E2sC9gqGIu.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/dangrek/v33/LYjCdG30nEgoH8E2sCRgqA.woff2",
   },
 } as const;

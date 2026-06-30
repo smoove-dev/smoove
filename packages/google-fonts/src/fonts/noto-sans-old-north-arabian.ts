@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Old North Arabian";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansoldnortharabian/v17/esDF30BdNv-KYGGJpKGk2tNiMt7Jar6olZDyNdr81zBgnkA-.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansoldnortharabian/v17/esDF30BdNv-KYGGJpKGk2tNiMt7Jar6olZDyNdr81zBgnkA-.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansoldnortharabian/v17/esDF30BdNv-KYGGJpKGk2tNiMt7Jar6olZDyNdr81zBgkEA-9w4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansoldnortharabian/v17/esDF30BdNv-KYGGJpKGk2tNiMt7Jar6olZDyNdr81zBgkEA-9w4.woff2",
   },
   "old-north-arabian": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansoldnortharabian/v17/esDF30BdNv-KYGGJpKGk2tNiMt7Jar6olZDyNdr81zBgF2EbyjcZ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansoldnortharabian/v17/esDF30BdNv-KYGGJpKGk2tNiMt7Jar6olZDyNdr81zBgF2EbyjcZ.woff2",
   },
 } as const;
 
 export type NotoSansOldNorthArabianWeight = "400";
 export type NotoSansOldNorthArabianStyle = "normal";
 export type NotoSansOldNorthArabianSubset = "latin" | "latin-ext" | "old-north-arabian";
-export type NotoSansOldNorthArabianOptions = GoogleFontOptions<NotoSansOldNorthArabianWeight, NotoSansOldNorthArabianStyle, NotoSansOldNorthArabianSubset>;
+export type NotoSansOldNorthArabianOptions = GoogleFontOptions<
+  NotoSansOldNorthArabianWeight,
+  NotoSansOldNorthArabianStyle,
+  NotoSansOldNorthArabianSubset
+>;
 
 /**
  * Noto Sans Old North Arabian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansOldNorthArabian extends GoogleFont<NotoSansOldNorthArabianWeight, NotoSansOldNorthArabianStyle, NotoSansOldNorthArabianSubset> {
+export default class NotoSansOldNorthArabian extends GoogleFont<
+  NotoSansOldNorthArabianWeight,
+  NotoSansOldNorthArabianStyle,
+  NotoSansOldNorthArabianSubset
+> {
   constructor(options?: NotoSansOldNorthArabianOptions) {
     super(FAMILY, FACES, options);
   }

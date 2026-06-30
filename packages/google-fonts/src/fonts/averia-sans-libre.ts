@@ -4,26 +4,40 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Averia Sans Libre";
 
 const FACES = {
-  "latin": {
-    "300-italic": "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6caxZG_G5OvCf_rt7FH3B6BHLMEdVLKisSH5DdKg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6SaxZG_G5OvCf_rt7FH3B6BHLMEd3lMJcXL5I.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6RaxZG_G5OvCf_rt7FH3B6BHLMEdVLIoAwCg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6XaxZG_G5OvCf_rt7FH3B6BHLMEdVOEoI.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6caxZG_G5OvCf_rt7FH3B6BHLMEdVLKjsVH5DdKg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6SaxZG_G5OvCf_rt7FH3B6BHLMEd31N5cXL5I.woff2",
+  latin: {
+    "300-italic":
+      "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6caxZG_G5OvCf_rt7FH3B6BHLMEdVLKisSH5DdKg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6SaxZG_G5OvCf_rt7FH3B6BHLMEd3lMJcXL5I.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6RaxZG_G5OvCf_rt7FH3B6BHLMEdVLIoAwCg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6XaxZG_G5OvCf_rt7FH3B6BHLMEdVOEoI.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6caxZG_G5OvCf_rt7FH3B6BHLMEdVLKjsVH5DdKg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/averiasanslibre/v20/ga6SaxZG_G5OvCf_rt7FH3B6BHLMEd31N5cXL5I.woff2",
   },
 } as const;
 
 export type AveriaSansLibreWeight = "300" | "400" | "700";
 export type AveriaSansLibreStyle = "italic" | "normal";
 export type AveriaSansLibreSubset = "latin";
-export type AveriaSansLibreOptions = GoogleFontOptions<AveriaSansLibreWeight, AveriaSansLibreStyle, AveriaSansLibreSubset>;
+export type AveriaSansLibreOptions = GoogleFontOptions<
+  AveriaSansLibreWeight,
+  AveriaSansLibreStyle,
+  AveriaSansLibreSubset
+>;
 
 /**
  * Averia Sans Libre — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AveriaSansLibre extends GoogleFont<AveriaSansLibreWeight, AveriaSansLibreStyle, AveriaSansLibreSubset> {
+export default class AveriaSansLibre extends GoogleFont<
+  AveriaSansLibreWeight,
+  AveriaSansLibreStyle,
+  AveriaSansLibreSubset
+> {
   constructor(options?: AveriaSansLibreOptions) {
     super(FAMILY, FACES, options);
   }

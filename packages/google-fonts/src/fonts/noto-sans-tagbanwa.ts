@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Tagbanwa";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstagbanwa/v21/Y4GWYbB8VTEp4t3MKJSMmQdIKjRtt_npQT4F.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstagbanwa/v21/Y4GWYbB8VTEp4t3MKJSMmQdIKjRtt_npQT4F.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstagbanwa/v21/Y4GWYbB8VTEp4t3MKJSMmQdIKjRtt_npTz4FWYo.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstagbanwa/v21/Y4GWYbB8VTEp4t3MKJSMmQdIKjRtt_npTz4FWYo.woff2",
   },
-  "tagbanwa": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstagbanwa/v21/Y4GWYbB8VTEp4t3MKJSMmQdIKjRtt_npJj4FWYo.woff2",
+  tagbanwa: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstagbanwa/v21/Y4GWYbB8VTEp4t3MKJSMmQdIKjRtt_npJj4FWYo.woff2",
   },
 } as const;
 
 export type NotoSansTagbanwaWeight = "400";
 export type NotoSansTagbanwaStyle = "normal";
 export type NotoSansTagbanwaSubset = "latin" | "latin-ext" | "tagbanwa";
-export type NotoSansTagbanwaOptions = GoogleFontOptions<NotoSansTagbanwaWeight, NotoSansTagbanwaStyle, NotoSansTagbanwaSubset>;
+export type NotoSansTagbanwaOptions = GoogleFontOptions<
+  NotoSansTagbanwaWeight,
+  NotoSansTagbanwaStyle,
+  NotoSansTagbanwaSubset
+>;
 
 /**
  * Noto Sans Tagbanwa — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansTagbanwa extends GoogleFont<NotoSansTagbanwaWeight, NotoSansTagbanwaStyle, NotoSansTagbanwaSubset> {
+export default class NotoSansTagbanwa extends GoogleFont<
+  NotoSansTagbanwaWeight,
+  NotoSansTagbanwaStyle,
+  NotoSansTagbanwaSubset
+> {
   constructor(options?: NotoSansTagbanwaOptions) {
     super(FAMILY, FACES, options);
   }

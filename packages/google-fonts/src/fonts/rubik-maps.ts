@@ -4,39 +4,50 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Maps";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaps/v1/Gw6_wcjl80TZK9XxtbbevSUeCyRq.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaps/v1/Gw6_wcjl80TZK9XxtbbevSweCyRq.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaps/v1/Gw6_wcjl80TZK9XxtbbevSMeCyRq.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaps/v1/Gw6_wcjl80TZK9XxtbbevSEeCw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaps/v1/Gw6_wcjl80TZK9XxtbbevS8eCyRq.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaps/v1/Gw6_wcjl80TZK9XxtbbevV0eCyRq.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/rubikmaps/v1/Gw6_wcjl80TZK9XxtbbevU8eCyRq.woff2",
   },
 } as const;
 
 export type RubikMapsWeight = "400";
 export type RubikMapsStyle = "normal";
-export type RubikMapsSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext" | "math" | "symbols";
+export type RubikMapsSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "hebrew"
+  | "latin"
+  | "latin-ext"
+  | "math"
+  | "symbols";
 export type RubikMapsOptions = GoogleFontOptions<RubikMapsWeight, RubikMapsStyle, RubikMapsSubset>;
 
 /**
  * Rubik Maps — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikMaps extends GoogleFont<RubikMapsWeight, RubikMapsStyle, RubikMapsSubset> {
+export default class RubikMaps extends GoogleFont<
+  RubikMapsWeight,
+  RubikMapsStyle,
+  RubikMapsSubset
+> {
   constructor(options?: RubikMapsOptions) {
     super(FAMILY, FACES, options);
   }

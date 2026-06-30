@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Micro 5";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/micro5/v2/H4cnBX2MkcfEngTr4gEa7Q.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/micro5/v2/H4cnBX2MkcfEngTr4g8a7YO5.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/micro5/v2/H4cnBX2MkcfEngTr4n0a7YO5.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/micro5/v2/H4cnBX2MkcfEngTr4m8a7YO5.woff2",
   },
 } as const;

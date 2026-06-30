@@ -1,12 +1,47 @@
+export { Easing } from "./animation/easing.js";
 export {
-  Composition,
-  getComposition,
+  type ExtrapolateType,
+  type InterpolateOptions,
+  interpolate,
+} from "./animation/interpolate.js";
+export { interpolateColors } from "./animation/interpolate-colors.js";
+export {
   type BufferState,
+  Composition,
   type CompositionEvent,
   type CompositionEventMap,
   type CompositionEventName,
   type CompositionOptions,
+  getComposition,
 } from "./engine/composition.js";
+export {
+  detectEnvironment,
+  type Environment,
+  type EnvironmentMode,
+  getEnvironment,
+} from "./engine/environment.js";
+export {
+  type ComputeOffsetsResult,
+  // @internal — offset engine reused by @smoove/transitions.
+  computeOffsets,
+  type OffsetScene,
+  type PlacedScene,
+} from "./engine/offsets.js";
+export {
+  type FontFaceDescriptor,
+  type FontLoader,
+  getDefaultAudioSourceFactory,
+  getDefaultFontLoader,
+  getDefaultImageLoader,
+  getDefaultVideoSourceFactory,
+  type ImageLoader,
+  type LoadedImage,
+  loadFontFace,
+  setDefaultAudioSourceFactory,
+  setDefaultFontLoader,
+  setDefaultImageLoader,
+  setDefaultVideoSourceFactory,
+} from "./engine/runtime-defaults.js";
 export {
   Sequence,
   type SequenceOptions,
@@ -18,25 +53,10 @@ export {
   type SeriesOptions,
   type SeriesSceneOptions,
 } from "./engine/series.js";
-export {
-  // @internal — offset engine reused by @smoove/transitions.
-  computeOffsets,
-  type ComputeOffsetsResult,
-  type OffsetScene,
-  type PlacedScene,
-} from "./engine/offsets.js";
 export type { ReadonlySignal } from "./engine/signal.js";
 export {
-  interpolate,
-  type ExtrapolateType,
-  type InterpolateOptions,
-} from "./animation/interpolate.js";
-export { interpolateColors } from "./animation/interpolate-colors.js";
-export { Easing } from "./animation/easing.js";
-export { Flex } from "./layout/flex/flex.js";
-export {
-  Block,
   type BackgroundValue,
+  Block,
   type BlockConfig,
   type EdgeColor,
   type GradientBackground,
@@ -44,19 +64,31 @@ export {
   type ShadowProps,
 } from "./layout/block.js";
 export {
+  isKMLayoutNode,
+  isKMLayoutRoot,
+  type KMLayoutNode,
+  type LayoutBox,
+  type MeasureContext,
+} from "./layout/contract.js";
+export { Flex } from "./layout/flex/flex.js";
+export { FlexShape, type LeafConfig } from "./layout/flex/mixin.js";
+export type {
+  Align,
+  AlignSelf,
+  EdgeValue,
+  FlexChildProps,
+  FlexConfig,
+  FlexDirection,
+  FlexProps,
+  Justify,
+  SizeValue,
+} from "./layout/flex/types.js";
+export {
   Image,
   type ImageConfig,
   type ObjectFit,
   type ObjectPosition,
 } from "./layout/image.js";
-export { Text } from "./layout/text/text.js";
-export {
-  Font,
-  type FontConfig,
-  type FontFace,
-  type FontFaceRef,
-  type FontStyleName,
-} from "./layout/text/font.js";
 export {
   Arc,
   type ArcConfig,
@@ -86,13 +118,13 @@ export {
   type WedgeConfig,
 } from "./layout/shapes.js";
 export {
-  type KMLayoutNode,
-  type LayoutBox,
-  type MeasureContext,
-  isKMLayoutNode,
-  isKMLayoutRoot,
-} from "./layout/contract.js";
-export { FlexShape, type LeafConfig } from "./layout/flex/mixin.js";
+  Font,
+  type FontConfig,
+  type FontFace,
+  type FontFaceRef,
+  type FontStyleName,
+} from "./layout/text/font.js";
+export { Text } from "./layout/text/text.js";
 export type {
   FitConfig,
   HighlightConfig,
@@ -100,51 +132,19 @@ export type {
   TextConfig,
   TypewriterConfig,
 } from "./layout/text/types.js";
-export { AudioMixer, type AudioChannel } from "./media/audio/mixer.js";
-export { Audio, isAudioNode } from "./media/audio/index.js";
-export type { AudioConfig } from "./media/audio/types.js";
+export type { AudioAsset } from "./media/audio/asset.js";
 export type { AudioSource, AudioSourceFactory } from "./media/audio/audio-source.js";
 export { BrowserAudioSource } from "./media/audio/audio-source-browser.js";
 export {
   MediabunnyAudioSource,
   type SchedulableAudioSource,
 } from "./media/audio/audio-source-mediabunny.js";
-export type { AudioAsset } from "./media/audio/asset.js";
+export { Audio, isAudioNode } from "./media/audio/index.js";
+export { type AudioChannel, AudioMixer } from "./media/audio/mixer.js";
+export type { AudioConfig } from "./media/audio/types.js";
 export { getMediaTime, type MediaTiming } from "./media/media-time.js";
-export { Video, isVideoNode } from "./media/video/index.js";
+export { isVideoNode, Video } from "./media/video/index.js";
 export type { VideoConfig } from "./media/video/types.js";
 export type { VideoSource, VideoSourceFactory } from "./media/video/video-source.js";
 export { BrowserVideoSource } from "./media/video/video-source-browser.js";
 export { MediabunnyVideoSource } from "./media/video/video-source-mediabunny.js";
-export {
-  type Environment,
-  type EnvironmentMode,
-  detectEnvironment,
-  getEnvironment,
-} from "./engine/environment.js";
-export {
-  type ImageLoader,
-  type LoadedImage,
-  type FontLoader,
-  type FontFaceDescriptor,
-  setDefaultVideoSourceFactory,
-  getDefaultVideoSourceFactory,
-  setDefaultAudioSourceFactory,
-  getDefaultAudioSourceFactory,
-  setDefaultImageLoader,
-  getDefaultImageLoader,
-  setDefaultFontLoader,
-  getDefaultFontLoader,
-  loadFontFace,
-} from "./engine/runtime-defaults.js";
-export type {
-  Align,
-  AlignSelf,
-  EdgeValue,
-  FlexChildProps,
-  FlexConfig,
-  FlexDirection,
-  FlexProps,
-  Justify,
-  SizeValue,
-} from "./layout/flex/types.js";

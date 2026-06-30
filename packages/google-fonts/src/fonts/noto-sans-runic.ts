@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Runic";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansrunic/v18/H4c_BXWPl9DZ0Xe_nHUaus7W68WmbBBu.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansrunic/v18/H4c_BXWPl9DZ0Xe_nHUaus7W68WmbBBu.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansrunic/v18/H4c_BXWPl9DZ0Xe_nHUaus7W68WmYhBuLtg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansrunic/v18/H4c_BXWPl9DZ0Xe_nHUaus7W68WmYhBuLtg.woff2",
   },
-  "runic": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansrunic/v18/H4c_BXWPl9DZ0Xe_nHUaus7W68WmWBBuLtg.woff2",
+  runic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansrunic/v18/H4c_BXWPl9DZ0Xe_nHUaus7W68WmWBBuLtg.woff2",
   },
 } as const;
 
 export type NotoSansRunicWeight = "400";
 export type NotoSansRunicStyle = "normal";
 export type NotoSansRunicSubset = "latin" | "latin-ext" | "runic";
-export type NotoSansRunicOptions = GoogleFontOptions<NotoSansRunicWeight, NotoSansRunicStyle, NotoSansRunicSubset>;
+export type NotoSansRunicOptions = GoogleFontOptions<
+  NotoSansRunicWeight,
+  NotoSansRunicStyle,
+  NotoSansRunicSubset
+>;
 
 /**
  * Noto Sans Runic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansRunic extends GoogleFont<NotoSansRunicWeight, NotoSansRunicStyle, NotoSansRunicSubset> {
+export default class NotoSansRunic extends GoogleFont<
+  NotoSansRunicWeight,
+  NotoSansRunicStyle,
+  NotoSansRunicSubset
+> {
   constructor(options?: NotoSansRunicOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Trirong";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/trirong/v17/7r3CqXNgp8wxdOdOn44Qub5mwuw.woff2",
     "100-normal": "https://fonts.gstatic.com/s/trirong/v17/7r3EqXNgp8wxdOdOl-gY2o5k.woff2",
     "200-italic": "https://fonts.gstatic.com/s/trirong/v17/7r3BqXNgp8wxdOdOn44QFa9x5cn6.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/trirong/v17/7r3BqXNgp8wxdOdOn44QWalx68n6uts.woff2",
     "900-normal": "https://fonts.gstatic.com/s/trirong/v17/7r3DqXNgp8wxdOdOlwgPzadB59H-.woff2",
   },
-  "thai": {
+  thai: {
     "100-italic": "https://fonts.gstatic.com/s/trirong/v17/7r3CqXNgp8wxdOdOn44Qub5ywuzHgw.woff2",
     "100-normal": "https://fonts.gstatic.com/s/trirong/v17/7r3EqXNgp8wxdOdOl-gYzo5k2ug.woff2",
     "200-italic": "https://fonts.gstatic.com/s/trirong/v17/7r3BqXNgp8wxdOdOn44QFa9x8cn6uts.woff2",
@@ -64,7 +64,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/trirong/v17/7r3BqXNgp8wxdOdOn44QWalx8cn6uts.woff2",
     "900-normal": "https://fonts.gstatic.com/s/trirong/v17/7r3DqXNgp8wxdOdOlwgPzb1B59H-.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/trirong/v17/7r3CqXNgp8wxdOdOn44Qub5pwuzHgw.woff2",
     "100-normal": "https://fonts.gstatic.com/s/trirong/v17/7r3EqXNgp8wxdOdOl-gY1Y5k2ug.woff2",
     "200-italic": "https://fonts.gstatic.com/s/trirong/v17/7r3BqXNgp8wxdOdOn44QFa9x6sn6uts.woff2",

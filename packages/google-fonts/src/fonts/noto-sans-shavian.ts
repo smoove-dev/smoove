@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Shavian";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansshavian/v18/CHy5V_HZE0jxJBQlqAeCKjJvQBNF4HFXQJg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansshavian/v18/CHy5V_HZE0jxJBQlqAeCKjJvQBNF4HFXQJg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansshavian/v18/CHy5V_HZE0jxJBQlqAeCKjJvQBNF4HFZQJhf2A.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansshavian/v18/CHy5V_HZE0jxJBQlqAeCKjJvQBNF4HFZQJhf2A.woff2",
   },
-  "shavian": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansshavian/v18/CHy5V_HZE0jxJBQlqAeCKjJvQBNF4HEaQJhf2A.woff2",
+  shavian: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansshavian/v18/CHy5V_HZE0jxJBQlqAeCKjJvQBNF4HEaQJhf2A.woff2",
   },
 } as const;
 
 export type NotoSansShavianWeight = "400";
 export type NotoSansShavianStyle = "normal";
 export type NotoSansShavianSubset = "latin" | "latin-ext" | "shavian";
-export type NotoSansShavianOptions = GoogleFontOptions<NotoSansShavianWeight, NotoSansShavianStyle, NotoSansShavianSubset>;
+export type NotoSansShavianOptions = GoogleFontOptions<
+  NotoSansShavianWeight,
+  NotoSansShavianStyle,
+  NotoSansShavianSubset
+>;
 
 /**
  * Noto Sans Shavian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansShavian extends GoogleFont<NotoSansShavianWeight, NotoSansShavianStyle, NotoSansShavianSubset> {
+export default class NotoSansShavian extends GoogleFont<
+  NotoSansShavianWeight,
+  NotoSansShavianStyle,
+  NotoSansShavianSubset
+> {
   constructor(options?: NotoSansShavianOptions) {
     super(FAMILY, FACES, options);
   }

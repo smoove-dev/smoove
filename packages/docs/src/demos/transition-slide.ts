@@ -1,5 +1,5 @@
 import { Composition, Rect, type Sequence, Text } from "@smoove/core";
-import { TransitionSeries, linearTiming, slide, wipe } from "@smoove/transitions";
+import { linearTiming, slide, TransitionSeries, wipe } from "@smoove/transitions";
 
 /**
  * A presentation decides how two scenes blend. slide() pushes the incoming layer

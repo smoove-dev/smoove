@@ -4,26 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cossette Titre";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/cossettetitre/v3/11hYGpvKz1nGbxMXUWz9OdPzuhEepvY.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cossettetitre/v3/11hbGpvKz1nGbxMXUWz9OdPzuhmlg-OL0N0.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cossettetitre/v3/11hYGpvKz1nGbxMXUWz9OdPzuhEepvY.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cossettetitre/v3/11hbGpvKz1nGbxMXUWz9OdPzuhmlg-OL0N0.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/cossettetitre/v3/11hYGpvKz1nGbxMXUWz9OdPzuhEQpva08Q.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/cossettetitre/v3/11hbGpvKz1nGbxMXUWz9OdPzuhmlg-OF0N0PRQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cossettetitre/v3/11hYGpvKz1nGbxMXUWz9OdPzuhEQpva08Q.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/cossettetitre/v3/11hbGpvKz1nGbxMXUWz9OdPzuhmlg-OF0N0PRQ.woff2",
   },
 } as const;
 
 export type CossetteTitreWeight = "400" | "700";
 export type CossetteTitreStyle = "normal";
 export type CossetteTitreSubset = "latin" | "latin-ext";
-export type CossetteTitreOptions = GoogleFontOptions<CossetteTitreWeight, CossetteTitreStyle, CossetteTitreSubset>;
+export type CossetteTitreOptions = GoogleFontOptions<
+  CossetteTitreWeight,
+  CossetteTitreStyle,
+  CossetteTitreSubset
+>;
 
 /**
  * Cossette Titre — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CossetteTitre extends GoogleFont<CossetteTitreWeight, CossetteTitreStyle, CossetteTitreSubset> {
+export default class CossetteTitre extends GoogleFont<
+  CossetteTitreWeight,
+  CossetteTitreStyle,
+  CossetteTitreSubset
+> {
   constructor(options?: CossetteTitreOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bitter";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-italic": "https://fonts.gstatic.com/s/bitter/v40/rax-HiqOu8IVPmn7erxvJD1img.woff2",
     "100-normal": "https://fonts.gstatic.com/s/bitter/v40/rax8HiqOu8IVPmn7e4xpPDk.woff2",
     "200-italic": "https://fonts.gstatic.com/s/bitter/v40/rax-HiqOu8IVPmn7erxvJD1img.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/bitter/v40/rax-HiqOu8IVPmn7erxmJD1img.woff2",
     "900-normal": "https://fonts.gstatic.com/s/bitter/v40/rax8HiqOu8IVPmn7coxpPDk.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/bitter/v40/rax-HiqOu8IVPmn7erxrJD0.woff2",
     "100-normal": "https://fonts.gstatic.com/s/bitter/v40/rax8HiqOu8IVPmn7f4xp.woff2",
     "200-italic": "https://fonts.gstatic.com/s/bitter/v40/rax-HiqOu8IVPmn7erxrJD0.woff2",
@@ -84,7 +84,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/bitter/v40/rax-HiqOu8IVPmn7erxlJD1img.woff2",
     "900-normal": "https://fonts.gstatic.com/s/bitter/v40/rax8HiqOu8IVPmn7cYxpPDk.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/bitter/v40/rax-HiqOu8IVPmn7erxkJD1img.woff2",
     "100-normal": "https://fonts.gstatic.com/s/bitter/v40/rax8HiqOu8IVPmn7cIxpPDk.woff2",
     "200-italic": "https://fonts.gstatic.com/s/bitter/v40/rax-HiqOu8IVPmn7erxkJD1img.woff2",

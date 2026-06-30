@@ -4,32 +4,50 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Koh Santepheap";
 
 const FACES = {
-  "khmer": {
-    "100-normal": "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMfW3p6SJbwyGj2rBZyeOrTjNuFLVCZtwNJ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtNP0y1kj5wSA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMdW3p6SJbwyGj2rBZyeOrTjNPtHVmBsw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtdOEy1kj5wSA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtlOky1kj5wSA.woff2",
+  khmer: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMfW3p6SJbwyGj2rBZyeOrTjNuFLVCZtwNJ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtNP0y1kj5wSA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMdW3p6SJbwyGj2rBZyeOrTjNPtHVmBsw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtdOEy1kj5wSA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtlOky1kj5wSA.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMfW3p6SJbwyGj2rBZyeOrTjNuFLVuZtw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtNP0y-kj4.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMdW3p6SJbwyGj2rBZyeOrTjNPmHVk.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtdOEy-kj4.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtlOky-kj4.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMfW3p6SJbwyGj2rBZyeOrTjNuFLVuZtw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtNP0y-kj4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMdW3p6SJbwyGj2rBZyeOrTjNPmHVk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtdOEy-kj4.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/kohsantepheap/v15/gNMeW3p6SJbwyGj2rBZyeOrTjNtlOky-kj4.woff2",
   },
 } as const;
 
 export type KohSantepheapWeight = "100" | "300" | "400" | "700" | "900";
 export type KohSantepheapStyle = "normal";
 export type KohSantepheapSubset = "khmer" | "latin";
-export type KohSantepheapOptions = GoogleFontOptions<KohSantepheapWeight, KohSantepheapStyle, KohSantepheapSubset>;
+export type KohSantepheapOptions = GoogleFontOptions<
+  KohSantepheapWeight,
+  KohSantepheapStyle,
+  KohSantepheapSubset
+>;
 
 /**
  * Koh Santepheap — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KohSantepheap extends GoogleFont<KohSantepheapWeight, KohSantepheapStyle, KohSantepheapSubset> {
+export default class KohSantepheap extends GoogleFont<
+  KohSantepheapWeight,
+  KohSantepheapStyle,
+  KohSantepheapSubset
+> {
   constructor(options?: KohSantepheapOptions) {
     super(FAMILY, FACES, options);
   }

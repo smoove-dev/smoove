@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Nabataean";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnabataean/v17/IFS4HfVJndhE3P4b5jnZ34DfsjO330dNkBV3hQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnabataean/v17/IFS4HfVJndhE3P4b5jnZ34DfsjO330dNkBV3hQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnabataean/v17/IFS4HfVJndhE3P4b5jnZ34DfsjO330dNkBt3hZ8k.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnabataean/v17/IFS4HfVJndhE3P4b5jnZ34DfsjO330dNkBt3hZ8k.woff2",
   },
-  "nabataean": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansnabataean/v17/IFS4HfVJndhE3P4b5jnZ34DfsjO330dNkINWoKIdKQ.woff2",
+  nabataean: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansnabataean/v17/IFS4HfVJndhE3P4b5jnZ34DfsjO330dNkINWoKIdKQ.woff2",
   },
 } as const;
 
 export type NotoSansNabataeanWeight = "400";
 export type NotoSansNabataeanStyle = "normal";
 export type NotoSansNabataeanSubset = "latin" | "latin-ext" | "nabataean";
-export type NotoSansNabataeanOptions = GoogleFontOptions<NotoSansNabataeanWeight, NotoSansNabataeanStyle, NotoSansNabataeanSubset>;
+export type NotoSansNabataeanOptions = GoogleFontOptions<
+  NotoSansNabataeanWeight,
+  NotoSansNabataeanStyle,
+  NotoSansNabataeanSubset
+>;
 
 /**
  * Noto Sans Nabataean — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansNabataean extends GoogleFont<NotoSansNabataeanWeight, NotoSansNabataeanStyle, NotoSansNabataeanSubset> {
+export default class NotoSansNabataean extends GoogleFont<
+  NotoSansNabataeanWeight,
+  NotoSansNabataeanStyle,
+  NotoSansNabataeanSubset
+> {
   constructor(options?: NotoSansNabataeanOptions) {
     super(FAMILY, FACES, options);
   }

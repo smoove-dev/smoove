@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Puddles";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcFfO-wGMT.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcFfO-wGMT.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcFfq-wGMT.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcFfq-wGMT.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcFfW-wGMT.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcFfW-wGMT.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcFfe-wA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcFfe-wA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcFfm-wGMT.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikpuddles/v2/1Ptog8bYX_qGnkLkrU5MJsQcFfm-wGMT.woff2",
   },
 } as const;
 
 export type RubikPuddlesWeight = "400";
 export type RubikPuddlesStyle = "normal";
 export type RubikPuddlesSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikPuddlesOptions = GoogleFontOptions<RubikPuddlesWeight, RubikPuddlesStyle, RubikPuddlesSubset>;
+export type RubikPuddlesOptions = GoogleFontOptions<
+  RubikPuddlesWeight,
+  RubikPuddlesStyle,
+  RubikPuddlesSubset
+>;
 
 /**
  * Rubik Puddles — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikPuddles extends GoogleFont<RubikPuddlesWeight, RubikPuddlesStyle, RubikPuddlesSubset> {
+export default class RubikPuddles extends GoogleFont<
+  RubikPuddlesWeight,
+  RubikPuddlesStyle,
+  RubikPuddlesSubset
+> {
   constructor(options?: RubikPuddlesOptions) {
     super(FAMILY, FACES, options);
   }

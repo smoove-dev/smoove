@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Arimo";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CdkiK-u.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arimo/v36/P5sMzZCDf9_T_10dxCF8jA.woff2",
     "500-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CdkiK-u.woff2",
@@ -24,7 +24,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9C5kiK-u.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arimo/v36/P5sMzZCDf9_T_10UxCF8jA.woff2",
   },
-  "greek": {
+  greek: {
     "400-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CBkiK-u.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arimo/v36/P5sMzZCDf9_T_10axCF8jA.woff2",
     "500-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CBkiK-u.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9C9kiK-u.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arimo/v36/P5sMzZCDf9_T_10VxCF8jA.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CFkiK-u.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arimo/v36/P5sMzZCDf9_T_10bxCF8jA.woff2",
     "500-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CFkiK-u.woff2",
@@ -54,7 +54,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CFkiK-u.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arimo/v36/P5sMzZCDf9_T_10bxCF8jA.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CNkiA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arimo/v36/P5sMzZCDf9_T_10ZxCE.woff2",
     "500-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CNkiA.woff2",
@@ -74,7 +74,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9C1kiK-u.woff2",
     "700-normal": "https://fonts.gstatic.com/s/arimo/v36/P5sMzZCDf9_T_10XxCF8jA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CxkiK-u.woff2",
     "400-normal": "https://fonts.gstatic.com/s/arimo/v36/P5sMzZCDf9_T_10WxCF8jA.woff2",
     "500-italic": "https://fonts.gstatic.com/s/arimo/v36/P5sCzZCDf9_T_10c9CxkiK-u.woff2",
@@ -88,7 +88,15 @@ const FACES = {
 
 export type ArimoWeight = "400" | "500" | "600" | "700";
 export type ArimoStyle = "italic" | "normal";
-export type ArimoSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "hebrew" | "latin" | "latin-ext" | "vietnamese";
+export type ArimoSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "hebrew"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type ArimoOptions = GoogleFontOptions<ArimoWeight, ArimoStyle, ArimoSubset>;
 
 /**

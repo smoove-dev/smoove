@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Wallpoet";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/wallpoet/v21/f0X10em2_8RnXVVdUObp58Q.woff2",
   },
 } as const;

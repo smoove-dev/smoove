@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Anta";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/anta/v1/gyBzhwQ3KsIyVFs7PQ.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/anta/v1/gyBzhwQ3KsIyVFU7PWim.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/anta/v1/gyBzhwQ3KsIyVCc7PWim.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/anta/v1/gyBzhwQ3KsIyVDU7PWim.woff2",
   },
 } as const;

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kdam Thmor Pro";
 
 const FACES = {
-  "khmer": {
-    "400-normal": "https://fonts.gstatic.com/s/kdamthmorpro/v7/EJRPQgAzVdcI-Qdvt34jzurnGD7zhc548Q.woff2",
+  khmer: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/kdamthmorpro/v7/EJRPQgAzVdcI-Qdvt34jzurnGD7zhc548Q.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/kdamthmorpro/v7/EJRPQgAzVdcI-Qdvt34jzurnGD74hc4.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/kdamthmorpro/v7/EJRPQgAzVdcI-Qdvt34jzurnGD74hc4.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/kdamthmorpro/v7/EJRPQgAzVdcI-Qdvt34jzurnGD72hc548Q.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kdamthmorpro/v7/EJRPQgAzVdcI-Qdvt34jzurnGD72hc548Q.woff2",
   },
 } as const;
 
 export type KdamThmorProWeight = "400";
 export type KdamThmorProStyle = "normal";
 export type KdamThmorProSubset = "khmer" | "latin" | "latin-ext";
-export type KdamThmorProOptions = GoogleFontOptions<KdamThmorProWeight, KdamThmorProStyle, KdamThmorProSubset>;
+export type KdamThmorProOptions = GoogleFontOptions<
+  KdamThmorProWeight,
+  KdamThmorProStyle,
+  KdamThmorProSubset
+>;
 
 /**
  * Kdam Thmor Pro — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class KdamThmorPro extends GoogleFont<KdamThmorProWeight, KdamThmorProStyle, KdamThmorProSubset> {
+export default class KdamThmorPro extends GoogleFont<
+  KdamThmorProWeight,
+  KdamThmorProStyle,
+  KdamThmorProSubset
+> {
   constructor(options?: KdamThmorProOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Vibes";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/vibes/v16/QdVYSTsmIB6tmYd1FJfcuA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/vibes/v16/QdVYSTsmIB6tmYdwFJc.woff2",
   },
 } as const;

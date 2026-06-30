@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "M PLUS 1 Code";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rh9StA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rh9StA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rh9StA.woff2",
@@ -14,35 +14,57 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rh9StA.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhFStHb0.woff2",
   },
-  "vietnamese": {
-    "100-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
+  vietnamese: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/mplus1code/v17/ypvfbXOOx2xFpzmYJS3N2_J2rhBStHb0.woff2",
   },
 } as const;
 
 export type MPLUS1CodeWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700";
 export type MPLUS1CodeStyle = "normal";
 export type MPLUS1CodeSubset = "latin" | "latin-ext" | "vietnamese";
-export type MPLUS1CodeOptions = GoogleFontOptions<MPLUS1CodeWeight, MPLUS1CodeStyle, MPLUS1CodeSubset>;
+export type MPLUS1CodeOptions = GoogleFontOptions<
+  MPLUS1CodeWeight,
+  MPLUS1CodeStyle,
+  MPLUS1CodeSubset
+>;
 
 /**
  * M PLUS 1 Code — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MPLUS1Code extends GoogleFont<MPLUS1CodeWeight, MPLUS1CodeStyle, MPLUS1CodeSubset> {
+export default class MPLUS1Code extends GoogleFont<
+  MPLUS1CodeWeight,
+  MPLUS1CodeStyle,
+  MPLUS1CodeSubset
+> {
   constructor(options?: MPLUS1CodeOptions) {
     super(FAMILY, FACES, options);
   }

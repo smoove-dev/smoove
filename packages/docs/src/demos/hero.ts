@@ -1,4 +1,4 @@
-import { Circle, Composition, Easing, Rect, Sequence, Text, interpolate } from "@smoove/core";
+import { Circle, Composition, Easing, interpolate, Rect, Sequence, Text } from "@smoove/core";
 
 /**
  * Introduction hero. A title + subtitle slide up and fade in over two accent

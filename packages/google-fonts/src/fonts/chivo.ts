@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Chivo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/chivo/v21/va9G4kzIxd1KFrBtceFflQ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/chivo/v21/va9I4kzIxd1KFrBoQeM.woff2",
     "200-italic": "https://fonts.gstatic.com/s/chivo/v21/va9G4kzIxd1KFrBtceFflQ.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/chivo/v21/va9G4kzIxd1KFrBtce9flZDP.woff2",
     "900-normal": "https://fonts.gstatic.com/s/chivo/v21/va9I4kzIxd1KFrBmQeNHkQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/chivo/v21/va9G4kzIxd1KFrBtce5flZDP.woff2",
     "100-normal": "https://fonts.gstatic.com/s/chivo/v21/va9I4kzIxd1KFrBnQeNHkQ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/chivo/v21/va9G4kzIxd1KFrBtce5flZDP.woff2",

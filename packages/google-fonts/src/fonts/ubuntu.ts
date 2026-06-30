@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ubuntu";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "300-italic": "https://fonts.gstatic.com/s/ubuntu/v21/4iCp6KVjbNBYlgoKejZftVyLN4Ffgg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ubuntu/v21/4iCv6KVjbNBYlgoC1CzjtGyNL4U.woff2",
     "400-italic": "https://fonts.gstatic.com/s/ubuntu/v21/4iCu6KVjbNBYlgoKej7wl0mwFg.woff2",
@@ -24,7 +24,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/ubuntu/v21/4iCp6KVjbNBYlgoKejZPslyCN4Ffgg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/ubuntu/v21/4iCv6KVjbNBYlgoCxCvjvWyNL4U.woff2",
   },
-  "greek": {
+  greek: {
     "300-italic": "https://fonts.gstatic.com/s/ubuntu/v21/4iCp6KVjbNBYlgoKejZftVyMN4Ffgg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ubuntu/v21/4iCv6KVjbNBYlgoC1Czjs2yNL4U.woff2",
     "400-italic": "https://fonts.gstatic.com/s/ubuntu/v21/4iCu6KVjbNBYlgoKej73l0mwFg.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/ubuntu/v21/4iCp6KVjbNBYlgoKejZPslyDN4Ffgg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/ubuntu/v21/4iCv6KVjbNBYlgoCxCvjvGyNL4U.woff2",
   },
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/ubuntu/v21/4iCp6KVjbNBYlgoKejZftVyPN4E.woff2",
     "300-normal": "https://fonts.gstatic.com/s/ubuntu/v21/4iCv6KVjbNBYlgoC1CzjsGyN.woff2",
     "400-italic": "https://fonts.gstatic.com/s/ubuntu/v21/4iCu6KVjbNBYlgoKej70l0k.woff2",
@@ -68,7 +68,13 @@ const FACES = {
 
 export type UbuntuWeight = "300" | "400" | "500" | "700";
 export type UbuntuStyle = "italic" | "normal";
-export type UbuntuSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext";
+export type UbuntuSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext";
 export type UbuntuOptions = GoogleFontOptions<UbuntuWeight, UbuntuStyle, UbuntuSubset>;
 
 /**

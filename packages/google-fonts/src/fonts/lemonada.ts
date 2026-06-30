@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lemonada";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "300-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tMv_SW8g.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tMv_SW8g.woff2",
     "500-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tMv_SW8g.woff2",
     "600-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tMv_SW8g.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tMv_SW8g.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tJv_Q.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tJv_Q.woff2",
     "500-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tJv_Q.woff2",
@@ -25,7 +25,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tHv_SW8g.woff2",
     "700-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tHv_SW8g.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tGv_SW8g.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tGv_SW8g.woff2",
     "500-normal": "https://fonts.gstatic.com/s/lemonada/v31/0QIjMXFD9oygTWy_R8tGv_SW8g.woff2",

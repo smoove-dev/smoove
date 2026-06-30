@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Bhaiksuki";
 
 const FACES = {
-  "bhaiksuki": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbhaiksuki/v18/UcC63EosKniBH4iELXATsSBWdvUHXxhjwiz_UUMJng.woff2",
+  bhaiksuki: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbhaiksuki/v18/UcC63EosKniBH4iELXATsSBWdvUHXxhjwiz_UUMJng.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbhaiksuki/v18/UcC63EosKniBH4iELXATsSBWdvUHXxhjwrXedA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbhaiksuki/v18/UcC63EosKniBH4iELXATsSBWdvUHXxhjwrXedA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbhaiksuki/v18/UcC63EosKniBH4iELXATsSBWdvUHXxhjwrvedH4w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbhaiksuki/v18/UcC63EosKniBH4iELXATsSBWdvUHXxhjwrvedH4w.woff2",
   },
 } as const;
 
 export type NotoSansBhaiksukiWeight = "400";
 export type NotoSansBhaiksukiStyle = "normal";
 export type NotoSansBhaiksukiSubset = "bhaiksuki" | "latin" | "latin-ext";
-export type NotoSansBhaiksukiOptions = GoogleFontOptions<NotoSansBhaiksukiWeight, NotoSansBhaiksukiStyle, NotoSansBhaiksukiSubset>;
+export type NotoSansBhaiksukiOptions = GoogleFontOptions<
+  NotoSansBhaiksukiWeight,
+  NotoSansBhaiksukiStyle,
+  NotoSansBhaiksukiSubset
+>;
 
 /**
  * Noto Sans Bhaiksuki — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansBhaiksuki extends GoogleFont<NotoSansBhaiksukiWeight, NotoSansBhaiksukiStyle, NotoSansBhaiksukiSubset> {
+export default class NotoSansBhaiksuki extends GoogleFont<
+  NotoSansBhaiksukiWeight,
+  NotoSansBhaiksukiStyle,
+  NotoSansBhaiksukiSubset
+> {
   constructor(options?: NotoSansBhaiksukiOptions) {
     super(FAMILY, FACES, options);
   }

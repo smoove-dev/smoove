@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Didact Gothic";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlU-YpnLl.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlU-YpnLl.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlUaYpnLl.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlUaYpnLl.woff2",
   },
-  "greek": {
-    "400-normal": "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlUiYpnLl.woff2",
+  greek: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlUiYpnLl.woff2",
   },
   "greek-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlUeYpnLl.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlUeYpnLl.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlUuYpg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlUuYpg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlUWYpnLl.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/didactgothic/v21/ahcfv8qz1zt6hCC5G4F_P4ASlUWYpnLl.woff2",
   },
 } as const;
 
 export type DidactGothicWeight = "400";
 export type DidactGothicStyle = "normal";
-export type DidactGothicSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext";
-export type DidactGothicOptions = GoogleFontOptions<DidactGothicWeight, DidactGothicStyle, DidactGothicSubset>;
+export type DidactGothicSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext";
+export type DidactGothicOptions = GoogleFontOptions<
+  DidactGothicWeight,
+  DidactGothicStyle,
+  DidactGothicSubset
+>;
 
 /**
  * Didact Gothic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DidactGothic extends GoogleFont<DidactGothicWeight, DidactGothicStyle, DidactGothicSubset> {
+export default class DidactGothic extends GoogleFont<
+  DidactGothicWeight,
+  DidactGothicStyle,
+  DidactGothicSubset
+> {
   constructor(options?: DidactGothicOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kavivanar";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kavivanar/v22/o-0IIpQgyXYSwhxP7_Jr5TRA.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/kavivanar/v22/o-0IIpQgyXYSwhxP7_Jr6zRAW_0.woff2",
   },
-  "tamil": {
+  tamil: {
     "400-normal": "https://fonts.gstatic.com/s/kavivanar/v22/o-0IIpQgyXYSwhxP7_Jr8zRAW_0.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type KavivanarOptions = GoogleFontOptions<KavivanarWeight, KavivanarStyle
  * Kavivanar — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Kavivanar extends GoogleFont<KavivanarWeight, KavivanarStyle, KavivanarSubset> {
+export default class Kavivanar extends GoogleFont<
+  KavivanarWeight,
+  KavivanarStyle,
+  KavivanarSubset
+> {
   constructor(options?: KavivanarOptions) {
     super(FAMILY, FACES, options);
   }

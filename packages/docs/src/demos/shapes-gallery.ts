@@ -5,6 +5,7 @@ import {
   Composition,
   Easing,
   Ellipse,
+  interpolate,
   Line,
   Path,
   Rect,
@@ -13,7 +14,6 @@ import {
   Sequence,
   Star,
   Wedge,
-  interpolate,
 } from "@smoove/core";
 import Konva from "konva";
 

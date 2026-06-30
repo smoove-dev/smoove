@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bilbo Swash Caps";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/bilboswashcaps/v23/zrf-0GXbz-H3Wb4XBsGrTgq2PVmdmATipw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bilboswashcaps/v23/zrf-0GXbz-H3Wb4XBsGrTgq2PVmdmATipw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/bilboswashcaps/v23/zrf-0GXbz-H3Wb4XBsGrTgq2PVmdmAripxRf.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bilboswashcaps/v23/zrf-0GXbz-H3Wb4XBsGrTgq2PVmdmAripxRf.woff2",
   },
 } as const;
 
 export type BilboSwashCapsWeight = "400";
 export type BilboSwashCapsStyle = "normal";
 export type BilboSwashCapsSubset = "latin" | "latin-ext";
-export type BilboSwashCapsOptions = GoogleFontOptions<BilboSwashCapsWeight, BilboSwashCapsStyle, BilboSwashCapsSubset>;
+export type BilboSwashCapsOptions = GoogleFontOptions<
+  BilboSwashCapsWeight,
+  BilboSwashCapsStyle,
+  BilboSwashCapsSubset
+>;
 
 /**
  * Bilbo Swash Caps — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BilboSwashCaps extends GoogleFont<BilboSwashCapsWeight, BilboSwashCapsStyle, BilboSwashCapsSubset> {
+export default class BilboSwashCaps extends GoogleFont<
+  BilboSwashCapsWeight,
+  BilboSwashCapsStyle,
+  BilboSwashCapsSubset
+> {
   constructor(options?: BilboSwashCapsOptions) {
     super(FAMILY, FACES, options);
   }

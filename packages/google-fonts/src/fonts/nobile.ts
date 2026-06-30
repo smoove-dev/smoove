@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nobile";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/nobile/v19/m8JRjflSeaOVl1iGXJ3QULF9bw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/nobile/v19/m8JTjflSeaOVl1iGXa3WSLU.woff2",
     "500-italic": "https://fonts.gstatic.com/s/nobile/v19/m8JWjflSeaOVl1iGXJUnc6RGTm663A.woff2",
@@ -12,7 +12,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/nobile/v19/m8JWjflSeaOVl1iGXJVvdaRGTm663A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/nobile/v19/m8JQjflSeaOVl1iO4ojDc5RAVmo.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/nobile/v19/m8JRjflSeaOVl1iGXJ3UULE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/nobile/v19/m8JTjflSeaOVl1iGWa3W.woff2",
     "500-italic": "https://fonts.gstatic.com/s/nobile/v19/m8JWjflSeaOVl1iGXJUnc6RCTm4.woff2",

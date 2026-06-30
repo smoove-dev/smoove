@@ -4,11 +4,11 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jaldi";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/jaldi/v14/or3sQ67z0_CI33NSbJHPBw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/jaldi/v14/or3hQ67z0_CI33voSYTxJrUFng.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jaldi/v14/or3sQ67z0_CI33NTbJE.woff2",
     "700-normal": "https://fonts.gstatic.com/s/jaldi/v14/or3hQ67z0_CI33voSYTwJrU.woff2",
   },

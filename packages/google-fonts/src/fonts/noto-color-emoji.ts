@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Color Emoji";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notocoloremoji/v39/Yq6P-KqIXTD0t4D9z1ESnKM3-HpFabsE4tq3luCC7p-aXxcn.9.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notocoloremoji/v39/Yq6P-KqIXTD0t4D9z1ESnKM3-HpFabsE4tq3luCC7p-aXxcn.9.woff2",
   },
 } as const;
 
 export type NotoColorEmojiWeight = "400";
 export type NotoColorEmojiStyle = "normal";
 export type NotoColorEmojiSubset = "latin";
-export type NotoColorEmojiOptions = GoogleFontOptions<NotoColorEmojiWeight, NotoColorEmojiStyle, NotoColorEmojiSubset>;
+export type NotoColorEmojiOptions = GoogleFontOptions<
+  NotoColorEmojiWeight,
+  NotoColorEmojiStyle,
+  NotoColorEmojiSubset
+>;
 
 /**
  * Noto Color Emoji — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoColorEmoji extends GoogleFont<NotoColorEmojiWeight, NotoColorEmojiStyle, NotoColorEmojiSubset> {
+export default class NotoColorEmoji extends GoogleFont<
+  NotoColorEmojiWeight,
+  NotoColorEmojiStyle,
+  NotoColorEmojiSubset
+> {
   constructor(options?: NotoColorEmojiOptions) {
     super(FAMILY, FACES, options);
   }

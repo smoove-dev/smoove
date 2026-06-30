@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rowdies";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/rowdies/v19/ptRMTieMYPNBAK219hth1On4KA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/rowdies/v19/ptRJTieMYPNBAK21_rBDwQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/rowdies/v19/ptRMTieMYPNBAK219gtm1On4KA.woff2",
@@ -14,7 +14,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/rowdies/v19/ptRJTieMYPNBAK21_r5DwdbZ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/rowdies/v19/ptRMTieMYPNBAK219gtm1Of4KDNu.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-normal": "https://fonts.gstatic.com/s/rowdies/v19/ptRMTieMYPNBAK219hth1Ob4KDNu.woff2",
     "400-normal": "https://fonts.gstatic.com/s/rowdies/v19/ptRJTieMYPNBAK21_r9DwdbZ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/rowdies/v19/ptRMTieMYPNBAK219gtm1Ob4KDNu.woff2",

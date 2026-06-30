@@ -4,12 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Crete Round";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/creteround/v16/55xqey1sJNPjPiv1ZZZrxK1-4b_oLg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/creteround/v16/55xoey1sJNPjPiv1ZZZrxK170b0.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/creteround/v16/55xqey1sJNPjPiv1ZZZrxK1-4bHoLlxN.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/creteround/v16/55xqey1sJNPjPiv1ZZZrxK1-4bHoLlxN.woff2",
     "400-normal": "https://fonts.gstatic.com/s/creteround/v16/55xoey1sJNPjPiv1ZZZrxK110b3wKg.woff2",
   },
 } as const;
@@ -17,13 +18,21 @@ const FACES = {
 export type CreteRoundWeight = "400";
 export type CreteRoundStyle = "italic" | "normal";
 export type CreteRoundSubset = "latin" | "latin-ext";
-export type CreteRoundOptions = GoogleFontOptions<CreteRoundWeight, CreteRoundStyle, CreteRoundSubset>;
+export type CreteRoundOptions = GoogleFontOptions<
+  CreteRoundWeight,
+  CreteRoundStyle,
+  CreteRoundSubset
+>;
 
 /**
  * Crete Round — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CreteRound extends GoogleFont<CreteRoundWeight, CreteRoundStyle, CreteRoundSubset> {
+export default class CreteRound extends GoogleFont<
+  CreteRoundWeight,
+  CreteRoundStyle,
+  CreteRoundSubset
+> {
   constructor(options?: CreteRoundOptions) {
     super(FAMILY, FACES, options);
   }

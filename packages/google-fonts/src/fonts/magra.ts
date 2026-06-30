@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Magra";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/magra/v15/uK_94ruaZus72n52KjI.woff2",
     "700-normal": "https://fonts.gstatic.com/s/magra/v15/uK_w4ruaZus72nbNDycQGvo.woff2",
   },

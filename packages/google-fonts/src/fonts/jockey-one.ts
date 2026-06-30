@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jockey One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jockeyone/v23/HTxpL2g2KjCFj4x8WI6AnIHxHA.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type JockeyOneOptions = GoogleFontOptions<JockeyOneWeight, JockeyOneStyle
  * Jockey One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class JockeyOne extends GoogleFont<JockeyOneWeight, JockeyOneStyle, JockeyOneSubset> {
+export default class JockeyOne extends GoogleFont<
+  JockeyOneWeight,
+  JockeyOneStyle,
+  JockeyOneSubset
+> {
   constructor(options?: JockeyOneOptions) {
     super(FAMILY, FACES, options);
   }

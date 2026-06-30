@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Azeret Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfv82Q.woff2",
     "100-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHhZfk.woff2",
     "200-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfv82Q.woff2",
@@ -25,37 +25,63 @@ const FACES = {
     "900-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHhZfk.woff2",
   },
   "latin-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
     "100-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHvZfnk3Q.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
     "200-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHvZfnk3Q.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
     "300-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHvZfnk3Q.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
     "400-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHvZfnk3Q.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
     "500-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHvZfnk3Q.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
     "600-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHvZfnk3Q.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
     "700-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHvZfnk3Q.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
     "800-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHvZfnk3Q.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/azeretmono/v21/3XFsErsiyJsY9O_Gepph-HHkVfX82cRL.woff2",
     "900-normal": "https://fonts.gstatic.com/s/azeretmono/v21/3XFuErsiyJsY9O_Gepph-HHvZfnk3Q.woff2",
   },
 } as const;
 
-export type AzeretMonoWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type AzeretMonoWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type AzeretMonoStyle = "italic" | "normal";
 export type AzeretMonoSubset = "latin" | "latin-ext";
-export type AzeretMonoOptions = GoogleFontOptions<AzeretMonoWeight, AzeretMonoStyle, AzeretMonoSubset>;
+export type AzeretMonoOptions = GoogleFontOptions<
+  AzeretMonoWeight,
+  AzeretMonoStyle,
+  AzeretMonoSubset
+>;
 
 /**
  * Azeret Mono — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AzeretMono extends GoogleFont<AzeretMonoWeight, AzeretMonoStyle, AzeretMonoSubset> {
+export default class AzeretMono extends GoogleFont<
+  AzeretMonoWeight,
+  AzeretMonoStyle,
+  AzeretMonoSubset
+> {
   constructor(options?: AzeretMonoOptions) {
     super(FAMILY, FACES, options);
   }

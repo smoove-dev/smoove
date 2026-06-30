@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Zanabazar Square";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanszanabazarsquare/v20/Cn-jJsuGWQxOjaGwMQ6fOicyxLBEMRfDtkzl4uagQuJ2MiA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanszanabazarsquare/v20/Cn-jJsuGWQxOjaGwMQ6fOicyxLBEMRfDtkzl4uagQuJ2MiA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanszanabazarsquare/v20/Cn-jJsuGWQxOjaGwMQ6fOicyxLBEMRfDtkzl4uagQuJ4MiAQNw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanszanabazarsquare/v20/Cn-jJsuGWQxOjaGwMQ6fOicyxLBEMRfDtkzl4uagQuJ4MiAQNw.woff2",
   },
   "zanabazar-square": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanszanabazarsquare/v20/Cn-jJsuGWQxOjaGwMQ6fOicyxLBEMRfDtkzl4uagQuL1EwUtDlg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanszanabazarsquare/v20/Cn-jJsuGWQxOjaGwMQ6fOicyxLBEMRfDtkzl4uagQuL1EwUtDlg.woff2",
   },
 } as const;
 
 export type NotoSansZanabazarSquareWeight = "400";
 export type NotoSansZanabazarSquareStyle = "normal";
 export type NotoSansZanabazarSquareSubset = "latin" | "latin-ext" | "zanabazar-square";
-export type NotoSansZanabazarSquareOptions = GoogleFontOptions<NotoSansZanabazarSquareWeight, NotoSansZanabazarSquareStyle, NotoSansZanabazarSquareSubset>;
+export type NotoSansZanabazarSquareOptions = GoogleFontOptions<
+  NotoSansZanabazarSquareWeight,
+  NotoSansZanabazarSquareStyle,
+  NotoSansZanabazarSquareSubset
+>;
 
 /**
  * Noto Sans Zanabazar Square — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansZanabazarSquare extends GoogleFont<NotoSansZanabazarSquareWeight, NotoSansZanabazarSquareStyle, NotoSansZanabazarSquareSubset> {
+export default class NotoSansZanabazarSquare extends GoogleFont<
+  NotoSansZanabazarSquareWeight,
+  NotoSansZanabazarSquareStyle,
+  NotoSansZanabazarSquareSubset
+> {
   constructor(options?: NotoSansZanabazarSquareOptions) {
     super(FAMILY, FACES, options);
   }

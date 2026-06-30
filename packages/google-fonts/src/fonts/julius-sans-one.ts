@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Julius Sans One";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/juliussansone/v20/1Pt2g8TAX_SGgBGUi0tGOYEga5WOwnsX.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/juliussansone/v20/1Pt2g8TAX_SGgBGUi0tGOYEga5WOwnsX.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/juliussansone/v20/1Pt2g8TAX_SGgBGUi0tGOYEga5WOzHsX2aE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/juliussansone/v20/1Pt2g8TAX_SGgBGUi0tGOYEga5WOzHsX2aE.woff2",
   },
 } as const;
 
 export type JuliusSansOneWeight = "400";
 export type JuliusSansOneStyle = "normal";
 export type JuliusSansOneSubset = "latin" | "latin-ext";
-export type JuliusSansOneOptions = GoogleFontOptions<JuliusSansOneWeight, JuliusSansOneStyle, JuliusSansOneSubset>;
+export type JuliusSansOneOptions = GoogleFontOptions<
+  JuliusSansOneWeight,
+  JuliusSansOneStyle,
+  JuliusSansOneSubset
+>;
 
 /**
  * Julius Sans One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class JuliusSansOne extends GoogleFont<JuliusSansOneWeight, JuliusSansOneStyle, JuliusSansOneSubset> {
+export default class JuliusSansOne extends GoogleFont<
+  JuliusSansOneWeight,
+  JuliusSansOneStyle,
+  JuliusSansOneSubset
+> {
   constructor(options?: JuliusSansOneOptions) {
     super(FAMILY, FACES, options);
   }

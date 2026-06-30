@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Miltonian";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/miltonian/v32/zOL-4pbPn6Ne9JqTg9mb7uRB.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type MiltonianOptions = GoogleFontOptions<MiltonianWeight, MiltonianStyle
  * Miltonian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Miltonian extends GoogleFont<MiltonianWeight, MiltonianStyle, MiltonianSubset> {
+export default class Miltonian extends GoogleFont<
+  MiltonianWeight,
+  MiltonianStyle,
+  MiltonianSubset
+> {
   constructor(options?: MiltonianOptions) {
     super(FAMILY, FACES, options);
   }

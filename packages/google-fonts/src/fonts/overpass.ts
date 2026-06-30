@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Overpass";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-italic": "https://fonts.gstatic.com/s/overpass/v19/qFdB35WCmI96Ajtm81GgY93qxycJ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/overpass/v19/qFdH35WCmI96Ajtm81GhU9vyww.woff2",
     "200-italic": "https://fonts.gstatic.com/s/overpass/v19/qFdB35WCmI96Ajtm81GgY93qxycJ.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/overpass/v19/qFdB35WCmI96Ajtm81GgY9TqxycJ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/overpass/v19/qFdH35WCmI96Ajtm81GoU9vyww.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/overpass/v19/qFdB35WCmI96Ajtm81GgY9nqxw.woff2",
     "100-normal": "https://fonts.gstatic.com/s/overpass/v19/qFdH35WCmI96Ajtm81GlU9s.woff2",
     "200-italic": "https://fonts.gstatic.com/s/overpass/v19/qFdB35WCmI96Ajtm81GgY9nqxw.woff2",
@@ -84,7 +84,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/overpass/v19/qFdB35WCmI96Ajtm81GgY9fqxycJ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/overpass/v19/qFdH35WCmI96Ajtm81GrU9vyww.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/overpass/v19/qFdB35WCmI96Ajtm81GgY9bqxycJ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/overpass/v19/qFdH35WCmI96Ajtm81GqU9vyww.woff2",
     "200-italic": "https://fonts.gstatic.com/s/overpass/v19/qFdB35WCmI96Ajtm81GgY9bqxycJ.woff2",

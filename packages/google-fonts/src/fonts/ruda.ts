@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ruda";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqnwdaObJ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqnwdaObJ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqnwdaObJ.woff2",
@@ -12,7 +12,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqnwdaObJ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqnwdaObJ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqngdaA.woff2",
     "500-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqngdaA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqngdaA.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqnYdaObJ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqnYdaObJ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqncdaObJ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqncdaObJ.woff2",
     "600-normal": "https://fonts.gstatic.com/s/ruda/v30/k3kfo8YQJOpFqncdaObJ.woff2",

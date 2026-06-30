@@ -2,7 +2,7 @@ import { reactRouter } from "@react-router/dev/vite";
 import { smoove } from "@smoove/vite";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "fumadocs-mdx/vite";
-import { type Plugin, defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 
 // `node:module` can't exist in the browser; flexily (via core) reaches for its
 // `createRequire` to detect an optional logger. Stub it in the CLIENT bundle so

@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Explora";
 
 const FACES = {
-  "cherokee": {
+  cherokee: {
     "400-normal": "https://fonts.gstatic.com/s/explora/v11/tsstApxFfjUH4wrvQ06Fo0C3.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/explora/v11/tsstApxFfjUH4wrvQ12Fow.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/explora/v11/tsstApxFfjUH4wrvQ1OFo0C3.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/explora/v11/tsstApxFfjUH4wrvQ1KFo0C3.woff2",
   },
 } as const;

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tiro Tamil";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/tirotamil/v11/m8JVjfVIf7OT22n3M-S_YLZVaUuH.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tirotamil/v11/m8JXjfVIf7OT22n3M-S_YLNlaw.woff2",
   },
@@ -12,7 +12,7 @@ const FACES = {
     "400-italic": "https://fonts.gstatic.com/s/tirotamil/v11/m8JVjfVIf7OT22n3M-S_YLZVZ0uH5dI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tirotamil/v11/m8JXjfVIf7OT22n3M-S_YL1la1OD.woff2",
   },
-  "tamil": {
+  tamil: {
     "400-italic": "https://fonts.gstatic.com/s/tirotamil/v11/m8JVjfVIf7OT22n3M-S_YLZVf0uH5dI.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tirotamil/v11/m8JXjfVIf7OT22n3M-S_YKVla1OD.woff2",
   },
@@ -27,7 +27,11 @@ export type TiroTamilOptions = GoogleFontOptions<TiroTamilWeight, TiroTamilStyle
  * Tiro Tamil — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TiroTamil extends GoogleFont<TiroTamilWeight, TiroTamilStyle, TiroTamilSubset> {
+export default class TiroTamil extends GoogleFont<
+  TiroTamilWeight,
+  TiroTamilStyle,
+  TiroTamilSubset
+> {
   constructor(options?: TiroTamilOptions) {
     super(FAMILY, FACES, options);
   }

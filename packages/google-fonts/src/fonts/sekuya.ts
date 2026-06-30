@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sekuya";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sekuya/v1/fdN_9suEu39Dg3wU3SBe.woff2",
   },
   "latin-ext": {

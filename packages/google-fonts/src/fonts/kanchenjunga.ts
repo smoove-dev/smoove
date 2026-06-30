@@ -5,29 +5,44 @@ const FAMILY = "Kanchenjunga";
 
 const FACES = {
   "kirat-rai": {
-    "400-normal": "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmPoKKd5fUmrILiWsjCI6TSEaAiCVlq.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TaXaIStGBLD2-V.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TacaUStGBLD2-V.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TaFaQStGBLD2-V.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmPoKKd5fUmrILiWsjCI6TSEaAiCVlq.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TaXaIStGBLD2-V.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TacaUStGBLD2-V.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TaFaQStGBLD2-V.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmPoKKd5fUmrILiWsjCI6TSroEH.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TaXaISC0Fu.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TacaUSC0Fu.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TaFaQSC0Fu.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TaXaISC0Fu.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TacaUSC0Fu.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/kanchenjunga/v2/RWmQoKKd5fUmrILiWsjCI6TaFaQSC0Fu.woff2",
   },
 } as const;
 
 export type KanchenjungaWeight = "400" | "500" | "600" | "700";
 export type KanchenjungaStyle = "normal";
 export type KanchenjungaSubset = "kirat-rai" | "latin";
-export type KanchenjungaOptions = GoogleFontOptions<KanchenjungaWeight, KanchenjungaStyle, KanchenjungaSubset>;
+export type KanchenjungaOptions = GoogleFontOptions<
+  KanchenjungaWeight,
+  KanchenjungaStyle,
+  KanchenjungaSubset
+>;
 
 /**
  * Kanchenjunga — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Kanchenjunga extends GoogleFont<KanchenjungaWeight, KanchenjungaStyle, KanchenjungaSubset> {
+export default class Kanchenjunga extends GoogleFont<
+  KanchenjungaWeight,
+  KanchenjungaStyle,
+  KanchenjungaSubset
+> {
   constructor(options?: KanchenjungaOptions) {
     super(FAMILY, FACES, options);
   }

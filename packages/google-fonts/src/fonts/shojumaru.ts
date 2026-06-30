@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Shojumaru";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/shojumaru/v16/rax_HiWfutkLLnaKCtl8Axhf.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type ShojumaruOptions = GoogleFontOptions<ShojumaruWeight, ShojumaruStyle
  * Shojumaru — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Shojumaru extends GoogleFont<ShojumaruWeight, ShojumaruStyle, ShojumaruSubset> {
+export default class Shojumaru extends GoogleFont<
+  ShojumaruWeight,
+  ShojumaruStyle,
+  ShojumaruSubset
+> {
   constructor(options?: ShojumaruOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cousine";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lKkaiiRdih4SpP_SEfyh7p79k.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cousine/v30/d6lIkaiiRdih4SpP_SAvzAbt.woff2",
     "700-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lPkaiiRdih4SpP_SEXdTv81PhhvmQ.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lPkaiiRdih4SpP_SEXdTv83fhhvmQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cousine/v30/d6lNkaiiRdih4SpP9Z8K2TTM0uBl.woff2",
   },
-  "greek": {
+  greek: {
     "400-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lKkaiiRdih4SpP_SEfzR7p79k.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cousine/v30/d6lIkaiiRdih4SpP_ScvzAbt.woff2",
     "700-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lPkaiiRdih4SpP_SEXdTv80_hhvmQ.woff2",
@@ -28,13 +28,13 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lPkaiiRdih4SpP_SEXdTv83PhhvmQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cousine/v30/d6lNkaiiRdih4SpP9Z8K2TXM0uBl.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lKkaiiRdih4SpP_SEfzB7p79k.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cousine/v30/d6lIkaiiRdih4SpP_SYvzAbt.woff2",
     "700-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lPkaiiRdih4SpP_SEXdTv80vhhvmQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cousine/v30/d6lNkaiiRdih4SpP9Z8K2TvM0uBl.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lKkaiiRdih4SpP_SEfzh7p.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cousine/v30/d6lIkaiiRdih4SpP_SQvzA.woff2",
     "700-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lPkaiiRdih4SpP_SEXdTv80Phh.woff2",
@@ -46,7 +46,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lPkaiiRdih4SpP_SEXdTv83vhhvmQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cousine/v30/d6lNkaiiRdih4SpP9Z8K2TfM0uBl.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lKkaiiRdih4SpP_SEfwR7p79k.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cousine/v30/d6lIkaiiRdih4SpP_SsvzAbt.woff2",
     "700-italic": "https://fonts.gstatic.com/s/cousine/v30/d6lPkaiiRdih4SpP_SEXdTv83_hhvmQ.woff2",
@@ -56,7 +56,15 @@ const FACES = {
 
 export type CousineWeight = "400" | "700";
 export type CousineStyle = "italic" | "normal";
-export type CousineSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "hebrew" | "latin" | "latin-ext" | "vietnamese";
+export type CousineSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "hebrew"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type CousineOptions = GoogleFontOptions<CousineWeight, CousineStyle, CousineSubset>;
 
 /**

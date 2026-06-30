@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Arbutus";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/arbutus/v30/NaPYcZ7dG_5J3pooX9Vnrg.woff2",
   },
   "latin-ext": {

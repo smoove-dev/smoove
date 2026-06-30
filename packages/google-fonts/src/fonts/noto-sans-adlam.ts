@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Adlam";
 
 const FACES = {
-  "adlam": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlzFMbnSo.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlzFMbnSo.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlzFMbnSo.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlzFMbnSo.woff2",
+  adlam: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlzFMbnSo.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlzFMbnSo.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlzFMbnSo.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlzFMbnSo.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlrlMb.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlrlMb.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlrlMb.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlrlMb.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlrlMb.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlrlMb.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlrlMb.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjlrlMb.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjloFMbnSo.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjloFMbnSo.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjloFMbnSo.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjloFMbnSo.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjloFMbnSo.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjloFMbnSo.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjloFMbnSo.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansadlam/v27/neITzCCpqp0s5pPusPamd81eMfjloFMbnSo.woff2",
   },
 } as const;
 
 export type NotoSansAdlamWeight = "400" | "500" | "600" | "700";
 export type NotoSansAdlamStyle = "normal";
 export type NotoSansAdlamSubset = "adlam" | "latin" | "latin-ext";
-export type NotoSansAdlamOptions = GoogleFontOptions<NotoSansAdlamWeight, NotoSansAdlamStyle, NotoSansAdlamSubset>;
+export type NotoSansAdlamOptions = GoogleFontOptions<
+  NotoSansAdlamWeight,
+  NotoSansAdlamStyle,
+  NotoSansAdlamSubset
+>;
 
 /**
  * Noto Sans Adlam — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansAdlam extends GoogleFont<NotoSansAdlamWeight, NotoSansAdlamStyle, NotoSansAdlamSubset> {
+export default class NotoSansAdlam extends GoogleFont<
+  NotoSansAdlamWeight,
+  NotoSansAdlamStyle,
+  NotoSansAdlamSubset
+> {
   constructor(options?: NotoSansAdlamOptions) {
     super(FAMILY, FACES, options);
   }

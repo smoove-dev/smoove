@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Smooch";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/smooch/v9/o-0LIps4xW8U1xUxiaB-.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/smooch/v9/o-0LIps4xW8U1xUxh6B-2hU.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/smooch/v9/o-0LIps4xW8U1xUxhqB-2hU.woff2",
   },
 } as const;

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lato";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/lato/v25/S6u-w4BMUTPHjxsIPx-oPCI.woff2",
     "100-normal": "https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHh30AXC-q.woff2",
     "300-italic": "https://fonts.gstatic.com/s/lato/v25/S6u_w4BMUTPHjxsI9w2_Gwft.woff2",

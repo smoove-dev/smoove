@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Judson";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/judson/v20/FeVTS0Fbvbc14VxhDYl3_bE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/judson/v20/FeVRS0Fbvbc14VxhCLl1.woff2",
     "700-normal": "https://fonts.gstatic.com/s/judson/v20/FeVSS0Fbvbc14Vxps5xg2pRm.woff2",
@@ -14,7 +14,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/judson/v20/FeVRS0Fbvbc14VxhBrl15bU.woff2",
     "700-normal": "https://fonts.gstatic.com/s/judson/v20/FeVSS0Fbvbc14Vxps5xg1JRmq28.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/judson/v20/FeVTS0Fbvbc14VxhDYl4_bFbkg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/judson/v20/FeVRS0Fbvbc14VxhB7l15bU.woff2",
     "700-normal": "https://fonts.gstatic.com/s/judson/v20/FeVSS0Fbvbc14Vxps5xg1ZRmq28.woff2",

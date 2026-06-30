@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Epunda Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkV21Dg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/epundasans/v5/ea8dads_Rv3-GJfWRrHjgH5CoV8.woff2",
     "400-italic": "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkV21Dg.woff2",
@@ -21,19 +21,26 @@ const FACES = {
     "900-normal": "https://fonts.gstatic.com/s/epundasans/v5/ea8dads_Rv3-GJfWRrHjgH5CoV8.woff2",
   },
   "latin-ext": {
-    "300-italic": "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
     "300-normal": "https://fonts.gstatic.com/s/epundasans/v5/ea8dads_Rv3-GJfWRrHjgH5MoV-tCg.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
     "400-normal": "https://fonts.gstatic.com/s/epundasans/v5/ea8dads_Rv3-GJfWRrHjgH5MoV-tCg.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
     "500-normal": "https://fonts.gstatic.com/s/epundasans/v5/ea8dads_Rv3-GJfWRrHjgH5MoV-tCg.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
     "600-normal": "https://fonts.gstatic.com/s/epundasans/v5/ea8dads_Rv3-GJfWRrHjgH5MoV-tCg.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
     "700-normal": "https://fonts.gstatic.com/s/epundasans/v5/ea8dads_Rv3-GJfWRrHjgH5MoV-tCg.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
     "800-normal": "https://fonts.gstatic.com/s/epundasans/v5/ea8dads_Rv3-GJfWRrHjgH5MoV-tCg.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/epundasans/v5/ea8fads_Rv3-GJfWRrHjgH5HkVO1Dkit.woff2",
     "900-normal": "https://fonts.gstatic.com/s/epundasans/v5/ea8dads_Rv3-GJfWRrHjgH5MoV-tCg.woff2",
   },
 } as const;
@@ -41,13 +48,21 @@ const FACES = {
 export type EpundaSansWeight = "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type EpundaSansStyle = "italic" | "normal";
 export type EpundaSansSubset = "latin" | "latin-ext";
-export type EpundaSansOptions = GoogleFontOptions<EpundaSansWeight, EpundaSansStyle, EpundaSansSubset>;
+export type EpundaSansOptions = GoogleFontOptions<
+  EpundaSansWeight,
+  EpundaSansStyle,
+  EpundaSansSubset
+>;
 
 /**
  * Epunda Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EpundaSans extends GoogleFont<EpundaSansWeight, EpundaSansStyle, EpundaSansSubset> {
+export default class EpundaSans extends GoogleFont<
+  EpundaSansWeight,
+  EpundaSansStyle,
+  EpundaSansSubset
+> {
   constructor(options?: EpundaSansOptions) {
     super(FAMILY, FACES, options);
   }

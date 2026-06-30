@@ -4,33 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rubik Bubbles";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikbubbles/v3/JIA1UVdwbHFJtwA7Us1BPFbRBTIHfQxy.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikbubbles/v3/JIA1UVdwbHFJtwA7Us1BPFbRBTIHfQxy.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikbubbles/v3/JIA1UVdwbHFJtwA7Us1BPFbRBTsHfQxy.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikbubbles/v3/JIA1UVdwbHFJtwA7Us1BPFbRBTsHfQxy.woff2",
   },
-  "hebrew": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikbubbles/v3/JIA1UVdwbHFJtwA7Us1BPFbRBTQHfQxy.woff2",
+  hebrew: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikbubbles/v3/JIA1UVdwbHFJtwA7Us1BPFbRBTQHfQxy.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikbubbles/v3/JIA1UVdwbHFJtwA7Us1BPFbRBTYHfQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikbubbles/v3/JIA1UVdwbHFJtwA7Us1BPFbRBTYHfQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/rubikbubbles/v3/JIA1UVdwbHFJtwA7Us1BPFbRBTgHfQxy.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/rubikbubbles/v3/JIA1UVdwbHFJtwA7Us1BPFbRBTgHfQxy.woff2",
   },
 } as const;
 
 export type RubikBubblesWeight = "400";
 export type RubikBubblesStyle = "normal";
 export type RubikBubblesSubset = "cyrillic" | "cyrillic-ext" | "hebrew" | "latin" | "latin-ext";
-export type RubikBubblesOptions = GoogleFontOptions<RubikBubblesWeight, RubikBubblesStyle, RubikBubblesSubset>;
+export type RubikBubblesOptions = GoogleFontOptions<
+  RubikBubblesWeight,
+  RubikBubblesStyle,
+  RubikBubblesSubset
+>;
 
 /**
  * Rubik Bubbles — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RubikBubbles extends GoogleFont<RubikBubblesWeight, RubikBubblesStyle, RubikBubblesSubset> {
+export default class RubikBubbles extends GoogleFont<
+  RubikBubblesWeight,
+  RubikBubblesStyle,
+  RubikBubblesSubset
+> {
   constructor(options?: RubikBubblesOptions) {
     super(FAMILY, FACES, options);
   }

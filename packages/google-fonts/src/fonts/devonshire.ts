@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Devonshire";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/devonshire/v29/46kqlbDwWirWr4gtBD2Bb0Jg0g.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type DevonshireWeight = "400";
 export type DevonshireStyle = "normal";
 export type DevonshireSubset = "latin" | "latin-ext";
-export type DevonshireOptions = GoogleFontOptions<DevonshireWeight, DevonshireStyle, DevonshireSubset>;
+export type DevonshireOptions = GoogleFontOptions<
+  DevonshireWeight,
+  DevonshireStyle,
+  DevonshireSubset
+>;
 
 /**
  * Devonshire — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Devonshire extends GoogleFont<DevonshireWeight, DevonshireStyle, DevonshireSubset> {
+export default class Devonshire extends GoogleFont<
+  DevonshireWeight,
+  DevonshireStyle,
+  DevonshireSubset
+> {
   constructor(options?: DevonshireOptions) {
     super(FAMILY, FACES, options);
   }

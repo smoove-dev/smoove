@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Unkempt";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/unkempt/v22/2EbnL-Z2DFZue0DSeYEV8g.woff2",
     "700-normal": "https://fonts.gstatic.com/s/unkempt/v22/2EbiL-Z2DFZue0DScTow5zK5qg.woff2",
   },

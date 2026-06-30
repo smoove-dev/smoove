@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Dr Sugiyama";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/drsugiyama/v30/HTxoL2k4N3O9n5I1boGI7ZbWOY4.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type DrSugiyamaWeight = "400";
 export type DrSugiyamaStyle = "normal";
 export type DrSugiyamaSubset = "latin" | "latin-ext";
-export type DrSugiyamaOptions = GoogleFontOptions<DrSugiyamaWeight, DrSugiyamaStyle, DrSugiyamaSubset>;
+export type DrSugiyamaOptions = GoogleFontOptions<
+  DrSugiyamaWeight,
+  DrSugiyamaStyle,
+  DrSugiyamaSubset
+>;
 
 /**
  * Dr Sugiyama — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DrSugiyama extends GoogleFont<DrSugiyamaWeight, DrSugiyamaStyle, DrSugiyamaSubset> {
+export default class DrSugiyama extends GoogleFont<
+  DrSugiyamaWeight,
+  DrSugiyamaStyle,
+  DrSugiyamaSubset
+> {
   constructor(options?: DrSugiyamaOptions) {
     super(FAMILY, FACES, options);
   }

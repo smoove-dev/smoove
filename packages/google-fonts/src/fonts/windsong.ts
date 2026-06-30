@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "WindSong";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/windsong/v13/KR1WBsyu-P-GFEW57o9-F9A.woff2",
     "500-normal": "https://fonts.gstatic.com/s/windsong/v13/KR1RBsyu-P-GFEW57oeNNMW1nyw.woff2",
   },
@@ -12,7 +12,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/windsong/v13/KR1WBsyu-P-GFEW57o9wF9CKvg.woff2",
     "500-normal": "https://fonts.gstatic.com/s/windsong/v13/KR1RBsyu-P-GFEW57oeNNMW7nyzOjQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/windsong/v13/KR1WBsyu-P-GFEW57o9xF9CKvg.woff2",
     "500-normal": "https://fonts.gstatic.com/s/windsong/v13/KR1RBsyu-P-GFEW57oeNNMW6nyzOjQ.woff2",
   },

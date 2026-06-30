@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fasthand";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "400-normal": "https://fonts.gstatic.com/s/fasthand/v33/0yb9GDohyKTYn_ZEERkiaE0GrQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/fasthand/v33/0yb9GDohyKTYn_ZEERkpaE0.woff2",
   },
 } as const;

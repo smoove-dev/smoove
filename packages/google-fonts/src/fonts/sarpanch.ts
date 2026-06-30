@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sarpanch";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/sarpanch/v15/hESy6Xt4NCpRuk6Pzi2GTovn_w.woff2",
     "500-normal": "https://fonts.gstatic.com/s/sarpanch/v15/hES16Xt4NCpRuk6PziV0bZ7Z3nAeRA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/sarpanch/v15/hES16Xt4NCpRuk6PziVYap7Z3nAeRA.woff2",
@@ -12,7 +12,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/sarpanch/v15/hES16Xt4NCpRuk6PziUgaJ7Z3nAeRA.woff2",
     "900-normal": "https://fonts.gstatic.com/s/sarpanch/v15/hES16Xt4NCpRuk6PziUEaZ7Z3nAeRA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sarpanch/v15/hESy6Xt4NCpRuk6Pzi2HTos.woff2",
     "500-normal": "https://fonts.gstatic.com/s/sarpanch/v15/hES16Xt4NCpRuk6PziV0bZ7Y3nA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/sarpanch/v15/hES16Xt4NCpRuk6PziVYap7Y3nA.woff2",

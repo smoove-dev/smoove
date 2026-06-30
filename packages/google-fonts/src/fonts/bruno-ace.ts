@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bruno Ace";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/brunoace/v7/WwkcxPa2E06x4trkOj_UN6AN.woff2",
   },
   "latin-ext": {

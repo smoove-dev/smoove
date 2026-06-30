@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Linear B";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslinearb/v18/HhyJU4wt9vSgfHoORYOiXOckKNB737Il2xME.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslinearb/v18/HhyJU4wt9vSgfHoORYOiXOckKNB737Il2xME.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslinearb/v18/HhyJU4wt9vSgfHoORYOiXOckKNB737Il1RMEfq4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslinearb/v18/HhyJU4wt9vSgfHoORYOiXOckKNB737Il1RMEfq4.woff2",
   },
   "linear-b": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslinearb/v18/HhyJU4wt9vSgfHoORYOiXOckKNB737IlnBMEfq4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslinearb/v18/HhyJU4wt9vSgfHoORYOiXOckKNB737IlnBMEfq4.woff2",
   },
 } as const;
 
 export type NotoSansLinearBWeight = "400";
 export type NotoSansLinearBStyle = "normal";
 export type NotoSansLinearBSubset = "latin" | "latin-ext" | "linear-b";
-export type NotoSansLinearBOptions = GoogleFontOptions<NotoSansLinearBWeight, NotoSansLinearBStyle, NotoSansLinearBSubset>;
+export type NotoSansLinearBOptions = GoogleFontOptions<
+  NotoSansLinearBWeight,
+  NotoSansLinearBStyle,
+  NotoSansLinearBSubset
+>;
 
 /**
  * Noto Sans Linear B — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansLinearB extends GoogleFont<NotoSansLinearBWeight, NotoSansLinearBStyle, NotoSansLinearBSubset> {
+export default class NotoSansLinearB extends GoogleFont<
+  NotoSansLinearBWeight,
+  NotoSansLinearBStyle,
+  NotoSansLinearBSubset
+> {
   constructor(options?: NotoSansLinearBOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Unlock";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/unlock/v28/7Au-p_8ykD-cDl72LwLT.woff2",
   },
   "latin-ext": {

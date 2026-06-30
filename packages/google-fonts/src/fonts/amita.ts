@@ -4,11 +4,11 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Amita";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/amita/v20/HhyaU5si9Om7PTlpC_W6EQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/amita/v20/HhyXU5si9Om7PTHTLuCEMItyTA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/amita/v20/HhyaU5si9Om7PTloC_U.woff2",
     "700-normal": "https://fonts.gstatic.com/s/amita/v20/HhyXU5si9Om7PTHTLuCFMIs.woff2",
   },

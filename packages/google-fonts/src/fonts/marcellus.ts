@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Marcellus";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/marcellus/v14/wEO_EBrOk8hQLDvIAF81VvoK.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type MarcellusOptions = GoogleFontOptions<MarcellusWeight, MarcellusStyle
  * Marcellus — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Marcellus extends GoogleFont<MarcellusWeight, MarcellusStyle, MarcellusSubset> {
+export default class Marcellus extends GoogleFont<
+  MarcellusWeight,
+  MarcellusStyle,
+  MarcellusSubset
+> {
   constructor(options?: MarcellusOptions) {
     super(FAMILY, FACES, options);
   }

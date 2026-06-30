@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fontdiner Swanky";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/fontdinerswanky/v24/ijwOs4XgRNsiaI5-hcVb4hQgMvCD0uYVKw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/fontdinerswanky/v24/ijwOs4XgRNsiaI5-hcVb4hQgMvCD0uYVKw.woff2",
   },
 } as const;
 
 export type FontdinerSwankyWeight = "400";
 export type FontdinerSwankyStyle = "normal";
 export type FontdinerSwankySubset = "latin";
-export type FontdinerSwankyOptions = GoogleFontOptions<FontdinerSwankyWeight, FontdinerSwankyStyle, FontdinerSwankySubset>;
+export type FontdinerSwankyOptions = GoogleFontOptions<
+  FontdinerSwankyWeight,
+  FontdinerSwankyStyle,
+  FontdinerSwankySubset
+>;
 
 /**
  * Fontdiner Swanky — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class FontdinerSwanky extends GoogleFont<FontdinerSwankyWeight, FontdinerSwankyStyle, FontdinerSwankySubset> {
+export default class FontdinerSwanky extends GoogleFont<
+  FontdinerSwankyWeight,
+  FontdinerSwankyStyle,
+  FontdinerSwankySubset
+> {
   constructor(options?: FontdinerSwankyOptions) {
     super(FAMILY, FACES, options);
   }

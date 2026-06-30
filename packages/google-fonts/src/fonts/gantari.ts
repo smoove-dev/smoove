@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gantari";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/gantari/v4/jVyI7nvyB2HL8iZyJEcepQQB.woff2",
     "100-normal": "https://fonts.gstatic.com/s/gantari/v4/jVyK7nvyB2HL8iZyJEIupw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/gantari/v4/jVyI7nvyB2HL8iZyJEcepQQB.woff2",

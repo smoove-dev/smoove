@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Supermercado One";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/supermercadoone/v29/OpNXnpQWg8jc_xps_Gi14kVVEXOn20H9MQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/supermercadoone/v29/OpNXnpQWg8jc_xps_Gi14kVVEXOn20H9MQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/supermercadoone/v29/OpNXnpQWg8jc_xps_Gi14kVVEXOn20_9MRlB.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/supermercadoone/v29/OpNXnpQWg8jc_xps_Gi14kVVEXOn20_9MRlB.woff2",
   },
 } as const;
 
 export type SupermercadoOneWeight = "400";
 export type SupermercadoOneStyle = "normal";
 export type SupermercadoOneSubset = "latin" | "latin-ext";
-export type SupermercadoOneOptions = GoogleFontOptions<SupermercadoOneWeight, SupermercadoOneStyle, SupermercadoOneSubset>;
+export type SupermercadoOneOptions = GoogleFontOptions<
+  SupermercadoOneWeight,
+  SupermercadoOneStyle,
+  SupermercadoOneSubset
+>;
 
 /**
  * Supermercado One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SupermercadoOne extends GoogleFont<SupermercadoOneWeight, SupermercadoOneStyle, SupermercadoOneSubset> {
+export default class SupermercadoOne extends GoogleFont<
+  SupermercadoOneWeight,
+  SupermercadoOneStyle,
+  SupermercadoOneSubset
+> {
   constructor(options?: SupermercadoOneOptions) {
     super(FAMILY, FACES, options);
   }

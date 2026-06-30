@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ropa Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/ropasans/v16/EYq3maNOzLlWtsZSScy6WANre5Y.woff2",
     "400-normal": "https://fonts.gstatic.com/s/ropasans/v16/EYqxmaNOzLlWtsZSScy6XTNp.woff2",
   },

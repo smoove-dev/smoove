@@ -4,34 +4,54 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Stack Sans Text";
 
 const FACES = {
-  "latin": {
-    "200-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
+  latin: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnCry4.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/stacksanstext/v1/kJErBuAJ-Q0hiGPmzHEu345X1JJnBLy4NY8.woff2",
   },
 } as const;
 
 export type StackSansTextWeight = "200" | "300" | "400" | "500" | "600" | "700";
 export type StackSansTextStyle = "normal";
 export type StackSansTextSubset = "latin" | "latin-ext";
-export type StackSansTextOptions = GoogleFontOptions<StackSansTextWeight, StackSansTextStyle, StackSansTextSubset>;
+export type StackSansTextOptions = GoogleFontOptions<
+  StackSansTextWeight,
+  StackSansTextStyle,
+  StackSansTextSubset
+>;
 
 /**
  * Stack Sans Text — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class StackSansText extends GoogleFont<StackSansTextWeight, StackSansTextStyle, StackSansTextSubset> {
+export default class StackSansText extends GoogleFont<
+  StackSansTextWeight,
+  StackSansTextStyle,
+  StackSansTextSubset
+> {
   constructor(options?: StackSansTextOptions) {
     super(FAMILY, FACES, options);
   }

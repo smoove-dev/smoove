@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Text Me One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/textmeone/v26/i7dOIFdlayuLUvgoFvHQFVZbYFc.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type TextMeOneOptions = GoogleFontOptions<TextMeOneWeight, TextMeOneStyle
  * Text Me One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TextMeOne extends GoogleFont<TextMeOneWeight, TextMeOneStyle, TextMeOneSubset> {
+export default class TextMeOne extends GoogleFont<
+  TextMeOneWeight,
+  TextMeOneStyle,
+  TextMeOneSubset
+> {
   constructor(options?: TextMeOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Moirai One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/moiraione/v3/2sDbZGFUgJLJmby6xgNGf0KcBg.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type MoiraiOneOptions = GoogleFontOptions<MoiraiOneWeight, MoiraiOneStyle
  * Moirai One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MoiraiOne extends GoogleFont<MoiraiOneWeight, MoiraiOneStyle, MoiraiOneSubset> {
+export default class MoiraiOne extends GoogleFont<
+  MoiraiOneWeight,
+  MoiraiOneStyle,
+  MoiraiOneSubset
+> {
   constructor(options?: MoiraiOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Matangi";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "300-normal": "https://fonts.gstatic.com/s/matangi/v5/kmK9ZqE2FhDIeX2QlDtl0hbZ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/matangi/v5/kmK9ZqE2FhDIeX2QlDtl0hbZ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/matangi/v5/kmK9ZqE2FhDIeX2QlDtl0hbZ.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/matangi/v5/kmK9ZqE2FhDIeX2QlDtl0hbZ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/matangi/v5/kmK9ZqE2FhDIeX2QlDtl0hbZ.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/matangi/v5/kmK9ZqE2FhDIeX2QlDpl0g.woff2",
     "400-normal": "https://fonts.gstatic.com/s/matangi/v5/kmK9ZqE2FhDIeX2QlDpl0g.woff2",
     "500-normal": "https://fonts.gstatic.com/s/matangi/v5/kmK9ZqE2FhDIeX2QlDpl0g.woff2",

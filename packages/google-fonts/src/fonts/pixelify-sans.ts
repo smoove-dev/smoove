@@ -4,36 +4,56 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pixelify Sans";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnkEi1lR.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnkEi1lR.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnkEi1lR.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnkEi1lR.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnkEi1lR.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnkEi1lR.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnkEi1lR.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnkEi1lR.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9Jn0Eiw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9Jn0Eiw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9Jn0Eiw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9Jn0Eiw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9Jn0Eiw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9Jn0Eiw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9Jn0Eiw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9Jn0Eiw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnMEi1lR.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnMEi1lR.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnMEi1lR.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnMEi1lR.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnMEi1lR.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnMEi1lR.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnMEi1lR.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/pixelifysans/v3/CHylV-3HFUT7aC4iv1TxGDR9JnMEi1lR.woff2",
   },
 } as const;
 
 export type PixelifySansWeight = "400" | "500" | "600" | "700";
 export type PixelifySansStyle = "normal";
 export type PixelifySansSubset = "cyrillic" | "latin" | "latin-ext";
-export type PixelifySansOptions = GoogleFontOptions<PixelifySansWeight, PixelifySansStyle, PixelifySansSubset>;
+export type PixelifySansOptions = GoogleFontOptions<
+  PixelifySansWeight,
+  PixelifySansStyle,
+  PixelifySansSubset
+>;
 
 /**
  * Pixelify Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PixelifySans extends GoogleFont<PixelifySansWeight, PixelifySansStyle, PixelifySansSubset> {
+export default class PixelifySans extends GoogleFont<
+  PixelifySansWeight,
+  PixelifySansStyle,
+  PixelifySansSubset
+> {
   constructor(options?: PixelifySansOptions) {
     super(FAMILY, FACES, options);
   }

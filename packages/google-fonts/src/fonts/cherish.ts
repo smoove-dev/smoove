@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cherish";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/cherish/v9/ll88K2mXUyqsDsTN1ifIIg.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/cherish/v9/ll88K2mXUyqsDsTN1inIIpIJ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/cherish/v9/ll88K2mXUyqsDsTN1ijIIpIJ.woff2",
   },
 } as const;

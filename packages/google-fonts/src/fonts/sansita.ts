@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sansita";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/sansita/v12/QldMNTRRphEb_-V7LBuBTllb.woff2",
     "400-normal": "https://fonts.gstatic.com/s/sansita/v12/QldONTRRphEb_-V7LB6xTA.woff2",
     "700-italic": "https://fonts.gstatic.com/s/sansita/v12/QldJNTRRphEb_-V7LBuJ9XxOwY1r.woff2",

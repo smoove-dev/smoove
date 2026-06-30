@@ -4,23 +4,35 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "AR One Sans";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF9WVh.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF9WVh.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF9WVh.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF9WVh.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF9WVh.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF9WVh.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF9WVh.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF9WVh.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-2VhJI4.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-2VhJI4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-2VhJI4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-2VhJI4.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-2VhJI4.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-2VhJI4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-2VhJI4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-2VhJI4.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-mVhJI4.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-mVhJI4.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-mVhJI4.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-mVhJI4.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-mVhJI4.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-mVhJI4.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-mVhJI4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/aronesans/v6/TUZjzwhrmbFp0Srr_tH6fv6RcUejHO_u7GF5aXfF-mVhJI4.woff2",
   },
 } as const;
 
@@ -33,7 +45,11 @@ export type AROneSansOptions = GoogleFontOptions<AROneSansWeight, AROneSansStyle
  * AR One Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AROneSans extends GoogleFont<AROneSansWeight, AROneSansStyle, AROneSansSubset> {
+export default class AROneSans extends GoogleFont<
+  AROneSansWeight,
+  AROneSansStyle,
+  AROneSansSubset
+> {
   constructor(options?: AROneSansOptions) {
     super(FAMILY, FACES, options);
   }

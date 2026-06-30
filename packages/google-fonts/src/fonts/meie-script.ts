@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Meie Script";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/meiescript/v22/_LOImzDK7erRjhunIspaMgxg7oQ.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type MeieScriptWeight = "400";
 export type MeieScriptStyle = "normal";
 export type MeieScriptSubset = "latin" | "latin-ext";
-export type MeieScriptOptions = GoogleFontOptions<MeieScriptWeight, MeieScriptStyle, MeieScriptSubset>;
+export type MeieScriptOptions = GoogleFontOptions<
+  MeieScriptWeight,
+  MeieScriptStyle,
+  MeieScriptSubset
+>;
 
 /**
  * Meie Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MeieScript extends GoogleFont<MeieScriptWeight, MeieScriptStyle, MeieScriptSubset> {
+export default class MeieScript extends GoogleFont<
+  MeieScriptWeight,
+  MeieScriptStyle,
+  MeieScriptSubset
+> {
   constructor(options?: MeieScriptOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Marmelad";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/marmelad/v19/Qw3eZQdSHj_jK2e-8uFIEec8Cw.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/marmelad/v19/Qw3eZQdSHj_jK2e-8uFBEec8Cw.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/marmelad/v19/Qw3eZQdSHj_jK2e-8uFMEec.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/marmelad/v19/Qw3eZQdSHj_jK2e-8uFCEec8Cw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/marmelad/v19/Qw3eZQdSHj_jK2e-8uFDEec8Cw.woff2",
   },
 } as const;

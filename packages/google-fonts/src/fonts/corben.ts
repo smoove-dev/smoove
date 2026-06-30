@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Corben";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/corben/v23/LYjDdGzzklQtCMpNpwNF.woff2",
     "700-normal": "https://fonts.gstatic.com/s/corben/v23/LYjAdGzzklQtCMpFHCZQqnoq.woff2",
   },

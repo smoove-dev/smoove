@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Manufacturing Consent";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/manufacturingconsent/v1/N0bL2TVONuFkPkuHfiECSLCwuZS-D-IsakiUQK4u.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/manufacturingconsent/v1/N0bL2TVONuFkPkuHfiECSLCwuZS-D-IsakiUQK4u.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/manufacturingconsent/v1/N0bL2TVONuFkPkuHfiECSLCwuZS-D-IsakiUTq4uXfE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/manufacturingconsent/v1/N0bL2TVONuFkPkuHfiECSLCwuZS-D-IsakiUTq4uXfE.woff2",
   },
 } as const;
 
 export type ManufacturingConsentWeight = "400";
 export type ManufacturingConsentStyle = "normal";
 export type ManufacturingConsentSubset = "latin" | "latin-ext";
-export type ManufacturingConsentOptions = GoogleFontOptions<ManufacturingConsentWeight, ManufacturingConsentStyle, ManufacturingConsentSubset>;
+export type ManufacturingConsentOptions = GoogleFontOptions<
+  ManufacturingConsentWeight,
+  ManufacturingConsentStyle,
+  ManufacturingConsentSubset
+>;
 
 /**
  * Manufacturing Consent — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ManufacturingConsent extends GoogleFont<ManufacturingConsentWeight, ManufacturingConsentStyle, ManufacturingConsentSubset> {
+export default class ManufacturingConsent extends GoogleFont<
+  ManufacturingConsentWeight,
+  ManufacturingConsentStyle,
+  ManufacturingConsentSubset
+> {
   constructor(options?: ManufacturingConsentOptions) {
     super(FAMILY, FACES, options);
   }

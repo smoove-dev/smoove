@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Borel";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/borel/v10/6qLOKZsftAPisjsmaSI.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/borel/v10/6qLOKZsftAPisjsoaSIXOg.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/borel/v10/6qLOKZsftAPisjtaaSIXOg.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/borel/v10/6qLOKZsftAPisjtIaSIXOg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/borel/v10/6qLOKZsftAPisjspaSIXOg.woff2",
   },
 } as const;

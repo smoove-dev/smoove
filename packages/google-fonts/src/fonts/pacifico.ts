@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Pacifico";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/pacifico/v23/FwZY7-Qmy14u9lezJ-6D6MmTpA.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/pacifico/v23/FwZY7-Qmy14u9lezJ-6K6MmTpA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/pacifico/v23/FwZY7-Qmy14u9lezJ-6H6Mk.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/pacifico/v23/FwZY7-Qmy14u9lezJ-6J6MmTpA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/pacifico/v23/FwZY7-Qmy14u9lezJ-6I6MmTpA.woff2",
   },
 } as const;

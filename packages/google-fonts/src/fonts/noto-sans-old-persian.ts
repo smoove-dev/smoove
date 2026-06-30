@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Old Persian";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansoldpersian/v17/wEOjEAbNnc5caQTFG18FHrZr9Bp6-8CmIJ_dr-NR.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansoldpersian/v17/wEOjEAbNnc5caQTFG18FHrZr9Bp6-8CmIJ_dr-NR.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansoldpersian/v17/wEOjEAbNnc5caQTFG18FHrZr9Bp6-8CmIJ_doeNRTx8.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansoldpersian/v17/wEOjEAbNnc5caQTFG18FHrZr9Bp6-8CmIJ_doeNRTx8.woff2",
   },
   "old-persian": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansoldpersian/v17/wEOjEAbNnc5caQTFG18FHrZr9Bp6-8CmIJ_d7uNRTx8.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansoldpersian/v17/wEOjEAbNnc5caQTFG18FHrZr9Bp6-8CmIJ_d7uNRTx8.woff2",
   },
 } as const;
 
 export type NotoSansOldPersianWeight = "400";
 export type NotoSansOldPersianStyle = "normal";
 export type NotoSansOldPersianSubset = "latin" | "latin-ext" | "old-persian";
-export type NotoSansOldPersianOptions = GoogleFontOptions<NotoSansOldPersianWeight, NotoSansOldPersianStyle, NotoSansOldPersianSubset>;
+export type NotoSansOldPersianOptions = GoogleFontOptions<
+  NotoSansOldPersianWeight,
+  NotoSansOldPersianStyle,
+  NotoSansOldPersianSubset
+>;
 
 /**
  * Noto Sans Old Persian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansOldPersian extends GoogleFont<NotoSansOldPersianWeight, NotoSansOldPersianStyle, NotoSansOldPersianSubset> {
+export default class NotoSansOldPersian extends GoogleFont<
+  NotoSansOldPersianWeight,
+  NotoSansOldPersianStyle,
+  NotoSansOldPersianSubset
+> {
   constructor(options?: NotoSansOldPersianOptions) {
     super(FAMILY, FACES, options);
   }

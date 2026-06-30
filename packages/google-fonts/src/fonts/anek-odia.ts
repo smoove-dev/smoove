@@ -4,35 +4,59 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Anek Odia";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAmwiw.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcAewixiG.woff2",
   },
-  "oriya": {
-    "100-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
+  oriya: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/anekodia/v17/TK3yWkoJARApz5UCd345tuevwwQX0CwsoYkAcBCwixiG.woff2",
   },
 } as const;
 

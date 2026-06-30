@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Thasadith";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/thasadith/v13/mtG-4_1TIqPYrd_f5R1osnMX-CE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/thasadith/v13/mtG44_1TIqPYrd_f5R1ot0MV.woff2",
     "700-italic": "https://fonts.gstatic.com/s/thasadith/v13/mtGj4_1TIqPYrd_f5R1osnus3TSxNks.woff2",
@@ -13,19 +13,22 @@ const FACES = {
   "latin-ext": {
     "400-italic": "https://fonts.gstatic.com/s/thasadith/v13/mtG-4_1TIqPYrd_f5R1osnMZ-CGOFw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/thasadith/v13/mtG44_1TIqPYrd_f5R1ouUMV4CU.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/thasadith/v13/mtGj4_1TIqPYrd_f5R1osnus3TS_Nkt98w.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/thasadith/v13/mtGj4_1TIqPYrd_f5R1osnus3TS_Nkt98w.woff2",
     "700-normal": "https://fonts.gstatic.com/s/thasadith/v13/mtG94_1TIqPYrd_f5R1gDGYA0QSzLk8.woff2",
   },
-  "thai": {
+  thai: {
     "400-italic": "https://fonts.gstatic.com/s/thasadith/v13/mtG-4_1TIqPYrd_f5R1osnMD-CGOFw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/thasadith/v13/mtG44_1TIqPYrd_f5R1oo0MV4CU.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/thasadith/v13/mtGj4_1TIqPYrd_f5R1osnus3TSlNkt98w.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/thasadith/v13/mtGj4_1TIqPYrd_f5R1osnus3TSlNkt98w.woff2",
     "700-normal": "https://fonts.gstatic.com/s/thasadith/v13/mtG94_1TIqPYrd_f5R1gDGYAywSzLk8.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/thasadith/v13/mtG-4_1TIqPYrd_f5R1osnMY-CGOFw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/thasadith/v13/mtG44_1TIqPYrd_f5R1ouEMV4CU.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/thasadith/v13/mtGj4_1TIqPYrd_f5R1osnus3TS-Nkt98w.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/thasadith/v13/mtGj4_1TIqPYrd_f5R1osnus3TS-Nkt98w.woff2",
     "700-normal": "https://fonts.gstatic.com/s/thasadith/v13/mtG94_1TIqPYrd_f5R1gDGYA0ASzLk8.woff2",
   },
 } as const;
@@ -39,7 +42,11 @@ export type ThasadithOptions = GoogleFontOptions<ThasadithWeight, ThasadithStyle
  * Thasadith — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Thasadith extends GoogleFont<ThasadithWeight, ThasadithStyle, ThasadithSubset> {
+export default class Thasadith extends GoogleFont<
+  ThasadithWeight,
+  ThasadithStyle,
+  ThasadithSubset
+> {
   constructor(options?: ThasadithOptions) {
     super(FAMILY, FACES, options);
   }

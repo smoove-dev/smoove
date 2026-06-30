@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bungee Shade";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bungeeshade/v17/DtVkJxarWL0t2KdzK3oI_jkc6SjT.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/bungeeshade/v17/DtVkJxarWL0t2KdzK3oI_jkc5yjTnwE.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bungeeshade/v17/DtVkJxarWL0t2KdzK3oI_jkc5yjTnwE.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/bungeeshade/v17/DtVkJxarWL0t2KdzK3oI_jkc5ijTnwE.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bungeeshade/v17/DtVkJxarWL0t2KdzK3oI_jkc5ijTnwE.woff2",
   },
 } as const;
 
 export type BungeeShadeWeight = "400";
 export type BungeeShadeStyle = "normal";
 export type BungeeShadeSubset = "latin" | "latin-ext" | "vietnamese";
-export type BungeeShadeOptions = GoogleFontOptions<BungeeShadeWeight, BungeeShadeStyle, BungeeShadeSubset>;
+export type BungeeShadeOptions = GoogleFontOptions<
+  BungeeShadeWeight,
+  BungeeShadeStyle,
+  BungeeShadeSubset
+>;
 
 /**
  * Bungee Shade — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BungeeShade extends GoogleFont<BungeeShadeWeight, BungeeShadeStyle, BungeeShadeSubset> {
+export default class BungeeShade extends GoogleFont<
+  BungeeShadeWeight,
+  BungeeShadeStyle,
+  BungeeShadeSubset
+> {
   constructor(options?: BungeeShadeOptions) {
     super(FAMILY, FACES, options);
   }

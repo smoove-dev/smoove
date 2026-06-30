@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Chela One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/chelaone/v22/6ae-4KC7Uqgdz_JZdPIC2FHX.woff2",
   },
   "latin-ext": {

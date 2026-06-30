@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Luxurious Script";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/luxuriousscript/v9/ahcCv9e7yydulT32KZ0rBIoD7DzMs03Ebg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/luxuriousscript/v9/ahcCv9e7yydulT32KZ0rBIoD7DzMs03Ebg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/luxuriousscript/v9/ahcCv9e7yydulT32KZ0rBIoD7DzMs0PEbh1J.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/luxuriousscript/v9/ahcCv9e7yydulT32KZ0rBIoD7DzMs0PEbh1J.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/luxuriousscript/v9/ahcCv9e7yydulT32KZ0rBIoD7DzMs0LEbh1J.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/luxuriousscript/v9/ahcCv9e7yydulT32KZ0rBIoD7DzMs0LEbh1J.woff2",
   },
 } as const;
 
 export type LuxuriousScriptWeight = "400";
 export type LuxuriousScriptStyle = "normal";
 export type LuxuriousScriptSubset = "latin" | "latin-ext" | "vietnamese";
-export type LuxuriousScriptOptions = GoogleFontOptions<LuxuriousScriptWeight, LuxuriousScriptStyle, LuxuriousScriptSubset>;
+export type LuxuriousScriptOptions = GoogleFontOptions<
+  LuxuriousScriptWeight,
+  LuxuriousScriptStyle,
+  LuxuriousScriptSubset
+>;
 
 /**
  * Luxurious Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LuxuriousScript extends GoogleFont<LuxuriousScriptWeight, LuxuriousScriptStyle, LuxuriousScriptSubset> {
+export default class LuxuriousScript extends GoogleFont<
+  LuxuriousScriptWeight,
+  LuxuriousScriptStyle,
+  LuxuriousScriptSubset
+> {
   constructor(options?: LuxuriousScriptOptions) {
     super(FAMILY, FACES, options);
   }

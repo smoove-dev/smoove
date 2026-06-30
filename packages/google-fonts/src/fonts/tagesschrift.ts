@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tagesschrift";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tagesschrift/v2/pe0pMI6IOYlEuEZ7ZEA7ZKOqBP5v.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/tagesschrift/v2/pe0pMI6IOYlEuEZ7ZEA7ZKOqCv5vS1U.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tagesschrift/v2/pe0pMI6IOYlEuEZ7ZEA7ZKOqCv5vS1U.woff2",
   },
 } as const;
 
 export type TagesschriftWeight = "400";
 export type TagesschriftStyle = "normal";
 export type TagesschriftSubset = "latin" | "latin-ext";
-export type TagesschriftOptions = GoogleFontOptions<TagesschriftWeight, TagesschriftStyle, TagesschriftSubset>;
+export type TagesschriftOptions = GoogleFontOptions<
+  TagesschriftWeight,
+  TagesschriftStyle,
+  TagesschriftSubset
+>;
 
 /**
  * Tagesschrift — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Tagesschrift extends GoogleFont<TagesschriftWeight, TagesschriftStyle, TagesschriftSubset> {
+export default class Tagesschrift extends GoogleFont<
+  TagesschriftWeight,
+  TagesschriftStyle,
+  TagesschriftSubset
+> {
   constructor(options?: TagesschriftOptions) {
     super(FAMILY, FACES, options);
   }

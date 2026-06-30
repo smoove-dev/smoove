@@ -4,30 +4,44 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tiro Devanagari Sanskrit";
 
 const FACES = {
-  "devanagari": {
-    "400-italic": "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoGzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZELsoqteB0w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoAzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZFIsrstM.woff2",
+  devanagari: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoGzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZELsoqteB0w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoAzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZFIsrstM.woff2",
   },
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoGzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZELspqtc.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoAzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZFYsr.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoGzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZELspqtc.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoAzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZFYsr.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoGzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZELsnqteB0w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoAzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZG4srstM.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoGzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZELsnqteB0w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v5/MCoAzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZG4srstM.woff2",
   },
 } as const;
 
 export type TiroDevanagariSanskritWeight = "400";
 export type TiroDevanagariSanskritStyle = "italic" | "normal";
 export type TiroDevanagariSanskritSubset = "devanagari" | "latin" | "latin-ext";
-export type TiroDevanagariSanskritOptions = GoogleFontOptions<TiroDevanagariSanskritWeight, TiroDevanagariSanskritStyle, TiroDevanagariSanskritSubset>;
+export type TiroDevanagariSanskritOptions = GoogleFontOptions<
+  TiroDevanagariSanskritWeight,
+  TiroDevanagariSanskritStyle,
+  TiroDevanagariSanskritSubset
+>;
 
 /**
  * Tiro Devanagari Sanskrit — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TiroDevanagariSanskrit extends GoogleFont<TiroDevanagariSanskritWeight, TiroDevanagariSanskritStyle, TiroDevanagariSanskritSubset> {
+export default class TiroDevanagariSanskrit extends GoogleFont<
+  TiroDevanagariSanskritWeight,
+  TiroDevanagariSanskritStyle,
+  TiroDevanagariSanskritSubset
+> {
   constructor(options?: TiroDevanagariSanskritOptions) {
     super(FAMILY, FACES, options);
   }

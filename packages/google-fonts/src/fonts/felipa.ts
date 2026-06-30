@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Felipa";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/felipa/v27/FwZa7-owz1Eu4F_AT96F.woff2",
   },
   "latin-ext": {

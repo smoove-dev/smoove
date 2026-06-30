@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bigshot One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bigshotone/v31/u-470qukhRkkO6BD_7cM_jxpWwM.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type BigshotOneWeight = "400";
 export type BigshotOneStyle = "normal";
 export type BigshotOneSubset = "latin";
-export type BigshotOneOptions = GoogleFontOptions<BigshotOneWeight, BigshotOneStyle, BigshotOneSubset>;
+export type BigshotOneOptions = GoogleFontOptions<
+  BigshotOneWeight,
+  BigshotOneStyle,
+  BigshotOneSubset
+>;
 
 /**
  * Bigshot One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BigshotOne extends GoogleFont<BigshotOneWeight, BigshotOneStyle, BigshotOneSubset> {
+export default class BigshotOne extends GoogleFont<
+  BigshotOneWeight,
+  BigshotOneStyle,
+  BigshotOneSubset
+> {
   constructor(options?: BigshotOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Madimi One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/madimione/v1/2V0YKIEADpA8U6RygDnZVFMiBw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/madimione/v1/2V0YKIEADpA8U6RygDnZVF0iB7HM.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/madimione/v1/2V0YKIEADpA8U6RygDnZVC8iB7HM.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/madimione/v1/2V0YKIEADpA8U6RygDnZVD0iB7HM.woff2",
   },
 } as const;
@@ -27,7 +27,11 @@ export type MadimiOneOptions = GoogleFontOptions<MadimiOneWeight, MadimiOneStyle
  * Madimi One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MadimiOne extends GoogleFont<MadimiOneWeight, MadimiOneStyle, MadimiOneSubset> {
+export default class MadimiOne extends GoogleFont<
+  MadimiOneWeight,
+  MadimiOneStyle,
+  MadimiOneSubset
+> {
   constructor(options?: MadimiOneOptions) {
     super(FAMILY, FACES, options);
   }

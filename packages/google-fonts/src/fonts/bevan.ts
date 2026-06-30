@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bevan";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/bevan/v26/4iCt6KZ0a9NXjG8YaCnTsg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/bevan/v26/4iCj6KZ0a9NXjG8dWCs.woff2",
   },
@@ -12,7 +12,7 @@ const FACES = {
     "400-italic": "https://fonts.gstatic.com/s/bevan/v26/4iCt6KZ0a9NXjG8YaCfTsnSJ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/bevan/v26/4iCj6KZ0a9NXjG8TWCvLtg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/bevan/v26/4iCt6KZ0a9NXjG8YaCbTsnSJ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/bevan/v26/4iCj6KZ0a9NXjG8SWCvLtg.woff2",
   },

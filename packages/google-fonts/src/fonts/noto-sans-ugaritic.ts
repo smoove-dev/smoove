@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Ugaritic";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansugaritic/v17/3qTwoiqhnSyU8TNFIdhZVCwbjCpkAXXUNRAJ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansugaritic/v17/3qTwoiqhnSyU8TNFIdhZVCwbjCpkAXXUNRAJ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansugaritic/v17/3qTwoiqhnSyU8TNFIdhZVCwbjCpkAXXUOxAJoiY.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansugaritic/v17/3qTwoiqhnSyU8TNFIdhZVCwbjCpkAXXUOxAJoiY.woff2",
   },
-  "ugaritic": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansugaritic/v17/3qTwoiqhnSyU8TNFIdhZVCwbjCpkAXXUfBAJoiY.woff2",
+  ugaritic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansugaritic/v17/3qTwoiqhnSyU8TNFIdhZVCwbjCpkAXXUfBAJoiY.woff2",
   },
 } as const;
 
 export type NotoSansUgariticWeight = "400";
 export type NotoSansUgariticStyle = "normal";
 export type NotoSansUgariticSubset = "latin" | "latin-ext" | "ugaritic";
-export type NotoSansUgariticOptions = GoogleFontOptions<NotoSansUgariticWeight, NotoSansUgariticStyle, NotoSansUgariticSubset>;
+export type NotoSansUgariticOptions = GoogleFontOptions<
+  NotoSansUgariticWeight,
+  NotoSansUgariticStyle,
+  NotoSansUgariticSubset
+>;
 
 /**
  * Noto Sans Ugaritic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansUgaritic extends GoogleFont<NotoSansUgariticWeight, NotoSansUgariticStyle, NotoSansUgariticSubset> {
+export default class NotoSansUgaritic extends GoogleFont<
+  NotoSansUgariticWeight,
+  NotoSansUgariticStyle,
+  NotoSansUgariticSubset
+> {
   constructor(options?: NotoSansUgariticOptions) {
     super(FAMILY, FACES, options);
   }

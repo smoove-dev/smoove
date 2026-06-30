@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hahmlet";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/hahmlet/v21/BngIUXpCQ3nKpIo0Z__ajQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/hahmlet/v21/BngIUXpCQ3nKpIo0Z__ajQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/hahmlet/v21/BngIUXpCQ3nKpIo0Z__ajQ.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/hahmlet/v21/BngIUXpCQ3nKpIo0Z_Hajc_L.woff2",
     "900-normal": "https://fonts.gstatic.com/s/hahmlet/v21/BngIUXpCQ3nKpIo0Z_Hajc_L.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/hahmlet/v21/BngIUXpCQ3nKpIo0Z_Dajc_L.woff2",
     "200-normal": "https://fonts.gstatic.com/s/hahmlet/v21/BngIUXpCQ3nKpIo0Z_Dajc_L.woff2",
     "300-normal": "https://fonts.gstatic.com/s/hahmlet/v21/BngIUXpCQ3nKpIo0Z_Dajc_L.woff2",

@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Abril Fatface";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/abrilfatface/v25/zOL64pLDlL1D99S8g8PtiKchq-dmjQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/abrilfatface/v25/zOL64pLDlL1D99S8g8PtiKchq-dmjQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/abrilfatface/v25/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/abrilfatface/v25/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2",
   },
 } as const;
 
 export type AbrilFatfaceWeight = "400";
 export type AbrilFatfaceStyle = "normal";
 export type AbrilFatfaceSubset = "latin" | "latin-ext";
-export type AbrilFatfaceOptions = GoogleFontOptions<AbrilFatfaceWeight, AbrilFatfaceStyle, AbrilFatfaceSubset>;
+export type AbrilFatfaceOptions = GoogleFontOptions<
+  AbrilFatfaceWeight,
+  AbrilFatfaceStyle,
+  AbrilFatfaceSubset
+>;
 
 /**
  * Abril Fatface — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AbrilFatface extends GoogleFont<AbrilFatfaceWeight, AbrilFatfaceStyle, AbrilFatfaceSubset> {
+export default class AbrilFatface extends GoogleFont<
+  AbrilFatfaceWeight,
+  AbrilFatfaceStyle,
+  AbrilFatfaceSubset
+> {
   constructor(options?: AbrilFatfaceOptions) {
     super(FAMILY, FACES, options);
   }

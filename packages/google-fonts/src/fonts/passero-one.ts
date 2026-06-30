@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Passero One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/passeroone/v28/JTUTjIko8DOq5FeaeEAjgH5G7gs.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type PasseroOneWeight = "400";
 export type PasseroOneStyle = "normal";
 export type PasseroOneSubset = "latin" | "latin-ext";
-export type PasseroOneOptions = GoogleFontOptions<PasseroOneWeight, PasseroOneStyle, PasseroOneSubset>;
+export type PasseroOneOptions = GoogleFontOptions<
+  PasseroOneWeight,
+  PasseroOneStyle,
+  PasseroOneSubset
+>;
 
 /**
  * Passero One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PasseroOne extends GoogleFont<PasseroOneWeight, PasseroOneStyle, PasseroOneSubset> {
+export default class PasseroOne extends GoogleFont<
+  PasseroOneWeight,
+  PasseroOneStyle,
+  PasseroOneSubset
+> {
   constructor(options?: PasseroOneOptions) {
     super(FAMILY, FACES, options);
   }

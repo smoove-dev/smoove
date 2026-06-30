@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "M PLUS 1p";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tleuShHdiFyPFzBRrQnAQDW2zqqw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQVBYQeEnXkvc.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tjeuShHdiFyPFzBRrY-zQFQ2g.woff2",
@@ -22,7 +22,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQWBIQcUnXkvc.woff2",
     "900-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQfBMQcUnXkvc.woff2",
   },
-  "greek": {
+  greek: {
     "100-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tleuShHdiFyPFzBRrQnAQEW2zqqw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQVBYQf0nXkvc.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tjeuShHdiFyPFzBRrY_DQFQ2g.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQWBIQcEnXkvc.woff2",
     "900-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQfBMQcEnXkvc.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "100-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tleuShHdiFyPFzBRrQnAQFW2zqqw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQVBYQfknXkvc.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tjeuShHdiFyPFzBRrY_TQFQ2g.woff2",
@@ -49,7 +49,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQWBIQfknXkvc.woff2",
     "900-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQfBMQfknXkvc.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tleuShHdiFyPFzBRrQnAQHW2w.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQVBYQfEnX.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tjeuShHdiFyPFzBRrY_zQF.woff2",
@@ -67,7 +67,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQWBIQcknXkvc.woff2",
     "900-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQfBMQcknXkvc.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tleuShHdiFyPFzBRrQnAQIW2zqqw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tmeuShHdiFyPFzBRrQVBYQc0nXkvc.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mplus1p/v33/e3tjeuShHdiFyPFzBRrY8DQFQ2g.woff2",
@@ -80,7 +80,15 @@ const FACES = {
 
 export type MPLUS1pWeight = "100" | "300" | "400" | "500" | "700" | "800" | "900";
 export type MPLUS1pStyle = "normal";
-export type MPLUS1pSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "hebrew" | "latin" | "latin-ext" | "vietnamese";
+export type MPLUS1pSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "hebrew"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type MPLUS1pOptions = GoogleFontOptions<MPLUS1pWeight, MPLUS1pStyle, MPLUS1pSubset>;
 
 /**

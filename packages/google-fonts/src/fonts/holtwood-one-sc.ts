@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Holtwood One SC";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/holtwoodonesc/v23/yYLx0hLR0P-3vMFSk1TCq3Txg5BHdrz7.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/holtwoodonesc/v23/yYLx0hLR0P-3vMFSk1TCq3Txg5BHdrz7.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/holtwoodonesc/v23/yYLx0hLR0P-3vMFSk1TCq3Txg5BHeLz7HZs.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/holtwoodonesc/v23/yYLx0hLR0P-3vMFSk1TCq3Txg5BHeLz7HZs.woff2",
   },
 } as const;
 
 export type HoltwoodOneSCWeight = "400";
 export type HoltwoodOneSCStyle = "normal";
 export type HoltwoodOneSCSubset = "latin" | "latin-ext";
-export type HoltwoodOneSCOptions = GoogleFontOptions<HoltwoodOneSCWeight, HoltwoodOneSCStyle, HoltwoodOneSCSubset>;
+export type HoltwoodOneSCOptions = GoogleFontOptions<
+  HoltwoodOneSCWeight,
+  HoltwoodOneSCStyle,
+  HoltwoodOneSCSubset
+>;
 
 /**
  * Holtwood One SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HoltwoodOneSC extends GoogleFont<HoltwoodOneSCWeight, HoltwoodOneSCStyle, HoltwoodOneSCSubset> {
+export default class HoltwoodOneSC extends GoogleFont<
+  HoltwoodOneSCWeight,
+  HoltwoodOneSCStyle,
+  HoltwoodOneSCSubset
+> {
   constructor(options?: HoltwoodOneSCOptions) {
     super(FAMILY, FACES, options);
   }

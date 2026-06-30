@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kurale";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/kurale/v16/4iCs6KV9e9dXjhoKew72j00.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/kurale/v16/4iCs6KV9e9dXjhoKcg72j00.woff2",
   },
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/kurale/v16/4iCs6KV9e9dXjhoKfg72j00.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kurale/v16/4iCs6KV9e9dXjhoKfw72.woff2",
   },
   "latin-ext": {

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bebas Neue";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bebasneue/v16/JTUSjIg69CK48gW7PXoo9Wlhyw.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type BebasNeueOptions = GoogleFontOptions<BebasNeueWeight, BebasNeueStyle
  * Bebas Neue — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BebasNeue extends GoogleFont<BebasNeueWeight, BebasNeueStyle, BebasNeueSubset> {
+export default class BebasNeue extends GoogleFont<
+  BebasNeueWeight,
+  BebasNeueStyle,
+  BebasNeueSubset
+> {
   constructor(options?: BebasNeueOptions) {
     super(FAMILY, FACES, options);
   }

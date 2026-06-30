@@ -1,46 +1,45 @@
 // High-level render API
+
+export { mixAudio } from "./audio-mix.js";
+export { NullAudioSource, nullAudioSourceFactory } from "./audio-source-null.js";
+export { collectAudioTrack } from "./audio-track.js";
+export { DEFAULT_FONT_CACHE_DIR, makeSkiaFontLoader } from "./font-loader.js";
+export { loadImageNode } from "./image-loader.js";
+export { registerServerMedia } from "./media-server.js";
+export { probeComposition } from "./probe.js";
 export {
   renderComposition,
-  renderToStream,
-  renderStill,
   renderFrames,
+  renderStill,
+  renderToStream,
 } from "./render.js";
-export { collectAudioTrack } from "./audio-track.js";
-export { probeComposition } from "./probe.js";
-
 // Wiring seams (call before building compositions)
-export { setupServerRendering, registerFonts } from "./setup.js";
-export { registerServerMedia } from "./media-server.js";
+export { registerFonts, setupServerRendering } from "./setup.js";
 export { installSkiaBackend } from "./skia.js";
-export { loadImageNode } from "./image-loader.js";
-export { makeSkiaFontLoader, DEFAULT_FONT_CACHE_DIR } from "./font-loader.js";
-export {
-  nodeVideoSourceFactory,
-  MediabunnyVideoSource,
-  setVideoDecodeCap,
-} from "./video-source-mediabunny.js";
-export { nullAudioSourceFactory, NullAudioSource } from "./audio-source-null.js";
-export { mixAudio } from "./audio-mix.js";
-
 // Types
 export {
+  type AudioClip,
+  type CompositionInfo,
+  type Fit,
+  type FontsOption,
+  type FrameOptions,
+  type FrameRange,
   QUALITY_PRESETS,
   type QualityConfig,
   type QualityPreset,
-  type Fit,
-  type Resolution,
-  type FontsOption,
-  type FrameRange,
-  type RenderProgress,
-  type RenderOptions,
-  type StreamOptions,
-  type StillOptions,
-  type FrameOptions,
   type RenderedFrame,
+  type RenderOptions,
+  type RenderProgress,
   type RenderResult,
   type RenderToStreamResult,
-  type CompositionInfo,
-  type VolumeKeyframe,
-  type AudioClip,
+  type Resolution,
   type SetupOptions,
+  type StillOptions,
+  type StreamOptions,
+  type VolumeKeyframe,
 } from "./types.js";
+export {
+  MediabunnyVideoSource,
+  nodeVideoSourceFactory,
+  setVideoDecodeCap,
+} from "./video-source-mediabunny.js";

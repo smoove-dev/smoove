@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Poetsen One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/poetsenone/v3/ke8hOgIaMUB37xCgvCntWuIoofM.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type PoetsenOneWeight = "400";
 export type PoetsenOneStyle = "normal";
 export type PoetsenOneSubset = "latin" | "latin-ext";
-export type PoetsenOneOptions = GoogleFontOptions<PoetsenOneWeight, PoetsenOneStyle, PoetsenOneSubset>;
+export type PoetsenOneOptions = GoogleFontOptions<
+  PoetsenOneWeight,
+  PoetsenOneStyle,
+  PoetsenOneSubset
+>;
 
 /**
  * Poetsen One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PoetsenOne extends GoogleFont<PoetsenOneWeight, PoetsenOneStyle, PoetsenOneSubset> {
+export default class PoetsenOne extends GoogleFont<
+  PoetsenOneWeight,
+  PoetsenOneStyle,
+  PoetsenOneSubset
+> {
   constructor(options?: PoetsenOneOptions) {
     super(FAMILY, FACES, options);
   }

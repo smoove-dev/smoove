@@ -62,7 +62,10 @@ smoove-player-overlay > * {
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: opacity 0.2s, background 0.12s, transform 0.12s;
+  transition:
+    opacity 0.2s,
+    background 0.12s,
+    transform 0.12s;
 }
 .smoove-player__overlay-play:hover {
   background: rgba(0, 0, 0, 0.62);
@@ -113,7 +116,9 @@ smoove-player-space[grow] {
   place-items: center;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.12s, color 0.12s;
+  transition:
+    background 0.12s,
+    color 0.12s;
 }
 .smoove-player__btn:hover {
   background: rgba(255, 255, 255, 0.16);
@@ -136,7 +141,10 @@ smoove-player-loop-button[on] .smoove-player__btn {
   background: rgba(255, 255, 255, 0.28);
   border-radius: 99px;
   outline: none;
-  transition: width 0.2s ease, opacity 0.2s ease, margin 0.2s ease;
+  transition:
+    width 0.2s ease,
+    opacity 0.2s ease,
+    margin 0.2s ease;
 }
 .smoove-player__volume::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -173,7 +181,10 @@ smoove-player-sound-control[collapsed]:focus-within .smoove-player__volume {
   gap: 3px;
   padding: 0 6px;
   color: #fff;
-  font: 12.5px / 1 "JetBrains Mono", ui-monospace, monospace;
+  font:
+    12.5px / 1 "JetBrains Mono",
+    ui-monospace,
+    monospace;
   white-space: nowrap;
 }
 .smoove-player__time-sep,

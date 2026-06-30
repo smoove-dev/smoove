@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Scada";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/scada/v16/RLp_K5Pv5qumeVJq_TIAamvv.woff2",
     "400-normal": "https://fonts.gstatic.com/s/scada/v16/RLpxK5Pv5qumeVJrzTQYbg.woff2",
     "700-italic": "https://fonts.gstatic.com/s/scada/v16/RLp6K5Pv5qumeVJq9Y0lf1DOYME5.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/scada/v16/RLp6K5Pv5qumeVJq9Y0lf1nOYME5.woff2",
     "700-normal": "https://fonts.gstatic.com/s/scada/v16/RLp8K5Pv5qumeVrU6CEqT1bWZA.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/scada/v16/RLp_K5Pv5qumeVJq_TYAag.woff2",
     "400-normal": "https://fonts.gstatic.com/s/scada/v16/RLpxK5Pv5qumeVJvzTQ.woff2",
     "700-italic": "https://fonts.gstatic.com/s/scada/v16/RLp6K5Pv5qumeVJq9Y0lf1TOYA.woff2",

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alata";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/alata/v12/PbytFmztEwbIoce9zqY.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/alata/v12/PbytFmztEwbIocezzqYhQA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/alata/v12/PbytFmztEwbIoceyzqYhQA.woff2",
   },
 } as const;

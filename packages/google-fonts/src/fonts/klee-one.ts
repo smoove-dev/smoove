@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Klee One";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/kleeone/v13/LDIxapCLNRc6A8oT4p4DM-aUWA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/kleeone/v13/LDI2apCLNRc6A8oT4pbYF_Oveef2kg.woff2",
   },
@@ -12,7 +12,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/kleeone/v13/LDIxapCLNRc6A8oT4p4LM-aUWA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/kleeone/v13/LDI2apCLNRc6A8oT4pbYF_Oneef2kg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kleeone/v13/LDIxapCLNRc6A8oT4p4HM-Y.woff2",
     "600-normal": "https://fonts.gstatic.com/s/kleeone/v13/LDI2apCLNRc6A8oT4pbYF_Oreec.woff2",
   },

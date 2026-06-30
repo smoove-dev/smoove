@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lancelot";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lancelot/v28/J7acnppxBGtQEulG4KY_zp4.woff2",
   },
   "latin-ext": {

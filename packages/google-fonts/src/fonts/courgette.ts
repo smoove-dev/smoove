@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Courgette";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/courgette/v19/wEO_EBrAnc9BLjLQAUk1VvoK.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type CourgetteOptions = GoogleFontOptions<CourgetteWeight, CourgetteStyle
  * Courgette — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Courgette extends GoogleFont<CourgetteWeight, CourgetteStyle, CourgetteSubset> {
+export default class Courgette extends GoogleFont<
+  CourgetteWeight,
+  CourgetteStyle,
+  CourgetteSubset
+> {
   constructor(options?: CourgetteOptions) {
     super(FAMILY, FACES, options);
   }

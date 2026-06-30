@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playwrite AU QLD Guides";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/playwriteauqldguides/v1/TuGBUUJtX5tTUfQi_7kbiZZFVhl0FIKnvy00LDxg.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/playwriteauqldguides/v1/TuGBUUJtX5tTUfQi_7kbiZZFVhl0FIKnvy00LDxg.woff2",
   },
 } as const;
 
 export type PlaywriteAUQLDGuidesWeight = "400";
 export type PlaywriteAUQLDGuidesStyle = "normal";
 export type PlaywriteAUQLDGuidesSubset = "fallback";
-export type PlaywriteAUQLDGuidesOptions = GoogleFontOptions<PlaywriteAUQLDGuidesWeight, PlaywriteAUQLDGuidesStyle, PlaywriteAUQLDGuidesSubset>;
+export type PlaywriteAUQLDGuidesOptions = GoogleFontOptions<
+  PlaywriteAUQLDGuidesWeight,
+  PlaywriteAUQLDGuidesStyle,
+  PlaywriteAUQLDGuidesSubset
+>;
 
 /**
  * Playwrite AU QLD Guides — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaywriteAUQLDGuides extends GoogleFont<PlaywriteAUQLDGuidesWeight, PlaywriteAUQLDGuidesStyle, PlaywriteAUQLDGuidesSubset> {
+export default class PlaywriteAUQLDGuides extends GoogleFont<
+  PlaywriteAUQLDGuidesWeight,
+  PlaywriteAUQLDGuidesStyle,
+  PlaywriteAUQLDGuidesSubset
+> {
   constructor(options?: PlaywriteAUQLDGuidesOptions) {
     super(FAMILY, FACES, options);
   }

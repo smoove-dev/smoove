@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "BenchNine";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/benchnine/v17/ahcev8612zF4jxrwMosT--thgmy9.woff2",
     "400-normal": "https://fonts.gstatic.com/s/benchnine/v17/ahcbv8612zF4jxrwMosbUMl0.woff2",
     "700-normal": "https://fonts.gstatic.com/s/benchnine/v17/ahcev8612zF4jxrwMosT6-xhgmy9.woff2",
@@ -25,7 +25,11 @@ export type BenchNineOptions = GoogleFontOptions<BenchNineWeight, BenchNineStyle
  * BenchNine — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BenchNine extends GoogleFont<BenchNineWeight, BenchNineStyle, BenchNineSubset> {
+export default class BenchNine extends GoogleFont<
+  BenchNineWeight,
+  BenchNineStyle,
+  BenchNineSubset
+> {
   constructor(options?: BenchNineOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tomorrow";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/tomorrow/v19/WBLirETNbFtZCeGqgRXXQwHYK-Cs.woff2",
     "100-normal": "https://fonts.gstatic.com/s/tomorrow/v19/WBLgrETNbFtZCeGqgR2xS2LoKQ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/tomorrow/v19/WBLjrETNbFtZCeGqgRXXQ63JPMeJjQ.woff2",

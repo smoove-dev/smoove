@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bakbak One";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/bakbakone/v11/zOL54pXAl6RI-p_ardnu-cJkvthH.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bakbakone/v11/zOL54pXAl6RI-p_ardnu-cNkvg.woff2",
   },
   "latin-ext": {
@@ -24,7 +24,11 @@ export type BakbakOneOptions = GoogleFontOptions<BakbakOneWeight, BakbakOneStyle
  * Bakbak One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BakbakOne extends GoogleFont<BakbakOneWeight, BakbakOneStyle, BakbakOneSubset> {
+export default class BakbakOne extends GoogleFont<
+  BakbakOneWeight,
+  BakbakOneStyle,
+  BakbakOneSubset
+> {
   constructor(options?: BakbakOneOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,58 +4,98 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Playpen Sans Arabic";
 
 const FACES = {
-  "arabic": {
-    "100-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
+  arabic: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYxg4_zg.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYlg4w.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TYdg4_zg.woff2",
   },
-  "math": {
-    "100-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
+  math: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/playpensansarabic/v8/KtkxAKiSeo38bkPvhIqjU6aCgha2der-TfVg4_zg.woff2",
   },
 } as const;
 
 export type PlaypenSansArabicWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800";
 export type PlaypenSansArabicStyle = "normal";
 export type PlaypenSansArabicSubset = "arabic" | "latin" | "latin-ext" | "math";
-export type PlaypenSansArabicOptions = GoogleFontOptions<PlaypenSansArabicWeight, PlaypenSansArabicStyle, PlaypenSansArabicSubset>;
+export type PlaypenSansArabicOptions = GoogleFontOptions<
+  PlaypenSansArabicWeight,
+  PlaypenSansArabicStyle,
+  PlaypenSansArabicSubset
+>;
 
 /**
  * Playpen Sans Arabic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PlaypenSansArabic extends GoogleFont<PlaypenSansArabicWeight, PlaypenSansArabicStyle, PlaypenSansArabicSubset> {
+export default class PlaypenSansArabic extends GoogleFont<
+  PlaypenSansArabicWeight,
+  PlaypenSansArabicStyle,
+  PlaypenSansArabicSubset
+> {
   constructor(options?: PlaypenSansArabicOptions) {
     super(FAMILY, FACES, options);
   }

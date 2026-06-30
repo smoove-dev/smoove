@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Chokokutai";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/chokokutai/v12/kmK4Zqw4HwvCeHGM8Fwsxyn4pw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/chokokutai/v12/kmK4Zqw4HwvCeHGM8Fwsxyf4p91K.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/chokokutai/v12/kmK4Zqw4HwvCeHGM8Fwsxyb4p91K.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type ChokokutaiWeight = "400";
 export type ChokokutaiStyle = "normal";
 export type ChokokutaiSubset = "latin" | "latin-ext" | "vietnamese";
-export type ChokokutaiOptions = GoogleFontOptions<ChokokutaiWeight, ChokokutaiStyle, ChokokutaiSubset>;
+export type ChokokutaiOptions = GoogleFontOptions<
+  ChokokutaiWeight,
+  ChokokutaiStyle,
+  ChokokutaiSubset
+>;
 
 /**
  * Chokokutai — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Chokokutai extends GoogleFont<ChokokutaiWeight, ChokokutaiStyle, ChokokutaiSubset> {
+export default class Chokokutai extends GoogleFont<
+  ChokokutaiWeight,
+  ChokokutaiStyle,
+  ChokokutaiSubset
+> {
   constructor(options?: ChokokutaiOptions) {
     super(FAMILY, FACES, options);
   }

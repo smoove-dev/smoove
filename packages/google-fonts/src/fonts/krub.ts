@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Krub";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/krub/v11/sZlGdRyC6CRYbkQiwLBCRIAS.woff2",
     "200-normal": "https://fonts.gstatic.com/s/krub/v11/sZlEdRyC6CRYZo47GLZyRg.woff2",
     "300-italic": "https://fonts.gstatic.com/s/krub/v11/sZlGdRyC6CRYbkQipLNCRIAS.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/krub/v11/sZlGdRyC6CRYbkQitLRCSoASSf8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/krub/v11/sZlEdRyC6CRYZvo_GLhyRpgW.woff2",
   },
-  "thai": {
+  thai: {
     "200-italic": "https://fonts.gstatic.com/s/krub/v11/sZlGdRyC6CRYbkQiwLBCUIASSf8.woff2",
     "200-normal": "https://fonts.gstatic.com/s/krub/v11/sZlEdRyC6CRYZo47GKJyRpgW.woff2",
     "300-italic": "https://fonts.gstatic.com/s/krub/v11/sZlGdRyC6CRYbkQipLNCUIASSf8.woff2",
@@ -46,7 +46,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/krub/v11/sZlGdRyC6CRYbkQitLRCUIASSf8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/krub/v11/sZlEdRyC6CRYZvo_GKJyRpgW.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-italic": "https://fonts.gstatic.com/s/krub/v11/sZlGdRyC6CRYbkQiwLBCS4ASSf8.woff2",
     "200-normal": "https://fonts.gstatic.com/s/krub/v11/sZlEdRyC6CRYZo47GLlyRpgW.woff2",
     "300-italic": "https://fonts.gstatic.com/s/krub/v11/sZlGdRyC6CRYbkQipLNCS4ASSf8.woff2",

@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Grenze Gotisch";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhNHa8.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhDHa-aew.woff2",
   },
-  "vietnamese": {
-    "100-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
+  vietnamese: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/grenzegotisch/v20/Fh4sPjjqNDz1osh_jX9YfjudpDhCHa-aew.woff2",
   },
 } as const;
 
-export type GrenzeGotischWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type GrenzeGotischWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type GrenzeGotischStyle = "normal";
 export type GrenzeGotischSubset = "latin" | "latin-ext" | "vietnamese";
-export type GrenzeGotischOptions = GoogleFontOptions<GrenzeGotischWeight, GrenzeGotischStyle, GrenzeGotischSubset>;
+export type GrenzeGotischOptions = GoogleFontOptions<
+  GrenzeGotischWeight,
+  GrenzeGotischStyle,
+  GrenzeGotischSubset
+>;
 
 /**
  * Grenze Gotisch — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GrenzeGotisch extends GoogleFont<GrenzeGotischWeight, GrenzeGotischStyle, GrenzeGotischSubset> {
+export default class GrenzeGotisch extends GoogleFont<
+  GrenzeGotischWeight,
+  GrenzeGotischStyle,
+  GrenzeGotischSubset
+> {
   constructor(options?: GrenzeGotischOptions) {
     super(FAMILY, FACES, options);
   }

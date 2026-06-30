@@ -4,22 +4,32 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "IM Fell French Canon";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/imfellfrenchcanon/v21/-F6gfiNtDWYfYc-tDiyiw08rrghJszkK6foXBN5Ayg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/imfellfrenchcanon/v21/-F6ufiNtDWYfYc-tDiyiw08rrghJszkK6foSNNw.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/imfellfrenchcanon/v21/-F6gfiNtDWYfYc-tDiyiw08rrghJszkK6foXBN5Ayg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/imfellfrenchcanon/v21/-F6ufiNtDWYfYc-tDiyiw08rrghJszkK6foSNNw.woff2",
   },
 } as const;
 
 export type IMFellFrenchCanonWeight = "400";
 export type IMFellFrenchCanonStyle = "italic" | "normal";
 export type IMFellFrenchCanonSubset = "latin";
-export type IMFellFrenchCanonOptions = GoogleFontOptions<IMFellFrenchCanonWeight, IMFellFrenchCanonStyle, IMFellFrenchCanonSubset>;
+export type IMFellFrenchCanonOptions = GoogleFontOptions<
+  IMFellFrenchCanonWeight,
+  IMFellFrenchCanonStyle,
+  IMFellFrenchCanonSubset
+>;
 
 /**
  * IM Fell French Canon — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IMFellFrenchCanon extends GoogleFont<IMFellFrenchCanonWeight, IMFellFrenchCanonStyle, IMFellFrenchCanonSubset> {
+export default class IMFellFrenchCanon extends GoogleFont<
+  IMFellFrenchCanonWeight,
+  IMFellFrenchCanonStyle,
+  IMFellFrenchCanonSubset
+> {
   constructor(options?: IMFellFrenchCanonOptions) {
     super(FAMILY, FACES, options);
   }

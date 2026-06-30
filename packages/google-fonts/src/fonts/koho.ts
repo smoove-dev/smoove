@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "KoHo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/koho/v18/K2FzfZ5fmddNNisssJ_DJaql.woff2",
     "200-normal": "https://fonts.gstatic.com/s/koho/v18/K2FxfZ5fmddNPuE1aJnzJw.woff2",
     "300-italic": "https://fonts.gstatic.com/s/koho/v18/K2FzfZ5fmddNNiss1JzDJaql.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/koho/v18/K2FzfZ5fmddNNissxJvDK6qlPys.woff2",
     "700-normal": "https://fonts.gstatic.com/s/koho/v18/K2FxfZ5fmddNPpUxaJfzJ7Kh.woff2",
   },
-  "thai": {
+  thai: {
     "200-italic": "https://fonts.gstatic.com/s/koho/v18/K2FzfZ5fmddNNisssJ_DMaqlPys.woff2",
     "200-normal": "https://fonts.gstatic.com/s/koho/v18/K2FxfZ5fmddNPuE1aI3zJ7Kh.woff2",
     "300-italic": "https://fonts.gstatic.com/s/koho/v18/K2FzfZ5fmddNNiss1JzDMaqlPys.woff2",
@@ -46,7 +46,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/koho/v18/K2FzfZ5fmddNNissxJvDMaqlPys.woff2",
     "700-normal": "https://fonts.gstatic.com/s/koho/v18/K2FxfZ5fmddNPpUxaI3zJ7Kh.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-italic": "https://fonts.gstatic.com/s/koho/v18/K2FzfZ5fmddNNisssJ_DKqqlPys.woff2",
     "200-normal": "https://fonts.gstatic.com/s/koho/v18/K2FxfZ5fmddNPuE1aJbzJ7Kh.woff2",
     "300-italic": "https://fonts.gstatic.com/s/koho/v18/K2FzfZ5fmddNNiss1JzDKqqlPys.woff2",

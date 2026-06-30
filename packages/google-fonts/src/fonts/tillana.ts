@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tillana";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/tillana/v15/VuJxdNvf35P4qJ1OSKDdObFn.woff2",
     "500-normal": "https://fonts.gstatic.com/s/tillana/v15/VuJ0dNvf35P4qJ1OQFL-LI9GZCNc.woff2",
     "600-normal": "https://fonts.gstatic.com/s/tillana/v15/VuJ0dNvf35P4qJ1OQH75LI9GZCNc.woff2",
     "700-normal": "https://fonts.gstatic.com/s/tillana/v15/VuJ0dNvf35P4qJ1OQBr4LI9GZCNc.woff2",
     "800-normal": "https://fonts.gstatic.com/s/tillana/v15/VuJ0dNvf35P4qJ1OQAb7LI9GZCNc.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tillana/v15/VuJxdNvf35P4qJ1OSKHdOQ.woff2",
     "500-normal": "https://fonts.gstatic.com/s/tillana/v15/VuJ0dNvf35P4qJ1OQFL-LI5GZA.woff2",
     "600-normal": "https://fonts.gstatic.com/s/tillana/v15/VuJ0dNvf35P4qJ1OQH75LI5GZA.woff2",

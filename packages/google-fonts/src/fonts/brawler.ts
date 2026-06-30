@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Brawler";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/brawler/v20/xn7gYHE3xXewAscGggexSg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/brawler/v20/xn7lYHE3xXewAscGiryUX9r8eQ.woff2",
   },

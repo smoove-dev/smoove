@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Goldman";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/goldman/v21/pe0uMIWbN4JFplR2HDVyBw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/goldman/v21/pe0rMIWbN4JFplR2FI5XEtCaBg.woff2",
   },
@@ -12,7 +12,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/goldman/v21/pe0uMIWbN4JFplR2HDtyB--7.woff2",
     "700-normal": "https://fonts.gstatic.com/s/goldman/v21/pe0rMIWbN4JFplR2FI5XEt6aBuZr.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/goldman/v21/pe0uMIWbN4JFplR2HDpyB--7.woff2",
     "700-normal": "https://fonts.gstatic.com/s/goldman/v21/pe0rMIWbN4JFplR2FI5XEt-aBuZr.woff2",
   },

@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lakki Reddy";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lakkireddy/v25/S6u5w49MUSzD9jlCPmvLZTfvzdg.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/lakkireddy/v25/S6u5w49MUSzD9jlCPmvLZTfzzdgN7w.woff2",
   },
 } as const;
@@ -15,13 +15,21 @@ const FACES = {
 export type LakkiReddyWeight = "400";
 export type LakkiReddyStyle = "normal";
 export type LakkiReddySubset = "latin" | "telugu";
-export type LakkiReddyOptions = GoogleFontOptions<LakkiReddyWeight, LakkiReddyStyle, LakkiReddySubset>;
+export type LakkiReddyOptions = GoogleFontOptions<
+  LakkiReddyWeight,
+  LakkiReddyStyle,
+  LakkiReddySubset
+>;
 
 /**
  * Lakki Reddy — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LakkiReddy extends GoogleFont<LakkiReddyWeight, LakkiReddyStyle, LakkiReddySubset> {
+export default class LakkiReddy extends GoogleFont<
+  LakkiReddyWeight,
+  LakkiReddyStyle,
+  LakkiReddySubset
+> {
   constructor(options?: LakkiReddyOptions) {
     super(FAMILY, FACES, options);
   }

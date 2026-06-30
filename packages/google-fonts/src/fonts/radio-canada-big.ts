@@ -4,38 +4,62 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Radio Canada Big";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai8BaJ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJOS8g.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai8BaJ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJOS8g.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai8BaJ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJOS8g.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai8BaJ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJOS8g.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai8BaJ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJOS8g.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai8BaJ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJOS8g.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai8BaJ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJOS8g.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai8BaJ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJOS8g.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai_haJh1k.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJ2S8g6N.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai_haJh1k.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJ2S8g6N.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai_haJh1k.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJ2S8g6N.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai_haJh1k.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJ2S8g6N.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai_haJh1k.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJ2S8g6N.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai_haJh1k.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJ2S8g6N.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai_haJh1k.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJ2S8g6N.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjfdHrinEImAoQewU0hyTsPFra4SJai_haJh1k.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/radiocanadabig/v3/LYjZdHrinEImAoQewU0hyTsPFra4SJ2S8g6N.woff2",
   },
 } as const;
 
 export type RadioCanadaBigWeight = "400" | "500" | "600" | "700";
 export type RadioCanadaBigStyle = "italic" | "normal";
 export type RadioCanadaBigSubset = "latin" | "latin-ext";
-export type RadioCanadaBigOptions = GoogleFontOptions<RadioCanadaBigWeight, RadioCanadaBigStyle, RadioCanadaBigSubset>;
+export type RadioCanadaBigOptions = GoogleFontOptions<
+  RadioCanadaBigWeight,
+  RadioCanadaBigStyle,
+  RadioCanadaBigSubset
+>;
 
 /**
  * Radio Canada Big — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RadioCanadaBig extends GoogleFont<RadioCanadaBigWeight, RadioCanadaBigStyle, RadioCanadaBigSubset> {
+export default class RadioCanadaBig extends GoogleFont<
+  RadioCanadaBigWeight,
+  RadioCanadaBigStyle,
+  RadioCanadaBigSubset
+> {
   constructor(options?: RadioCanadaBigOptions) {
     super(FAMILY, FACES, options);
   }

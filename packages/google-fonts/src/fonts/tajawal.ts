@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tajawal";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "200-normal": "https://fonts.gstatic.com/s/tajawal/v12/Iurf6YBj_oCad4k1l_6gHrRpiYlJ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/tajawal/v12/Iurf6YBj_oCad4k1l5qjHrRpiYlJ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tajawal/v12/Iura6YBj_oCad4k1nzSBC45I.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/tajawal/v12/Iurf6YBj_oCad4k1l5anHrRpiYlJ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/tajawal/v12/Iurf6YBj_oCad4k1l7KmHrRpiYlJ.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/tajawal/v12/Iurf6YBj_oCad4k1l_6gHrFpiQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/tajawal/v12/Iurf6YBj_oCad4k1l5qjHrFpiQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tajawal/v12/Iura6YBj_oCad4k1nzGBCw.woff2",

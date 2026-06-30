@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "UoqMunThenKhung";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/uoqmunthenkhung/v3/Y4GTYa1nVTQLt-D5LoLChg5aJjITw7j8fh8.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/uoqmunthenkhung/v3/Y4GTYa1nVTQLt-D5LoLChg5aJjITw7j8fh8.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/uoqmunthenkhung/v3/Y4GTYa1nVTQLt-D5LoLChg5aJjITx7j8.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/uoqmunthenkhung/v3/Y4GTYa1nVTQLt-D5LoLChg5aJjITx7j8.woff2",
   },
-  "symbols2": {
-    "400-normal": "https://fonts.gstatic.com/s/uoqmunthenkhung/v3/Y4GTYa1nVTQLt-D5LoLChg5aJjITfZnZQyYB.woff2",
+  symbols2: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/uoqmunthenkhung/v3/Y4GTYa1nVTQLt-D5LoLChg5aJjITfZnZQyYB.woff2",
   },
 } as const;
 
 export type UoqMunThenKhungWeight = "400";
 export type UoqMunThenKhungStyle = "normal";
 export type UoqMunThenKhungSubset = "cyrillic" | "latin" | "symbols2";
-export type UoqMunThenKhungOptions = GoogleFontOptions<UoqMunThenKhungWeight, UoqMunThenKhungStyle, UoqMunThenKhungSubset>;
+export type UoqMunThenKhungOptions = GoogleFontOptions<
+  UoqMunThenKhungWeight,
+  UoqMunThenKhungStyle,
+  UoqMunThenKhungSubset
+>;
 
 /**
  * UoqMunThenKhung — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class UoqMunThenKhung extends GoogleFont<UoqMunThenKhungWeight, UoqMunThenKhungStyle, UoqMunThenKhungSubset> {
+export default class UoqMunThenKhung extends GoogleFont<
+  UoqMunThenKhungWeight,
+  UoqMunThenKhungStyle,
+  UoqMunThenKhungSubset
+> {
   constructor(options?: UoqMunThenKhungOptions) {
     super(FAMILY, FACES, options);
   }

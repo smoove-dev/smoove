@@ -4,24 +4,36 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Edu SA Beginner";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/edusabeginner/v5/rnCw-xRb1x-1lHXnLaZZ2xOoLIG1X1oN.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/edusabeginner/v5/rnCw-xRb1x-1lHXnLaZZ2xOoLIG1X1oN.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/edusabeginner/v5/rnCw-xRb1x-1lHXnLaZZ2xOoLIG1X1oN.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/edusabeginner/v5/rnCw-xRb1x-1lHXnLaZZ2xOoLIG1X1oN.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/edusabeginner/v5/rnCw-xRb1x-1lHXnLaZZ2xOoLIG1X1oN.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/edusabeginner/v5/rnCw-xRb1x-1lHXnLaZZ2xOoLIG1X1oN.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/edusabeginner/v5/rnCw-xRb1x-1lHXnLaZZ2xOoLIG1X1oN.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/edusabeginner/v5/rnCw-xRb1x-1lHXnLaZZ2xOoLIG1X1oN.woff2",
   },
 } as const;
 
 export type EduSABeginnerWeight = "400" | "500" | "600" | "700";
 export type EduSABeginnerStyle = "normal";
 export type EduSABeginnerSubset = "latin";
-export type EduSABeginnerOptions = GoogleFontOptions<EduSABeginnerWeight, EduSABeginnerStyle, EduSABeginnerSubset>;
+export type EduSABeginnerOptions = GoogleFontOptions<
+  EduSABeginnerWeight,
+  EduSABeginnerStyle,
+  EduSABeginnerSubset
+>;
 
 /**
  * Edu SA Beginner — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EduSABeginner extends GoogleFont<EduSABeginnerWeight, EduSABeginnerStyle, EduSABeginnerSubset> {
+export default class EduSABeginner extends GoogleFont<
+  EduSABeginnerWeight,
+  EduSABeginnerStyle,
+  EduSABeginnerSubset
+> {
   constructor(options?: EduSABeginnerOptions) {
     super(FAMILY, FACES, options);
   }

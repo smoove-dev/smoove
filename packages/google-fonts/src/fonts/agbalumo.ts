@@ -7,16 +7,16 @@ const FACES = {
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/agbalumo/v6/55xvey5uMdT2N37KZfMPgLhE8A.woff2",
   },
-  "ethiopic": {
+  ethiopic: {
     "400-normal": "https://fonts.gstatic.com/s/agbalumo/v6/55xvey5uMdT2N37KZfMTgLhE8A.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/agbalumo/v6/55xvey5uMdT2N37KZfMCgLg.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/agbalumo/v6/55xvey5uMdT2N37KZfMMgLhE8A.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/agbalumo/v6/55xvey5uMdT2N37KZfMNgLhE8A.woff2",
   },
 } as const;

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Badeen Display";
 
 const FACES = {
-  "arabic": {
-    "400-normal": "https://fonts.gstatic.com/s/badeendisplay/v1/pxidypY2sdZSjFU4cPmNBzckaeeJaEx8qw.woff2",
+  arabic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/badeendisplay/v1/pxidypY2sdZSjFU4cPmNBzckaeeJaEx8qw.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/badeendisplay/v1/pxidypY2sdZSjFU4cPmNBzckaeeMaEw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/badeendisplay/v1/pxidypY2sdZSjFU4cPmNBzckaeeMaEw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/badeendisplay/v1/pxidypY2sdZSjFU4cPmNBzckaeeCaEx8qw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/badeendisplay/v1/pxidypY2sdZSjFU4cPmNBzckaeeCaEx8qw.woff2",
   },
 } as const;
 
 export type BadeenDisplayWeight = "400";
 export type BadeenDisplayStyle = "normal";
 export type BadeenDisplaySubset = "arabic" | "latin" | "latin-ext";
-export type BadeenDisplayOptions = GoogleFontOptions<BadeenDisplayWeight, BadeenDisplayStyle, BadeenDisplaySubset>;
+export type BadeenDisplayOptions = GoogleFontOptions<
+  BadeenDisplayWeight,
+  BadeenDisplayStyle,
+  BadeenDisplaySubset
+>;
 
 /**
  * Badeen Display — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BadeenDisplay extends GoogleFont<BadeenDisplayWeight, BadeenDisplayStyle, BadeenDisplaySubset> {
+export default class BadeenDisplay extends GoogleFont<
+  BadeenDisplayWeight,
+  BadeenDisplayStyle,
+  BadeenDisplaySubset
+> {
   constructor(options?: BadeenDisplayOptions) {
     super(FAMILY, FACES, options);
   }

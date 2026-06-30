@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Eczar";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0kDO5C8A.woff2",
     "500-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0kDO5C8A.woff2",
     "600-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0kDO5C8A.woff2",
     "700-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0kDO5C8A.woff2",
     "800-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0kDO5C8A.woff2",
   },
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0mDO5C8A.woff2",
     "500-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0mDO5C8A.woff2",
     "600-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0mDO5C8A.woff2",
@@ -25,7 +25,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0pDO5C8A.woff2",
     "800-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0pDO5C8A.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0lDO4.woff2",
     "500-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0lDO4.woff2",
     "600-normal": "https://fonts.gstatic.com/s/eczar/v27/BXRlvF3Pi-DLmz0lDO4.woff2",

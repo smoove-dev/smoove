@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Triodion";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/triodion/v3/IFSnHe5TgMVEmMQV5lr6seSF0g.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/triodion/v3/IFSnHe5TgMVEmMQV5lrzseSF0g.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/triodion/v3/IFSnHe5TgMVEmMQV5lr-seQ.woff2",
   },
 } as const;

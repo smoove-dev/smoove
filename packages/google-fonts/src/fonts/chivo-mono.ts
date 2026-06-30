@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Chivo Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/chivomono/v11/mFT2WbgRxKvF_Z5eQMO9gxoz12p_.woff2",
     "100-normal": "https://fonts.gstatic.com/s/chivomono/v11/mFT0WbgRxKvF_Z5eQMO9gx8D1Q.woff2",
     "200-italic": "https://fonts.gstatic.com/s/chivomono/v11/mFT2WbgRxKvF_Z5eQMO9gxoz12p_.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/chivomono/v11/mFT2WbgRxKvF_Z5eQMO9gxoz2Wp_q90.woff2",
     "900-normal": "https://fonts.gstatic.com/s/chivomono/v11/mFT0WbgRxKvF_Z5eQMO9gxED1XJ7.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/chivomono/v11/mFT2WbgRxKvF_Z5eQMO9gxoz2Gp_q90.woff2",
     "100-normal": "https://fonts.gstatic.com/s/chivomono/v11/mFT0WbgRxKvF_Z5eQMO9gxAD1XJ7.woff2",
     "200-italic": "https://fonts.gstatic.com/s/chivomono/v11/mFT2WbgRxKvF_Z5eQMO9gxoz2Gp_q90.woff2",
@@ -75,7 +75,11 @@ export type ChivoMonoOptions = GoogleFontOptions<ChivoMonoWeight, ChivoMonoStyle
  * Chivo Mono — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ChivoMono extends GoogleFont<ChivoMonoWeight, ChivoMonoStyle, ChivoMonoSubset> {
+export default class ChivoMono extends GoogleFont<
+  ChivoMonoWeight,
+  ChivoMonoStyle,
+  ChivoMonoSubset
+> {
   constructor(options?: ChivoMonoOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Vollkorn";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWEseqSg1.woff2",
     "400-normal": "https://fonts.gstatic.com/s/vollkorn/v30/0yb9GDoxxrvAnPhYGxktaE0GrQ.woff2",
     "500-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWEseqSg1.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWEIeqSg1.woff2",
     "900-normal": "https://fonts.gstatic.com/s/vollkorn/v30/0yb9GDoxxrvAnPhYGxkkaE0GrQ.woff2",
   },
-  "greek": {
+  greek: {
     "400-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWEweqSg1.woff2",
     "400-normal": "https://fonts.gstatic.com/s/vollkorn/v30/0yb9GDoxxrvAnPhYGxkqaE0GrQ.woff2",
     "500-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWEweqSg1.woff2",
@@ -46,7 +46,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWEweqSg1.woff2",
     "900-normal": "https://fonts.gstatic.com/s/vollkorn/v30/0yb9GDoxxrvAnPhYGxkqaE0GrQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWE8eqQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/vollkorn/v30/0yb9GDoxxrvAnPhYGxkpaE0.woff2",
     "500-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWE8eqQ.woff2",
@@ -74,7 +74,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWEEeqSg1.woff2",
     "900-normal": "https://fonts.gstatic.com/s/vollkorn/v30/0yb9GDoxxrvAnPhYGxknaE0GrQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWEAeqSg1.woff2",
     "400-normal": "https://fonts.gstatic.com/s/vollkorn/v30/0yb9GDoxxrvAnPhYGxkmaE0GrQ.woff2",
     "500-italic": "https://fonts.gstatic.com/s/vollkorn/v30/0yb7GDoxxrvAnPhYGxksWEAeqSg1.woff2",
@@ -92,7 +92,13 @@ const FACES = {
 
 export type VollkornWeight = "400" | "500" | "600" | "700" | "800" | "900";
 export type VollkornStyle = "italic" | "normal";
-export type VollkornSubset = "cyrillic" | "cyrillic-ext" | "greek" | "latin" | "latin-ext" | "vietnamese";
+export type VollkornSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type VollkornOptions = GoogleFontOptions<VollkornWeight, VollkornStyle, VollkornSubset>;
 
 /**

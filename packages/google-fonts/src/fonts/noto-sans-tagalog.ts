@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Tagalog";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstagalog/v23/J7aFnoNzCnFcV9ZI-sUYuvote1R0wzEHCck.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstagalog/v23/J7aFnoNzCnFcV9ZI-sUYuvote1R0wzEHCck.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstagalog/v23/J7aFnoNzCnFcV9ZI-sUYuvote1R0wzEJCcn3ew.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstagalog/v23/J7aFnoNzCnFcV9ZI-sUYuvote1R0wzEJCcn3ew.woff2",
   },
-  "tagalog": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstagalog/v23/J7aFnoNzCnFcV9ZI-sUYuvote1R0wzExCcn3ew.woff2",
+  tagalog: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstagalog/v23/J7aFnoNzCnFcV9ZI-sUYuvote1R0wzExCcn3ew.woff2",
   },
 } as const;
 
 export type NotoSansTagalogWeight = "400";
 export type NotoSansTagalogStyle = "normal";
 export type NotoSansTagalogSubset = "latin" | "latin-ext" | "tagalog";
-export type NotoSansTagalogOptions = GoogleFontOptions<NotoSansTagalogWeight, NotoSansTagalogStyle, NotoSansTagalogSubset>;
+export type NotoSansTagalogOptions = GoogleFontOptions<
+  NotoSansTagalogWeight,
+  NotoSansTagalogStyle,
+  NotoSansTagalogSubset
+>;
 
 /**
  * Noto Sans Tagalog — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansTagalog extends GoogleFont<NotoSansTagalogWeight, NotoSansTagalogStyle, NotoSansTagalogSubset> {
+export default class NotoSansTagalog extends GoogleFont<
+  NotoSansTagalogWeight,
+  NotoSansTagalogStyle,
+  NotoSansTagalogSubset
+> {
   constructor(options?: NotoSansTagalogOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Meddon";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/meddon/v27/kmK8ZqA2EgDNeHTpgx1A.woff2",
   },
   "latin-ext": {

@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rozha One";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/rozhaone/v17/AlZy_zVFtYP12Zncg2kRc335bB0.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rozhaone/v17/AlZy_zVFtYP12Zncg2kRcn35.woff2",
   },
   "latin-ext": {

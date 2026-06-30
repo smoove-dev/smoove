@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Original Surfer";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/originalsurfer/v25/RWmQoKGZ9vIirYntXJ3_MbekzNMSC0Fu.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/originalsurfer/v25/RWmQoKGZ9vIirYntXJ3_MbekzNMSC0Fu.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/originalsurfer/v25/RWmQoKGZ9vIirYntXJ3_MbekzNMSBUFuMlY.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/originalsurfer/v25/RWmQoKGZ9vIirYntXJ3_MbekzNMSBUFuMlY.woff2",
   },
 } as const;
 
 export type OriginalSurferWeight = "400";
 export type OriginalSurferStyle = "normal";
 export type OriginalSurferSubset = "latin" | "latin-ext";
-export type OriginalSurferOptions = GoogleFontOptions<OriginalSurferWeight, OriginalSurferStyle, OriginalSurferSubset>;
+export type OriginalSurferOptions = GoogleFontOptions<
+  OriginalSurferWeight,
+  OriginalSurferStyle,
+  OriginalSurferSubset
+>;
 
 /**
  * Original Surfer — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class OriginalSurfer extends GoogleFont<OriginalSurferWeight, OriginalSurferStyle, OriginalSurferSubset> {
+export default class OriginalSurfer extends GoogleFont<
+  OriginalSurferWeight,
+  OriginalSurferStyle,
+  OriginalSurferSubset
+> {
   constructor(options?: OriginalSurferOptions) {
     super(FAMILY, FACES, options);
   }

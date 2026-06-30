@@ -4,42 +4,66 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Anonymous Pro";
 
 const FACES = {
-  "cyrillic": {
-    "400-italic": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2fp2a15UIB7Un-bOeISG3pHl4G8wn50Ko.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2Bp2a15UIB7Un-bOeISG3pHl829RH9.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2ap2a15UIB7Un-bOeISG3pHl4OTCzs64u24Ko.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2cp2a15UIB7Un-bOeISG3pFuAT4Crc7ZOy.woff2",
+  cyrillic: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2fp2a15UIB7Un-bOeISG3pHl4G8wn50Ko.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2Bp2a15UIB7Un-bOeISG3pHl829RH9.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2ap2a15UIB7Un-bOeISG3pHl4OTCzs64u24Ko.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2cp2a15UIB7Un-bOeISG3pFuAT4Crc7ZOy.woff2",
   },
-  "greek": {
-    "400-italic": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2fp2a15UIB7Un-bOeISG3pHl4G9An50Ko.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2Bp2a15UIB7Un-bOeISG3pHlg29RH9.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2ap2a15UIB7Un-bOeISG3pHl4OTCzs7Iu24Ko.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2cp2a15UIB7Un-bOeISG3pFuAT4C3c7ZOy.woff2",
+  greek: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2fp2a15UIB7Un-bOeISG3pHl4G9An50Ko.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2Bp2a15UIB7Un-bOeISG3pHlg29RH9.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2ap2a15UIB7Un-bOeISG3pHl4OTCzs7Iu24Ko.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2cp2a15UIB7Un-bOeISG3pFuAT4C3c7ZOy.woff2",
   },
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2fp2a15UIB7Un-bOeISG3pHl4G9wn5.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2Bp2a15UIB7Un-bOeISG3pHls29Q.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2ap2a15UIB7Un-bOeISG3pHl4OTCzs74u2.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2cp2a15UIB7Un-bOeISG3pFuAT4C7c7Q.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2fp2a15UIB7Un-bOeISG3pHl4G9wn5.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2Bp2a15UIB7Un-bOeISG3pHls29Q.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2ap2a15UIB7Un-bOeISG3pHl4OTCzs74u2.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2cp2a15UIB7Un-bOeISG3pFuAT4C7c7Q.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2fp2a15UIB7Un-bOeISG3pHl4G-Qn50Ko.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2Bp2a15UIB7Un-bOeISG3pHlU29RH9.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2ap2a15UIB7Un-bOeISG3pHl4OTCzs4Yu24Ko.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/anonymouspro/v22/rP2cp2a15UIB7Un-bOeISG3pFuAT4CDc7ZOy.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2fp2a15UIB7Un-bOeISG3pHl4G-Qn50Ko.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2Bp2a15UIB7Un-bOeISG3pHlU29RH9.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2ap2a15UIB7Un-bOeISG3pHl4OTCzs4Yu24Ko.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/anonymouspro/v22/rP2cp2a15UIB7Un-bOeISG3pFuAT4CDc7ZOy.woff2",
   },
 } as const;
 
 export type AnonymousProWeight = "400" | "700";
 export type AnonymousProStyle = "italic" | "normal";
 export type AnonymousProSubset = "cyrillic" | "greek" | "latin" | "latin-ext";
-export type AnonymousProOptions = GoogleFontOptions<AnonymousProWeight, AnonymousProStyle, AnonymousProSubset>;
+export type AnonymousProOptions = GoogleFontOptions<
+  AnonymousProWeight,
+  AnonymousProStyle,
+  AnonymousProSubset
+>;
 
 /**
  * Anonymous Pro — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AnonymousPro extends GoogleFont<AnonymousProWeight, AnonymousProStyle, AnonymousProSubset> {
+export default class AnonymousPro extends GoogleFont<
+  AnonymousProWeight,
+  AnonymousProStyle,
+  AnonymousProSubset
+> {
   constructor(options?: AnonymousProOptions) {
     super(FAMILY, FACES, options);
   }

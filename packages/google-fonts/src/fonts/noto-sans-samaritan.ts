@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Samaritan";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssamaritan/v17/buEqppe9f8_vkXadMBJJo0tSmaYjFkxOYolpNw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssamaritan/v17/buEqppe9f8_vkXadMBJJo0tSmaYjFkxOYolpNw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssamaritan/v17/buEqppe9f8_vkXadMBJJo0tSmaYjFkxOYodpN2OV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssamaritan/v17/buEqppe9f8_vkXadMBJJo0tSmaYjFkxOYodpN2OV.woff2",
   },
-  "samaritan": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanssamaritan/v17/buEqppe9f8_vkXadMBJJo0tSmaYjFkxOYrdpN2OV.woff2",
+  samaritan: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanssamaritan/v17/buEqppe9f8_vkXadMBJJo0tSmaYjFkxOYrdpN2OV.woff2",
   },
 } as const;
 
 export type NotoSansSamaritanWeight = "400";
 export type NotoSansSamaritanStyle = "normal";
 export type NotoSansSamaritanSubset = "latin" | "latin-ext" | "samaritan";
-export type NotoSansSamaritanOptions = GoogleFontOptions<NotoSansSamaritanWeight, NotoSansSamaritanStyle, NotoSansSamaritanSubset>;
+export type NotoSansSamaritanOptions = GoogleFontOptions<
+  NotoSansSamaritanWeight,
+  NotoSansSamaritanStyle,
+  NotoSansSamaritanSubset
+>;
 
 /**
  * Noto Sans Samaritan — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansSamaritan extends GoogleFont<NotoSansSamaritanWeight, NotoSansSamaritanStyle, NotoSansSamaritanSubset> {
+export default class NotoSansSamaritan extends GoogleFont<
+  NotoSansSamaritanWeight,
+  NotoSansSamaritanStyle,
+  NotoSansSamaritanSubset
+> {
   constructor(options?: NotoSansSamaritanOptions) {
     super(FAMILY, FACES, options);
   }

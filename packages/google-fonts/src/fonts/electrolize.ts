@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Electrolize";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/electrolize/v20/cIf5Ma1dtE0zSiGSiED7AXEBuI8.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type ElectrolizeWeight = "400";
 export type ElectrolizeStyle = "normal";
 export type ElectrolizeSubset = "latin";
-export type ElectrolizeOptions = GoogleFontOptions<ElectrolizeWeight, ElectrolizeStyle, ElectrolizeSubset>;
+export type ElectrolizeOptions = GoogleFontOptions<
+  ElectrolizeWeight,
+  ElectrolizeStyle,
+  ElectrolizeSubset
+>;
 
 /**
  * Electrolize — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Electrolize extends GoogleFont<ElectrolizeWeight, ElectrolizeStyle, ElectrolizeSubset> {
+export default class Electrolize extends GoogleFont<
+  ElectrolizeWeight,
+  ElectrolizeStyle,
+  ElectrolizeSubset
+> {
   constructor(options?: ElectrolizeOptions) {
     super(FAMILY, FACES, options);
   }

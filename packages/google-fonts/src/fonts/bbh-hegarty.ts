@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "BBH Hegarty";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bbhhegarty/v1/yYLt0hbb_dvjg8talgb5vAHW8NY.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type BBHHegartyWeight = "400";
 export type BBHHegartyStyle = "normal";
 export type BBHHegartySubset = "latin";
-export type BBHHegartyOptions = GoogleFontOptions<BBHHegartyWeight, BBHHegartyStyle, BBHHegartySubset>;
+export type BBHHegartyOptions = GoogleFontOptions<
+  BBHHegartyWeight,
+  BBHHegartyStyle,
+  BBHHegartySubset
+>;
 
 /**
  * BBH Hegarty — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BBHHegarty extends GoogleFont<BBHHegartyWeight, BBHHegartyStyle, BBHHegartySubset> {
+export default class BBHHegarty extends GoogleFont<
+  BBHHegartyWeight,
+  BBHHegartyStyle,
+  BBHHegartySubset
+> {
   constructor(options?: BBHHegartyOptions) {
     super(FAMILY, FACES, options);
   }

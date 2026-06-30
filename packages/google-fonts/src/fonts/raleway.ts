@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Raleway";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-italic": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4SYFqPfE.woff2",
     "100-normal": "https://fonts.gstatic.com/s/raleway/v37/1Ptug8zYS_SKggPNyCkIT5lu.woff2",
     "200-italic": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4SYFqPfE.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2",
     "900-normal": "https://fonts.gstatic.com/s/raleway/v37/1Ptug8zYS_SKggPNyCAIT5lu.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4TYFq.woff2",
     "100-normal": "https://fonts.gstatic.com/s/raleway/v37/1Ptug8zYS_SKggPNyC0ITw.woff2",
     "200-italic": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4TYFq.woff2",
@@ -84,7 +84,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4Q4FqPfE.woff2",
     "900-normal": "https://fonts.gstatic.com/s/raleway/v37/1Ptug8zYS_SKggPNyCMIT5lu.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4QoFqPfE.woff2",
     "100-normal": "https://fonts.gstatic.com/s/raleway/v37/1Ptug8zYS_SKggPNyCIIT5lu.woff2",
     "200-italic": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4QoFqPfE.woff2",

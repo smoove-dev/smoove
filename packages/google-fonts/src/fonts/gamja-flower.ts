@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gamja Flower";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gamjaflower/v26/6NUR8FiKJg-Pa0rM6uN40Z4UzvVE.woff2",
   },
 } as const;
@@ -12,13 +12,21 @@ const FACES = {
 export type GamjaFlowerWeight = "400";
 export type GamjaFlowerStyle = "normal";
 export type GamjaFlowerSubset = "latin";
-export type GamjaFlowerOptions = GoogleFontOptions<GamjaFlowerWeight, GamjaFlowerStyle, GamjaFlowerSubset>;
+export type GamjaFlowerOptions = GoogleFontOptions<
+  GamjaFlowerWeight,
+  GamjaFlowerStyle,
+  GamjaFlowerSubset
+>;
 
 /**
  * Gamja Flower — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GamjaFlower extends GoogleFont<GamjaFlowerWeight, GamjaFlowerStyle, GamjaFlowerSubset> {
+export default class GamjaFlower extends GoogleFont<
+  GamjaFlowerWeight,
+  GamjaFlowerStyle,
+  GamjaFlowerSubset
+> {
   constructor(options?: GamjaFlowerOptions) {
     super(FAMILY, FACES, options);
   }

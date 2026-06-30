@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hanalei";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/hanalei/v24/E21n_dD8iufIjBRHbz8sVg.woff2",
   },
   "latin-ext": {

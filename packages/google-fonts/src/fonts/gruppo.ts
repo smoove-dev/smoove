@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gruppo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gruppo/v23/WwkfxPmzE06v_ZW1XnrB.woff2",
   },
   "latin-ext": {

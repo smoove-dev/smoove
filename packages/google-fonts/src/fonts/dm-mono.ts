@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "DM Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/dmmono/v16/aFTT7PB1QTsUX8KYth-orYadb435.woff2",
     "300-normal": "https://fonts.gstatic.com/s/dmmono/v16/aFTR7PB1QTsUX8KYvrGyEYOtbQ.woff2",
     "400-italic": "https://fonts.gstatic.com/s/dmmono/v16/aFTW7PB1QTsUX8KYth-gBqSI.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sacramento";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sacramento/v17/buEzpo6gcdjy0EiZMBUG4C0f_Q.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type SacramentoWeight = "400";
 export type SacramentoStyle = "normal";
 export type SacramentoSubset = "latin" | "latin-ext";
-export type SacramentoOptions = GoogleFontOptions<SacramentoWeight, SacramentoStyle, SacramentoSubset>;
+export type SacramentoOptions = GoogleFontOptions<
+  SacramentoWeight,
+  SacramentoStyle,
+  SacramentoSubset
+>;
 
 /**
  * Sacramento — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Sacramento extends GoogleFont<SacramentoWeight, SacramentoStyle, SacramentoSubset> {
+export default class Sacramento extends GoogleFont<
+  SacramentoWeight,
+  SacramentoStyle,
+  SacramentoSubset
+> {
   constructor(options?: SacramentoOptions) {
     super(FAMILY, FACES, options);
   }

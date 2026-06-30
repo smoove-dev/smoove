@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lavishly Yours";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/lavishlyyours/v7/jizDREVIvGwH5OjiZmX9r5z_WyUf2zc.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/lavishlyyours/v7/jizDREVIvGwH5OjiZmX9r5z_WyUf2zc.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/lavishlyyours/v7/jizDREVIvGwH5OjiZmX9r5z_WyUR2zcLig.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/lavishlyyours/v7/jizDREVIvGwH5OjiZmX9r5z_WyUR2zcLig.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/lavishlyyours/v7/jizDREVIvGwH5OjiZmX9r5z_WyUQ2zcLig.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/lavishlyyours/v7/jizDREVIvGwH5OjiZmX9r5z_WyUQ2zcLig.woff2",
   },
 } as const;
 
 export type LavishlyYoursWeight = "400";
 export type LavishlyYoursStyle = "normal";
 export type LavishlyYoursSubset = "latin" | "latin-ext" | "vietnamese";
-export type LavishlyYoursOptions = GoogleFontOptions<LavishlyYoursWeight, LavishlyYoursStyle, LavishlyYoursSubset>;
+export type LavishlyYoursOptions = GoogleFontOptions<
+  LavishlyYoursWeight,
+  LavishlyYoursStyle,
+  LavishlyYoursSubset
+>;
 
 /**
  * Lavishly Yours — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LavishlyYours extends GoogleFont<LavishlyYoursWeight, LavishlyYoursStyle, LavishlyYoursSubset> {
+export default class LavishlyYours extends GoogleFont<
+  LavishlyYoursWeight,
+  LavishlyYoursStyle,
+  LavishlyYoursSubset
+> {
   constructor(options?: LavishlyYoursOptions) {
     super(FAMILY, FACES, options);
   }

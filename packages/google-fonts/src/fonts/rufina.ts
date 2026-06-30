@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rufina";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rufina/v17/Yq6V-LyURyLy-aKCpB5l.woff2",
     "700-normal": "https://fonts.gstatic.com/s/rufina/v17/Yq6W-LyURyLy-aKKHztwu8Zf.woff2",
   },

@@ -5,40 +5,68 @@ const FAMILY = "Recursive";
 
 const FACES = {
   "cyrillic-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTyZnJ97.woff2",
   },
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlTGZnA.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT-ZnJ97.woff2",
   },
-  "vietnamese": {
-    "300-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
+  vietnamese: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/recursive/v44/8vI-7wMr0mhh-RQChyHEH06TlXhq_gukbYrFMk1QuAIcyEwG_X-dpEfaE5YaERmK-CImKsvxvU-MXGX2fSqasNfUlT6ZnJ97.woff2",
   },
 } as const;
 
@@ -51,7 +79,11 @@ export type RecursiveOptions = GoogleFontOptions<RecursiveWeight, RecursiveStyle
  * Recursive — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Recursive extends GoogleFont<RecursiveWeight, RecursiveStyle, RecursiveSubset> {
+export default class Recursive extends GoogleFont<
+  RecursiveWeight,
+  RecursiveStyle,
+  RecursiveSubset
+> {
   constructor(options?: RecursiveOptions) {
     super(FAMILY, FACES, options);
   }

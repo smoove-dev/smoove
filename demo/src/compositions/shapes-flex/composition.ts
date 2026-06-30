@@ -3,12 +3,12 @@ import {
   Composition,
   Easing,
   Flex,
+  interpolate,
   Rect,
   RegularPolygon,
   Ring,
   Sequence,
   Star,
-  interpolate,
 } from "@smoove/core";
 
 const width = 1280;

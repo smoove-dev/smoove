@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Telex";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/telex/v18/ieVw2Y1fKWmIO-fUDVs.woff2",
   },
   "latin-ext": {

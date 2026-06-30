@@ -4,14 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Baloo Bhai 2";
 
 const FACES = {
-  "gujarati": {
-    "400-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHbd7nuH0.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHbd7nuH0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHbd7nuH0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHbd7nuH0.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHbd7nuH0.woff2",
+  gujarati: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHbd7nuH0.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHbd7nuH0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHbd7nuH0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHbd7nuH0.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHbd7nuH0.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHdt7n.woff2",
     "500-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHdt7n.woff2",
     "600-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHdt7n.woff2",
@@ -19,31 +24,49 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHdt7n.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHeN7nuH0.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHeN7nuH0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHeN7nuH0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHeN7nuH0.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHeN7nuH0.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHeN7nuH0.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHeN7nuH0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHeN7nuH0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHeN7nuH0.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHeN7nuH0.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHed7nuH0.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHed7nuH0.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHed7nuH0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHed7nuH0.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHed7nuH0.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHed7nuH0.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHed7nuH0.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHed7nuH0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHed7nuH0.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/baloobhai2/v30/sZlDdRSL-z1VEWZ4YNA7Y5IHed7nuH0.woff2",
   },
 } as const;
 
 export type BalooBhai2Weight = "400" | "500" | "600" | "700" | "800";
 export type BalooBhai2Style = "normal";
 export type BalooBhai2Subset = "gujarati" | "latin" | "latin-ext" | "vietnamese";
-export type BalooBhai2Options = GoogleFontOptions<BalooBhai2Weight, BalooBhai2Style, BalooBhai2Subset>;
+export type BalooBhai2Options = GoogleFontOptions<
+  BalooBhai2Weight,
+  BalooBhai2Style,
+  BalooBhai2Subset
+>;
 
 /**
  * Baloo Bhai 2 — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BalooBhai2 extends GoogleFont<BalooBhai2Weight, BalooBhai2Style, BalooBhai2Subset> {
+export default class BalooBhai2 extends GoogleFont<
+  BalooBhai2Weight,
+  BalooBhai2Style,
+  BalooBhai2Subset
+> {
   constructor(options?: BalooBhai2Options) {
     super(FAMILY, FACES, options);
   }

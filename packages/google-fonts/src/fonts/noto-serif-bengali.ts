@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Bengali";
 
 const FACES = {
-  "bengali": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
+  bengali: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKyg8JCJZ.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzo8JA.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifbengali/v31/hYkhPvggTvnzO14VSXltirUdnnkt1pwmWrprmO7RjE0a5BtdKzQ8JCJZ.woff2",
   },
 } as const;
 
-export type NotoSerifBengaliWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSerifBengaliWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSerifBengaliStyle = "normal";
 export type NotoSerifBengaliSubset = "bengali" | "latin" | "latin-ext";
-export type NotoSerifBengaliOptions = GoogleFontOptions<NotoSerifBengaliWeight, NotoSerifBengaliStyle, NotoSerifBengaliSubset>;
+export type NotoSerifBengaliOptions = GoogleFontOptions<
+  NotoSerifBengaliWeight,
+  NotoSerifBengaliStyle,
+  NotoSerifBengaliSubset
+>;
 
 /**
  * Noto Serif Bengali — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifBengali extends GoogleFont<NotoSerifBengaliWeight, NotoSerifBengaliStyle, NotoSerifBengaliSubset> {
+export default class NotoSerifBengali extends GoogleFont<
+  NotoSerifBengaliWeight,
+  NotoSerifBengaliStyle,
+  NotoSerifBengaliSubset
+> {
   constructor(options?: NotoSerifBengaliOptions) {
     super(FAMILY, FACES, options);
   }

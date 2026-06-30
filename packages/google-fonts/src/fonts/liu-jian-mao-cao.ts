@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Liu Jian Mao Cao";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/liujianmaocao/v24/845DNN84HJrccNonurqXILGpvCOoTe3fKQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/liujianmaocao/v24/845DNN84HJrccNonurqXILGpvCOoTe3fKQ.woff2",
   },
 } as const;
 
 export type LiuJianMaoCaoWeight = "400";
 export type LiuJianMaoCaoStyle = "normal";
 export type LiuJianMaoCaoSubset = "latin";
-export type LiuJianMaoCaoOptions = GoogleFontOptions<LiuJianMaoCaoWeight, LiuJianMaoCaoStyle, LiuJianMaoCaoSubset>;
+export type LiuJianMaoCaoOptions = GoogleFontOptions<
+  LiuJianMaoCaoWeight,
+  LiuJianMaoCaoStyle,
+  LiuJianMaoCaoSubset
+>;
 
 /**
  * Liu Jian Mao Cao — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LiuJianMaoCao extends GoogleFont<LiuJianMaoCaoWeight, LiuJianMaoCaoStyle, LiuJianMaoCaoSubset> {
+export default class LiuJianMaoCao extends GoogleFont<
+  LiuJianMaoCaoWeight,
+  LiuJianMaoCaoStyle,
+  LiuJianMaoCaoSubset
+> {
   constructor(options?: LiuJianMaoCaoOptions) {
     super(FAMILY, FACES, options);
   }

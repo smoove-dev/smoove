@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Are You Serious";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/areyouserious/v14/ll8kK2GVSSr-PtjQ5nONVcNn430KgjVm.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/areyouserious/v14/ll8kK2GVSSr-PtjQ5nONVcNn430KgjVm.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/areyouserious/v14/ll8kK2GVSSr-PtjQ5nONVcNn430KjDVmOGQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/areyouserious/v14/ll8kK2GVSSr-PtjQ5nONVcNn430KjDVmOGQ.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/areyouserious/v14/ll8kK2GVSSr-PtjQ5nONVcNn430KjTVmOGQ.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/areyouserious/v14/ll8kK2GVSSr-PtjQ5nONVcNn430KjTVmOGQ.woff2",
   },
 } as const;
 
 export type AreYouSeriousWeight = "400";
 export type AreYouSeriousStyle = "normal";
 export type AreYouSeriousSubset = "latin" | "latin-ext" | "vietnamese";
-export type AreYouSeriousOptions = GoogleFontOptions<AreYouSeriousWeight, AreYouSeriousStyle, AreYouSeriousSubset>;
+export type AreYouSeriousOptions = GoogleFontOptions<
+  AreYouSeriousWeight,
+  AreYouSeriousStyle,
+  AreYouSeriousSubset
+>;
 
 /**
  * Are You Serious — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AreYouSerious extends GoogleFont<AreYouSeriousWeight, AreYouSeriousStyle, AreYouSeriousSubset> {
+export default class AreYouSerious extends GoogleFont<
+  AreYouSeriousWeight,
+  AreYouSeriousStyle,
+  AreYouSeriousSubset
+> {
   constructor(options?: AreYouSeriousOptions) {
     super(FAMILY, FACES, options);
   }

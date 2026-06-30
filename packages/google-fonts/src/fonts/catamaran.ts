@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Catamaran";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/catamaran/v28/o-0IIpQoyXQa2RxT7-5r5TRA.woff2",
     "200-normal": "https://fonts.gstatic.com/s/catamaran/v28/o-0IIpQoyXQa2RxT7-5r5TRA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/catamaran/v28/o-0IIpQoyXQa2RxT7-5r5TRA.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/catamaran/v28/o-0IIpQoyXQa2RxT7-5r6zRAW_0.woff2",
     "900-normal": "https://fonts.gstatic.com/s/catamaran/v28/o-0IIpQoyXQa2RxT7-5r6zRAW_0.woff2",
   },
-  "tamil": {
+  tamil: {
     "100-normal": "https://fonts.gstatic.com/s/catamaran/v28/o-0IIpQoyXQa2RxT7-5r8zRAW_0.woff2",
     "200-normal": "https://fonts.gstatic.com/s/catamaran/v28/o-0IIpQoyXQa2RxT7-5r8zRAW_0.woff2",
     "300-normal": "https://fonts.gstatic.com/s/catamaran/v28/o-0IIpQoyXQa2RxT7-5r8zRAW_0.woff2",
@@ -48,7 +48,11 @@ export type CatamaranOptions = GoogleFontOptions<CatamaranWeight, CatamaranStyle
  * Catamaran — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Catamaran extends GoogleFont<CatamaranWeight, CatamaranStyle, CatamaranSubset> {
+export default class Catamaran extends GoogleFont<
+  CatamaranWeight,
+  CatamaranStyle,
+  CatamaranSubset
+> {
   constructor(options?: CatamaranOptions) {
     super(FAMILY, FACES, options);
   }

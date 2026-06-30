@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Corinthia";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/corinthia/v13/wEO_EBrAnchaJyPMHE01VvoK.woff2",
     "700-normal": "https://fonts.gstatic.com/s/corinthia/v13/wEO6EBrAnchaJyPMHE097d8f02oa.woff2",
   },
@@ -12,7 +12,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/corinthia/v13/wEO_EBrAnchaJyPMHE01WPoK7Es.woff2",
     "700-normal": "https://fonts.gstatic.com/s/corinthia/v13/wEO6EBrAnchaJyPMHE097d8f3WoasbI.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/corinthia/v13/wEO_EBrAnchaJyPMHE01WfoK7Es.woff2",
     "700-normal": "https://fonts.gstatic.com/s/corinthia/v13/wEO6EBrAnchaJyPMHE097d8f3GoasbI.woff2",
   },
@@ -27,7 +27,11 @@ export type CorinthiaOptions = GoogleFontOptions<CorinthiaWeight, CorinthiaStyle
  * Corinthia — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Corinthia extends GoogleFont<CorinthiaWeight, CorinthiaStyle, CorinthiaSubset> {
+export default class Corinthia extends GoogleFont<
+  CorinthiaWeight,
+  CorinthiaStyle,
+  CorinthiaSubset
+> {
   constructor(options?: CorinthiaOptions) {
     super(FAMILY, FACES, options);
   }

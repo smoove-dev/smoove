@@ -4,34 +4,50 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "PT Sans Narrow";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngRUXNadjH0qYEzV7ab-oWlsbCCwR26eg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngSUXNadjH0qYEzV7ab-oWlsbg95AiBW_3QRQ.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngRUXNadjH0qYEzV7ab-oWlsbCCwR26eg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngSUXNadjH0qYEzV7ab-oWlsbg95AiBW_3QRQ.woff2",
   },
   "cyrillic-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngRUXNadjH0qYEzV7ab-oWlsbCLwR26eg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngSUXNadjH0qYEzV7ab-oWlsbg95AiIW_3QRQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngRUXNadjH0qYEzV7ab-oWlsbCLwR26eg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngSUXNadjH0qYEzV7ab-oWlsbg95AiIW_3QRQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngRUXNadjH0qYEzV7ab-oWlsbCGwR0.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngSUXNadjH0qYEzV7ab-oWlsbg95AiFW_0.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngRUXNadjH0qYEzV7ab-oWlsbCGwR0.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngSUXNadjH0qYEzV7ab-oWlsbg95AiFW_0.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngRUXNadjH0qYEzV7ab-oWlsbCIwR26eg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngSUXNadjH0qYEzV7ab-oWlsbg95AiLW_3QRQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngRUXNadjH0qYEzV7ab-oWlsbCIwR26eg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ptsansnarrow/v19/BngSUXNadjH0qYEzV7ab-oWlsbg95AiLW_3QRQ.woff2",
   },
 } as const;
 
 export type PTSansNarrowWeight = "400" | "700";
 export type PTSansNarrowStyle = "normal";
 export type PTSansNarrowSubset = "cyrillic" | "cyrillic-ext" | "latin" | "latin-ext";
-export type PTSansNarrowOptions = GoogleFontOptions<PTSansNarrowWeight, PTSansNarrowStyle, PTSansNarrowSubset>;
+export type PTSansNarrowOptions = GoogleFontOptions<
+  PTSansNarrowWeight,
+  PTSansNarrowStyle,
+  PTSansNarrowSubset
+>;
 
 /**
  * PT Sans Narrow — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PTSansNarrow extends GoogleFont<PTSansNarrowWeight, PTSansNarrowStyle, PTSansNarrowSubset> {
+export default class PTSansNarrow extends GoogleFont<
+  PTSansNarrowWeight,
+  PTSansNarrowStyle,
+  PTSansNarrowSubset
+> {
   constructor(options?: PTSansNarrowOptions) {
     super(FAMILY, FACES, options);
   }

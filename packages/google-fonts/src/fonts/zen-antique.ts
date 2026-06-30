@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Zen Antique";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/zenantique/v14/AYCPpXPnd91Ma_Zf-Ri2JUJp5vO_5Q.woff2",
   },
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/zenantique/v14/AYCPpXPnd91Ma_Zf-Ri2JUJu5vO_5Q.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/zenantique/v14/AYCPpXPnd91Ma_Zf-Ri2JUJt5vM.woff2",
   },
   "latin-ext": {
@@ -21,13 +21,21 @@ const FACES = {
 export type ZenAntiqueWeight = "400";
 export type ZenAntiqueStyle = "normal";
 export type ZenAntiqueSubset = "cyrillic" | "greek" | "latin" | "latin-ext";
-export type ZenAntiqueOptions = GoogleFontOptions<ZenAntiqueWeight, ZenAntiqueStyle, ZenAntiqueSubset>;
+export type ZenAntiqueOptions = GoogleFontOptions<
+  ZenAntiqueWeight,
+  ZenAntiqueStyle,
+  ZenAntiqueSubset
+>;
 
 /**
  * Zen Antique — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ZenAntique extends GoogleFont<ZenAntiqueWeight, ZenAntiqueStyle, ZenAntiqueSubset> {
+export default class ZenAntique extends GoogleFont<
+  ZenAntiqueWeight,
+  ZenAntiqueStyle,
+  ZenAntiqueSubset
+> {
   constructor(options?: ZenAntiqueOptions) {
     super(FAMILY, FACES, options);
   }

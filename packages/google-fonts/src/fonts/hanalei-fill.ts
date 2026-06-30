@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Hanalei Fill";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/hanaleifill/v23/fC1mPYtObGbfyQznIaQzPQi8UAjA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/hanaleifill/v23/fC1mPYtObGbfyQznIaQzPQi8XgjAllk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/hanaleifill/v23/fC1mPYtObGbfyQznIaQzPQi8XgjAllk.woff2",
   },
 } as const;
 
 export type HanaleiFillWeight = "400";
 export type HanaleiFillStyle = "normal";
 export type HanaleiFillSubset = "latin" | "latin-ext";
-export type HanaleiFillOptions = GoogleFontOptions<HanaleiFillWeight, HanaleiFillStyle, HanaleiFillSubset>;
+export type HanaleiFillOptions = GoogleFontOptions<
+  HanaleiFillWeight,
+  HanaleiFillStyle,
+  HanaleiFillSubset
+>;
 
 /**
  * Hanalei Fill — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class HanaleiFill extends GoogleFont<HanaleiFillWeight, HanaleiFillStyle, HanaleiFillSubset> {
+export default class HanaleiFill extends GoogleFont<
+  HanaleiFillWeight,
+  HanaleiFillStyle,
+  HanaleiFillSubset
+> {
   constructor(options?: HanaleiFillOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,28 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Redacted Script";
 
 const FACES = {
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/redactedscript/v12/ypvEbXGRglhokR7dcC3d1-R6zmxqHUzlnrg2.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/redactedscript/v12/ypvBbXGRglhokR7dcC3d1-R6zmxitm7w.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/redactedscript/v12/ypvEbXGRglhokR7dcC3d1-R6zmxqDUvlnrg2.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/redactedscript/v12/ypvEbXGRglhokR7dcC3d1-R6zmxqHUzlnrg2.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/redactedscript/v12/ypvBbXGRglhokR7dcC3d1-R6zmxitm7w.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/redactedscript/v12/ypvEbXGRglhokR7dcC3d1-R6zmxqDUvlnrg2.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/redactedscript/v12/ypvEbXGRglhokR7dcC3d1-R6zmxqHUzlkLg2x7k.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/redactedscript/v12/ypvBbXGRglhokR7dcC3d1-R6zmxiuG7woZk.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/redactedscript/v12/ypvEbXGRglhokR7dcC3d1-R6zmxqDUvlkLg2x7k.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/redactedscript/v12/ypvEbXGRglhokR7dcC3d1-R6zmxqHUzlkLg2x7k.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/redactedscript/v12/ypvBbXGRglhokR7dcC3d1-R6zmxiuG7woZk.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/redactedscript/v12/ypvEbXGRglhokR7dcC3d1-R6zmxqDUvlkLg2x7k.woff2",
   },
 } as const;
 
 export type RedactedScriptWeight = "300" | "400" | "700";
 export type RedactedScriptStyle = "normal";
 export type RedactedScriptSubset = "latin" | "latin-ext";
-export type RedactedScriptOptions = GoogleFontOptions<RedactedScriptWeight, RedactedScriptStyle, RedactedScriptSubset>;
+export type RedactedScriptOptions = GoogleFontOptions<
+  RedactedScriptWeight,
+  RedactedScriptStyle,
+  RedactedScriptSubset
+>;
 
 /**
  * Redacted Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class RedactedScript extends GoogleFont<RedactedScriptWeight, RedactedScriptStyle, RedactedScriptSubset> {
+export default class RedactedScript extends GoogleFont<
+  RedactedScriptWeight,
+  RedactedScriptStyle,
+  RedactedScriptSubset
+> {
   constructor(options?: RedactedScriptOptions) {
     super(FAMILY, FACES, options);
   }

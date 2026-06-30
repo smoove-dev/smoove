@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Mro";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmro/v20/qWcsB6--pZv9TqnUQMhe9b39aDvbtw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmro/v20/qWcsB6--pZv9TqnUQMhe9b39aDvbtw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmro/v20/qWcsB6--pZv9TqnUQMhe9b39aDXbtwkh.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmro/v20/qWcsB6--pZv9TqnUQMhe9b39aDXbtwkh.woff2",
   },
-  "mro": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmro/v20/qWcsB6--pZv9TqnUQMhe9b39aK_6kjQYug.woff2",
+  mro: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmro/v20/qWcsB6--pZv9TqnUQMhe9b39aK_6kjQYug.woff2",
   },
 } as const;
 
 export type NotoSansMroWeight = "400";
 export type NotoSansMroStyle = "normal";
 export type NotoSansMroSubset = "latin" | "latin-ext" | "mro";
-export type NotoSansMroOptions = GoogleFontOptions<NotoSansMroWeight, NotoSansMroStyle, NotoSansMroSubset>;
+export type NotoSansMroOptions = GoogleFontOptions<
+  NotoSansMroWeight,
+  NotoSansMroStyle,
+  NotoSansMroSubset
+>;
 
 /**
  * Noto Sans Mro — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansMro extends GoogleFont<NotoSansMroWeight, NotoSansMroStyle, NotoSansMroSubset> {
+export default class NotoSansMro extends GoogleFont<
+  NotoSansMroWeight,
+  NotoSansMroStyle,
+  NotoSansMroSubset
+> {
   constructor(options?: NotoSansMroOptions) {
     super(FAMILY, FACES, options);
   }

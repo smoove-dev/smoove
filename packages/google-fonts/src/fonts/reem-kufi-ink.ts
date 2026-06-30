@@ -4,30 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Reem Kufi Ink";
 
 const FACES = {
-  "arabic": {
-    "400-normal": "https://fonts.gstatic.com/s/reemkufiink/v11/oPWJ_kJmmu8hCvB9iFumxZSndjxXQ0SXnkk.woff2",
+  arabic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/reemkufiink/v11/oPWJ_kJmmu8hCvB9iFumxZSndjxXQ0SXnkk.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/reemkufiink/v11/oPWJ_kJmmu8hCvB9iFumxZSndjlXQyyU.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/reemkufiink/v11/oPWJ_kJmmu8hCvB9iFumxZSndjlXQyyU.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/reemkufiink/v11/oPWJ_kJmmu8hCvB9iFumxZSndjdXQ0SXnkk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/reemkufiink/v11/oPWJ_kJmmu8hCvB9iFumxZSndjdXQ0SXnkk.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/reemkufiink/v11/oPWJ_kJmmu8hCvB9iFumxZSndjZXQ0SXnkk.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/reemkufiink/v11/oPWJ_kJmmu8hCvB9iFumxZSndjZXQ0SXnkk.woff2",
   },
 } as const;
 
 export type ReemKufiInkWeight = "400";
 export type ReemKufiInkStyle = "normal";
 export type ReemKufiInkSubset = "arabic" | "latin" | "latin-ext" | "vietnamese";
-export type ReemKufiInkOptions = GoogleFontOptions<ReemKufiInkWeight, ReemKufiInkStyle, ReemKufiInkSubset>;
+export type ReemKufiInkOptions = GoogleFontOptions<
+  ReemKufiInkWeight,
+  ReemKufiInkStyle,
+  ReemKufiInkSubset
+>;
 
 /**
  * Reem Kufi Ink — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ReemKufiInk extends GoogleFont<ReemKufiInkWeight, ReemKufiInkStyle, ReemKufiInkSubset> {
+export default class ReemKufiInk extends GoogleFont<
+  ReemKufiInkWeight,
+  ReemKufiInkStyle,
+  ReemKufiInkSubset
+> {
   constructor(options?: ReemKufiInkOptions) {
     super(FAMILY, FACES, options);
   }

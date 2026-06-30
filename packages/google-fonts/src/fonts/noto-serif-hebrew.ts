@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Hebrew";
 
 const FACES = {
-  "hebrew": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
+  hebrew: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-VBMyDY.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD-1BM.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifhebrew/v30/k3k5o9MMPvpLmixYH7euCwmkS9DohjX1-kRyiqyBqIxnoLbD9VBMyDY.woff2",
   },
 } as const;
 
-export type NotoSerifHebrewWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSerifHebrewWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSerifHebrewStyle = "normal";
 export type NotoSerifHebrewSubset = "hebrew" | "latin" | "latin-ext";
-export type NotoSerifHebrewOptions = GoogleFontOptions<NotoSerifHebrewWeight, NotoSerifHebrewStyle, NotoSerifHebrewSubset>;
+export type NotoSerifHebrewOptions = GoogleFontOptions<
+  NotoSerifHebrewWeight,
+  NotoSerifHebrewStyle,
+  NotoSerifHebrewSubset
+>;
 
 /**
  * Noto Serif Hebrew — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifHebrew extends GoogleFont<NotoSerifHebrewWeight, NotoSerifHebrewStyle, NotoSerifHebrewSubset> {
+export default class NotoSerifHebrew extends GoogleFont<
+  NotoSerifHebrewWeight,
+  NotoSerifHebrewStyle,
+  NotoSerifHebrewSubset
+> {
   constructor(options?: NotoSerifHebrewOptions) {
     super(FAMILY, FACES, options);
   }

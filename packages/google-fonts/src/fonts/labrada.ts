@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Labrada";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/labrada/v4/ieV82Y9HLWefIpOyPVx6Lmob.woff2",
     "100-normal": "https://fonts.gstatic.com/s/labrada/v4/ieV-2Y9HLWefIpOyPVlKLA.woff2",
     "200-italic": "https://fonts.gstatic.com/s/labrada/v4/ieV82Y9HLWefIpOyPVx6Lmob.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/labrada/v4/ieV82Y9HLWefIpOyPVx6IGobMcs.woff2",
     "900-normal": "https://fonts.gstatic.com/s/labrada/v4/ieV-2Y9HLWefIpOyPVdKLHIf.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/labrada/v4/ieV82Y9HLWefIpOyPVx6IWobMcs.woff2",
     "100-normal": "https://fonts.gstatic.com/s/labrada/v4/ieV-2Y9HLWefIpOyPVZKLHIf.woff2",
     "200-italic": "https://fonts.gstatic.com/s/labrada/v4/ieV82Y9HLWefIpOyPVx6IWobMcs.woff2",

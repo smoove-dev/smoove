@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Batak";
 
 const FACES = {
-  "batak": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbatak/v23/gok2H6TwAEdtF9N8-mdTCQvT-ZdQ9oXOLuk.woff2",
+  batak: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbatak/v23/gok2H6TwAEdtF9N8-mdTCQvT-ZdQ9oXOLuk.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbatak/v23/gok2H6TwAEdtF9N8-mdTCQvT-ZdQpIXO.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbatak/v23/gok2H6TwAEdtF9N8-mdTCQvT-ZdQpIXO.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbatak/v23/gok2H6TwAEdtF9N8-mdTCQvT-ZdQqoXOLuk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbatak/v23/gok2H6TwAEdtF9N8-mdTCQvT-ZdQqoXOLuk.woff2",
   },
 } as const;
 
 export type NotoSansBatakWeight = "400";
 export type NotoSansBatakStyle = "normal";
 export type NotoSansBatakSubset = "batak" | "latin" | "latin-ext";
-export type NotoSansBatakOptions = GoogleFontOptions<NotoSansBatakWeight, NotoSansBatakStyle, NotoSansBatakSubset>;
+export type NotoSansBatakOptions = GoogleFontOptions<
+  NotoSansBatakWeight,
+  NotoSansBatakStyle,
+  NotoSansBatakSubset
+>;
 
 /**
  * Noto Sans Batak — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansBatak extends GoogleFont<NotoSansBatakWeight, NotoSansBatakStyle, NotoSansBatakSubset> {
+export default class NotoSansBatak extends GoogleFont<
+  NotoSansBatakWeight,
+  NotoSansBatakStyle,
+  NotoSansBatakSubset
+> {
   constructor(options?: NotoSansBatakOptions) {
     super(FAMILY, FACES, options);
   }

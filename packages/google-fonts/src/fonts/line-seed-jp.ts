@@ -4,42 +4,61 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "LINE Seed JP";
 
 const FACES = {
-  "cyrillic": {
-    "100-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQvbh7r89it6QsEXfZb-jMn6aFNjX-FTQ.woff2",
+  cyrillic: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQvbh7r89it6QsEXfZb-jMn6aFNjX-FTQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQxbh7r89it6QsEXfZb-jMvjpFLlXs.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnMbRerlq4dHc.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnLbderlq4dHc.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnMbRerlq4dHc.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnLbderlq4dHc.woff2",
   },
   "greek-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQvbh7r89it6QsEXfZb-jMn6aFFjX-FTQ.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQvbh7r89it6QsEXfZb-jMn6aFFjX-FTQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQxbh7r89it6QsEXfZb-jMvhpFLlXs.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnMbReplq4dHc.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnLbdeplq4dHc.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnMbReplq4dHc.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnLbdeplq4dHc.woff2",
   },
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQvbh7r89it6QsEXfZb-jMn6aFJjX8.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQxbh7r89it6QsEXfZb-jMvipFL.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnMbReqlq4.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnLbdeqlq4.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnMbReqlq4.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnLbdeqlq4.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQvbh7r89it6QsEXfZb-jMn6aFHjX-FTQ.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQvbh7r89it6QsEXfZb-jMn6aFHjX-FTQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQxbh7r89it6QsEXfZb-jMvhJFLlXs.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnMbRepFq4dHc.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnLbdepFq4dHc.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnMbRepFq4dHc.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/lineseedjp/v3/MwQubh7r89it6QsEXfZb-jMnLbdepFq4dHc.woff2",
   },
 } as const;
 
 export type LINESeedJPWeight = "100" | "400" | "700" | "800";
 export type LINESeedJPStyle = "normal";
 export type LINESeedJPSubset = "cyrillic" | "greek-ext" | "latin" | "latin-ext";
-export type LINESeedJPOptions = GoogleFontOptions<LINESeedJPWeight, LINESeedJPStyle, LINESeedJPSubset>;
+export type LINESeedJPOptions = GoogleFontOptions<
+  LINESeedJPWeight,
+  LINESeedJPStyle,
+  LINESeedJPSubset
+>;
 
 /**
  * LINE Seed JP — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LINESeedJP extends GoogleFont<LINESeedJPWeight, LINESeedJPStyle, LINESeedJPSubset> {
+export default class LINESeedJP extends GoogleFont<
+  LINESeedJPWeight,
+  LINESeedJPStyle,
+  LINESeedJPSubset
+> {
   constructor(options?: LINESeedJPOptions) {
     super(FAMILY, FACES, options);
   }

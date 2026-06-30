@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "IM Fell English SC";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/imfellenglishsc/v16/a8IENpD3CDX-4zrWfr1VY879qFF05pZ7PIIP.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/imfellenglishsc/v16/a8IENpD3CDX-4zrWfr1VY879qFF05pZ7PIIP.woff2",
   },
 } as const;
 
 export type IMFellEnglishSCWeight = "400";
 export type IMFellEnglishSCStyle = "normal";
 export type IMFellEnglishSCSubset = "latin";
-export type IMFellEnglishSCOptions = GoogleFontOptions<IMFellEnglishSCWeight, IMFellEnglishSCStyle, IMFellEnglishSCSubset>;
+export type IMFellEnglishSCOptions = GoogleFontOptions<
+  IMFellEnglishSCWeight,
+  IMFellEnglishSCStyle,
+  IMFellEnglishSCSubset
+>;
 
 /**
  * IM Fell English SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IMFellEnglishSC extends GoogleFont<IMFellEnglishSCWeight, IMFellEnglishSCStyle, IMFellEnglishSCSubset> {
+export default class IMFellEnglishSC extends GoogleFont<
+  IMFellEnglishSCWeight,
+  IMFellEnglishSCStyle,
+  IMFellEnglishSCSubset
+> {
   constructor(options?: IMFellEnglishSCOptions) {
     super(FAMILY, FACES, options);
   }

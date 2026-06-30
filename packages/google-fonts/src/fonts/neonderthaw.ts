@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Neonderthaw";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/neonderthaw/v8/Iure6Yx5-oWVZI0r-17AeaZOrLQ.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/neonderthaw/v8/Iure6Yx5-oWVZI0r-17AeaZArLRw4Q.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/neonderthaw/v8/Iure6Yx5-oWVZI0r-17AeaZBrLRw4Q.woff2",
   },
 } as const;
@@ -18,13 +18,21 @@ const FACES = {
 export type NeonderthawWeight = "400";
 export type NeonderthawStyle = "normal";
 export type NeonderthawSubset = "latin" | "latin-ext" | "vietnamese";
-export type NeonderthawOptions = GoogleFontOptions<NeonderthawWeight, NeonderthawStyle, NeonderthawSubset>;
+export type NeonderthawOptions = GoogleFontOptions<
+  NeonderthawWeight,
+  NeonderthawStyle,
+  NeonderthawSubset
+>;
 
 /**
  * Neonderthaw — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Neonderthaw extends GoogleFont<NeonderthawWeight, NeonderthawStyle, NeonderthawSubset> {
+export default class Neonderthaw extends GoogleFont<
+  NeonderthawWeight,
+  NeonderthawStyle,
+  NeonderthawSubset
+> {
   constructor(options?: NeonderthawOptions) {
     super(FAMILY, FACES, options);
   }

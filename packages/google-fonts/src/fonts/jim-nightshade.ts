@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jim Nightshade";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/jimnightshade/v21/PlIkFlu9Pb08Q8HLM1PxmB0g-NS_XXs.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/jimnightshade/v21/PlIkFlu9Pb08Q8HLM1PxmB0g-NS_XXs.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/jimnightshade/v21/PlIkFlu9Pb08Q8HLM1PxmB0g-NSxXXu6aA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/jimnightshade/v21/PlIkFlu9Pb08Q8HLM1PxmB0g-NSxXXu6aA.woff2",
   },
 } as const;
 
 export type JimNightshadeWeight = "400";
 export type JimNightshadeStyle = "normal";
 export type JimNightshadeSubset = "latin" | "latin-ext";
-export type JimNightshadeOptions = GoogleFontOptions<JimNightshadeWeight, JimNightshadeStyle, JimNightshadeSubset>;
+export type JimNightshadeOptions = GoogleFontOptions<
+  JimNightshadeWeight,
+  JimNightshadeStyle,
+  JimNightshadeSubset
+>;
 
 /**
  * Jim Nightshade — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class JimNightshade extends GoogleFont<JimNightshadeWeight, JimNightshadeStyle, JimNightshadeSubset> {
+export default class JimNightshade extends GoogleFont<
+  JimNightshadeWeight,
+  JimNightshadeStyle,
+  JimNightshadeSubset
+> {
   constructor(options?: JimNightshadeOptions) {
     super(FAMILY, FACES, options);
   }

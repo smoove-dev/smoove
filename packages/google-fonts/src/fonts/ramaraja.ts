@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ramaraja";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ramaraja/v17/SlGTmQearpYAYG1CACIjoHE.woff2",
   },
-  "telugu": {
+  telugu: {
     "400-normal": "https://fonts.gstatic.com/s/ramaraja/v17/SlGTmQearpYAYG1CACI_oHFKaQ.woff2",
   },
 } as const;

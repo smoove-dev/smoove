@@ -4,28 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Libre Caslon Text";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/librecaslontext/v5/DdT678IGsGw1aF1JU10PUbTvNNaDMfq95-BDGg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/librecaslontext/v5/DdT878IGsGw1aF1JU10PUbTvNNaDMfq41-I.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/librecaslontext/v5/DdT578IGsGw1aF1JU10PUbTvNNaDMfID8vdkPx4.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/librecaslontext/v5/DdT678IGsGw1aF1JU10PUbTvNNaDMfq95-BDGg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/librecaslontext/v5/DdT878IGsGw1aF1JU10PUbTvNNaDMfq41-I.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/librecaslontext/v5/DdT578IGsGw1aF1JU10PUbTvNNaDMfID8vdkPx4.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/librecaslontext/v5/DdT678IGsGw1aF1JU10PUbTvNNaDMfq95-5DGiO1.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/librecaslontext/v5/DdT878IGsGw1aF1JU10PUbTvNNaDMfq21-JbHg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/librecaslontext/v5/DdT578IGsGw1aF1JU10PUbTvNNaDMfID8vdqPx6Msg.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/librecaslontext/v5/DdT678IGsGw1aF1JU10PUbTvNNaDMfq95-5DGiO1.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/librecaslontext/v5/DdT878IGsGw1aF1JU10PUbTvNNaDMfq21-JbHg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/librecaslontext/v5/DdT578IGsGw1aF1JU10PUbTvNNaDMfID8vdqPx6Msg.woff2",
   },
 } as const;
 
 export type LibreCaslonTextWeight = "400" | "700";
 export type LibreCaslonTextStyle = "italic" | "normal";
 export type LibreCaslonTextSubset = "latin" | "latin-ext";
-export type LibreCaslonTextOptions = GoogleFontOptions<LibreCaslonTextWeight, LibreCaslonTextStyle, LibreCaslonTextSubset>;
+export type LibreCaslonTextOptions = GoogleFontOptions<
+  LibreCaslonTextWeight,
+  LibreCaslonTextStyle,
+  LibreCaslonTextSubset
+>;
 
 /**
  * Libre Caslon Text — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LibreCaslonText extends GoogleFont<LibreCaslonTextWeight, LibreCaslonTextStyle, LibreCaslonTextSubset> {
+export default class LibreCaslonText extends GoogleFont<
+  LibreCaslonTextWeight,
+  LibreCaslonTextStyle,
+  LibreCaslonTextSubset
+> {
   constructor(options?: LibreCaslonTextOptions) {
     super(FAMILY, FACES, options);
   }

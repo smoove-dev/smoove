@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Inika";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/inika/v22/rnCm-x5X3QP-piTAT8Y.woff2",
     "700-normal": "https://fonts.gstatic.com/s/inika/v22/rnCr-x5X3QP-pix7atM5kng.woff2",
   },

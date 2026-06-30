@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Orienta";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/orienta/v16/PlI9FlK4Jrl5Y9zNSyCi9Q.woff2",
   },
   "latin-ext": {

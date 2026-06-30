@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fahkwang";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/fahkwang/v18/Noa06Uj3zpmBOgbNpOqNgHFQLClZlw.woff2",
     "200-normal": "https://fonts.gstatic.com/s/fahkwang/v18/Noa26Uj3zpmBOgbNpOJHmalWHCs.woff2",
     "300-italic": "https://fonts.gstatic.com/s/fahkwang/v18/Noa06Uj3zpmBOgbNpOqNgBVTLClZlw.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/fahkwang/v18/Noa06Uj3zpmBOgbNpOqNgAVULCdZlyjx.woff2",
     "700-normal": "https://fonts.gstatic.com/s/fahkwang/v18/Noa26Uj3zpmBOgbNpOIznalYHCtBkw.woff2",
   },
-  "thai": {
+  thai: {
     "200-italic": "https://fonts.gstatic.com/s/fahkwang/v18/Noa06Uj3zpmBOgbNpOqNgHFQLD1Zlyjx.woff2",
     "200-normal": "https://fonts.gstatic.com/s/fahkwang/v18/Noa26Uj3zpmBOgbNpOJHmalCHCtBkw.woff2",
     "300-italic": "https://fonts.gstatic.com/s/fahkwang/v18/Noa06Uj3zpmBOgbNpOqNgBVTLD1Zlyjx.woff2",
@@ -46,7 +46,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/fahkwang/v18/Noa06Uj3zpmBOgbNpOqNgAVULD1Zlyjx.woff2",
     "700-normal": "https://fonts.gstatic.com/s/fahkwang/v18/Noa26Uj3zpmBOgbNpOIznalCHCtBkw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-italic": "https://fonts.gstatic.com/s/fahkwang/v18/Noa06Uj3zpmBOgbNpOqNgHFQLCZZlyjx.woff2",
     "200-normal": "https://fonts.gstatic.com/s/fahkwang/v18/Noa26Uj3zpmBOgbNpOJHmalZHCtBkw.woff2",
     "300-italic": "https://fonts.gstatic.com/s/fahkwang/v18/Noa06Uj3zpmBOgbNpOqNgBVTLCZZlyjx.woff2",

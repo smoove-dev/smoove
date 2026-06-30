@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Enriqueta";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/enriqueta/v19/goksH6L7AUFrRvV44HVjTEqi.woff2",
     "500-normal": "https://fonts.gstatic.com/s/enriqueta/v19/gokpH6L7AUFrRvV44HVrv2m3n9xF.woff2",
     "600-normal": "https://fonts.gstatic.com/s/enriqueta/v19/gokpH6L7AUFrRvV44HVrk263n9xF.woff2",
@@ -27,7 +27,11 @@ export type EnriquetaOptions = GoogleFontOptions<EnriquetaWeight, EnriquetaStyle
  * Enriqueta — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Enriqueta extends GoogleFont<EnriquetaWeight, EnriquetaStyle, EnriquetaSubset> {
+export default class Enriqueta extends GoogleFont<
+  EnriquetaWeight,
+  EnriquetaStyle,
+  EnriquetaSubset
+> {
   constructor(options?: EnriquetaOptions) {
     super(FAMILY, FACES, options);
   }

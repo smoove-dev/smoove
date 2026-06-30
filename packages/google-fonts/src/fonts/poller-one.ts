@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Poller One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/pollerone/v25/ahccv82n0TN3gia5E4BuR-5RgA.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type PollerOneOptions = GoogleFontOptions<PollerOneWeight, PollerOneStyle
  * Poller One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PollerOne extends GoogleFont<PollerOneWeight, PollerOneStyle, PollerOneSubset> {
+export default class PollerOne extends GoogleFont<
+  PollerOneWeight,
+  PollerOneStyle,
+  PollerOneSubset
+> {
   constructor(options?: PollerOneOptions) {
     super(FAMILY, FACES, options);
   }

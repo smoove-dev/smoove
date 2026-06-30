@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yesteryear";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/yesteryear/v21/dg4g_p78rroaKl8kRKo1n7sNTg.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type YesteryearWeight = "400";
 export type YesteryearStyle = "normal";
 export type YesteryearSubset = "latin" | "latin-ext";
-export type YesteryearOptions = GoogleFontOptions<YesteryearWeight, YesteryearStyle, YesteryearSubset>;
+export type YesteryearOptions = GoogleFontOptions<
+  YesteryearWeight,
+  YesteryearStyle,
+  YesteryearSubset
+>;
 
 /**
  * Yesteryear — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Yesteryear extends GoogleFont<YesteryearWeight, YesteryearStyle, YesteryearSubset> {
+export default class Yesteryear extends GoogleFont<
+  YesteryearWeight,
+  YesteryearStyle,
+  YesteryearSubset
+> {
   constructor(options?: YesteryearOptions) {
     super(FAMILY, FACES, options);
   }

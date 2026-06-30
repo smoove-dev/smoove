@@ -5,26 +5,37 @@ const FAMILY = "Noto Sans Inscriptional Parthian";
 
 const FACES = {
   "inscriptional-parthian": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansinscriptionalparthian/v18/k3k7o-IMPvpLmixcA63oYi-yStDkgXuXncL7dzfW3P4TAJ2ykmAr0DJULg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansinscriptionalparthian/v18/k3k7o-IMPvpLmixcA63oYi-yStDkgXuXncL7dzfW3P4TAJ2ykmAr0DJULg.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansinscriptionalparthian/v18/k3k7o-IMPvpLmixcA63oYi-yStDkgXuXncL7dzfW3P4TAJ2ykmBO0DI.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansinscriptionalparthian/v18/k3k7o-IMPvpLmixcA63oYi-yStDkgXuXncL7dzfW3P4TAJ2ykmBO0DI.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansinscriptionalparthian/v18/k3k7o-IMPvpLmixcA63oYi-yStDkgXuXncL7dzfW3P4TAJ2ykmBA0DJULg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansinscriptionalparthian/v18/k3k7o-IMPvpLmixcA63oYi-yStDkgXuXncL7dzfW3P4TAJ2ykmBA0DJULg.woff2",
   },
 } as const;
 
 export type NotoSansInscriptionalParthianWeight = "400";
 export type NotoSansInscriptionalParthianStyle = "normal";
 export type NotoSansInscriptionalParthianSubset = "inscriptional-parthian" | "latin" | "latin-ext";
-export type NotoSansInscriptionalParthianOptions = GoogleFontOptions<NotoSansInscriptionalParthianWeight, NotoSansInscriptionalParthianStyle, NotoSansInscriptionalParthianSubset>;
+export type NotoSansInscriptionalParthianOptions = GoogleFontOptions<
+  NotoSansInscriptionalParthianWeight,
+  NotoSansInscriptionalParthianStyle,
+  NotoSansInscriptionalParthianSubset
+>;
 
 /**
  * Noto Sans Inscriptional Parthian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansInscriptionalParthian extends GoogleFont<NotoSansInscriptionalParthianWeight, NotoSansInscriptionalParthianStyle, NotoSansInscriptionalParthianSubset> {
+export default class NotoSansInscriptionalParthian extends GoogleFont<
+  NotoSansInscriptionalParthianWeight,
+  NotoSansInscriptionalParthianStyle,
+  NotoSansInscriptionalParthianSubset
+> {
   constructor(options?: NotoSansInscriptionalParthianOptions) {
     super(FAMILY, FACES, options);
   }

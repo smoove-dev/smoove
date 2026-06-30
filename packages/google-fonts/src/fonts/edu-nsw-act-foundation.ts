@@ -4,24 +4,36 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Edu NSW ACT Foundation";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/edunswactfoundation/v5/raxsHjqJtsNBFUi8WO0vUBgc9D-2lV_oQdCASFdXsA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/edunswactfoundation/v5/raxsHjqJtsNBFUi8WO0vUBgc9D-2lV_oQdCASFdXsA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/edunswactfoundation/v5/raxsHjqJtsNBFUi8WO0vUBgc9D-2lV_oQdCASFdXsA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/edunswactfoundation/v5/raxsHjqJtsNBFUi8WO0vUBgc9D-2lV_oQdCASFdXsA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/edunswactfoundation/v5/raxsHjqJtsNBFUi8WO0vUBgc9D-2lV_oQdCASFdXsA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/edunswactfoundation/v5/raxsHjqJtsNBFUi8WO0vUBgc9D-2lV_oQdCASFdXsA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/edunswactfoundation/v5/raxsHjqJtsNBFUi8WO0vUBgc9D-2lV_oQdCASFdXsA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/edunswactfoundation/v5/raxsHjqJtsNBFUi8WO0vUBgc9D-2lV_oQdCASFdXsA.woff2",
   },
 } as const;
 
 export type EduNSWACTFoundationWeight = "400" | "500" | "600" | "700";
 export type EduNSWACTFoundationStyle = "normal";
 export type EduNSWACTFoundationSubset = "latin";
-export type EduNSWACTFoundationOptions = GoogleFontOptions<EduNSWACTFoundationWeight, EduNSWACTFoundationStyle, EduNSWACTFoundationSubset>;
+export type EduNSWACTFoundationOptions = GoogleFontOptions<
+  EduNSWACTFoundationWeight,
+  EduNSWACTFoundationStyle,
+  EduNSWACTFoundationSubset
+>;
 
 /**
  * Edu NSW ACT Foundation — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EduNSWACTFoundation extends GoogleFont<EduNSWACTFoundationWeight, EduNSWACTFoundationStyle, EduNSWACTFoundationSubset> {
+export default class EduNSWACTFoundation extends GoogleFont<
+  EduNSWACTFoundationWeight,
+  EduNSWACTFoundationStyle,
+  EduNSWACTFoundationSubset
+> {
   constructor(options?: EduNSWACTFoundationOptions) {
     super(FAMILY, FACES, options);
   }

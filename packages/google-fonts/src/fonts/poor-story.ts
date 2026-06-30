@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Poor Story";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/poorstory/v24/jizfREFUsnUct9P6cDfd0O6tLQ.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type PoorStoryOptions = GoogleFontOptions<PoorStoryWeight, PoorStoryStyle
  * Poor Story — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class PoorStory extends GoogleFont<PoorStoryWeight, PoorStoryStyle, PoorStorySubset> {
+export default class PoorStory extends GoogleFont<
+  PoorStoryWeight,
+  PoorStoryStyle,
+  PoorStorySubset
+> {
   constructor(options?: PoorStoryOptions) {
     super(FAMILY, FACES, options);
   }

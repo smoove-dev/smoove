@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Fascinate";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/fascinate/v23/z7NWdRrufC8XJK0IIElS07zR.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type FascinateOptions = GoogleFontOptions<FascinateWeight, FascinateStyle
  * Fascinate — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Fascinate extends GoogleFont<FascinateWeight, FascinateStyle, FascinateSubset> {
+export default class Fascinate extends GoogleFont<
+  FascinateWeight,
+  FascinateStyle,
+  FascinateSubset
+> {
   constructor(options?: FascinateOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Caramel";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/caramel/v8/P5sCzZKBbMTf_Shy9CNkiA.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/caramel/v8/P5sCzZKBbMTf_Shy9C1kiK-u.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/caramel/v8/P5sCzZKBbMTf_Shy9CxkiK-u.woff2",
   },
 } as const;

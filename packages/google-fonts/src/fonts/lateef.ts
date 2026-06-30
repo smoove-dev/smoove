@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lateef";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "200-normal": "https://fonts.gstatic.com/s/lateef/v35/hESz6XVnNCxEvkb0bjyQbK7axnQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lateef/v35/hESz6XVnNCxEvkb0Cj-QbK7axnQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lateef/v35/hESw6XVnNCxEvkb8pB2FVo8.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/lateef/v35/hESz6XVnNCxEvkb0GjiQbK7axnQ.woff2",
     "800-normal": "https://fonts.gstatic.com/s/lateef/v35/hESz6XVnNCxEvkb0BjuQbK7axnQ.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/lateef/v35/hESz6XVnNCxEvkb0bjyQaa7a.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lateef/v35/hESz6XVnNCxEvkb0Cj-Qaa7a.woff2",
     "400-normal": "https://fonts.gstatic.com/s/lateef/v35/hESw6XVnNCxEvkb8oR2F.woff2",

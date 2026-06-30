@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Trochut";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/trochut/v24/CHyhV-fDDlP9bDIw1nayfnoL.woff2",
     "400-normal": "https://fonts.gstatic.com/s/trochut/v24/CHyjV-fDDlP9bDIw1nOCfA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/trochut/v24/CHymV-fDDlP9bDIw3sinaV0uMw.woff2",

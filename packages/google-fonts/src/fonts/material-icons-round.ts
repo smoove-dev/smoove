@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Material Icons Round";
 
 const FACES = {
-  "fallback": {
-    "400-normal": "https://fonts.gstatic.com/s/materialiconsround/v109/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2",
+  fallback: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/materialiconsround/v109/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2",
   },
 } as const;
 
 export type MaterialIconsRoundWeight = "400";
 export type MaterialIconsRoundStyle = "normal";
 export type MaterialIconsRoundSubset = "fallback";
-export type MaterialIconsRoundOptions = GoogleFontOptions<MaterialIconsRoundWeight, MaterialIconsRoundStyle, MaterialIconsRoundSubset>;
+export type MaterialIconsRoundOptions = GoogleFontOptions<
+  MaterialIconsRoundWeight,
+  MaterialIconsRoundStyle,
+  MaterialIconsRoundSubset
+>;
 
 /**
  * Material Icons Round — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MaterialIconsRound extends GoogleFont<MaterialIconsRoundWeight, MaterialIconsRoundStyle, MaterialIconsRoundSubset> {
+export default class MaterialIconsRound extends GoogleFont<
+  MaterialIconsRoundWeight,
+  MaterialIconsRoundStyle,
+  MaterialIconsRoundSubset
+> {
   constructor(options?: MaterialIconsRoundOptions) {
     super(FAMILY, FACES, options);
   }

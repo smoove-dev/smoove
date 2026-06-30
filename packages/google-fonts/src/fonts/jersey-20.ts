@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jersey 20";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jersey20/v4/ZgNRjP1ON6jeW4D12z3sq0Xr.woff2",
   },
   "latin-ext": {

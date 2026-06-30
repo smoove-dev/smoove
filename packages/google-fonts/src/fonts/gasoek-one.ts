@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gasoek One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gasoekone/v4/EJRTQgQ_UMUKvDgnlX80_r21cg.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type GasoekOneOptions = GoogleFontOptions<GasoekOneWeight, GasoekOneStyle
  * Gasoek One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class GasoekOne extends GoogleFont<GasoekOneWeight, GasoekOneStyle, GasoekOneSubset> {
+export default class GasoekOne extends GoogleFont<
+  GasoekOneWeight,
+  GasoekOneStyle,
+  GasoekOneSubset
+> {
   constructor(options?: GasoekOneOptions) {
     super(FAMILY, FACES, options);
   }

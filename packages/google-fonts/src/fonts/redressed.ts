@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Redressed";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/redressed/v32/x3dickHUbrmJ7wMy9Msxe_oD.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type RedressedOptions = GoogleFontOptions<RedressedWeight, RedressedStyle
  * Redressed — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Redressed extends GoogleFont<RedressedWeight, RedressedStyle, RedressedSubset> {
+export default class Redressed extends GoogleFont<
+  RedressedWeight,
+  RedressedStyle,
+  RedressedSubset
+> {
   constructor(options?: RedressedOptions) {
     super(FAMILY, FACES, options);
   }

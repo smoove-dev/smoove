@@ -4,16 +4,25 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Wavefont";
 
 const FACES = {
-  "fallback": {
-    "100-normal": "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
+  fallback: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/wavefont/v19/L0xQDF00m0cP6hefyOCpRezQNuizSrqDyx8FHbFu21B3L4m0SEzuW4I.woff2",
   },
 } as const;
 

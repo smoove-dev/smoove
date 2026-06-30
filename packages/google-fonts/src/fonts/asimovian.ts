@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Asimovian";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/asimovian/v2/oY1c8evOub78P2XN94MnDfRw.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/asimovian/v2/oY1c8evOub78P2XN94MnA_RwU4Q.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/asimovian/v2/oY1c8evOub78P2XN94MnAvRwU4Q.woff2",
   },
 } as const;
@@ -24,7 +24,11 @@ export type AsimovianOptions = GoogleFontOptions<AsimovianWeight, AsimovianStyle
  * Asimovian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Asimovian extends GoogleFont<AsimovianWeight, AsimovianStyle, AsimovianSubset> {
+export default class Asimovian extends GoogleFont<
+  AsimovianWeight,
+  AsimovianStyle,
+  AsimovianSubset
+> {
   constructor(options?: AsimovianOptions) {
     super(FAMILY, FACES, options);
   }

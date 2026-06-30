@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nuosu SIL";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/nuosusil/v12/8vIK7wM3wmRn_kc4uAjuE2Za.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/nuosusil/v12/8vIK7wM3wmRn_kc4uAjuHWZaC_w.woff2",
   },
-  "yi": {
+  yi: {
     "400-normal": "https://fonts.gstatic.com/s/nuosusil/v12/8vIK7wM3wmRn_kc4uAjuMmZaC_w.woff2",
   },
 } as const;

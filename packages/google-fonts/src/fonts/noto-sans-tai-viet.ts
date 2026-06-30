@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Tai Viet";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstaiviet/v20/8QIUdj3HhN_lv4jf9vsE-9GMOLsaSPZb7IQe.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstaiviet/v20/8QIUdj3HhN_lv4jf9vsE-9GMOLsaSPZb7IQe.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstaiviet/v20/8QIUdj3HhN_lv4jf9vsE-9GMOLsaSPZb4oQeasQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstaiviet/v20/8QIUdj3HhN_lv4jf9vsE-9GMOLsaSPZb4oQeasQ.woff2",
   },
   "tai-viet": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanstaiviet/v20/8QIUdj3HhN_lv4jf9vsE-9GMOLsaSPZbpoQeasQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanstaiviet/v20/8QIUdj3HhN_lv4jf9vsE-9GMOLsaSPZbpoQeasQ.woff2",
   },
 } as const;
 
 export type NotoSansTaiVietWeight = "400";
 export type NotoSansTaiVietStyle = "normal";
 export type NotoSansTaiVietSubset = "latin" | "latin-ext" | "tai-viet";
-export type NotoSansTaiVietOptions = GoogleFontOptions<NotoSansTaiVietWeight, NotoSansTaiVietStyle, NotoSansTaiVietSubset>;
+export type NotoSansTaiVietOptions = GoogleFontOptions<
+  NotoSansTaiVietWeight,
+  NotoSansTaiVietStyle,
+  NotoSansTaiVietSubset
+>;
 
 /**
  * Noto Sans Tai Viet — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansTaiViet extends GoogleFont<NotoSansTaiVietWeight, NotoSansTaiVietStyle, NotoSansTaiVietSubset> {
+export default class NotoSansTaiViet extends GoogleFont<
+  NotoSansTaiVietWeight,
+  NotoSansTaiVietStyle,
+  NotoSansTaiVietSubset
+> {
   constructor(options?: NotoSansTaiVietOptions) {
     super(FAMILY, FACES, options);
   }

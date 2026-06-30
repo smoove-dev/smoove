@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "M PLUS 2";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/mplus2/v16/7Au8p_Eq3gO_OGbGGjLR6kE.woff2",
     "200-normal": "https://fonts.gstatic.com/s/mplus2/v16/7Au8p_Eq3gO_OGbGGjLR6kE.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mplus2/v16/7Au8p_Eq3gO_OGbGGjLR6kE.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/mplus2/v16/7Au8p_Eq3gO_OGbGGjLf6kE1OQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/mplus2/v16/7Au8p_Eq3gO_OGbGGjLf6kE1OQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/mplus2/v16/7Au8p_Eq3gO_OGbGGjLe6kE1OQ.woff2",
     "200-normal": "https://fonts.gstatic.com/s/mplus2/v16/7Au8p_Eq3gO_OGbGGjLe6kE1OQ.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mplus2/v16/7Au8p_Eq3gO_OGbGGjLe6kE1OQ.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mr Dafoe";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mrdafoe/v15/lJwE-pIzkS5NXuMMrFitibI.woff2",
   },
   "latin-ext": {

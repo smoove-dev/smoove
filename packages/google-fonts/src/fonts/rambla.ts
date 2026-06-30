@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rambla";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/rambla/v14/snfps0ip98hx6mrEIYgNHtw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/rambla/v14/snfrs0ip98hx6mrEJLgP.woff2",
     "700-italic": "https://fonts.gstatic.com/s/rambla/v14/snfus0ip98hx6mrEIYC2O8l74J8.woff2",

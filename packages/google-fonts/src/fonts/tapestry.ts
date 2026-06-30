@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tapestry";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tapestry/v6/SlGTmQecrosEYXhaGCIjoHE.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/tapestry/v6/SlGTmQecrosEYXhaGCItoHFKaQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/tapestry/v6/SlGTmQecrosEYXhaGCIsoHFKaQ.woff2",
   },
 } as const;

@@ -16,7 +16,9 @@
     "./manifest": "./src/manifest.ts",
     "./*": "./src/fonts/*.ts"
   },
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "scripts": {
     "generate": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings=ExperimentalWarning scripts/generate.ts",
     "typecheck": "tsc --noEmit"

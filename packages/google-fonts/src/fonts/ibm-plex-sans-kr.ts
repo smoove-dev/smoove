@@ -4,36 +4,58 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "IBM Plex Sans KR";
 
 const FACES = {
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFM2-VJISZe3O_rc3ZVYh4aTwNOyraPWJbD.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyhqeT7HmqQ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyn6dT7HmqQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFK2-VJISZe3O_rc3ZVYh4aTwNOwtW_Wg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyiacT7HmqQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOygqbT7HmqQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOym6aT7HmqQ.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFM2-VJISZe3O_rc3ZVYh4aTwNOyraPWJbD.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyhqeT7HmqQ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyn6dT7HmqQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFK2-VJISZe3O_rc3ZVYh4aTwNOwtW_Wg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyiacT7HmqQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOygqbT7HmqQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOym6aT7HmqQ.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFM2-VJISZe3O_rc3ZVYh4aTwNOyraPVpbDlMo.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyhqeT7_mqfPV.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyn6dT7_mqfPV.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFK2-VJISZe3O_rc3ZVYh4aTwNOwtu_Wo7H.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyiacT7_mqfPV.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOygqbT7_mqfPV.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOym6aT7_mqfPV.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFM2-VJISZe3O_rc3ZVYh4aTwNOyraPVpbDlMo.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyhqeT7_mqfPV.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyn6dT7_mqfPV.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFK2-VJISZe3O_rc3ZVYh4aTwNOwtu_Wo7H.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOyiacT7_mqfPV.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOygqbT7_mqfPV.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ibmplexsanskr/v11/vEFN2-VJISZe3O_rc3ZVYh4aTwNOym6aT7_mqfPV.woff2",
   },
 } as const;
 
 export type IBMPlexSansKRWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700";
 export type IBMPlexSansKRStyle = "normal";
 export type IBMPlexSansKRSubset = "latin" | "latin-ext";
-export type IBMPlexSansKROptions = GoogleFontOptions<IBMPlexSansKRWeight, IBMPlexSansKRStyle, IBMPlexSansKRSubset>;
+export type IBMPlexSansKROptions = GoogleFontOptions<
+  IBMPlexSansKRWeight,
+  IBMPlexSansKRStyle,
+  IBMPlexSansKRSubset
+>;
 
 /**
  * IBM Plex Sans KR — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class IBMPlexSansKR extends GoogleFont<IBMPlexSansKRWeight, IBMPlexSansKRStyle, IBMPlexSansKRSubset> {
+export default class IBMPlexSansKR extends GoogleFont<
+  IBMPlexSansKRWeight,
+  IBMPlexSansKRStyle,
+  IBMPlexSansKRSubset
+> {
   constructor(options?: IBMPlexSansKROptions) {
     super(FAMILY, FACES, options);
   }

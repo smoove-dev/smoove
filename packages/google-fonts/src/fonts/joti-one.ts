@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Joti One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jotione/v28/Z9XVDmdJQAmWm9TwabTZ6Ow.woff2",
   },
   "latin-ext": {

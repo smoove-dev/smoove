@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Rejang";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansrejang/v23/Ktk2AKuMeZjqPnXgyqrib7DIogqwB4S9WA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansrejang/v23/Ktk2AKuMeZjqPnXgyqrib7DIogqwB4S9WA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansrejang/v23/Ktk2AKuMeZjqPnXgyqrib7DIogqwB4q9WLZB.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansrejang/v23/Ktk2AKuMeZjqPnXgyqrib7DIogqwB4q9WLZB.woff2",
   },
-  "rejang": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansrejang/v23/Ktk2AKuMeZjqPnXgyqrib7DIogqwB8u9WLZB.woff2",
+  rejang: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansrejang/v23/Ktk2AKuMeZjqPnXgyqrib7DIogqwB8u9WLZB.woff2",
   },
 } as const;
 
 export type NotoSansRejangWeight = "400";
 export type NotoSansRejangStyle = "normal";
 export type NotoSansRejangSubset = "latin" | "latin-ext" | "rejang";
-export type NotoSansRejangOptions = GoogleFontOptions<NotoSansRejangWeight, NotoSansRejangStyle, NotoSansRejangSubset>;
+export type NotoSansRejangOptions = GoogleFontOptions<
+  NotoSansRejangWeight,
+  NotoSansRejangStyle,
+  NotoSansRejangSubset
+>;
 
 /**
  * Noto Sans Rejang — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansRejang extends GoogleFont<NotoSansRejangWeight, NotoSansRejangStyle, NotoSansRejangSubset> {
+export default class NotoSansRejang extends GoogleFont<
+  NotoSansRejangWeight,
+  NotoSansRejangStyle,
+  NotoSansRejangSubset
+> {
   constructor(options?: NotoSansRejangOptions) {
     super(FAMILY, FACES, options);
   }

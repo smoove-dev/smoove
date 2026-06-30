@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Days One";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/daysone/v19/mem9YaCnxnKRiYZOCIYWcrgmVA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/daysone/v19/mem9YaCnxnKRiYZOCIYScrg.woff2",
   },
 } as const;

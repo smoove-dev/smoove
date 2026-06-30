@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jaini Purva";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/jainipurva/v1/CHynV-vdHVXwbWcUswbUGEoIFn8cjw.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jainipurva/v1/CHynV-vdHVXwbWcUswbUGEoJFn8.woff2",
   },
   "latin-ext": {
@@ -18,13 +18,21 @@ const FACES = {
 export type JainiPurvaWeight = "400";
 export type JainiPurvaStyle = "normal";
 export type JainiPurvaSubset = "devanagari" | "latin" | "latin-ext";
-export type JainiPurvaOptions = GoogleFontOptions<JainiPurvaWeight, JainiPurvaStyle, JainiPurvaSubset>;
+export type JainiPurvaOptions = GoogleFontOptions<
+  JainiPurvaWeight,
+  JainiPurvaStyle,
+  JainiPurvaSubset
+>;
 
 /**
  * Jaini Purva — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class JainiPurva extends GoogleFont<JainiPurvaWeight, JainiPurvaStyle, JainiPurvaSubset> {
+export default class JainiPurva extends GoogleFont<
+  JainiPurvaWeight,
+  JainiPurvaStyle,
+  JainiPurvaSubset
+> {
   constructor(options?: JainiPurvaOptions) {
     super(FAMILY, FACES, options);
   }

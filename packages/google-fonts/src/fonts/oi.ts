@@ -4,35 +4,43 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Oi";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/oi/v21/w8gXH2EuRptYsN-CjA.woff2",
   },
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/oi/v21/w8gXH2EuRptZsN-CjA.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/oi/v21/w8gXH2EuRptQsN-CjA.woff2",
   },
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/oi/v21/w8gXH2EuRptesN-CjA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/oi/v21/w8gXH2EuRptdsN8.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/oi/v21/w8gXH2EuRptTsN-CjA.woff2",
   },
-  "tamil": {
+  tamil: {
     "400-normal": "https://fonts.gstatic.com/s/oi/v21/w8gXH2EuRptLsN-CjA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/oi/v21/w8gXH2EuRptSsN-CjA.woff2",
   },
 } as const;
 
 export type OiWeight = "400";
 export type OiStyle = "normal";
-export type OiSubset = "arabic" | "cyrillic" | "cyrillic-ext" | "greek" | "latin" | "latin-ext" | "tamil" | "vietnamese";
+export type OiSubset =
+  | "arabic"
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "latin"
+  | "latin-ext"
+  | "tamil"
+  | "vietnamese";
 export type OiOptions = GoogleFontOptions<OiWeight, OiStyle, OiSubset>;
 
 /**

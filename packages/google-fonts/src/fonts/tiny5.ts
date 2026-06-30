@@ -4,16 +4,16 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tiny5";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/tiny5/v3/KFOpCnmCvdGT7iw9xUl3Ag.woff2",
   },
   "cyrillic-ext": {
     "400-normal": "https://fonts.gstatic.com/s/tiny5/v3/KFOpCnmCvdGT7iw0xUl3Ag.woff2",
   },
-  "greek": {
+  greek: {
     "400-normal": "https://fonts.gstatic.com/s/tiny5/v3/KFOpCnmCvdGT7iw6xUl3Ag.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tiny5/v3/KFOpCnmCvdGT7iw5xUk.woff2",
   },
   "latin-ext": {

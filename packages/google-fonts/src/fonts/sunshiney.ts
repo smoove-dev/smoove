@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sunshiney";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sunshiney/v24/LDIwapGTLBwsS-wT4vcQFMOp.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type SunshineyOptions = GoogleFontOptions<SunshineyWeight, SunshineyStyle
  * Sunshiney — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Sunshiney extends GoogleFont<SunshineyWeight, SunshineyStyle, SunshineySubset> {
+export default class Sunshiney extends GoogleFont<
+  SunshineyWeight,
+  SunshineyStyle,
+  SunshineySubset
+> {
   constructor(options?: SunshineyOptions) {
     super(FAMILY, FACES, options);
   }

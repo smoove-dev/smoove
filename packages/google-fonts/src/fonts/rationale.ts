@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Rationale";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/rationale/v30/9XUnlJ92n0_JFxHIfHcccVtN.woff2",
   },
 } as const;
@@ -18,7 +18,11 @@ export type RationaleOptions = GoogleFontOptions<RationaleWeight, RationaleStyle
  * Rationale — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Rationale extends GoogleFont<RationaleWeight, RationaleStyle, RationaleSubset> {
+export default class Rationale extends GoogleFont<
+  RationaleWeight,
+  RationaleStyle,
+  RationaleSubset
+> {
   constructor(options?: RationaleOptions) {
     super(FAMILY, FACES, options);
   }

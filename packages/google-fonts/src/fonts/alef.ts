@@ -4,11 +4,11 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Alef";
 
 const FACES = {
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/alef/v24/FeVfS0NQpLYgnjdRCqFx.woff2",
     "700-normal": "https://fonts.gstatic.com/s/alef/v24/FeVQS0NQpLYglo50H5xQ2Ixi.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/alef/v24/FeVfS0NQpLYgnjVRCg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/alef/v24/FeVQS0NQpLYglo50H55Q2A.woff2",
   },

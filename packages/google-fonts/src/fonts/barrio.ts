@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Barrio";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/barrio/v20/wEO8EBXBk8hBIDi0cgwg.woff2",
   },
   "latin-ext": {

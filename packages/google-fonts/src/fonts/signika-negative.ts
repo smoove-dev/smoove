@@ -4,39 +4,62 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Signika Negative";
 
 const FACES = {
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvWhrw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvWhrw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvWhrw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvWhrw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvWhrw.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvWhrw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvWhrw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvWhrw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvWhrw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvWhrw.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvuhr6no.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvuhr6no.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvuhr6no.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvuhr6no.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvuhr6no.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvuhr6no.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvuhr6no.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvuhr6no.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvuhr6no.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvuhr6no.woff2",
   },
-  "vietnamese": {
-    "300-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvqhr6no.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvqhr6no.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvqhr6no.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvqhr6no.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvqhr6no.woff2",
+  vietnamese: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvqhr6no.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvqhr6no.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvqhr6no.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvqhr6no.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/signikanegative/v26/E218_cfngu7HiRpPX3ZpNE4kY5zKYvqhr6no.woff2",
   },
 } as const;
 
 export type SignikaNegativeWeight = "300" | "400" | "500" | "600" | "700";
 export type SignikaNegativeStyle = "normal";
 export type SignikaNegativeSubset = "latin" | "latin-ext" | "vietnamese";
-export type SignikaNegativeOptions = GoogleFontOptions<SignikaNegativeWeight, SignikaNegativeStyle, SignikaNegativeSubset>;
+export type SignikaNegativeOptions = GoogleFontOptions<
+  SignikaNegativeWeight,
+  SignikaNegativeStyle,
+  SignikaNegativeSubset
+>;
 
 /**
  * Signika Negative — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SignikaNegative extends GoogleFont<SignikaNegativeWeight, SignikaNegativeStyle, SignikaNegativeSubset> {
+export default class SignikaNegative extends GoogleFont<
+  SignikaNegativeWeight,
+  SignikaNegativeStyle,
+  SignikaNegativeSubset
+> {
   constructor(options?: SignikaNegativeOptions) {
     super(FAMILY, FACES, options);
   }

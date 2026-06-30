@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Updock";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/updock/v7/nuF4D_3dVZ70UI9ii7i2.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/updock/v7/nuF4D_3dVZ70UI9ihbi2200.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/updock/v7/nuF4D_3dVZ70UI9ihLi2200.woff2",
   },
 } as const;

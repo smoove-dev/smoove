@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Mandaic";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmandaic/v18/cIfnMbdWt1w_HgCcilqhKQBo_OsMI6_H9AI.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmandaic/v18/cIfnMbdWt1w_HgCcilqhKQBo_OsMI6_H9AI.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmandaic/v18/cIfnMbdWt1w_HgCcilqhKQBo_OsMI6_J9AIU0g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmandaic/v18/cIfnMbdWt1w_HgCcilqhKQBo_OsMI6_J9AIU0g.woff2",
   },
-  "mandaic": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmandaic/v18/cIfnMbdWt1w_HgCcilqhKQBo_OsMI6-C9AIU0g.woff2",
+  mandaic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmandaic/v18/cIfnMbdWt1w_HgCcilqhKQBo_OsMI6-C9AIU0g.woff2",
   },
 } as const;
 
 export type NotoSansMandaicWeight = "400";
 export type NotoSansMandaicStyle = "normal";
 export type NotoSansMandaicSubset = "latin" | "latin-ext" | "mandaic";
-export type NotoSansMandaicOptions = GoogleFontOptions<NotoSansMandaicWeight, NotoSansMandaicStyle, NotoSansMandaicSubset>;
+export type NotoSansMandaicOptions = GoogleFontOptions<
+  NotoSansMandaicWeight,
+  NotoSansMandaicStyle,
+  NotoSansMandaicSubset
+>;
 
 /**
  * Noto Sans Mandaic — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansMandaic extends GoogleFont<NotoSansMandaicWeight, NotoSansMandaicStyle, NotoSansMandaicSubset> {
+export default class NotoSansMandaic extends GoogleFont<
+  NotoSansMandaicWeight,
+  NotoSansMandaicStyle,
+  NotoSansMandaicSubset
+> {
   constructor(options?: NotoSansMandaicOptions) {
     super(FAMILY, FACES, options);
   }

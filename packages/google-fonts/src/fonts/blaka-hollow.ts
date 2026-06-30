@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Blaka Hollow";
 
 const FACES = {
-  "arabic": {
-    "400-normal": "https://fonts.gstatic.com/s/blakahollow/v8/MCoUzAL91sjRE2FsKsxUtezoBdAE-W8.woff2",
+  arabic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/blakahollow/v8/MCoUzAL91sjRE2FsKsxUtezoBdAE-W8.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/blakahollow/v8/MCoUzAL91sjRE2FsKsxUtezoANAE.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/blakahollow/v8/MCoUzAL91sjRE2FsKsxUtezoDtAE-W8.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/blakahollow/v8/MCoUzAL91sjRE2FsKsxUtezoDtAE-W8.woff2",
   },
 } as const;
 
 export type BlakaHollowWeight = "400";
 export type BlakaHollowStyle = "normal";
 export type BlakaHollowSubset = "arabic" | "latin" | "latin-ext";
-export type BlakaHollowOptions = GoogleFontOptions<BlakaHollowWeight, BlakaHollowStyle, BlakaHollowSubset>;
+export type BlakaHollowOptions = GoogleFontOptions<
+  BlakaHollowWeight,
+  BlakaHollowStyle,
+  BlakaHollowSubset
+>;
 
 /**
  * Blaka Hollow — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BlakaHollow extends GoogleFont<BlakaHollowWeight, BlakaHollowStyle, BlakaHollowSubset> {
+export default class BlakaHollow extends GoogleFont<
+  BlakaHollowWeight,
+  BlakaHollowStyle,
+  BlakaHollowSubset
+> {
   constructor(options?: BlakaHollowOptions) {
     super(FAMILY, FACES, options);
   }

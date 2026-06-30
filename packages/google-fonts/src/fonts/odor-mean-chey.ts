@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Odor Mean Chey";
 
 const FACES = {
-  "khmer": {
-    "400-normal": "https://fonts.gstatic.com/s/odormeanchey/v31/raxkHiKDttkTe1aOGcJMR1A_4lrU0TukKQ.woff2",
+  khmer: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/odormeanchey/v31/raxkHiKDttkTe1aOGcJMR1A_4lrU0TukKQ.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/odormeanchey/v31/raxkHiKDttkTe1aOGcJMR1A_4lrf0Ts.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/odormeanchey/v31/raxkHiKDttkTe1aOGcJMR1A_4lrf0Ts.woff2",
   },
 } as const;
 
 export type OdorMeanCheyWeight = "400";
 export type OdorMeanCheyStyle = "normal";
 export type OdorMeanCheySubset = "khmer" | "latin";
-export type OdorMeanCheyOptions = GoogleFontOptions<OdorMeanCheyWeight, OdorMeanCheyStyle, OdorMeanCheySubset>;
+export type OdorMeanCheyOptions = GoogleFontOptions<
+  OdorMeanCheyWeight,
+  OdorMeanCheyStyle,
+  OdorMeanCheySubset
+>;
 
 /**
  * Odor Mean Chey — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class OdorMeanChey extends GoogleFont<OdorMeanCheyWeight, OdorMeanCheyStyle, OdorMeanCheySubset> {
+export default class OdorMeanChey extends GoogleFont<
+  OdorMeanCheyWeight,
+  OdorMeanCheyStyle,
+  OdorMeanCheySubset
+> {
   constructor(options?: OdorMeanCheyOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cantarell";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/cantarell/v18/B50LF7ZDq37KMUvlO015iZJpNKs.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cantarell/v18/B50NF7ZDq37KMUvlO015jKJr.woff2",
     "700-italic": "https://fonts.gstatic.com/s/cantarell/v18/B50WF7ZDq37KMUvlO015iZrSEb6dDYs.woff2",
@@ -13,7 +13,8 @@ const FACES = {
   "latin-ext": {
     "400-italic": "https://fonts.gstatic.com/s/cantarell/v18/B50LF7ZDq37KMUvlO015iZJnNKuiLA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/cantarell/v18/B50NF7ZDq37KMUvlO015gqJrLK8.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/cantarell/v18/B50WF7ZDq37KMUvlO015iZrSEb6TDYsmgQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/cantarell/v18/B50WF7ZDq37KMUvlO015iZrSEb6TDYsmgQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/cantarell/v18/B50IF7ZDq37KMUvlO01xN4d-HY6fFY8.woff2",
   },
 } as const;
@@ -27,7 +28,11 @@ export type CantarellOptions = GoogleFontOptions<CantarellWeight, CantarellStyle
  * Cantarell — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Cantarell extends GoogleFont<CantarellWeight, CantarellStyle, CantarellSubset> {
+export default class Cantarell extends GoogleFont<
+  CantarellWeight,
+  CantarellStyle,
+  CantarellSubset
+> {
   constructor(options?: CantarellOptions) {
     super(FAMILY, FACES, options);
   }

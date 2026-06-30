@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Calligraffitti";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/calligraffitti/v20/46k2lbT3XjDVqJw3DCmCFjE0vkFeOZc.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/calligraffitti/v20/46k2lbT3XjDVqJw3DCmCFjE0vkFeOZc.woff2",
   },
 } as const;
 
 export type CalligraffittiWeight = "400";
 export type CalligraffittiStyle = "normal";
 export type CalligraffittiSubset = "latin";
-export type CalligraffittiOptions = GoogleFontOptions<CalligraffittiWeight, CalligraffittiStyle, CalligraffittiSubset>;
+export type CalligraffittiOptions = GoogleFontOptions<
+  CalligraffittiWeight,
+  CalligraffittiStyle,
+  CalligraffittiSubset
+>;
 
 /**
  * Calligraffitti — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Calligraffitti extends GoogleFont<CalligraffittiWeight, CalligraffittiStyle, CalligraffittiSubset> {
+export default class Calligraffitti extends GoogleFont<
+  CalligraffittiWeight,
+  CalligraffittiStyle,
+  CalligraffittiSubset
+> {
   constructor(options?: CalligraffittiOptions) {
     super(FAMILY, FACES, options);
   }

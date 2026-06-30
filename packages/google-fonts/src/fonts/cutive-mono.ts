@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cutive Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/cutivemono/v23/m8JWjfRfY7WVjVi2E-K9H6RCTm4.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type CutiveMonoWeight = "400";
 export type CutiveMonoStyle = "normal";
 export type CutiveMonoSubset = "latin" | "latin-ext";
-export type CutiveMonoOptions = GoogleFontOptions<CutiveMonoWeight, CutiveMonoStyle, CutiveMonoSubset>;
+export type CutiveMonoOptions = GoogleFontOptions<
+  CutiveMonoWeight,
+  CutiveMonoStyle,
+  CutiveMonoSubset
+>;
 
 /**
  * Cutive Mono — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CutiveMono extends GoogleFont<CutiveMonoWeight, CutiveMonoStyle, CutiveMonoSubset> {
+export default class CutiveMono extends GoogleFont<
+  CutiveMonoWeight,
+  CutiveMonoStyle,
+  CutiveMonoSubset
+> {
   constructor(options?: CutiveMonoOptions) {
     super(FAMILY, FACES, options);
   }

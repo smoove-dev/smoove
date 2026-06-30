@@ -4,16 +4,18 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tiro Bangla";
 
 const FACES = {
-  "bengali": {
-    "400-italic": "https://fonts.gstatic.com/s/tirobangla/v6/IFSiHe1Tm95E3O8b5i2V8PG_w1L2vx4i.woff2",
+  bengali: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/tirobangla/v6/IFSiHe1Tm95E3O8b5i2V8PG_w1L2vx4i.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tirobangla/v6/IFSgHe1Tm95E3O8b5i2V8PGo80Luuw.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/tirobangla/v6/IFSiHe1Tm95E3O8b5i2V8PG_w0D2vw.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tirobangla/v6/IFSgHe1Tm95E3O8b5i2V8PG680I.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/tirobangla/v6/IFSiHe1Tm95E3O8b5i2V8PG_w072vx4i.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/tirobangla/v6/IFSiHe1Tm95E3O8b5i2V8PG_w072vx4i.woff2",
     "400-normal": "https://fonts.gstatic.com/s/tirobangla/v6/IFSgHe1Tm95E3O8b5i2V8PG080Luuw.woff2",
   },
 } as const;
@@ -21,13 +23,21 @@ const FACES = {
 export type TiroBanglaWeight = "400";
 export type TiroBanglaStyle = "italic" | "normal";
 export type TiroBanglaSubset = "bengali" | "latin" | "latin-ext";
-export type TiroBanglaOptions = GoogleFontOptions<TiroBanglaWeight, TiroBanglaStyle, TiroBanglaSubset>;
+export type TiroBanglaOptions = GoogleFontOptions<
+  TiroBanglaWeight,
+  TiroBanglaStyle,
+  TiroBanglaSubset
+>;
 
 /**
  * Tiro Bangla — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class TiroBangla extends GoogleFont<TiroBanglaWeight, TiroBanglaStyle, TiroBanglaSubset> {
+export default class TiroBangla extends GoogleFont<
+  TiroBanglaWeight,
+  TiroBanglaStyle,
+  TiroBanglaSubset
+> {
   constructor(options?: TiroBanglaOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Modi";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmodi/v25/pe03MIySN5pO62Z5YkFyT7jeas5tU1E.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmodi/v25/pe03MIySN5pO62Z5YkFyT7jeas5tU1E.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmodi/v25/pe03MIySN5pO62Z5YkFyT7jeas5jU1EQVg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmodi/v25/pe03MIySN5pO62Z5YkFyT7jeas5jU1EQVg.woff2",
   },
-  "modi": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmodi/v25/pe03MIySN5pO62Z5YkFyT7jeas4QU1EQVg.woff2",
+  modi: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmodi/v25/pe03MIySN5pO62Z5YkFyT7jeas4QU1EQVg.woff2",
   },
 } as const;
 
 export type NotoSansModiWeight = "400";
 export type NotoSansModiStyle = "normal";
 export type NotoSansModiSubset = "latin" | "latin-ext" | "modi";
-export type NotoSansModiOptions = GoogleFontOptions<NotoSansModiWeight, NotoSansModiStyle, NotoSansModiSubset>;
+export type NotoSansModiOptions = GoogleFontOptions<
+  NotoSansModiWeight,
+  NotoSansModiStyle,
+  NotoSansModiSubset
+>;
 
 /**
  * Noto Sans Modi — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansModi extends GoogleFont<NotoSansModiWeight, NotoSansModiStyle, NotoSansModiSubset> {
+export default class NotoSansModi extends GoogleFont<
+  NotoSansModiWeight,
+  NotoSansModiStyle,
+  NotoSansModiSubset
+> {
   constructor(options?: NotoSansModiOptions) {
     super(FAMILY, FACES, options);
   }

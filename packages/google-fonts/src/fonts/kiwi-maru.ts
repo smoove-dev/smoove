@@ -4,12 +4,12 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kiwi Maru";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "300-normal": "https://fonts.gstatic.com/s/kiwimaru/v20/R70djykGkuuDep-hRg6gNCiEVBP8d5Q.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kiwimaru/v20/R70YjykGkuuDep-hRg6omwqRbzI.woff2",
     "500-normal": "https://fonts.gstatic.com/s/kiwimaru/v20/R70djykGkuuDep-hRg6gbCmEVBP8d5Q.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/kiwimaru/v20/R70djykGkuuDep-hRg6gNCiEUBP8.woff2",
     "400-normal": "https://fonts.gstatic.com/s/kiwimaru/v20/R70YjykGkuuDep-hRg6onwqR.woff2",
     "500-normal": "https://fonts.gstatic.com/s/kiwimaru/v20/R70djykGkuuDep-hRg6gbCmEUBP8.woff2",

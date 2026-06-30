@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Phoenician";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansphoenician/v18/jizFRF9Ksm4Bt9PvcTaEkIHiTVtxmFtS5U7OqN4.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansphoenician/v18/jizFRF9Ksm4Bt9PvcTaEkIHiTVtxmFtS5U7OqN4.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansphoenician/v18/jizFRF9Ksm4Bt9PvcTaEkIHiTVtxmFtS5U7AqN6Z5w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansphoenician/v18/jizFRF9Ksm4Bt9PvcTaEkIHiTVtxmFtS5U7AqN6Z5w.woff2",
   },
-  "phoenician": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansphoenician/v18/jizFRF9Ksm4Bt9PvcTaEkIHiTVtxmFtS5U6OqN6Z5w.woff2",
+  phoenician: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansphoenician/v18/jizFRF9Ksm4Bt9PvcTaEkIHiTVtxmFtS5U6OqN6Z5w.woff2",
   },
 } as const;
 
 export type NotoSansPhoenicianWeight = "400";
 export type NotoSansPhoenicianStyle = "normal";
 export type NotoSansPhoenicianSubset = "latin" | "latin-ext" | "phoenician";
-export type NotoSansPhoenicianOptions = GoogleFontOptions<NotoSansPhoenicianWeight, NotoSansPhoenicianStyle, NotoSansPhoenicianSubset>;
+export type NotoSansPhoenicianOptions = GoogleFontOptions<
+  NotoSansPhoenicianWeight,
+  NotoSansPhoenicianStyle,
+  NotoSansPhoenicianSubset
+>;
 
 /**
  * Noto Sans Phoenician — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansPhoenician extends GoogleFont<NotoSansPhoenicianWeight, NotoSansPhoenicianStyle, NotoSansPhoenicianSubset> {
+export default class NotoSansPhoenician extends GoogleFont<
+  NotoSansPhoenicianWeight,
+  NotoSansPhoenicianStyle,
+  NotoSansPhoenicianSubset
+> {
   constructor(options?: NotoSansPhoenicianOptions) {
     super(FAMILY, FACES, options);
   }

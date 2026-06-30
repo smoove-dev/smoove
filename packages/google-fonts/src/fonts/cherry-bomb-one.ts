@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Cherry Bomb One";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/cherrybombone/v11/y83DW4od1h6KlV3c6JJhRhGOdhr6C9BE.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cherrybombone/v11/y83DW4od1h6KlV3c6JJhRhGOdhr6C9BE.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/cherrybombone/v11/y83DW4od1h6KlV3c6JJhRhGOdhr6BdBE01c.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/cherrybombone/v11/y83DW4od1h6KlV3c6JJhRhGOdhr6BdBE01c.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/cherrybombone/v11/y83DW4od1h6KlV3c6JJhRhGOdhr6BNBE01c.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/cherrybombone/v11/y83DW4od1h6KlV3c6JJhRhGOdhr6BNBE01c.woff2",
   },
 } as const;
 
 export type CherryBombOneWeight = "400";
 export type CherryBombOneStyle = "normal";
 export type CherryBombOneSubset = "latin" | "latin-ext" | "vietnamese";
-export type CherryBombOneOptions = GoogleFontOptions<CherryBombOneWeight, CherryBombOneStyle, CherryBombOneSubset>;
+export type CherryBombOneOptions = GoogleFontOptions<
+  CherryBombOneWeight,
+  CherryBombOneStyle,
+  CherryBombOneSubset
+>;
 
 /**
  * Cherry Bomb One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CherryBombOne extends GoogleFont<CherryBombOneWeight, CherryBombOneStyle, CherryBombOneSubset> {
+export default class CherryBombOne extends GoogleFont<
+  CherryBombOneWeight,
+  CherryBombOneStyle,
+  CherryBombOneSubset
+> {
   constructor(options?: CherryBombOneOptions) {
     super(FAMILY, FACES, options);
   }

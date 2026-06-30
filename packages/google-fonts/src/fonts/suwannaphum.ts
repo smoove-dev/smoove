@@ -4,32 +4,49 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Suwannaphum";
 
 const FACES = {
-  "khmer": {
-    "100-normal": "https://fonts.gstatic.com/s/suwannaphum/v33/jAnAgHV7GtDvc8jbe8hXXL3BxcicXi2V.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0J19SwexCsfw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/suwannaphum/v33/jAnCgHV7GtDvc8jbe8hXXLWp9cGEWg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0Z0NSwexCsfw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0h0tSwexCsfw.woff2",
+  khmer: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/suwannaphum/v33/jAnAgHV7GtDvc8jbe8hXXL3BxcicXi2V.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0J19SwexCsfw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/suwannaphum/v33/jAnCgHV7GtDvc8jbe8hXXLWp9cGEWg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0Z0NSwexCsfw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0h0tSwexCsfw.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/suwannaphum/v33/jAnAgHV7GtDvc8jbe8hXXL3BxcOcXg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0J19S7exA.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/suwannaphum/v33/jAnAgHV7GtDvc8jbe8hXXL3BxcOcXg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0J19S7exA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/suwannaphum/v33/jAnCgHV7GtDvc8jbe8hXXLWi9cE.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0Z0NS7exA.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0h0tS7exA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0Z0NS7exA.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/suwannaphum/v33/jAnfgHV7GtDvc8jbe8hXXL0h0tS7exA.woff2",
   },
 } as const;
 
 export type SuwannaphumWeight = "100" | "300" | "400" | "700" | "900";
 export type SuwannaphumStyle = "normal";
 export type SuwannaphumSubset = "khmer" | "latin";
-export type SuwannaphumOptions = GoogleFontOptions<SuwannaphumWeight, SuwannaphumStyle, SuwannaphumSubset>;
+export type SuwannaphumOptions = GoogleFontOptions<
+  SuwannaphumWeight,
+  SuwannaphumStyle,
+  SuwannaphumSubset
+>;
 
 /**
  * Suwannaphum — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Suwannaphum extends GoogleFont<SuwannaphumWeight, SuwannaphumStyle, SuwannaphumSubset> {
+export default class Suwannaphum extends GoogleFont<
+  SuwannaphumWeight,
+  SuwannaphumStyle,
+  SuwannaphumSubset
+> {
   constructor(options?: SuwannaphumOptions) {
     super(FAMILY, FACES, options);
   }

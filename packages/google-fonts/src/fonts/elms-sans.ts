@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Elms Sans";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/elmssans/v7/q5uDsoS_Lf9xv7Su1Fp4AQRboYE.woff2",
     "100-normal": "https://fonts.gstatic.com/s/elmssans/v7/q5uFsoS_Lf9xv7Su1Fp4BDRZ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/elmssans/v7/q5uDsoS_Lf9xv7Su1Fp4AQRboYE.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/elmssans/v7/q5uDsoS_Lf9xv7Su1Fp4AQRVoYFoCQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/elmssans/v7/q5uFsoS_Lf9xv7Su1Fp4CjRZuYU.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/elmssans/v7/q5uDsoS_Lf9xv7Su1Fp4AQRUoYFoCQ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/elmssans/v7/q5uFsoS_Lf9xv7Su1Fp4CzRZuYU.woff2",
     "200-italic": "https://fonts.gstatic.com/s/elmssans/v7/q5uDsoS_Lf9xv7Su1Fp4AQRUoYFoCQ.woff2",

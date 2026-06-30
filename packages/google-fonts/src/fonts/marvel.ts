@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Marvel";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/marvel/v17/nwpXtKeoNgBV0qa4k2THJ3o.woff2",
     "400-normal": "https://fonts.gstatic.com/s/marvel/v17/nwpVtKeoNgBV0qa4llTF.woff2",
     "700-italic": "https://fonts.gstatic.com/s/marvel/v17/nwpQtKeoNgBV0qa4k2x8Am-l7w0.woff2",

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Carlito";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn_SDPw3m-pk039DDKxSl0AbuE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/carlito/v4/3Jn9SDPw3m-pk039DDOBTEUE.woff2",
     "700-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn6SDPw3m-pk039DDK59XgVVcBG6Oo.woff2",
@@ -16,7 +16,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn6SDPw3m-pk039DDK59XgVXMBG6Oo.woff2",
     "700-normal": "https://fonts.gstatic.com/s/carlito/v4/3Jn4SDPw3m-pk039BIykWXclU9hC.woff2",
   },
-  "greek": {
+  greek: {
     "400-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn_SDPw3m-pk039DDKxTV0AbuE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/carlito/v4/3Jn9SDPw3m-pk039DDSBTEUE.woff2",
     "700-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn6SDPw3m-pk039DDK59XgVUsBG6Oo.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn6SDPw3m-pk039DDK59XgVXcBG6Oo.woff2",
     "700-normal": "https://fonts.gstatic.com/s/carlito/v4/3Jn4SDPw3m-pk039BIykWXYlU9hC.woff2",
   },
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn_SDPw3m-pk039DDKxTl0A.woff2",
     "400-normal": "https://fonts.gstatic.com/s/carlito/v4/3Jn9SDPw3m-pk039DDeBTA.woff2",
     "700-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn6SDPw3m-pk039DDK59XgVUcBG.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn6SDPw3m-pk039DDK59XgVX8BG6Oo.woff2",
     "700-normal": "https://fonts.gstatic.com/s/carlito/v4/3Jn4SDPw3m-pk039BIykWXQlU9hC.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn_SDPw3m-pk039DDKxQV0AbuE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/carlito/v4/3Jn9SDPw3m-pk039DDiBTEUE.woff2",
     "700-italic": "https://fonts.gstatic.com/s/carlito/v4/3Jn6SDPw3m-pk039DDK59XgVXsBG6Oo.woff2",
@@ -50,7 +50,14 @@ const FACES = {
 
 export type CarlitoWeight = "400" | "700";
 export type CarlitoStyle = "italic" | "normal";
-export type CarlitoSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext" | "vietnamese";
+export type CarlitoSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type CarlitoOptions = GoogleFontOptions<CarlitoWeight, CarlitoStyle, CarlitoSubset>;
 
 /**

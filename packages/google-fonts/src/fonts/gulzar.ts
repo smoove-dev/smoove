@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gulzar";
 
 const FACES = {
-  "arabic": {
+  arabic: {
     "400-normal": "https://fonts.gstatic.com/s/gulzar/v14/Wnz6HAc9eB3HB2I7YzYYmg8.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/gulzar/v14/Wnz6HAc9eB3HB2I7ZjYY.woff2",
   },
   "latin-ext": {

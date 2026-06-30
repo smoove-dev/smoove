@@ -4,45 +4,71 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mukta Mahee";
 
 const FACES = {
-  "gurmukhi": {
-    "200-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MFcCojLHZaZA.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NhcyojLHZaZA.woff2",
+  gurmukhi: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MFcCojLHZaZA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NhcyojLHZaZA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXQ3IOIi0hcP8iVU67hA9vpUT8_DQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9M5ciojLHZaZA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MVdSojLHZaZA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NxdCojLHZaZA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NtdyojLHZaZA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9M5ciojLHZaZA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MVdSojLHZaZA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NxdCojLHZaZA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NtdyojLHZaZA.woff2",
   },
-  "latin": {
-    "200-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MFcCoALHY.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NhcyoALHY.woff2",
+  latin: {
+    "200-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MFcCoALHY.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NhcyoALHY.woff2",
     "400-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXQ3IOIi0hcP8iVU67hA9vKUT8.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9M5cioALHY.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MVdSoALHY.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NxdCoALHY.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NtdyoALHY.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9M5cioALHY.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MVdSoALHY.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NxdCoALHY.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NtdyoALHY.woff2",
   },
   "latin-ext": {
-    "200-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MFcCoOLHZaZA.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NhcyoOLHZaZA.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MFcCoOLHZaZA.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NhcyoOLHZaZA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXQ3IOIi0hcP8iVU67hA9vEUT8_DQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9M5cioOLHZaZA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MVdSoOLHZaZA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NxdCoOLHZaZA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NtdyoOLHZaZA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9M5cioOLHZaZA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9MVdSoOLHZaZA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NxdCoOLHZaZA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/muktamahee/v19/XRXN3IOIi0hcP8iVU67hA9NtdyoOLHZaZA.woff2",
   },
 } as const;
 
 export type MuktaMaheeWeight = "200" | "300" | "400" | "500" | "600" | "700" | "800";
 export type MuktaMaheeStyle = "normal";
 export type MuktaMaheeSubset = "gurmukhi" | "latin" | "latin-ext";
-export type MuktaMaheeOptions = GoogleFontOptions<MuktaMaheeWeight, MuktaMaheeStyle, MuktaMaheeSubset>;
+export type MuktaMaheeOptions = GoogleFontOptions<
+  MuktaMaheeWeight,
+  MuktaMaheeStyle,
+  MuktaMaheeSubset
+>;
 
 /**
  * Mukta Mahee — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MuktaMahee extends GoogleFont<MuktaMaheeWeight, MuktaMaheeStyle, MuktaMaheeSubset> {
+export default class MuktaMahee extends GoogleFont<
+  MuktaMaheeWeight,
+  MuktaMaheeStyle,
+  MuktaMaheeSubset
+> {
   constructor(options?: MuktaMaheeOptions) {
     super(FAMILY, FACES, options);
   }

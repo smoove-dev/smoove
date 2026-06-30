@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yuji Mai";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/yujimai/v8/ZgNQjPxdJ7DEHrS0gB3_jGDWNg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/yujimai/v8/ZgNQjPxdJ7DEHrS0gB37jGA.woff2",
   },
   "latin-ext": {

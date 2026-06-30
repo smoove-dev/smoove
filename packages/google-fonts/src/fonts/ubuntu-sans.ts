@@ -4,126 +4,236 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ubuntu Sans";
 
 const FACES = {
-  "cyrillic": {
-    "100-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
+  cyrillic: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaA3jJBOw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d7TaGxjY.woff2",
   },
   "cyrillic-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaJ3jJBOw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5DaGxjY.woff2",
   },
-  "greek": {
-    "100-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
+  greek: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaH3jJBOw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6jaGxjY.woff2",
   },
   "greek-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaI3jJBOw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5TaGxjY.woff2",
   },
-  "latin": {
-    "100-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
+  latin: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaE3jI.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d6TaG.woff2",
   },
   "latin-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3TmWd6mSRtB7_9UaLWwLPLmXPrAaRZFVxauS9FrAaK3jJBOw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/ubuntusans/v4/co3VmWd6mSRtB7_9UaLWwJnCq5ALePfPu1tPcW2d5zaGxjY.woff2",
   },
 } as const;
 
 export type UbuntuSansWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800";
 export type UbuntuSansStyle = "italic" | "normal";
-export type UbuntuSansSubset = "cyrillic" | "cyrillic-ext" | "greek" | "greek-ext" | "latin" | "latin-ext";
-export type UbuntuSansOptions = GoogleFontOptions<UbuntuSansWeight, UbuntuSansStyle, UbuntuSansSubset>;
+export type UbuntuSansSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "greek-ext"
+  | "latin"
+  | "latin-ext";
+export type UbuntuSansOptions = GoogleFontOptions<
+  UbuntuSansWeight,
+  UbuntuSansStyle,
+  UbuntuSansSubset
+>;
 
 /**
  * Ubuntu Sans — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class UbuntuSans extends GoogleFont<UbuntuSansWeight, UbuntuSansStyle, UbuntuSansSubset> {
+export default class UbuntuSans extends GoogleFont<
+  UbuntuSansWeight,
+  UbuntuSansStyle,
+  UbuntuSansSubset
+> {
   constructor(options?: UbuntuSansOptions) {
     super(FAMILY, FACES, options);
   }

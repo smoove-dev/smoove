@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lexend Mega";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/lexendmega/v27/qFdA35aBi5JtHD41zSTFEs7N4ho.woff2",
     "200-normal": "https://fonts.gstatic.com/s/lexendmega/v27/qFdA35aBi5JtHD41zSTFEs7N4ho.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lexendmega/v27/qFdA35aBi5JtHD41zSTFEs7N4ho.woff2",
@@ -26,7 +26,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/lexendmega/v27/qFdA35aBi5JtHD41zSTFEs7D4howig.woff2",
     "900-normal": "https://fonts.gstatic.com/s/lexendmega/v27/qFdA35aBi5JtHD41zSTFEs7D4howig.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-normal": "https://fonts.gstatic.com/s/lexendmega/v27/qFdA35aBi5JtHD41zSTFEs7C4howig.woff2",
     "200-normal": "https://fonts.gstatic.com/s/lexendmega/v27/qFdA35aBi5JtHD41zSTFEs7C4howig.woff2",
     "300-normal": "https://fonts.gstatic.com/s/lexendmega/v27/qFdA35aBi5JtHD41zSTFEs7C4howig.woff2",
@@ -39,16 +39,33 @@ const FACES = {
   },
 } as const;
 
-export type LexendMegaWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type LexendMegaWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type LexendMegaStyle = "normal";
 export type LexendMegaSubset = "latin" | "latin-ext" | "vietnamese";
-export type LexendMegaOptions = GoogleFontOptions<LexendMegaWeight, LexendMegaStyle, LexendMegaSubset>;
+export type LexendMegaOptions = GoogleFontOptions<
+  LexendMegaWeight,
+  LexendMegaStyle,
+  LexendMegaSubset
+>;
 
 /**
  * Lexend Mega — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LexendMega extends GoogleFont<LexendMegaWeight, LexendMegaStyle, LexendMegaSubset> {
+export default class LexendMega extends GoogleFont<
+  LexendMegaWeight,
+  LexendMegaStyle,
+  LexendMegaSubset
+> {
   constructor(options?: LexendMegaOptions) {
     super(FAMILY, FACES, options);
   }

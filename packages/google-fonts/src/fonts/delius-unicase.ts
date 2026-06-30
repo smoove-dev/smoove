@@ -4,22 +4,32 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Delius Unicase";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/deliusunicase/v30/845BNMEwEIOVT8BmgfSzIr_6mlLAfe8.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/deliusunicase/v30/845CNMEwEIOVT8BmgfSzIr_6mlp7WPr4DGg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/deliusunicase/v30/845BNMEwEIOVT8BmgfSzIr_6mlLAfe8.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/deliusunicase/v30/845CNMEwEIOVT8BmgfSzIr_6mlp7WPr4DGg.woff2",
   },
 } as const;
 
 export type DeliusUnicaseWeight = "400" | "700";
 export type DeliusUnicaseStyle = "normal";
 export type DeliusUnicaseSubset = "latin";
-export type DeliusUnicaseOptions = GoogleFontOptions<DeliusUnicaseWeight, DeliusUnicaseStyle, DeliusUnicaseSubset>;
+export type DeliusUnicaseOptions = GoogleFontOptions<
+  DeliusUnicaseWeight,
+  DeliusUnicaseStyle,
+  DeliusUnicaseSubset
+>;
 
 /**
  * Delius Unicase — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DeliusUnicase extends GoogleFont<DeliusUnicaseWeight, DeliusUnicaseStyle, DeliusUnicaseSubset> {
+export default class DeliusUnicase extends GoogleFont<
+  DeliusUnicaseWeight,
+  DeliusUnicaseStyle,
+  DeliusUnicaseSubset
+> {
   constructor(options?: DeliusUnicaseOptions) {
     super(FAMILY, FACES, options);
   }

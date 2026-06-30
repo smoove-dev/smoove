@@ -4,12 +4,12 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Idiqlat";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/idiqlat/v3/YA9Wr0ef50XNM6kiAOrKoiYgsg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/idiqlat/v3/YA9Wr0ef50XNM6kiAI7JoiYgsg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/idiqlat/v3/YA9Tr0ef50XNM6kiCCXrtw.woff2",
   },
-  "syriac": {
+  syriac: {
     "200-normal": "https://fonts.gstatic.com/s/idiqlat/v3/YA9Wr0ef50XNM6kiAOrKolUgsoGt.woff2",
     "300-normal": "https://fonts.gstatic.com/s/idiqlat/v3/YA9Wr0ef50XNM6kiAI7JolUgsoGt.woff2",
     "400-normal": "https://fonts.gstatic.com/s/idiqlat/v3/YA9Tr0ef50XNM6kiCFbrtxkB.woff2",

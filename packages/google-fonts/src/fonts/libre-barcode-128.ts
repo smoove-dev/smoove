@@ -4,21 +4,30 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Libre Barcode 128";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/librebarcode128/v31/cIfnMbdUsUoiW3O_hVviCwVjuLtXeK_H9AI.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/librebarcode128/v31/cIfnMbdUsUoiW3O_hVviCwVjuLtXeK_H9AI.woff2",
   },
 } as const;
 
 export type LibreBarcode128Weight = "400";
 export type LibreBarcode128Style = "normal";
 export type LibreBarcode128Subset = "latin";
-export type LibreBarcode128Options = GoogleFontOptions<LibreBarcode128Weight, LibreBarcode128Style, LibreBarcode128Subset>;
+export type LibreBarcode128Options = GoogleFontOptions<
+  LibreBarcode128Weight,
+  LibreBarcode128Style,
+  LibreBarcode128Subset
+>;
 
 /**
  * Libre Barcode 128 — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LibreBarcode128 extends GoogleFont<LibreBarcode128Weight, LibreBarcode128Style, LibreBarcode128Subset> {
+export default class LibreBarcode128 extends GoogleFont<
+  LibreBarcode128Weight,
+  LibreBarcode128Style,
+  LibreBarcode128Subset
+> {
   constructor(options?: LibreBarcode128Options) {
     super(FAMILY, FACES, options);
   }

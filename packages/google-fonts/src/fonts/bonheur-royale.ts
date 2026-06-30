@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bonheur Royale";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/bonheurroyale/v15/c4m51nt_GMTrtX-b9GcG4-YRmbK4eUY.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bonheurroyale/v15/c4m51nt_GMTrtX-b9GcG4-YRmbK4eUY.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/bonheurroyale/v15/c4m51nt_GMTrtX-b9GcG4-YRmbK2eUbFNw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/bonheurroyale/v15/c4m51nt_GMTrtX-b9GcG4-YRmbK2eUbFNw.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/bonheurroyale/v15/c4m51nt_GMTrtX-b9GcG4-YRmbK3eUbFNw.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/bonheurroyale/v15/c4m51nt_GMTrtX-b9GcG4-YRmbK3eUbFNw.woff2",
   },
 } as const;
 
 export type BonheurRoyaleWeight = "400";
 export type BonheurRoyaleStyle = "normal";
 export type BonheurRoyaleSubset = "latin" | "latin-ext" | "vietnamese";
-export type BonheurRoyaleOptions = GoogleFontOptions<BonheurRoyaleWeight, BonheurRoyaleStyle, BonheurRoyaleSubset>;
+export type BonheurRoyaleOptions = GoogleFontOptions<
+  BonheurRoyaleWeight,
+  BonheurRoyaleStyle,
+  BonheurRoyaleSubset
+>;
 
 /**
  * Bonheur Royale — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BonheurRoyale extends GoogleFont<BonheurRoyaleWeight, BonheurRoyaleStyle, BonheurRoyaleSubset> {
+export default class BonheurRoyale extends GoogleFont<
+  BonheurRoyaleWeight,
+  BonheurRoyaleStyle,
+  BonheurRoyaleSubset
+> {
   constructor(options?: BonheurRoyaleOptions) {
     super(FAMILY, FACES, options);
   }

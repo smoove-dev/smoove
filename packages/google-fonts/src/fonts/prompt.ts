@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Prompt";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/prompt/v12/-W_7XJnvUD7dzB2KZeJ8fkQLfg.woff2",
     "100-normal": "https://fonts.gstatic.com/s/prompt/v12/-W_9XJnvUD7dzB2CA-ofTkY.woff2",
     "200-italic": "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeLQb1MsW5A.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeKcaVMiW5Addw.woff2",
     "900-normal": "https://fonts.gstatic.com/s/prompt/v12/-W_8XJnvUD7dzB2C4_0IZ2MuQ5Q.woff2",
   },
-  "thai": {
+  thai: {
     "100-italic": "https://fonts.gstatic.com/s/prompt/v12/-W_7XJnvUD7dzB2KZeJ8flALfq0k.woff2",
     "100-normal": "https://fonts.gstatic.com/s/prompt/v12/-W_9XJnvUD7dzB2CA-oLTkYTeg.woff2",
     "200-italic": "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeLQb1M4W5Addw.woff2",
@@ -64,7 +64,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeKcaVM4W5Addw.woff2",
     "900-normal": "https://fonts.gstatic.com/s/prompt/v12/-W_8XJnvUD7dzB2C4_0IfWMuQ5Q.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/prompt/v12/-W_7XJnvUD7dzB2KZeJ8fksLfq0k.woff2",
     "100-normal": "https://fonts.gstatic.com/s/prompt/v12/-W_9XJnvUD7dzB2CA-oQTkYTeg.woff2",
     "200-italic": "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeLQb1MjW5Addw.woff2",

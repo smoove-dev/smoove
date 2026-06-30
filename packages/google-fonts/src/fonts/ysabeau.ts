@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ysabeau";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "100-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V1A7dmuQ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlD5l0hbZ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V1A7dmuQ.woff2",
@@ -44,7 +44,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V3Q7dmuQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlDdl0hbZ.woff2",
   },
-  "greek": {
+  greek: {
     "100-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V0w7dmuQ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlDll0hbZ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V0w7dmuQ.woff2",
@@ -64,7 +64,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V0w7dmuQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlDll0hbZ.woff2",
   },
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V0A7d.woff2",
     "100-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlDpl0g.woff2",
     "200-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V0A7d.woff2",
@@ -104,7 +104,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V3g7dmuQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlDRl0hbZ.woff2",
   },
-  "math": {
+  math: {
     "100-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9VrA7dmuQ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlEZl0hbZ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9VrA7dmuQ.woff2",
@@ -124,7 +124,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9VrA7dmuQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlEZl0hbZ.woff2",
   },
-  "symbols": {
+  symbols: {
     "100-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9Vvg7dmuQ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlFRl0hbZ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9Vvg7dmuQ.woff2",
@@ -144,7 +144,7 @@ const FACES = {
     "900-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9Vvg7dmuQ.woff2",
     "900-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlFRl0hbZ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V3w7dmuQ.woff2",
     "100-normal": "https://fonts.gstatic.com/s/ysabeau/v5/kmK9ZqEiBAXLcnuMlDVl0hbZ.woff2",
     "200-italic": "https://fonts.gstatic.com/s/ysabeau/v5/kmK_ZqEiBAXLcnuMlD9V3w7dmuQ.woff2",
@@ -168,7 +168,15 @@ const FACES = {
 
 export type YsabeauWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 export type YsabeauStyle = "italic" | "normal";
-export type YsabeauSubset = "cyrillic" | "cyrillic-ext" | "greek" | "latin" | "latin-ext" | "math" | "symbols" | "vietnamese";
+export type YsabeauSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "latin"
+  | "latin-ext"
+  | "math"
+  | "symbols"
+  | "vietnamese";
 export type YsabeauOptions = GoogleFontOptions<YsabeauWeight, YsabeauStyle, YsabeauSubset>;
 
 /**

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Niramit";
 
 const FACES = {
-  "latin": {
+  latin: {
     "200-italic": "https://fonts.gstatic.com/s/niramit/v12/I_upMpWdvgLdNxVLXbZiXim-rLfF.woff2",
     "200-normal": "https://fonts.gstatic.com/s/niramit/v12/I_urMpWdvgLdNxVLVXx7hi-Org.woff2",
     "300-italic": "https://fonts.gstatic.com/s/niramit/v12/I_upMpWdvgLdNxVLXbZiOiq-rLfF.woff2",
@@ -32,7 +32,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/niramit/v12/I_upMpWdvgLdNxVLXbZiKi2-orfFVZ8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/niramit/v12/I_urMpWdvgLdNxVLVQh_hiGOrq_B.woff2",
   },
-  "thai": {
+  thai: {
     "200-italic": "https://fonts.gstatic.com/s/niramit/v12/I_upMpWdvgLdNxVLXbZiXim-uLfFVZ8.woff2",
     "200-normal": "https://fonts.gstatic.com/s/niramit/v12/I_urMpWdvgLdNxVLVXx7hjuOrq_B.woff2",
     "300-italic": "https://fonts.gstatic.com/s/niramit/v12/I_upMpWdvgLdNxVLXbZiOiq-uLfFVZ8.woff2",
@@ -46,7 +46,7 @@ const FACES = {
     "700-italic": "https://fonts.gstatic.com/s/niramit/v12/I_upMpWdvgLdNxVLXbZiKi2-uLfFVZ8.woff2",
     "700-normal": "https://fonts.gstatic.com/s/niramit/v12/I_urMpWdvgLdNxVLVQh_hjuOrq_B.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "200-italic": "https://fonts.gstatic.com/s/niramit/v12/I_upMpWdvgLdNxVLXbZiXim-o7fFVZ8.woff2",
     "200-normal": "https://fonts.gstatic.com/s/niramit/v12/I_urMpWdvgLdNxVLVXx7hiCOrq_B.woff2",
     "300-italic": "https://fonts.gstatic.com/s/niramit/v12/I_upMpWdvgLdNxVLXbZiOiq-o7fFVZ8.woff2",

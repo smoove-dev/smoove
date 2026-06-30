@@ -4,19 +4,19 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Tac One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/tacone/v5/ahcZv8Cj3zw7qDr8TOkrUg.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/tacone/v5/ahcZv8Cj3zw7qDr8TOcrUtFw.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/tacone/v5/ahcZv8Cj3zw7qDr8TJUrUtFw.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/tacone/v5/ahcZv8Cj3zw7qDr8TIcrUtFw.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/tacone/v5/ahcZv8Cj3zw7qDr8TOYrUtFw.woff2",
   },
 } as const;

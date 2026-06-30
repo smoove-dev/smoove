@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Uchen";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/uchen/v11/nKKZ-GokGZ1baLaVGwA.woff2",
   },
-  "tibetan": {
+  tibetan: {
     "400-normal": "https://fonts.gstatic.com/s/uchen/v11/nKKZ-GokGZ1baLaAGwCYdA.woff2",
   },
 } as const;

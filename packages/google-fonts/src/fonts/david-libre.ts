@@ -4,48 +4,68 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "David Libre";
 
 const FACES = {
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfus0W_99N64iuYSvp4W8l54J-jYQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4qeQDKhSg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYqeQDKhSg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4qeQDKhSg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYqeQDKhSg.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfus0W_99N64iuYSvp4W8l74J8.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4qcQDI.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYqcQDI.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4qcQDI.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYqcQDI.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfus0W_99N64iuYSvp4W8l14J-jYQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4qSQDKhSg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYqSQDKhSg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4qSQDKhSg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYqSQDKhSg.woff2",
   },
-  "math": {
+  math: {
     "400-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfus0W_99N64iuYSvp4W8kH4J-jYQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4rgQDKhSg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYrgQDKhSg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4rgQDKhSg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYrgQDKhSg.woff2",
   },
-  "symbols": {
+  symbols: {
     "400-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfus0W_99N64iuYSvp4W8kV4J-jYQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4ryQDKhSg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYryQDKhSg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4ryQDKhSg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYryQDKhSg.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfus0W_99N64iuYSvp4W8l04J-jYQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4qTQDKhSg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYqTQDKhSg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8GIw4qTQDKhSg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/davidlibre/v17/snfzs0W_99N64iuYSvp4W8HAxYqTQDKhSg.woff2",
   },
 } as const;
 
 export type DavidLibreWeight = "400" | "500" | "700";
 export type DavidLibreStyle = "normal";
 export type DavidLibreSubset = "hebrew" | "latin" | "latin-ext" | "math" | "symbols" | "vietnamese";
-export type DavidLibreOptions = GoogleFontOptions<DavidLibreWeight, DavidLibreStyle, DavidLibreSubset>;
+export type DavidLibreOptions = GoogleFontOptions<
+  DavidLibreWeight,
+  DavidLibreStyle,
+  DavidLibreSubset
+>;
 
 /**
  * David Libre — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class DavidLibre extends GoogleFont<DavidLibreWeight, DavidLibreStyle, DavidLibreSubset> {
+export default class DavidLibre extends GoogleFont<
+  DavidLibreWeight,
+  DavidLibreStyle,
+  DavidLibreSubset
+> {
   constructor(options?: DavidLibreOptions) {
     super(FAMILY, FACES, options);
   }

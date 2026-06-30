@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Mukta";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "200-normal": "https://fonts.gstatic.com/s/mukta/v17/iJWHBXyXfDDVXbEOjGmc8WDm7Q.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mukta/v17/iJWHBXyXfDDVXbFqj2mc8WDm7Q.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mukta/v17/iJWKBXyXfDDVXbnArXyi0A.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/mukta/v17/iJWHBXyXfDDVXbF6iGmc8WDm7Q.woff2",
     "800-normal": "https://fonts.gstatic.com/s/mukta/v17/iJWHBXyXfDDVXbFmi2mc8WDm7Q.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/mukta/v17/iJWHBXyXfDDVXbEOjGmd8WA.woff2",
     "300-normal": "https://fonts.gstatic.com/s/mukta/v17/iJWHBXyXfDDVXbFqj2md8WA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/mukta/v17/iJWKBXyXfDDVXbnBrXw.woff2",

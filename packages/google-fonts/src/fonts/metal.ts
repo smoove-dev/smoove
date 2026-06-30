@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Metal";
 
 const FACES = {
-  "khmer": {
+  khmer: {
     "400-normal": "https://fonts.gstatic.com/s/metal/v32/lW-wwjUJIXTo7h3rlIUwUQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/metal/v32/lW-wwjUJIXTo7h3glIU.woff2",
   },
 } as const;

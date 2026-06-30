@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Ruthie";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/ruthie/v28/gokvH63sGkdqXuUNkzR2.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/ruthie/v28/gokvH63sGkdqXuUNnTR2c2s.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/ruthie/v28/gokvH63sGkdqXuUNnDR2c2s.woff2",
   },
 } as const;

@@ -4,28 +4,40 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Life Savers";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lifesavers/v23/ZXuie1UftKKabUQMgxAal8lsHAs.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/lifesavers/v23/ZXu_e1UftKKabUQMgxAal8HXOR5UmcY.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/lifesavers/v23/ZXu_e1UftKKabUQMgxAal8HLOh5UmcY.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/lifesavers/v23/ZXu_e1UftKKabUQMgxAal8HXOR5UmcY.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/lifesavers/v23/ZXu_e1UftKKabUQMgxAal8HLOh5UmcY.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/lifesavers/v23/ZXuie1UftKKabUQMgxAal8liHAtruA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/lifesavers/v23/ZXu_e1UftKKabUQMgxAal8HXOR5amcb4pA.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/lifesavers/v23/ZXu_e1UftKKabUQMgxAal8HLOh5amcb4pA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/lifesavers/v23/ZXu_e1UftKKabUQMgxAal8HXOR5amcb4pA.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/lifesavers/v23/ZXu_e1UftKKabUQMgxAal8HLOh5amcb4pA.woff2",
   },
 } as const;
 
 export type LifeSaversWeight = "400" | "700" | "800";
 export type LifeSaversStyle = "normal";
 export type LifeSaversSubset = "latin" | "latin-ext";
-export type LifeSaversOptions = GoogleFontOptions<LifeSaversWeight, LifeSaversStyle, LifeSaversSubset>;
+export type LifeSaversOptions = GoogleFontOptions<
+  LifeSaversWeight,
+  LifeSaversStyle,
+  LifeSaversSubset
+>;
 
 /**
  * Life Savers — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class LifeSavers extends GoogleFont<LifeSaversWeight, LifeSaversStyle, LifeSaversSubset> {
+export default class LifeSavers extends GoogleFont<
+  LifeSaversWeight,
+  LifeSaversStyle,
+  LifeSaversSubset
+> {
   constructor(options?: LifeSaversOptions) {
     super(FAMILY, FACES, options);
   }

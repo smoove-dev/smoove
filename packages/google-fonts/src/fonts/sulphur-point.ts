@@ -4,28 +4,42 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Sulphur Point";
 
 const FACES = {
-  "latin": {
-    "300-normal": "https://fonts.gstatic.com/s/sulphurpoint/v16/RLpkK5vv8KaycDcazWFPBj2afVU6r64PUQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sulphurpoint/v16/RLp5K5vv8KaycDcazWFPBj2adf4Yug.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sulphurpoint/v16/RLpkK5vv8KaycDcazWFPBj2afUU9r64PUQ.woff2",
+  latin: {
+    "300-normal":
+      "https://fonts.gstatic.com/s/sulphurpoint/v16/RLpkK5vv8KaycDcazWFPBj2afVU6r64PUQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sulphurpoint/v16/RLp5K5vv8KaycDcazWFPBj2adf4Yug.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sulphurpoint/v16/RLpkK5vv8KaycDcazWFPBj2afUU9r64PUQ.woff2",
   },
   "latin-ext": {
-    "300-normal": "https://fonts.gstatic.com/s/sulphurpoint/v16/RLpkK5vv8KaycDcazWFPBj2afVU6r6APUUPI.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/sulphurpoint/v16/RLp5K5vv8KaycDcazWFPBj2adfAYupEu.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/sulphurpoint/v16/RLpkK5vv8KaycDcazWFPBj2afUU9r6APUUPI.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/sulphurpoint/v16/RLpkK5vv8KaycDcazWFPBj2afVU6r6APUUPI.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sulphurpoint/v16/RLp5K5vv8KaycDcazWFPBj2adfAYupEu.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/sulphurpoint/v16/RLpkK5vv8KaycDcazWFPBj2afUU9r6APUUPI.woff2",
   },
 } as const;
 
 export type SulphurPointWeight = "300" | "400" | "700";
 export type SulphurPointStyle = "normal";
 export type SulphurPointSubset = "latin" | "latin-ext";
-export type SulphurPointOptions = GoogleFontOptions<SulphurPointWeight, SulphurPointStyle, SulphurPointSubset>;
+export type SulphurPointOptions = GoogleFontOptions<
+  SulphurPointWeight,
+  SulphurPointStyle,
+  SulphurPointSubset
+>;
 
 /**
  * Sulphur Point — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SulphurPoint extends GoogleFont<SulphurPointWeight, SulphurPointStyle, SulphurPointSubset> {
+export default class SulphurPoint extends GoogleFont<
+  SulphurPointWeight,
+  SulphurPointStyle,
+  SulphurPointSubset
+> {
   constructor(options?: SulphurPointOptions) {
     super(FAMILY, FACES, options);
   }

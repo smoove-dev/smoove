@@ -4,14 +4,14 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Chathura";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/chathura/v22/_gP91R7-rzUuVjim42dEm0ORTw.woff2",
     "300-normal": "https://fonts.gstatic.com/s/chathura/v22/_gP81R7-rzUuVjim42eMiVS2avs.woff2",
     "400-normal": "https://fonts.gstatic.com/s/chathura/v22/_gP71R7-rzUuVjim428nq0E.woff2",
     "700-normal": "https://fonts.gstatic.com/s/chathura/v22/_gP81R7-rzUuVjim42ecjlS2avs.woff2",
     "800-normal": "https://fonts.gstatic.com/s/chathura/v22/_gP81R7-rzUuVjim42eAjVS2avs.woff2",
   },
-  "telugu": {
+  telugu: {
     "100-normal": "https://fonts.gstatic.com/s/chathura/v22/_gP91R7-rzUuVjim42dEm1-RT8Zy.woff2",
     "300-normal": "https://fonts.gstatic.com/s/chathura/v22/_gP81R7-rzUuVjim42eMiVSqavtLoQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/chathura/v22/_gP71R7-rzUuVjim4287q0GJSw.woff2",

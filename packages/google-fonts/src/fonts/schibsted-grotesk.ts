@@ -4,46 +4,78 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Schibsted Grotesk";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWygpcg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz_5SSPQuCQF3t8uOwiUL-taUTtap9DWyYpchFP.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/schibstedgrotesk/v7/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Iayoxdg.woff2",
   },
 } as const;
 
 export type SchibstedGroteskWeight = "400" | "500" | "600" | "700" | "800" | "900";
 export type SchibstedGroteskStyle = "italic" | "normal";
 export type SchibstedGroteskSubset = "latin" | "latin-ext";
-export type SchibstedGroteskOptions = GoogleFontOptions<SchibstedGroteskWeight, SchibstedGroteskStyle, SchibstedGroteskSubset>;
+export type SchibstedGroteskOptions = GoogleFontOptions<
+  SchibstedGroteskWeight,
+  SchibstedGroteskStyle,
+  SchibstedGroteskSubset
+>;
 
 /**
  * Schibsted Grotesk — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SchibstedGrotesk extends GoogleFont<SchibstedGroteskWeight, SchibstedGroteskStyle, SchibstedGroteskSubset> {
+export default class SchibstedGrotesk extends GoogleFont<
+  SchibstedGroteskWeight,
+  SchibstedGroteskStyle,
+  SchibstedGroteskSubset
+> {
   constructor(options?: SchibstedGroteskOptions) {
     super(FAMILY, FACES, options);
   }

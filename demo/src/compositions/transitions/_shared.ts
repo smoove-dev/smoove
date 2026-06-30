@@ -22,7 +22,7 @@
    ============================================================ */
 import { Composition, type Sequence } from "@smoove/core";
 import { kf } from "@smoove/studio";
-import { type Presentation, TransitionSeries, linearTiming } from "@smoove/transitions";
+import { linearTiming, type Presentation, TransitionSeries } from "@smoove/transitions";
 import Konva from "konva";
 
 export const W = 1280;

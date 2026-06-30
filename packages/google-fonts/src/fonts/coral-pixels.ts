@@ -4,24 +4,33 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Coral Pixels";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/coralpixels/v1/qWctB66zpZ3zAtrlR8Mb1LyCfxz-.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/coralpixels/v1/qWctB66zpZ3zAtrlR8Mb1LyCcRz-ijA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/coralpixels/v1/qWctB66zpZ3zAtrlR8Mb1LyCcRz-ijA.woff2",
   },
 } as const;
 
 export type CoralPixelsWeight = "400";
 export type CoralPixelsStyle = "normal";
 export type CoralPixelsSubset = "latin" | "latin-ext";
-export type CoralPixelsOptions = GoogleFontOptions<CoralPixelsWeight, CoralPixelsStyle, CoralPixelsSubset>;
+export type CoralPixelsOptions = GoogleFontOptions<
+  CoralPixelsWeight,
+  CoralPixelsStyle,
+  CoralPixelsSubset
+>;
 
 /**
  * Coral Pixels — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class CoralPixels extends GoogleFont<CoralPixelsWeight, CoralPixelsStyle, CoralPixelsSubset> {
+export default class CoralPixels extends GoogleFont<
+  CoralPixelsWeight,
+  CoralPixelsStyle,
+  CoralPixelsSubset
+> {
   constructor(options?: CoralPixelsOptions) {
     super(FAMILY, FACES, options);
   }

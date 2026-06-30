@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Autour One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/autourone/v25/UqyVK80cP25l3fJgbdfbo55cVw.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type AutourOneOptions = GoogleFontOptions<AutourOneWeight, AutourOneStyle
  * Autour One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AutourOne extends GoogleFont<AutourOneWeight, AutourOneStyle, AutourOneSubset> {
+export default class AutourOne extends GoogleFont<
+  AutourOneWeight,
+  AutourOneStyle,
+  AutourOneSubset
+> {
   constructor(options?: AutourOneOptions) {
     super(FAMILY, FACES, options);
   }

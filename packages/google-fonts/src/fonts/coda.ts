@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Coda";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/coda/v22/SLXHc1jY5nQ8FUUGaw.woff2",
     "800-normal": "https://fonts.gstatic.com/s/coda/v22/SLXIc1jY5nQ8HeIgfpmswg.woff2",
   },

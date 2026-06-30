@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Manjari";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/manjari/v14/k3kSo8UPMOBO2w1UdbrYLGHE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/manjari/v14/k3kQo8UPMOBO2w1UfdnoLg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/manjari/v14/k3kVo8UPMOBO2w1UdWLNO0bhLA.woff2",
@@ -14,7 +14,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/manjari/v14/k3kQo8UPMOBO2w1UfdfoLnnA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/manjari/v14/k3kVo8UPMOBO2w1UdWLNO0jhLJqM.woff2",
   },
-  "malayalam": {
+  malayalam: {
     "100-normal": "https://fonts.gstatic.com/s/manjari/v14/k3kSo8UPMOBO2w1UdbrYNGHEEaM.woff2",
     "400-normal": "https://fonts.gstatic.com/s/manjari/v14/k3kQo8UPMOBO2w1UfcHoLnnA.woff2",
     "700-normal": "https://fonts.gstatic.com/s/manjari/v14/k3kVo8UPMOBO2w1UdWLNO17hLJqM.woff2",

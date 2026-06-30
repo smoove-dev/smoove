@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Xanh Mono";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/xanhmono/v19/R70ejykVmvKCep-vWhSomjqTdzY.woff2",
     "400-normal": "https://fonts.gstatic.com/s/xanhmono/v19/R70YjykVmvKCep-vWhSonwqR.woff2",
   },
@@ -12,7 +12,7 @@ const FACES = {
     "400-italic": "https://fonts.gstatic.com/s/xanhmono/v19/R70ejykVmvKCep-vWhSomjqddzbBTg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/xanhmono/v19/R70YjykVmvKCep-vWhSokQqRbzI.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/xanhmono/v19/R70ejykVmvKCep-vWhSomjqcdzbBTg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/xanhmono/v19/R70YjykVmvKCep-vWhSokAqRbzI.woff2",
   },

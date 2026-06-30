@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Galindo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/galindo/v26/HI_KiYMeLqVKqwyuc5boRw.woff2",
   },
   "latin-ext": {

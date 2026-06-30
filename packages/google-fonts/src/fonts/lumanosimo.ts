@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lumanosimo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lumanosimo/v5/K2F0fZBYg_JDSEZHEfO8Mo2AAg.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type LumanosimoWeight = "400";
 export type LumanosimoStyle = "normal";
 export type LumanosimoSubset = "latin" | "latin-ext";
-export type LumanosimoOptions = GoogleFontOptions<LumanosimoWeight, LumanosimoStyle, LumanosimoSubset>;
+export type LumanosimoOptions = GoogleFontOptions<
+  LumanosimoWeight,
+  LumanosimoStyle,
+  LumanosimoSubset
+>;
 
 /**
  * Lumanosimo — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Lumanosimo extends GoogleFont<LumanosimoWeight, LumanosimoStyle, LumanosimoSubset> {
+export default class Lumanosimo extends GoogleFont<
+  LumanosimoWeight,
+  LumanosimoStyle,
+  LumanosimoSubset
+> {
   constructor(options?: LumanosimoOptions) {
     super(FAMILY, FACES, options);
   }

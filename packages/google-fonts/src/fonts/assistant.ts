@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Assistant";
 
 const FACES = {
-  "hebrew": {
+  hebrew: {
     "200-normal": "https://fonts.gstatic.com/s/assistant/v24/2sDcZGJYnIjSi6H75xkzamW5O7w.woff2",
     "300-normal": "https://fonts.gstatic.com/s/assistant/v24/2sDcZGJYnIjSi6H75xkzamW5O7w.woff2",
     "400-normal": "https://fonts.gstatic.com/s/assistant/v24/2sDcZGJYnIjSi6H75xkzamW5O7w.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "700-normal": "https://fonts.gstatic.com/s/assistant/v24/2sDcZGJYnIjSi6H75xkzamW5O7w.woff2",
     "800-normal": "https://fonts.gstatic.com/s/assistant/v24/2sDcZGJYnIjSi6H75xkzamW5O7w.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/assistant/v24/2sDcZGJYnIjSi6H75xkzaGW5.woff2",
     "300-normal": "https://fonts.gstatic.com/s/assistant/v24/2sDcZGJYnIjSi6H75xkzaGW5.woff2",
     "400-normal": "https://fonts.gstatic.com/s/assistant/v24/2sDcZGJYnIjSi6H75xkzaGW5.woff2",
@@ -42,7 +42,11 @@ export type AssistantOptions = GoogleFontOptions<AssistantWeight, AssistantStyle
  * Assistant — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Assistant extends GoogleFont<AssistantWeight, AssistantStyle, AssistantSubset> {
+export default class Assistant extends GoogleFont<
+  AssistantWeight,
+  AssistantStyle,
+  AssistantSubset
+> {
   constructor(options?: AssistantOptions) {
     super(FAMILY, FACES, options);
   }

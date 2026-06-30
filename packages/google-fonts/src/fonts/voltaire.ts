@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Voltaire";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/voltaire/v23/1Pttg8PcRfSblAvGvTovaqQ.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/voltaire/v23/1Pttg8PcRfSblAvGvTohaqRXBA.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/voltaire/v23/1Pttg8PcRfSblAvGvTogaqRXBA.woff2",
   },
 } as const;

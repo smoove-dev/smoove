@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Euphoria Script";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/euphoriascript/v22/mFTpWb0X2bLb_cx6To2B8GpKoD5qlPxS.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/euphoriascript/v22/mFTpWb0X2bLb_cx6To2B8GpKoD5qlPxS.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/euphoriascript/v22/mFTpWb0X2bLb_cx6To2B8GpKoD5qmvxS5D8.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/euphoriascript/v22/mFTpWb0X2bLb_cx6To2B8GpKoD5qmvxS5D8.woff2",
   },
 } as const;
 
 export type EuphoriaScriptWeight = "400";
 export type EuphoriaScriptStyle = "normal";
 export type EuphoriaScriptSubset = "latin" | "latin-ext";
-export type EuphoriaScriptOptions = GoogleFontOptions<EuphoriaScriptWeight, EuphoriaScriptStyle, EuphoriaScriptSubset>;
+export type EuphoriaScriptOptions = GoogleFontOptions<
+  EuphoriaScriptWeight,
+  EuphoriaScriptStyle,
+  EuphoriaScriptSubset
+>;
 
 /**
  * Euphoria Script — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class EuphoriaScript extends GoogleFont<EuphoriaScriptWeight, EuphoriaScriptStyle, EuphoriaScriptSubset> {
+export default class EuphoriaScript extends GoogleFont<
+  EuphoriaScriptWeight,
+  EuphoriaScriptStyle,
+  EuphoriaScriptSubset
+> {
   constructor(options?: EuphoriaScriptOptions) {
     super(FAMILY, FACES, options);
   }

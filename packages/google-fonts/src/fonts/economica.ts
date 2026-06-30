@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Economica";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/economica/v17/Qw3ZZQZaHCLgIWa29ZBbM_IDKlk.woff2",
     "400-normal": "https://fonts.gstatic.com/s/economica/v17/Qw3fZQZaHCLgIWa29ZBbNsIB.woff2",
     "700-italic": "https://fonts.gstatic.com/s/economica/v17/Qw3EZQZaHCLgIWa29ZBbM_q4D0x6XHg.woff2",
@@ -13,7 +13,8 @@ const FACES = {
   "latin-ext": {
     "400-italic": "https://fonts.gstatic.com/s/economica/v17/Qw3ZZQZaHCLgIWa29ZBbM_INKllFfQ.woff2",
     "400-normal": "https://fonts.gstatic.com/s/economica/v17/Qw3fZQZaHCLgIWa29ZBbOMIBMl0.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/economica/v17/Qw3EZQZaHCLgIWa29ZBbM_q4D0x0XHgciw.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/economica/v17/Qw3EZQZaHCLgIWa29ZBbM_q4D0x0XHgciw.woff2",
     "700-normal": "https://fonts.gstatic.com/s/economica/v17/Qw3aZQZaHCLgIWa29ZBTjecUA3x4RHw.woff2",
   },
 } as const;
@@ -27,7 +28,11 @@ export type EconomicaOptions = GoogleFontOptions<EconomicaWeight, EconomicaStyle
  * Economica — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Economica extends GoogleFont<EconomicaWeight, EconomicaStyle, EconomicaSubset> {
+export default class Economica extends GoogleFont<
+  EconomicaWeight,
+  EconomicaStyle,
+  EconomicaSubset
+> {
   constructor(options?: EconomicaOptions) {
     super(FAMILY, FACES, options);
   }

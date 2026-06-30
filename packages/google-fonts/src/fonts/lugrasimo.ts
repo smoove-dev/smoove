@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Lugrasimo";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/lugrasimo/v5/qkBXXvoF_s_eT9c7Y7au455K.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type LugrasimoOptions = GoogleFontOptions<LugrasimoWeight, LugrasimoStyle
  * Lugrasimo — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Lugrasimo extends GoogleFont<LugrasimoWeight, LugrasimoStyle, LugrasimoSubset> {
+export default class Lugrasimo extends GoogleFont<
+  LugrasimoWeight,
+  LugrasimoStyle,
+  LugrasimoSubset
+> {
   constructor(options?: LugrasimoOptions) {
     super(FAMILY, FACES, options);
   }

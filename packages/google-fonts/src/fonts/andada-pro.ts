@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Andada Pro";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-italic": "https://fonts.gstatic.com/s/andadapro/v24/HhyTU5Qi9-SuOEhPe4LtAIxaSpEM.woff2",
     "400-normal": "https://fonts.gstatic.com/s/andadapro/v24/HhyRU5Qi9-SuOEhPe4LtAIlqSA.woff2",
     "500-italic": "https://fonts.gstatic.com/s/andadapro/v24/HhyTU5Qi9-SuOEhPe4LtAIxaSpEM.woff2",
@@ -28,7 +28,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/andadapro/v24/HhyTU5Qi9-SuOEhPe4LtAIxaRJEMx_E.woff2",
     "800-normal": "https://fonts.gstatic.com/s/andadapro/v24/HhyRU5Qi9-SuOEhPe4LtAIdqSIkI.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-italic": "https://fonts.gstatic.com/s/andadapro/v24/HhyTU5Qi9-SuOEhPe4LtAIxaRZEMx_E.woff2",
     "400-normal": "https://fonts.gstatic.com/s/andadapro/v24/HhyRU5Qi9-SuOEhPe4LtAIZqSIkI.woff2",
     "500-italic": "https://fonts.gstatic.com/s/andadapro/v24/HhyTU5Qi9-SuOEhPe4LtAIxaRZEMx_E.woff2",
@@ -51,7 +51,11 @@ export type AndadaProOptions = GoogleFontOptions<AndadaProWeight, AndadaProStyle
  * Andada Pro — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AndadaPro extends GoogleFont<AndadaProWeight, AndadaProStyle, AndadaProSubset> {
+export default class AndadaPro extends GoogleFont<
+  AndadaProWeight,
+  AndadaProStyle,
+  AndadaProSubset
+> {
   constructor(options?: AndadaProOptions) {
     super(FAMILY, FACES, options);
   }

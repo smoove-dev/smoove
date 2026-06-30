@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Shippori Antique";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/shipporiantique/v11/-F6qfid3KC8pdMyzR0qRyFUht11vwlBFgg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/shipporiantique/v11/-F6qfid3KC8pdMyzR0qRyFUht11vwlBFgg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/shipporiantique/v11/-F6qfid3KC8pdMyzR0qRyFUht11vwl5FgtIU.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/shipporiantique/v11/-F6qfid3KC8pdMyzR0qRyFUht11vwl5FgtIU.woff2",
   },
 } as const;
 
 export type ShipporiAntiqueWeight = "400";
 export type ShipporiAntiqueStyle = "normal";
 export type ShipporiAntiqueSubset = "latin" | "latin-ext";
-export type ShipporiAntiqueOptions = GoogleFontOptions<ShipporiAntiqueWeight, ShipporiAntiqueStyle, ShipporiAntiqueSubset>;
+export type ShipporiAntiqueOptions = GoogleFontOptions<
+  ShipporiAntiqueWeight,
+  ShipporiAntiqueStyle,
+  ShipporiAntiqueSubset
+>;
 
 /**
  * Shippori Antique — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ShipporiAntique extends GoogleFont<ShipporiAntiqueWeight, ShipporiAntiqueStyle, ShipporiAntiqueSubset> {
+export default class ShipporiAntique extends GoogleFont<
+  ShipporiAntiqueWeight,
+  ShipporiAntiqueStyle,
+  ShipporiAntiqueSubset
+> {
   constructor(options?: ShipporiAntiqueOptions) {
     super(FAMILY, FACES, options);
   }

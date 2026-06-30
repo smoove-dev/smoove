@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Stick";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/stick/v20/Qw3TZQpMCyTtJRvctvRzMA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/stick/v20/Qw3TZQpMCyTtJRvYtvQ.woff2",
   },
   "latin-ext": {

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Dongle";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/dongle/v16/sJoG3Ltdjt6VPkqeEcxbZT-M.woff2",
     "400-normal": "https://fonts.gstatic.com/s/dongle/v16/sJoF3Ltdjt6VPkqWuu5O.woff2",
     "700-normal": "https://fonts.gstatic.com/s/dongle/v16/sJoG3Ltdjt6VPkqeActbZT-M.woff2",
@@ -14,7 +14,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/dongle/v16/sJoF3Ltdjt6VPkqWtO5OWh4.woff2",
     "700-normal": "https://fonts.gstatic.com/s/dongle/v16/sJoG3Ltdjt6VPkqeActbaz-M_Xs.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-normal": "https://fonts.gstatic.com/s/dongle/v16/sJoG3Ltdjt6VPkqeEcxbaj-M_Xs.woff2",
     "400-normal": "https://fonts.gstatic.com/s/dongle/v16/sJoF3Ltdjt6VPkqWte5OWh4.woff2",
     "700-normal": "https://fonts.gstatic.com/s/dongle/v16/sJoG3Ltdjt6VPkqeActbaj-M_Xs.woff2",

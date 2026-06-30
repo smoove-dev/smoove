@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jersey 25 Charted";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/jersey25charted/v3/6NUM8EWHIhCWbxOqtLkv94Rlu6EkGs2pWmU.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/jersey25charted/v3/6NUM8EWHIhCWbxOqtLkv94Rlu6EkGs2pWmU.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/jersey25charted/v3/6NUM8EWHIhCWbxOqtLkv94Rlu6EkGs2nWmUm9w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/jersey25charted/v3/6NUM8EWHIhCWbxOqtLkv94Rlu6EkGs2nWmUm9w.woff2",
   },
 } as const;
 
 export type Jersey25ChartedWeight = "400";
 export type Jersey25ChartedStyle = "normal";
 export type Jersey25ChartedSubset = "latin" | "latin-ext";
-export type Jersey25ChartedOptions = GoogleFontOptions<Jersey25ChartedWeight, Jersey25ChartedStyle, Jersey25ChartedSubset>;
+export type Jersey25ChartedOptions = GoogleFontOptions<
+  Jersey25ChartedWeight,
+  Jersey25ChartedStyle,
+  Jersey25ChartedSubset
+>;
 
 /**
  * Jersey 25 Charted — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Jersey25Charted extends GoogleFont<Jersey25ChartedWeight, Jersey25ChartedStyle, Jersey25ChartedSubset> {
+export default class Jersey25Charted extends GoogleFont<
+  Jersey25ChartedWeight,
+  Jersey25ChartedStyle,
+  Jersey25ChartedSubset
+> {
   constructor(options?: Jersey25ChartedOptions) {
     super(FAMILY, FACES, options);
   }

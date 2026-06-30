@@ -4,30 +4,46 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Atkinson Hyperlegible";
 
 const FACES = {
-  "latin": {
-    "400-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt43C1KxNDXMspQ1lPyU89-1h6ONRlW45G056IqUwA.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt23C1KxNDXMspQ1lPyU89-1h6ONRlW45G04pIo.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt93C1KxNDXMspQ1lPyU89-1h6ONRlW45G056qRdhWNTFg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt73C1KxNDXMspQ1lPyU89-1h6ONRlW45G8Wbc9dCWP.woff2",
+  latin: {
+    "400-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt43C1KxNDXMspQ1lPyU89-1h6ONRlW45G056IqUwA.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt23C1KxNDXMspQ1lPyU89-1h6ONRlW45G04pIo.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt93C1KxNDXMspQ1lPyU89-1h6ONRlW45G056qRdhWNTFg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt73C1KxNDXMspQ1lPyU89-1h6ONRlW45G8Wbc9dCWP.woff2",
   },
   "latin-ext": {
-    "400-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt43C1KxNDXMspQ1lPyU89-1h6ONRlW45G056IkUwCybQ.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt23C1KxNDXMspQ1lPyU89-1h6ONRlW45G07JIoSwQ.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt93C1KxNDXMspQ1lPyU89-1h6ONRlW45G056qRdhWDTFieFA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt73C1KxNDXMspQ1lPyU89-1h6ONRlW45G8Wbc9eiWPVFw.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt43C1KxNDXMspQ1lPyU89-1h6ONRlW45G056IkUwCybQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt23C1KxNDXMspQ1lPyU89-1h6ONRlW45G07JIoSwQ.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt93C1KxNDXMspQ1lPyU89-1h6ONRlW45G056qRdhWDTFieFA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/atkinsonhyperlegible/v12/9Bt73C1KxNDXMspQ1lPyU89-1h6ONRlW45G8Wbc9eiWPVFw.woff2",
   },
 } as const;
 
 export type AtkinsonHyperlegibleWeight = "400" | "700";
 export type AtkinsonHyperlegibleStyle = "italic" | "normal";
 export type AtkinsonHyperlegibleSubset = "latin" | "latin-ext";
-export type AtkinsonHyperlegibleOptions = GoogleFontOptions<AtkinsonHyperlegibleWeight, AtkinsonHyperlegibleStyle, AtkinsonHyperlegibleSubset>;
+export type AtkinsonHyperlegibleOptions = GoogleFontOptions<
+  AtkinsonHyperlegibleWeight,
+  AtkinsonHyperlegibleStyle,
+  AtkinsonHyperlegibleSubset
+>;
 
 /**
  * Atkinson Hyperlegible — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class AtkinsonHyperlegible extends GoogleFont<AtkinsonHyperlegibleWeight, AtkinsonHyperlegibleStyle, AtkinsonHyperlegibleSubset> {
+export default class AtkinsonHyperlegible extends GoogleFont<
+  AtkinsonHyperlegibleWeight,
+  AtkinsonHyperlegibleStyle,
+  AtkinsonHyperlegibleSubset
+> {
   constructor(options?: AtkinsonHyperlegibleOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,12 +4,12 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Gayathri";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-normal": "https://fonts.gstatic.com/s/gayathri/v20/MCoWzAb429DbBilWLLhcypzYAg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/gayathri/v20/MCoQzAb429DbBilWLLA_-p4.woff2",
     "700-normal": "https://fonts.gstatic.com/s/gayathri/v20/MCoXzAb429DbBilWLLiE34v_J_U.woff2",
   },
-  "malayalam": {
+  malayalam: {
     "100-normal": "https://fonts.gstatic.com/s/gayathri/v20/MCoWzAb429DbBilWLLhcyoTYAsgA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/gayathri/v20/MCoQzAb429DbBilWLLAn-p7ABg.woff2",
     "700-normal": "https://fonts.gstatic.com/s/gayathri/v20/MCoXzAb429DbBilWLLiE34vnJ_U5wA.woff2",

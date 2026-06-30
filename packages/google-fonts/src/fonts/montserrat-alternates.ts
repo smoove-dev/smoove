@@ -4,118 +4,230 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Montserrat Alternates";
 
 const FACES = {
-  "cyrillic": {
-    "100-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTjWacfw6zH4dthXcyms1lPpC8I_b0juU057p-xEJ9j11l4.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU0xiJfWIJl70w.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8dAYxA8mRBkw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xJIbFA7xG6mA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p95AoxA8mRBkw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xQIXFA7xG6mA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU057pfWIJl70w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTvWacfw6zH4dthXcyms1lPpC8I_b0juU0576fQOJ0.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8hA4xA8mRBkw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xGITFA7xG6mA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8NBIxA8mRBkw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFA7xG6mA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9pBYxA8mRBkw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xUILFA7xG6mA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p91BoxA8mRBkw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xTIHFA7xG6mA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9RB4xA8mRBkw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xaIDFA7xG6mA.woff2",
+  cyrillic: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTjWacfw6zH4dthXcyms1lPpC8I_b0juU057p-xEJ9j11l4.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU0xiJfWIJl70w.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8dAYxA8mRBkw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xJIbFA7xG6mA.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p95AoxA8mRBkw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xQIXFA7xG6mA.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU057pfWIJl70w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTvWacfw6zH4dthXcyms1lPpC8I_b0juU0576fQOJ0.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8hA4xA8mRBkw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xGITFA7xG6mA.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8NBIxA8mRBkw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFA7xG6mA.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9pBYxA8mRBkw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xUILFA7xG6mA.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p91BoxA8mRBkw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xTIHFA7xG6mA.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9RB4xA8mRBkw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xaIDFA7xG6mA.woff2",
   },
   "cyrillic-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTjWacfw6zH4dthXcyms1lPpC8I_b0juU057p-xEJZj11l4.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU0xiJffIJl70w.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8dAYxJ8mRBkw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xJIbFCrxG6mA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p95AoxJ8mRBkw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xQIXFCrxG6mA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU057pffIJl70w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTvWacfw6zH4dthXcyms1lPpC8I_b0juU055qfQOJ0.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8hA4xJ8mRBkw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xGITFCrxG6mA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8NBIxJ8mRBkw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFCrxG6mA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9pBYxJ8mRBkw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xUILFCrxG6mA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p91BoxJ8mRBkw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xTIHFCrxG6mA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9RB4xJ8mRBkw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xaIDFCrxG6mA.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTjWacfw6zH4dthXcyms1lPpC8I_b0juU057p-xEJZj11l4.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU0xiJffIJl70w.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8dAYxJ8mRBkw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xJIbFCrxG6mA.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p95AoxJ8mRBkw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xQIXFCrxG6mA.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU057pffIJl70w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTvWacfw6zH4dthXcyms1lPpC8I_b0juU055qfQOJ0.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8hA4xJ8mRBkw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xGITFCrxG6mA.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8NBIxJ8mRBkw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFCrxG6mA.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9pBYxJ8mRBkw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xUILFCrxG6mA.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p91BoxJ8mRBkw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xTIHFCrxG6mA.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9RB4xJ8mRBkw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xaIDFCrxG6mA.woff2",
   },
-  "latin": {
-    "100-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTjWacfw6zH4dthXcyms1lPpC8I_b0juU057p-xEJtj1w.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU0xiJfSIJk.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8dAYxE8mQ.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xJIbFB7xG.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p95AoxE8mQ.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xQIXFB7xG.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU057pfSIJk.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTvWacfw6zH4dthXcyms1lPpC8I_b0juU0566fQ.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8hA4xE8mQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xGITFB7xG.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8NBIxE8mQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFB7xG.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9pBYxE8mQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xUILFB7xG.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p91BoxE8mQ.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xTIHFB7xG.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9RB4xE8mQ.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xaIDFB7xG.woff2",
+  latin: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTjWacfw6zH4dthXcyms1lPpC8I_b0juU057p-xEJtj1w.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU0xiJfSIJk.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8dAYxE8mQ.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xJIbFB7xG.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p95AoxE8mQ.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xQIXFB7xG.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU057pfSIJk.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTvWacfw6zH4dthXcyms1lPpC8I_b0juU0566fQ.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8hA4xE8mQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xGITFB7xG.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8NBIxE8mQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFB7xG.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9pBYxE8mQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xUILFB7xG.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p91BoxE8mQ.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xTIHFB7xG.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9RB4xE8mQ.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xaIDFB7xG.woff2",
   },
   "latin-ext": {
-    "100-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTjWacfw6zH4dthXcyms1lPpC8I_b0juU057p-xEJVj11l4.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU0xiJfcIJl70w.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8dAYxK8mRBkw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xJIbFCbxG6mA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p95AoxK8mRBkw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xQIXFCbxG6mA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU057pfcIJl70w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTvWacfw6zH4dthXcyms1lPpC8I_b0juU055afQOJ0.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8hA4xK8mRBkw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xGITFCbxG6mA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8NBIxK8mRBkw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFCbxG6mA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9pBYxK8mRBkw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xUILFCbxG6mA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p91BoxK8mRBkw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xTIHFCbxG6mA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9RB4xK8mRBkw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xaIDFCbxG6mA.woff2",
+    "100-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTjWacfw6zH4dthXcyms1lPpC8I_b0juU057p-xEJVj11l4.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU0xiJfcIJl70w.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8dAYxK8mRBkw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xJIbFCbxG6mA.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p95AoxK8mRBkw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xQIXFCbxG6mA.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU057pfcIJl70w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTvWacfw6zH4dthXcyms1lPpC8I_b0juU055afQOJ0.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8hA4xK8mRBkw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xGITFCbxG6mA.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8NBIxK8mRBkw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFCbxG6mA.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9pBYxK8mRBkw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xUILFCbxG6mA.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p91BoxK8mRBkw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xTIHFCbxG6mA.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9RB4xK8mRBkw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xaIDFCbxG6mA.woff2",
   },
-  "vietnamese": {
-    "100-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTjWacfw6zH4dthXcyms1lPpC8I_b0juU057p-xEJRj11l4.woff2",
-    "100-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU0xiJfdIJl70w.woff2",
-    "200-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8dAYxL8mRBkw.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xJIbFCLxG6mA.woff2",
-    "300-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p95AoxL8mRBkw.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xQIXFCLxG6mA.woff2",
-    "400-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU057pfdIJl70w.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTvWacfw6zH4dthXcyms1lPpC8I_b0juU055KfQOJ0.woff2",
-    "500-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8hA4xL8mRBkw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xGITFCLxG6mA.woff2",
-    "600-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8NBIxL8mRBkw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFCLxG6mA.woff2",
-    "700-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9pBYxL8mRBkw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xUILFCLxG6mA.woff2",
-    "800-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p91BoxL8mRBkw.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xTIHFCLxG6mA.woff2",
-    "900-italic": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9RB4xL8mRBkw.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xaIDFCLxG6mA.woff2",
+  vietnamese: {
+    "100-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTjWacfw6zH4dthXcyms1lPpC8I_b0juU057p-xEJRj11l4.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU0xiJfdIJl70w.woff2",
+    "200-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8dAYxL8mRBkw.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xJIbFCLxG6mA.woff2",
+    "300-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p95AoxL8mRBkw.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xQIXFCLxG6mA.woff2",
+    "400-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFThWacfw6zH4dthXcyms1lPpC8I_b0juU057pfdIJl70w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTvWacfw6zH4dthXcyms1lPpC8I_b0juU055KfQOJ0.woff2",
+    "500-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8hA4xL8mRBkw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xGITFCLxG6mA.woff2",
+    "600-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p8NBIxL8mRBkw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xNIPFCLxG6mA.woff2",
+    "700-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9pBYxL8mRBkw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xUILFCLxG6mA.woff2",
+    "800-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p91BoxL8mRBkw.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xTIHFCLxG6mA.woff2",
+    "900-italic":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTkWacfw6zH4dthXcyms1lPpC8I_b0juU057p9RB4xL8mRBkw.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/montserratalternates/v18/mFTiWacfw6zH4dthXcyms1lPpC8I_b0juU0xaIDFCLxG6mA.woff2",
   },
 } as const;
 
-export type MontserratAlternatesWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type MontserratAlternatesWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type MontserratAlternatesStyle = "italic" | "normal";
-export type MontserratAlternatesSubset = "cyrillic" | "cyrillic-ext" | "latin" | "latin-ext" | "vietnamese";
-export type MontserratAlternatesOptions = GoogleFontOptions<MontserratAlternatesWeight, MontserratAlternatesStyle, MontserratAlternatesSubset>;
+export type MontserratAlternatesSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
+export type MontserratAlternatesOptions = GoogleFontOptions<
+  MontserratAlternatesWeight,
+  MontserratAlternatesStyle,
+  MontserratAlternatesSubset
+>;
 
 /**
  * Montserrat Alternates — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class MontserratAlternates extends GoogleFont<MontserratAlternatesWeight, MontserratAlternatesStyle, MontserratAlternatesSubset> {
+export default class MontserratAlternates extends GoogleFont<
+  MontserratAlternatesWeight,
+  MontserratAlternatesStyle,
+  MontserratAlternatesSubset
+> {
   constructor(options?: MontserratAlternatesOptions) {
     super(FAMILY, FACES, options);
   }

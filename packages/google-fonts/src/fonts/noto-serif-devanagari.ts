@@ -4,51 +4,95 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Serif Devanagari";
 
 const FACES = {
-  "devanagari": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
+  devanagari: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-xEMqTN.woff2",
   },
-  "latin": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
+  latin: {
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-1EMg.woff2",
   },
   "latin-ext": {
-    "100-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
-    "200-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
-    "300-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
-    "400-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
-    "800-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
-    "900-normal": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
+    "100-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
+    "200-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
+    "300-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
+    "800-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
+    "900-normal":
+      "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dNcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRH-NEMqTN.woff2",
   },
 } as const;
 
-export type NotoSerifDevanagariWeight = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+export type NotoSerifDevanagariWeight =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
 export type NotoSerifDevanagariStyle = "normal";
 export type NotoSerifDevanagariSubset = "devanagari" | "latin" | "latin-ext";
-export type NotoSerifDevanagariOptions = GoogleFontOptions<NotoSerifDevanagariWeight, NotoSerifDevanagariStyle, NotoSerifDevanagariSubset>;
+export type NotoSerifDevanagariOptions = GoogleFontOptions<
+  NotoSerifDevanagariWeight,
+  NotoSerifDevanagariStyle,
+  NotoSerifDevanagariSubset
+>;
 
 /**
  * Noto Serif Devanagari — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSerifDevanagari extends GoogleFont<NotoSerifDevanagariWeight, NotoSerifDevanagariStyle, NotoSerifDevanagariSubset> {
+export default class NotoSerifDevanagari extends GoogleFont<
+  NotoSerifDevanagariWeight,
+  NotoSerifDevanagariStyle,
+  NotoSerifDevanagariSubset
+> {
   constructor(options?: NotoSerifDevanagariOptions) {
     super(FAMILY, FACES, options);
   }

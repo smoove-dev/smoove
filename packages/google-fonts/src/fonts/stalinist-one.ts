@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Stalinist One";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/stalinistone/v58/MQpS-WezM9W4Dd7D3B7I-UT7SZyePhac.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/stalinistone/v58/MQpS-WezM9W4Dd7D3B7I-UT7SZyePhac.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/stalinistone/v58/MQpS-WezM9W4Dd7D3B7I-UT7SZiePg.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/stalinistone/v58/MQpS-WezM9W4Dd7D3B7I-UT7SZiePg.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/stalinistone/v58/MQpS-WezM9W4Dd7D3B7I-UT7SZaePhac.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/stalinistone/v58/MQpS-WezM9W4Dd7D3B7I-UT7SZaePhac.woff2",
   },
 } as const;
 
 export type StalinistOneWeight = "400";
 export type StalinistOneStyle = "normal";
 export type StalinistOneSubset = "cyrillic" | "latin" | "latin-ext";
-export type StalinistOneOptions = GoogleFontOptions<StalinistOneWeight, StalinistOneStyle, StalinistOneSubset>;
+export type StalinistOneOptions = GoogleFontOptions<
+  StalinistOneWeight,
+  StalinistOneStyle,
+  StalinistOneSubset
+>;
 
 /**
  * Stalinist One — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class StalinistOne extends GoogleFont<StalinistOneWeight, StalinistOneStyle, StalinistOneSubset> {
+export default class StalinistOne extends GoogleFont<
+  StalinistOneWeight,
+  StalinistOneStyle,
+  StalinistOneSubset
+> {
   constructor(options?: StalinistOneOptions) {
     super(FAMILY, FACES, options);
   }

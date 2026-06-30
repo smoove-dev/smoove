@@ -1,4 +1,4 @@
-import { type VideoDriver, type VideoDriverContext, getMediaTime } from "./driver.js";
+import { getMediaTime, type VideoDriver, type VideoDriverContext } from "./driver.js";
 
 /**
  * Realtime preview driver for a **pull-based** {@link VideoSource} (Mediabunny +

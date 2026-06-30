@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Lydian";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslydian/v19/c4m71mVzGN7s8FmIukZJ1v4ZlcPRSUTdMw.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslydian/v19/c4m71mVzGN7s8FmIukZJ1v4ZlcPRSUTdMw.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslydian/v19/c4m71mVzGN7s8FmIukZJ1v4ZlcPRSUrdM7Ij.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslydian/v19/c4m71mVzGN7s8FmIukZJ1v4ZlcPRSUrdM7Ij.woff2",
   },
-  "lydian": {
-    "400-normal": "https://fonts.gstatic.com/s/notosanslydian/v19/c4m71mVzGN7s8FmIukZJ1v4ZlcPRSR3dM7Ij.woff2",
+  lydian: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosanslydian/v19/c4m71mVzGN7s8FmIukZJ1v4ZlcPRSR3dM7Ij.woff2",
   },
 } as const;
 
 export type NotoSansLydianWeight = "400";
 export type NotoSansLydianStyle = "normal";
 export type NotoSansLydianSubset = "latin" | "latin-ext" | "lydian";
-export type NotoSansLydianOptions = GoogleFontOptions<NotoSansLydianWeight, NotoSansLydianStyle, NotoSansLydianSubset>;
+export type NotoSansLydianOptions = GoogleFontOptions<
+  NotoSansLydianWeight,
+  NotoSansLydianStyle,
+  NotoSansLydianSubset
+>;
 
 /**
  * Noto Sans Lydian — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansLydian extends GoogleFont<NotoSansLydianWeight, NotoSansLydianStyle, NotoSansLydianSubset> {
+export default class NotoSansLydian extends GoogleFont<
+  NotoSansLydianWeight,
+  NotoSansLydianStyle,
+  NotoSansLydianSubset
+> {
   constructor(options?: NotoSansLydianOptions) {
     super(FAMILY, FACES, options);
   }

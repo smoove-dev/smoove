@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Flamenco";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/flamenco/v19/neIPzCehqYguo67ssZ0qNLk1cJA.woff2",
     "400-normal": "https://fonts.gstatic.com/s/flamenco/v19/neIIzCehqYguo67ssZWBFqw.woff2",
   },

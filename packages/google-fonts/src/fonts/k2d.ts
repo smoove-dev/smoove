@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "K2D";
 
 const FACES = {
-  "latin": {
+  latin: {
     "100-italic": "https://fonts.gstatic.com/s/k2d/v13/J7afnpF2V0EjdZ1NhLEY6w.woff2",
     "100-normal": "https://fonts.gstatic.com/s/k2d/v13/J7aRnpF2V0ErE5UutLM.woff2",
     "200-italic": "https://fonts.gstatic.com/s/k2d/v13/J7acnpF2V0EjdZ3hlaY_zp4.woff2",
@@ -40,7 +40,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/k2d/v13/J7acnpF2V0EjdZ2JkqYxzp5yGw.woff2",
     "800-normal": "https://fonts.gstatic.com/s/k2d/v13/J7aenpF2V0Er14M5nZY91po.woff2",
   },
-  "thai": {
+  thai: {
     "100-italic": "https://fonts.gstatic.com/s/k2d/v13/J7afnpF2V0EjdZ1NhKUY66NL.woff2",
     "100-normal": "https://fonts.gstatic.com/s/k2d/v13/J7aRnpF2V0ErE5U6tLMA7w.woff2",
     "200-italic": "https://fonts.gstatic.com/s/k2d/v13/J7acnpF2V0EjdZ3hlaYrzp5yGw.woff2",
@@ -58,7 +58,7 @@ const FACES = {
     "800-italic": "https://fonts.gstatic.com/s/k2d/v13/J7acnpF2V0EjdZ2JkqYrzp5yGw.woff2",
     "800-normal": "https://fonts.gstatic.com/s/k2d/v13/J7aenpF2V0Er14M5h5Y91po.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "100-italic": "https://fonts.gstatic.com/s/k2d/v13/J7afnpF2V0EjdZ1NhL4Y66NL.woff2",
     "100-normal": "https://fonts.gstatic.com/s/k2d/v13/J7aRnpF2V0ErE5UhtLMA7w.woff2",
     "200-italic": "https://fonts.gstatic.com/s/k2d/v13/J7acnpF2V0EjdZ3hlaYwzp5yGw.woff2",

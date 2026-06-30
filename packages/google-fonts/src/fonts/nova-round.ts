@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Nova Round";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/novaround/v23/flU9Rqquw5UhEnlwTJYTUYDUeA.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type NovaRoundOptions = GoogleFontOptions<NovaRoundWeight, NovaRoundStyle
  * Nova Round — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NovaRound extends GoogleFont<NovaRoundWeight, NovaRoundStyle, NovaRoundSubset> {
+export default class NovaRound extends GoogleFont<
+  NovaRoundWeight,
+  NovaRoundStyle,
+  NovaRoundSubset
+> {
   constructor(options?: NovaRoundOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "BBH Bogle";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/bbhbogle/v1/GFDoWA58rVDJf-fOV9A7rJJd.woff2",
   },
 } as const;

@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Osage";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansosage/v20/oPWX_kB6kP4jCuhpgEGmw4mtAVtnQVyT.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansosage/v20/oPWX_kB6kP4jCuhpgEGmw4mtAVtnQVyT.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansosage/v20/oPWX_kB6kP4jCuhpgEGmw4mtAVtnT1yT9ko.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansosage/v20/oPWX_kB6kP4jCuhpgEGmw4mtAVtnT1yT9ko.woff2",
   },
-  "osage": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansosage/v20/oPWX_kB6kP4jCuhpgEGmw4mtAVtnyn22y3PV.woff2",
+  osage: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansosage/v20/oPWX_kB6kP4jCuhpgEGmw4mtAVtnyn22y3PV.woff2",
   },
 } as const;
 
 export type NotoSansOsageWeight = "400";
 export type NotoSansOsageStyle = "normal";
 export type NotoSansOsageSubset = "latin" | "latin-ext" | "osage";
-export type NotoSansOsageOptions = GoogleFontOptions<NotoSansOsageWeight, NotoSansOsageStyle, NotoSansOsageSubset>;
+export type NotoSansOsageOptions = GoogleFontOptions<
+  NotoSansOsageWeight,
+  NotoSansOsageStyle,
+  NotoSansOsageSubset
+>;
 
 /**
  * Noto Sans Osage — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansOsage extends GoogleFont<NotoSansOsageWeight, NotoSansOsageStyle, NotoSansOsageSubset> {
+export default class NotoSansOsage extends GoogleFont<
+  NotoSansOsageWeight,
+  NotoSansOsageStyle,
+  NotoSansOsageSubset
+> {
   constructor(options?: NotoSansOsageOptions) {
     super(FAMILY, FACES, options);
   }

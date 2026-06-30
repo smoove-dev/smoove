@@ -4,13 +4,13 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "My Soul";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/mysoul/v7/3XFqErcuy945_u6KJ_Ivkg.woff2",
   },
   "latin-ext": {
     "400-normal": "https://fonts.gstatic.com/s/mysoul/v7/3XFqErcuy945_u6KJ_wvklnn.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/mysoul/v7/3XFqErcuy945_u6KJ_0vklnn.woff2",
   },
 } as const;

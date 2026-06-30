@@ -5,35 +5,55 @@ const FAMILY = "Noto Sans Bassa Vah";
 
 const FACES = {
   "bassa-vah": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLzxgdcNgpvw.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLzxgdcNgpvw.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLzxgdcNgpvw.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLzxgdcNgpvw.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLzxgdcNgpvw.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLzxgdcNgpvw.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLzxgdcNgpvw.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLzxgdcNgpvw.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz4A8VQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz4A8VQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz4A8VQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz4A8VQ.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz4A8VQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz4A8VQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz4A8VQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz4A8VQ.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz448VeUQ.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz448VeUQ.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz448VeUQ.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz448VeUQ.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz448VeUQ.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz448VeUQ.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz448VeUQ.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/notosansbassavah/v21/PN_sRee-r3f7LnqsD5sax12gjZn7mBpLz448VeUQ.woff2",
   },
 } as const;
 
 export type NotoSansBassaVahWeight = "400" | "500" | "600" | "700";
 export type NotoSansBassaVahStyle = "normal";
 export type NotoSansBassaVahSubset = "bassa-vah" | "latin" | "latin-ext";
-export type NotoSansBassaVahOptions = GoogleFontOptions<NotoSansBassaVahWeight, NotoSansBassaVahStyle, NotoSansBassaVahSubset>;
+export type NotoSansBassaVahOptions = GoogleFontOptions<
+  NotoSansBassaVahWeight,
+  NotoSansBassaVahStyle,
+  NotoSansBassaVahSubset
+>;
 
 /**
  * Noto Sans Bassa Vah — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansBassaVah extends GoogleFont<NotoSansBassaVahWeight, NotoSansBassaVahStyle, NotoSansBassaVahSubset> {
+export default class NotoSansBassaVah extends GoogleFont<
+  NotoSansBassaVahWeight,
+  NotoSansBassaVahStyle,
+  NotoSansBassaVahSubset
+> {
   constructor(options?: NotoSansBassaVahOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Belgrano";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/belgrano/v19/55xvey5tM9rwKWrJZfMCgLg.woff2",
   },
 } as const;

@@ -4,34 +4,49 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Comic Relief";
 
 const FACES = {
-  "cyrillic": {
-    "400-normal": "https://fonts.gstatic.com/s/comicrelief/v2/BCauqZkHrvL55SZ8uaEhHMYGXxhgPgs.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/comicrelief/v2/BCaxqZkHrvL55SZ8uaEhHMYO4D11BSojE1w.woff2",
+  cyrillic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/comicrelief/v2/BCauqZkHrvL55SZ8uaEhHMYGXxhgPgs.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/comicrelief/v2/BCaxqZkHrvL55SZ8uaEhHMYO4D11BSojE1w.woff2",
   },
-  "greek": {
-    "400-normal": "https://fonts.gstatic.com/s/comicrelief/v2/BCauqZkHrvL55SZ8uaEhHMYGWBhgPgs.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/comicrelief/v2/BCaxqZkHrvL55SZ8uaEhHMYO4D11AiojE1w.woff2",
+  greek: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/comicrelief/v2/BCauqZkHrvL55SZ8uaEhHMYGWBhgPgs.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/comicrelief/v2/BCaxqZkHrvL55SZ8uaEhHMYO4D11AiojE1w.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/comicrelief/v2/BCauqZkHrvL55SZ8uaEhHMYGWxhg.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/comicrelief/v2/BCaxqZkHrvL55SZ8uaEhHMYO4D11ASoj.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/comicrelief/v2/BCaxqZkHrvL55SZ8uaEhHMYO4D11ASoj.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/comicrelief/v2/BCauqZkHrvL55SZ8uaEhHMYGVRhgPgs.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/comicrelief/v2/BCaxqZkHrvL55SZ8uaEhHMYO4D11DyojE1w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/comicrelief/v2/BCauqZkHrvL55SZ8uaEhHMYGVRhgPgs.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/comicrelief/v2/BCaxqZkHrvL55SZ8uaEhHMYO4D11DyojE1w.woff2",
   },
 } as const;
 
 export type ComicReliefWeight = "400" | "700";
 export type ComicReliefStyle = "normal";
 export type ComicReliefSubset = "cyrillic" | "greek" | "latin" | "latin-ext";
-export type ComicReliefOptions = GoogleFontOptions<ComicReliefWeight, ComicReliefStyle, ComicReliefSubset>;
+export type ComicReliefOptions = GoogleFontOptions<
+  ComicReliefWeight,
+  ComicReliefStyle,
+  ComicReliefSubset
+>;
 
 /**
  * Comic Relief — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ComicRelief extends GoogleFont<ComicReliefWeight, ComicReliefStyle, ComicReliefSubset> {
+export default class ComicRelief extends GoogleFont<
+  ComicReliefWeight,
+  ComicReliefStyle,
+  ComicReliefSubset
+> {
   constructor(options?: ComicReliefOptions) {
     super(FAMILY, FACES, options);
   }

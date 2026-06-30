@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Comic Neue";
 
 const FACES = {
-  "latin": {
+  latin: {
     "300-italic": "https://fonts.gstatic.com/s/comicneue/v9/4UaarEJDsxBrF37olUeD96_RTplkLCND.woff2",
     "300-normal": "https://fonts.gstatic.com/s/comicneue/v9/4UaErEJDsxBrF37olUeD_wHL8pxULg.woff2",
     "400-italic": "https://fonts.gstatic.com/s/comicneue/v9/4UaFrEJDsxBrF37olUeD96_Z5btx.woff2",
@@ -23,7 +23,11 @@ export type ComicNeueOptions = GoogleFontOptions<ComicNeueWeight, ComicNeueStyle
  * Comic Neue — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ComicNeue extends GoogleFont<ComicNeueWeight, ComicNeueStyle, ComicNeueSubset> {
+export default class ComicNeue extends GoogleFont<
+  ComicNeueWeight,
+  ComicNeueStyle,
+  ComicNeueSubset
+> {
   constructor(options?: ComicNeueOptions) {
     super(FAMILY, FACES, options);
   }

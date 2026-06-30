@@ -4,27 +4,37 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Send Flowers";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/sendflowers/v7/If2PXTjtZS-0Xqy13uCQSULfwALi.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/sendflowers/v7/If2PXTjtZS-0Xqy13uCQSULfzgLikuU.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/sendflowers/v7/If2PXTjtZS-0Xqy13uCQSULfzgLikuU.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/sendflowers/v7/If2PXTjtZS-0Xqy13uCQSULfzwLikuU.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/sendflowers/v7/If2PXTjtZS-0Xqy13uCQSULfzwLikuU.woff2",
   },
 } as const;
 
 export type SendFlowersWeight = "400";
 export type SendFlowersStyle = "normal";
 export type SendFlowersSubset = "latin" | "latin-ext" | "vietnamese";
-export type SendFlowersOptions = GoogleFontOptions<SendFlowersWeight, SendFlowersStyle, SendFlowersSubset>;
+export type SendFlowersOptions = GoogleFontOptions<
+  SendFlowersWeight,
+  SendFlowersStyle,
+  SendFlowersSubset
+>;
 
 /**
  * Send Flowers — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SendFlowers extends GoogleFont<SendFlowersWeight, SendFlowersStyle, SendFlowersSubset> {
+export default class SendFlowers extends GoogleFont<
+  SendFlowersWeight,
+  SendFlowersStyle,
+  SendFlowersSubset
+> {
   constructor(options?: SendFlowersOptions) {
     super(FAMILY, FACES, options);
   }

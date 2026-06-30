@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Do Hyeon";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/dohyeon/v21/TwMN-I8CRRU2zM86HGEwbQc.woff2",
   },
 } as const;

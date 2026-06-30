@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Yeon Sung";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/yeonsung/v22/QldMNTpbohAGtsJvUn6BTllb.woff2",
   },
 } as const;

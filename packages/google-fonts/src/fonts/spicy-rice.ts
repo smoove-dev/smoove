@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Spicy Rice";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/spicyrice/v28/uK_24rSEd-Uqwk4jY1RyKvi8Ww.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type SpicyRiceOptions = GoogleFontOptions<SpicyRiceWeight, SpicyRiceStyle
  * Spicy Rice — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class SpicyRice extends GoogleFont<SpicyRiceWeight, SpicyRiceStyle, SpicyRiceSubset> {
+export default class SpicyRice extends GoogleFont<
+  SpicyRiceWeight,
+  SpicyRiceStyle,
+  SpicyRiceSubset
+> {
   constructor(options?: SpicyRiceOptions) {
     super(FAMILY, FACES, options);
   }

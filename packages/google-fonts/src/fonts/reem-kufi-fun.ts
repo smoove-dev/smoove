@@ -4,42 +4,66 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Reem Kufi Fun";
 
 const FACES = {
-  "arabic": {
-    "400-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkARWP7g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkARWP7g.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkARWP7g.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkARWP7g.woff2",
+  arabic: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkARWP7g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkARWP7g.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkARWP7g.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkARWP7g.woff2",
   },
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkURWA.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkURWA.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkURWA.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkURWA.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkURWA.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkURWA.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkURWA.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkURWA.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTksRWP7g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTksRWP7g.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTksRWP7g.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTksRWP7g.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTksRWP7g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTksRWP7g.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTksRWP7g.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTksRWP7g.woff2",
   },
-  "vietnamese": {
-    "400-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkoRWP7g.woff2",
-    "500-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkoRWP7g.woff2",
-    "600-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkoRWP7g.woff2",
-    "700-normal": "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkoRWP7g.woff2",
+  vietnamese: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkoRWP7g.woff2",
+    "500-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkoRWP7g.woff2",
+    "600-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkoRWP7g.woff2",
+    "700-normal":
+      "https://fonts.gstatic.com/s/reemkufifun/v13/uK_14rOFYukkmyUEbF43fIryTkoRWP7g.woff2",
   },
 } as const;
 
 export type ReemKufiFunWeight = "400" | "500" | "600" | "700";
 export type ReemKufiFunStyle = "normal";
 export type ReemKufiFunSubset = "arabic" | "latin" | "latin-ext" | "vietnamese";
-export type ReemKufiFunOptions = GoogleFontOptions<ReemKufiFunWeight, ReemKufiFunStyle, ReemKufiFunSubset>;
+export type ReemKufiFunOptions = GoogleFontOptions<
+  ReemKufiFunWeight,
+  ReemKufiFunStyle,
+  ReemKufiFunSubset
+>;
 
 /**
  * Reem Kufi Fun — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ReemKufiFun extends GoogleFont<ReemKufiFunWeight, ReemKufiFunStyle, ReemKufiFunSubset> {
+export default class ReemKufiFun extends GoogleFont<
+  ReemKufiFunWeight,
+  ReemKufiFunStyle,
+  ReemKufiFunSubset
+> {
   constructor(options?: ReemKufiFunOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,15 +4,15 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Amatic SC";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/amaticsc/v28/TUZyzwprpvBS1izr_vOEDuSfQZQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/amaticsc/v28/TUZ3zwprpvBS1izr_vOMscGKerUC7WQ.woff2",
   },
-  "hebrew": {
+  hebrew: {
     "400-normal": "https://fonts.gstatic.com/s/amaticsc/v28/TUZyzwprpvBS1izr_vOECOSfQZQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/amaticsc/v28/TUZ3zwprpvBS1izr_vOMscGKfLUC7WQ.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/amaticsc/v28/TUZyzwprpvBS1izr_vOECuSf.woff2",
     "700-normal": "https://fonts.gstatic.com/s/amaticsc/v28/TUZ3zwprpvBS1izr_vOMscGKfrUC.woff2",
   },
@@ -20,7 +20,7 @@ const FACES = {
     "400-normal": "https://fonts.gstatic.com/s/amaticsc/v28/TUZyzwprpvBS1izr_vOEBOSfQZQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/amaticsc/v28/TUZ3zwprpvBS1izr_vOMscGKcLUC7WQ.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "400-normal": "https://fonts.gstatic.com/s/amaticsc/v28/TUZyzwprpvBS1izr_vOEBeSfQZQ.woff2",
     "700-normal": "https://fonts.gstatic.com/s/amaticsc/v28/TUZ3zwprpvBS1izr_vOMscGKcbUC7WQ.woff2",
   },

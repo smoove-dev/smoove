@@ -4,24 +4,34 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Archivo Black";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/archivoblack/v23/HTxqL289NzCGg4MzN6KJ7eW6CYyF_g.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/archivoblack/v23/HTxqL289NzCGg4MzN6KJ7eW6CYyF_g.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/archivoblack/v23/HTxqL289NzCGg4MzN6KJ7eW6CYKF_i7y.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/archivoblack/v23/HTxqL289NzCGg4MzN6KJ7eW6CYKF_i7y.woff2",
   },
 } as const;
 
 export type ArchivoBlackWeight = "400";
 export type ArchivoBlackStyle = "normal";
 export type ArchivoBlackSubset = "latin" | "latin-ext";
-export type ArchivoBlackOptions = GoogleFontOptions<ArchivoBlackWeight, ArchivoBlackStyle, ArchivoBlackSubset>;
+export type ArchivoBlackOptions = GoogleFontOptions<
+  ArchivoBlackWeight,
+  ArchivoBlackStyle,
+  ArchivoBlackSubset
+>;
 
 /**
  * Archivo Black — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class ArchivoBlack extends GoogleFont<ArchivoBlackWeight, ArchivoBlackStyle, ArchivoBlackSubset> {
+export default class ArchivoBlack extends GoogleFont<
+  ArchivoBlackWeight,
+  ArchivoBlackStyle,
+  ArchivoBlackSubset
+> {
   constructor(options?: ArchivoBlackOptions) {
     super(FAMILY, FACES, options);
   }

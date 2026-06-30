@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Jaini";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "400-normal": "https://fonts.gstatic.com/s/jaini/v1/fC1vPYJMbGHQzHmIIediUA.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/jaini/v1/fC1vPYJMbGHQzHmJIec.woff2",
   },
   "latin-ext": {

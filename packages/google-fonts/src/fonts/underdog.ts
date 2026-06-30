@@ -4,10 +4,10 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Underdog";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "400-normal": "https://fonts.gstatic.com/s/underdog/v24/CHygV-jCElj7diMroWShWV82Nw.woff2",
   },
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/underdog/v24/CHygV-jCElj7diMroWSlWV8.woff2",
   },
   "latin-ext": {

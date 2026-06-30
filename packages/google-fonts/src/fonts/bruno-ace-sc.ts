@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Bruno Ace SC";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/brunoacesc/v7/ptROTiycffFLBuiHjdJDl63IKitq.woff2",
   },
   "latin-ext": {
@@ -15,13 +15,21 @@ const FACES = {
 export type BrunoAceSCWeight = "400";
 export type BrunoAceSCStyle = "normal";
 export type BrunoAceSCSubset = "latin" | "latin-ext";
-export type BrunoAceSCOptions = GoogleFontOptions<BrunoAceSCWeight, BrunoAceSCStyle, BrunoAceSCSubset>;
+export type BrunoAceSCOptions = GoogleFontOptions<
+  BrunoAceSCWeight,
+  BrunoAceSCStyle,
+  BrunoAceSCSubset
+>;
 
 /**
  * Bruno Ace SC — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class BrunoAceSC extends GoogleFont<BrunoAceSCWeight, BrunoAceSCStyle, BrunoAceSCSubset> {
+export default class BrunoAceSC extends GoogleFont<
+  BrunoAceSCWeight,
+  BrunoAceSCStyle,
+  BrunoAceSCSubset
+> {
   constructor(options?: BrunoAceSCOptions) {
     super(FAMILY, FACES, options);
   }

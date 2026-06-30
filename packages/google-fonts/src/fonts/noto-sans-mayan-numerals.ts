@@ -4,27 +4,38 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Noto Sans Mayan Numerals";
 
 const FACES = {
-  "latin": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmayannumerals/v17/PlIuFk25O6RzLfvNNVSivR09_KqYMwvvDKYjfIi07MAp.woff2",
+  latin: {
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmayannumerals/v17/PlIuFk25O6RzLfvNNVSivR09_KqYMwvvDKYjfIi07MAp.woff2",
   },
   "latin-ext": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmayannumerals/v17/PlIuFk25O6RzLfvNNVSivR09_KqYMwvvDKYjfIi04sAp2ec.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmayannumerals/v17/PlIuFk25O6RzLfvNNVSivR09_KqYMwvvDKYjfIi04sAp2ec.woff2",
   },
   "mayan-numerals": {
-    "400-normal": "https://fonts.gstatic.com/s/notosansmayannumerals/v17/PlIuFk25O6RzLfvNNVSivR09_KqYMwvvDKYjfIi0fOEM5N6w.woff2",
+    "400-normal":
+      "https://fonts.gstatic.com/s/notosansmayannumerals/v17/PlIuFk25O6RzLfvNNVSivR09_KqYMwvvDKYjfIi0fOEM5N6w.woff2",
   },
 } as const;
 
 export type NotoSansMayanNumeralsWeight = "400";
 export type NotoSansMayanNumeralsStyle = "normal";
 export type NotoSansMayanNumeralsSubset = "latin" | "latin-ext" | "mayan-numerals";
-export type NotoSansMayanNumeralsOptions = GoogleFontOptions<NotoSansMayanNumeralsWeight, NotoSansMayanNumeralsStyle, NotoSansMayanNumeralsSubset>;
+export type NotoSansMayanNumeralsOptions = GoogleFontOptions<
+  NotoSansMayanNumeralsWeight,
+  NotoSansMayanNumeralsStyle,
+  NotoSansMayanNumeralsSubset
+>;
 
 /**
  * Noto Sans Mayan Numerals — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class NotoSansMayanNumerals extends GoogleFont<NotoSansMayanNumeralsWeight, NotoSansMayanNumeralsStyle, NotoSansMayanNumeralsSubset> {
+export default class NotoSansMayanNumerals extends GoogleFont<
+  NotoSansMayanNumeralsWeight,
+  NotoSansMayanNumeralsStyle,
+  NotoSansMayanNumeralsSubset
+> {
   constructor(options?: NotoSansMayanNumeralsOptions) {
     super(FAMILY, FACES, options);
   }

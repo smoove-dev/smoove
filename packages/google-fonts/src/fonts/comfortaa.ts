@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Comfortaa";
 
 const FACES = {
-  "cyrillic": {
+  cyrillic: {
     "300-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4SYFqPfE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4SYFqPfE.woff2",
     "500-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4SYFqPfE.woff2",
@@ -18,14 +18,14 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4QIFqPfE.woff2",
     "700-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4QIFqPfE.woff2",
   },
-  "greek": {
+  greek: {
     "300-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4ToFqPfE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4ToFqPfE.woff2",
     "500-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4ToFqPfE.woff2",
     "600-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4ToFqPfE.woff2",
     "700-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4ToFqPfE.woff2",
   },
-  "latin": {
+  latin: {
     "300-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4TYFq.woff2",
     "400-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4TYFq.woff2",
     "500-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4TYFq.woff2",
@@ -39,7 +39,7 @@ const FACES = {
     "600-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4Q4FqPfE.woff2",
     "700-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4Q4FqPfE.woff2",
   },
-  "vietnamese": {
+  vietnamese: {
     "300-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4QoFqPfE.woff2",
     "400-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4QoFqPfE.woff2",
     "500-normal": "https://fonts.gstatic.com/s/comfortaa/v47/1Ptsg8LJRfWJmhDAuUs4QoFqPfE.woff2",
@@ -50,14 +50,24 @@ const FACES = {
 
 export type ComfortaaWeight = "300" | "400" | "500" | "600" | "700";
 export type ComfortaaStyle = "normal";
-export type ComfortaaSubset = "cyrillic" | "cyrillic-ext" | "greek" | "latin" | "latin-ext" | "vietnamese";
+export type ComfortaaSubset =
+  | "cyrillic"
+  | "cyrillic-ext"
+  | "greek"
+  | "latin"
+  | "latin-ext"
+  | "vietnamese";
 export type ComfortaaOptions = GoogleFontOptions<ComfortaaWeight, ComfortaaStyle, ComfortaaSubset>;
 
 /**
  * Comfortaa — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Comfortaa extends GoogleFont<ComfortaaWeight, ComfortaaStyle, ComfortaaSubset> {
+export default class Comfortaa extends GoogleFont<
+  ComfortaaWeight,
+  ComfortaaStyle,
+  ComfortaaSubset
+> {
   constructor(options?: ComfortaaOptions) {
     super(FAMILY, FACES, options);
   }

@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Spinnaker";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/spinnaker/v21/w8gYH2oyX-I0_rvR6HmX23YK.woff2",
   },
   "latin-ext": {
@@ -21,7 +21,11 @@ export type SpinnakerOptions = GoogleFontOptions<SpinnakerWeight, SpinnakerStyle
  * Spinnaker — Google font. Pass `weights`/`styles` to register a subset of
  * faces (omit for all) and `subset` to choose the character set (default "latin").
  */
-export default class Spinnaker extends GoogleFont<SpinnakerWeight, SpinnakerStyle, SpinnakerSubset> {
+export default class Spinnaker extends GoogleFont<
+  SpinnakerWeight,
+  SpinnakerStyle,
+  SpinnakerSubset
+> {
   constructor(options?: SpinnakerOptions) {
     super(FAMILY, FACES, options);
   }

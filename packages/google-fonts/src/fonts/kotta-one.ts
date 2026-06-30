@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Kotta One";
 
 const FACES = {
-  "latin": {
+  latin: {
     "400-normal": "https://fonts.gstatic.com/s/kottaone/v21/S6u_w41LXzPc_jlfNWq_Gwft.woff2",
   },
   "latin-ext": {

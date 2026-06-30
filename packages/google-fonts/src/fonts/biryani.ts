@@ -4,7 +4,7 @@ import { GoogleFont, type GoogleFontOptions } from "../runtime.js";
 const FAMILY = "Biryani";
 
 const FACES = {
-  "devanagari": {
+  devanagari: {
     "200-normal": "https://fonts.gstatic.com/s/biryani/v15/hv-TlzNxIFoO84YddYQyKTZYUtJ-.woff2",
     "300-normal": "https://fonts.gstatic.com/s/biryani/v15/hv-TlzNxIFoO84YddeAxKTZYUtJ-.woff2",
     "400-normal": "https://fonts.gstatic.com/s/biryani/v15/hv-WlzNxIFoO84YdfUoTPAh5.woff2",
@@ -13,7 +13,7 @@ const FACES = {
     "800-normal": "https://fonts.gstatic.com/s/biryani/v15/hv-TlzNxIFoO84Yddew1KTZYUtJ-.woff2",
     "900-normal": "https://fonts.gstatic.com/s/biryani/v15/hv-TlzNxIFoO84Yddcg0KTZYUtJ-.woff2",
   },
-  "latin": {
+  latin: {
     "200-normal": "https://fonts.gstatic.com/s/biryani/v15/hv-TlzNxIFoO84YddYQyKTdYUg.woff2",
     "300-normal": "https://fonts.gstatic.com/s/biryani/v15/hv-TlzNxIFoO84YddeAxKTdYUg.woff2",
     "400-normal": "https://fonts.gstatic.com/s/biryani/v15/hv-WlzNxIFoO84YdfUsTPA.woff2",
