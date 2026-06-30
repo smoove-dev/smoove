@@ -31,7 +31,7 @@ export function Brand({
   return (
     <div className="flex items-center gap-2.5 h-14 flex-none px-4.5 border-b border-line">
       <Logo icon={icon} onClick={onClick} />
-      <div className="text-[15px] font-bold tracking-tight">
+      <div className="font-display text-[15px] font-bold tracking-tight">
         <b className="text-ink-1">{head}</b>
         <span className="text-ink-3 font-semibold">{tail}</span>
       </div>

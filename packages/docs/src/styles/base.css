@@ -2,8 +2,16 @@
    base.css — smoove docs
    Design tokens (light + dark), reset, and shared atoms.
    Built strictly on the KmStudio design system: violet accent,
-   layered surfaces, Hanken Grotesk + JetBrains Mono.
+   layered surfaces, Comfortaa (display) + Hanken Grotesk (body) +
+   JetBrains Mono (code).
    ============================================================ */
+
+/* Brand typefaces — theme-independent, so declared once outside the
+   light/dark token blocks. Comfortaa is the display face (headlines +
+   wordmark); body & code stacks live on the elements that use them. */
+:root {
+  --font-display: "Comfortaa", system-ui, sans-serif;
+}
 
 /* ---------------- DARK (default) ---------------- */
 :root {
@@ -147,6 +155,16 @@ body,
   transition: background-color .25s ease, border-color .25s ease, color .2s ease;
 }
 
+/* Headlines render in the display face (Comfortaa). */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -220,6 +238,7 @@ button {
   height: 15px;
 }
 .brand__word {
+  font-family: var(--font-display);
   font-size: 16px;
   font-weight: 700;
   letter-spacing: -.02em;

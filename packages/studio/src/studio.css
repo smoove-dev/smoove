@@ -49,6 +49,7 @@
   --radius-control: 7px;
 
   /* ---- Type ---- */
+  --font-display: "Comfortaa", system-ui, sans-serif;
   --font-sans: "Hanken Grotesk", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
