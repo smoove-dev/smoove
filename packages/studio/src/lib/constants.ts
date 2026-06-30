@@ -8,7 +8,7 @@ export type LayerKindMeta = { color: string; label: string; icon: IconName };
 
 /** Color + icon per layer kind, consumed by the layered timeline. */
 export const LAYER_KINDS: Record<LayerKind, LayerKindMeta> = {
-  sequence: { color: "#7c5cff", label: "Sequence", icon: "layers" },
+  sequence: { color: "#ff5640", label: "Sequence", icon: "layers" },
   audio: { color: "#ff5d8f", label: "Audio", icon: "media" },
   video: { color: "#56b8ff", label: "Video", icon: "film" },
   group: { color: "#ff8a3d", label: "Group", icon: "layout" },

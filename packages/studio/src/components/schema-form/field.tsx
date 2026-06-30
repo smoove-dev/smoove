@@ -93,7 +93,7 @@ export function Field({ field, value, onChange }: FieldProps) {
     }
 
     case "color": {
-      const swatches = field.swatches ?? ["#ffffff", "#7c5cff", "#2bd9c4", "#ff8a3d", "#ff5d8f"];
+      const swatches = field.swatches ?? ["#ffffff", "#ff5640", "#2bd9c4", "#ff8a3d", "#ff5d8f"];
       const current = String(value ?? field.default ?? "#ffffff");
       return (
         <Labeled label={field.label} description={field.description}>

@@ -1,4 +1,4 @@
-import { Brand, Logo } from "./components/brand/brand.js";
+import { Brand } from "./components/brand/brand.js";
 /** @smoove/studio — public barrel. */
 import { Button } from "./components/button/button.js";
 import { IconButton } from "./components/button/icon-button.js";
@@ -52,7 +52,6 @@ export const Studio = Object.assign(StudioRoot, {
   Spacer,
   // brand
   Brand,
-  Logo,
   // left panel
   Sidebar: SidebarNs,
   Library,

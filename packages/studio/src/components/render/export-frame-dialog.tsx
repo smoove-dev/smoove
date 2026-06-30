@@ -84,7 +84,7 @@ export function ExportFrameDialog({
             <div className="relative flex-none">
               <div
                 className="w-[140px] h-[79px] rounded-ui grid place-items-center shadow-[0_0_0_1px_var(--color-line-2)_inset]"
-                style={{ background: "linear-gradient(135deg,#23204a,#7c5cff66)" }}
+                style={{ background: "linear-gradient(135deg,#23204a,rgba(255,86,64,.4))" }}
               >
                 <Icon name="camera" size={26} style={{ color: "rgba(255,255,255,.55)" }} />
               </div>

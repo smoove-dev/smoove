@@ -31,7 +31,7 @@ function SideRail() {
   const queueCount = useSignalValue(store.queueCount);
   return (
     <Studio.Sidebar>
-      <Studio.Brand name="SmooveStudio" tag="v1.0" onClick={() => navigate("/")} />
+      <Studio.Brand onClick={() => navigate("/")} />
       <Studio.Section>
         <Studio.NavItem
           icon="queue"

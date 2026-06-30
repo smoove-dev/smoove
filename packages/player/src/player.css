@@ -119,7 +119,7 @@ smoove-player-space[grow] {
   background: rgba(255, 255, 255, 0.16);
 }
 smoove-player-loop-button[on] .smoove-player__btn {
-  color: #5b8cff;
+  color: #15cda8;
 }
 
 /* --- sound --- */
@@ -207,7 +207,7 @@ smoove-player-progress {
   left: 0;
   top: 0;
   bottom: 0;
-  background: #5b8cff;
+  background: linear-gradient(90deg, #ff5640, #15cda8);
   border-radius: 2px;
 }
 .smoove-player__knob {

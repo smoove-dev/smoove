@@ -83,7 +83,7 @@ export function RenderQueue({ className }: { className?: string }) {
                   style={{
                     background: isStill
                       ? "linear-gradient(140deg,#4d2f1a,#16161b)"
-                      : "linear-gradient(140deg,#2a2550,#16161b)",
+                      : "linear-gradient(140deg,#3a1f1a,#16161b)",
                     color: "var(--color-accent-2)",
                   }}
                 >
