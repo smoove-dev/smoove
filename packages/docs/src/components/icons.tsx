@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import { type SVGProps, useId } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
 
@@ -28,12 +28,17 @@ function Line(props: IconProps & { children: React.ReactNode }) {
 // them); pass `gradient` for the official colored mark — coral→mint bars
 // (matches `smoove-mark.svg`), used in the brand lockups.
 export function BrandMark({ gradient, ...props }: IconProps & { gradient?: boolean }) {
+  // Unique per instance: the lockup renders several marks per page (header +
+  // footer), so a shared id would mean duplicate `id`s and a fragile
+  // `url(#id)` paint reference that can resolve to an unmounted def (an
+  // invisible stroke) across SSR/hydration and client navigation.
+  const gradId = useId();
   return (
-    <svg viewBox="0 0 120 120" fill="none" aria-hidden="true" {...props}>
+    <svg viewBox="35.5 31.5 57 57" fill="none" aria-hidden="true" {...props}>
       {gradient ? (
         <defs>
           <linearGradient
-            id="smoove-mark-grad"
+            id={gradId}
             x1="40"
             y1="60"
             x2="84"
@@ -46,7 +51,7 @@ export function BrandMark({ gradient, ...props }: IconProps & { gradient?: boole
         </defs>
       ) : null}
       <g
-        stroke={gradient ? "url(#smoove-mark-grad)" : "currentColor"}
+        stroke={gradient ? `url(#${gradId})` : "currentColor"}
         strokeWidth="9"
         strokeLinecap="round"
       >

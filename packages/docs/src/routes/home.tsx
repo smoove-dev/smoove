@@ -168,21 +168,93 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               <span className="code-block__lang">js</span>
             </div>
             <pre className="scroll">
-              <code className="language-javascript">{`import { Composition, Sequence, Circle } from "@smoove/core";
-
-const comp = new Composition({ fps: 60, durationInFrames: 1800 });
-const scene = new Sequence({ from: 0, durationInFrames: 1800 });
-
-const orb = new Circle({ x: 800, y: 450, radius: 200, fill: "#FF5640" });
-scene.add(orb);
-
-scene.register((frame) => {
-  const t = frame / 1800;
-  orb.x(800 + 220 * Math.sin(t * Math.PI * 2));
-  orb.radius(200 + 50 * Math.sin(t * Math.PI * 2));
-});
-
-comp.add(scene);`}</code>
+              {/* Hand-highlighted static sample — token spans use the brand
+                  --tok-* colors (.t-* in home.css). Docs pages use Shiki. */}
+              <code className="language-javascript">
+                <span className="t-key">import</span>
+                {" { "}
+                <span className="t-fn">Composition</span>
+                {", "}
+                <span className="t-fn">Sequence</span>
+                {", "}
+                <span className="t-fn">Circle</span>
+                {" } "}
+                <span className="t-key">from</span> <span className="t-str">"@smoove/core"</span>
+                {";\n\n"}
+                <span className="t-key">const</span>
+                {" comp = "}
+                <span className="t-key">new</span> <span className="t-fn">Composition</span>
+                {"({ fps: "}
+                <span className="t-num">60</span>
+                {", durationInFrames: "}
+                <span className="t-num">1800</span>
+                {" });\n"}
+                <span className="t-key">const</span>
+                {" scene = "}
+                <span className="t-key">new</span> <span className="t-fn">Sequence</span>
+                {"({ from: "}
+                <span className="t-num">0</span>
+                {", durationInFrames: "}
+                <span className="t-num">1800</span>
+                {" });\n\n"}
+                <span className="t-key">const</span>
+                {" orb = "}
+                <span className="t-key">new</span> <span className="t-fn">Circle</span>
+                {"({ x: "}
+                <span className="t-num">800</span>
+                {", y: "}
+                <span className="t-num">450</span>
+                {", radius: "}
+                <span className="t-num">200</span>
+                {", fill: "}
+                <span className="t-str">"#FF5640"</span>
+                {" });\n"}
+                {"scene."}
+                <span className="t-fn">add</span>
+                {"(orb);\n\n"}
+                {"scene."}
+                <span className="t-fn">register</span>
+                {"((frame) => {\n"}
+                {"  "}
+                <span className="t-key">const</span>
+                {" t = frame / "}
+                <span className="t-num">1800</span>
+                {";\n"}
+                {"  orb."}
+                <span className="t-fn">x</span>
+                {"("}
+                <span className="t-num">800</span>
+                {" + "}
+                <span className="t-num">220</span>
+                {" * "}
+                <span className="t-fn">Math</span>
+                {"."}
+                <span className="t-fn">sin</span>
+                {"(t * "}
+                <span className="t-fn">Math</span>
+                {".PI * "}
+                <span className="t-num">2</span>
+                {"));\n"}
+                {"  orb."}
+                <span className="t-fn">radius</span>
+                {"("}
+                <span className="t-num">200</span>
+                {" + "}
+                <span className="t-num">50</span>
+                {" * "}
+                <span className="t-fn">Math</span>
+                {"."}
+                <span className="t-fn">sin</span>
+                {"(t * "}
+                <span className="t-fn">Math</span>
+                {".PI * "}
+                <span className="t-num">2</span>
+                {"));\n"}
+                {"});\n\n"}
+                {"comp."}
+                <span className="t-fn">add</span>
+                {"(scene);"}
+              </code>
             </pre>
           </div>
         </div>

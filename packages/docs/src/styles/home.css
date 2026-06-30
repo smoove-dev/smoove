@@ -438,3 +438,18 @@ body {
   padding: 0;
   white-space: pre;
 }
+
+/* Hand-authored syntax tokens for the static hero sample (docs pages use Shiki).
+   Colors track the brand --tok-* vars, so they follow light/dark. */
+.code-block .t-key {
+  color: var(--tok-key);
+}
+.code-block .t-str {
+  color: var(--tok-str);
+}
+.code-block .t-num {
+  color: var(--tok-num);
+}
+.code-block .t-fn {
+  color: var(--tok-fn);
+}

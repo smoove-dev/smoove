@@ -268,13 +268,17 @@ button {
 .btn:active {
   transform: translateY(.5px);
 }
+/* Solid coral — the brand's button ("buttons, big moments"); the gradient is
+   reserved for the headline + mark so there's one focal gradient per view. A
+   soft top-left sheen (the brief's radial-highlight technique) adds depth. */
 .btn--primary {
   color: #fff;
-  background: linear-gradient(180deg, var(--accent-2), var(--accent));
-  box-shadow: 0 2px 16px -4px var(--accent-soft);
+  background: radial-gradient(120% 140% at 18% 10%, rgba(255, 255, 255, 0.22), transparent 52%),
+    var(--accent);
+  box-shadow: 0 8px 20px -8px color-mix(in oklab, var(--accent) 70%, transparent);
 }
 .btn--primary:hover {
-  filter: brightness(1.08);
+  filter: brightness(1.04);
 }
 .btn--ghost {
   color: var(--ink-1);
