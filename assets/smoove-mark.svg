@@ -1,0 +1,15 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Smoove edge-dot sunshine mark">
+  <defs>
+    <linearGradient id="smoove-mark-grad" x1="40" y1="60" x2="84" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF5640"></stop>
+      <stop offset="1" stop-color="#15CDA8"></stop>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#smoove-mark-grad)" stroke-width="9" stroke-linecap="round">
+    <line x1="40" y1="38" x2="40" y2="82"></line>
+    <line x1="52" y1="44" x2="52" y2="76"></line>
+    <line x1="64" y1="50" x2="64" y2="70"></line>
+    <line x1="76" y1="56" x2="76" y2="64"></line>
+  </g>
+  <circle cx="89" cy="60" r="3.5" fill="#FFC23C"></circle>
+</svg>

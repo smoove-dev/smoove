@@ -7,9 +7,7 @@ export function Brand({ className }: { className?: string }) {
       <span className="brand__mark">
         <BrandMark />
       </span>
-      <span className="brand__word">
-        konva<span className="dim">-motion</span>
-      </span>
+      <span className="brand__word">Smoove</span>
     </Link>
   );
 }

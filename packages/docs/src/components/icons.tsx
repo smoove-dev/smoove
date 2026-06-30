@@ -22,17 +22,19 @@ function Line(props: IconProps & { children: React.ReactNode }) {
 }
 
 /* ---------------- brand ---------------- */
-// Play triangle with a fading motion-afterimage trail — the smoove mark.
-// Native 0 0 256 256 art; colored via currentColor (opacities give the trail).
+// The smoove edge-dot mark: four timeline bars tapering to a play triangle,
+// with the sunshine keyframe dot just past the last bar. Bars use currentColor
+// (so the host can color them); the sunshine dot always keeps its own hue.
 export function BrandMark(props: IconProps) {
   return (
-    <svg viewBox="0 0 256 256" aria-hidden="true" {...props}>
-      <g fill="currentColor" stroke="currentColor" strokeLinejoin="round">
-        <path d="M131 128 L67 80 Q85 128 67 176 Z" opacity="0.16" strokeWidth="2" />
-        <path d="M149 128 L85 80 Q103 128 85 176 Z" opacity="0.30" strokeWidth="5" />
-        <path d="M167 128 L103 80 Q121 128 103 176 Z" opacity="0.55" strokeWidth="9" />
-        <path d="M185 128 L121 80 Q139 128 121 176 Z" opacity="1" strokeWidth="14" />
+    <svg viewBox="0 0 120 120" fill="none" aria-hidden="true" {...props}>
+      <g stroke="currentColor" strokeWidth="9" strokeLinecap="round">
+        <line x1="40" y1="38" x2="40" y2="82" />
+        <line x1="52" y1="44" x2="52" y2="76" />
+        <line x1="64" y1="50" x2="64" y2="70" />
+        <line x1="76" y1="56" x2="76" y2="64" />
       </g>
+      <circle cx="89" cy="60" r="3.5" fill="#FFC23C" />
     </svg>
   );
 }
