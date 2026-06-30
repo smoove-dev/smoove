@@ -4,7 +4,7 @@ Notes for Claude Code working in this repo. Keep this file short and current.
 
 ## What this repo is
 
-`konva-motion` brings Remotion-style timeline-driven animation to
+`smoove` brings Remotion-style timeline-driven animation to
 [Konva](https://konvajs.org). The mental model: `Composition extends
 Konva.Stage` owns a frame clock (fps + durationInFrames); `Sequence extends
 Konva.Layer` is a range-gated layer — visible and `batchDraw`'d only while
@@ -15,12 +15,12 @@ composition walks its child sequences, runs their updaters, and issues one
 ## Layout
 
 ```
-packages/core       @konva-motion/core — engine + layout. Composition, Sequence, Flex, Block, Image, Text, + a flex-aware wrapper for every Konva shape (Rect/Circle/Star/…). konva is a peerDep; flexily is a regular dep.
-packages/timeline   @konva-motion/timeline — planned React UI components (scrubber, play button). Placeholder.
-packages/player     @konva-motion/player — Lit web-component player wrapping a Composition (<km-player> + controls). konva + core are peerDeps; lit + @lit/context are deps. Light DOM; opt-in styles at "@konva-motion/player/styles.css". Built with **Vite** (not tsc): default mode emits `dist/player.js` (ESM, peers external) + types; `--mode standalone` emits `dist/player.global.js` (self-contained ESM for `<script type="module">`, bundles konva/core/lit and pins `window.KonvaMotion` + `window.Konva`) via the `"./standalone"` / unpkg / jsdelivr export. CSS extracts to `dist/player.css`.
-packages/transitions @konva-motion/transitions — Remotion-style TransitionSeries + presentations. konva + core are peerDeps.
-packages/renderer   @konva-motion/renderer — headless video renderer (Node). Rasterizes a Composition with skia-canvas (konva/skia-backend) and encodes via ffmpeg (@ffmpeg-installer). konva 10 + core are peerDeps; skia-canvas + @ffmpeg-installer are deps. `./register` subpath = setupServerRendering() at import. `./gl` subpath = wire shader (Tier B) transitions through a headless-gl + skia compositor (optional `gl` dep; transitions optional peer) so they render server-side instead of falling back to fade.
-packages/docs       @konva-motion/docs — documentation website. React Router framework-mode SSR app (RR 7, `appDirectory: "src"`). Renders Markdown pages (frontmatter via gray-matter, markdown-it + highlight.js) with the KmStudio design. Authoring = add a `.md` under `src/content/`; the sidebar nav, TOC, and prev/next are derived from frontmatter. Embeds live demos via @konva-motion/player.
+packages/core       @smoove/core — engine + layout. Composition, Sequence, Flex, Block, Image, Text, + a flex-aware wrapper for every Konva shape (Rect/Circle/Star/…). konva is a peerDep; flexily is a regular dep.
+packages/timeline   @smoove/timeline — planned React UI components (scrubber, play button). Placeholder.
+packages/player     @smoove/player — Lit web-component player wrapping a Composition (<smoove-player> + controls). konva + core are peerDeps; lit + @lit/context are deps. Light DOM; opt-in styles at "@smoove/player/styles.css". Built with **Vite** (not tsc): default mode emits `dist/player.js` (ESM, peers external) + types; `--mode standalone` emits `dist/player.global.js` (self-contained ESM for `<script type="module">`, bundles konva/core/lit and pins `window.Smoove` + `window.Konva`) via the `"./standalone"` / unpkg / jsdelivr export. CSS extracts to `dist/player.css`.
+packages/transitions @smoove/transitions — Remotion-style TransitionSeries + presentations. konva + core are peerDeps.
+packages/renderer   @smoove/renderer — headless video renderer (Node). Rasterizes a Composition with skia-canvas (konva/skia-backend) and encodes via ffmpeg (@ffmpeg-installer). konva 10 + core are peerDeps; skia-canvas + @ffmpeg-installer are deps. `./register` subpath = setupServerRendering() at import. `./gl` subpath = wire shader (Tier B) transitions through a headless-gl + skia compositor (optional `gl` dep; transitions optional peer) so they render server-side instead of falling back to fade.
+packages/docs       @smoove/docs — documentation website. React Router framework-mode SSR app (RR 7, `appDirectory: "src"`). Renders Markdown pages (frontmatter via gray-matter, markdown-it + highlight.js) with the KmStudio design. Authoring = add a `.md` under `src/content/`; the sidebar nav, TOC, and prev/next are derived from frontmatter. Embeds live demos via @smoove/player.
 demo                Vite + TS app, imports packages via `workspace:*`
 doc                 short design + usage docs
 ```
@@ -83,7 +83,7 @@ deep-import; internal moves just need the barrel repointed.
 | `pnpm build` | Build all `packages/*` |
 | `pnpm check` | Biome lint + format check |
 | `pnpm format` | Biome auto-format |
-| `pnpm --filter @konva-motion/timeline dev` | tsc watch for one package |
+| `pnpm --filter @smoove/timeline dev` | tsc watch for one package |
 
 The demo imports the package's **built** entry (not source), so after editing
 `packages/*/src` you need a `pnpm build` (or a `tsc -b --watch` running in the
@@ -91,7 +91,7 @@ package) before the change is visible in the demo.
 
 ## Gotchas
 
-- Vite + workspace symlinks resolve `@konva-motion/*` automatically — no
+- Vite + workspace symlinks resolve `@smoove/*` automatically — no
   `resolve.alias` needed. Don't add one.
 - The demo's `tsconfig.json` uses `noEmit: true` and `composite: false`; it's
   for typechecking only. Vite handles the actual build.

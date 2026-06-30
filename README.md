@@ -1,4 +1,4 @@
-# konva-motion
+# smoove
 
 Remotion-style timeline-driven animation for [Konva](https://konvajs.org).
 
@@ -8,7 +8,7 @@ paints only while in range. Composition issues one `batchDraw()` per active
 sequence per frame.
 
 ```ts
-import { Composition, Sequence } from "@konva-motion/core";
+import { Composition, Sequence } from "@smoove/core";
 import Konva from "konva";
 
 const comp = new Composition({
@@ -33,9 +33,9 @@ comp.play();
 
 | Package | What it is |
 | --- | --- |
-| [`@konva-motion/core`](./packages/core) | Engine — `Composition`, `Sequence`. `konva` is a peer dep. |
-| [`@konva-motion/layout`](./packages/layout) | Flexbox (Yoga) layout for Konva groups, with optional Sequence integration. |
-| [`@konva-motion/timeline`](./packages/timeline) | Planned home for React UI components (scrubber, play button). Placeholder. |
+| [`@smoove/core`](./packages/core) | Engine — `Composition`, `Sequence`. `konva` is a peer dep. |
+| [`@smoove/layout`](./packages/layout) | Flexbox (Yoga) layout for Konva groups, with optional Sequence integration. |
+| [`@smoove/timeline`](./packages/timeline) | Planned home for React UI components (scrubber, play button). Placeholder. |
 
 Pass `loop: true` to wrap playback at the end. Use `comp.setFrame(n)` to
 scrub (works on the server too — `play()` is browser-only).

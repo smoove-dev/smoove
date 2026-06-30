@@ -1,13 +1,4 @@
-import {
-  Circle,
-  Composition,
-  Easing,
-  Line,
-  Rect,
-  Sequence,
-  Text,
-  interpolate,
-} from "@smoove/core";
+import { Circle, Composition, Easing, Line, Rect, Sequence, Text, interpolate } from "@smoove/core";
 
 /**
  * Every dot makes the same left-to-right trip over the same frames. The only

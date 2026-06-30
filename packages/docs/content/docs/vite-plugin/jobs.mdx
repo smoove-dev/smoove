@@ -3,7 +3,7 @@ title: Jobs
 description: The two jobs the plugin runs - assets that render in both worlds, and invisible studio hot-reload.
 ---
 
-`konvaMotion()` runs two independent jobs. [Wiring it in](/docs/vite-plugin/install)
+`smoove()` runs two independent jobs. [Wiring it in](/docs/vite-plugin/install)
 turns on both; each is a no-op unless your project hits it. This page is what each
 one actually does.
 
@@ -29,7 +29,7 @@ stripped before matching.
 The default set covers the common video, audio, image, and font extensions (`mp4`,
 `webm`, `mov`, `m4v`, `mkv`, `mp3`, `wav`, `ogg`, `m4a`, `aac`, `flac`, `png`,
 `jpg`/`jpeg`, `webp`, `avif`, `gif`, `woff`/`woff2`, `ttf`, `otf`). Pass
-`konvaMotion({ serverAssets: /…/ })` to widen or narrow it.
+`smoove({ serverAssets: /…/ })` to widen or narrow it.
 </Callout>
 
 If you build a composition in a plain Node script with no Vite step, this job does
@@ -38,13 +38,13 @@ rewrite only matters when an import goes through a Vite build.
 
 ## Invisible studio hot-reload
 
-A studio (the `@konva-motion/studio` package) is an in-browser editor that lists
+A studio (the `@smoove/studio` package) is an in-browser editor that lists
 your compositions, plays them, and exposes their props. If you build one around the
 registry pattern, you author a single module that lists your compositions:
 
 ```ts
 // registry.ts
-import { defineRegistry } from "@konva-motion/studio";
+import { defineRegistry } from "@smoove/studio";
 import pulse from "./compositions/pulse/index.js";
 import ribbon from "./compositions/ribbon/index.js";
 
@@ -68,7 +68,7 @@ remounts that one entry.
 By default the plugin only inspects modules whose filename ends in
 `registry.{ts,tsx,js,jsx}` and whose default export is an actual `defineRegistry`
 call, so it stays off unrelated files. Override the filename match with
-`konvaMotion({ include: /…/ })`.
+`smoove({ include: /…/ })`.
 </Callout>
 
 Without the plugin the studio still runs; you wire HMR by hand, or accept a full

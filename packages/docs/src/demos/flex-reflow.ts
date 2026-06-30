@@ -56,9 +56,7 @@ const row = new Flex({
 });
 
 const colors = ["#4ea1ff", "#b5179e", "#80ffdb", "#f0c000"];
-const chips = colors.map(
-  (fill) => new Rect({ width: 150, height: 150, cornerRadius: 18, fill }),
-);
+const chips = colors.map((fill) => new Rect({ width: 150, height: 150, cornerRadius: 18, fill }));
 for (const chip of chips) row.add(chip);
 
 content.add(row);

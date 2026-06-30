@@ -1,9 +1,9 @@
 ---
 title: Introduction
-description: What konva-motion is, the frame-clock mental model, and when to reach for it.
+description: What smoove is, the frame-clock mental model, and when to reach for it.
 ---
 
-konva-motion brings timeline-driven animation to [Konva](https://konvajs.org).
+smoove brings timeline-driven animation to [Konva](https://konvajs.org).
 You describe what an attribute is at frame N. The engine drives your scene from a
 frame clock, plays it back smoothly in the browser, and renders the exact same
 timeline to video on the server.
@@ -41,7 +41,7 @@ Seq B              ███████████████████    
 
 ## When to reach for it
 
-Reach for konva-motion when motion is the point and it has to be deterministic
+Reach for smoove when motion is the point and it has to be deterministic
 and seekable: explainer videos, animated data stories, product demos, anything
 you might also export to MP4. Every frame is computed from the clock, so you can
 scrub to any point or render frames out of order and get exactly what you'd see
@@ -61,7 +61,7 @@ gives you two ways to deliver it:
   show each visitor their own personalized video right on the page (a name, a
   plan, their numbers), generated live in their browser.
 - **Server-side, for sending.** Render it to an MP4 with
-  [`@konva-motion/renderer`](/docs/rendering) and email it, post it, or hand it
+  [`@smoove/renderer`](/docs/rendering) and email it, post it, or hand it
   off, one file per record.
 
 Same code, same output; only *where* it runs changes.
@@ -71,7 +71,7 @@ birthday video with their own name on it: same animation, 10,000 different names
 You build the scene once and let the renderer stamp out one MP4 per record.
 
 ```ts
-import { Composition, Sequence, Text, interpolate } from "@konva-motion/core";
+import { Composition, Sequence, Text, interpolate } from "@smoove/core";
 
 // One composition, parametrized by props.
 function birthdayVideo({ name }: { name: string }) {
@@ -104,12 +104,12 @@ function birthdayVideo({ name }: { name: string }) {
 }
 ```
 
-Then drive it headlessly with the `@konva-motion/renderer` package. No browser,
+Then drive it headlessly with the `@smoove/renderer` package. No browser,
 one file per record.
 
 ```ts
-import "@konva-motion/renderer/register";
-import { renderComposition } from "@konva-motion/renderer";
+import "@smoove/renderer/register";
+import { renderComposition } from "@smoove/renderer";
 
 for (const customer of customers) {
   await renderComposition(birthdayVideo({ name: customer.name }), {
@@ -147,7 +147,7 @@ loop/scrub/export it, the frame clock pays for itself.
 
 ## Credits
 
-konva-motion stands on three projects. [Konva](https://konvajs.org) is the 2D
+smoove stands on three projects. [Konva](https://konvajs.org) is the 2D
 canvas library it builds on: every drawing primitive extends a Konva class, so
 the full Konva API is right there underneath. [Remotion](https://remotion.dev)
 is the inspiration for the frame-driven model, the idea that an animation should

@@ -1,26 +1,26 @@
 ---
 title: Install
-description: Add @konva-motion/vite to your Vite config as a dev dependency.
+description: Add @smoove/vite to your Vite config as a dev dependency.
 ---
 
-`@konva-motion/vite` is a build-time plugin, so install it as a dev dependency.
+`@smoove/vite` is a build-time plugin, so install it as a dev dependency.
 `vite` (5 or newer) is a peer dependency you already have.
 
 ```bash
-npm install -D @konva-motion/vite
+npm install -D @smoove/vite
 # or
-pnpm add -D @konva-motion/vite
+pnpm add -D @smoove/vite
 ```
 
 Add it to your Vite config:
 
 ```ts
 // vite.config.ts
-import { konvaMotion } from "@konva-motion/vite";
+import { smoove } from "@smoove/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [konvaMotion()],
+  plugins: [smoove()],
 });
 ```
 

@@ -10,7 +10,7 @@ in-process pass: no ffmpeg binary, no temp files. The whole pipeline runs in
 Node, so the composition you preview in the browser is the file you ship.
 
 <Callout type="info" title="Install it first">
-Rendering lives in `@konva-motion/renderer`, a separate Node-only package. See
+Rendering lives in `@smoove/renderer`, a separate Node-only package. See
 [Setup](/docs/rendering/install) for the install, the native requirements, and the
 `register` import used below.
 </Callout>
@@ -22,9 +22,9 @@ which installs the skia backend and the Node media factories. Do this before you
 build the composition, then await `renderComposition`:
 
 ```ts
-import "@konva-motion/renderer/register";
-import { Composition, Sequence, Rect, interpolate } from "@konva-motion/core";
-import { renderComposition } from "@konva-motion/renderer";
+import "@smoove/renderer/register";
+import { Composition, Sequence, Rect, interpolate } from "@smoove/core";
+import { renderComposition } from "@smoove/renderer";
 
 const comp = new Composition({ id: "out", fps: 60, durationInFrames: 120, width: 1280, height: 720 });
 
@@ -141,7 +141,7 @@ also write it to disk. The default `type` is `"png"`; use `"jpeg"` with a
 `quality` from 0 to 1 for a smaller file.
 
 ```ts
-import { renderStill } from "@konva-motion/renderer";
+import { renderStill } from "@smoove/renderer";
 
 const png = await renderStill(comp, { frame: 60, output: "thumb.png" });
 // png is a Buffer; `output` is optional
@@ -156,7 +156,7 @@ This is the foundation `renderComposition` builds on. Reach for it when you want
 pipe frames into your own encoder or do per-frame processing:
 
 ```ts
-import { renderFrames } from "@konva-motion/renderer";
+import { renderFrames } from "@smoove/renderer";
 
 for await (const { index, frame, data, width, height } of renderFrames(comp, { range: { from: 0, to: 59 } })) {
   // data is a width * height * 4 byte RGBA Buffer
@@ -168,7 +168,7 @@ To pipe an encoded video somewhere other than a file (an HTTP response, say), us
 fragmented container and a promise that resolves with the `RenderResult`.
 
 <Callout type="warn" title="No CLI">
-The renderer is API-only; there is no `konva-motion render` command. Put the calls
+The renderer is API-only; there is no `smoove render` command. Put the calls
 above in a `.ts` file and run it with `npx tsx render.ts` (or compile and run it
 with `node`).
 </Callout>

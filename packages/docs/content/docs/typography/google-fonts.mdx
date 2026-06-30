@@ -3,18 +3,18 @@ title: Google Fonts
 description: Use any Google font with one typed import per family, no URLs to copy, no files to host.
 ---
 
-`@konva-motion/google-fonts` turns the whole Google Fonts catalog into typed
+`@smoove/google-fonts` turns the whole Google Fonts catalog into typed
 [`Font`](/docs/typography/fonts) subclasses, one per family. You import the family you want,
 and you get a `Font` that already knows every face's URL. Nothing to copy from
 the Google Fonts site, nothing to host.
 
 ```bash
-npm install @konva-motion/google-fonts
+npm install @smoove/google-fonts
 ```
 
 ```ts
-import { Sequence, Text } from "@konva-motion/core";
-import Roboto from "@konva-motion/google-fonts/roboto";
+import { Sequence, Text } from "@smoove/core";
+import Roboto from "@smoove/google-fonts/roboto";
 
 const roboto = new Roboto({ weights: ["400", "700"] });
 
@@ -23,7 +23,7 @@ seq.add(roboto);
 seq.add(new Text({ text: "Hello", font: roboto.face("700"), fontSize: 64 }));
 ```
 
-Each family is its own subpath import (`@konva-motion/google-fonts/<family>`), so
+Each family is its own subpath import (`@smoove/google-fonts/<family>`), so
 your bundle only includes the families you actually import.
 
 ## Choosing faces
@@ -38,7 +38,7 @@ weights, styles, and subsets that family actually ships:
 | `subset` | One character set to load (`"latin"`, `"cyrillic"`, …). Default `"latin"`. |
 
 ```ts
-import PlayfairDisplay from "@konva-motion/google-fonts/playfair-display";
+import PlayfairDisplay from "@smoove/google-fonts/playfair-display";
 
 const playfair = new PlayfairDisplay({
   weights: ["400", "700"],

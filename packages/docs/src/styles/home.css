@@ -75,7 +75,7 @@ body {
   opacity: 0.8;
   animation: heroPulse 7s ease-in-out infinite;
 }
-/* Live konva-motion composition playing as the hero backdrop. Sits above the
+/* Live smoove composition playing as the hero backdrop. Sits above the
    grid/glow but below the headline; transparent canvas so the page theme shows
    through. Non-interactive — it's pure atmosphere. */
 .hero__player {

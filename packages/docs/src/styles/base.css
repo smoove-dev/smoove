@@ -1,5 +1,5 @@
 /* ============================================================
-   base.css — konva-motion docs
+   base.css — smoove docs
    Design tokens (light + dark), reset, and shared atoms.
    Built strictly on the KmStudio design system: violet accent,
    layered surfaces, Hanken Grotesk + JetBrains Mono.
@@ -211,7 +211,7 @@ button {
   display: grid;
   place-items: center;
   color: #fff;
-  /* konva-motion brand gradient (emerald → cyan), independent of the site accent. */
+  /* smoove brand gradient (emerald → cyan), independent of the site accent. */
   background: linear-gradient(150deg, #34d399, #06b6d4);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 3px 12px rgba(6, 182, 212, 0.35);
 }

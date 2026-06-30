@@ -1,5 +1,13 @@
-import { Composition, Flex, Rect, Sequence, Text, interpolate, interpolateColors } from "@smoove/core";
-import Font from '@smoove/google-fonts/special-elite';
+import {
+  Composition,
+  Flex,
+  Rect,
+  Sequence,
+  Text,
+  interpolate,
+  interpolateColors,
+} from "@smoove/core";
+import Font from "@smoove/google-fonts/special-elite";
 
 /**
  * The dynamic-props demo. One composition, parametrized by `props`: the
@@ -61,7 +69,7 @@ column.add(rule);
 // Headline. A fixed wrap width plus word wrap means long text grows downward and
 // pushes the rating row, instead of overflowing sideways.
 
-const font = new Font({styles: ['normal'], weights: ['400']});
+const font = new Font({ styles: ["normal"], weights: ["400"] });
 scene.add(font);
 
 const headline = new Text({
@@ -75,8 +83,8 @@ const headline = new Text({
   wrap: "word",
   typewriter: {
     durationInFrames: duration / 6,
-    reserveHeight: false
-  }
+    reserveHeight: false,
+  },
 });
 column.add(headline);
 
@@ -108,9 +116,10 @@ scene.register((frame) => {
 
   pips.forEach((pip, i) => {
     const on = i < rating;
-    
-    pip.fill(on ? interpolateColors(frame, [30 + i * 8, 42 + i * 8], ['#11161d', accent]) : '#11161d');
-    
+
+    pip.fill(
+      on ? interpolateColors(frame, [30 + i * 8, 42 + i * 8], ["#11161d", accent]) : "#11161d",
+    );
   });
 });
 

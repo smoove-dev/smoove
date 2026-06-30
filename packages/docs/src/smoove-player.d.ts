@@ -10,16 +10,17 @@ type BoolAttr = boolean | "";
 declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
-      "smoove-player": HTMLAttributes<HTMLElement> & RefAttributes<HTMLElement> & {
-        src?: string;
-        controls?: BoolAttr;
-        loop?: BoolAttr;
-        autoplay?: BoolAttr;
-        muted?: BoolAttr;
-        volume?: number | string;
-        playbackrate?: number | string;
-        initialframe?: number | string;
-      };
+      "smoove-player": HTMLAttributes<HTMLElement> &
+        RefAttributes<HTMLElement> & {
+          src?: string;
+          controls?: BoolAttr;
+          loop?: BoolAttr;
+          autoplay?: BoolAttr;
+          muted?: BoolAttr;
+          volume?: number | string;
+          playbackrate?: number | string;
+          initialframe?: number | string;
+        };
       "smoove-player-overlay": HTMLAttributes<HTMLElement>;
       "smoove-player-controls": HTMLAttributes<HTMLElement>;
       "smoove-player-controls-row": HTMLAttributes<HTMLElement>;

@@ -1,21 +1,21 @@
 ---
 title: Install
-description: Install @konva-motion/transitions to blend scenes with cross-fades, slides, wipes, and shader effects.
+description: Install @smoove/transitions to blend scenes with cross-fades, slides, wipes, and shader effects.
 ---
 
 `TransitionSeries` and the presentations (`fade`, `slide`, `wipe`, and the rest)
-ship in their own package, `@konva-motion/transitions`. It builds on
-`@konva-motion/core`, so add it once you have a composition and want to blend one
+ship in their own package, `@smoove/transitions`. It builds on
+`@smoove/core`, so add it once you have a composition and want to blend one
 scene into the next.
 
 ```bash
-npm install konva @konva-motion/core @konva-motion/transitions
+npm install konva @smoove/core @smoove/transitions
 # or
-pnpm add konva @konva-motion/core @konva-motion/transitions
+pnpm add konva @smoove/core @smoove/transitions
 ```
 
 <Callout type="info" title="konva and core are peers">
-You install `konva` and `@konva-motion/core` yourself; the transitions package
+You install `konva` and `@smoove/core` yourself; the transitions package
 lists them as peer dependencies. Pin a single copy of `konva` so `instanceof`
 checks and layout keep working. See [Installation](/docs/installation) for the
 core setup.
@@ -25,8 +25,8 @@ A series needs a `Composition` up front (spring timings read its `fps`, and
 presentations are sized from its `width`/`height`):
 
 ```ts
-import { Composition } from "@konva-motion/core";
-import { TransitionSeries, fade, linearTiming } from "@konva-motion/transitions";
+import { Composition } from "@smoove/core";
+import { TransitionSeries, fade, linearTiming } from "@smoove/transitions";
 
 const comp = new Composition({ id: "intro", fps: 60, durationInFrames: 200, width: 1280, height: 720 });
 const series = new TransitionSeries({ composition: comp });

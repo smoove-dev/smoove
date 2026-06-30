@@ -1,5 +1,5 @@
-import { smoove } from "@smoove/vite";
 import { reactRouter } from "@react-router/dev/vite";
+import { smoove } from "@smoove/vite";
 import { defineConfig } from "vite";
 
 const shim = new URL("./src/node-module-shim.ts", import.meta.url).pathname;

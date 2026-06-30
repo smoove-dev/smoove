@@ -3,13 +3,13 @@ import type {
   BooleanField,
   ColorField,
   DividerField,
-  SmooveField,
-  SmooveSchema,
   MultilineField,
   MultiselectField,
   NumberField,
   ObjectField,
   SelectField,
+  SmooveField,
+  SmooveSchema,
   TextField,
 } from "./types.js";
 

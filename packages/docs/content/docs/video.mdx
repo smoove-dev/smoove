@@ -9,7 +9,7 @@ picture a headless render writes out. You drop it into a [Sequence](/docs/sequen
 like any other node and the engine seeks the clip to match the playhead.
 
 ```ts
-import { Composition, Sequence, Video } from "@konva-motion/core";
+import { Composition, Sequence, Video } from "@smoove/core";
 
 const comp = new Composition({ id: "clip", fps: 60, durationInFrames: 600, width: 1080, height: 1080 });
 
@@ -82,7 +82,7 @@ seq.register(() => {
 <Callout type="info" title="Renders headless too">
 Preview and render both decode footage with [Mediabunny](https://mediabunny.dev):
 the browser pulls frames through WebCodecs, the Node renderer
-(`@konva-motion/renderer`) through its server decoder. Both seek frame-accurately,
+(`@smoove/renderer`) through its server decoder. Both seek frame-accurately,
 so the frame you scrub to is byte-for-byte the frame that gets written. You do not
 change the composition: `setFrame(n)` and the same `trimBefore`/`trimAfter` windows
 drive both. Add the package from [Rendering setup](/docs/rendering/install), then see

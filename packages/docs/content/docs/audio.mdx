@@ -10,7 +10,7 @@ sounds it on the frame clock. Levels are driven by the frame, the same as
 everything else, so a mix scrubs and renders deterministically.
 
 ```ts
-import { Audio, Composition, Sequence } from "@konva-motion/core";
+import { Audio, Composition, Sequence } from "@smoove/core";
 
 const comp = new Composition({ id: "scene", fps: 60, durationInFrames: 1560, width: 1080, height: 1080 });
 
@@ -47,7 +47,7 @@ Drive a track's level the recommended way: from the frame, with
 bed in over the first half second, hold it, then fade it out at the end.
 
 ```ts
-import { interpolate } from "@konva-motion/core";
+import { interpolate } from "@smoove/core";
 
 const FADE = 30; // half a second at 60fps
 seq.register((frame) => {
@@ -90,7 +90,7 @@ This demo crossfades two music beds, ducks the music under a voice with an
 
 <Callout type="info" title="Renders headless too">
 On a headless render the mixer does not play audio, it records each track as it
-sounds (level, mute, position). `@konva-motion/renderer` then decodes, mixes, and
+sounds (level, mute, position). `@smoove/renderer` then decodes, mixes, and
 encodes every track in-process with [Mediabunny](https://mediabunny.dev), no
 ffmpeg. The same frame-driven volume curves produce the rendered mix. Add the
 package from [Rendering setup](/docs/rendering/install), then see

@@ -1,5 +1,5 @@
-import type { Composition } from "@smoove/core";
 import { ContextProvider } from "@lit/context";
+import type { Composition } from "@smoove/core";
 import { playerContext } from "./context.js";
 import { createDefaultControls } from "./default-controls.js";
 import type { PlayerApi, PlayerState } from "./player-api.js";
@@ -462,9 +462,11 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
   private _reconcileControls(): void {
     if (!this.isConnected) return;
     const hasUserControls = Array.from(this.children).some(
-      (c) => c.tagName === "KM-PLAYER-CONTROLS" && !c.hasAttribute("data-smoove-default"),
+      (c) => c.tagName === "SMOOVE-PLAYER-CONTROLS" && !c.hasAttribute("data-smoove-default"),
     );
-    const existingDefault = this.querySelector(":scope > smoove-player-controls[data-smoove-default]");
+    const existingDefault = this.querySelector(
+      ":scope > smoove-player-controls[data-smoove-default]",
+    );
     if (this.controls && !hasUserControls) {
       if (!existingDefault) this.appendChild(createDefaultControls());
     } else if (existingDefault) {

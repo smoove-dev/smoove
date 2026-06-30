@@ -1,9 +1,9 @@
 ---
 title: Components & Typography
-description: The konva-motion documentation template — every content component, themeable in light and dark.
+description: The smoove documentation template — every content component, themeable in light and dark.
 ---
 
-This page is the living style reference for konva-motion docs. Every content element below is a building block — write it in plain MDX and it inherits this rhythm, spacing, and color automatically, in both light and dark themes.
+This page is the living style reference for smoove docs. Every content element below is a building block — write it in plain MDX and it inherits this rhythm, spacing, and color automatically, in both light and dark themes.
 
 <Callout type="info" title="A template, not a page">
 The header, sidebar, table of contents, and footer stay identical across every doc. Only the article in the middle changes — so authoring a new page means writing an MDX file, **no HTML required**.
@@ -61,7 +61,7 @@ highlighted and re-colored for whichever theme is active.
 
 ```js
 import Konva from "konva";
-import { Timeline, easeOut } from "konva-motion";
+import { Timeline, easeOut } from "smoove";
 
 const tl = new Timeline({ loop: true });
 tl.to(title, { y: 0, opacity: 1, duration: 0.9, easing: easeOut });
@@ -71,7 +71,7 @@ tl.play();
 Shell commands work the same way:
 
 ```bash
-npm install konva konva-motion
+npm install konva smoove
 ```
 
 ## Callouts
@@ -146,7 +146,7 @@ Call `tl.to(node, { …attrs, duration })` to animate any Konva attribute, then 
 ## Live demo
 
 Pages can embed a running example with the `<smoove-player>` web component from
-`@konva-motion/player`. The element is registered in the browser, so it hydrates after
+`@smoove/player`. The element is registered in the browser, so it hydrates after
 load and plays a composition like an HTML5 `<video>`:
 
 ```html

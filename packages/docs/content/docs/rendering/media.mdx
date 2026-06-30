@@ -9,7 +9,7 @@ shader transition, the headless renderer needs a little more wiring than the
 browser. This page covers each case.
 
 <Callout type="info" title="Setup first">
-Everything here assumes `@konva-motion/renderer` is installed and the `register`
+Everything here assumes `@smoove/renderer` is installed and the `register`
 import has run. See [Setup](/docs/rendering/install) and [Rendering](/docs/rendering).
 </Callout>
 
@@ -24,7 +24,7 @@ new Video({ src: clip });
 
 In the browser that import is a URL the player can fetch. Under the Node renderer,
 Mediabunny and skia cannot open a URL like `/assets/clip-a1b2.mp4`; they need a real
-file path. The [`@konva-motion/vite`](/docs/vite-plugin) plugin bridges the two: in
+file path. The [`@smoove/vite`](/docs/vite-plugin) plugin bridges the two: in
 the SSR build it rewrites a media or font import to an absolute filesystem path
 while the client build keeps the URL, so the same `new Video({ src: clip })` works
 in preview and in render. See [The Vite plugin](/docs/vite-plugin) for setup and the
@@ -51,7 +51,7 @@ find it. Use `registerFonts`, or pass `fonts` to `setupServerRendering` or
 `renderComposition`:
 
 ```ts
-import { registerFonts, renderComposition } from "@konva-motion/renderer";
+import { registerFonts, renderComposition } from "@smoove/renderer";
 
 // an array of font file paths...
 registerFonts(["./fonts/Inter-Regular.ttf", "./fonts/Inter-Bold.ttf"]);
@@ -117,7 +117,7 @@ resolution to bound it. Clips bigger than the cap are scaled down (aspect
 preserved) and Konva upscales them back into their display box:
 
 ```ts
-import { setupServerRendering } from "@konva-motion/renderer";
+import { setupServerRendering } from "@smoove/renderer";
 
 setupServerRendering({ videoDecodeCap: { width: 1280, height: 720 } });
 ```
@@ -145,8 +145,8 @@ GL context. Enable them by importing the `gl` entry before you build the
 composition:
 
 ```ts
-import "@konva-motion/renderer/register";
-import "@konva-motion/renderer/gl";
+import "@smoove/renderer/register";
+import "@smoove/renderer/gl";
 ```
 
 <Callout type="warn" title="The gl dependency is optional">

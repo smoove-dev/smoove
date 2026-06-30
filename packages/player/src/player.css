@@ -1,6 +1,6 @@
 /* ============================================================
-   @konva-motion/player — default (opt-in) stylesheet.
-   Import with:  import "@konva-motion/player/styles.css";
+   @smoove/player — default (opt-in) stylesheet.
+   Import with:  import "@smoove/player/styles.css";
    Without it, the components render unstyled/headless. Everything
    here is plain light-DOM CSS, so any rule can be overridden.
    ============================================================ */

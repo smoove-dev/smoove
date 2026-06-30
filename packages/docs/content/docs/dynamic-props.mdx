@@ -10,7 +10,7 @@ headline, a customer name, an accent color, a chart's numbers: anything you'd
 want to vary without rewriting the scene goes in `props`.
 
 ```ts
-import { Composition } from "@konva-motion/core";
+import { Composition } from "@smoove/core";
 
 interface Props {
   name: string;
@@ -93,8 +93,8 @@ This is where props earn their keep. Author the scene once, then render it once
 per record. Each render gets its own props and produces its own file:
 
 ```ts
-import "@konva-motion/renderer/register";
-import { renderComposition } from "@konva-motion/renderer";
+import "@smoove/renderer/register";
+import { renderComposition } from "@smoove/renderer";
 
 for (const customer of customers) {
   const comp = buildCard({ name: customer.name, accent: customer.brandColor });

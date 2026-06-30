@@ -5,7 +5,7 @@ metadata:
   type: project
 ---
 
-The `@konva-motion/renderer` "skia-canvas leaks native memory, only process exit
+The `@smoove/renderer` "skia-canvas leaks native memory, only process exit
 reclaims it" problem (the whole justification for the multi-process parallel
 design in `doc/renderer-parallel-prompt.md`) was root-caused on 2026-06-09 via
 isolation tests (`packages/renderer/scratch/leak-test.mjs`) and a real-pipeline

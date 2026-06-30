@@ -3,11 +3,7 @@ import { BrandMark } from "./icons";
 
 export function Brand({ className }: { className?: string }) {
   return (
-    <Link
-      to="/"
-      className={`brand${className ? ` ${className}` : ""}`}
-      aria-label="smoove home"
-    >
+    <Link to="/" className={`brand${className ? ` ${className}` : ""}`} aria-label="smoove home">
       <span className="brand__mark">
         <BrandMark />
       </span>

@@ -3,19 +3,19 @@ title: Installation
 description: Add the package, build your first composition, and play it in the browser.
 ---
 
-konva-motion ships as an ES module with `konva` as a peer dependency. Install
+smoove ships as an ES module with `konva` as a peer dependency. Install
 both, describe a composition, mount it into a container, and play it.
 
 ## Install
 
 ```bash
-npm install konva @konva-motion/core
+npm install konva @smoove/core
 # or
-pnpm add konva @konva-motion/core
+pnpm add konva @smoove/core
 ```
 
 <Callout type="info" title="Konva is a peer dependency">
-konva-motion **extends** Konva's classes. `Composition` is a `Konva.Stage`,
+smoove **extends** Konva's classes. `Composition` is a `Konva.Stage`,
 `Sequence` is a `Konva.Layer`, and `Rect`/`Circle`/`Text`/… extend their Konva
 equivalents. Install `konva` yourself and make sure your bundler resolves a
 single copy; two copies break `instanceof` checks and layout.
@@ -27,7 +27,7 @@ Three pieces: a `Composition` (the frame clock), a `Sequence` (a range-gated
 layer), and an **updater** that sets attributes as a function of the frame.
 
 ```ts
-import { Circle, Composition, Easing, Rect, Sequence, interpolate } from "@konva-motion/core";
+import { Circle, Composition, Easing, Rect, Sequence, interpolate } from "@smoove/core";
 
 const comp = new Composition({
   id: "first-tween",

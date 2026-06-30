@@ -11,7 +11,7 @@
     {
       "name": "docs",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@konva-motion/docs", "dev"],
+      "runtimeArgs": ["--filter", "@smoove/docs", "dev"],
       "port": 5176
     }
   ]

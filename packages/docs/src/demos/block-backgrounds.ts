@@ -1,6 +1,6 @@
 import {
-  Block,
   type BackgroundValue,
+  Block,
   Composition,
   Rect,
   Sequence,
@@ -76,7 +76,7 @@ const blocks = panels.map((p, i) => {
     height: panelH,
     justifyContent: "center",
     alignItems: "center",
-    
+
     background: p.background,
     cornerRadius: 16,
   });

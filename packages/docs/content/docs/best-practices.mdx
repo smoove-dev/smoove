@@ -1,6 +1,6 @@
 ---
 title: Best practices
-description: The recommended way to structure konva-motion animations so they stay deterministic and seekable.
+description: The recommended way to structure smoove animations so they stay deterministic and seekable.
 ---
 
 These are the recommended-way principles. Most have a working escape hatch.
@@ -10,7 +10,7 @@ bites.
 
 ## Prefer the core wrappers over raw `Konva.*`
 
-`Rect`, `Circle`, `Text`, `Image`, and the rest from `@konva-motion/core` extend
+`Rect`, `Circle`, `Text`, `Image`, and the rest from `@smoove/core` extend
 their Konva equivalents and add full flex participation: percentage sizes
 (`width: "100%"`), flex child props (`flexGrow`/`flexShrink`/`flexBasis`/
 `alignSelf`), and the richer nodes (`Text` fit and highlights, `Image`
@@ -28,7 +28,7 @@ Reach for `Konva.*` only for something core doesn't wrap yet.
 
 ```ts
 // ✅ do: layout-aware
-import { Rect } from "@konva-motion/core";
+import { Rect } from "@smoove/core";
 row.add(new Rect({ width: 120, height: 120, fill: "#4ea1ff" }));
 
 // 🚫 avoid (unless intentional): renders, but never reflows in a Flex

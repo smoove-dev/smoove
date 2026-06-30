@@ -3,12 +3,12 @@ title: Shapes
 description: A flex-aware wrapper for every Konva shape, with full config parity and frame-driven geometry.
 ---
 
-`@konva-motion/core` re-exports every Konva drawing primitive as a wrapper with
+`@smoove/core` re-exports every Konva drawing primitive as a wrapper with
 the same name and the same config. Import the whole drawing vocabulary from one
 place and reach for `Konva.*` only for something core does not wrap yet.
 
 ```ts
-import { Rect, Circle, Star, Line } from "@konva-motion/core";
+import { Rect, Circle, Star, Line } from "@smoove/core";
 
 seq.add(new Rect({ x: 40, y: 40, width: 160, height: 90, fill: "#7c5cff", cornerRadius: 12 }));
 seq.add(new Circle({ x: 320, y: 85, radius: 55, fill: "#39c6c0" }));
@@ -87,7 +87,7 @@ config stripping.
 
 ```ts
 import Konva from "konva";
-import { FlexShape, type LeafConfig } from "@konva-motion/core";
+import { FlexShape, type LeafConfig } from "@smoove/core";
 
 type MyConfig = Omit<Konva.MyShapeConfig, "width" | "height"> & LeafConfig;
 class MyShape extends FlexShape<Konva.MyShape, MyConfig>(Konva.MyShape) {}

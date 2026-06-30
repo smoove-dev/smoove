@@ -11,14 +11,14 @@ transitions in sequence, then `comp.add(series)` expands the whole thing into on
 `Sequence` per scene.
 
 <Callout type="info" title="Install it first">
-`TransitionSeries` and the presentations ship as `@konva-motion/transitions`,
+`TransitionSeries` and the presentations ship as `@smoove/transitions`,
 separate from core. See [Install](/docs/transitions/install) for the package and
 its peers.
 </Callout>
 
 ```ts
-import { Composition } from "@konva-motion/core";
-import { TransitionSeries, fade, linearTiming } from "@konva-motion/transitions";
+import { Composition } from "@smoove/core";
+import { TransitionSeries, fade, linearTiming } from "@smoove/transitions";
 
 const comp = new Composition({ id: "intro", fps: 60, durationInFrames: 200, width: 1280, height: 720 });
 
@@ -60,7 +60,7 @@ anywhere the player does and render headlessly with no extra setup.
 
 A second set runs on WebGL2 fragment shaders. They run in the browser when WebGL2
 is available and fall back to `fade()` when it is not. To render them in a headless
-export, import `@konva-motion/renderer/gl` before building the composition (see
+export, import `@smoove/renderer/gl` before building the composition (see
 [Rendering media](/docs/rendering/media)).
 
 | Presentation | What it does |

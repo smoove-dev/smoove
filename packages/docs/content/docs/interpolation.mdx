@@ -8,7 +8,7 @@ frame N? `interpolate` is the tool that answers it. You give it the current
 frame, an input range, and an output range, and it maps one onto the other.
 
 ```ts
-import { interpolate } from "@konva-motion/core";
+import { interpolate } from "@smoove/core";
 
 scene.register((frame) => {
   // frames 0…59 map onto x positions 100…900
@@ -70,7 +70,7 @@ Pass an `easing` function to bend the progress between stops. Linear is the
 default; anything from the `Easing` object reshapes the motion:
 
 ```ts
-import { Easing, interpolate } from "@konva-motion/core";
+import { Easing, interpolate } from "@smoove/core";
 
 card.x(
   interpolate(frame, [0, 60], [100, 900], {
@@ -106,7 +106,7 @@ the same frame and input range but an output range of color strings, and returns
 an `rgba(...)` string you can hand straight to a `fill`:
 
 ```ts
-import { interpolateColors } from "@konva-motion/core";
+import { interpolateColors } from "@smoove/core";
 
 panel.fill(interpolateColors(frame, [0, 100, 200], ["#4ea1ff", "#ffd166", "#39c6c0"]));
 ```

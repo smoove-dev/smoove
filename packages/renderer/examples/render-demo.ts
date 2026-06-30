@@ -13,12 +13,7 @@ import { mkdtempSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { Audio, Composition, Image, Sequence, interpolate } from "@smoove/core";
-import {
-  probeComposition,
-  renderComposition,
-  renderFrames,
-  renderStill,
-} from "@smoove/renderer";
+import { probeComposition, renderComposition, renderFrames, renderStill } from "@smoove/renderer";
 import Konva from "konva";
 import { Canvas } from "skia-canvas";
 

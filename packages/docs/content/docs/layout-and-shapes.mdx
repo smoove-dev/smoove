@@ -3,14 +3,14 @@ title: Layout & Shapes
 description: Flexbox layout for Konva, plus a flex-aware wrapper for every Konva shape — all driven by the timeline.
 ---
 
-`@konva-motion/core` ships a synchronous flexbox engine and a flex-aware
+`@smoove/core` ships a synchronous flexbox engine and a flex-aware
 wrapper for **every Konva drawing primitive**. Import the whole vocabulary from
 one place — you never reach for `Konva.*` shapes directly.
 
 <Callout type="info" title="One import surface">
 `Composition`, `Sequence`, the layout containers (`Flex`, `Block`), media
 (`Image`, `Video`, `Audio`), `Text`, and all shapes (`Rect`, `Circle`, …) come
-from `@konva-motion/core`. konva-motion is the primary API surface.
+from `@smoove/core`. smoove is the primary API surface.
 </Callout>
 
 ## Flex containers
@@ -21,7 +21,7 @@ container sits inside a `Sequence`, its layout recomputes every frame — so
 animating `width`, `gap`, or child sizes reflows everything for free.
 
 ```ts
-import { Flex, Block, Rect, Circle, Text } from "@konva-motion/core";
+import { Flex, Block, Rect, Circle, Text } from "@smoove/core";
 
 const card = new Block({
   flexDirection: "column",
@@ -114,7 +114,7 @@ config stripping:
 
 ```ts
 import Konva from "konva";
-import { FlexShape, type LeafConfig } from "@konva-motion/core";
+import { FlexShape, type LeafConfig } from "@smoove/core";
 
 type MyConfig = Omit<Konva.MyShapeConfig, "width" | "height"> & LeafConfig;
 class MyShape extends FlexShape<Konva.MyShape, MyConfig>(Konva.MyShape) {}

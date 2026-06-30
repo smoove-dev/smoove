@@ -5,11 +5,11 @@
 
 ## Goal
 
-Bring `@konva-motion/docs` up to date with recent additions and fix pages that
+Bring `@smoove/docs` up to date with recent additions and fix pages that
 "miss the point":
 
 - **Fonts** — the `Font` node + loading model (new, undocumented).
-- **Google Fonts** — `@konva-motion/google-fonts` package (new, undocumented).
+- **Google Fonts** — `@smoove/google-fonts` package (new, undocumented).
 - **Media via mediabunny** — `video`/`audio`/rendering pages predate the
   mediabunny migration and are now factually wrong in places.
 - **Dynamic props** — the first-class composition `props` system has zero
@@ -37,8 +37,8 @@ Bring `@konva-motion/docs` up to date with recent additions and fix pages that
   composition buffer-gated loading (nothing renders/flashes until fonts load),
   `Text`'s `font?: Font | FontFaceRef` prop (not even listed in `text.mdx`),
   `font.face()` selection, browser `FontFace` vs server skia loader.
-- **Google Fonts** — `@konva-motion/google-fonts`: per-family import
-  (`import Roboto from "@konva-motion/google-fonts/roboto"`),
+- **Google Fonts** — `@smoove/google-fonts`: per-family import
+  (`import Roboto from "@smoove/google-fonts/roboto"`),
   `{ weights, styles, subset }`, tree-shaking via wildcard subpath exports.
 - **Dynamic props** — `new Composition({ props })`, reading `comp.props.get()`
   **live inside updaters**, `comp.setProps(next | (prev) => next)`,
@@ -86,7 +86,7 @@ export is a `Composition` (auto-discovered — no registry). All demos run at
   buffer-gated loading (no fallback-glyph flash), `Text`'s `font` prop,
   `font.face()` selection, browser vs server loaders (link to Rendering). Demo:
   a `Text` styled with a loaded custom font + a weight contrast.
-- **`google-fonts.mdx`** + `demos/google-fonts.ts` — `@konva-motion/google-fonts`,
+- **`google-fonts.mdx`** + `demos/google-fonts.ts` — `@smoove/google-fonts`,
   per-family import, `{ weights, styles, subset }`, tree-shaking. Demo uses an
   already-generated family (roboto / playfair-display / jetbrains-mono /
   pacifico).
@@ -121,7 +121,7 @@ export is a `Composition` (auto-discovered — no registry). All demos run at
 
 ## Risks / notes
 
-- **google-fonts demo dependency:** adding `@konva-motion/google-fonts` as a
+- **google-fonts demo dependency:** adding `@smoove/google-fonts` as a
   docs dep previously triggered RR7/Vite duplicate-React dedupe noise (known
   infra issue; app still renders via the error boundary). Verify; if it recurs,
   flag rather than chase it.

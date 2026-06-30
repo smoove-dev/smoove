@@ -3,14 +3,14 @@ title: Player
 description: "Play a composition in the browser with the smoove-player web component: attributes, imperative API, events, custom controls, and the CDN build."
 ---
 
-`@konva-motion/player` is a framework-agnostic **web component** that plays a
+`@smoove/player` is a framework-agnostic **web component** that plays a
 `Composition` like an HTML5 `<video>`. It letterbox-scales the stage to its box
 and adds fullscreen, click and keyboard control, an imperative API, and a set of
 DOM events. Use it from plain HTML, React, Vue, Svelte, or anything that can put
 an element on a page.
 
 <Callout type="info" title="Install it first">
-The player ships as `@konva-motion/player`, separate from core. See
+The player ships as `@smoove/player`, separate from core. See
 [Setup](/docs/player/install) for the npm install (plus the optional `styles.css`)
 and the no-bundler CDN build. The examples below assume the elements are
 registered.
@@ -42,7 +42,7 @@ The default export may be a `Composition` instance, a factory returning one
 
 ```ts
 // orbit.js, the remote module
-import { Composition, Sequence } from "@konva-motion/core";
+import { Composition, Sequence } from "@smoove/core";
 
 const comp = new Composition({ id: "orbit", fps: 60, durationInFrames: 180 });
 // …build the scene…
@@ -245,7 +245,7 @@ Need a control the kit does not ship? Read the player from the DOM with
 to its `state` signals. Every signal exposes `.get()` and `.subscribe(fn)`:
 
 ```ts
-import { getPlayerApi } from "@konva-motion/player";
+import { getPlayerApi } from "@smoove/player";
 
 const player = getPlayerApi(myControlElement);
 player?.state.frame.subscribe((frame) => render(frame));

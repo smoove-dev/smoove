@@ -23,8 +23,7 @@ export function HomeHeader() {
         <IconGithub />
         <span className="gh-name">GitHub</span>
         <span className="stars">
-          <IconStar />
-          0
+          <IconStar />0
         </span>
       </a>
       <ThemeToggle />

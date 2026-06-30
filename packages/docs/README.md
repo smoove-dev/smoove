@@ -1,6 +1,6 @@
-# @konva-motion/docs
+# @smoove/docs
 
-The konva-motion documentation website — a [React Router](https://reactrouter.com)
+The smoove documentation website — a [React Router](https://reactrouter.com)
 framework-mode app (SSR) that renders Markdown pages with the KmStudio design system.
 
 ## Authoring a page
@@ -53,7 +53,7 @@ External links (`https://…`) automatically open in a new tab.
 ### Live demos
 
 Embed a running composition with the `<smoove-player>` element from
-`@konva-motion/player` (registered in the browser via `entry.client.tsx`):
+`@smoove/player` (registered in the browser via `entry.client.tsx`):
 
 ```html
 <smoove-player src="/demos/pulse.js" controls></smoove-player>
@@ -63,7 +63,7 @@ Embed a running composition with the `<smoove-player>` element from
 
 | Command | What it does |
 | --- | --- |
-| `pnpm --filter @konva-motion/docs dev` | Dev server at http://localhost:5176 |
-| `pnpm --filter @konva-motion/docs build` | Production SSR build under `build/` |
-| `pnpm --filter @konva-motion/docs start` | Serve the production build |
-| `pnpm --filter @konva-motion/docs typecheck` | `react-router typegen` + `tsc` |
+| `pnpm --filter @smoove/docs dev` | Dev server at http://localhost:5176 |
+| `pnpm --filter @smoove/docs build` | Production SSR build under `build/` |
+| `pnpm --filter @smoove/docs start` | Serve the production build |
+| `pnpm --filter @smoove/docs typecheck` | `react-router typegen` + `tsc` |

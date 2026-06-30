@@ -3,8 +3,8 @@ title: The Vite plugin
 description: An optional Vite plugin that makes media imports render headlessly and wires studio hot-reload for you.
 ---
 
-`@konva-motion/vite` is optional. Everything works without it. What it removes is
-two pieces of by-hand wiring you hit when you build a konva-motion project with
+`@smoove/vite` is optional. Everything works without it. What it removes is
+two pieces of by-hand wiring you hit when you build a smoove project with
 [Vite](https://vite.dev): media imports that resolve in the browser but not in the
 Node renderer, and the `import.meta.hot` boilerplate a studio needs to hot-swap a
 composition you are editing. Add the plugin and both disappear.
@@ -23,7 +23,7 @@ does one of them, the other is a no-op.
 
 ## When you need it
 
-Reach for `@konva-motion/vite` when:
+Reach for `@smoove/vite` when:
 
 - You import media or fonts as Vite asset URLs **and** you
   [render the composition headlessly](/docs/rendering/media) with the Node renderer.

@@ -48,7 +48,6 @@ type EnvCarrier = { environment?: Environment };
  * is attached.
  */
 export function getEnvironment(stage: Konva.Stage): Environment {
-  const comp = (stage as Konva.Stage & { __SmooveComposition?: EnvCarrier })
-    .__SmooveComposition;
+  const comp = (stage as Konva.Stage & { __SmooveComposition?: EnvCarrier }).__SmooveComposition;
   return comp?.environment ?? detectEnvironment();
 }

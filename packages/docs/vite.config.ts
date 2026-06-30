@@ -1,5 +1,5 @@
-import { smoove } from "@smoove/vite";
 import { reactRouter } from "@react-router/dev/vite";
+import { smoove } from "@smoove/vite";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "fumadocs-mdx/vite";
 import { type Plugin, defineConfig } from "vite";

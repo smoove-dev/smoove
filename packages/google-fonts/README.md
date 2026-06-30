@@ -1,15 +1,15 @@
-# @konva-motion/google-fonts
+# @smoove/google-fonts
 
 Typed, tree-shakeable [Google Fonts](https://fonts.google.com) for
-[konva-motion](https://github.com/…). Each family is its own module exporting a
+[smoove](https://github.com/…). Each family is its own module exporting a
 `Font` subclass, loaded from the Google Fonts CDN — so a project only pulls the
 families it imports.
 
 ## Usage
 
 ```ts
-import { Composition, Sequence, Text } from "@konva-motion/core";
-import NotoSans from "@konva-motion/google-fonts/noto-sans";
+import { Composition, Sequence, Text } from "@smoove/core";
+import NotoSans from "@smoove/google-fonts/noto-sans";
 
 // Register a subset of faces…
 const font = new NotoSans({ weights: ["400", "600"], styles: ["normal", "italic"] });
@@ -20,7 +20,7 @@ const font = new NotoSans({ weights: ["400", "600"], styles: ["normal", "italic"
 // const cyrillic = new NotoSans({ subset: "cyrillic" });
 
 const seq = new Sequence({ from: 0, durationInFrames: 90 });
-seq.add(font); // discovered + loaded + buffered before play (see @konva-motion/core)
+seq.add(font); // discovered + loaded + buffered before play (see @smoove/core)
 seq.add(new Text({ font, text: "Hello" }));               // preferred face (400/normal)
 seq.add(new Text({ font: font.face("600"), text: "Hi" })); // a specific face
 ```
@@ -64,7 +64,7 @@ GOOGLE_FONTS_API_KEY=your-key
 then:
 
 ```bash
-pnpm --filter @konva-motion/google-fonts generate
+pnpm --filter @smoove/google-fonts generate
 ```
 
 The script auto-loads `packages/google-fonts/.env` (via Node's `--env-file`). You
@@ -73,5 +73,5 @@ can also pass the key inline instead: `GOOGLE_FONTS_API_KEY=<key> pnpm … gener
 The metadata catalog (no font modules pulled) is importable for tooling:
 
 ```ts
-import { fonts } from "@konva-motion/google-fonts/manifest";
+import { fonts } from "@smoove/google-fonts/manifest";
 ```

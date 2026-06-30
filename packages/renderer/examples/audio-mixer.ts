@@ -14,14 +14,7 @@
 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import {
-  Audio,
-  Composition,
-  Sequence,
-  Video,
-  interpolate,
-  interpolateColors,
-} from "@smoove/core";
+import { Audio, Composition, Sequence, Video, interpolate, interpolateColors } from "@smoove/core";
 import { renderComposition, setupServerRendering } from "@smoove/renderer";
 import Konva from "konva";
 
