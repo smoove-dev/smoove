@@ -1,8 +1,15 @@
 {
-  "name": "@konva-motion/renderer",
+  "name": "@smoove/renderer",
   "version": "0.0.0",
-  "description": "Headless server renderer for konva-motion — rasterizes a Composition with skia-canvas and encodes to video via Mediabunny (node-av / FFmpeg C API).",
+  "description": "Headless server renderer for smoove — rasterizes a Composition with skia-canvas and encodes to video via Mediabunny (node-av / FFmpeg C API).",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoove-dev/smoove.git",
+    "directory": "packages/renderer"
+  },
+  "homepage": "https://smoove.dev",
+  "bugs": "https://github.com/smoove-dev/smoove/issues",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -40,17 +47,17 @@
     "gl": "^8.1.6"
   },
   "devDependencies": {
-    "@konva-motion/transitions": "workspace:*",
+    "@smoove/transitions": "workspace:*",
     "@types/node": "^22.10.0",
     "tsx": "^4.19.2"
   },
   "peerDependencies": {
-    "@konva-motion/core": "workspace:*",
-    "@konva-motion/transitions": "workspace:*",
+    "@smoove/core": "workspace:*",
+    "@smoove/transitions": "workspace:*",
     "konva": ">=10"
   },
   "peerDependenciesMeta": {
-    "@konva-motion/transitions": {
+    "@smoove/transitions": {
       "optional": true
     }
   }

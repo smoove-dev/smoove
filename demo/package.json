@@ -11,19 +11,19 @@
     "typecheck": "react-router typegen && tsc -b"
   },
   "dependencies": {
-    "@konva-motion/core": "workspace:*",
-    "@konva-motion/player": "workspace:*",
-    "@konva-motion/renderer": "workspace:*",
-    "@konva-motion/google-fonts": "workspace:*",
-    "@konva-motion/studio": "workspace:*",
-    "@konva-motion/transitions": "workspace:*",
+    "@smoove/core": "workspace:*",
+    "@smoove/player": "workspace:*",
+    "@smoove/renderer": "workspace:*",
+    "@smoove/google-fonts": "workspace:*",
+    "@smoove/studio": "workspace:*",
+    "@smoove/transitions": "workspace:*",
     "konva": "^10.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "7.17.0"
   },
   "devDependencies": {
-    "@konva-motion/vite": "workspace:*",
+    "@smoove/vite": "workspace:*",
     "@react-router/dev": "7.17.0",
     "@react-router/node": "7.17.0",
     "@types/react": "^18.3.12",

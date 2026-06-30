@@ -1,8 +1,15 @@
 {
-  "name": "@konva-motion/google-fonts",
+  "name": "@smoove/google-fonts",
   "version": "0.0.0",
-  "description": "Typed, tree-shakeable Google Fonts for konva-motion — one Font subclass per family, loaded from the Google Fonts CDN. No build: imported as TS source.",
+  "description": "Typed, tree-shakeable Google Fonts for smoove — one Font subclass per family, loaded from the Google Fonts CDN. No build: imported as TS source.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoove-dev/smoove.git",
+    "directory": "packages/google-fonts"
+  },
+  "homepage": "https://smoove.dev",
+  "bugs": "https://github.com/smoove-dev/smoove/issues",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -15,7 +22,7 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@konva-motion/core": "workspace:*",
+    "@smoove/core": "workspace:*",
     "konva": ">=10"
   },
   "devDependencies": {

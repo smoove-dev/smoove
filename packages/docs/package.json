@@ -1,5 +1,5 @@
 {
-  "name": "@konva-motion/docs",
+  "name": "@smoove/docs",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -11,10 +11,10 @@
     "typecheck": "react-router typegen && tsc -b"
   },
   "dependencies": {
-    "@konva-motion/core": "workspace:*",
-    "@konva-motion/google-fonts": "workspace:*",
-    "@konva-motion/player": "workspace:*",
-    "@konva-motion/transitions": "workspace:*",
+    "@smoove/core": "workspace:*",
+    "@smoove/google-fonts": "workspace:*",
+    "@smoove/player": "workspace:*",
+    "@smoove/transitions": "workspace:*",
     "fumadocs-core": "^16.10.3",
     "fumadocs-ui": "^16.10.3",
     "konva": "^10.3.0",
@@ -24,7 +24,7 @@
     "react-router": "7.17.0"
   },
   "devDependencies": {
-    "@konva-motion/vite": "workspace:*",
+    "@smoove/vite": "workspace:*",
     "@react-router/dev": "7.17.0",
     "@react-router/node": "7.17.0",
     "@tailwindcss/vite": "^4.3.1",

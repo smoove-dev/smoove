@@ -17,22 +17,22 @@ importers:
 
   demo:
     dependencies:
-      '@konva-motion/core':
+      '@smoove/core':
         specifier: workspace:*
         version: link:../packages/core
-      '@konva-motion/google-fonts':
+      '@smoove/google-fonts':
         specifier: workspace:*
         version: link:../packages/google-fonts
-      '@konva-motion/player':
+      '@smoove/player':
         specifier: workspace:*
         version: link:../packages/player
-      '@konva-motion/renderer':
+      '@smoove/renderer':
         specifier: workspace:*
         version: link:../packages/renderer
-      '@konva-motion/studio':
+      '@smoove/studio':
         specifier: workspace:*
         version: link:../packages/studio
-      '@konva-motion/transitions':
+      '@smoove/transitions':
         specifier: workspace:*
         version: link:../packages/transitions
       konva:
@@ -48,15 +48,15 @@ importers:
         specifier: 7.17.0
         version: 7.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
-      '@konva-motion/vite':
-        specifier: workspace:*
-        version: link:../packages/vite
       '@react-router/dev':
         specifier: 7.17.0
         version: 7.17.0(@types/node@22.19.20)(jiti@2.7.0)(lightningcss@1.32.0)(react-router@7.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(tsx@4.22.4)(typescript@5.9.3)(vite@6.4.3(@types/node@22.19.20)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4))
       '@react-router/node':
         specifier: 7.17.0
         version: 7.17.0(react-router@7.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.9.3)
+      '@smoove/vite':
+        specifier: workspace:*
+        version: link:../packages/vite
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.29
@@ -87,16 +87,16 @@ importers:
 
   packages/docs:
     dependencies:
-      '@konva-motion/core':
+      '@smoove/core':
         specifier: workspace:*
         version: link:../core
-      '@konva-motion/google-fonts':
+      '@smoove/google-fonts':
         specifier: workspace:*
         version: link:../google-fonts
-      '@konva-motion/player':
+      '@smoove/player':
         specifier: workspace:*
         version: link:../player
-      '@konva-motion/transitions':
+      '@smoove/transitions':
         specifier: workspace:*
         version: link:../transitions
       fumadocs-core:
@@ -121,15 +121,15 @@ importers:
         specifier: 7.17.0
         version: 7.17.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
     devDependencies:
-      '@konva-motion/vite':
-        specifier: workspace:*
-        version: link:../vite
       '@react-router/dev':
         specifier: 7.17.0
         version: 7.17.0(@types/node@22.19.20)(jiti@2.7.0)(lightningcss@1.32.0)(react-router@7.17.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(tsx@4.22.4)(typescript@5.9.3)(vite@8.0.16(@types/node@22.19.20)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.22.4))
       '@react-router/node':
         specifier: 7.17.0
         version: 7.17.0(react-router@7.17.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(typescript@5.9.3)
+      '@smoove/vite':
+        specifier: workspace:*
+        version: link:../vite
       '@tailwindcss/vite':
         specifier: ^4.3.1
         version: 4.3.1(vite@8.0.16(@types/node@22.19.20)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.22.4))
@@ -160,7 +160,7 @@ importers:
 
   packages/google-fonts:
     dependencies:
-      '@konva-motion/core':
+      '@smoove/core':
         specifier: workspace:*
         version: link:../core
       konva:
@@ -180,7 +180,7 @@ importers:
         specifier: ^3.2.1
         version: 3.3.3
     devDependencies:
-      '@konva-motion/core':
+      '@smoove/core':
         specifier: workspace:*
         version: link:../core
       konva:
@@ -195,12 +195,12 @@ importers:
 
   packages/renderer:
     dependencies:
-      '@konva-motion/core':
-        specifier: workspace:*
-        version: link:../core
       '@mediabunny/server':
         specifier: ^1.49.0
         version: 1.49.0(mediabunny@1.49.0)
+      '@smoove/core':
+        specifier: workspace:*
+        version: link:../core
       konva:
         specifier: '>=10'
         version: 10.3.0
@@ -211,7 +211,7 @@ importers:
         specifier: ^3.0.8
         version: 3.0.8
     devDependencies:
-      '@konva-motion/transitions':
+      '@smoove/transitions':
         specifier: workspace:*
         version: link:../transitions
       '@types/node':
@@ -230,10 +230,10 @@ importers:
       '@base-ui/react':
         specifier: ^1.5.0
         version: 1.5.0(@types/react@18.3.29)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@konva-motion/core':
+      '@smoove/core':
         specifier: workspace:*
         version: link:../core
-      '@konva-motion/player':
+      '@smoove/player':
         specifier: workspace:*
         version: link:../player
       konva:
@@ -249,7 +249,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
     devDependencies:
-      '@konva-motion/renderer':
+      '@smoove/renderer':
         specifier: workspace:*
         version: link:../renderer
       '@tailwindcss/cli':
@@ -273,7 +273,7 @@ importers:
 
   packages/transitions:
     dependencies:
-      '@konva-motion/core':
+      '@smoove/core':
         specifier: workspace:*
         version: link:../core
       konva:
