@@ -132,7 +132,7 @@ export class Image extends Konva.Group implements KMLayoutNode {
     const stage = this.getStage();
     if (!stage) return;
     const comp = getComposition(stage);
-    if (!comp || !comp.environment.isRendering) return;
+    if (!comp?.environment.isRendering) return;
     this._renderGated = true;
     const handle = comp.delayRender("load image");
     this._loadPromise.finally(() => comp.continueRender(handle));

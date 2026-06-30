@@ -3,8 +3,6 @@ import {
   AudioBufferSink,
   CanvasSink,
   Input,
-  type InputAudioTrack,
-  type InputVideoTrack,
   UrlSource,
   type WrappedCanvas,
 } from "mediabunny";
@@ -38,11 +36,9 @@ export class MediabunnyVideoSource implements VideoSource, SchedulableAudioSourc
   private readonly _canvas: HTMLCanvasElement;
   private readonly _ctx: CanvasRenderingContext2D;
   private _input: Input | null = null;
-  private _track: InputVideoTrack | null = null;
   private _sink: CanvasSink | null = null;
 
-  // Audio track off the same Input — null when the file has no decodable audio.
-  private _audioTrack: InputAudioTrack | null = null;
+  // Audio sink off the same Input — null when the file has no decodable audio.
   private _audioSink: AudioBufferSink | null = null;
   private _audioFirstTs = 0;
 
@@ -86,7 +82,6 @@ export class MediabunnyVideoSource implements VideoSource, SchedulableAudioSourc
     }
     if (this._disposed) return;
 
-    this._track = track;
     this._w = await track.getDisplayWidth();
     this._h = await track.getDisplayHeight();
     this._duration = await track.computeDuration();
@@ -99,7 +94,6 @@ export class MediabunnyVideoSource implements VideoSource, SchedulableAudioSourc
     // with no decodable audio just stays silent — `sink` reports null.
     const audioTrack = await input.getPrimaryAudioTrack();
     if (audioTrack && (await audioTrack.canDecode())) {
-      this._audioTrack = audioTrack;
       this._audioFirstTs = await audioTrack.getFirstTimestamp();
       this._audioSink = new AudioBufferSink(audioTrack);
     }
@@ -260,9 +254,7 @@ export class MediabunnyVideoSource implements VideoSource, SchedulableAudioSourc
     this._next = null;
     this._input?.dispose();
     this._input = null;
-    this._track = null;
     this._sink = null;
-    this._audioTrack = null;
     this._audioSink = null;
     this._readyCbs.clear();
     this._frameCbs.clear();

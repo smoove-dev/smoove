@@ -77,7 +77,6 @@ const TOTAL = S4C + sec(5); // 1020 — 1.5s logo reveal + 2s hold + 1.5s fade
 const db = (d: number) => 10 ** (d / 20);
 const CLIP_18 = db(-2); // s1/s4 clip audio — room-tone texture only
 const CLIP_12 = db(-4); // s3 clip audio — good-vibe chatter sells the energy
-const DUCK_6 = db(-6); // anything under a live VO line
 const DUCK_3 = db(-3); // music dip so the big whoosh-a hit lands
 const MUSIC_BASE = 0.75; // music bed nominal level (pre-duck)
 

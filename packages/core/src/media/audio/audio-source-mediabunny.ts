@@ -1,4 +1,4 @@
-import { ALL_FORMATS, AudioBufferSink, Input, type InputAudioTrack, UrlSource } from "mediabunny";
+import { ALL_FORMATS, AudioBufferSink, Input, UrlSource } from "mediabunny";
 import type { AudioSource, SeekMode } from "./audio-source.js";
 
 /**
@@ -26,7 +26,6 @@ export function isSchedulable(s: AudioSource): s is SchedulableAudioSource {
  */
 export class MediabunnyAudioSource implements SchedulableAudioSource {
   private _input: Input | null = null;
-  private _track: InputAudioTrack | null = null;
   private _sink: AudioBufferSink | null = null;
   private _ready = false;
   private _disposed = false;
@@ -44,7 +43,6 @@ export class MediabunnyAudioSource implements SchedulableAudioSource {
     }
     if (this._disposed) return;
 
-    this._track = track;
     this._duration = await track.computeDuration();
     this._firstTimestamp = await track.getFirstTimestamp();
     this._sink = new AudioBufferSink(track);
@@ -97,7 +95,6 @@ export class MediabunnyAudioSource implements SchedulableAudioSource {
     this._disposed = true;
     this._input?.dispose();
     this._input = null;
-    this._track = null;
     this._sink = null;
     this._readyCbs.clear();
   }

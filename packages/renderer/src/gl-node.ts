@@ -1,5 +1,5 @@
+import { createRequire } from "node:module";
 import { type GlPlatform, transpileTo100, VERTEX_SHADER_100 } from "@smoove/transitions";
-import { createRequire } from "module";
 import { Canvas } from "skia-canvas";
 
 const require = createRequire(import.meta.url);

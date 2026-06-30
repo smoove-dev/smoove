@@ -512,7 +512,6 @@ const buildScene = (
       node.offsetX(width / 2);
       node.offsetY(baseSize / 2);
       const baseX = width / 2 + dx;
-      const baseY = node.y() === 0 ? height / 2 : node.y();
       // Compute baseY once from stored attribute on node.
       const storedY = (node as Konva.Text & { _baseY?: number })._baseY;
       const by = storedY ?? node.y();

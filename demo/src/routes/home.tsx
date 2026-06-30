@@ -1,5 +1,4 @@
 import { Studio } from "@smoove/studio";
-import { useNavigate } from "react-router";
 
 /**
  * The index route renders whatever you want in the center — here a docs page.
@@ -7,7 +6,6 @@ import { useNavigate } from "react-router";
  * center is hard-coded in the studio; it's just the route's content.
  */
 export default function Home() {
-  const navigate = useNavigate();
   return (
     <Studio.Main>
       <Studio.Header>
