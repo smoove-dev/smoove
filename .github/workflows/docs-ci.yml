@@ -1,0 +1,58 @@
+name: docs-ci
+
+on:
+  pull_request:
+    paths:
+      - "packages/docs/**"
+      - "packages/core/**"
+      - "packages/google-fonts/**"
+      - "packages/player/**"
+      - "packages/transitions/**"
+      - "packages/vite/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+      - ".github/workflows/docs-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "packages/docs/**"
+      - "packages/core/**"
+      - "packages/google-fonts/**"
+      - "packages/player/**"
+      - "packages/transitions/**"
+      - "packages/vite/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+      - ".github/workflows/docs-ci.yml"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --filter "@smoove/docs..." --frozen-lockfile
+      - run: pnpm biome check .
+      - run: pnpm --filter "@smoove/docs..." run build
+      - run: pnpm --filter @smoove/docs run typecheck
+
+  deploy:
+    needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Coolify deploy
+        run: |
+          curl -fsS -X POST \
+            "${COOLIFY_BASE_URL}/api/v1/deploy?uuid=${COOLIFY_APP_UUID}" \
+            -H "Authorization: Bearer ${COOLIFY_API_TOKEN}"
+        env:
+          COOLIFY_BASE_URL: ${{ secrets.COOLIFY_BASE_URL }}
+          COOLIFY_APP_UUID: ${{ secrets.COOLIFY_APP_UUID }}
+          COOLIFY_API_TOKEN: ${{ secrets.COOLIFY_API_TOKEN }}

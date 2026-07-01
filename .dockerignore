@@ -1,0 +1,10 @@
+node_modules
+**/node_modules
+.git
+**/dist
+**/build
+**/.react-router
+**/.source
+**/*.tsbuildinfo
+.DS_Store
+demo/build
