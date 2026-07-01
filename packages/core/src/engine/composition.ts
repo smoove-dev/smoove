@@ -237,7 +237,7 @@ export class Composition<
     // registerAsset paints the first frame once everything is ready.
     if (this._buffer.get() !== "buffering") {
       for (const l of layers) {
-        if (l instanceof Sequence) l._apply(frame);
+        if (l instanceof Sequence) l._apply(frame, true);
       }
     }
     return this;
@@ -333,7 +333,9 @@ export class Composition<
    * active sequences `batchDraw` — exactly like a normal tick at the same frame.
    */
   refresh(): void {
-    this._applyFrame(this._frame.get(), false);
+    // force: props/external state may have changed at the same frame, so the
+    // sequence dedupe must not skip this re-apply.
+    this._applyFrame(this._frame.get(), false, true);
   }
 
   /**
@@ -380,7 +382,8 @@ export class Composition<
         this._resumeOnReady = false;
         this._startClock();
       } else {
-        this._applyFrame(this._frame.get(), false);
+        // force: first paint after assets settled, even though the frame is unchanged.
+        this._applyFrame(this._frame.get(), false, true);
       }
     };
     load.then(settle, settle);
@@ -423,7 +426,8 @@ export class Composition<
   async renderFrame(target: number): Promise<void> {
     const clamped = Math.max(0, Math.min(this._durationInFrames.get() - 1, Math.floor(target)));
     this._frame.set(clamped);
-    this._applyFrame(clamped, true);
+    // force: offline render must apply every frame, even a re-rendered duplicate.
+    this._applyFrame(clamped, true, true);
     if (this._renderHandles.size === 0) return;
     await new Promise<void>((resolve) => {
       this._renderWaiters.push(resolve);
@@ -492,14 +496,14 @@ export class Composition<
     };
   }
 
-  private _applyFrame(frame: number, emit: boolean): void {
+  private _applyFrame(frame: number, emit: boolean, force = false): void {
     // While buffering, draw nothing — the stage stays transparent until every
     // registered asset (fonts, …) has loaded. Sequences are left hidden so no
     // frame is painted over not-yet-loaded fonts. Offline rendering never
     // buffers (fonts gate via delayRender), so this only affects preview.
     if (this._buffer.get() === "buffering") return;
     for (const child of this.getChildren()) {
-      if (child instanceof Sequence) child._apply(frame);
+      if (child instanceof Sequence) child._apply(frame, force);
     }
     if (emit) this._emitter.emit("time", this._event());
   }

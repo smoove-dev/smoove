@@ -29,6 +29,10 @@ export class Sequence extends Konva.Layer {
   private readonly _updaters = new Set<Updater>();
   private _active = false;
   private _media: MediaNode[] = [];
+  // Last local frame applied while active — used to skip redundant re-applies
+  // (updaters + layout + draw) when nothing about the playhead changed. `-1` is
+  // a sentinel that never equals a real local frame, so the first apply always runs.
+  private _lastLocal = -1;
 
   constructor(opts: SequenceOptions) {
     if (!Number.isInteger(opts.from) || opts.from < 0) {
@@ -50,8 +54,17 @@ export class Sequence extends Konva.Layer {
     };
   }
 
-  /** Internal — called by Composition on each frame change. */
-  _apply(frame: number): void {
+  /**
+   * Internal — called by Composition on each frame change.
+   *
+   * `force` re-runs the frame even when the local playhead hasn't moved — needed
+   * when external state updaters read (props) changed at the same frame
+   * (`refresh()`), on the initial paint, and for offline rendering. During normal
+   * playback the local frame advances every tick, so the dedupe never trips; it
+   * only skips genuinely redundant re-applies (e.g. a `refresh()` that changed
+   * nothing, or a same-frame re-entry), avoiding a wasted updater + layout + draw.
+   */
+  _apply(frame: number, force = false): void {
     const inRange = frame >= this.from && frame < this.from + this.durationInFrames;
     if (inRange) {
       const becameActive = !this._active;
@@ -65,6 +78,9 @@ export class Sequence extends Konva.Layer {
         ) as MediaNode[];
       }
       const local = frame - this.from;
+      // Skip redundant work: same playhead, already active, and not forced.
+      if (!becameActive && !force && local === this._lastLocal) return;
+      this._lastLocal = local;
       for (const u of this._updaters) u(local);
       // Tick BEFORE layout: a ticked node may change its measured size (e.g. a
       // Text typewriter revealing another line), and the flex pass must see the
@@ -81,6 +97,7 @@ export class Sequence extends Konva.Layer {
     } else if (this._active) {
       this.visible(false);
       this._active = false;
+      this._lastLocal = -1;
       for (const v of this._media) v._kmDeactivate?.();
     }
   }
@@ -95,6 +112,7 @@ export class Sequence extends Konva.Layer {
     if (!this._active && !this.visible()) return;
     this.visible(false);
     this._active = false;
+    this._lastLocal = -1;
     for (const v of this._media) v._kmDeactivate?.();
   }
 }

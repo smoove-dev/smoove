@@ -97,6 +97,8 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
   private _canvasEl: HTMLDivElement | null = null;
   private _resizeObserver: ResizeObserver | null = null;
   private _mutationObserver: MutationObserver | null = null;
+  // Last pixelRatio pushed onto the composition's layer canvases (0 = none yet).
+  private _appliedPixelRatio = 0;
 
   // --- public reactive accessors (PlayerApi) ---------------------------------
   get composition(): Composition | null {
@@ -111,6 +113,7 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
     // reset it to a clean stopped state (frame 0) rather than leave it running.
     this._comp?.stop();
     this._unbind();
+    this._appliedPixelRatio = 0;
     this._comp = c ?? null;
     if (this.isConnected && this._comp) this._mount();
   }
@@ -189,7 +192,23 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
     this._mutationObserver?.disconnect();
     document.removeEventListener("fullscreenchange", this._onFullscreenChange);
     this.removeEventListener("keydown", this._onKeyDown);
-    // Intentionally NOT destroying the composition — the consumer owns it.
+    this._stage?.removeEventListener("click", this._onStageClick);
+    this._stage?.removeEventListener("dblclick", this._onStageDblClick);
+    this._appliedPixelRatio = 0;
+
+    // Destroy the composition and its Konva stage/canvas outright: cancels the
+    // rAF clock, releases the WebGL/2D backing store, and drops all listeners.
+    // Leaving it alive would keep an off-DOM stage ticking forever (the classic
+    // "the tab stays pegged after you navigate away" leak). A reconnect rebuilds
+    // from `src`; an imperatively-assigned composition must be re-assigned.
+    this._comp?.destroy();
+    this._comp = null;
+
+    // Drop the injected chrome so a reconnect rebuilds a fresh stage/canvas.
+    this._stage?.remove();
+    this._stage = null;
+    this._scaleEl = null;
+    this._canvasEl = null;
   }
 
   attributeChangedCallback(name: string, _old: string | null, value: string | null): void {
@@ -402,6 +421,41 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
       this._scale.set(scale);
       this._emit("scalechange", { scale });
     }
+    this._applyRenderScale(scale);
+  }
+
+  /** Author-facing cap on the render pixel ratio. Defaults to the device ratio. */
+  private get _maxPixelRatio(): number {
+    const dpr = typeof globalThis !== "undefined" ? globalThis.devicePixelRatio || 1 : 1;
+    const attr = this.getAttribute("max-pixel-ratio");
+    const parsed = attr == null ? Number.NaN : Number(attr);
+    return Number.isFinite(parsed) && parsed > 0 ? Math.min(parsed, dpr) : dpr;
+  }
+
+  /**
+   * Match the composition's backing canvas resolution to how large it's actually
+   * displayed, instead of always rendering at authored resolution × devicePixelRatio.
+   *
+   * A 1600×900 composition letterboxed into a 375px-wide phone was drawing a
+   * 3200×1800 (5.76 MP) canvas every frame and letting CSS scale it down — ~18×
+   * overdraw. Here the effective pixel ratio is `displayScale × dpr` (capped at
+   * the device ratio, floored so it never goes pathologically blurry), so the
+   * backing store tracks on-screen pixels. This is the single biggest win for
+   * mobile frame rate; it also keeps oversized compositions from over-rendering.
+   */
+  private _applyRenderScale(scale: number): void {
+    const comp = this._comp;
+    if (!comp || !Number.isFinite(scale) || scale <= 0) return;
+    const dpr = typeof globalThis !== "undefined" ? globalThis.devicePixelRatio || 1 : 1;
+    const target = Math.max(0.5, Math.min(scale * dpr, this._maxPixelRatio));
+    // Skip churn on sub-pixel resize deltas.
+    if (Math.abs(target - this._appliedPixelRatio) < 0.01) return;
+    this._appliedPixelRatio = target;
+    for (const layer of comp.getLayers()) {
+      layer.getCanvas().setPixelRatio(target);
+    }
+    // Repaint the current frame at the new resolution (setPixelRatio cleared it).
+    comp.refresh();
   }
 
   private _onFullscreenChange = (): void => {

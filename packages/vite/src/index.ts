@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { build as esbuildBuild, type Plugin as EsbuildPlugin } from "esbuild";
+import { type Plugin as EsbuildPlugin, build as esbuildBuild } from "esbuild";
 import { type Plugin, type ResolvedConfig, transformWithEsbuild } from "vite";
 
 /**
