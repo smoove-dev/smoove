@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { build as esbuildBuild, type Plugin as EsbuildPlugin } from "esbuild";
 import { type Plugin, type ResolvedConfig, transformWithEsbuild } from "vite";
 
@@ -71,12 +72,16 @@ export function smoove(options: SmooveOptions = {}): Plugin {
   const serverAssets = options.serverAssets ?? DEFAULT_SERVER_ASSETS;
 
   let isBuild = false;
+  let base = "/";
+  let assetsDir = "assets";
 
   return {
     name: "smoove",
     enforce: "pre",
     configResolved(config: ResolvedConfig) {
       isBuild = config.command === "build";
+      base = config.base;
+      assetsDir = config.build.assetsDir;
     },
     async load(id, loadOptions) {
       // `X.ts?comp-url` → the served URL of a compiled standalone player module.
@@ -87,13 +92,17 @@ export function smoove(options: SmooveOptions = {}): Plugin {
           // imports against the shared graph, so hand off to Vite's `?url`.
           return `export { default } from ${JSON.stringify(`${compFile}?url`)};`;
         }
+        // A framework build (e.g. React Router) runs separate client and SSR
+        // passes. Resolve to a stable public URL both agree on — deriving the
+        // filename from a content hash we compute ourselves (not Rollup's
+        // `import.meta.ROLLUP_FILE_URL`, which points at a `file://` path in the
+        // server build) — and only *emit* the file from the client pass.
         const source = await compileComposition(compFile);
-        const referenceId = this.emitFile({
-          type: "asset",
-          name: `${baseName(compFile)}.js`,
-          source,
-        });
-        return `export default import.meta.ROLLUP_FILE_URL_${referenceId};`;
+        const fileName = `${assetsDir}/${baseName(compFile)}-${contentHash(source)}.js`;
+        const envName = (this as { environment?: { name?: string } }).environment?.name;
+        const isSsr = loadOptions?.ssr === true || (envName != null && envName !== "client");
+        if (!isSsr) this.emitFile({ type: "asset", fileName, source });
+        return `export default ${JSON.stringify(base + fileName)};`;
       }
 
       const file = id.split("?")[0] ?? id;
@@ -141,6 +150,11 @@ export default smoove;
 function queryFlags(id: string): string[] {
   const q = id.split("?")[1];
   return q ? q.split("&") : [];
+}
+
+/** Short content hash for a deterministic, cache-busting asset filename. */
+function contentHash(source: string): string {
+  return createHash("sha256").update(source).digest("hex").slice(0, 8);
 }
 
 /** `/abs/demos/orbit.ts` → `orbit`. */
