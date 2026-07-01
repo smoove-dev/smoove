@@ -1,0 +1,12 @@
+{
+  "name": "konva-motion",
+  "title": "smoove",
+  "description": "Skills for authoring Remotion-style, timeline-driven video compositions with smoove, a Konva-based animation engine.",
+  "skills": [
+    {
+      "name": "smoove-video",
+      "path": "skills/smoove-video",
+      "description": "Author beautiful smoove video compositions: Composition/Sequence sequencing, Flex/Block layout, interpolate-based animation, Text, shapes, and media."
+    }
+  ]
+}
