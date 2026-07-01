@@ -1,13 +1,13 @@
 # @smoove/docs
 
-The smoove documentation website — a [React Router](https://reactrouter.com)
+The smoove documentation website. A [React Router](https://reactrouter.com)
 framework-mode app (SSR) built on [Fumadocs](https://fumadocs.dev), themed
 with the smoove brand design (cream-first light, grape-ink dark, coral
-accent — see `src/app.css`).
+accent; see `src/app.css`).
 
 ## Authoring a page
 
-Add a `.mdx` file under `content/docs/` (or a subfolder — see the existing
+Add a `.mdx` file under `content/docs/` (or a subfolder; see the existing
 `layout/`, `typography/`, `transitions/`, `player/`, `rendering/`, and
 `vite-plugin/` groups). Frontmatter is just:
 
@@ -20,7 +20,7 @@ description: What smoove is, the frame-clock mental model, and when to reach for
 Body starts here.
 ```
 
-Sidebar order and grouping are **not** driven by frontmatter — each folder
+Sidebar order and grouping are **not** driven by frontmatter. Each folder
 has a `meta.json` that lists its pages in order, with a
 `"---Group Name---"` string in the `pages` array to start a new sidebar
 group:
@@ -40,7 +40,7 @@ group:
 }
 ```
 
-Nested folders get their own `meta.json` with a local `title` + `pages`
+Nested folders get their own `meta.json` with a local `title` and `pages`
 list.
 
 ### MDX components
@@ -58,7 +58,7 @@ Embed a running composition with `<Demo>`:
 <Demo name="hero" label="every frame is a pure function of the clock" />
 ```
 
-`name` resolves to `src/demos/<name>.ts` — `src/components/demo.tsx` loads
+`name` resolves to `src/demos/<name>.ts`. `src/components/demo.tsx` loads
 it two ways via Vite globs: the served module URL (rendered live in a
 `<smoove-player>`, the custom element from `@smoove/player`) and the raw
 source (for the "View source" toggle). Optional props: `footer` (panel
@@ -66,15 +66,16 @@ below the player) and `initialframe` (frame shown on mount).
 
 ## Architecture
 
-- `content/docs/**/*.mdx` — page content, compiled by the `fumadocs-mdx`
+- `content/docs/**/*.mdx`: page content, compiled by the `fumadocs-mdx`
   Vite plugin into a generated `collections/server` module.
-- `src/lib/source.ts` — `loader({ baseUrl: "/docs", source:
-  docs.toFumadocsSource() })` builds the Fumadocs page tree + search index
-  from that generated collection.
-- `src/routes.ts` — `index → home`, `docs/*`, `api/search`.
-- `src/routes/docs.tsx` — server loader resolves the page + serialized page
-  tree via `source.getPage`/`serializePageTree`; a Fumadocs
-  `createClientLoader()` resolves the compiled MDX body client-side.
+- `src/lib/source.ts`: `loader({ baseUrl: "/docs", source:
+  docs.toFumadocsSource() })` builds the Fumadocs page tree and search
+  index from that generated collection.
+- `src/routes.ts`: `index` maps to `home`, plus `docs/*` and `api/search`.
+- `src/routes/docs.tsx`: the server loader resolves the page and
+  serialized page tree via `source.getPage`/`serializePageTree`; a
+  Fumadocs `createClientLoader()` resolves the compiled MDX body
+  client-side.
 
 ## Commands
 

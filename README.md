@@ -2,21 +2,25 @@
   <img src="./assets/smoove-mark.svg" alt="smoove" width="96" height="96">
 </p>
 
-<h1 align="center">smoove</h1>
-<p align="center"><strong>Smooth moves, in code.</strong></p>
+<h1 align="center">
+  smoove
+  <small align="center"><strong>Smooth moves, in code.</strong></small>
+</h1>
 
 <p align="center">
-  A timeline-driven animation engine for <a href="https://konvajs.org">Konva</a> —
-  keyframe motion that runs anywhere, renders fast, and is built on concepts
+  A timeline-driven animation engine for <a href="https://konvajs.org">Konva</a>.
+  Keyframe motion that runs anywhere, renders fast, and is built on concepts
   an LLM can reason about to author videos.
 </p>
 
-<p align="center">Smooth · Light · Anywhere · Authorable</p>
+<p align="center">Smooth · Light · Anywhere</p>
+
+<hr />
 
 A **Composition** is a `Konva.Stage` that owns a frame clock. A **Sequence**
-is a `Konva.Layer` scoped to a frame range — its updaters run and its layer
-paints only while in range. Composition issues one `batchDraw()` per active
-sequence per frame.
+is a `Konva.Layer` scoped to a frame range: its updaters run and its layer
+paints only while playback is inside that range. Composition issues one
+`batchDraw()` per active sequence per frame.
 
 ```ts
 import { Composition, Sequence } from "@smoove/core";
@@ -42,16 +46,16 @@ comp.play();
 
 ## Packages
 
-| Package | What it is |
-| --- | --- |
-| [`@smoove/core`](./packages/core) | Engine + layout — `Composition`, `Sequence`, `Series`, `Flex`/`Block`/`Text`/`Image`, flex-aware Konva shape wrappers. `konva` is a peer dep. |
-| [`@smoove/player`](./packages/player) | Lit web-component player (`<smoove-player>`) that plays a `Composition` like an HTML5 `<video>`. |
-| [`@smoove/transitions`](./packages/transitions) | Remotion-style `TransitionSeries` — 18 presentations + 2 timings for scene-to-scene cuts. |
-| [`@smoove/renderer`](./packages/renderer) | Headless server renderer — rasterizes with skia-canvas, encodes via Mediabunny (no ffmpeg binary needed). |
-| [`@smoove/studio`](./packages/studio) | Composable React studio UI — catalog, stage, timeline, props form, render dialogs. |
-| [`@smoove/google-fonts`](./packages/google-fonts) | Typed, tree-shakeable Google Fonts for `Text`'s `font` prop. |
-| [`@smoove/vite`](./packages/vite) | Vite plugin for smoove studio — HMR wiring + build-time composition metadata. |
-| [`@smoove/docs`](./packages/docs) | The documentation website (Fumadocs + React Router). |
+| Package                                           | What it is                                                                                                                                          |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`@smoove/core`](./packages/core)                 | Engine and layout: `Composition`, `Sequence`, `Series`, `Flex`/`Block`/`Text`/`Image`, plus flex-aware Konva shape wrappers. `konva` is a peer dep. |
+| [`@smoove/player`](./packages/player)             | Lit web-component player (`<smoove-player>`) that plays a `Composition` like an HTML5 `<video>`.                                                    |
+| [`@smoove/transitions`](./packages/transitions)   | Remotion-style `TransitionSeries` with 18 presentations and 2 timings for scene-to-scene cuts.                                                      |
+| [`@smoove/renderer`](./packages/renderer)         | Headless server renderer. Rasterizes with skia-canvas and encodes via Mediabunny, no ffmpeg binary needed.                                          |
+| [`@smoove/studio`](./packages/studio)             | Composable React studio UI: catalog, stage, timeline, props form, and render dialogs.                                                               |
+| [`@smoove/google-fonts`](./packages/google-fonts) | Typed, tree-shakeable Google Fonts for `Text`'s `font` prop.                                                                                        |
+| [`@smoove/vite`](./packages/vite)                 | Vite plugin for smoove studio: HMR wiring plus build-time composition metadata.                                                                     |
+| [`@smoove/docs`](./packages/docs)                 | The documentation website (Fumadocs + React Router).                                                                                                |
 
 ## Quick start
 
@@ -63,18 +67,18 @@ pnpm build        # build all packages
 pnpm check        # Biome lint + format check
 ```
 
-The studio reference app (`demo/`) registers ~30 example compositions —
-basic shapes, easing races, flex layout, text effects, audio/video sync,
-transitions — in a searchable library, with a live stage, timeline, and a
+The studio reference app (`demo/`) registers about 30 example compositions
+(basic shapes, easing races, flex layout, text effects, audio/video sync,
+transitions) in a searchable library, with a live stage, a timeline, and a
 server-side render queue for exporting to video.
 
 ## Built for agents too
 
-smoove's API is built on concepts an LLM already knows — keyframes,
-timelines, flexbox layout, familiar shape primitives — so a model can reason
-from the docs and produce a correct `Composition` on the first try. See
-[`skills/smoove-video`](./skills/smoove-video) for the agent skill that
-teaches Claude Code (or any coding agent) how to author one.
+smoove's API is built on concepts an LLM already knows: keyframes,
+timelines, flexbox layout, familiar shape primitives. That means a model
+can reason from the docs and produce a correct `Composition` on the first
+try. See [`skills/smoove-video`](./skills/smoove-video) for the agent skill
+that teaches Claude Code (or any coding agent) how to author one.
 
 ## Docs
 
