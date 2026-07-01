@@ -132,6 +132,7 @@ export function Demo({
         <smoove-player
           ref={setPlayerRef as React.Ref<HTMLElement>}
           src={playerSrc}
+          key={name}
           controls={custom ? undefined : true}
           initialframe={initialframe}
           loop
