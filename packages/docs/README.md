@@ -1,69 +1,86 @@
 # @smoove/docs
 
 The smoove documentation website — a [React Router](https://reactrouter.com)
-framework-mode app (SSR) that renders Markdown pages with the KmStudio design system.
+framework-mode app (SSR) built on [Fumadocs](https://fumadocs.dev), themed
+with the smoove brand design (cream-first light, grape-ink dark, coral
+accent — see `src/app.css`).
 
 ## Authoring a page
 
-Add a `.md` file under `src/content/`. The filename's numeric prefix sets the default
-ordering (`02-installation.md` → slug `installation`). Each file starts with a
-frontmatter header:
+Add a `.mdx` file under `content/docs/` (or a subfolder — see the existing
+`layout/`, `typography/`, `transitions/`, `player/`, `rendering/`, and
+`vite-plugin/` groups). Frontmatter is just:
 
-```markdown
+```mdx
 ---
-title: Installation          # page title (sidebar, <h1>, <title>)
-group: Getting Started       # sidebar section it belongs to
-order: 2                     # sort order within the group (defaults to filename prefix)
-eyebrow: Getting Started     # optional kicker rendered above the <h1>
-description: One-line summary # optional <meta name="description">
-icon: cube                   # optional sidebar icon key (see components/icons.tsx)
-slug: installation           # optional explicit slug (defaults to the filename)
+title: Introduction
+description: What smoove is, the frame-clock mental model, and when to reach for it.
 ---
 
-Body starts here. Do **not** repeat the `<h1>` — it comes from `title`. Open
-sections with `##` headings; they feed the "On this page" table of contents.
+Body starts here.
 ```
 
-Sidebar groups render in this order, then any others alphabetically:
-`Getting Started → Core Concepts → Components → API Reference` (see
-`GROUP_ORDER` in `src/lib/content.server.ts`).
+Sidebar order and grouping are **not** driven by frontmatter — each folder
+has a `meta.json` that lists its pages in order, with a
+`"---Group Name---"` string in the `pages` array to start a new sidebar
+group:
 
-### Rich content — pure Markdown, no HTML
+```json
+{
+  "title": "Documentation",
+  "pages": [
+    "---Getting Started---",
+    "introduction",
+    "installation",
+    "core-concepts",
+    "---Animating---",
+    "interpolation",
+    "easing"
+  ]
+}
+```
 
-Every design element is produced by the parser, so pages are **100% Markdown** (raw
-HTML is disabled). See `src/content/03-components.md` for a live example of each.
+Nested folders get their own `meta.json` with a local `title` + `pages`
+list.
 
-| Element | Markdown |
-| --- | --- |
-| **Lead** | The first paragraph of the body is styled as the lead automatically. |
-| **Callouts** | `:::note Title` … `:::` — also `tip`, `warning`, `danger`. Title is optional. |
-| **Steps** | `:::steps` wrapping an ordered list; each item's first paragraph (bold) is the step title. |
-| **API prop** | `:::prop name \| (signature) \| badge` … `:::` (type and badge optional). |
-| **Demo slot** | `:::demo 1280 × 720 canvas` … `:::` (frames a `<smoove-player>` or placeholder). |
-| **Badges** | `{{stable}}`, or with a variant `{{accent:stable}}` / `{{good:v1.0}}` / `{{warn:beta}}`. |
-| **Keyboard keys** | `[[Space]]`, `[[⌘]][[K]]` → `<kbd>`. |
-| **Task lists** | `- [x] done` / `- [ ] todo`. |
-| **Blockquote cite** | A `> — Name` line becomes the attribution `<cite>`. |
-| **Tables** | Standard Markdown tables (auto-wrapped so they scroll on small screens). |
-| **Figures** | An image alone in a paragraph becomes a `<figure>`; its title becomes the caption: `![alt](src "caption")`. |
-| **Code** | Fenced code blocks get the themed chrome + server-side highlight.js. |
+### MDX components
 
-External links (`https://…`) automatically open in a new tab.
+Available in every page via `src/components/mdx.tsx`: `Demo`, `Prop`,
+`Badge`, `PropsPlayground`, plus Fumadocs' built-ins (`Callout`,
+`Steps`/`Step`, `Tabs`/`Tab`) and `defaultMdxComponents` from
+`fumadocs-ui/mdx` for headings, code blocks, tables, and links.
 
 ### Live demos
 
-Embed a running composition with the `<smoove-player>` element from
-`@smoove/player` (registered in the browser via `entry.client.tsx`):
+Embed a running composition with `<Demo>`:
 
-```html
-<smoove-player src="/demos/pulse.js" controls></smoove-player>
+```mdx
+<Demo name="hero" label="every frame is a pure function of the clock" />
 ```
+
+`name` resolves to `src/demos/<name>.ts` — `src/components/demo.tsx` loads
+it two ways via Vite globs: the served module URL (rendered live in a
+`<smoove-player>`, the custom element from `@smoove/player`) and the raw
+source (for the "View source" toggle). Optional props: `footer` (panel
+below the player) and `initialframe` (frame shown on mount).
+
+## Architecture
+
+- `content/docs/**/*.mdx` — page content, compiled by the `fumadocs-mdx`
+  Vite plugin into a generated `collections/server` module.
+- `src/lib/source.ts` — `loader({ baseUrl: "/docs", source:
+  docs.toFumadocsSource() })` builds the Fumadocs page tree + search index
+  from that generated collection.
+- `src/routes.ts` — `index → home`, `docs/*`, `api/search`.
+- `src/routes/docs.tsx` — server loader resolves the page + serialized page
+  tree via `source.getPage`/`serializePageTree`; a Fumadocs
+  `createClientLoader()` resolves the compiled MDX body client-side.
 
 ## Commands
 
 | Command | What it does |
 | --- | --- |
-| `pnpm --filter @smoove/docs dev` | Dev server at http://localhost:5176 |
+| `pnpm --filter @smoove/docs dev` (or root `pnpm dev:docs`) | Dev server at http://localhost:5176 |
 | `pnpm --filter @smoove/docs build` | Production SSR build under `build/` |
 | `pnpm --filter @smoove/docs start` | Serve the production build |
 | `pnpm --filter @smoove/docs typecheck` | `react-router typegen` + `tsc` |
