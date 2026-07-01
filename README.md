@@ -3,8 +3,8 @@
 </p>
 
 <h1 align="center">
-  smoove
-  <small align="center"><strong>Smooth moves, in code.</strong></small>
+  smoove<br />
+  <small>Smooth moves, in code.</small>
 </h1>
 
 <p align="center">
