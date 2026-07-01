@@ -13,6 +13,12 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@smoove/docs", "dev"],
       "port": 5176
+    },
+    {
+      "name": "docs-prod",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@smoove/docs", "start"],
+      "port": 3000
     }
   ]
 }

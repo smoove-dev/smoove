@@ -1,4 +1,5 @@
-import { type Plugin, transformWithEsbuild } from "vite";
+import { build as esbuildBuild, type Plugin as EsbuildPlugin } from "esbuild";
+import { type Plugin, type ResolvedConfig, transformWithEsbuild } from "vite";
 
 /**
  * @smoove/vite — makes the studio feel like a framework under Vite.
@@ -26,6 +27,24 @@ import { type Plugin, transformWithEsbuild } from "vite";
  * untouched. So `new Video({ src: clip })` and `new Font({ faces: [{ src: face }]
  * })` just work in both — no per-`src` helper to remember. (The `?url` query is
  * stripped before matching, so both bare and `?url` imports are handled.)
+ *
+ * It also serves compositions as standalone player modules via the `?comp-url`
+ * import query. A demo authored as `src/demos/orbit.ts` (default-exporting a
+ * `Composition`) is loaded into `<smoove-player src=…>` by importing
+ * `"./orbit.ts?comp-url"` — the default export is the served URL of a *compiled,
+ * self-contained* ESM module the browser can `import()` at runtime.
+ *
+ * Plain `?url` can't do this: it copies the raw `.ts` source verbatim to
+ * `/assets/orbit-HASH.ts`, which the server labels `video/mp2t` (the MPEG
+ * transport-stream extension) so the browser refuses it as a module — and even
+ * with the right MIME it's untranspiled TS with bare `@smoove/core` imports.
+ * `?comp-url` esbuild-bundles the demo instead (pulling in `@smoove/transitions`,
+ * fonts, media and helpers) and emits real `.js`. `@smoove/core` and `konva`
+ * stay *external*, rewritten to `window.Smoove` / `window.Konva` — the globals
+ * the standalone player pins — so the composition shares the player's single
+ * core/konva instance rather than instantiating a second copy. In dev the query
+ * delegates to Vite's `?url` (the dev server already transpiles `.ts` on
+ * request), so only the production build changes.
  */
 export interface SmooveOptions {
   /** Which modules are treated as registry files. Default: `*registry.{ts,tsx,js,jsx}`. */
@@ -51,10 +70,32 @@ export function smoove(options: SmooveOptions = {}): Plugin {
   const include = options.include ?? /registry\.(?:t|j)sx?$/;
   const serverAssets = options.serverAssets ?? DEFAULT_SERVER_ASSETS;
 
+  let isBuild = false;
+
   return {
     name: "smoove",
     enforce: "pre",
-    load(id, loadOptions) {
+    configResolved(config: ResolvedConfig) {
+      isBuild = config.command === "build";
+    },
+    async load(id, loadOptions) {
+      // `X.ts?comp-url` → the served URL of a compiled standalone player module.
+      if (queryFlags(id).includes("comp-url")) {
+        const compFile = id.split("?")[0] ?? id;
+        if (!isBuild) {
+          // Dev: the dev server already transpiles `.ts` and resolves bare
+          // imports against the shared graph, so hand off to Vite's `?url`.
+          return `export { default } from ${JSON.stringify(`${compFile}?url`)};`;
+        }
+        const source = await compileComposition(compFile);
+        const referenceId = this.emitFile({
+          type: "asset",
+          name: `${baseName(compFile)}.js`,
+          source,
+        });
+        return `export default import.meta.ROLLUP_FILE_URL_${referenceId};`;
+      }
+
       const file = id.split("?")[0] ?? id;
       if (!serverAssets.test(file)) return null;
       // Only the server (SSR) sees a filesystem path — the client keeps the URL.
@@ -95,6 +136,85 @@ export const reactMotionStudio = smoove;
 export default smoove;
 
 // ---------------------------------------------------------------- internals
+
+/** The `&`-separated flags of an id's query string (`a.ts?x&y` → `["x", "y"]`). */
+function queryFlags(id: string): string[] {
+  const q = id.split("?")[1];
+  return q ? q.split("&") : [];
+}
+
+/** `/abs/demos/orbit.ts` → `orbit`. */
+function baseName(file: string): string {
+  const stem = file.slice(file.lastIndexOf("/") + 1);
+  const dot = stem.lastIndexOf(".");
+  return dot > 0 ? stem.slice(0, dot) : stem;
+}
+
+/** Media/font/image extensions esbuild inlines as data URLs so the compiled
+    composition module is self-contained (no sibling asset requests to wire up). */
+const COMP_DATAURL_LOADERS = {
+  ".mp4": "dataurl",
+  ".webm": "dataurl",
+  ".mov": "dataurl",
+  ".m4v": "dataurl",
+  ".mkv": "dataurl",
+  ".mp3": "dataurl",
+  ".wav": "dataurl",
+  ".ogg": "dataurl",
+  ".m4a": "dataurl",
+  ".aac": "dataurl",
+  ".flac": "dataurl",
+  ".png": "dataurl",
+  ".jpg": "dataurl",
+  ".jpeg": "dataurl",
+  ".webp": "dataurl",
+  ".avif": "dataurl",
+  ".gif": "dataurl",
+  ".svg": "dataurl",
+  ".woff2": "dataurl",
+  ".woff": "dataurl",
+  ".ttf": "dataurl",
+  ".otf": "dataurl",
+} as const;
+
+/**
+ * Rewrites `@smoove/core` and `konva` to the globals the standalone player pins
+ * (`window.Smoove` / `window.Konva`), keeping them out of the bundle so the
+ * composition shares the player's single core/konva instance. A CommonJS body
+ * (`module.exports = window.…`) lets esbuild's interop satisfy default, named
+ * and namespace imports alike.
+ */
+const smooveGlobals: EsbuildPlugin = {
+  name: "smoove-window-globals",
+  setup(build) {
+    build.onResolve({ filter: /^(?:@smoove\/core|konva)$/ }, (a) => ({
+      path: a.path,
+      namespace: "smoove-global",
+    }));
+    build.onLoad({ filter: /.*/, namespace: "smoove-global" }, (a) => ({
+      contents: `module.exports = window.${a.path === "konva" ? "Konva" : "Smoove"};`,
+      loader: "js",
+    }));
+  },
+};
+
+/** esbuild-bundle a demo into a self-contained ESM module (see `?comp-url`). */
+async function compileComposition(file: string): Promise<string> {
+  const result = await esbuildBuild({
+    entryPoints: [file],
+    bundle: true,
+    format: "esm",
+    target: "es2022",
+    platform: "browser",
+    write: false,
+    logLevel: "silent",
+    loader: COMP_DATAURL_LOADERS,
+    plugins: [smooveGlobals],
+  });
+  const out = result.outputFiles?.[0]?.text;
+  if (out == null) throw new Error(`[smoove] ?comp-url produced no output for ${file}`);
+  return out;
+}
 
 async function toJs(code: string, filename: string): Promise<string> {
   const loader = /\.(?:tsx|jsx)$/.test(filename) ? "tsx" : "ts";

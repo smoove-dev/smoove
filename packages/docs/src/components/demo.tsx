@@ -12,11 +12,12 @@ export interface SmoovePlayerEl extends HTMLElement {
 
 // Every demo composition lives at `src/demos/<name>.ts` and default-exports a
 // `Composition` (see `doc/authoring-demos.md`). These two globs resolve both
-// views of each file from its name — the served `?url` the player `import()`s,
-// and the `?raw` source for the "View source" toggle — so a page only writes
-// `<Demo name="orbit" />` instead of wiring two imports by hand.
+// views of each file from its name — the served `?comp-url` the player
+// `import()`s (a compiled standalone module; see @smoove/vite), and the `?raw`
+// source for the "View source" toggle — so a page only writes `<Demo
+// name="orbit" />` instead of wiring two imports by hand.
 const URLS = import.meta.glob("../demos/*.ts", {
-  query: "?url&no-inline",
+  query: "?comp-url",
   import: "default",
   eager: true,
 }) as Record<string, string>;

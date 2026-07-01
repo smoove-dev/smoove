@@ -14,7 +14,7 @@ import {
 } from "../components/icons";
 import { useCopyButtons } from "../components/use-copy-buttons";
 
-import heroBgUrl from "../demos/hero-bg.ts?url";
+import heroBgUrl from "../demos/hero-bg.ts?comp-url";
 import "../styles/base.css";
 import "../styles/home.css";
 import type { Route } from "./+types/home";

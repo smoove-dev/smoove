@@ -28,6 +28,9 @@
     "dev": "tsc -b --watch",
     "clean": "rm -rf dist *.tsbuildinfo"
   },
+  "dependencies": {
+    "esbuild": "^0.25.0"
+  },
   "peerDependencies": {
     "vite": ">=5"
   },
