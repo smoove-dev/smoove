@@ -1,6 +1,6 @@
 {
   "name": "@smoove/renderer",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Headless server renderer for smoove — rasterizes a Composition with skia-canvas and encodes to video via Mediabunny (node-av / FFmpeg C API).",
   "license": "MIT",
   "repository": {

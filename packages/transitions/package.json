@@ -1,7 +1,7 @@
 {
   "name": "@smoove/transitions",
-  "version": "0.0.0",
-  "description": "Remotion-style transitions for smoove — TransitionSeries, 18 presentations and 2 timings.",
+  "version": "0.1.0",
+  "description": "Transitions for smoove — TransitionSeries, 18 presentations and 2 timings.",
   "license": "MIT",
   "repository": {
     "type": "git",
