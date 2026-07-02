@@ -124,12 +124,19 @@ export function LayeredBody() {
               })}
             </div>
 
-            {/* track lane (seek surface) */}
-            <button
+            {/* track lane (seek surface). A div, not a <button>: it hosts the
+                loop-region grip <button>s, and nested buttons are invalid HTML
+                that break hydration (see scrubber.tsx). */}
+            <div
               ref={s.ref}
-              className="relative cursor-pointer"
+              className="relative cursor-pointer outline-0"
               style={{ width: tracksW, height: bodyH }}
-              type="button"
+              role="slider"
+              aria-label="Seek"
+              aria-valuemin={0}
+              aria-valuemax={total}
+              aria-valuenow={frame}
+              tabIndex={0}
               onMouseDown={(e) => {
                 s.setDrag("seek");
                 s.seekTo(e.clientX);
@@ -189,7 +196,7 @@ export function LayeredBody() {
               >
                 <span className="absolute -top-px left-1/2 -translate-x-1/2 w-[11px] h-2 bg-white rounded-b-[3px]" />
               </div>
-            </button>
+            </div>
           </div>
         </div>
       </div>

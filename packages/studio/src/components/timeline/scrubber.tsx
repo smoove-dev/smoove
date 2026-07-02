@@ -31,10 +31,20 @@ export function Scrubber({
           <Ruler durSec={durSec} fps={fps} total={total} />
         </div>
       )}
-      <button
+      {/* Not a <button>: it hosts the loop-region grip <button>s, and a button
+          nested in a button is invalid HTML — the parser hoists the inner one,
+          which desyncs SSR markup from the hydrated DOM and fails hydration
+          (silently dropping the studio's injected stylesheets). A focusable div
+          keeps click-to-seek + keyboard focus without the nesting. */}
+      <div
         ref={s.ref}
         className="relative h-6.5 flex items-center cursor-pointer group outline-0"
-        type="button"
+        role="slider"
+        aria-label="Seek"
+        aria-valuemin={0}
+        aria-valuemax={total}
+        aria-valuenow={frame}
+        tabIndex={0}
         onMouseDown={(e) => {
           s.setDrag("seek");
           s.seekTo(e.clientX);
@@ -72,7 +82,7 @@ export function Scrubber({
             {fmtTime(s.hover * durSec)}
           </div>
         )}
-      </button>
+      </div>
     </div>
   );
 }

@@ -99,6 +99,9 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
   private _mutationObserver: MutationObserver | null = null;
   // Last pixelRatio pushed onto the composition's layer canvases (0 = none yet).
   private _appliedPixelRatio = 0;
+  // True only when the player loaded the composition itself (via `src`) and thus
+  // owns its lifecycle — the one case it may destroy it on disconnect.
+  private _ownsComp = false;
 
   // --- public reactive accessors (PlayerApi) ---------------------------------
   get composition(): Composition | null {
@@ -115,6 +118,7 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
     this._unbind();
     this._appliedPixelRatio = 0;
     this._comp = c ?? null;
+    this._ownsComp = false; // imperative assignment — the consumer owns it
     if (this.isConnected && this._comp) this._mount();
   }
 
@@ -164,6 +168,19 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
     if (v == null) this.removeAttribute("src");
     else this.setAttribute("src", v);
   }
+  /**
+   * Override for on-disconnect disposal. Unset (default) = auto: destroy only a
+   * composition the player owns (loaded from `src`); pause an imperatively
+   * assigned one. `true` always destroys; `false` always pauses.
+   */
+  get destroyOnDisconnect(): boolean | undefined {
+    const attr = this.getAttribute("destroy-on-disconnect");
+    return attr == null ? undefined : attr !== "false";
+  }
+  set destroyOnDisconnect(v: boolean | undefined) {
+    if (v == null) this.removeAttribute("destroy-on-disconnect");
+    else this.setAttribute("destroy-on-disconnect", String(v));
+  }
 
   // --- lifecycle -------------------------------------------------------------
   connectedCallback(): void {
@@ -196,13 +213,16 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
     this._stage?.removeEventListener("dblclick", this._onStageDblClick);
     this._appliedPixelRatio = 0;
 
-    // Destroy the composition and its Konva stage/canvas outright: cancels the
-    // rAF clock, releases the WebGL/2D backing store, and drops all listeners.
-    // Leaving it alive would keep an off-DOM stage ticking forever (the classic
-    // "the tab stays pegged after you navigate away" leak). A reconnect rebuilds
-    // from `src`; an imperatively-assigned composition must be re-assigned.
-    this._comp?.destroy();
-    this._comp = null;
+    // Stop the off-DOM clock either way (avoids the "tab pegged after navigating
+    // away" leak). Destroy only a composition we own (loaded from `src`); pause a
+    // consumer-owned one so it survives a reconnect. `destroy-on-disconnect`
+    // forces the choice.
+    if (this.destroyOnDisconnect ?? this._ownsComp) {
+      this._comp?.destroy();
+      this._comp = null;
+    } else {
+      this._comp?.pause();
+    }
 
     // Drop the injected chrome so a reconnect rebuilds a fresh stage/canvas.
     this._stage?.remove();
@@ -394,6 +414,7 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
       if (seq !== this._loadSeq) return; // superseded by a newer load/assignment
       this.toggleAttribute("loading", false);
       this.composition = comp;
+      this._ownsComp = true; // the player loaded it, so it owns its lifecycle
       this._emit("loaded", { src: url, composition: comp });
     } catch (error) {
       if (seq !== this._loadSeq) return;
