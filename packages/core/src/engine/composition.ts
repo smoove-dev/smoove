@@ -43,6 +43,12 @@ type RegisterableNode = Konva.Node & {
   _kmRegister?: (comp: Composition<any>) => void;
 };
 
+/** A media node (Video/Audio) that can release + re-acquire its background source. */
+type MediaLifecycleNode = Konva.Node & {
+  _kmSuspend?: () => void;
+  _kmResume?: () => void;
+};
+
 export type CompositionEventMap = {
   play: CompositionEvent;
   stop: CompositionEvent;
@@ -107,6 +113,8 @@ export class Composition<
   private _rafId: number | null = null;
   private _startWallMs = 0;
   private _startFrame = 0;
+  // Background work released by suspend() until resume() re-acquires it.
+  private _suspended = false;
 
   // Asset-buffering gate (the preview analogue of the delayRender render gate):
   // outstanding asset loads that should be ready before playback advances.
@@ -280,6 +288,51 @@ export class Composition<
     if (!this._isPlaying.get()) return;
     this._cancelTick();
     this._isPlaying.set(false);
+  }
+
+  /** `true` between {@link suspend} and {@link resume}. */
+  get isSuspended(): boolean {
+    return this._suspended;
+  }
+
+  /**
+   * Release background work — halt the clock and tell every media node to drop
+   * its source, so a composition that isn't being shown (e.g. a `<smoove-player>`
+   * removed from the DOM) stops downloading/decoding video and audio. This does
+   * NOT tear the composition down: the scene graph stays intact and {@link resume}
+   * re-acquires the sources. No-op if already suspended.
+   */
+  suspend(): void {
+    if (this._suspended) return;
+    this._suspended = true;
+    this._resumeOnReady = false;
+    this._cancelTick();
+    if (this._isPlaying.get()) this._isPlaying.set(false);
+    this._forEachMedia((n) => n._kmSuspend?.());
+  }
+
+  /**
+   * Undo {@link suspend}: re-acquire the media sources released while suspended
+   * (they re-download and redraw once ready) and repaint the current frame.
+   * No-op if not suspended.
+   */
+  resume(): void {
+    if (!this._suspended) return;
+    this._suspended = false;
+    this._forEachMedia((n) => n._kmResume?.());
+    // force: sources were dropped, so the same frame must be re-applied.
+    this._applyFrame(this._frame.get(), false, true);
+  }
+
+  /** Walk every media node (Video/Audio) across all sequences. */
+  private _forEachMedia(cb: (n: MediaLifecycleNode) => void): void {
+    for (const child of this.getChildren()) {
+      if (child instanceof Sequence) {
+        for (const n of child.find((x: Konva.Node) => x.getAttr(MEDIA_MARK) === true)) {
+          cb(n as MediaLifecycleNode);
+        }
+      }
+    }
   }
 
   stop(): void {

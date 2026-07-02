@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router";
+import { ClientOnly } from "../components/client-only";
 import { HomeHeader } from "../components/home-header";
 import {
   BrandMark,
@@ -72,12 +73,14 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         <div className="hero__grid" aria-hidden="true" />
         <div className="hero__glow" aria-hidden="true" />
         <div className="hero__player" aria-hidden="true">
-          <smoove-player
-            ref={heroPlayerRef as React.Ref<HTMLElement>}
-            src={heroBgUrl}
-            autoplay
-            loop
-          />
+          <ClientOnly>
+            <smoove-player
+              ref={heroPlayerRef as React.Ref<HTMLElement>}
+              src={heroBgUrl}
+              autoplay
+              loop
+            />
+          </ClientOnly>
         </div>
 
         <div className="hero__inner">

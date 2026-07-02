@@ -1,5 +1,6 @@
 import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { type ReactNode, useEffect, useRef, useState } from "react";
+import { ClientOnly, useHydrated } from "./client-only";
 import { BrandMark } from "./icons";
 
 // Minimal slice of the <smoove-player> imperative API we drive from the overlay and
@@ -78,10 +79,15 @@ export function Demo({
     if (externalPlayerRef) externalPlayerRef.current = el;
   };
   const [playing, setPlaying] = useState(false);
+  // The player is rendered client-only (see <ClientOnly>), so its ref isn't
+  // populated until after hydration — re-run the listener wiring then.
+  const hydrated = useHydrated();
 
   // Track playback so the logo play-overlay shows only while paused. The player
   // emits bubbling `play`/`pause`/`ended` CustomEvents (see smoove-player.ts).
   useEffect(() => {
+    // The player mounts client-only, so its ref is populated only once hydrated.
+    if (!hydrated) return;
     const el = playerRef.current;
     if (!el) return;
     const onPlay = () => setPlaying(true);
@@ -94,7 +100,7 @@ export function Demo({
       el.removeEventListener("pause", onStop);
       el.removeEventListener("ended", onStop);
     };
-  }, []);
+  }, [hydrated]);
 
   const resolved = name ? DEMOS[name] : undefined;
   if (name && !resolved) {
@@ -129,16 +135,18 @@ export function Demo({
       </figcaption>
 
       <div className="relative grid aspect-video w-full place-items-center bg-fd-secondary [&_smoove-player]:size-full">
-        <smoove-player
-          ref={setPlayerRef as React.Ref<HTMLElement>}
-          src={playerSrc}
-          key={name}
-          controls={custom ? undefined : true}
-          initialframe={initialframe}
-          loop
-        >
-          {children}
-        </smoove-player>
+        <ClientOnly>
+          <smoove-player
+            ref={setPlayerRef as React.Ref<HTMLElement>}
+            src={playerSrc}
+            key={name}
+            controls={custom ? undefined : true}
+            initialframe={initialframe}
+            loop
+          >
+            {children}
+          </smoove-player>
+        </ClientOnly>
         {custom ? null : (
           <button
             type="button"

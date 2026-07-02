@@ -1,6 +1,6 @@
 import Konva from "konva";
 import { getComposition } from "../../engine/composition.js";
-import { detectEnvironment, getEnvironment } from "../../engine/environment.js";
+import { detectEnvironment, type Environment, getEnvironment } from "../../engine/environment.js";
 import { getDefaultVideoSourceFactory } from "../../engine/runtime-defaults.js";
 import { createSignal, type ReadonlySignal, type Signal } from "../../engine/signal.js";
 import type { KMLayoutNode, LayoutBox } from "../../layout/contract.js";
@@ -17,7 +17,7 @@ import type { VideoDriver, VideoDriverContext, VideoTiming } from "./driver.js";
 import type { VideoConfig } from "./types.js";
 import { PreviewVideoDriver } from "./video-for-preview.js";
 import { RenderingVideoDriver } from "./video-for-rendering.js";
-import type { VideoSource } from "./video-source.js";
+import type { VideoSource, VideoSourceFactory } from "./video-source.js";
 
 const VIDEO_KEYS = [
   "src",
@@ -65,7 +65,11 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
   readonly muted: ReadonlySignal<boolean>;
 
   private readonly _img: Konva.Image;
-  private readonly _source: VideoSource;
+  // Reassigned on suspend/resume, so not readonly; `!` = set via _acquireSource().
+  private _source!: VideoSource;
+  private readonly _env: Environment;
+  private readonly _factory: VideoSourceFactory;
+  private _suspended = false;
   private readonly _trimBefore: number;
   private readonly _trimAfter?: number;
   private readonly _loop: boolean;
@@ -119,10 +123,20 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
 
     // Build the source eagerly so loading starts immediately. The driver (which
     // needs the attached stage's composition) is resolved lazily on first tick.
-    const env = detectEnvironment();
-    const factory = config.sourceFactory ?? getDefaultVideoSourceFactory();
-    this._source = factory(env);
-    this._applyAudio(); // honor config volume/muted before a mixer is attached
+    this._env = detectEnvironment();
+    this._factory = config.sourceFactory ?? getDefaultVideoSourceFactory();
+    this._acquireSource();
+
+    this._layoutImage();
+  }
+
+  /**
+   * Create the media source and start loading it. Called once at construction
+   * and again by {@link _kmResume} after {@link _kmSuspend} dropped it.
+   */
+  private _acquireSource(): void {
+    this._source = this._factory(this._env);
+    this._applyAudio(); // honor config/mixer volume+muted before playback
     this._source.setPlaybackRate(this._playbackRate);
     this._source.onReady(() => {
       const el = this._source.element;
@@ -133,11 +147,29 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
     this._source.onFrame(() => {
       this.getLayer()?.batchDraw();
     });
-    this._source.load(config.src).catch((err: unknown) => {
+    this._source.load(this._src).catch((err: unknown) => {
       console.error("[smoove] Video load failed:", err);
     });
+  }
 
-    this._layoutImage();
+  /** @internal — {@link Composition.suspend}: drop the source to stop downloading/decoding. */
+  _kmSuspend(): void {
+    if (this._suspended) return;
+    this._suspended = true;
+    this._driver?.dispose();
+    this._driver = null;
+    this._audioDriver?.dispose();
+    this._audioDriver = null;
+    this._source.destroy();
+    this._img.image(undefined);
+    this.getLayer()?.batchDraw();
+  }
+
+  /** @internal — {@link Composition.resume}: re-acquire the dropped source. */
+  _kmResume(): void {
+    if (!this._suspended) return;
+    this._suspended = false;
+    this._acquireSource();
   }
 
   /** @internal — called by Sequence on each tick while this video is on-stage. */

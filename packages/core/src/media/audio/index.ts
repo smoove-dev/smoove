@@ -1,6 +1,6 @@
 import Konva from "konva";
 import { getComposition } from "../../engine/composition.js";
-import { detectEnvironment, getEnvironment } from "../../engine/environment.js";
+import { detectEnvironment, type Environment, getEnvironment } from "../../engine/environment.js";
 import { getDefaultAudioSourceFactory } from "../../engine/runtime-defaults.js";
 import { createSignal, type ReadonlySignal, type Signal } from "../../engine/signal.js";
 import { AUDIO_MARK, MEDIA_MARK } from "../media-marker.js";
@@ -8,7 +8,7 @@ import type { MediaTiming } from "../media-time.js";
 import type { AudioDriver, AudioDriverContext } from "./audio-driver.js";
 import { PreviewAudioDriver } from "./audio-for-preview.js";
 import { RenderingAudioDriver } from "./audio-for-rendering.js";
-import type { AudioSource } from "./audio-source.js";
+import type { AudioSource, AudioSourceFactory } from "./audio-source.js";
 import type { AudioChannel, AudioMixer } from "./mixer.js";
 import type { AudioConfig } from "./types.js";
 
@@ -28,7 +28,11 @@ export class Audio extends Konva.Group implements AudioChannel {
   readonly muted: ReadonlySignal<boolean>;
 
   private readonly _src: string;
-  private readonly _source: AudioSource;
+  // Reassigned on suspend/resume, so not readonly; `!` = set via _acquireSource().
+  private _source!: AudioSource;
+  private readonly _env: Environment;
+  private readonly _factory: AudioSourceFactory;
+  private _suspended = false;
   private readonly _trimBefore: number;
   private readonly _trimAfter?: number;
   private readonly _loop: boolean;
@@ -57,14 +61,38 @@ export class Audio extends Konva.Group implements AudioChannel {
 
     // Build the source eagerly so loading starts immediately. The driver (which
     // needs the attached stage's composition) is resolved lazily on first tick.
-    const env = detectEnvironment();
-    const factory = config.sourceFactory ?? getDefaultAudioSourceFactory();
-    this._source = factory(env);
-    this._applyAudio(); // honor config volume/muted before a mixer is attached
+    this._env = detectEnvironment();
+    this._factory = config.sourceFactory ?? getDefaultAudioSourceFactory();
+    this._acquireSource();
+  }
+
+  /**
+   * Create the media source and start loading it. Called once at construction
+   * and again by {@link _kmResume} after {@link _kmSuspend} dropped it.
+   */
+  private _acquireSource(): void {
+    this._source = this._factory(this._env);
+    this._applyAudio(); // honor config/mixer volume+muted before playback
     this._source.setPlaybackRate(this._playbackRate);
-    this._source.load(config.src).catch((err: unknown) => {
+    this._source.load(this._src).catch((err: unknown) => {
       console.error("[smoove] Audio load failed:", err);
     });
+  }
+
+  /** @internal — {@link Composition.suspend}: drop the source to stop downloading/decoding. */
+  _kmSuspend(): void {
+    if (this._suspended) return;
+    this._suspended = true;
+    this._driver?.dispose();
+    this._driver = null;
+    this._source.destroy();
+  }
+
+  /** @internal — {@link Composition.resume}: re-acquire the dropped source. */
+  _kmResume(): void {
+    if (!this._suspended) return;
+    this._suspended = false;
+    this._acquireSource();
   }
 
   /** @internal — called by Sequence on each tick while this audio is on-stage. */
