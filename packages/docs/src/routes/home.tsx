@@ -9,7 +9,6 @@ import {
   IconCube,
   IconGithub,
   IconNpm,
-  IconStar,
   IconTimeline,
   IconType,
 } from "../components/icons";
@@ -38,11 +37,11 @@ export function loader() {
 
 export function meta(_: Route.MetaArgs) {
   return [
-    { title: "smoove · Declarative motion for the canvas" },
+    { title: "smoove · Smooth moves, in code" },
     {
       name: "description",
       content:
-        "smoove adds a timeline and tweening engine to Konva — animate any node, sequence and loop it, and play it back smoothly.",
+        "A timeline-driven animation engine for Konva. Animate any node, sequence it, loop it, and play it back smoothly in the browser or on the server.",
     },
   ];
 }
@@ -69,32 +68,35 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     <>
       <HomeHeader />
 
+      {/* Live smoove composition pinned as a fixed, page-wide backdrop so it
+          stays at the top of the viewport as you scroll (behind all content). */}
+      <div className="page-bg" aria-hidden="true">
+        <ClientOnly>
+          <smoove-player
+            ref={heroPlayerRef as React.Ref<HTMLElement>}
+            src={heroBgUrl}
+            autoplay
+            loop
+          />
+        </ClientOnly>
+      </div>
+
       <section className="hero">
         <div className="hero__grid" aria-hidden="true" />
         <div className="hero__glow" aria-hidden="true" />
-        <div className="hero__player" aria-hidden="true">
-          <ClientOnly>
-            <smoove-player
-              ref={heroPlayerRef as React.Ref<HTMLElement>}
-              src={heroBgUrl}
-              autoplay
-              loop
-            />
-          </ClientOnly>
-        </div>
 
         <div className="hero__inner">
           <span className="pill">
             <span className="dot" /> smoove <span className="ver">v0.1.0</span>
           </span>
           <h1>
-            Declarative <span className="grad">motion</span>
+            Smooth <span className="grad">moves</span>,
             <br />
-            for the canvas.
+            in code.
           </h1>
           <p className="sub">
-            smoove adds a timeline and tweens to Konva. Animate any node — position, scale,
-            rotation, color — then sequence it, loop it, and play it back smoothly.
+            A timeline-driven animation engine for Konva. Animate any node's position, scale,
+            rotation, and color, then sequence it, loop it, and play it back smoothly.
           </p>
           <div className="hero__cta">
             <Link className="btn btn--primary" to={getStarted}>
@@ -144,18 +146,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
           <div className="shields">
             <span className="shield">
-              <IconNpm />
-              npm <span className="v">v1.0.0</span>
-            </span>
-            <span className="shield">
               license <b>MIT</b>
-            </span>
-            <span className="shield">
-              <IconStar />
-              stars <b>2.4k</b>
-            </span>
-            <span className="shield">
-              minzip <b>7.8&nbsp;kB</b>
             </span>
           </div>
         </div>
@@ -264,6 +255,41 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       </section>
 
       <section className="section">
+        <div className="section__eyebrow">Why smoove</div>
+        <div className="pillars">
+          <div className="pillar">
+            <h3>Smooth</h3>
+            <p>
+              Animation that feels good to watch and to write. A frame-accurate timeline drives
+              every tween, so playback stays fluid and the code stays readable.
+            </p>
+          </div>
+          <div className="pillar">
+            <h3>Light</h3>
+            <p>
+              Less to install, less to run. A small footprint and low server requirements, with no
+              React and no WASM in the way.
+            </p>
+          </div>
+          <div className="pillar">
+            <h3>Anywhere</h3>
+            <p>
+              One engine, every runtime. The same composition plays in the browser, renders in Node,
+              and runs headless for offline output.
+            </p>
+          </div>
+          <div className="pillar">
+            <h3>Authorable</h3>
+            <p>
+              Built on concepts you already know: keyframes, timelines, flexbox layout, and standard
+              shapes. The API reads the way you'd guess, familiar enough that a model can reason
+              about it too.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="section__eyebrow">Start here</div>
         <div className="quick">
           <Link className="qcard" to={links.introduction}>
@@ -274,7 +300,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               Introduction <span className="arr">→</span>
             </span>
             <p className="qcard__desc">
-              What smoove is, how the timeline drives tweens, and when to reach for it.
+              What smoove is, how the timeline drives your tweens, and when to reach for it.
             </p>
           </Link>
           <Link className="qcard" to={links.installation}>
@@ -285,7 +311,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               Installation <span className="arr">→</span>
             </span>
             <p className="qcard__desc">
-              Add the package, create a Konva Stage, and play your first tween.
+              Add the package, set up a stage, and play your first tween.
             </p>
           </Link>
           <Link className="qcard" to={links.concepts}>
@@ -295,7 +321,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             <span className="qcard__title">
               Core concepts <span className="arr">→</span>
             </span>
-            <p className="qcard__desc">Timelines, easing, springs, and composing sequences.</p>
+            <p className="qcard__desc">Timelines, easing, springs, and how sequences compose.</p>
           </Link>
           <Link className="qcard" to={links.components}>
             <span className="qcard__icon">
@@ -304,7 +330,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             <span className="qcard__title">
               Components &amp; type <span className="arr">→</span>
             </span>
-            <p className="qcard__desc">The full reference of every documented content component.</p>
+            <p className="qcard__desc">Every content component, documented in one reference.</p>
           </Link>
         </div>
       </section>

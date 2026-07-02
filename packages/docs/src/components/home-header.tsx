@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { Brand } from "./brand";
-import { IconGithub, IconStar } from "./icons";
+import { IconGithub } from "./icons";
 import { ThemeToggle } from "./theme-toggle";
 
 const GH_URL = "https://github.com/smoove-dev/smoove";
@@ -22,9 +22,6 @@ export function HomeHeader() {
       >
         <IconGithub />
         <span className="gh-name">GitHub</span>
-        <span className="stars">
-          <IconStar />0
-        </span>
       </a>
       <ThemeToggle />
     </header>

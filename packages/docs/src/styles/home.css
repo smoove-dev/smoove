@@ -77,13 +77,17 @@ body {
   opacity: 0.7;
   animation: heroPulse 7s ease-in-out infinite;
 }
-/* Live smoove composition playing as the hero backdrop. Sits above the
-   grid/glow but below the headline; transparent canvas so the page theme shows
-   through. Non-interactive — it's pure atmosphere. */
-.hero__player {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+/* Live smoove composition playing as a page-wide backdrop. It's `fixed` so it
+   stays pinned to the top of the viewport as the page scrolls, and sits at
+   z-index -1: above the opaque body background but behind every section, so the
+   content reads over a calm, always-present atmosphere. Non-interactive. */
+.page-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
   pointer-events: none;
   overflow: hidden;
   opacity: 0.9;
@@ -91,10 +95,10 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 60%, transparent 100%);
 }
 /* Give the player box the composition's 16:9 aspect so the player's own
-   contain-fit becomes an exact fill, then size it to COVER the hero (clipped by
-   the parent's overflow:hidden) — the animation fills the whole hero, not a band.
-   Transparent overrides the player's video-style black backdrop. */
-.hero__player smoove-player {
+   contain-fit becomes an exact fill, then size it to COVER the viewport (clipped
+   by the parent's overflow:hidden) — the animation fills the whole backdrop, not
+   a band. Transparent overrides the player's video-style black backdrop. */
+.page-bg smoove-player {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -243,6 +247,31 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
   gap: 14px;
+}
+
+/* ---------- why smoove (pillars) ---------- */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+  gap: 14px;
+}
+.pillar {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-ui);
+  background: var(--bg-1);
+}
+.pillar h3 {
+  margin: 0 0 8px;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink-1);
+}
+.pillar p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  line-height: 1.55;
 }
 .qcard {
   display: flex;
