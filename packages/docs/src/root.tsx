@@ -37,9 +37,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <script type="module" src={playerScriptUrl} />
       </head>
       <body>
-        {/* Cream-first: default to the light theme so the SSR/first paint is the
-            warm cream canvas; the toggle still switches to grape-ink dark. */}
-        <RootProvider theme={{ defaultTheme: "light" }}>{children}</RootProvider>
+        <RootProvider theme={{ defaultTheme: "dark" }}>{children}</RootProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
