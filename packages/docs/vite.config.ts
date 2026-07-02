@@ -22,7 +22,9 @@ export default defineConfig({
     smoove() as unknown as Plugin,
     reactRouter(),
   ],
-  server: { port: 5176 },
+  // Default dev port is 5176; honor an externally assigned PORT (e.g. from a
+  // preview harness) so a second dev server can run alongside it.
+  server: { port: Number(process.env.PORT) || 5176 },
   build: { target: "esnext" },
   resolve: {
     tsconfigPaths: true,

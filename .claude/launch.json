@@ -12,7 +12,8 @@
       "name": "docs",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@smoove/docs", "dev"],
-      "port": 5176
+      "port": 5176,
+      "autoPort": true
     },
     {
       "name": "docs-prod",

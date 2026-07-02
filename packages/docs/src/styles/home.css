@@ -94,20 +94,18 @@ body {
   mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 60%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 60%, transparent 100%);
 }
-/* Give the player box the composition's 16:9 aspect so the player's own
-   contain-fit becomes an exact fill, then size it to COVER the viewport (clipped
-   by the parent's overflow:hidden) — the animation fills the whole backdrop, not
-   a band. Transparent overrides the player's video-style black backdrop. */
+/* The composition is square (1:1): size the player box to a centered square of
+   side max(vw, vh) so it COVERS any viewport (clipped by the parent's
+   overflow:hidden) while keeping the comp's aspect — the player's own
+   contain-fit becomes an exact fill, so no letterbox edges ever land inside
+   the viewport. Transparent overrides the player's video-style black backdrop. */
 .page-bg smoove-player {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  height: auto;
-  min-width: 100%;
-  min-height: 100%;
+  width: max(100vw, 100vh);
+  height: max(100vw, 100vh);
   background: transparent;
 }
 .hero__grid {

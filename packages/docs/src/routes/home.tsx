@@ -14,7 +14,7 @@ import {
 } from "../components/icons";
 import { useCopyButtons } from "../components/use-copy-buttons";
 
-import heroBgUrl from "../demos/hero-bg.ts?comp-url";
+import homeBgUrl from "../demos/home-bg.ts?comp-url";
 import "../styles/base.css";
 import "../styles/home.css";
 import type { Route } from "./+types/home";
@@ -74,7 +74,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         <ClientOnly>
           <smoove-player
             ref={heroPlayerRef as React.Ref<HTMLElement>}
-            src={heroBgUrl}
+            src={homeBgUrl}
             autoplay
             loop
           />
