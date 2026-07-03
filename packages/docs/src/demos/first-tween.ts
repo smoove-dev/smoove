@@ -15,7 +15,7 @@ const comp = new Composition({
   loop: true,
 });
 
-const scene = new Sequence({ from: 0, durationInFrames: duration });
+const scene = new Sequence();
 scene.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 
 const ball = new Circle({ x: 0, y: height / 2, radius: 64, fill: "#4ea1ff" });

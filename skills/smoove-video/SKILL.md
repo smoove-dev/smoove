@@ -43,7 +43,7 @@ const width = 1280;
 const height = 720;
 const comp = new Composition({ id: "my-scene", fps: 30, durationInFrames: 90, width, height });
 
-const main = new Sequence({ from: 0, durationInFrames: 90 });
+const main = new Sequence({});
 main.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 const circle = new Circle({ x: 100, y: height / 2, radius: 60, fill: "#4ea1ff" });
 main.add(circle);

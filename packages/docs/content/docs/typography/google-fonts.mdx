@@ -18,7 +18,7 @@ import Roboto from "@smoove/google-fonts/roboto";
 
 const roboto = new Roboto({ weights: ["400", "700"] });
 
-const seq = new Sequence({ from: 0, durationInFrames: 120 });
+const seq = new Sequence();
 seq.add(roboto);
 seq.add(new Text({ text: "Hello", font: roboto.face("700"), fontSize: 64 }));
 ```

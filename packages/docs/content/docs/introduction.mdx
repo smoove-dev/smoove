@@ -19,7 +19,9 @@ animation is a pure function of the current frame.
   Together they define a fixed timeline of frames `0 … durationInFrames - 1`.
 - A `Sequence` (it _is_ a `Konva.Layer`) is **range-gated**. It lives on the
   timeline at `[from, from + durationInFrames)` and is only visible, and only
-  repainted, while the playhead is inside that window.
+  repainted, while the playhead is inside that window. Both default (`from` to
+  `0`, `durationInFrames` to the composition's duration), so `new Sequence()`
+  spans the whole timeline.
 - Each tick, the composition walks its sequences, runs their **updaters**, and
   `batchDraw`s the active ones. An updater receives the current frame and writes
   attributes: `node.x(...)`, `node.opacity(...)`, and so on.
@@ -84,7 +86,7 @@ function birthdayVideo({ name }: { name: string }) {
     props: { name },
   });
 
-  const scene = new Sequence({ from: 0, durationInFrames: 120 });
+  const scene = new Sequence();
   const greeting = new Text({
     x: 0,
     y: 470,

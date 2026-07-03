@@ -20,7 +20,7 @@ const comp = new Composition({
   loop: true,
 });
 
-const scene = new Sequence({ from: 0, durationInFrames: duration });
+const scene = new Sequence();
 
 // A script display face that instantly reads as "a custom font is loaded".
 const pacifico = new Font({

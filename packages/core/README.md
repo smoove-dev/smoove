@@ -41,7 +41,7 @@ const comp = new Composition({
 });
 
 // A sequence covering the whole composition, like a "root" layer.
-const main = new Sequence({ from: 0, durationInFrames: 300 });
+const main = new Sequence();
 const circle = new Circle({ x: 100, y: 300, radius: 40, fill: "tomato" });
 main.add(circle);
 comp.add(main);

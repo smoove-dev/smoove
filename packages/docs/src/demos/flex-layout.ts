@@ -13,7 +13,7 @@ const comp = new Composition({
   loop: true,
 });
 
-const main = new Sequence({ from: 0, durationInFrames: duration });
+const main = new Sequence();
 main.add(new Konva.Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 
 const cardMin = Math.min(320, width - 80);

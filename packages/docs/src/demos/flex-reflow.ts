@@ -23,7 +23,7 @@ const comp = new Composition({
 });
 
 // Background layer first so it sits under the row (layer order = add order).
-const bg = new Sequence({ from: 0, durationInFrames: duration });
+const bg = new Sequence();
 bg.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 bg.add(
   new Text({
@@ -41,7 +41,7 @@ comp.add(bg);
 
 // The row lives in its own Sequence; the Flex is a DIRECT child so the engine
 // runs its layout every frame.
-const content = new Sequence({ from: 0, durationInFrames: duration });
+const content = new Sequence();
 
 const rowWidth = 1000;
 const row = new Flex({

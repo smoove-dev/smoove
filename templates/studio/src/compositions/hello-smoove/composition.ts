@@ -24,7 +24,8 @@ const p = () => comp.props.get();
 // buffers until the faces are loaded.
 const comfortaa = new Comfortaa({ weights: ["400", "700"] });
 
-const main = new Sequence({ from: 0, durationInFrames });
+// No `from`/`durationInFrames` given: the sequence spans the whole composition.
+const main = new Sequence();
 // Full-size background. Keep one — exports and renders composite onto it;
 // without it the output background differs from the page behind the player.
 main.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));

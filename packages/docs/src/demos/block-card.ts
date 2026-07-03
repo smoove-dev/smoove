@@ -22,11 +22,11 @@ const comp = new Composition({
 });
 
 // Background first.
-const bg = new Sequence({ from: 0, durationInFrames: duration });
+const bg = new Sequence();
 bg.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 comp.add(bg);
 
-const content = new Sequence({ from: 0, durationInFrames: duration });
+const content = new Sequence();
 
 const cardWidth = 620;
 const card = new Block({

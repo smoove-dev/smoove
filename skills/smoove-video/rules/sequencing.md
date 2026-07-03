@@ -44,12 +44,21 @@ specific frame without a running rAF loop.
 ## Sequence
 
 ```ts
-const main = new Sequence({ from: 0, durationInFrames: 90 });
+const main = new Sequence({}); // spans the whole composition
 comp.add(main); // or: main is added once, after children are attached
 main.add(someNode); // a @smoove/core node — Rect, Text, Flex, Image, …
 main.register((localFrame) => {
   // localFrame is 0-based within this sequence's own window
 });
+```
+
+Both `Sequence` options default: `from` to `0`, and `durationInFrames` to the
+composition's own duration. So `new Sequence({})` is a layer spanning the whole
+timeline, which is all a single-scene composition needs. Pass `from` and
+`durationInFrames` only when you want a partial window:
+
+```ts
+const outro = new Sequence({ from: 60, durationInFrames: 30 }); // frames 60 … 89
 ```
 
 `Sequence extends Konva.Layer` — a real Konva layer, so it has its own

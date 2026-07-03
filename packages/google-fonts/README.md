@@ -27,7 +27,7 @@ const font = new NotoSans({ weights: ["400", "600"], styles: ["normal", "italic"
 // Pick a character subset (default "latin"); typed to the family's subsets:
 // const cyrillic = new NotoSans({ subset: "cyrillic" });
 
-const seq = new Sequence({ from: 0, durationInFrames: 90 });
+const seq = new Sequence();
 seq.add(font); // discovered + loaded + buffered before play (see @smoove/core)
 seq.add(new Text({ font, text: "Hello" }));               // preferred face (400/normal)
 seq.add(new Text({ font: font.face("600"), text: "Hi" })); // a specific face

@@ -21,7 +21,7 @@ const comp = new Composition({
   loop: true,
 });
 
-const scene = new Sequence({ from: 0, durationInFrames: duration });
+const scene = new Sequence();
 
 const playfair = new PlayfairDisplay({
   weights: ["400", "700"],

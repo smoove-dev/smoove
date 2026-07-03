@@ -30,7 +30,7 @@ import { renderComposition } from "@smoove/renderer";
 
 const comp = new Composition({ id: "out", fps: 60, durationInFrames: 120, width: 1280, height: 720 });
 
-const main = new Sequence({ from: 0, durationInFrames: 120 });
+const main = new Sequence();
 const box = new Rect({ x: 0, y: 320, width: 80, height: 80, fill: "#ffd166" });
 main.add(box);
 main.register((f) => box.x(interpolate(f, [0, 119], [0, 1200])));

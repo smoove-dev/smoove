@@ -26,7 +26,7 @@ const comp = new Composition({
 });
 
 // A base layer keeps a backdrop under the scenes while they cross-fade.
-const base = new Sequence({ from: 0, durationInFrames: duration });
+const base = new Sequence();
 base.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 comp.add(base);
 

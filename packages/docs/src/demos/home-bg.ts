@@ -42,7 +42,7 @@ const MINT = "#15CDA8";
 const SUNSHINE = "#FFC23C";
 
 // Transparent stage (no base rect) so the page background shows through.
-const scene = new Sequence({ from: 0, durationInFrames });
+const scene = new Sequence();
 
 // --- Aurora orbs: big, soft, colored glows drifting on Lissajous paths -------
 // Vertical travel is deliberately tight (by ∈ [0.42, 0.58], small ay) so

@@ -78,7 +78,7 @@ function buildComp(): Composition {
   });
 
   // Background + an animated shape.
-  const main = new Sequence({ from: 0, durationInFrames: TOTAL });
+  const main = new Sequence();
   main.add(new Konva.Rect({ x: 0, y: 0, width: WIDTH, height: HEIGHT, fill: "#0d1117" }));
   const dot = new Konva.Circle({ x: 80, y: HEIGHT - 60, radius: 36, fill: "#3fb950" });
   main.add(dot);
@@ -95,7 +95,7 @@ function buildComp(): Composition {
   comp.add(main);
 
   // An Audio node in its own sequence (exercises audio asset collection + mux).
-  const audioSeq = new Sequence({ from: 0, durationInFrames: TOTAL });
+  const audioSeq = new Sequence();
   audioSeq.add(new Audio({ id: "tone", src: audioPath, volume: 0.6 }));
   comp.add(audioSeq);
 

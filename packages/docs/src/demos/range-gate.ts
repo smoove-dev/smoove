@@ -28,7 +28,7 @@ const windows: Win[] = [
 
 // Always-on base layer (added FIRST so it sits underneath the cards):
 // background, timeline track, window bars, and the playhead.
-const base = new Sequence({ from: 0, durationInFrames: duration });
+const base = new Sequence();
 base.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 
 const tlLeft = 160;

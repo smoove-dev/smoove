@@ -43,7 +43,7 @@ const videoBox = (y: number) => ({
 });
 
 // ---- Base layer: background + the two persistent labels. Always visible. ----
-const base = new Sequence({ from: 0, durationInFrames: TOTAL });
+const base = new Sequence();
 base.add(new Konva.Rect({ x: 0, y: 0, width: SIDE, height: SIDE, fill: "#0d1117" }));
 
 const mkName = (text: string, y: number) =>
@@ -94,7 +94,7 @@ comp.isPlaying.subscribe((playing) => {
 });
 
 // ---- Phase A: top video plays to its end. ----
-const seqTop = new Sequence({ from: 0, durationInFrames: PHASE });
+const seqTop = new Sequence({ durationInFrames: PHASE });
 seqTop.add(new Video({ src: clip1Url, ...videoBox(topVideoY) }));
 comp.add(seqTop);
 

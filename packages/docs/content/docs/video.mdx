@@ -13,7 +13,7 @@ import { Composition, Sequence, Video } from "@smoove/core";
 
 const comp = new Composition({ id: "clip", fps: 60, durationInFrames: 600, width: 1080, height: 1080 });
 
-const seq = new Sequence({ from: 0, durationInFrames: 600 });
+const seq = new Sequence();
 seq.add(new Video({ src: clipUrl, width: 1080, height: 608, objectFit: "contain" }));
 comp.add(seq);
 ```

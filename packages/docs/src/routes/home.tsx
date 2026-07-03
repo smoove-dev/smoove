@@ -186,11 +186,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <span className="t-key">const</span>
                 {" scene = "}
                 <span className="t-key">new</span> <span className="t-fn">Sequence</span>
-                {"({ from: "}
-                <span className="t-num">0</span>
-                {", durationInFrames: "}
-                <span className="t-num">1800</span>
-                {" });\n\n"}
+                {"({});\n\n"}
                 <span className="t-key">const</span>
                 {" orb = "}
                 <span className="t-key">new</span> <span className="t-fn">Circle</span>

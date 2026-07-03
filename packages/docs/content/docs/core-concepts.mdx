@@ -50,6 +50,14 @@ const outro = new Sequence({ from: 90, durationInFrames: 60 }); // frames 90…1
 comp.add(intro, outro);
 ```
 
+Both options have defaults. `from` is `0`, and `durationInFrames` is the
+composition's own duration. So `new Sequence()` is a layer that spans the
+whole timeline, which is all you need for a single-scene composition:
+
+```ts
+const scene = new Sequence(); // frames 0 … comp.durationInFrames - 1
+```
+
 This is how you compose a timeline out of independent pieces: stagger their
 `from` values, overlap them, or lay them back-to-back. Each only does work while
 it's on screen.

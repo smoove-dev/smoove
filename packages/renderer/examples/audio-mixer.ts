@@ -105,7 +105,7 @@ function buildComp(): Composition {
 
   // ===== Audio nodes — each in its own range-gated Sequence =====
   const musicA = new Audio({ id: "music-a", name: "Music A", src: sound("music-a.mp3") });
-  const seqA = new Sequence({ from: 0, durationInFrames: A_END });
+  const seqA = new Sequence({ durationInFrames: A_END });
   seqA.add(musicA);
 
   const musicB = new Audio({
@@ -140,7 +140,7 @@ function buildComp(): Composition {
   seqWB.add(whooshB);
 
   // ===== Control sequence — added FIRST so automation lands before audio ticks =====
-  const control = new Sequence({ from: 0, durationInFrames: TOTAL });
+  const control = new Sequence();
   control.register((frame) => {
     // Master fader + a hard mute window — this is the mixer at work.
     comp.mixer.setVolume(masterVol(frame));
@@ -152,7 +152,7 @@ function buildComp(): Composition {
   });
 
   // ===== Visual layer (always on, added LAST so it reads final values) =====
-  const base = new Sequence({ from: 0, durationInFrames: TOTAL });
+  const base = new Sequence();
 
   // Looping film bed behind everything, dimmed by an overlay.
   const film = new Video({

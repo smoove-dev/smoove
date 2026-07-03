@@ -21,7 +21,7 @@ const comp = new Composition({
   height,
 });
 
-const main = new Sequence({ from: 0, durationInFrames });
+const main = new Sequence();
 main.add(new Konva.Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 
 const cx = width / 2;

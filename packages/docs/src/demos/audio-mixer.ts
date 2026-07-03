@@ -71,7 +71,7 @@ const comp = new Composition({
 
 // ===== Audio nodes — each in its own range-gated Sequence =====
 const musicA = new Audio({ id: "music-a", name: "Music A", src: musicAUrl });
-const seqA = new Sequence({ from: 0, durationInFrames: A_END });
+const seqA = new Sequence({ durationInFrames: A_END });
 seqA.add(musicA);
 
 const musicB = new Audio({ id: "music-b", name: "Music B", src: musicBUrl, volume: 0 });
@@ -91,7 +91,7 @@ const seqWB = new Sequence({ from: XF_FROM - 16, durationInFrames: 260 });
 seqWB.add(whooshB);
 
 // ===== Visual layer (always on) =====
-const base = new Sequence({ from: 0, durationInFrames: TOTAL });
+const base = new Sequence();
 base.add(new Konva.Rect({ x: 0, y: 0, width: WIDTH, height: HEIGHT, fill: BG }));
 
 // ---- Header ----

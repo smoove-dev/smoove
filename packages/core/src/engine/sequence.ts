@@ -1,10 +1,17 @@
 import Konva from "konva";
 import { isKMLayoutRoot } from "../layout/contract.js";
 import { MEDIA_MARK, TICK_MARK } from "../media/media-marker.js";
+import { getComposition } from "./composition.js";
 
 export type SequenceOptions = Konva.LayerConfig & {
-  from: number;
-  durationInFrames: number;
+  /** Composition frame this sequence starts on. Defaults to `0`. */
+  from?: number;
+  /**
+   * How many frames the sequence spans. When omitted it defaults to the host
+   * composition's `durationInFrames` — i.e. a layer spanning the whole comp.
+   * Resolved live once added (see {@link Sequence.durationInFrames}).
+   */
+  durationInFrames?: number;
 };
 
 export type Updater = (localFrame: number) => void;
@@ -25,7 +32,8 @@ type MediaNode = Konva.Node & {
 
 export class Sequence extends Konva.Layer {
   readonly from: number;
-  readonly durationInFrames: number;
+  /** Explicit span, or `undefined` to default to the host comp's duration. */
+  private readonly _durationInFrames?: number;
   private readonly _updaters = new Set<Updater>();
   private _active = false;
   private _media: MediaNode[] = [];
@@ -34,17 +42,34 @@ export class Sequence extends Konva.Layer {
   // a sentinel that never equals a real local frame, so the first apply always runs.
   private _lastLocal = -1;
 
-  constructor(opts: SequenceOptions) {
-    if (!Number.isInteger(opts.from) || opts.from < 0) {
+  constructor(opts: SequenceOptions = {}) {
+    const { from = 0, durationInFrames, ...layerOpts } = opts;
+    if (!Number.isInteger(from) || from < 0) {
       throw new Error("Sequence: from must be a non-negative integer");
     }
-    if (!Number.isInteger(opts.durationInFrames) || opts.durationInFrames <= 0) {
+    // durationInFrames is optional: when omitted it resolves to the host comp's
+    // duration (see the getter). Only validate an explicitly provided value.
+    if (durationInFrames !== undefined && (!Number.isInteger(durationInFrames) || durationInFrames <= 0)) {
       throw new Error("Sequence: durationInFrames must be a positive integer");
     }
-    const { from, durationInFrames, ...layerOpts } = opts;
     super({ ...layerOpts, visible: false });
     this.from = from;
-    this.durationInFrames = durationInFrames;
+    this._durationInFrames = durationInFrames;
+  }
+
+  /**
+   * Frames this sequence spans. When constructed without an explicit
+   * `durationInFrames`, this resolves **live** to the host composition's
+   * `durationInFrames` — a layer that spans the whole comp. Before the sequence
+   * is added to a composition (no reachable stage) it reports `Infinity`,
+   * meaning "unbounded"; `_apply` is only ever driven by the comp, so by then
+   * the real duration is reachable.
+   */
+  get durationInFrames(): number {
+    if (this._durationInFrames !== undefined) return this._durationInFrames;
+    const stage = this.getStage();
+    const comp = stage && getComposition(stage);
+    return comp ? comp.durationInFrames.get() : Number.POSITIVE_INFINITY;
   }
 
   register(updater: Updater): () => void {

@@ -19,7 +19,7 @@ const inter = new Font({
   ],
 });
 
-const seq = new Sequence({ from: 0, durationInFrames: 120 });
+const seq = new Sequence();
 seq.add(inter); // declare the font in the tree
 seq.add(new Text({ text: "Sharp at any size", font: inter, fontSize: 48 }));
 ```

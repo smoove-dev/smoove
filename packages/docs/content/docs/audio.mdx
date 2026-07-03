@@ -15,7 +15,7 @@ import { Audio, Composition, Sequence } from "@smoove/core";
 const comp = new Composition({ id: "scene", fps: 60, durationInFrames: 1560, width: 1080, height: 1080 });
 
 const music = new Audio({ src: musicUrl, name: "Music", volume: 0.8 });
-const seq = new Sequence({ from: 0, durationInFrames: 1560 });
+const seq = new Sequence();
 seq.add(music);
 comp.add(seq);
 ```
