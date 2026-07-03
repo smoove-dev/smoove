@@ -1,6 +1,6 @@
 {
   "name": "@smoove/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A timeline-driven animation engine for Konva. Runs in the browser or on the server and renders to any target.",
   "license": "MIT",
   "publishConfig": {
