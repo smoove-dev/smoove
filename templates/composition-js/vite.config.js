@@ -1,3 +1,4 @@
+import { smoove } from "@smoove/vite";
 import { defineConfig } from "vite";
 
 // `node:module` can't exist in the browser; flexily (a @smoove/core dependency)
@@ -5,6 +6,7 @@ import { defineConfig } from "vite";
 const shim = new URL("./src/node-module-shim.js", import.meta.url).pathname;
 
 export default defineConfig({
+  plugins: [smoove()],
   build: { target: "esnext" },
   resolve: {
     alias: [{ find: /^node:module$/, replacement: shim }],
