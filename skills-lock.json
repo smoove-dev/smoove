@@ -19,17 +19,11 @@
       "skillPath": "skills/react-router-framework-mode/SKILL.md",
       "computedHash": "26c5bdac2f686c47eb4c4b48b6cb52401cde1dc833e6d26408ddfb22ea83c5ca"
     },
-    "remotion-best-practices": {
-      "source": "remotion-dev/skills",
+    "smoove-video": {
+      "source": "smoove-dev/smoove",
       "sourceType": "github",
-      "skillPath": "skills/remotion/SKILL.md",
-      "computedHash": "006f8413941b59eff54a7ce64851b8a2fb79e7a3a5f1a895e97a48f01482553d"
-    },
-    "web-design-guidelines": {
-      "source": "vercel-labs/agent-skills",
-      "sourceType": "github",
-      "skillPath": "skills/web-design-guidelines/SKILL.md",
-      "computedHash": "f3bc47f890f42a44db1007ab390709ec368e4b8c089baee6b0007182236ac474"
+      "skillPath": "skills/smoove-video/SKILL.md",
+      "computedHash": "bcced12d9ab4800e7dd0941c114ffa0fb3909df6f766d8af0fa8f5466bcf29d3"
     }
   }
 }
