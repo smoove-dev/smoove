@@ -52,4 +52,27 @@ for (const dir of dirs) {
   console.log(`${pkg.name}  ${was} -> ${next}`);
 }
 
+// Templates aren't workspace packages — they pin literal @smoove/* ranges so a
+// raw GitHub fetch installs from npm. Keep those ranges on the released line.
+const templatesDir = join(root, "templates");
+for (const dir of readdirSync(templatesDir, { withFileTypes: true })
+  .filter((d) => d.isDirectory())
+  .map((d) => d.name)) {
+  const path = join(templatesDir, dir, "package.json");
+  const pkg = JSON.parse(readFileSync(path, "utf8"));
+  let touched = false;
+  for (const field of ["dependencies", "devDependencies"]) {
+    for (const name of Object.keys(pkg[field] ?? {})) {
+      if (name.startsWith("@smoove/")) {
+        pkg[field][name] = `^${next}`;
+        touched = true;
+      }
+    }
+  }
+  if (touched) {
+    writeFileSync(path, `${JSON.stringify(pkg, null, 2)}\n`);
+    console.log(`templates/${dir}  @smoove/* -> ^${next}`);
+  }
+}
+
 console.log(`\nall packages at ${next}`);

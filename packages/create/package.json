@@ -1,0 +1,40 @@
+{
+  "name": "create-smoove",
+  "version": "0.1.2",
+  "description": "Scaffold a smoove video project: full studio or a minimal composition app, ready to run.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoove-dev/smoove.git",
+    "directory": "packages/create"
+  },
+  "homepage": "https://smoove.dev",
+  "bugs": "https://github.com/smoove-dev/smoove/issues",
+  "type": "module",
+  "bin": {
+    "create-smoove": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.6.0",
+    "giget": "^3.3.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

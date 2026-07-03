@@ -7,3 +7,4 @@ dist
 .env.local
 build
 doc
+package-lock.json

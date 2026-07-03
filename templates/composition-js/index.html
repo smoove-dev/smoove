@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>smoove composition</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: #0d1117;
+        display: grid;
+        place-items: center;
+      }
+      /* body > wins over the player stylesheet's own `smoove-player { width: 100% }`,
+         which loads after this rule. */
+      body > smoove-player {
+        width: min(90vw, 960px);
+        aspect-ratio: 16 / 9;
+      }
+    </style>
+  </head>
+  <body>
+    <smoove-player controls loop></smoove-player>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

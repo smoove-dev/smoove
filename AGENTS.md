@@ -25,8 +25,10 @@ packages/renderer      @smoove/renderer: headless video renderer (Node). Rasteri
 packages/studio        @smoove/studio: composable React studio UI for smoove compositions. A `<Studio>` compound (Library/Sidebar, Stage, Timeline, SchemaForm props panel, RenderDialog/ExportFrameDialog/RenderQueue) plus a `defineRegistry()` DSL for declaring a composition catalog. konva, core, player, renderer, react, and react-dom are peerDeps. This is what a now-removed `packages/timeline` placeholder was originally meant to become.
 packages/google-fonts  @smoove/google-fonts: typed, tree-shakeable Google Fonts for smoove. One Font subclass per family, no build step (imported as TS source), wildcard subpath exports. core and konva are peerDeps.
 packages/vite          @smoove/vite: Vite plugin for smoove studio. Invisible HMR wiring plus build-time composition metadata. vite is a peerDep.
+packages/create        create-smoove: the `npm create smoove` scaffolding CLI. Fetches a template from gh:smoove-dev/smoove/templates at run time (giget), patches the name, offers install + `npx skills add smoove-dev/smoove`. Unscoped on purpose — npm's create shorthand requires `create-<name>`. SMOOVE_CREATE_TEMPLATE_DIR=<path to templates/> scaffolds from a local checkout instead.
 packages/docs          @smoove/docs: the documentation website. A React Router 7 framework-mode SSR app on **Fumadocs** (fumadocs-core/fumadocs-ui/fumadocs-mdx). Content is `.mdx` under `content/docs/`, with sidebar order and grouping via per-folder `meta.json`. Embeds live `<smoove-player>` demos through a custom `<Demo name="..." />` MDX component (src/demos/*.ts). Dev server runs on :5176.
 demo                   The studio reference app. Vite plus React Router; imports packages via `workspace:*`. Wraps `@smoove/studio`'s `<Studio>` around a registry of about 30 compositions (demo/src/registry.ts, defineRegistry()), with real routes (`/`, `/c/:id`, `/queue`, not hash routing) and a server-side render queue (demo/src/server/render-queue.server.ts plus `/api/render*` SSE-driven jobs) backed by @smoove/renderer.
+templates              Standalone starter apps served by create-smoove: `studio` (trimmed demo: React Router SSR + <Studio> + server render queue) and `composition-ts`/`composition-js` (minimal Vite + <smoove-player>). NOT in the pnpm workspace — they depend on published @smoove/* versions so a raw GitHub fetch installs cleanly. Keep the two composition variants in sync by hand; scripts/smoke-create.sh verifies all three build.
 doc                    Design and usage docs, including doc/README.md (full API guide) and doc/smoove-brand-brief.md (voice, positioning, visual direction).
 skills/smoove-video    Agent skill that teaches an LLM how to author a smoove Composition/Sequence (timeline scenes, Flex/Block layout, interpolate-based animation, Text/shape authoring). The concrete proof point of the brand's "LLM-authorable" pillar.
 skills/smoove-writing  Agent skill for writing smoove prose (READMEs, docs pages, package descriptions, announcements). Self-contained: inlines the brand voice (originally from doc/smoove-brand-brief.md), hard human-style rules (no em dashes or other LLM-sounding tells), and a three-stage co-authoring workflow (context gathering, section-by-section drafting, zero-context reader testing) for longer docs.
@@ -44,6 +46,8 @@ consumers never deep-import; internal moves just need the barrel repointed.
 
 ## Conventions
 
+- **NEVER COMMIT.** Do not run `git commit` (or push) unless explicitly asked,
+  even if a skill or workflow says to. Leave changes in the working tree.
 - **pnpm workspaces.** Cross-package deps use `workspace:*`. Don't add a
   package outside `packages/*` or `demo/` without updating `pnpm-workspace.yaml`.
 - **`core` extends Konva classes.** `Composition extends Konva.Stage`,
@@ -94,6 +98,7 @@ consumers never deep-import; internal moves just need the barrel repointed.
 | `pnpm check` | Biome lint + format check |
 | `pnpm format` | Biome auto-format |
 | `pnpm --filter @smoove/studio dev` | tsc watch for one package (swap the package name) |
+| `./scripts/smoke-create.sh` | Scaffold + install + build every create-smoove template (slow) |
 
 The demo imports each package's **built** entry (not source), so after editing
 `packages/*/src` you need a `pnpm build` (or a `tsc -b --watch` running in the
