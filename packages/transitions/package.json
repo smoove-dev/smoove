@@ -1,6 +1,6 @@
 {
   "name": "@smoove/transitions",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Transitions for smoove — TransitionSeries, 18 presentations and 2 timings.",
   "license": "MIT",
   "repository": {

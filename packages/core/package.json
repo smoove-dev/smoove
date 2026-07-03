@@ -1,6 +1,6 @@
 {
   "name": "@smoove/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Agnostic timeline-driven animation engine. Runs in browser or server; integrates with any render target (e.g. Konva).",
   "license": "MIT",
   "publishConfig": {
