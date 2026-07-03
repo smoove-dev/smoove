@@ -7,6 +7,11 @@
       "name": "smoove-video",
       "path": "skills/smoove-video",
       "description": "Author beautiful smoove video compositions: Composition/Sequence sequencing, Flex/Block layout, interpolate-based animation, Text, shapes, and media."
+    },
+    {
+      "name": "smoove-best-practices",
+      "path": "skills/smoove-best-practices",
+      "description": "Run, embed, and render a smoove composition: wiring <smoove-player>, building a <Studio> app, and rendering to MP4/WebM with @smoove/renderer, plus fast-fix gotchas for blank players, SSR, and server-side fonts/assets."
     }
   ]
 }
