@@ -29,6 +29,7 @@ packages/docs          @smoove/docs: the documentation website. A React Router 7
 demo                   The studio reference app. Vite plus React Router; imports packages via `workspace:*`. Wraps `@smoove/studio`'s `<Studio>` around a registry of about 30 compositions (demo/src/registry.ts, defineRegistry()), with real routes (`/`, `/c/:id`, `/queue`, not hash routing) and a server-side render queue (demo/src/server/render-queue.server.ts plus `/api/render*` SSE-driven jobs) backed by @smoove/renderer.
 doc                    Design and usage docs, including doc/README.md (full API guide) and doc/smoove-brand-brief.md (voice, positioning, visual direction).
 skills/smoove-video    Agent skill that teaches an LLM how to author a smoove Composition/Sequence (timeline scenes, Flex/Block layout, interpolate-based animation, Text/shape authoring). The concrete proof point of the brand's "LLM-authorable" pillar.
+skills/smoove-writing  Agent skill for writing smoove prose (READMEs, docs pages, package descriptions, announcements). Self-contained: inlines the brand voice (originally from doc/smoove-brand-brief.md), hard human-style rules (no em dashes or other LLM-sounding tells), and a three-stage co-authoring workflow (context gathering, section-by-section drafting, zero-context reader testing) for longer docs.
 ```
 
 Top-level `tsconfig.json` is a solution file; per-package `tsconfig.json` uses
