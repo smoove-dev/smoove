@@ -1,7 +1,7 @@
 {
   "name": "@smoove/studio",
   "version": "0.1.1",
-  "description": "Composable React studio UI for smoove compositions — catalog, stage, timeline, props form, render dialogs.",
+  "description": "Composable React studio UI for smoove: catalog, stage, timeline, props form, and render dialogs.",
   "license": "MIT",
   "repository": {
     "type": "git",

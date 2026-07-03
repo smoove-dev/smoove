@@ -1,6 +1,6 @@
 # @smoove/transitions
 
-Scene transitions for [smoove](https://smoove.dev) — blend one scene into
+Scene transitions for [smoove](https://smoove.dev). Blend one scene into
 the next with cross-fades, slides, wipes, and WebGL shader effects.
 
 A transition overlaps the end of one scene with the start of the next while
@@ -34,12 +34,12 @@ comp.add(series);
 
 ## Presentations
 
-**Geometric** — run on Konva transforms, work everywhere the player does and
-render headlessly with no extra setup: `fade`, `slide`, `wipe`, `clockWipe`,
-`iris`, `flip`, `none`.
+**Geometric** presentations run on Konva transforms, so they work everywhere
+the player does and render headlessly with no extra setup: `fade`, `slide`,
+`wipe`, `clockWipe`, `iris`, `flip`, `none`.
 
-**Shader** — run on WebGL2 fragment shaders in the browser and fall back to
-`fade()` without it: `dissolve`, `crosswarp`, `crossZoom`, and more. To
+**Shader** presentations run on WebGL2 fragment shaders in the browser and
+fall back to `fade()` without it: `dissolve`, `crosswarp`, `crossZoom`, and more. To
 render them headlessly, import `@smoove/renderer/gl` before building the
 composition.
 

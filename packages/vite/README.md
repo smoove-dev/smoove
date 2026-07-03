@@ -1,8 +1,8 @@
 # @smoove/vite
 
 An optional [Vite](https://vite.dev) plugin for
-[smoove](https://smoove.dev) projects. Everything works without it — it
-removes two pieces of by-hand wiring:
+[smoove](https://smoove.dev) projects. Everything works without it. What
+it removes is two pieces of by-hand wiring:
 
 - **Assets that render in both worlds:** rewrites media and font imports so
   the same `src` works in the browser player and in the Node renderer.

@@ -2,7 +2,7 @@
 
 Typed, tree-shakeable [Google Fonts](https://fonts.google.com) for
 [smoove](https://smoove.dev). Each family is its own module exporting a
-`Font` subclass, loaded from the Google Fonts CDN — so a project only pulls the
+`Font` subclass, loaded from the Google Fonts CDN, so a project only pulls the
 families it imports.
 
 ## Install
@@ -19,9 +19,9 @@ pnpm add konva @smoove/core @smoove/google-fonts
 import { Composition, Sequence, Text } from "@smoove/core";
 import NotoSans from "@smoove/google-fonts/noto-sans";
 
-// Register a subset of faces…
+// Register a subset of faces...
 const font = new NotoSans({ weights: ["400", "600"], styles: ["normal", "italic"] });
-// …or omit weights/styles to register every face the family ships:
+// ...or omit weights/styles to register every face the family ships:
 // const font = new NotoSans();
 
 // Pick a character subset (default "latin"); typed to the family's subsets:
@@ -33,13 +33,13 @@ seq.add(new Text({ font, text: "Hello" }));               // preferred face (400
 seq.add(new Text({ font: font.face("600"), text: "Hi" })); // a specific face
 ```
 
-`weights`, `styles`, and `subset` are typed **per family** — the editor only
+`weights`, `styles`, and `subset` are typed **per family**, so the editor only
 offers the values that family actually provides. A bare `new NotoSans()`
 registers all faces in the `latin` subset.
 
 **Subsets.** Each face is loaded from a single character subset (default
 `"latin"`). Exactly one subset is used so the browser and headless (skia)
-rendering load the same file — pick the `subset` matching your text (e.g.
+rendering load the same file. Pick the `subset` matching your text (e.g.
 `"cyrillic"`, `"greek"`, `"latin-ext"`). An unknown subset warns and falls back
 to `latin`.
 
@@ -49,7 +49,7 @@ server rendering (the renderer downloads + disk-caches the CDN font files).
 
 ## How it works
 
-- **No build.** The package is consumed as TypeScript source — `exports` point at
+- **No build.** The package is consumed as TypeScript source: `exports` point at
   `src/*.ts`, and your bundler (Vite, etc.) transpiles. There is no `dist`.
 - **CDN delivery.** Each face's `src` is a `fonts.gstatic.com` woff2 URL. The
   browser fetches it; the server downloads + caches it.
@@ -60,7 +60,7 @@ server rendering (the renderer downloads + disk-caches the CDN font files).
 
 The per-font modules and `src/manifest.ts` are generated from the Google Webfonts
 Developer API and committed. The key is a free Google Cloud API key with the
-**Web Fonts Developer API** enabled — needed only to regenerate, never at runtime.
+**Web Fonts Developer API** enabled. It is needed only to regenerate, never at runtime.
 
 Put it in a `.env` file (git-ignored; `cp .env.example .env`):
 
@@ -76,7 +76,7 @@ pnpm --filter @smoove/google-fonts generate
 ```
 
 The script auto-loads `packages/google-fonts/.env` (via Node's `--env-file`). You
-can also pass the key inline instead: `GOOGLE_FONTS_API_KEY=<key> pnpm … generate`.
+can also pass the key inline instead: `GOOGLE_FONTS_API_KEY=<key> pnpm ... generate`.
 
 The metadata catalog (no font modules pulled) is importable for tooling:
 

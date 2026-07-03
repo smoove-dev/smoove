@@ -1,21 +1,21 @@
 # @smoove/core
 
-A timeline-driven animation engine for [Konva](https://konvajs.org) —
-keyframe motion that runs anywhere: buttery in the browser, headless on the
-server.
+A timeline-driven animation engine for [Konva](https://konvajs.org).
+Keyframe motion that runs anywhere: buttery in the browser, headless on
+the server.
 
 A **Composition** is a `Konva.Stage` that owns a frame clock (fps +
 duration). A **Sequence** is a `Konva.Layer` scoped to a frame range: its
-updaters run and its layer paints only while the playhead is in range. The
-engine is agnostic — `play()` uses `requestAnimationFrame` in the browser;
-on the server, step frames manually with `setFrame(n)` for offline
-rendering.
+updaters run and its layer paints only while the playhead is in range.
+The engine doesn't care where it runs. In the browser, `play()` drives a
+`requestAnimationFrame` loop. On the server, you step frames manually with
+`setFrame(n)` for offline rendering.
 
 Core also ships a built-in flexbox layout system (`Flex`, `Block`), a
-rich `Text` node, `Image`/`Video`/`Audio` media nodes, `interpolate` +
+rich `Text` node, `Image`/`Video`/`Audio` media nodes, `interpolate` and
 `Easing` animation helpers, and a flex-aware wrapper for every Konva shape
-(`Rect`, `Circle`, `Star`, ...) — so an app imports its whole drawing
-vocabulary from one place.
+(`Rect`, `Circle`, `Star`, and the rest), so an app imports its whole
+drawing vocabulary from one place.
 
 ## Install
 
@@ -66,12 +66,12 @@ wipes, and WebGL shader transitions via
 
 ## Ecosystem
 
-- [`@smoove/player`](https://www.npmjs.com/package/@smoove/player) — `<smoove-player>` web-component player with controls
-- [`@smoove/transitions`](https://www.npmjs.com/package/@smoove/transitions) — `TransitionSeries` scene transitions: cross-fades, wipes, shader effects
-- [`@smoove/renderer`](https://www.npmjs.com/package/@smoove/renderer) — headless Node video renderer (skia-canvas + Mediabunny)
-- [`@smoove/studio`](https://www.npmjs.com/package/@smoove/studio) — composable React studio UI
-- [`@smoove/google-fonts`](https://www.npmjs.com/package/@smoove/google-fonts) — typed, tree-shakeable Google Fonts
-- [`@smoove/vite`](https://www.npmjs.com/package/@smoove/vite) — Vite plugin for the studio
+- [`@smoove/player`](https://www.npmjs.com/package/@smoove/player): the `<smoove-player>` web component, with controls
+- [`@smoove/transitions`](https://www.npmjs.com/package/@smoove/transitions): `TransitionSeries` scene transitions, from cross-fades to shader effects
+- [`@smoove/renderer`](https://www.npmjs.com/package/@smoove/renderer): headless Node video renderer (skia-canvas + Mediabunny)
+- [`@smoove/studio`](https://www.npmjs.com/package/@smoove/studio): composable React studio UI
+- [`@smoove/google-fonts`](https://www.npmjs.com/package/@smoove/google-fonts): typed, tree-shakeable Google Fonts
+- [`@smoove/vite`](https://www.npmjs.com/package/@smoove/vite): Vite plugin for studio hot-reload and renderable media imports
 
 ## Docs
 

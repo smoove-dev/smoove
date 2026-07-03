@@ -1,7 +1,7 @@
 {
   "name": "@smoove/vite",
   "version": "0.1.1",
-  "description": "Vite plugin for smoove studio — invisible HMR wiring + build-time composition metadata.",
+  "description": "Vite plugin for smoove: studio hot-reload wiring plus media imports that also work in the Node renderer.",
   "license": "MIT",
   "repository": {
     "type": "git",

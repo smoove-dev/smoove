@@ -1,6 +1,6 @@
 # @smoove/renderer
 
-Headless video renderer for [smoove](https://smoove.dev) — turn a
+Headless video renderer for [smoove](https://smoove.dev). Turns a
 `Composition` into an MP4 or WebM file from Node.
 
 `renderComposition` walks the frame clock the same way the player does,
@@ -20,8 +20,8 @@ pnpm add konva @smoove/core @smoove/renderer
 
 ## Quick example
 
-Import the `register` entry first — it installs the skia backend and the
-Node media factories. Do this before you build the composition:
+Import the `register` entry first. It installs the skia backend and the
+Node media factories, so do this before you build the composition:
 
 ```ts
 import "@smoove/renderer/register";

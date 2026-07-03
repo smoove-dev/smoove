@@ -27,8 +27,8 @@ import "@smoove/player/styles.css"; // opt-in default styling
 
 Hand the player a composition in one of two ways.
 
-**Assign it imperatively** — set the `composition` property to a live
-`Composition`; the player owns the canvas and mounts the stage itself:
+**Assign it imperatively.** Set the `composition` property to a live
+`Composition`. The player owns the canvas and mounts the stage itself:
 
 ```html
 <smoove-player controls loop style="width: 640px; aspect-ratio: 16/9"></smoove-player>
@@ -38,7 +38,7 @@ Hand the player a composition in one of two ways.
 document.querySelector("smoove-player").composition = comp;
 ```
 
-**Point `src` at a module** — like `<video src>`, the player `import()`s
+**Point `src` at a module.** Like `<video src>`, the player `import()`s
 the URL and resolves its default export (a `Composition`, or a sync/async
 factory returning one):
 

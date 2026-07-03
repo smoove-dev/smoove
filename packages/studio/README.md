@@ -1,7 +1,7 @@
 # @smoove/studio
 
 A composable React studio UI for [smoove](https://smoove.dev)
-compositions — catalog sidebar, stage, timeline, props panel, and render
+compositions: catalog sidebar, stage, timeline, props panel, and render
 dialogs, assembled from a `<Studio>` compound component.
 
 Declare your composition catalog with `defineRegistry()`, wrap `<Studio>`
@@ -15,7 +15,7 @@ pnpm add konva react react-dom @smoove/core @smoove/player @smoove/studio
 ```
 
 `konva`, `react`, `react-dom`, `@smoove/core`, and `@smoove/player` are
-peer dependencies. `@smoove/renderer` is an optional peer — add it to
+peer dependencies. `@smoove/renderer` is an optional peer. Add it to
 enable the render dialogs and queue.
 
 ## Quick example
