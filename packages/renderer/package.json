@@ -1,6 +1,6 @@
 {
   "name": "@smoove/renderer",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Headless video renderer for smoove. Rasterizes a Composition with skia-canvas and encodes with Mediabunny, no ffmpeg binary needed.",
   "license": "MIT",
   "repository": {
