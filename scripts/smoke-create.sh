@@ -8,6 +8,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
+node "$ROOT/scripts/sync-composition.mjs" --check
 pnpm --filter create-smoove build
 
 scaffold() {

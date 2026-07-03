@@ -12,6 +12,7 @@
     "check": "biome check .",
     "format": "biome format --write .",
     "bump": "node scripts/bump.mjs",
+    "sync:templates": "node scripts/sync-composition.mjs",
     "release": "pnpm build && pnpm -r --filter \"./packages/*\" publish --access public"
   },
   "devDependencies": {

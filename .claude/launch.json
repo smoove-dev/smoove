@@ -24,6 +24,12 @@
       "port": 5174
     },
     {
+      "name": "template-studio-alt",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "templates/studio", "--", "--port", "5199"],
+      "port": 5199
+    },
+    {
       "name": "demo2",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "demo", "dev"],

@@ -8,7 +8,7 @@
 //
 // Cross-package deps stay `workspace:^`/`workspace:*`, so only the
 // `version` field changes; pnpm rewrites the ranges at publish time.
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -54,11 +54,13 @@ for (const dir of dirs) {
 
 // Templates aren't workspace packages — they pin literal @smoove/* ranges so a
 // raw GitHub fetch installs from npm. Keep those ranges on the released line.
+// (templates/shared is source material, not a template — it has no package.json.)
 const templatesDir = join(root, "templates");
 for (const dir of readdirSync(templatesDir, { withFileTypes: true })
   .filter((d) => d.isDirectory())
   .map((d) => d.name)) {
   const path = join(templatesDir, dir, "package.json");
+  if (!existsSync(path)) continue;
   const pkg = JSON.parse(readFileSync(path, "utf8"));
   let touched = false;
   for (const field of ["dependencies", "devDependencies"]) {

@@ -16,6 +16,7 @@ import flexRowGrow from "./compositions/flex-row-grow/index.js";
 import flexShowcase from "./compositions/flex-showcase/index.js";
 import flexTypewriter from "./compositions/flex-typewriter/index.js";
 import googleFont from "./compositions/google-font/index.js";
+import helloSmoove from "./compositions/hello-smoove/index.js";
 import igStory from "./compositions/ig-story/index.js";
 // Images.
 import imageClip from "./compositions/image-clip/index.js";
@@ -119,4 +120,5 @@ export default defineRegistry([
   audioMixer,
   // Film.
   cohabit,
+  helloSmoove,
 ]);
