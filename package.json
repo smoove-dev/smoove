@@ -10,7 +10,9 @@
     "dev": "pnpm --filter demo run dev",
     "dev:docs": "pnpm --filter docs run dev",
     "check": "biome check .",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "bump": "node scripts/bump.mjs",
+    "release": "pnpm build && pnpm -r --filter \"./packages/*\" publish --access public"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.1",

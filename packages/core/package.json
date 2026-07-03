@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "Agnostic timeline-driven animation engine. Runs in browser or server; integrates with any render target (e.g. Konva).",
   "license": "MIT",
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/smoove-dev/smoove.git",
@@ -26,7 +28,7 @@
   ],
   "scripts": {
     "build": "tsc -b",
-    "prepublishOnly": "tsc -b",
+    "prepublishOnly": "pnpm build",
     "dev": "tsc -b --watch",
     "clean": "rm -rf dist *.tsbuildinfo"
   },

@@ -26,10 +26,14 @@
   "scripts": {
     "build": "tsc -b",
     "dev": "tsc -b --watch",
-    "clean": "rm -rf dist *.tsbuildinfo"
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
-    "@smoove/core": "workspace:*",
+    "@smoove/core": "workspace:^",
     "konva": ">=10"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

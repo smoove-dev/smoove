@@ -36,7 +36,8 @@
     "dev": "tsc -b --watch",
     "clean": "rm -rf dist *.tsbuildinfo",
     "example": "tsx examples/render-demo.ts",
-    "example:mixer": "tsx examples/audio-mixer.ts"
+    "example:mixer": "tsx examples/audio-mixer.ts",
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
     "@mediabunny/server": "^1.49.0",
@@ -52,13 +53,16 @@
     "tsx": "^4.19.2"
   },
   "peerDependencies": {
-    "@smoove/core": "workspace:*",
-    "@smoove/transitions": "workspace:*",
+    "@smoove/core": "workspace:^",
+    "@smoove/transitions": "workspace:^",
     "konva": ">=10"
   },
   "peerDependenciesMeta": {
     "@smoove/transitions": {
       "optional": true
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

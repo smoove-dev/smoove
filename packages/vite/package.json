@@ -26,7 +26,8 @@
   "scripts": {
     "build": "tsc -b",
     "dev": "tsc -b --watch",
-    "clean": "rm -rf dist *.tsbuildinfo"
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
     "esbuild": "^0.25.0"
@@ -37,5 +38,8 @@
   "devDependencies": {
     "@types/node": "^22.10.0",
     "vite": "^6.3.6"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

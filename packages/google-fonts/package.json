@@ -21,13 +21,17 @@
   ],
   "scripts": {
     "generate": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings=ExperimentalWarning scripts/generate.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm typecheck"
   },
   "peerDependencies": {
-    "@smoove/core": "workspace:*",
+    "@smoove/core": "workspace:^",
     "konva": ">=10"
   },
   "devDependencies": {
     "@types/node": "^22.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

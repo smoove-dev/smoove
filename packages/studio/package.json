@@ -32,16 +32,17 @@
     "build": "tsc -b && pnpm run build:css",
     "build:css": "tailwindcss -i ./src/studio.css -o ./dist/styles/studio.css --minify",
     "dev": "concurrently -k \"tsc -b --watch --preserveWatchOutput\" \"tailwindcss -i ./src/studio.css -o ./dist/styles/studio.css --watch\"",
-    "clean": "rm -rf dist *.tsbuildinfo"
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
     "signal-polyfill": "^0.2.2"
   },
   "peerDependencies": {
-    "@smoove/core": "workspace:*",
-    "@smoove/player": "workspace:*",
-    "@smoove/renderer": "workspace:*",
+    "@smoove/core": "workspace:^",
+    "@smoove/player": "workspace:^",
+    "@smoove/renderer": "workspace:^",
     "konva": ">=10",
     "react": ">=18",
     "react-dom": ">=18"
@@ -59,5 +60,8 @@
     "@types/react-dom": "^18.3.1",
     "concurrently": "^9.1.0",
     "tailwindcss": "^4.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

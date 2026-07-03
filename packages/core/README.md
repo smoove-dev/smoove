@@ -1,6 +1,8 @@
 # @smoove/core
 
-Remotion-style timeline-driven animation for [Konva](https://konvajs.org).
+A timeline-driven animation engine for [Konva](https://konvajs.org) —
+keyframe motion that runs anywhere: buttery in the browser, headless on the
+server.
 
 A **Composition** is a `Konva.Stage` that owns a frame clock (fps +
 duration). A **Sequence** is a `Konva.Layer` scoped to a frame range: its
@@ -65,7 +67,7 @@ wipes, and WebGL shader transitions via
 ## Ecosystem
 
 - [`@smoove/player`](https://www.npmjs.com/package/@smoove/player) — `<smoove-player>` web-component player with controls
-- [`@smoove/transitions`](https://www.npmjs.com/package/@smoove/transitions) — Remotion-style `TransitionSeries` scene transitions
+- [`@smoove/transitions`](https://www.npmjs.com/package/@smoove/transitions) — `TransitionSeries` scene transitions: cross-fades, wipes, shader effects
 - [`@smoove/renderer`](https://www.npmjs.com/package/@smoove/renderer) — headless Node video renderer (skia-canvas + Mediabunny)
 - [`@smoove/studio`](https://www.npmjs.com/package/@smoove/studio) — composable React studio UI
 - [`@smoove/google-fonts`](https://www.npmjs.com/package/@smoove/google-fonts) — typed, tree-shakeable Google Fonts

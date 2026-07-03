@@ -1,9 +1,17 @@
 # @smoove/google-fonts
 
 Typed, tree-shakeable [Google Fonts](https://fonts.google.com) for
-[smoove](https://github.com/…). Each family is its own module exporting a
+[smoove](https://smoove.dev). Each family is its own module exporting a
 `Font` subclass, loaded from the Google Fonts CDN — so a project only pulls the
 families it imports.
+
+## Install
+
+```sh
+pnpm add konva @smoove/core @smoove/google-fonts
+```
+
+`konva` and `@smoove/core` are peer dependencies.
 
 ## Usage
 
@@ -75,3 +83,7 @@ The metadata catalog (no font modules pulled) is importable for tooling:
 ```ts
 import { fonts } from "@smoove/google-fonts/manifest";
 ```
+
+## License
+
+MIT
