@@ -157,9 +157,11 @@ async function main(): Promise<void> {
   }
   if (skill) {
     if (!installSkill(targetDir))
-      notes.push("Skill install failed — run `npx skills add smoove-dev/smoove` in the project.");
+      notes.push(
+        "Skill install failed — run `npx skills add smoove-dev/smoove -s smoove-video` in the project.",
+      );
   } else {
-    notes.push("Agent skill (optional): npx skills add smoove-dev/smoove");
+    notes.push("Agent skill (optional): npx skills add smoove-dev/smoove -s smoove-video");
   }
 
   // -- summary -----------------------------------------------------------

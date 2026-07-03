@@ -30,6 +30,6 @@ what you preview is what you get.
 Install the smoove-video skill so Claude Code, Cursor, Codex, and friends
 know how to author smoove code:
 
-    npx skills add smoove-dev/smoove
+    npx skills add smoove-dev/smoove -s smoove-video
 
 Docs: https://smoove.dev

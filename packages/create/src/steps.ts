@@ -34,7 +34,11 @@ export function installDeps(pm: PackageManager, cwd: string): boolean {
   return run(pm, ["install"], cwd);
 }
 
-/** The skills CLI owns the agent picker (Claude Code / Cursor / Codex / ...). */
+/**
+ * The skills CLI owns the agent picker (Claude Code / Cursor / Codex / ...).
+ * `--skill` preselects smoove-video so the user isn't shown the whole repo's
+ * skill list — only the agent choice remains.
+ */
 export function installSkill(cwd: string): boolean {
-  return run("npx", ["-y", "skills", "add", "smoove-dev/smoove"], cwd);
+  return run("npx", ["-y", "skills", "add", "smoove-dev/smoove", "--skill", "smoove-video"], cwd);
 }

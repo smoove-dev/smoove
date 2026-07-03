@@ -12,7 +12,7 @@ function of the frame. Import shapes from `@smoove/core`, not `Konva.*`.
 Install and follow the `smoove-video` skill. It covers sequencing,
 Flex/Block layout, interpolate-based animation, text, shapes, and media:
 
-    npx skills add smoove-dev/smoove
+    npx skills add smoove-dev/smoove -s smoove-video
 
 ## Layout
 

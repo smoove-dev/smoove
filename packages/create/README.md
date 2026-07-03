@@ -15,7 +15,7 @@ Two templates:
   preview, autoreload. TypeScript or JavaScript.
 
 Both come with the smoove-video agent skill one command away
-(`npx skills add smoove-dev/smoove`), so your coding agent knows how to
+(`npx skills add smoove-dev/smoove -s smoove-video`), so your coding agent knows how to
 write smoove compositions.
 
 Options: `--ts` / `--js`, `--no-install`, `--no-git`, `--no-skill`.
