@@ -99,8 +99,9 @@ Running, embedding, and rendering, once a composition exists:
 - `@smoove/renderer` renders headlessly in Node. Import
   `"@smoove/renderer/register"` first, before building any `Composition` or
   importing `@smoove/core`, then call `renderComposition(comp, { output })`.
-  Register fonts explicitly for the server (skia can't read CSS
-  `@font-face`), and resolve media/font imports to filesystem paths for the
+  Fonts declared with `Font` nodes register themselves (skia can't read CSS
+  `@font-face`); only text that picks a font purely by `fontFamily` needs a
+  `fonts` option. Resolve media/font imports to filesystem paths for the
   server build rather than browser URLs (`@smoove/vite` does this
   automatically).
 - If a render disagrees with the preview, suspect non-determinism first:

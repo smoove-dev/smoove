@@ -111,13 +111,26 @@ export class Font extends Konva.Group {
   }
 
   /**
+   * Load one face into the active text backend. The default delegates to
+   * {@link loadFontFace}: the browser `FontFace` API in preview, or the server
+   * renderer's loader under a headless render. Subclasses override this to
+   * change how a face loads (skip the fetch when the host page preloads fonts,
+   * route through an authenticated host, rewrite the `src`) while `load()`
+   * keeps the load-once promise, the `isLoaded` flag, and the composition's
+   * buffer gate.
+   */
+  protected loadFace(face: FontFaceDescriptor): Promise<void> {
+    return loadFontFace(this.family, face);
+  }
+
+  /**
    * Load every face (environment-aware, deduped, idempotent). Returns the shared
    * load promise; resolves even if a face fails (the error is logged) so a single
-   * bad face can't wedge playback.
+   * bad face can't wedge playback. Per-face loading goes through {@link loadFace}.
    */
   load(): Promise<void> {
     if (this._loadPromise) return this._loadPromise;
-    this._loadPromise = Promise.all(this.faces.map((f) => loadFontFace(this.family, f)))
+    this._loadPromise = Promise.all(this.faces.map((f) => this.loadFace(f)))
       .then(() => {
         this._loaded = true;
       })

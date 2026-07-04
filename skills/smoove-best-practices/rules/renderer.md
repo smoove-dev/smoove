@@ -39,7 +39,7 @@ settings.
 | `range` | `{ from, to }` inclusive frame range. |
 | `format` | `"mp4"` (default) or `"webm"`. |
 | `mute` | Skip the audio track. |
-| `fonts` | Fonts to register (see gotchas). |
+| `fonts` | Fonts for `fontFamily`-only text; `Font` nodes need none (see gotchas). |
 | `onProgress` | `({ frame, total, fps, etaSeconds }) => void`. |
 | `signal` | `AbortSignal` to cancel. |
 
@@ -54,12 +54,22 @@ generator of raw RGBA frames). For WebGL shader transitions, also
   the `Composition` before importing `@smoove/renderer/register` (or calling
   `setupServerRendering()`). The register import must be the *first* line, above
   the core import. (Escape hatch: `new Composition({ mode: "rendering" })`.)
-- **Fonts fall back / look wrong → register them server-side.** skia can't read
-  CSS `@font-face`; it needs the actual font files. Pass `fonts` to
-  `renderComposition` / `setupServerRendering`, or use smoove `Font` nodes
-  (their server loader downloads + caches remote URLs to disk). Note skia's
-  `FontLibrary` keys by **family name** and is first-wins per weight/style, so
-  distinct fonts need distinct family names.
+- **Fonts fall back / look wrong → check how the text picks its font.** skia
+  can't read CSS `@font-face`. Text that uses a smoove `Font` node (including
+  `@smoove/google-fonts` families) needs **zero render-side setup**: the node
+  registers itself when added to the composition, and the server loader
+  downloads + caches remote URLs to disk. Only text that picks a font purely
+  by `fontFamily` (a raw `Konva.Text`, or a `Text` with no `font`) needs manual
+  registration — pass `fonts` to `renderComposition` / `setupServerRendering`.
+  Note skia's `FontLibrary` keys by **family name** and is first-wins per
+  weight/style, so distinct fonts need distinct family names.
+- **Font host needs auth / page preloads fonts → customize the loading, not
+  the registration.** Subclass `Font` and override the protected
+  `loadFace(face)` hook (branch on `detectEnvironment()`), or swap the whole
+  loader with `setDefaultFontLoader` **after** `setupServerRendering()`. A
+  query-string token on a face `src` rides through the default server loader
+  untouched; header-based auth needs the swapped loader. See
+  `/docs/typography/custom-fonts`.
 - **"could not probe video" / media missing → asset URL, not an fs path.**
   Compositions import media as bundler URLs (`import clip from "./clip.mp4"` →
   `/src/...` in dev). The browser player streams that URL; skia/Mediabunny in

@@ -36,18 +36,24 @@ imports go through a Vite build.
 
 ## Fonts
 
-There is no DOM and no `@font-face` under skia, so a font has to be loaded before
-text is drawn with it. There are two ways that happens.
+There is no DOM and no `@font-face` under skia, so a font has to be loaded
+before text is drawn with it. If your scene declares its fonts, this is
+already handled: a [`Font`](/docs/typography/fonts) node (including every
+[Google Fonts](/docs/typography/google-fonts) family) registers itself when it
+is added to the composition. `setupServerRendering` installs a loader that
+resolves each declared face, downloads remote URLs into a disk cache, and the
+render waits for the faces before it draws. No font lists to maintain, no
+render-side registration.
 
-**A `Font` node loads itself.** A scene that declares a [`Font`](/docs/typography/fonts), or
-imports a [Google Fonts](/docs/typography/google-fonts) family, needs no render-side setup.
-`setupServerRendering` installs a loader that resolves each declared face,
-downloads any remote URLs, and caches them on disk; the render waits for the
-faces before it draws. This is the path most scenes take.
+To change *how* a face loads (a host that wants an auth token, a page that
+preloads everything), see [Custom fonts](/docs/typography/custom-fonts).
 
-**Register a family by name.** If text picks a font only through `fontFamily` (a
-raw `Konva.Text`, or a `Text` with no `font`), register that family so skia can
-find it. Use `registerFonts`, or pass `fonts` to `setupServerRendering` or
+### Text without a Font node
+
+The escape hatch: if text picks a font only through `fontFamily` (a raw
+`Konva.Text`, or a `Text` with no `font`), nothing in the scene declares where
+that family's files live, so register the family yourself. Use
+`registerFonts`, or pass `fonts` to `setupServerRendering` or
 `renderComposition`:
 
 ```ts
@@ -64,12 +70,13 @@ await renderComposition(comp, { output: "out.mp4", fonts: ["./fonts/Inter-Regula
 ```
 
 The family name a node references in `fontFamily` must match a registered font,
-otherwise skia falls back to a system face.
+otherwise skia falls back to a system face. Scenes that use `Font` nodes never
+need this.
 
 ### Remote fonts and the cache
 
-Font paths accept HTTP(S) URLs as well as local files, both for `registerFonts`
-and for the faces a `Font` node declares. The server loader downloads each face
+Font paths accept HTTP(S) URLs as well as local files, both for the faces a
+`Font` node declares and for `registerFonts`. The server loader downloads each face
 once, caches it on disk, and reuses it for every frame and every later render.
 This is what lets a [Google Fonts](/docs/typography/google-fonts) family (its faces are
 hosted on `gstatic.com`) render headlessly with no extra wiring.

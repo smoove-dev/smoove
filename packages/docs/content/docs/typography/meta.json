@@ -1,5 +1,5 @@
 {
   "title": "Typography",
   "pagesIndex": "text",
-  "pages": ["fonts", "google-fonts"]
+  "pages": ["fonts", "google-fonts", "custom-fonts"]
 }

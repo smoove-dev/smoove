@@ -59,7 +59,7 @@ fast-fix gotchas list.
 | Player intermittently blank on refresh (SSR/hydration) | Mount client-only → [player.md](rules/player.md) |
 | Player is 0×0 / off-screen | `styles.css` width cascade → [player.md](rules/player.md) |
 | Render throws "not in rendering mode" | `@smoove/renderer/register` imported after building the comp → [renderer.md](rules/renderer.md) |
-| Render fonts wrong / fall back | Fonts not registered server-side → [renderer.md](rules/renderer.md) |
+| Render fonts wrong / fall back | `Font` nodes self-register; only `fontFamily`-only text needs `fonts` registration → [renderer.md](rules/renderer.md) |
 | Render "could not probe video" / media missing | Asset URL not mapped to an fs path → [renderer.md](rules/renderer.md) |
 | Studio: "Cannot read properties of null" | Duplicate React; dedupe react/react-dom → [studio.md](rules/studio.md) |
 | Studio export dialogs do nothing | `@smoove/renderer` optional peer not installed → [studio.md](rules/studio.md) |

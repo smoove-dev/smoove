@@ -1,0 +1,172 @@
+---
+title: Custom Fonts
+description: Wrap your fonts in a Font subclass and control how they load in the browser and on the server.
+---
+
+A [`Font`](/docs/typography/fonts) node declares a family and loads it wherever
+the composition runs. Most scenes stop there. This page is the next step:
+packaging your fonts as a class of their own, and taking over the loading when
+your app has rules the defaults can't know about, like fonts the page already
+ships, or a font host that wants a token.
+
+## A font class of your own
+
+`Font` subclasses cleanly. Bake the family name and faces into a constructor
+once, and every scene gets a one-liner. This is exactly how
+[Google Fonts](/docs/typography/google-fonts) families are built: each one is a
+generated `Font` subclass.
+
+```ts
+// fonts/acme-sans.ts
+import { Font } from "@smoove/core";
+import bold from "./AcmeSans-Bold.woff2?url";
+import regular from "./AcmeSans-Regular.woff2?url";
+
+export class AcmeSans extends Font {
+  constructor() {
+    super({
+      family: "Acme Sans",
+      faces: [
+        { weight: 400, src: regular },
+        { weight: 700, src: bold },
+      ],
+    });
+  }
+}
+```
+
+```ts
+// scene.ts
+const acme = new AcmeSans();
+seq.add(acme);
+seq.add(new Text({ text: "Ship it", font: acme.face("700"), fontSize: 64 }));
+```
+
+Everything from the [Fonts](/docs/typography/fonts) page still applies, the
+`face("700")` selector grammar included: add the node to a sequence, the
+composition discovers it, loads the faces, and buffers until they land. There
+is no per-font registration call to make: preview needs nothing, and a render
+script only needs the `setupServerRendering()` call it already makes for
+everything else.
+
+## How a face loads
+
+When the composition discovers a `Font` it calls `load()`, and `load()` runs
+every declared face through one protected method:
+
+```ts
+protected loadFace(face: FontFaceDescriptor): Promise<void> {
+  return loadFontFace(this.family, face);
+}
+```
+
+The names are close but the jobs differ: `loadFace` is the override point on
+the class, and `loadFontFace` is the shared helper it delegates to. That
+helper hands the face to the active loader: the browser `FontFace` API in
+preview, or the server renderer's skia loader once `setupServerRendering` has
+run (that one also downloads remote URLs and caches them on disk). A loader is
+one function, `(family, face) => Promise<void>`, and `loadFontFace` always
+routes through whichever loader is active, so a swapped loader (below) applies
+inside subclass overrides too. The load-once promise, the `isLoaded`
+flag, and the composition's buffer gate all live in `load()`, so a subclass
+that overrides `loadFace` keeps them.
+
+## Different rules in the browser and on the server
+
+`loadFace` is where environment-specific loading goes. Check
+`detectEnvironment()` and branch: `isPreview` means browser playback,
+`isRendering` means a headless render. Say your app already loads every brand font
+up front with CSS, so preview has nothing to fetch, but the font host wants a
+signed token before it serves a file to the render server:
+
+```ts
+import {
+  detectEnvironment,
+  Font,
+  type FontFaceDescriptor,
+  loadFontFace,
+} from "@smoove/core";
+
+export class AcmeSans extends Font {
+  constructor() {
+    super({
+      family: "Acme Sans",
+      faces: [
+        { weight: 400, src: "https://fonts.acme.dev/acme-sans-regular.woff2" },
+        { weight: 700, src: "https://fonts.acme.dev/acme-sans-bold.woff2" },
+      ],
+    });
+  }
+
+  protected override loadFace(face: FontFaceDescriptor): Promise<void> {
+    if (detectEnvironment().isPreview) {
+      // The app shell loads every Acme face up front; just wait for it.
+      return document.fonts.ready.then(() => undefined);
+    }
+    // The font host wants a token before serving files to the render server.
+    const token = process.env.ACME_FONT_TOKEN;
+    return loadFontFace(this.family, { ...face, src: `${face.src}?token=${token}` });
+  }
+}
+```
+
+Two details worth knowing:
+
+- If preview truly has nothing to wait for, `return Promise.resolve()` works
+  too. `document.fonts.ready` is the safer default: it resolves once the
+  stylesheets' font loads settle, so text measures with the real glyphs.
+- A query-string token rides through the default server loader untouched. The
+  loader downloads the URL, caches the file on disk, and registers it with
+  skia. Header-based auth can't ride along; swap the loader instead (next
+  section).
+
+## Swapping the loader for every font
+
+A subclass changes one family. To change how every font in the process loads,
+replace the loader itself with `setDefaultFontLoader`. On the server, wrap the
+skia loader so the download carries an authorization header, then hand it the
+local file (local paths pass through untouched):
+
+```ts
+// render.ts, before building the composition
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { setDefaultFontLoader } from "@smoove/core";
+import { makeSkiaFontLoader, setupServerRendering } from "@smoove/renderer";
+
+setupServerRendering();
+
+const skia = makeSkiaFontLoader();
+const cacheDir = "./.cache/fonts";
+
+setDefaultFontLoader(async (family, face) => {
+  const res = await fetch(face.src, {
+    headers: { Authorization: `Bearer ${process.env.ACME_FONT_TOKEN}` },
+  });
+  if (!res.ok) throw new Error(`font fetch failed (${res.status}) for ${face.src}`);
+  const file = path.join(cacheDir, path.basename(new URL(face.src).pathname));
+  await mkdir(cacheDir, { recursive: true });
+  await writeFile(file, Buffer.from(await res.arrayBuffer()));
+  return skia(family, { ...face, src: file });
+});
+```
+
+Order matters: `setupServerRendering()` installs the default skia loader, so
+call `setDefaultFontLoader` after it. The same lever exists in the browser. A
+page that preloads all of its fonts can make every `Font` a waiter:
+
+```ts
+import { setDefaultFontLoader } from "@smoove/core";
+
+setDefaultFontLoader(() => document.fonts.ready.then(() => undefined));
+```
+
+Pick the subclass override when the rule belongs to one font. Pick the loader
+when it applies to every font in the process. If only one family needs the
+header, keep the loader and branch on the host inside it.
+
+## Next steps
+
+- [Fonts](/docs/typography/fonts): the `Font` node these classes extend.
+- [Google Fonts](/docs/typography/google-fonts): the same pattern, generated for the whole catalog.
+- [Rendering media](/docs/rendering/media#fonts): what the server loader does with each face.
