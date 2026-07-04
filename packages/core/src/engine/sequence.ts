@@ -49,7 +49,10 @@ export class Sequence extends Konva.Layer {
     }
     // durationInFrames is optional: when omitted it resolves to the host comp's
     // duration (see the getter). Only validate an explicitly provided value.
-    if (durationInFrames !== undefined && (!Number.isInteger(durationInFrames) || durationInFrames <= 0)) {
+    if (
+      durationInFrames !== undefined &&
+      (!Number.isInteger(durationInFrames) || durationInFrames <= 0)
+    ) {
       throw new Error("Sequence: durationInFrames must be a positive integer");
     }
     super({ ...layerOpts, visible: false });

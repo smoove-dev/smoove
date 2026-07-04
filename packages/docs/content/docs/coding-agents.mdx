@@ -1,0 +1,49 @@
+---
+title: Coding agents
+description: Scaffold a project, hand it to a coding agent, and describe the video you want.
+---
+
+smoove's API is built on concepts a model already knows: keyframes, a
+timeline, flexbox layout, familiar shape names. That makes it something you
+can hand to a coding agent and get a working composition back, not just
+autocomplete.
+
+## Prerequisites
+
+- Node.js 18.17 or later.
+- A coding agent CLI: Claude Code, Cursor, Codex, or similar.
+
+## Start a new project
+
+```bash
+npm create smoove
+```
+
+Pick the **composition** template for a single scene, or **studio** for the
+full timeline and props UI. Say yes when it offers to install the
+`smoove-video` skill: that's what teaches your agent the mental model
+(frame clock, range-gated sequences, `interpolate`-driven updaters) before it
+writes a line of code. See [Agent skills](/docs/skills) for what the skill
+covers and how to add it later if you skipped it.
+
+## Start the preview
+
+```bash
+cd my-video
+npm run dev
+```
+
+Open the printed URL and leave it running. `<smoove-player>` hot-reloads on
+every save, so you'll see each change the agent makes as it makes it.
+
+## Prompt your agent
+
+In a separate terminal, start your coding agent in the same project
+directory, then describe the video in plain language: what's on screen, what
+moves, how long it runs. The agent edits `src/composition.ts` (or a
+`src/compositions/<name>/composition.ts` file in the studio template), you
+watch the preview update, and you keep iterating in conversation instead of
+by hand.
+
+Next: [Installation](/docs/installation) covers the manual setup if you're
+wiring smoove into an existing app instead of scaffolding a new one.

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router";
+import corePkg from "../../../core/package.json";
 import { ClientOnly } from "../components/client-only";
 import { HomeHeader } from "../components/home-header";
 import {
@@ -13,18 +14,18 @@ import {
   IconType,
 } from "../components/icons";
 import { useCopyButtons } from "../components/use-copy-buttons";
-
 import homeBgUrl from "../demos/home-bg.ts?comp-url";
 import "../styles/base.css";
 import "../styles/home.css";
 import type { Route } from "./+types/home";
 
 const GH_URL = "https://github.com/smoove-dev/smoove";
-const INSTALL_CMD = "npm install smoove";
+const INSTALL_CMD = "npm create smoove";
 
 export function loader() {
   // Doc slugs are stable (content/docs/<slug>.mdx); link to them directly.
   return {
+    version: corePkg.version,
     getStarted: "/docs/introduction",
     links: {
       introduction: "/docs/introduction",
@@ -47,7 +48,7 @@ export function meta(_: Route.MetaArgs) {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { getStarted, links } = loaderData;
+  const { version, getStarted, links } = loaderData;
   useCopyButtons();
 
   // Honor reduced-motion: the hero background autoplays, but pause it for users
@@ -87,7 +88,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
         <div className="hero__inner">
           <span className="pill">
-            <span className="dot" /> smoove <span className="ver">v0.1.0</span>
+            <span className="dot" /> smoove <span className="ver">v{version}</span>
           </span>
           <h1>
             Smooth <span className="grad">moves</span>,
@@ -176,17 +177,28 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <span className="t-key">from</span> <span className="t-str">"@smoove/core"</span>
                 {";\n\n"}
                 <span className="t-key">const</span>
+                {" fps = "}
+                <span className="t-num">60</span>
+                {";\n"}
+                <span className="t-key">const</span>
                 {" comp = "}
                 <span className="t-key">new</span> <span className="t-fn">Composition</span>
-                {"({ fps: "}
-                <span className="t-num">60</span>
-                {", durationInFrames: "}
-                <span className="t-num">1800</span>
-                {" });\n"}
+                {"({\n"}
+                {"  fps,\n"}
+                {"  durationInFrames: fps * "}
+                <span className="t-num">30</span>
+                {",\n"}
+                {"  width: "}
+                <span className="t-num">1600</span>
+                {",\n"}
+                {"  height: "}
+                <span className="t-num">900</span>
+                {",\n"}
+                {"});\n"}
                 <span className="t-key">const</span>
                 {" scene = "}
                 <span className="t-key">new</span> <span className="t-fn">Sequence</span>
-                {"({});\n\n"}
+                {"();\n"}
                 <span className="t-key">const</span>
                 {" orb = "}
                 <span className="t-key">new</span> <span className="t-fn">Circle</span>
@@ -243,7 +255,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 {"});\n\n"}
                 {"comp."}
                 <span className="t-fn">add</span>
-                {"(scene);"}
+                {"(scene);\n"}
+                <span className="t-key">export default</span>
+                {" comp;"}
               </code>
             </pre>
           </div>
@@ -348,7 +362,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <IconGithub />
               </a>
               <a
-                href="https://www.npmjs.com/package/smoove"
+                href="https://www.npmjs.com/package/@smoove/core"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="npm"

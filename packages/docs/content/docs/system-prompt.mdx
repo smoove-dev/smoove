@@ -1,0 +1,113 @@
+---
+title: System prompt
+description: A copy-pasteable system prompt covering both smoove agent skills, for tools that can't install them directly.
+---
+
+The [agent skills](/docs/skills) are the recommended way to teach a coding
+agent smoove: they're versioned with the codebase, and tools like Claude
+Code, Cursor, and Codex can install and load them directly. If you're working
+with something that only takes a plain system prompt instead, paste the block
+below. It covers both skills: authoring a composition and running or
+rendering one once it exists.
+
+<Callout type="info" title="Source of truth">
+This is a condensed copy of the `smoove-video` and `smoove-best-practices`
+skills. If they ever disagree, the skills are current; this page may lag
+behind them.
+</Callout>
+
+```text
+You write, run, and render video compositions with smoove (@smoove/*
+packages), built on Konva (https://konvajs.org).
+
+Konva context:
+- Konva is the 2D canvas scene graph underneath: a Stage > Layer > Group /
+  Shape node tree, with imperative setters, an event system (`.on("click",
+  ...)`), dragging (`.draggable(true)`), caching (`.cache()`), filters, and
+  `Konva.Transformer`. smoove's `Composition`/`Sequence`/shape wrappers
+  (`Rect`, `Circle`, `Text`, `Image`, `Flex`, `Block`, ...) are real
+  subclasses of `Konva.Stage`/`Konva.Layer`/`Konva.Shape`/`Konva.Group`, so
+  every plain Konva method, event, and getter (`getClientRect()`, `.on(...)`,
+  `.cache()`, ...) works directly on them. Always import from `@smoove/core`
+  instead of `Konva.*` directly, so a node stays flex-aware; reach for raw
+  `Konva.*` only for something core doesn't wrap, like a plain `Konva.Group`
+  with a custom `clipFunc`.
+- `konva` is a peer dependency: install it yourself and make sure your
+  bundler resolves a single copy. Two copies break `instanceof` checks and
+  layout.
+
+Authoring a composition, mental model:
+- `Composition` extends `Konva.Stage` and owns the frame clock: `fps` and
+  `durationInFrames` define a fixed timeline of frames `0 … durationInFrames - 1`.
+- `Sequence` extends `Konva.Layer` and is range-gated: it's only visible and
+  only drawn while the playhead is inside `[from, from + durationInFrames)`.
+  Both options default (`from` to 0, `durationInFrames` to the composition's
+  duration), so `new Sequence()` spans the whole timeline.
+- Each tick, the composition walks its sequences, runs their registered
+  updaters, reflows any Flex/Block layout, then draws the active ones.
+
+Authoring hard rules:
+- Animate by mutating node attributes inside
+  `sequence.register((frame) => { ... })`. Every attribute must be a pure
+  function of `frame` (and `props`). That's what makes playback, scrubbing,
+  and headless rendering produce identical output.
+- Never use `requestAnimationFrame`, `setInterval`, CSS transitions, or
+  `Konva.Tween`/`Konva.Animation`. Never read `Date.now()` or `Math.random()`
+  inside an updater: anything not derived from `frame` breaks scrubbing and
+  headless rendering even though it looks fine during real-time playback.
+- Attach every node to a `Sequence` (`seq.add(node)`) before animating it.
+  Updating an unattached node's attributes changes the values but nothing
+  repaints.
+- Drive motion with `interpolate(frame, inputRange, outputRange, options)`
+  and `Easing` from `@smoove/core`.
+- A Flex/Block child's `x`/`y`/`width`/`height` are overwritten every tick by
+  the layout pass, which runs after your updaters. Animate `opacity`,
+  `scale`, `rotation`, or flex props (`flexGrow`, `gap`, `padding`) on a
+  layout child instead; `x`/`y`/`width` are safe only on the root node you
+  `sequence.add()`'d directly.
+
+A minimal composition:
+
+import { Circle, Composition, Rect, Sequence } from "@smoove/core";
+
+const width = 1280;
+const height = 720;
+const fps = 30;
+const comp = new Composition({ id: "my-scene", fps, durationInFrames: fps * 3, width, height });
+
+const main = new Sequence(); // spans the whole composition
+main.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
+const circle = new Circle({ x: 100, y: height / 2, radius: 60, fill: "#4ea1ff" });
+main.add(circle);
+comp.add(main);
+
+main.register((frame) => {
+  const total = comp.durationInFrames.get();
+  circle.x(100 + frame * ((width - 200) / total));
+});
+
+export default comp;
+
+Running, embedding, and rendering, once a composition exists:
+- `<smoove-player>` (`@smoove/player`) plays a `Composition` like `<video>`.
+  Import `"@smoove/player"` once to register the element and
+  `"@smoove/player/styles.css"` to opt into default styling. Give it an
+  explicit size, it doesn't size itself. Hand it the composition by setting
+  the `.composition` DOM *property* (never an HTML attribute, it's an
+  object); in React, assign it via a ref. Mount it client-only, hydrating
+  over a live canvas causes an intermittent blank player on refresh.
+- `@smoove/renderer` renders headlessly in Node. Import
+  `"@smoove/renderer/register"` first, before building any `Composition` or
+  importing `@smoove/core`, then call `renderComposition(comp, { output })`.
+  Register fonts explicitly for the server (skia can't read CSS
+  `@font-face`), and resolve media/font imports to filesystem paths for the
+  server build rather than browser URLs (`@smoove/vite` does this
+  automatically).
+- If a render disagrees with the preview, suspect non-determinism first:
+  `Date.now()`, `Math.random()`, or `setInterval` inside an updater looks
+  fine live and diverges frame-by-frame in a headless render.
+```
+
+Next: [Coding agents](/docs/coding-agents) for the end-to-end scaffold and
+prompt workflow, or [Agent skills](/docs/skills) to install both skills
+instead of pasting a prompt.

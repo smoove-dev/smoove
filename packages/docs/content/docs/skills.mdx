@@ -1,0 +1,40 @@
+---
+title: Agent skills
+description: The smoove-video and smoove-best-practices skills, and how to install them.
+---
+
+An agent skill is a small, versioned file that teaches a coding agent how to
+work in a specific codebase or domain, loaded on demand instead of stuffed
+into every prompt. smoove publishes two for people building with it.
+
+## smoove-video
+
+Teaches the mental model (frame clock, range-gated sequences,
+`interpolate`-driven updaters) and the rules for authoring a `Composition`:
+layout, animation, text, shapes, and media. This is what lets an agent write
+a working scene from a plain-language description instead of guessing at the
+API. See the [system prompt](/docs/system-prompt) page for a condensed,
+copy-pasteable version of the same content.
+
+## smoove-best-practices
+
+Picks up once a composition exists: embedding `<smoove-player>` on a page,
+assembling a `<Studio>` app, or rendering to MP4/WebM with
+`@smoove/renderer`. It also carries the fast-triage table for the common
+failures (a blank player, wrong render fonts, a studio that won't mount), so
+an agent can debug those instead of guessing.
+
+## Install
+
+```bash
+npx skills add smoove-dev/smoove -s smoove-video
+# or, for both
+npx skills add smoove-dev/smoove -s smoove-video -s smoove-best-practices
+```
+
+The install command runs an interactive picker for the agent you're using
+(Claude Code, Cursor, Codex, and others). [`npm create smoove`](/docs/installation)
+offers to run this for you during scaffolding, so most projects never need to
+run it by hand.
+
+Source: [github.com/smoove-dev/smoove/tree/main/skills](https://github.com/smoove-dev/smoove/tree/main/skills).
