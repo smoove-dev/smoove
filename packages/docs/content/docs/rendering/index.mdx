@@ -26,7 +26,8 @@ import "@smoove/renderer/register";
 import { Composition, Sequence, Rect, interpolate } from "@smoove/core";
 import { renderComposition } from "@smoove/renderer";
 
-const comp = new Composition({ id: "out", fps: 60, durationInFrames: 120, width: 1280, height: 720 });
+const fps = 60;
+const comp = new Composition({ id: "out", fps, durationInFrames: fps * 2, width: 1280, height: 720 });
 
 const main = new Sequence();
 const box = new Rect({ x: 0, y: 320, width: 80, height: 80, fill: "#ffd166" });

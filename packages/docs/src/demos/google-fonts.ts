@@ -10,11 +10,12 @@ import PlayfairDisplay from "@smoove/google-fonts/playfair-display";
  */
 const width = 1280;
 const height = 720;
-const duration = 150;
+const fps = 60;
+const duration = fps * 2.5;
 
 const comp = new Composition({
   id: "google-fonts",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

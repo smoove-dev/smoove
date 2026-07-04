@@ -16,7 +16,7 @@ function range(haystack: string, needle: string): { start: number; end: number }
 }
 
 const fps = 60;
-const duration = 300;
+const duration = fps * 5;
 
 const width = 512;
 const height = 512;

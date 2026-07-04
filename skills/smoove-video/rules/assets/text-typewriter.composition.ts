@@ -7,7 +7,7 @@ import type { HighlightConfig } from "@smoove/core";
 import { Block, Composition, Easing, interpolate, Rect, Sequence, Text } from "@smoove/core";
 
 const fps = 30;
-const duration = 150;
+const duration = fps * 5;
 const width = 512;
 const height = 512;
 
@@ -20,7 +20,7 @@ const comp = new Composition({
   loop: true,
 });
 
-const main = new Sequence({});
+const main = new Sequence();
 main.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 
 const M = 24;

@@ -29,10 +29,11 @@ layer), and an **updater** that sets attributes as a function of the frame.
 ```ts
 import { Circle, Composition, Easing, Rect, Sequence, interpolate } from "@smoove/core";
 
+const fps = 60;
 const comp = new Composition({
   id: "first-tween",
-  fps: 60,
-  durationInFrames: 180, // 3 seconds
+  fps,
+  durationInFrames: fps * 3,
   width: 1280,
   height: 720,
   loop: true,
@@ -111,4 +112,5 @@ many different videos; see [Dynamic props](/docs/dynamic-props).
 
 Next: [Core concepts](/docs/core-concepts) goes deeper on range-gating and the
 tick loop, or jump to [Animating](/docs/interpolation) to learn `interpolate`
-and `Easing`.
+and `Easing`. [Best practices](/docs/best-practices) covers the conventions
+this example already follows, like sizing `durationInFrames` from `fps`.

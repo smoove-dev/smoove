@@ -9,6 +9,7 @@ import { linearTiming, slide, TransitionSeries, wipe } from "@smoove/transitions
  */
 const width = 1280;
 const height = 720;
+const fps = 60;
 const sceneLen = 90;
 const blend = 24;
 const duration = 3 * sceneLen - 2 * blend;
@@ -18,7 +19,7 @@ const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 const comp = new Composition({
   id: "transition-slide",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

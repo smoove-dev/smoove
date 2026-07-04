@@ -7,7 +7,7 @@ import whooshAUrl from "./assets/whoosh-a.mp3";
 import whooshBUrl from "./assets/whoosh-b.mp3";
 
 const FPS = 60;
-const TOTAL = 1560; // 26s
+const TOTAL = FPS * 26;
 
 // ---- Timeline anchors (frames @60fps) ----
 const VO_FROM = 240; // voice enters

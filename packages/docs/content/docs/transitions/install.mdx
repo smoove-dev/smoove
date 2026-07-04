@@ -28,7 +28,15 @@ presentations are sized from its `width`/`height`):
 import { Composition } from "@smoove/core";
 import { TransitionSeries, fade, linearTiming } from "@smoove/transitions";
 
-const comp = new Composition({ id: "intro", fps: 60, durationInFrames: 200, width: 1280, height: 720 });
+const sceneLen = 80;
+const blend = 20;
+const comp = new Composition({
+  id: "intro",
+  fps: 60,
+  durationInFrames: 2 * sceneLen - blend, // net duration: scenes minus the shared overlap
+  width: 1280,
+  height: 720,
+});
 const series = new TransitionSeries({ composition: comp });
 ```
 

@@ -8,11 +8,12 @@ import { Composition, Line, Rect, Sequence, Text } from "@smoove/core";
  */
 const width = 1280;
 const height = 720;
-const duration = 360;
+const fps = 60;
+const duration = fps * 6;
 
 const comp = new Composition({
   id: "range-gate",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

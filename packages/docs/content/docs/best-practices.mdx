@@ -36,6 +36,53 @@ import Konva from "konva";
 row.add(new Konva.Rect({ width: 120, height: 120, fill: "#4ea1ff" }));
 ```
 
+## Give the main sequence no options
+
+`new Sequence()` for the sequence that spans the whole composition, no
+arguments at all. `from` defaults to `0` and `durationInFrames` defaults to
+the composition's own duration, so a full-span sequence needs nothing else.
+Pass `from` and `durationInFrames` only when you want an actual partial
+window.
+
+**Why:** typing out the full range as explicit options gives you two numbers
+that have to stay in sync with the composition's own duration by hand. Leaving
+them unset means there's nothing to drift.
+
+```ts
+// ✅ do: the whole timeline, no options
+const main = new Sequence();
+
+// 🚫 avoid (unless intentional): a number that has to be kept in sync by hand
+const main = new Sequence({ from: 0, durationInFrames: 90 });
+```
+
+## Size duration from fps, read it back from the composition
+
+Write `durationInFrames` as `fps * seconds` at authoring time, not a bare
+frame count, so the intent reads at the call site. At runtime, read the total
+back with `comp.durationInFrames.get()` rather than hardcoding the same
+number again somewhere else.
+
+**Why:** `fps * 3` says "3 seconds" the moment you read it; `90` doesn't.
+`durationInFrames` is a reactive signal, so `.get()` always reflects the
+composition's actual duration, even if it's changed since the module loaded.
+
+```ts
+// ✅ do
+const comp = new Composition({ id: "scene", fps, durationInFrames: fps * 3, width, height });
+
+main.register((frame) => {
+  const total = comp.durationInFrames.get();
+  circle.x(interpolate(frame, [0, total], [0, width]));
+});
+
+// 🚫 avoid: two places that both have to agree on "90"
+const comp = new Composition({ id: "scene", fps: 30, durationInFrames: 90, width, height });
+main.register((frame) => {
+  circle.x(interpolate(frame, [0, 90], [0, width]));
+});
+```
+
 ## Animate as a function of frame
 
 Drive every attribute from the frame inside `seq.register()`, using
@@ -99,6 +146,33 @@ row.setAttrs({ gap: interpolate(frame, [0, 30], [8, 64]) });
 
 // 🚫 avoid: re-deriving each child's x by hand
 children.forEach((c, i) => c.x(i * (120 + gap)));
+```
+
+## Position and size nodes relative to each other
+
+When one node should track another, read the other node's own getters
+instead of a guessed number: `next.x(prev.x() + gap)` keeps a fixed gap no
+matter how `prev` moves. When two nodes need to match, read the computed box
+with `getClientRect()` instead of copying a size by hand: it reports the
+node's actual rendered bounds, so it stays correct as the source node
+animates.
+
+**Why:** this is the same "let it reflow" idea as layout, applied to plain
+nodes outside a `Flex`/`Block`. A relationship expressed as a getter call
+survives edits to either node; a relationship expressed as a hardcoded number
+only survives until someone changes one side of it.
+
+```ts
+// ✅ do: name follows the avatar with a fixed gap, whatever the avatar's radius
+name.x(avatar.x() + avatar.radius() * 2 + 12);
+name.y(avatar.y());
+
+// ✅ do: underline matches the title's rendered width, even as the title animates
+underline.width(title.getClientRect().width);
+
+// 🚫 avoid: numbers that only happen to be correct today
+name.x(76);
+underline.width(240);
 ```
 
 ## `play()` is browser-only; `setFrame(n)` works anywhere

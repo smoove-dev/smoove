@@ -8,6 +8,7 @@ import { fade, linearTiming, TransitionSeries } from "@smoove/transitions";
  */
 const width = 1280;
 const height = 720;
+const fps = 60;
 const sceneLen = 80;
 const blend = 20;
 // Net duration = sum of scenes minus sum of transitions (each overlap eats
@@ -19,7 +20,7 @@ const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 const comp = new Composition({
   id: "transition-fade",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

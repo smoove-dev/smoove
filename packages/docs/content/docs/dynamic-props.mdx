@@ -17,10 +17,11 @@ interface Props {
   accent: string;
 }
 
+const fps = 60;
 const comp = new Composition<Props>({
   id: "card",
-  fps: 60,
-  durationInFrames: 120,
+  fps,
+  durationInFrames: fps * 2,
   width: 1280,
   height: 720,
   props: { name: "Ada", accent: "#38bdf8" },

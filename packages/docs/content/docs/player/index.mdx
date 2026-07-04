@@ -44,7 +44,8 @@ The default export may be a `Composition` instance, a factory returning one
 // orbit.js, the remote module
 import { Composition, Sequence } from "@smoove/core";
 
-const comp = new Composition({ id: "orbit", fps: 60, durationInFrames: 180 });
+const fps = 60;
+const comp = new Composition({ id: "orbit", fps, durationInFrames: fps * 3 });
 // …build the scene…
 
 export default comp; // or: () => comp / async () => comp

@@ -10,11 +10,12 @@ import Konva from "konva";
  */
 const width = 1280;
 const height = 720;
-const durationInFrames = 180;
+const fps = 60;
+const durationInFrames = fps * 3;
 
 const comp = new Composition({
   id: "orbit",
-  fps: 60,
+  fps,
   durationInFrames,
   loop: true,
   width,

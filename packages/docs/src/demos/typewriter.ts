@@ -10,7 +10,7 @@ function label(text: string, x: number, y: number): Konva.Text {
 }
 
 const fps = 60;
-const duration = 400;
+const duration = fps * 7; // room for the slowest typewriter (220f) plus its highlight sweep
 
 const width = 512;
 const height = 512;

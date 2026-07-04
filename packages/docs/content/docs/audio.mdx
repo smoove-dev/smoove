@@ -12,7 +12,8 @@ everything else, so a mix scrubs and renders deterministically.
 ```ts
 import { Audio, Composition, Sequence } from "@smoove/core";
 
-const comp = new Composition({ id: "scene", fps: 60, durationInFrames: 1560, width: 1080, height: 1080 });
+const fps = 60;
+const comp = new Composition({ id: "scene", fps, durationInFrames: fps * 26, width: 1080, height: 1080 });
 
 const music = new Audio({ src: musicUrl, name: "Music", volume: 0.8 });
 const seq = new Sequence();

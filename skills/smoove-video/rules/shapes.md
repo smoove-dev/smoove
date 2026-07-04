@@ -60,6 +60,25 @@ its *bounding box* at the flex slot, not its center, so it lines up flush
 with a top-left-origin `Rect` of the same box size in the same row — you
 don't need to hand-correct for Konva's differing origin conventions.
 
+## Relative positioning: getters over hardcoded numbers
+
+When one node should track another, read the other node's own getters
+instead of a guessed number — `next.x(prev.x() + gap)` keeps a fixed gap no
+matter how `prev` moves. When two nodes need to match, read the computed box
+with `getClientRect()` instead of copying a size by hand: it reports the
+node's actual rendered bounds, so it stays correct as the source node
+animates. This is the same "let it reflow" principle as `Flex`/`Block`
+layout, applied to plain nodes outside a container.
+
+```ts
+// name follows the avatar with a fixed gap, whatever the avatar's radius
+name.x(avatar.x() + avatar.radius() * 2 + 12);
+name.y(avatar.y());
+
+// underline matches the title's rendered width, even as the title animates
+underline.width(title.getClientRect().width);
+```
+
 ## Animating
 
 Centralize all motion in the owning sequence's `register()` — don't attach

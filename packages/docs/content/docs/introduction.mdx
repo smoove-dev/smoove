@@ -77,10 +77,11 @@ import { Composition, Sequence, Text, interpolate } from "@smoove/core";
 
 // One composition, parametrized by props.
 function birthdayVideo({ name }: { name: string }) {
+  const fps = 30;
   const comp = new Composition({
     id: `birthday-${name}`,
-    fps: 30,
-    durationInFrames: 120,
+    fps,
+    durationInFrames: fps * 4,
     width: 1080,
     height: 1080,
     props: { name },

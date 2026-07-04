@@ -78,6 +78,26 @@ still distort these shapes: give them an explicit size, or leave them
 un-stretched, when you want predictable geometry.
 </Callout>
 
+## Positioning one shape relative to another
+
+Outside a `Flex`/`Block`, read a shape's own getters to place another shape
+next to it, instead of a guessed pixel number:
+
+```ts
+const dot = new Circle({ x: 0, y: 0, radius: 6, fill: "#4ea1ff" });
+const label = new Text({ x: dot.x() + dot.radius() * 2 + 8, y: 0, text: "Live", fontSize: 20 });
+```
+
+`getClientRect()` reports a node's actual rendered box, so it's the way to
+match a size that changes over time, like a bar under an animated title:
+
+```ts
+underline.width(title.getClientRect().width);
+```
+
+See [Best practices](/docs/best-practices#position-and-size-nodes-relative-to-each-other)
+for why this holds up better than hardcoded numbers.
+
 ## Wrapping a custom shape
 
 Layout participation is an open contract, `KMLayoutNode`, not a hard-coded type

@@ -9,6 +9,7 @@ import { slide, springTiming, TransitionSeries } from "@smoove/transitions";
  */
 const width = 1280;
 const height = 720;
+const fps = 60;
 const sceneLen = 110;
 const blend = 36;
 const duration = 2 * sceneLen - blend;
@@ -18,7 +19,7 @@ const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 const comp = new Composition({
   id: "transition-spring",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

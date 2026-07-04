@@ -20,12 +20,20 @@ its peers.
 import { Composition } from "@smoove/core";
 import { TransitionSeries, fade, linearTiming } from "@smoove/transitions";
 
-const comp = new Composition({ id: "intro", fps: 60, durationInFrames: 200, width: 1280, height: 720 });
+const sceneLen = 80;
+const blend = 20;
+const comp = new Composition({
+  id: "intro",
+  fps: 60,
+  durationInFrames: 2 * sceneLen - blend, // net duration: scenes minus the shared overlap
+  width: 1280,
+  height: 720,
+});
 
 const series = new TransitionSeries({ composition: comp });
-series.scene({ durationInFrames: 80 }, (seq) => seq.add(sceneA));
-series.transition({ presentation: fade(), timing: linearTiming({ durationInFrames: 20 }) });
-series.scene({ durationInFrames: 80 }, (seq) => seq.add(sceneB));
+series.scene({ durationInFrames: sceneLen }, (seq) => seq.add(sceneA));
+series.transition({ presentation: fade(), timing: linearTiming({ durationInFrames: blend }) });
+series.scene({ durationInFrames: sceneLen }, (seq) => seq.add(sceneB));
 
 comp.add(series);
 ```

@@ -13,11 +13,12 @@ const SRC = "https://picsum.photos/seed/smoove/640/640";
 
 const width = 1280;
 const height = 720;
-const duration = 240;
+const fps = 60;
+const duration = fps * 4;
 
 const comp = new Composition({
   id: "image-objectfit",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

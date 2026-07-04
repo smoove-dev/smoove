@@ -1,6 +1,6 @@
 ---
 name: smoove-video
-description: Use when creating, animating, or laying out a smoove (Konva-based, Remotion-style) video Composition or Sequence — timeline-driven scenes, Flex/Block layout, interpolate-based animation, or Text/shape authoring.
+description: Use when creating, animating, or laying out a smoove (Konva-based) video Composition or Sequence — timeline-driven scenes, Flex/Block layout, interpolate-based animation, or Text/shape authoring.
 metadata:
   tags: smoove, konva, video, animation, composition, motion
 ---
@@ -41,16 +41,18 @@ import { Circle, Composition, Rect, Sequence } from "@smoove/core";
 
 const width = 1280;
 const height = 720;
-const comp = new Composition({ id: "my-scene", fps: 30, durationInFrames: 90, width, height });
+const fps = 30;
+const comp = new Composition({ id: "my-scene", fps, durationInFrames: fps * 3, width, height });
 
-const main = new Sequence({});
+const main = new Sequence(); // spans the whole composition — no options needed
 main.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 const circle = new Circle({ x: 100, y: height / 2, radius: 60, fill: "#4ea1ff" });
 main.add(circle);
 comp.add(main);
 
 main.register((frame) => {
-  circle.x(100 + frame * ((width - 200) / 90));
+  const total = comp.durationInFrames.get();
+  circle.x(100 + frame * ((width - 200) / total));
 });
 
 export default comp;

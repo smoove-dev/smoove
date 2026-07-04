@@ -7,13 +7,14 @@ import { Composition, interpolateColors, Rect, Sequence, Text } from "@smoove/co
  */
 const width = 1280;
 const height = 720;
-const duration = 300;
+const fps = 60;
+const duration = fps * 5;
 
 const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 const comp = new Composition({
   id: "color-shift",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

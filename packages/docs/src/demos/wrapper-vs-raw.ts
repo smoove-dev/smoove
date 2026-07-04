@@ -11,7 +11,8 @@ import Konva from "konva";
  */
 const width = 1280;
 const height = 720;
-const duration = 300;
+const fps = 60;
+const duration = fps * 5;
 const minW = 360;
 const maxW = 1040;
 const rowX = 120;
@@ -21,7 +22,7 @@ const FILL = "#f0c000";
 
 const comp = new Composition({
   id: "wrapper-vs-raw",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

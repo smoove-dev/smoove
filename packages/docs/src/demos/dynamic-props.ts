@@ -30,11 +30,12 @@ type CardProps = {
 
 const width = 1280;
 const height = 720;
-const duration = 180; // 3s at 60fps
+const fps = 60;
+const duration = fps * 3;
 
 const comp = new Composition<CardProps>({
   id: "dynamic-props",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

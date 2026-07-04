@@ -14,10 +14,11 @@ A `Composition` _is_ a `Konva.Stage` with a clock bolted on. `fps` and
 frame and advances it during playback.
 
 ```ts
+const fps = 30;
 const comp = new Composition({
   id: "scene", // unique id
-  fps: 30, // frames per second
-  durationInFrames: 150, // 5 seconds total, frames 0…149
+  fps,
+  durationInFrames: fps * 5, // frames 0…149
   width: 1280,
   height: 720,
   loop: true, // restart at 0 when the end is reached
@@ -29,6 +30,7 @@ Read the clock reactively at any time:
 ```ts
 comp.frame.get(); // current frame
 comp.isPlaying.get(); // true while playing
+comp.durationInFrames.get(); // total length, same value you passed in above
 comp.frame.subscribe((f) => console.log("now at", f));
 ```
 

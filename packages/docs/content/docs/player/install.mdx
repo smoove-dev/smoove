@@ -57,7 +57,8 @@ and `window.Konva`, so you can build a composition inline:
 
   const { Composition, Sequence, Rect, interpolate } = window.Smoove;
 
-  const comp = new Composition({ id: "demo", fps: 60, durationInFrames: 120, width: 640, height: 360 });
+  const fps = 60;
+  const comp = new Composition({ id: "demo", fps, durationInFrames: fps * 2, width: 640, height: 360 });
   const seq = new Sequence();
   const box = new Rect({ x: 40, y: 140, width: 80, height: 80, fill: "#38bdf8" });
   seq.add(box);

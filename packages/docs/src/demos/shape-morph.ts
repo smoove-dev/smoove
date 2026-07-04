@@ -23,11 +23,12 @@ const MUTED = "#7d8590";
 
 const width = 1280;
 const height = 720;
-const duration = 180;
+const fps = 60;
+const duration = fps * 3;
 
 const comp = new Composition({
   id: "shape-morph",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

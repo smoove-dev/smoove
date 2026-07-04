@@ -8,13 +8,14 @@ import { Circle, Composition, interpolate, Line, Rect, Sequence, Text } from "@s
  */
 const width = 1280;
 const height = 720;
-const duration = 240;
+const fps = 60;
+const duration = fps * 4;
 
 const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 const comp = new Composition({
   id: "interpolate-basics",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

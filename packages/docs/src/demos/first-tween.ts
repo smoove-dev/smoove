@@ -4,11 +4,12 @@ import { Circle, Composition, Easing, interpolate, Rect, Sequence } from "@smoov
 // position and opacity are a function of the current frame.
 const width = 1280;
 const height = 720;
-const duration = 180; // 3 seconds at 60fps
+const fps = 60;
+const duration = fps * 3;
 
 const comp = new Composition({
   id: "first-tween",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

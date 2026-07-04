@@ -8,6 +8,7 @@ import { Composition, interpolate, Rect, Sequence, Series, Text } from "@smoove/
  */
 const width = 1280;
 const height = 720;
+const fps = 60;
 const sceneLen = 100;
 const overlap = -20;
 // 3 scenes back-to-back, two of them overlapping by 20 frames each.
@@ -18,7 +19,7 @@ const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 const comp = new Composition({
   id: "series-scenes",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,

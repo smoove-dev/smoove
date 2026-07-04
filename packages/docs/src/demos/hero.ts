@@ -7,11 +7,12 @@ import { Circle, Composition, Easing, interpolate, Rect, Sequence, Text } from "
  */
 const width = 1280;
 const height = 720;
-const duration = 300;
+const fps = 60;
+const duration = fps * 5;
 
 const comp = new Composition({
   id: "hero",
-  fps: 60,
+  fps,
   durationInFrames: duration,
   width,
   height,
