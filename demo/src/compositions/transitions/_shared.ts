@@ -20,10 +20,11 @@
    running transition without rebuilding. In your own app you'd skip
    `live` and pass a fixed `presentation: dissolve({ … })`.
    ============================================================ */
-import { Composition, type Sequence } from "@smoove/core";
+import { Composition, type Sequence, Video } from "@smoove/core";
 import { kf } from "@smoove/studio";
 import { linearTiming, type Presentation, TransitionSeries } from "@smoove/transitions";
-import Konva from "konva";
+import sceneAUrl from "../../files/film/s1a.mp4";
+import sceneBUrl from "../../files/film/s3a.mp4";
 
 export const W = 1280;
 export const H = 720;
@@ -47,40 +48,27 @@ export function makeComp<P extends Record<string, unknown>>(id: string, props: P
   });
 }
 
-type SceneSpec = { bg: string; fg: string; ring: string; letter: string };
-
-function paintScene(spec: SceneSpec): (seq: Sequence) => void {
+/** Paint a full-frame, muted video clip — the content each demo transitions between. */
+function videoScene(src: string): (seq: Sequence) => void {
   return (seq) => {
-    seq.add(new Konva.Rect({ x: 0, y: 0, width: W, height: H, fill: spec.bg }));
-    // Corner markers make translation / clipping / warping legible.
-    for (const [x, y] of [
-      [120, 120],
-      [W - 120, 120],
-      [120, H - 120],
-      [W - 120, H - 120],
-    ] as const) {
-      seq.add(new Konva.Rect({ x: x - 40, y: y - 40, width: 80, height: 80, fill: spec.ring }));
-    }
-    seq.add(new Konva.Circle({ x: W / 2, y: H / 2, radius: 170, fill: spec.fg }));
     seq.add(
-      new Konva.Text({
+      new Video({
+        src,
         x: 0,
-        y: H / 2 - 95,
+        y: 0,
         width: W,
-        align: "center",
-        text: spec.letter,
-        fontSize: 180,
-        fontStyle: "700",
-        fontFamily: "system-ui, sans-serif",
-        fill: "#0d1117",
+        height: H,
+        objectFit: "cover",
+        objectPosition: "center",
+        muted: true,
       }),
     );
   };
 }
 
-/** Scene A (outgoing) and Scene B (incoming) — identical across every demo. */
-export const sceneA = paintScene({ bg: "#0d1117", fg: "#4ea1ff", ring: "#1f6feb", letter: "A" });
-export const sceneB = paintScene({ bg: "#2d0b1a", fg: "#ffd166", ring: "#ff6b6b", letter: "B" });
+/** Scene A (outgoing) and Scene B (incoming) — two clips from the Cohabit film, identical across every demo. */
+export const sceneA = videoScene(sceneAUrl);
+export const sceneB = videoScene(sceneBUrl);
 
 /**
  * DEMO-ONLY: rebuild the presentation from the live props every frame, so

@@ -3,6 +3,96 @@
   "configurations": [
     { "name": "demo", "runtimeExecutable": "pnpm", "runtimeArgs": ["dev"], "port": 5173 },
     {
+      "name": "smoove-intro-pulsar",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "/Users/rotem/development/smoove-intro-pulsar",
+        "--",
+        "--port",
+        "5200",
+        "--strictPort"
+      ],
+      "port": 5200
+    },
+    {
+      "name": "smoove-intro-nova",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "/Users/rotem/development/smoove-intro-nova",
+        "--",
+        "--port",
+        "5198",
+        "--strictPort"
+      ],
+      "port": 5198
+    },
+    {
+      "name": "smoove-intro-vega",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "/Users/rotem/development/smoove-intro-vega",
+        "--",
+        "--port",
+        "5197",
+        "--strictPort"
+      ],
+      "port": 5197
+    },
+    {
+      "name": "smoove-intro-orion",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "/Users/rotem/development/smoove-intro-orion",
+        "--",
+        "--port",
+        "5196",
+        "--strictPort"
+      ],
+      "port": 5196
+    },
+    {
+      "name": "smoove-intro-lyra",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "/Users/rotem/development/smoove-intro-lyra",
+        "--",
+        "--port",
+        "5195",
+        "--strictPort"
+      ],
+      "port": 5195
+    },
+    {
+      "name": "smoove-intro-echo",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "/Users/rotem/development/smoove-intro-echo",
+        "--",
+        "--port",
+        "5201",
+        "--strictPort"
+      ],
+      "port": 5201
+    },
+    {
       "name": "template-composition-ts",
       "runtimeExecutable": "npm",
       "runtimeArgs": [
