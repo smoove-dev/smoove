@@ -1,6 +1,6 @@
 {
   "name": "@smoove/player",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Lit web components that play a smoove Composition like an HTML5 <video>.",
   "license": "MIT",
   "repository": {
