@@ -10,10 +10,10 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   if (!queue.get(jobId)) return new Response("Not found", { status: 404 });
 
   const encoder = new TextEncoder();
+  let unsubscribe = () => {};
+  let closed = false;
   const stream = new ReadableStream({
     start(controller) {
-      let unsubscribe = () => {};
-      let closed = false;
       const finish = () => {
         if (closed) return;
         closed = true;
@@ -24,13 +24,26 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       };
       const onJob = (job: RenderQueueJob) => {
         if (closed) return;
-        controller.enqueue(encoder.encode(`data: ${JSON.stringify(job)}\n\n`));
+        // The client can vanish between the abort/cancel callback and this
+        // delivery — a throwing enqueue must not take the server down.
+        try {
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify(job)}\n\n`));
+        } catch {
+          finish();
+          return;
+        }
         // Defer so `unsubscribe` is assigned even when the very first (synchronous)
         // delivery is already terminal.
         if (isTerminal(job.status)) queueMicrotask(finish);
       };
       unsubscribe = queue.subscribe(jobId, onJob);
       request.signal.addEventListener("abort", finish);
+    },
+    // Fires when the consumer disconnects (the dev server doesn't always abort
+    // `request.signal` on TCP close) — stop emitting into the dead stream.
+    cancel() {
+      closed = true;
+      unsubscribe();
     },
   });
 

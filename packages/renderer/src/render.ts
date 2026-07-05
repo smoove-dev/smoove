@@ -2,7 +2,7 @@ import { writeFile } from "node:fs/promises";
 import { PassThrough } from "node:stream";
 import { type Composition, isAudioNode, isVideoNode } from "@smoove/core";
 import Konva from "konva";
-import { Canvas } from "skia-canvas";
+import type { Canvas } from "skia-canvas";
 import { mixAudio } from "./audio-mix.js";
 import { collectAudioTrack } from "./audio-track.js";
 import {
@@ -12,6 +12,7 @@ import {
   MediabunnyEncoder,
 } from "./encode.js";
 import { registerFonts } from "./setup.js";
+import { cpuCanvas } from "./skia.js";
 import {
   type Fit,
   type FrameOptions,
@@ -208,7 +209,7 @@ export function renderToStream(comp: Composition, opts: StreamOptions): RenderTo
 }
 
 function fitCanvas(src: Canvas, target: Resolution, fit: Fit): Canvas {
-  const out = new Canvas(target.width, target.height);
+  const out = cpuCanvas(target.width, target.height);
   const ctx = out.getContext("2d");
   const scale =
     fit === "cover"

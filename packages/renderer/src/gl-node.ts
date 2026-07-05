@@ -1,6 +1,13 @@
-import { createRequire } from "node:module";
 import { type GlPlatform, transpileTo100, VERTEX_SHADER_100 } from "@smoove/transitions";
-import { Canvas } from "skia-canvas";
+// Imported from the bare "module" specifier (not "node:module") on purpose: a
+// consuming app may alias `node:module` to a browser stub for its client bundle
+// (the demo and the create-smoove templates do), and `resolve.alias` applies to
+// the SSR graph too — a `node:module` import here would resolve to the stub and
+// silently disable headless-gl (no shader transitions/effects in server renders).
+// biome-ignore lint/style/useNodejsImportProtocol: bare "module" deliberately dodges a `node:module` client alias.
+import { createRequire } from "module";
+import type { Canvas } from "skia-canvas";
+import { cpuCanvas } from "./skia.js";
 
 const require = createRequire(import.meta.url);
 
@@ -35,7 +42,9 @@ export function createNodeGlPlatform(): GlPlatform | null {
   let bufWidth = 1;
   let bufHeight = 1;
   let pixels = new Uint8Array(4);
-  let out = new Canvas(1, 1);
+  // CPU surface: it's written with putImageData and blitted into CPU-rasterized
+  // layer canvases (see skia.ts) — a GPU surface here just adds readbacks.
+  let out = cpuCanvas(1, 1);
 
   return {
     gl,
@@ -48,7 +57,7 @@ export function createNodeGlPlatform(): GlPlatform | null {
       bufWidth = width;
       bufHeight = height;
       pixels = new Uint8Array(width * height * 4);
-      out = new Canvas(width, height);
+      out = cpuCanvas(width, height);
     },
 
     uploadScene(source, width, height) {

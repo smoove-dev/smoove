@@ -4,6 +4,7 @@ import type { KMEffect } from "../effects/contract.js";
 import { isKMLayoutRoot } from "../layout/contract.js";
 import { MEDIA_MARK, TICK_MARK } from "../media/media-marker.js";
 import { getComposition } from "./composition.js";
+import { getEnvironment } from "./environment.js";
 
 export type SequenceOptions = Konva.LayerConfig & {
   /** Composition frame this sequence starts on. Defaults to `0`. */
@@ -129,6 +130,12 @@ export class Sequence extends Konva.Layer {
       for (const c of this.getChildren()) {
         if (isKMLayoutRoot(c)) c._kmComputeLayout();
       }
+      // Offline rendering: don't draw at all — `captureCanvas()` forces a
+      // synchronous `drawScene()` on every visible layer at capture time, so a
+      // draw here would run every effect/shader chain twice per frame (and the
+      // rAF-fallback `batchDraw` would fire a third, torn draw between frames).
+      const stage = this.getStage();
+      if (stage && getEnvironment(stage).isRendering) return;
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the
       // newly-displayed layer (avoids a one-frame flash of stale content).
