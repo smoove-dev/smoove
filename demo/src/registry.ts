@@ -10,6 +10,40 @@ import cohabit from "./compositions/cohabit/index.js";
 import colors from "./compositions/colors/index.js";
 import customFont from "./compositions/custom-font/index.js";
 import easings from "./compositions/easings/index.js";
+import fxBlur from "./compositions/effects/fx-blur/index.js";
+import fxChromaticAberration from "./compositions/effects/fx-chromatic-aberration/index.js";
+import fxColorKey from "./compositions/effects/fx-color-key/index.js";
+import fxColorPanels from "./compositions/effects/fx-color-panels/index.js";
+import fxDithering from "./compositions/effects/fx-dithering/index.js";
+import fxDotGrid from "./compositions/effects/fx-dot-grid/index.js";
+import fxDotOrbit from "./compositions/effects/fx-dot-orbit/index.js";
+import fxGemSmoke from "./compositions/effects/fx-gem-smoke/index.js";
+import fxGlow from "./compositions/effects/fx-glow/index.js";
+import fxGodRays from "./compositions/effects/fx-god-rays/index.js";
+import fxGrainGradient from "./compositions/effects/fx-grain-gradient/index.js";
+import fxHeatmap from "./compositions/effects/fx-heatmap/index.js";
+import fxHeatmapLogo from "./compositions/effects/fx-heatmap-logo/index.js";
+import fxLiquidMetal from "./compositions/effects/fx-liquid-metal/index.js";
+import fxMeshGradient from "./compositions/effects/fx-mesh-gradient/index.js";
+import fxMetaballs from "./compositions/effects/fx-metaballs/index.js";
+import fxNeuroNoise from "./compositions/effects/fx-neuro-noise/index.js";
+import fxNoiseGrain from "./compositions/effects/fx-noise-grain/index.js";
+import fxPerlinNoise from "./compositions/effects/fx-perlin-noise/index.js";
+import fxPixelate from "./compositions/effects/fx-pixelate/index.js";
+import fxPulsingBorder from "./compositions/effects/fx-pulsing-border/index.js";
+import fxSimplexNoise from "./compositions/effects/fx-simplex-noise/index.js";
+import fxSmokeRing from "./compositions/effects/fx-smoke-ring/index.js";
+import fxSpiral from "./compositions/effects/fx-spiral/index.js";
+import fxStaticMeshGradient from "./compositions/effects/fx-static-mesh-gradient/index.js";
+import fxStaticRadialGradient from "./compositions/effects/fx-static-radial-gradient/index.js";
+import fxSwirl from "./compositions/effects/fx-swirl/index.js";
+import fxVignette from "./compositions/effects/fx-vignette/index.js";
+import fxVoronoi from "./compositions/effects/fx-voronoi/index.js";
+import fxWarp from "./compositions/effects/fx-warp/index.js";
+import fxWater from "./compositions/effects/fx-water/index.js";
+import fxWaves from "./compositions/effects/fx-waves/index.js";
+// Effects.
+import effectsShowcase from "./compositions/effects-showcase/index.js";
 // Layout.
 import flexLayout from "./compositions/flex-layout/index.js";
 import flexRowGrow from "./compositions/flex-row-grow/index.js";
@@ -96,6 +130,40 @@ export default defineRegistry([
   imageSlider,
   imageFade,
   imageClip,
+  // Effects.
+  effectsShowcase,
+  fxBlur,
+  fxColorKey,
+  fxGlow,
+  fxHeatmap,
+  fxPixelate,
+  fxVignette,
+  fxChromaticAberration,
+  fxNoiseGrain,
+  fxWater,
+  fxMeshGradient,
+  fxMetaballs,
+  fxWaves,
+  fxGodRays,
+  fxColorPanels,
+  fxDithering,
+  fxDotGrid,
+  fxDotOrbit,
+  fxGrainGradient,
+  fxNeuroNoise,
+  fxPerlinNoise,
+  fxPulsingBorder,
+  fxSimplexNoise,
+  fxSmokeRing,
+  fxSpiral,
+  fxStaticMeshGradient,
+  fxStaticRadialGradient,
+  fxSwirl,
+  fxVoronoi,
+  fxWarp,
+  fxHeatmapLogo,
+  fxLiquidMetal,
+  fxGemSmoke,
   // Transitions.
   trFade,
   trSlide,
