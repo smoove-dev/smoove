@@ -4,8 +4,13 @@ import { ChromaticAberrationEffect } from "../src/filters/chromatic-aberration.j
 import { ColorKeyEffect } from "../src/filters/color-key.js";
 import { GlowEffect } from "../src/filters/glow.js";
 import { HeatmapEffect } from "../src/filters/heatmap.js";
+import { HolographicEffect } from "../src/filters/holographic.js";
+import { NeonEffect } from "../src/filters/neon.js";
 import { NoiseGrainEffect } from "../src/filters/noise-grain.js";
 import { PixelateEffect } from "../src/filters/pixelate.js";
+import { PulseGlowEffect } from "../src/filters/pulse-glow.js";
+import { ShineEffect } from "../src/filters/shine.js";
+import { SparkleEffect } from "../src/filters/sparkle.js";
 import { VignetteEffect } from "../src/filters/vignette.js";
 
 const CTX = { frame: 0, time: 0, fps: 30, width: 100, height: 100, pixelRatio: 1 };
@@ -81,6 +86,65 @@ describe("GlowEffect", () => {
     expect(passes[1]?.uniforms.u_direction).toEqual([0, 10]);
     expect(passes[1]?.uniforms.u_threshold).toBe(0); // brightpass only on pass 1
     expect(passes[2]?.fragment).toContain("u_original");
+  });
+});
+
+describe("ShineEffect", () => {
+  it("maps params, converts angle, and scales u_time by speed", () => {
+    const e = new ShineEffect({ angle: 90, width: 0.2, period: 4, speed: 2 });
+    const u = e._kmPasses({ ...CTX, time: 1.5 })[0]?.uniforms;
+    expect(u?.u_angle).toBeCloseTo(Math.PI / 2);
+    expect(u?.u_width).toBe(0.2);
+    expect(u?.u_period).toBe(4);
+    expect(u?.u_time).toBe(3); // time × speed
+  });
+});
+
+describe("NeonEffect", () => {
+  it("emits blur-H, blur-V (no brightpass), then a composite pass", () => {
+    const passes = new NeonEffect({ radius: 12 })._kmPasses(CTX);
+    expect(passes).toHaveLength(3);
+    expect(passes[0]?.uniforms.u_direction).toEqual([12, 0]);
+    expect(passes[0]?.uniforms.u_threshold).toBe(0);
+    expect(passes[1]?.uniforms.u_direction).toEqual([0, 12]);
+    expect(passes[2]?.fragment).toContain("u_original");
+  });
+  it("keeps u_flicker at 1 when flicker is 0, and deterministic otherwise", () => {
+    expect(new NeonEffect()._kmPasses({ ...CTX, time: 3.3 })[2]?.uniforms.u_flicker).toBe(1);
+    const at = () =>
+      new NeonEffect({ flicker: 0.8 })._kmPasses({ ...CTX, time: 3.3 })[2]?.uniforms.u_flicker;
+    expect(at()).toBe(at()); // same clock → same flicker
+    expect(at()).toBeLessThanOrEqual(1);
+  });
+});
+
+describe("SparkleEffect", () => {
+  it("maps grid and glint params to uniforms", () => {
+    const u = new SparkleEffect({ density: 20, size: 6, intensity: 2 })._kmPasses(CTX)[0]?.uniforms;
+    expect(u?.u_density).toBe(20);
+    expect(u?.u_size).toBe(6);
+    expect(u?.u_intensity).toBe(2);
+  });
+});
+
+describe("HolographicEffect", () => {
+  it("maps sheen params and converts angle to radians", () => {
+    const u = new HolographicEffect({ scale: 5, angle: 180, saturation: 0.5 })._kmPasses(CTX)[0]
+      ?.uniforms;
+    expect(u?.u_scale).toBe(5);
+    expect(u?.u_angle).toBeCloseTo(Math.PI);
+    expect(u?.u_saturation).toBe(0.5);
+  });
+});
+
+describe("PulseGlowEffect", () => {
+  it("shares glow's pass chain and breathes u_intensity on the clock", () => {
+    const e = new PulseGlowEffect({ radius: 10, intensity: 2, depth: 0.5, period: 2 });
+    const at = (time: number) => e._kmPasses({ ...CTX, time })[2]?.uniforms.u_intensity as number;
+    expect(e._kmPasses(CTX)).toHaveLength(3);
+    expect(at(0)).toBeCloseTo(1); // dim end: intensity × (1 − depth)
+    expect(at(1)).toBeCloseTo(2); // half period: full intensity
+    expect(at(2)).toBeCloseTo(1); // full period: back to dim
   });
 });
 

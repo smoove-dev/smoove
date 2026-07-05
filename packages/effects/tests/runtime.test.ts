@@ -126,6 +126,11 @@ void main() { fragColor = u_color; }`;
       new filters.NoiseGrainEffect(),
       new filters.GlowEffect(),
       new filters.HeatmapEffect(),
+      new filters.ShineEffect(),
+      new filters.NeonEffect({ flicker: 0.5 }),
+      new filters.SparkleEffect(),
+      new filters.HolographicEffect(),
+      new filters.PulseGlowEffect(),
     ];
     const ctx = { frame: 0, time: 0, fps: 30, width: 4, height: 4, pixelRatio: 1 };
     const rt = new EffectRuntime(p);

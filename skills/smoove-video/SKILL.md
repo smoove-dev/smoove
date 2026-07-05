@@ -88,7 +88,11 @@ for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 on any node (`effects: [new BlurEffect({ radius: 8 })]`) or on a `Sequence`
 (layer-wide post-pass, e.g. `new NoiseGrainEffect({ amount: 0.15 })`). Filters:
 `BlurEffect`, `ColorKeyEffect`, `GlowEffect`, `HeatmapEffect`, `PixelateEffect`,
-`VignetteEffect`, `ChromaticAberrationEffect`, `NoiseGrainEffect`. Animate
+`VignetteEffect`, `ChromaticAberrationEffect`, `NoiseGrainEffect`, plus a
+self-animating text-shine family: `ShineEffect` (gloss sweep), `NeonEffect`
+(core + halo + flicker), `SparkleEffect` (twinkles), `HolographicEffect`
+(foil rainbow), `PulseGlowEffect` (breathing glow) — these run on the clock
+via their own `period`/`flicker`/`speed` params, no `register` needed. Animate
 params with generated accessors inside `register`: `blur.radius(f * 0.5)`,
 `heatmap.enable(f < 100)`. Twenty generative sources (`MeshGradient`,
 `Metaballs`, `Waves`, `GodRays`, `Voronoi`, `Swirl`, `Dithering`, `NeuroNoise`,

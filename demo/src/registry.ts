@@ -23,16 +23,21 @@ import fxGodRays from "./compositions/effects/fx-god-rays/index.js";
 import fxGrainGradient from "./compositions/effects/fx-grain-gradient/index.js";
 import fxHeatmap from "./compositions/effects/fx-heatmap/index.js";
 import fxHeatmapLogo from "./compositions/effects/fx-heatmap-logo/index.js";
+import fxHolographic from "./compositions/effects/fx-holographic/index.js";
 import fxLiquidMetal from "./compositions/effects/fx-liquid-metal/index.js";
 import fxMeshGradient from "./compositions/effects/fx-mesh-gradient/index.js";
 import fxMetaballs from "./compositions/effects/fx-metaballs/index.js";
+import fxNeon from "./compositions/effects/fx-neon/index.js";
 import fxNeuroNoise from "./compositions/effects/fx-neuro-noise/index.js";
 import fxNoiseGrain from "./compositions/effects/fx-noise-grain/index.js";
 import fxPerlinNoise from "./compositions/effects/fx-perlin-noise/index.js";
 import fxPixelate from "./compositions/effects/fx-pixelate/index.js";
+import fxPulseGlow from "./compositions/effects/fx-pulse-glow/index.js";
 import fxPulsingBorder from "./compositions/effects/fx-pulsing-border/index.js";
+import fxShine from "./compositions/effects/fx-shine/index.js";
 import fxSimplexNoise from "./compositions/effects/fx-simplex-noise/index.js";
 import fxSmokeRing from "./compositions/effects/fx-smoke-ring/index.js";
+import fxSparkle from "./compositions/effects/fx-sparkle/index.js";
 import fxSpiral from "./compositions/effects/fx-spiral/index.js";
 import fxStaticMeshGradient from "./compositions/effects/fx-static-mesh-gradient/index.js";
 import fxStaticRadialGradient from "./compositions/effects/fx-static-radial-gradient/index.js";
@@ -141,6 +146,11 @@ export default defineRegistry([
   fxChromaticAberration,
   fxNoiseGrain,
   fxWater,
+  fxShine,
+  fxNeon,
+  fxSparkle,
+  fxHolographic,
+  fxPulseGlow,
   fxMeshGradient,
   fxMetaballs,
   fxWaves,

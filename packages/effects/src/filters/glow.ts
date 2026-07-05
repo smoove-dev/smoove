@@ -2,8 +2,10 @@ import type { EffectFrameContext, EffectPass } from "@smoove/core";
 import { Effect, type EffectConfig } from "../effect.js";
 import { type ParamSchema, paramsToUniforms } from "../params.js";
 
-// Pass 1: horizontal blur of the bright/alpha regions.
-const BLUR_FRAG = `#version 300 es
+// Pass 1: horizontal blur of the bright/alpha regions. Exported (not via the
+// package barrel) so glow-shaped effects like PulseGlow share the compiled
+// programs — the runtime keys its program cache on the fragment string.
+export const GLOW_BLUR_FRAG = `#version 300 es
 precision highp float;
 in vec2 v_uv;
 uniform sampler2D u_texture;
@@ -28,7 +30,7 @@ void main() {
 }`;
 
 // Pass 3: additive composite of the blurred halo over the original.
-const COMPOSITE_FRAG = `#version 300 es
+export const GLOW_COMPOSITE_FRAG = `#version 300 es
 precision highp float;
 in vec2 v_uv;
 uniform sampler2D u_texture;  // blurred halo
@@ -60,16 +62,16 @@ export type GlowConfig = EffectConfig & {
 
 export class GlowEffect extends Effect {
   constructor(config: GlowConfig = {}) {
-    super(SCHEMA, COMPOSITE_FRAG, config);
+    super(SCHEMA, GLOW_COMPOSITE_FRAG, config);
   }
 
   override _kmPasses(ctx: EffectFrameContext): EffectPass[] {
     const base = paramsToUniforms(this.schema, this._values, ctx);
     const r = this._values.radius as number;
     return [
-      { fragment: BLUR_FRAG, uniforms: { ...base, u_direction: [r, 0] } },
-      { fragment: BLUR_FRAG, uniforms: { ...base, u_direction: [0, r], u_threshold: 0 } },
-      { fragment: COMPOSITE_FRAG, uniforms: base },
+      { fragment: GLOW_BLUR_FRAG, uniforms: { ...base, u_direction: [r, 0] } },
+      { fragment: GLOW_BLUR_FRAG, uniforms: { ...base, u_direction: [0, r], u_threshold: 0 } },
+      { fragment: GLOW_COMPOSITE_FRAG, uniforms: base },
     ];
   }
 }

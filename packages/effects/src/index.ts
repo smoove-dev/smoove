@@ -7,8 +7,13 @@ export {
 export { type ColorKeyConfig, ColorKeyEffect } from "./filters/color-key.js";
 export { type GlowConfig, GlowEffect } from "./filters/glow.js";
 export { type HeatmapConfig, HeatmapEffect } from "./filters/heatmap.js";
+export { type HolographicConfig, HolographicEffect } from "./filters/holographic.js";
+export { type NeonConfig, NeonEffect } from "./filters/neon.js";
 export { type NoiseGrainConfig, NoiseGrainEffect } from "./filters/noise-grain.js";
 export { type PixelateConfig, PixelateEffect } from "./filters/pixelate.js";
+export { type PulseGlowConfig, PulseGlowEffect } from "./filters/pulse-glow.js";
+export { type ShineConfig, ShineEffect } from "./filters/shine.js";
+export { type SparkleConfig, SparkleEffect } from "./filters/sparkle.js";
 export { type VignetteConfig, VignetteEffect } from "./filters/vignette.js";
 export { type WaterConfig, WaterEffect } from "./filters/water.js";
 export { ImageShaderSource, type ImageShaderSourceConfig } from "./image-source.js";

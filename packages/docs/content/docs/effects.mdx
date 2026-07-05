@@ -15,9 +15,13 @@ npm i @smoove/effects
 
 ## Filters
 
-Nine filters ship in v1: `BlurEffect`, `ColorKeyEffect` (chroma key),
+Fourteen filters ship: `BlurEffect`, `ColorKeyEffect` (chroma key),
 `GlowEffect`, `HeatmapEffect`, `PixelateEffect`, `VignetteEffect`,
-`ChromaticAberrationEffect`, `NoiseGrainEffect`, and `WaterEffect`. Construct one with a
+`ChromaticAberrationEffect`, `NoiseGrainEffect`, `WaterEffect`, and a
+five-strong text-shine family — `ShineEffect` (sweeping gloss band),
+`NeonEffect` (hot core, double halo, deterministic flicker), `SparkleEffect`
+(twinkling glints), `HolographicEffect` (drifting foil rainbow), and
+`PulseGlowEffect` (a glow that breathes on the clock). Construct one with a
 config object, attach it via `effects`, and animate its params inside
 `register` — each effect exposes Konva-style accessors generated from its
 schema:
@@ -42,6 +46,12 @@ scene.register((f) => {
 ```
 
 <Demo name="effects-filters" label="glow, pixelate, blur and chromatic aberration animating, with layer-wide grain" />
+
+The text-shine five animate themselves on the composition clock — sweep
+period, flicker, twinkle, sheen drift and pulse are effect params, so a title
+can shine with no `register()` callback at all:
+
+<Demo name="effects-text-shine" label="the five text-shine filters — shine, neon, sparkle, holographic and pulse glow — each animating on its own clock" />
 
 Effects can be toggled mid-scene with `enable(boolean)`, updated in bulk with
 `set({ radius: 4, color: "#f00" })`, and shared across nodes — an instance is
