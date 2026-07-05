@@ -5,6 +5,7 @@
     { "path": "./packages/core" },
     { "path": "./packages/layout" },
     { "path": "./packages/transitions" },
+    { "path": "./packages/effects" },
     { "path": "./packages/renderer" },
     { "path": "./packages/studio" },
     { "path": "./packages/vite" },

@@ -20,6 +20,18 @@
     "enabled": true,
     "rules": { "preset": "recommended" }
   },
+  "overrides": [
+    {
+      "includes": ["packages/effects/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noUnsafeDeclarationMerging": "off"
+          }
+        }
+      }
+    }
+  ],
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
