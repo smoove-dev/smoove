@@ -14,6 +14,7 @@
     "@react-router/node": "8.1.0",
     "@react-router/serve": "8.1.0",
     "@smoove/core": "workspace:*",
+    "@smoove/effects": "workspace:*",
     "@smoove/google-fonts": "workspace:*",
     "@smoove/player": "workspace:*",
     "@smoove/transitions": "workspace:*",

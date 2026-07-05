@@ -1,7 +1,14 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "demo", "runtimeExecutable": "pnpm", "runtimeArgs": ["dev"], "port": 5173 },
+    {
+      "name": "demo",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "dev"
+      ],
+      "port": 5173
+    },
     {
       "name": "smoove-intro-pulsar",
       "runtimeExecutable": "npm",
@@ -110,33 +117,71 @@
     {
       "name": "template-studio",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "templates/studio"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "templates/studio"
+      ],
       "port": 5174
     },
     {
       "name": "template-studio-alt",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "templates/studio", "--", "--port", "5199"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "templates/studio",
+        "--",
+        "--port",
+        "5199"
+      ],
       "port": 5199
     },
     {
       "name": "demo2",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "demo", "dev"],
+      "runtimeArgs": [
+        "--filter",
+        "demo",
+        "dev"
+      ],
       "port": 5174
     },
     {
       "name": "docs",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@smoove/docs", "dev"],
+      "runtimeArgs": [
+        "--filter",
+        "@smoove/docs",
+        "dev"
+      ],
       "port": 5176,
       "autoPort": true
     },
     {
       "name": "docs-prod",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@smoove/docs", "start"],
+      "runtimeArgs": [
+        "--filter",
+        "@smoove/docs",
+        "start"
+      ],
       "port": 3000
+    },
+    {
+      "name": "demo-fx",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--filter",
+        "demo",
+        "run",
+        "dev",
+        "--port",
+        "5178"
+      ],
+      "port": 5178
     }
   ]
 }

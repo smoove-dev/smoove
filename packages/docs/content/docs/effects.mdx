@@ -1,0 +1,82 @@
+---
+title: Effects
+description: Hardware-accelerated shader effects — filters on any node or Sequence, plus generative shader sources.
+---
+
+`@smoove/effects` runs GPU fragment shaders over your nodes. Every node and
+every `Sequence` accepts an `effects: [...]` list of effect instances; a
+sequence's effects run as a post-pass over the whole layer. Everything is
+driven by the composition clock — never wall time — so playback, scrubbing,
+and server renders produce identical pixels.
+
+```package-install
+npm i @smoove/effects
+```
+
+## Filters
+
+Nine filters ship in v1: `BlurEffect`, `ColorKeyEffect` (chroma key),
+`GlowEffect`, `HeatmapEffect`, `PixelateEffect`, `VignetteEffect`,
+`ChromaticAberrationEffect`, `NoiseGrainEffect`, and `WaterEffect`. Construct one with a
+config object, attach it via `effects`, and animate its params inside
+`register` — each effect exposes Konva-style accessors generated from its
+schema:
+
+```ts
+import { BlurEffect, GlowEffect, NoiseGrainEffect } from "@smoove/effects";
+
+const blur = new BlurEffect({ radius: 0 });
+const title = new Text({
+  text: "glow",
+  fill: "#fff",
+  effects: [new GlowEffect({ color: "#66ccff" }), blur],
+});
+scene.add(title);
+
+// Layer-wide film grain over the whole scene:
+const scene2 = new Sequence({ effects: [new NoiseGrainEffect({ amount: 0.15 })] });
+
+scene.register((f) => {
+  blur.radius(f > 90 ? (f - 90) * 2 : 0); // params animate like attrs
+});
+```
+
+<Demo name="effects-filters" label="glow, pixelate, blur and chromatic aberration animating, with layer-wide grain" />
+
+Effects can be toggled mid-scene with `enable(boolean)`, updated in bulk with
+`set({ radius: 4, color: "#f00" })`, and shared across nodes — an instance is
+a plain object, not tied to one node.
+
+Konva's `filters`/`cache()` are CPU `ImageData` loops and are deprecated for
+smoove nodes — use `effects` instead; mixing them logs a one-time warning.
+
+## Shader sources
+
+Generative sources are layout-aware **nodes** whose pixels come from a
+fragment shader with no input texture. Twenty ship in v1, ported from
+[paper-design/shaders](https://github.com/paper-design/shaders) (Apache-2.0):
+`MeshGradient`, `StaticMeshGradient`, `StaticRadialGradient`, `Metaballs`,
+`Waves`, `GodRays`, `ColorPanels`, `Dithering`, `DotGrid`, `DotOrbit`,
+`GrainGradient`, `NeuroNoise`, `PerlinNoise`, `PulsingBorder`, `SimplexNoise`,
+`SmokeRing`, `Spiral`, `Swirl`, `Voronoi`, and `Warp`. Three image effects —
+`Heatmap`, `LiquidMetal`, and `GemSmoke` — animate a logo you pass as `src`,
+pre-processing it once on load (blur/edge fields) and shading it on the clock.
+Give them explicit `width`/`height` or let a `Flex`/`Block` size them; their
+`speed` param scales composition-clock time, and they can take `effects`
+themselves like any node.
+
+```ts
+import { MeshGradient, Metaballs } from "@smoove/effects";
+
+scene.add(new MeshGradient({ width: 1280, height: 720, colors: ["#0b1020", "#1d4ed8"] }));
+row.add(new Metaballs({ flexGrow: 1, height: 360, count: 8 }));
+```
+
+<Demo name="effects-sources" label="a MeshGradient backdrop with Metaballs, Waves and GodRays in a flex row" />
+
+## Server rendering
+
+Add `import "@smoove/renderer/gl"` before rendering (the same import that
+enables shader transitions) and effects render in Node through headless-gl.
+The optional `gl` package must be installed; without it, nodes draw unfiltered
+and a one-time warning is logged.

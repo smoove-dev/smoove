@@ -82,6 +82,21 @@ content) supports `fitText`, `maxLines`/`ellipsis`, a built-in `typewriter`
 reveal, and `highlights`. Details: [rules/text.md](rules/text.md) and,
 for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 
+## Effects
+
+`@smoove/effects` adds GPU shader effects. Attach instances via `effects: [...]`
+on any node (`effects: [new BlurEffect({ radius: 8 })]`) or on a `Sequence`
+(layer-wide post-pass, e.g. `new NoiseGrainEffect({ amount: 0.15 })`). Filters:
+`BlurEffect`, `ColorKeyEffect`, `GlowEffect`, `HeatmapEffect`, `PixelateEffect`,
+`VignetteEffect`, `ChromaticAberrationEffect`, `NoiseGrainEffect`. Animate
+params with generated accessors inside `register`: `blur.radius(f * 0.5)`,
+`heatmap.enable(f < 100)`. Twenty generative sources (`MeshGradient`,
+`Metaballs`, `Waves`, `GodRays`, `Voronoi`, `Swirl`, `Dithering`, `NeuroNoise`,
+`SmokeRing`, `Warp`, …) are layout-aware nodes — size them explicitly or let
+flex place them. Image effects (`Heatmap`, `LiquidMetal`, `GemSmoke`) animate
+a logo you pass as `src`; `WaterEffect` refracts any node like a filter. Don't use Konva `filters`/`cache()` — they're CPU-based and
+deprecated for smoove nodes.
+
 ## Optional add-ons
 
 - `@smoove/transitions` — `TransitionSeries` + presentations (fade, slide,
