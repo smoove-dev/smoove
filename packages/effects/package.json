@@ -1,0 +1,48 @@
+{
+  "name": "@smoove/effects",
+  "version": "0.1.6",
+  "description": "Hardware-accelerated shader effects and generative shader sources for smoove.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoove-dev/smoove.git",
+    "directory": "packages/effects"
+  },
+  "homepage": "https://smoove.dev",
+  "bugs": "https://github.com/smoove-dev/smoove/issues",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "NOTICE"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "test": "vitest run",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "@smoove/core": "workspace:^",
+    "konva": ">=10"
+  },
+  "devDependencies": {
+    "@smoove/core": "workspace:*",
+    "gl": "^8.1.6",
+    "konva": "^10.3.0",
+    "vitest": "^3.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

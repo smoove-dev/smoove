@@ -1,0 +1,10 @@
+This package includes GLSL shader code derived from Paper Shaders
+(https://github.com/paper-design/shaders), Copyright Paper Design,
+licensed under the Apache License, Version 2.0.
+Modifications: adapted uniform names/time handling to the smoove effect
+runtime, GLSL ES 1.00-compatible rewrites (no integer modulus or array
+constructors, procedural Bayer matrices, switch → if-chains, procedural
+hash noise instead of the noise texture), removed the sizing/fit vertex
+system (plain v_uv with neutral sizing uniforms), and TypeScript image
+pre-processing (multi-scale box blurs, Poisson edge-field solver) adapted
+to run on smoove's cross-platform canvas.
