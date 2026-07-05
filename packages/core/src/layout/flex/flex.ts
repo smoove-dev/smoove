@@ -1,5 +1,7 @@
 import { DIRECTION_LTR } from "flexily/classic";
 import Konva from "konva";
+import { drawNodeWithEffects, initNodeEffects } from "../../effects/apply.js";
+import type { KMEffect } from "../../effects/contract.js";
 import { isKMLayoutNode, type KMLayoutNode, type LayoutBox } from "../contract.js";
 import {
   applyChildProps,
@@ -54,6 +56,21 @@ export class Flex extends Konva.Group implements KMLayoutNode {
       flexWidth: config.width,
       flexHeight: config.height,
     });
+    initNodeEffects(this);
+  }
+
+  effects(): KMEffect[];
+  effects(list: KMEffect[]): this;
+  effects(list?: KMEffect[]): KMEffect[] | this {
+    if (list === undefined) return (this.getAttr("effects") as KMEffect[] | undefined) ?? [];
+    this.setAttr("effects", list);
+    return this;
+  }
+
+  override drawScene(...args: Parameters<Konva.Group["drawScene"]>): this {
+    if (drawNodeWithEffects(this, args[0])) return this;
+    super.drawScene(...args);
+    return this;
   }
 
   computeLayout(): void {

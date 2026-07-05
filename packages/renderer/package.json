@@ -50,15 +50,20 @@
   "devDependencies": {
     "@smoove/transitions": "workspace:*",
     "@types/node": "^22.10.0",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "@smoove/effects": "workspace:*"
   },
   "peerDependencies": {
     "@smoove/core": "workspace:^",
     "@smoove/transitions": "workspace:^",
-    "konva": ">=10"
+    "konva": ">=10",
+    "@smoove/effects": "workspace:^"
   },
   "peerDependenciesMeta": {
     "@smoove/transitions": {
+      "optional": true
+    },
+    "@smoove/effects": {
       "optional": true
     }
   },

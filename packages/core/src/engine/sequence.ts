@@ -1,4 +1,6 @@
 import Konva from "konva";
+import { applyLayerEffects, initNodeEffects } from "../effects/apply.js";
+import type { KMEffect } from "../effects/contract.js";
 import { isKMLayoutRoot } from "../layout/contract.js";
 import { MEDIA_MARK, TICK_MARK } from "../media/media-marker.js";
 import { getComposition } from "./composition.js";
@@ -12,6 +14,8 @@ export type SequenceOptions = Konva.LayerConfig & {
    * Resolved live once added (see {@link Sequence.durationInFrames}).
    */
   durationInFrames?: number;
+  /** Layer-wide shader effects applied after children draw (e.g. film grain over a scene). */
+  effects?: KMEffect[];
 };
 
 export type Updater = (localFrame: number) => void;
@@ -58,6 +62,14 @@ export class Sequence extends Konva.Layer {
     super({ ...layerOpts, visible: false });
     this.from = from;
     this._durationInFrames = durationInFrames;
+    initNodeEffects(this);
+  }
+
+  override drawScene(...args: Parameters<Konva.Layer["drawScene"]>): this {
+    super.drawScene(...args);
+    // biome-ignore lint/suspicious/noExplicitAny: structural canvas view for the post-pass helper.
+    applyLayerEffects(this, args[0] as any);
+    return this;
   }
 
   /**

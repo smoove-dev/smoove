@@ -1,4 +1,6 @@
 import Konva from "konva";
+import { drawNodeWithEffects, initNodeEffects } from "../effects/apply.js";
+import type { KMEffect } from "../effects/contract.js";
 import { getComposition } from "../engine/composition.js";
 import {
   getDefaultImageLoader,
@@ -37,6 +39,8 @@ export type ImageConfig = Omit<Konva.GroupConfig, "width" | "height"> &
      * whatever a server renderer registered via `setDefaultImageLoader`.
      */
     loader?: ImageLoader;
+    /** Shader effects applied to this node's rendered pixels (see @smoove/effects). */
+    effects?: KMEffect[];
   };
 
 const IMG_KEYS = [
@@ -120,6 +124,21 @@ export class Image extends Konva.Group implements KMLayoutNode {
     }
 
     this._layoutImage();
+    initNodeEffects(this);
+  }
+
+  effects(): KMEffect[];
+  effects(list: KMEffect[]): this;
+  effects(list?: KMEffect[]): KMEffect[] | this {
+    if (list === undefined) return (this.getAttr("effects") as KMEffect[] | undefined) ?? [];
+    this.setAttr("effects", list);
+    return this;
+  }
+
+  override drawScene(...args: Parameters<Konva.Group["drawScene"]>): this {
+    if (drawNodeWithEffects(this, args[0])) return this;
+    super.drawScene(...args);
+    return this;
   }
 
   /**

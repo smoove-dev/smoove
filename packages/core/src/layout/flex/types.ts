@@ -1,4 +1,5 @@
 import type Konva from "konva";
+import type { KMEffect } from "../../effects/contract.js";
 
 export type FlexDirection = "row" | "column" | "row-reverse" | "column-reverse";
 
@@ -42,4 +43,6 @@ export type FlexConfig = Omit<Konva.GroupConfig, "width" | "height"> &
   FlexChildProps & {
     width?: SizeValue;
     height?: SizeValue;
+    /** Shader effects applied to this node's rendered pixels (see @smoove/effects). */
+    effects?: KMEffect[];
   };

@@ -6,6 +6,18 @@ export {
 } from "./animation/interpolate.js";
 export { interpolateColors } from "./animation/interpolate-colors.js";
 export {
+  type EffectFrameContext,
+  type EffectPass,
+  type EffectUniforms,
+  getEffectRuntime,
+  isKMEffect,
+  type KMEffect,
+  type KMEffectRuntime,
+  setEffectRuntime,
+  type UniformValue,
+  type WithEffects,
+} from "./effects/contract.js";
+export {
   type BufferState,
   Composition,
   type CompositionEvent,

@@ -30,3 +30,39 @@ export function enableNodeShaderTransitions(): void {
 }
 
 enableNodeShaderTransitions();
+
+/**
+ * Route `@smoove/effects` node/layer effects and shader sources through the
+ * same headless-gl + skia platform used for shader transitions, so they render
+ * in Node. No-op (with the same one-time hint) when `gl` is missing, and
+ * silently skipped when @smoove/effects isn't installed.
+ *
+ * Async because @smoove/effects is an optional ESM peer; `@smoove/renderer/gl`
+ * awaits it at module top level, so `import "@smoove/renderer/gl"` is enough.
+ */
+export async function enableNodeShaderEffects(): Promise<void> {
+  let effects: typeof import("@smoove/effects");
+  try {
+    effects = await import("@smoove/effects");
+  } catch {
+    return; // effects package not installed — nothing to wire
+  }
+  effects.setEffectPlatformFactory(() => {
+    const platform = createNodeGlPlatform();
+    if (!platform) {
+      if (!warned) {
+        warned = true;
+        console.warn(
+          "@smoove/renderer: shader transitions/effects need the optional `gl` (headless-gl) package — install it to render them, otherwise transitions fall back to fade() and nodes draw unfiltered.",
+        );
+      }
+      return null;
+    }
+    // Swap in the effects' flip-aware vertex shader: transitions' vertex shader
+    // hard-codes the V flip (fine for its single pass), but effect chains flip
+    // only on the final pass — a baked-in flip inverts even-length chains.
+    return { ...platform, vertexShader: effects.VERTEX_SHADER_100 };
+  });
+}
+
+await enableNodeShaderEffects();

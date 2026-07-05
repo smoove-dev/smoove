@@ -1,5 +1,7 @@
 import Konva from "konva";
 import { stringToArray } from "konva/lib/shapes/Text.js";
+import { drawNodeWithEffects, initNodeEffects } from "../../effects/apply.js";
+import type { KMEffect } from "../../effects/contract.js";
 import { TICK_MARK } from "../../media/media-marker.js";
 import type { KMLayoutNode, LayoutBox, MeasureContext } from "../contract.js";
 import { applySize, type FlexilyNode, parseSize, setTextWrapperMeasure } from "../flex/engine.js";
@@ -148,6 +150,22 @@ export class Text extends Konva.Group implements KMLayoutNode {
         this.getLayer()?.batchDraw();
       });
     }
+
+    initNodeEffects(this);
+  }
+
+  effects(): KMEffect[];
+  effects(list: KMEffect[]): this;
+  effects(list?: KMEffect[]): KMEffect[] | this {
+    if (list === undefined) return (this.getAttr("effects") as KMEffect[] | undefined) ?? [];
+    this.setAttr("effects", list);
+    return this;
+  }
+
+  override drawScene(...args: Parameters<Konva.Group["drawScene"]>): this {
+    if (drawNodeWithEffects(this, args[0])) return this;
+    super.drawScene(...args);
+    return this;
   }
 
   /** Replace the text content. Re-runs fit + clamp + layout. */

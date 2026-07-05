@@ -1,4 +1,5 @@
 import type Konva from "konva";
+import type { KMEffect } from "../../effects/contract.js";
 import type { FlexChildProps, SizeValue } from "../flex/types.js";
 import type { Font, FontFaceRef } from "./font.js";
 
@@ -112,4 +113,6 @@ export type TextConfig = Omit<Konva.GroupConfig, "width" | "height" | "text"> &
     // ----- effects -----
     typewriter?: TypewriterConfig;
     highlights?: HighlightConfig[];
+    /** Shader effects applied to this node's rendered pixels (see @smoove/effects). */
+    effects?: KMEffect[];
   };
