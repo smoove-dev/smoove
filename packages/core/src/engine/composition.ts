@@ -509,9 +509,13 @@ export class Composition<
       scratch.width = w;
       scratch.height = h;
     }
-    const ctx = scratch.getContext("2d") as CanvasRenderingContext2D | null;
+    const ctx = scratch.getContext("2d") as (CanvasRenderingContext2D & { reset?(): void }) | null;
     if (!ctx) return scratch;
-    ctx.clearRect(0, 0, w, h);
+    // reset() over clearRect: skia-canvas records every draw command and
+    // replays the whole history on each pixel read — without truncating it
+    // here, `toBufferSync` per frame turns a long render quadratic.
+    if (ctx.reset) ctx.reset();
+    else ctx.clearRect(0, 0, w, h);
     for (const child of this.getChildren()) {
       if (child instanceof Konva.Layer && child.visible()) {
         // Force a synchronous scene draw so the layer's own canvas is current

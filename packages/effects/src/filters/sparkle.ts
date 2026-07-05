@@ -58,7 +58,7 @@ const SCHEMA: ParamSchema = {
   color: { type: "color", uniform: "u_color", default: "#ffffff" },
   intensity: { type: "number", uniform: "u_intensity", default: 1, min: 0, max: 3, step: 0.05 },
   density: { type: "number", uniform: "u_density", default: 14, min: 2, max: 40, step: 1 },
-  size: { type: "number", uniform: "u_size", default: 4, min: 1, max: 20, step: 0.5 },
+  size: { type: "number", uniform: "u_size", default: 4, min: 1, max: 20, step: 0.5, px: true },
   speed: { type: "number", uniform: null, default: 1, min: -5, max: 5, step: 0.1 },
 };
 

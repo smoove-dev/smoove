@@ -42,6 +42,11 @@ export class WaterEffect extends Effect {
     super(SCHEMA, waterFragmentShader, config);
   }
 
+  /** The caustic displacement can pull edge pixels outward — conservative fixed bleed. */
+  override _kmPadding(_ctx: EffectFrameContext): number {
+    return 40;
+  }
+
   override _kmPasses(ctx: EffectFrameContext): EffectPass[] {
     const passes = super._kmPasses(ctx);
     for (const p of passes) p.uniforms.u_imageAspectRatio = ctx.width / ctx.height;

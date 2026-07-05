@@ -60,13 +60,30 @@ export class Sequence extends Konva.Layer {
     ) {
       throw new Error("Sequence: durationInFrames must be a positive integer");
     }
-    super({ ...layerOpts, visible: false });
+    // listening defaults to false: the player/renderer never hit-test, and a
+    // listening layer re-rasterizes its hit canvas (a second full vector pass)
+    // on every draw. Pass `listening: true` to opt back in for interactivity.
+    super({ listening: false, ...layerOpts, visible: false });
     this.from = from;
     this._durationInFrames = durationInFrames;
     initNodeEffects(this);
   }
 
   override drawScene(...args: Parameters<Konva.Layer["drawScene"]>): this {
+    // Server renders: truncate the layer canvas's skia display list before the
+    // redraw. skia-canvas replays the full recorded history on every pixel
+    // read (`getImageData`/`toBufferSync`), so without this a long render
+    // degrades quadratically. reset() wipes the pixelRatio scale Konva bakes
+    // into the context at setSize — reapply it.
+    const stage = this.getStage();
+    if (!args[0] && stage && getEnvironment(stage).isRendering) {
+      const canvas = this.getCanvas();
+      const raw = canvas.getContext()._context as CanvasRenderingContext2D & { reset?(): void };
+      if (raw.reset) {
+        raw.reset();
+        raw.scale(canvas.pixelRatio, canvas.pixelRatio);
+      }
+    }
     super.drawScene(...args);
     // biome-ignore lint/suspicious/noExplicitAny: structural canvas view for the post-pass helper.
     applyLayerEffects(this, args[0] as any);

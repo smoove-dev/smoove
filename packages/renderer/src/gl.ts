@@ -48,7 +48,7 @@ export async function enableNodeShaderEffects(): Promise<void> {
     return; // effects package not installed — nothing to wire
   }
   effects.setEffectPlatformFactory(() => {
-    const platform = createNodeGlPlatform();
+    const platform = createNodeGlPlatform({ rawReadback: true });
     if (!platform) {
       if (!warned) {
         warned = true;
@@ -58,10 +58,22 @@ export async function enableNodeShaderEffects(): Promise<void> {
       }
       return null;
     }
-    // Swap in the effects' flip-aware vertex shader: transitions' vertex shader
-    // hard-codes the V flip (fine for its single pass), but effect chains flip
-    // only on the final pass — a baked-in flip inverts even-length chains.
-    return { ...platform, vertexShader: effects.VERTEX_SHADER_100 };
+    // Adapt to the effects platform contract: the flip-aware vertex shader
+    // (transitions' hard-codes the V flip; effect chains flip per pass),
+    // flipFinalPass: false so the runtime renders the final pass un-flipped —
+    // headless-gl's bottom-up readPixels then produces top-down data with no
+    // CPU row-flip — and result() carrying the source-rect origin (always 0,0
+    // here: readback canvases are exact-size).
+    return {
+      ...platform,
+      vertexShader: effects.VERTEX_SHADER_100,
+      flipFinalPass: false,
+      result: (width: number, height: number) => ({
+        image: platform.result(width, height),
+        sx: 0,
+        sy: 0,
+      }),
+    };
   });
 }
 

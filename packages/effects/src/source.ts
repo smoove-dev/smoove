@@ -1,4 +1,5 @@
 import {
+  type EffectChainResult,
   type EffectFrameContext,
   type EffectPass,
   FlexShape,
@@ -70,7 +71,7 @@ export abstract class ShaderSource extends FlexShape<Konva.Shape, ShaderSourceCo
     pass: EffectPass,
     width: number,
     height: number,
-  ): CanvasImageSource | null {
+  ): EffectChainResult | null {
     return runtime.renderSource(pass, width, height);
   }
 
@@ -111,6 +112,8 @@ export abstract class ShaderSource extends FlexShape<Konva.Shape, ShaderSourceCo
       },
     };
     const out = this._render(runtime, pass, w, h);
-    if (out) ctx.drawImage(out, 0, 0, w, h);
+    if (out) {
+      ctx.drawImage(out.image as CanvasImageSource, out.sx, out.sy, w, h, 0, 0, w, h);
+    }
   }
 }

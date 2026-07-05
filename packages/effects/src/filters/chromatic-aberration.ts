@@ -1,3 +1,4 @@
+import type { EffectFrameContext } from "@smoove/core";
 import { Effect, type EffectConfig } from "../effect.js";
 import type { ParamSchema } from "../params.js";
 
@@ -18,7 +19,7 @@ void main() {
 }`;
 
 const SCHEMA: ParamSchema = {
-  amount: { type: "number", uniform: "u_amount", default: 4, min: 0, max: 60, step: 0.5 },
+  amount: { type: "number", uniform: "u_amount", default: 4, min: 0, max: 60, step: 0.5, px: true },
   angle: { type: "number", uniform: "u_angle", default: 0, min: 0, max: 360, step: 1, unit: "deg" },
 };
 
@@ -27,6 +28,10 @@ export type ChromaticAberrationConfig = EffectConfig & { amount?: number; angle?
 export class ChromaticAberrationEffect extends Effect {
   constructor(config: ChromaticAberrationConfig = {}) {
     super(SCHEMA, FRAGMENT, config);
+  }
+
+  override _kmPadding(_ctx: EffectFrameContext): number {
+    return this._values.amount as number;
   }
 }
 

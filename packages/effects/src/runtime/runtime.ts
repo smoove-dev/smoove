@@ -1,4 +1,6 @@
 import {
+  type EffectApplyOptions,
+  type EffectChainResult,
   type EffectPass,
   type KMEffectRuntime,
   setEffectRuntime,
@@ -9,8 +11,21 @@ import { createProgram, createTexture, type GlContext } from "./shared.js";
 
 type ProgramEntry = {
   program: WebGLProgram;
+  aPos: number;
   locations: Map<string, WebGLUniformLocation | null>;
 };
+
+type FboEntry = {
+  tex: [WebGLTexture, WebGLTexture];
+  fbo: [WebGLFramebuffer, WebGLFramebuffer];
+  /** LRU tick of last use. */
+  at: number;
+};
+
+type InputEntry = { tex: WebGLTexture; width: number; height: number; version: number };
+
+/** Distinct ping-pong FBO sizes kept alive (mixed comps use a handful; evict LRU past this). */
+const MAX_FBO_SIZES = 8;
 
 export class EffectRuntime implements KMEffectRuntime {
   /** True on a WebGL2 context (browser); false on WebGL1 (headless-gl). Some heavy sources require WebGL2. */
@@ -18,11 +33,21 @@ export class EffectRuntime implements KMEffectRuntime {
   private readonly platform: EffectGlPlatform;
   private readonly gl: GlContext;
   private readonly programs = new Map<string, ProgramEntry>();
-  private readonly originalTex: WebGLTexture;
-  private readonly pingTex: [WebGLTexture, WebGLTexture];
-  private readonly pingFbo: [WebGLFramebuffer, WebGLFramebuffer];
-  private fboWidth = 0;
-  private fboHeight = 0;
+  /** Ping-pong FBO/texture pairs per exact size — sized to the chain's region so uv spans the content. */
+  private readonly fbos = new Map<string, FboEntry>();
+  private fboTick = 0;
+  /** Fallback input texture for chains without a cache key. */
+  private readonly sharedInputTex: WebGLTexture;
+  /** Cached input textures per node (content-version keyed uploads). */
+  private readonly inputs = new WeakMap<object, InputEntry>();
+  /** Live input textures, for dispose() — WeakMap isn't iterable. */
+  private readonly liveInputTextures = new Set<WebGLTexture>();
+  /** Deletes a node's GL texture once the node itself is collected. */
+  private readonly reclaim = new FinalizationRegistry<WebGLTexture>((tex) => {
+    if (this.liveInputTextures.delete(tex)) this.gl.deleteTexture(tex);
+  });
+  /** Reused flat buffers for vecN[] uniforms, keyed by length. */
+  private readonly flatPool = new Map<number, Float32Array>();
   private broken = new Set<string>();
 
   constructor(platform: EffectGlPlatform) {
@@ -36,12 +61,7 @@ export class EffectRuntime implements KMEffectRuntime {
     const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-    this.originalTex = createTexture(gl);
-    this.pingTex = [createTexture(gl), createTexture(gl)];
-    const f0 = gl.createFramebuffer();
-    const f1 = gl.createFramebuffer();
-    if (!f0 || !f1) throw new Error("effects: failed to create framebuffers");
-    this.pingFbo = [f0, f1];
+    this.sharedInputTex = createTexture(gl);
   }
 
   private entry(fragment: string): ProgramEntry | null {
@@ -54,7 +74,7 @@ export class EffectRuntime implements KMEffectRuntime {
           this.platform.prepareFragment(fragment),
           this.platform.vertexShader,
         );
-        e = { program, locations: new Map() };
+        e = { program, aPos: this.gl.getAttribLocation(program, "a_pos"), locations: new Map() };
         this.programs.set(fragment, e);
       } catch (err) {
         this.broken.add(fragment);
@@ -82,7 +102,12 @@ export class EffectRuntime implements KMEffectRuntime {
     else if (Array.isArray(value[0])) {
       const vecs = value as number[][];
       const size = vecs[0]?.length ?? 4;
-      const flat = new Float32Array(vecs.length * size);
+      const len = vecs.length * size;
+      let flat = this.flatPool.get(len);
+      if (!flat) {
+        flat = new Float32Array(len);
+        this.flatPool.set(len, flat);
+      }
       for (let i = 0; i < vecs.length; i++) flat.set(vecs[i] as number[], i * size);
       if (size === 2) gl.uniform2fv(loc, flat);
       else if (size === 3) gl.uniform3fv(loc, flat);
@@ -95,29 +120,98 @@ export class EffectRuntime implements KMEffectRuntime {
     }
   }
 
-  private ensureFboSize(width: number, height: number): void {
-    if (this.fboWidth === width && this.fboHeight === height) return;
+  /** Ping-pong FBO pair for this exact size (uv semantics need texture == region size). */
+  private fboEntry(width: number, height: number): FboEntry {
     const gl = this.gl;
-    for (let i = 0; i < 2; i++) {
-      gl.bindTexture(gl.TEXTURE_2D, this.pingTex[i] as WebGLTexture);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
-      gl.bindFramebuffer(gl.FRAMEBUFFER, this.pingFbo[i] as WebGLFramebuffer);
-      gl.framebufferTexture2D(
-        gl.FRAMEBUFFER,
-        gl.COLOR_ATTACHMENT0,
-        gl.TEXTURE_2D,
-        this.pingTex[i] as WebGLTexture,
-        0,
-      );
+    const key = `${width}x${height}`;
+    let e = this.fbos.get(key);
+    if (!e) {
+      const tex: [WebGLTexture, WebGLTexture] = [createTexture(gl), createTexture(gl)];
+      const f0 = gl.createFramebuffer();
+      const f1 = gl.createFramebuffer();
+      if (!f0 || !f1) throw new Error("effects: failed to create framebuffers");
+      const fbo: [WebGLFramebuffer, WebGLFramebuffer] = [f0, f1];
+      for (let i = 0; i < 2; i++) {
+        gl.bindTexture(gl.TEXTURE_2D, tex[i] as WebGLTexture);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo[i] as WebGLFramebuffer);
+        gl.framebufferTexture2D(
+          gl.FRAMEBUFFER,
+          gl.COLOR_ATTACHMENT0,
+          gl.TEXTURE_2D,
+          tex[i] as WebGLTexture,
+          0,
+        );
+      }
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      e = { tex, fbo, at: 0 };
+      this.fbos.set(key, e);
+      if (this.fbos.size > MAX_FBO_SIZES) this.evictFbo();
     }
-    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-    this.fboWidth = width;
-    this.fboHeight = height;
+    e.at = ++this.fboTick;
+    return e;
+  }
+
+  private evictFbo(): void {
+    let oldestKey: string | null = null;
+    let oldest = Number.POSITIVE_INFINITY;
+    for (const [key, e] of this.fbos) {
+      if (e.at < oldest) {
+        oldest = e.at;
+        oldestKey = key;
+      }
+    }
+    if (oldestKey === null) return;
+    const e = this.fbos.get(oldestKey) as FboEntry;
+    this.gl.deleteTexture(e.tex[0]);
+    this.gl.deleteTexture(e.tex[1]);
+    this.gl.deleteFramebuffer(e.fbo[0]);
+    this.gl.deleteFramebuffer(e.fbo[1]);
+    this.fbos.delete(oldestKey);
+  }
+
+  /** Resolve (and upload if needed) the chain's input texture. */
+  private inputTexture(
+    input: CanvasImageSource | (() => CanvasImageSource),
+    width: number,
+    height: number,
+    opts?: EffectApplyOptions,
+  ): WebGLTexture {
+    const gl = this.gl;
+    const key = opts?.cacheKey;
+    const version = opts?.contentVersion;
+    if (key !== undefined && version !== undefined) {
+      let e = this.inputs.get(key);
+      if (!e) {
+        const tex = createTexture(gl);
+        this.liveInputTextures.add(tex);
+        this.reclaim.register(key, tex, tex);
+        e = { tex, width: 0, height: 0, version: -1 };
+        this.inputs.set(key, e);
+      }
+      const fresh = e.width === width && e.height === height && e.version === version;
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, e.tex);
+      if (!fresh) {
+        const source = typeof input === "function" ? input() : input;
+        this.platform.uploadScene(source, width, height);
+        e.width = width;
+        e.height = height;
+        e.version = version;
+      }
+      return e.tex;
+    }
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, this.sharedInputTex);
+    const source = typeof input === "function" ? input() : input;
+    this.platform.uploadScene(source, width, height);
+    return this.sharedInputTex;
   }
 
   private drawPass(
     pass: EffectPass,
     readTex: WebGLTexture | null,
+    originalTex: WebGLTexture | null,
     toFbo: WebGLFramebuffer | null,
     width: number,
     height: number,
@@ -131,67 +225,84 @@ export class EffectRuntime implements KMEffectRuntime {
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.useProgram(e.program);
-    const aPos = gl.getAttribLocation(e.program, "a_pos");
-    gl.enableVertexAttribArray(aPos);
-    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(e.aPos);
+    gl.vertexAttribPointer(e.aPos, 2, gl.FLOAT, false, 0, 0);
     if (readTex) {
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, readTex);
       const t = this.loc(e, "u_texture");
       if (t) gl.uniform1i(t, 0);
+    }
+    if (originalTex) {
       gl.activeTexture(gl.TEXTURE1);
-      gl.bindTexture(gl.TEXTURE_2D, this.originalTex);
+      gl.bindTexture(gl.TEXTURE_2D, originalTex);
       const o = this.loc(e, "u_original");
       if (o) gl.uniform1i(o, 1);
     }
     this.setUniform(e, "u_resolution", [width, height]);
-    // Flip only when rendering to the visible framebuffer (see shared.ts).
-    this.setUniform(e, "u_flipY", toFbo === null ? 1 : 0);
-    for (const [name, value] of Object.entries(pass.uniforms)) this.setUniform(e, name, value);
+    // Flip only when rendering to the visible framebuffer (see shared.ts) —
+    // and not even then when the platform reads pixels back (bottom-up
+    // readPixels of an un-flipped pass is already top-down).
+    const flip = toFbo === null && (this.platform.flipFinalPass ?? true);
+    this.setUniform(e, "u_flipY", flip ? 1 : 0);
+    for (const name in pass.uniforms) {
+      this.setUniform(e, name, pass.uniforms[name] as UniformValue);
+    }
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     return true;
   }
 
   applyChain(
-    input: CanvasImageSource,
+    input: CanvasImageSource | (() => CanvasImageSource),
     passes: EffectPass[],
     width: number,
     height: number,
-  ): CanvasImageSource | null {
+    opts?: EffectApplyOptions,
+  ): EffectChainResult | null {
     if (passes.length === 0) return null;
-    const gl = this.gl;
     this.platform.resize(width, height);
-    this.ensureFboSize(width, height);
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, this.originalTex);
-    this.platform.uploadScene(input, width, height);
+    const inputTex = this.inputTexture(input, width, height, opts);
+    const pingpong = passes.length > 1 ? this.fboEntry(width, height) : null;
 
-    let readTex: WebGLTexture = this.originalTex;
+    let readTex: WebGLTexture = inputTex;
     for (let i = 0; i < passes.length; i++) {
       const last = i === passes.length - 1;
-      const fbo = last ? null : (this.pingFbo[i % 2] as WebGLFramebuffer);
+      const fbo = last ? null : ((pingpong as FboEntry).fbo[i % 2] as WebGLFramebuffer);
       const pass = passes[i] as EffectPass;
-      if (!this.drawPass(pass, readTex, fbo, width, height)) return null;
-      if (!last) readTex = this.pingTex[i % 2] as WebGLTexture;
+      if (!this.drawPass(pass, readTex, inputTex, fbo, width, height)) return null;
+      if (!last) readTex = (pingpong as FboEntry).tex[i % 2] as WebGLTexture;
     }
     return this.platform.result(width, height);
   }
 
-  renderSource(pass: EffectPass, width: number, height: number): CanvasImageSource | null {
+  renderSource(pass: EffectPass, width: number, height: number): EffectChainResult | null {
     this.platform.resize(width, height);
-    if (!this.drawPass(pass, null, null, width, height)) return null;
+    if (!this.drawPass(pass, null, null, null, width, height)) return null;
     return this.platform.result(width, height);
+  }
+
+  releaseInput(cacheKey: object): void {
+    const e = this.inputs.get(cacheKey);
+    if (!e) return;
+    this.inputs.delete(cacheKey);
+    this.reclaim.unregister(e.tex);
+    if (this.liveInputTextures.delete(e.tex)) this.gl.deleteTexture(e.tex);
   }
 
   dispose(): void {
     const gl = this.gl;
     for (const e of this.programs.values()) gl.deleteProgram(e.program);
     this.programs.clear();
-    gl.deleteTexture(this.originalTex);
-    gl.deleteTexture(this.pingTex[0] as WebGLTexture);
-    gl.deleteTexture(this.pingTex[1] as WebGLTexture);
-    gl.deleteFramebuffer(this.pingFbo[0] as WebGLFramebuffer);
-    gl.deleteFramebuffer(this.pingFbo[1] as WebGLFramebuffer);
+    gl.deleteTexture(this.sharedInputTex);
+    for (const tex of this.liveInputTextures) gl.deleteTexture(tex);
+    this.liveInputTextures.clear();
+    for (const e of this.fbos.values()) {
+      gl.deleteTexture(e.tex[0]);
+      gl.deleteTexture(e.tex[1]);
+      gl.deleteFramebuffer(e.fbo[0]);
+      gl.deleteFramebuffer(e.fbo[1]);
+    }
+    this.fbos.clear();
     setEffectRuntime(null);
   }
 }

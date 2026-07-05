@@ -23,7 +23,7 @@ void main() {
 
 const SCHEMA: ParamSchema = {
   amount: { type: "number", uniform: "u_amount", default: 0.25, min: 0, max: 1, step: 0.01 },
-  size: { type: "number", uniform: "u_size", default: 1, min: 1, max: 16, step: 1 },
+  size: { type: "number", uniform: "u_size", default: 1, min: 1, max: 16, step: 1, px: true },
   animated: { type: "boolean", uniform: null, default: true },
 };
 

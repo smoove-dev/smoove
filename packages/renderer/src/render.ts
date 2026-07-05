@@ -11,6 +11,7 @@ import {
   type EncodeTarget,
   MediabunnyEncoder,
 } from "./encode.js";
+import { profiler } from "./profile.js";
 import { registerFonts } from "./setup.js";
 import { cpuCanvas } from "./skia.js";
 import {
@@ -131,14 +132,29 @@ async function runRender(
 
   const startMs = Date.now();
   try {
+    // Keep a few addFrame promises in flight instead of awaiting each: the
+    // promise resolving IS Mediabunny's backpressure signal, so this overlaps
+    // native encode + RGBA→YUV with the JS raster of the next frames.
+    const MAX_IN_FLIGHT = 3;
+    const inFlight: Promise<void>[] = [];
+    let encodeError: unknown;
     let i = 0;
     for (let f = from; f <= to; f++) {
       if (opts.signal?.aborted) throw new Error("[smoove] render aborted");
-      await comp.renderFrame(f);
-      let canvas = capture(comp);
+      if (encodeError !== undefined) throw encodeError;
+      await profiler.timeAsync("apply", () => comp.renderFrame(f));
+      let canvas = profiler.time("raster", () => capture(comp));
       if (resize) canvas = fitCanvas(canvas, size, fit);
-      const data = canvas.toBufferSync("raw", { colorType: "rgba" });
-      await encoder.addFrame(data, i / fps, 1 / fps);
+      const data = profiler.time("copy", () => canvas.toBufferSync("raw", { colorType: "rgba" }));
+      const p = encoder.addFrame(data, i / fps, 1 / fps);
+      p.catch((err) => {
+        encodeError = err;
+      });
+      inFlight.push(p);
+      if (inFlight.length >= MAX_IN_FLIGHT) {
+        await profiler.timeAsync("encode-wait", () => inFlight.shift() as Promise<void>);
+      }
+      profiler.frame();
       i++;
       if (opts.onProgress) {
         const elapsed = (Date.now() - startMs) / 1000;
@@ -151,6 +167,8 @@ async function runRender(
         });
       }
     }
+    await Promise.all(inFlight);
+    profiler.finish();
 
     let hasAudio = false;
     if (wantAudio) {

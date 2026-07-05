@@ -1,4 +1,9 @@
-import { type EffectPass, getDefaultImageLoader, type KMEffectRuntime } from "@smoove/core";
+import {
+  type EffectChainResult,
+  type EffectPass,
+  getDefaultImageLoader,
+  type KMEffectRuntime,
+} from "@smoove/core";
 import Konva from "konva";
 import type { ParamSchema } from "./params.js";
 import type { ProcessedImage, SizedImage } from "./processing/heatmap-field.js";
@@ -48,7 +53,7 @@ export abstract class ImageShaderSource extends ShaderSource {
     pass: EffectPass,
     width: number,
     height: number,
-  ): CanvasImageSource | null {
+  ): EffectChainResult | null {
     if (!this._processed) return null; // image still loading
     if (!this._scaled || this._scaled.w !== width || this._scaled.h !== height) {
       const canvas = Konva.Util.createCanvasElement();

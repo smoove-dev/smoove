@@ -15,7 +15,7 @@ void main() {
 }`;
 
 const SCHEMA: ParamSchema = {
-  size: { type: "number", uniform: "u_size", default: 8, min: 1, max: 200, step: 1 },
+  size: { type: "number", uniform: "u_size", default: 8, min: 1, max: 200, step: 1, px: true },
 };
 
 export type PixelateConfig = EffectConfig & { size?: number };

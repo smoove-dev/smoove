@@ -65,9 +65,13 @@ export class GlowEffect extends Effect {
     super(SCHEMA, GLOW_COMPOSITE_FRAG, config);
   }
 
+  override _kmPadding(_ctx: EffectFrameContext): number {
+    return this._values.radius as number;
+  }
+
   override _kmPasses(ctx: EffectFrameContext): EffectPass[] {
     const base = paramsToUniforms(this.schema, this._values, ctx);
-    const r = this._values.radius as number;
+    const r = (this._values.radius as number) * ctx.pixelRatio;
     return [
       { fragment: GLOW_BLUR_FRAG, uniforms: { ...base, u_direction: [r, 0] } },
       { fragment: GLOW_BLUR_FRAG, uniforms: { ...base, u_direction: [0, r], u_threshold: 0 } },

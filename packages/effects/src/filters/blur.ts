@@ -39,9 +39,13 @@ export class BlurEffect extends Effect {
     super(SCHEMA, FRAGMENT, config);
   }
 
+  override _kmPadding(_ctx: EffectFrameContext): number {
+    return this._values.radius as number;
+  }
+
   override _kmPasses(ctx: EffectFrameContext): EffectPass[] {
     const base = paramsToUniforms(this.schema, this._values, ctx);
-    const r = this._values.radius as number;
+    const r = (this._values.radius as number) * ctx.pixelRatio;
     const passes: EffectPass[] = [];
     if (r <= 0) return passes;
     if (this._values.horizontal) {

@@ -18,6 +18,12 @@ export type EffectConfig = { enabled?: boolean } & Record<string, unknown>;
  */
 export abstract class Effect implements KMEffect {
   readonly _kmEffect = true as const;
+  /**
+   * Capture space for node-level application: `"node"` (default) processes the
+   * node's bounding box + {@link _kmPadding}; `"stage"` keeps the full-stage
+   * capture (frame effects like vignette whose uv space is the scene).
+   */
+  readonly _kmSpace: "node" | "stage" = "node";
   /** Exposed for the Studio props panel. */
   readonly schema: ParamSchema;
   protected readonly _values: Record<string, unknown>;
@@ -83,6 +89,11 @@ export abstract class Effect implements KMEffect {
 
   _kmDetach(node: Konva.Node): void {
     this._nodes.delete(node);
+  }
+
+  /** How many px (stage units) this effect bleeds outside the node's bbox. */
+  _kmPadding(_ctx: EffectFrameContext): number {
+    return 0;
   }
 
   _kmPasses(ctx: EffectFrameContext): EffectPass[] {

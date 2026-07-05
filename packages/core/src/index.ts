@@ -6,6 +6,8 @@ export {
 } from "./animation/interpolate.js";
 export { interpolateColors } from "./animation/interpolate-colors.js";
 export {
+  type EffectApplyOptions,
+  type EffectChainResult,
   type EffectFrameContext,
   type EffectPass,
   type EffectUniforms,

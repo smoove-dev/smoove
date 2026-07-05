@@ -35,6 +35,9 @@ export type VignetteConfig = EffectConfig & {
 };
 
 export class VignetteEffect extends Effect {
+  /** Frame effect: the falloff is relative to the whole scene, not the node's bbox. */
+  override readonly _kmSpace = "stage" as const;
+
   constructor(config: VignetteConfig = {}) {
     super(SCHEMA, FRAGMENT, config);
   }

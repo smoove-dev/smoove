@@ -33,9 +33,13 @@ export class PulseGlowEffect extends Effect {
     super(SCHEMA, GLOW_COMPOSITE_FRAG, config);
   }
 
+  override _kmPadding(_ctx: EffectFrameContext): number {
+    return this._values.radius as number;
+  }
+
   override _kmPasses(ctx: EffectFrameContext): EffectPass[] {
     const base = paramsToUniforms(this.schema, this._values, ctx);
-    const r = this._values.radius as number;
+    const r = (this._values.radius as number) * ctx.pixelRatio;
     const peak = this._values.intensity as number;
     const depth = this._values.depth as number;
     const period = this._values.period as number;

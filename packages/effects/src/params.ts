@@ -12,6 +12,12 @@ export type ParamSpec = {
   step?: number;
   /** "deg" numbers are converted to radians at uniform time. */
   unit?: "deg";
+  /**
+   * The param is a pixel length: multiplied by the frame context's pixelRatio
+   * at uniform time so effects keep their visual size when chains run at
+   * device resolution (region capture on retina, layer effects).
+   */
+  px?: boolean;
   /** enum only: ordered labels; uniform value is the index as float. */
   values?: string[];
   /** enum only: explicit label → uniform value map (for non-0-based enums). */
@@ -93,7 +99,12 @@ export function paramsToUniforms(
     let mapped: UniformValue;
     switch (spec.type) {
       case "number":
-        mapped = spec.unit === "deg" ? ((v as number) * Math.PI) / 180 : (v as number);
+        mapped =
+          spec.unit === "deg"
+            ? ((v as number) * Math.PI) / 180
+            : spec.px
+              ? (v as number) * ctx.pixelRatio
+              : (v as number);
         break;
       case "boolean":
         mapped = v as boolean;
