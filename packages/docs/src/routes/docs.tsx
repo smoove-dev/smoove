@@ -56,9 +56,7 @@ export default function Page({ loaderData }: Route.ComponentProps) {
 
   return (
     <>
-      <Banner id="smoove-alpha">
-        smoove is in alpha: APIs can change between releases.
-      </Banner>
+      <Banner id="smoove-alpha">smoove is in alpha: APIs can change between releases.</Banner>
       <DocsLayout {...baseOptions()} tree={pageTree}>
         {clientLoader.useContent(path)}
       </DocsLayout>
