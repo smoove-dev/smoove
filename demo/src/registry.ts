@@ -10,6 +10,11 @@ import cohabit from "./compositions/cohabit/index.js";
 import colors from "./compositions/colors/index.js";
 import customFont from "./compositions/custom-font/index.js";
 import easings from "./compositions/easings/index.js";
+// Effects.
+import fxBlur from "./compositions/effects/fx-blur/index.js";
+import fxChromaKey from "./compositions/effects/fx-chroma-key/index.js";
+import fxShine from "./compositions/effects/fx-shine/index.js";
+import fxWater from "./compositions/effects/fx-water/index.js";
 // Layout.
 import flexLayout from "./compositions/flex-layout/index.js";
 import flexRowGrow from "./compositions/flex-row-grow/index.js";
@@ -115,6 +120,11 @@ export default defineRegistry([
   trZoomInOut,
   trSwap,
   trBookFlip,
+  // Effects.
+  fxBlur,
+  fxChromaKey,
+  fxShine,
+  fxWater,
   // Media.
   videoSync,
   audioMixer,

@@ -126,6 +126,12 @@
       "port": 5174
     },
     {
+      "name": "demo-alt",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "demo", "--", "--port", "5177"],
+      "port": 5177
+    },
+    {
       "name": "docs",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@smoove/docs", "dev"],

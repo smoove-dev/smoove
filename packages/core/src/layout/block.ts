@@ -1,4 +1,6 @@
 import Konva from "konva";
+import { drawNodeWithEffects, initNodeEffects } from "../effects/apply.js";
+import type { SmooveEffect } from "../effects/contract.js";
 import type { KMLayoutNode, LayoutBox } from "./contract.js";
 import { normalizeEdges, parseSize } from "./flex/engine.js";
 import { layoutRoot } from "./flex/flex.js";
@@ -39,6 +41,8 @@ export type BlockConfig = Omit<Konva.GroupConfig, "width" | "height"> &
     shadow?: ShadowProps;
     background?: BackgroundValue;
     cornerRadius?: number | number[];
+    /** Effects applied to this node's rendered pixels (see @smoove/effects). */
+    effects?: SmooveEffect[];
   };
 
 const BLOCK_KEYS = [
@@ -118,6 +122,21 @@ export class Block extends Konva.Group implements KMLayoutNode {
 
     this.on("widthChange heightChange", () => this._layoutBackground());
     this._layoutBackground();
+    initNodeEffects(this);
+  }
+
+  effects(): SmooveEffect[];
+  effects(list: SmooveEffect[]): this;
+  effects(list?: SmooveEffect[]): SmooveEffect[] | this {
+    if (list === undefined) return (this.getAttr("effects") as SmooveEffect[] | undefined) ?? [];
+    this.setAttr("effects", list);
+    return this;
+  }
+
+  override drawScene(...args: Parameters<Konva.Group["drawScene"]>): this {
+    if (drawNodeWithEffects(this, args[0])) return this;
+    super.drawScene(...args);
+    return this;
   }
 
   /**

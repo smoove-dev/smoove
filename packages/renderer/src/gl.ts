@@ -1,3 +1,4 @@
+import { EffectShaderRunner, setEffectShaderFactory } from "@smoove/core";
 import { GlCompositor, setCompositorFactory } from "@smoove/transitions";
 import { createNodeGlPlatform } from "./gl-node.js";
 
@@ -29,4 +30,26 @@ export function enableNodeShaderTransitions(): void {
   });
 }
 
+/**
+ * Route `shader` effect passes (e.g. @smoove/effects' water) through
+ * headless-gl as well. Idempotent. Each factory call builds its own GL
+ * context, so transitions and effects don't share GL state.
+ */
+export function enableNodeShaderEffects(): void {
+  setEffectShaderFactory(() => {
+    const platform = createNodeGlPlatform();
+    if (!platform) {
+      if (!warned) {
+        warned = true;
+        console.warn(
+          "@smoove/renderer: shader effects need the optional `gl` (headless-gl) package — install it to render them, otherwise those passes are skipped.",
+        );
+      }
+      return null;
+    }
+    return EffectShaderRunner.fromPlatform(platform);
+  });
+}
+
 enableNodeShaderTransitions();
+enableNodeShaderEffects();

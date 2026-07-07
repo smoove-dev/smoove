@@ -6,6 +6,7 @@ import {
 } from "@smoove/core";
 import { FontLibrary } from "skia-canvas";
 import { nullAudioSourceFactory } from "./audio-source-null.js";
+import { installEffectCanvases } from "./effects-canvas.js";
 import { makeSkiaFontLoader } from "./font-loader.js";
 import { loadImageNode } from "./image-loader.js";
 import { registerServerMedia } from "./media-server.js";
@@ -32,6 +33,7 @@ export function registerFonts(fonts?: FontsOption): void {
  */
 export function setupServerRendering(opts: SetupOptions = {}): void {
   installSkiaBackend();
+  installEffectCanvases();
   registerServerMedia();
   (globalThis as Record<string, unknown>)[RENDERING_FLAG] = true;
   if (!factoriesRegistered) {

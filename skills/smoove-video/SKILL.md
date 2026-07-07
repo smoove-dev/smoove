@@ -82,8 +82,23 @@ content) supports `fitText`, `maxLines`/`ellipsis`, a built-in `typewriter`
 reveal, and `highlights`. Details: [rules/text.md](rules/text.md) and,
 for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 
+## Effects
+
+Any node, group, or `Sequence` accepts `effects: [...]` with presets from
+`@smoove/effects`: `blur({ radius })`, `chromaKey({ color, similarity,
+smoothness })` (green screen), `shine({ angle, width, intensity, progress })`
+(highlight sweep — animate `progress` 0→1), and `water({ waves, caustic,
+speed })` (shader distortion; needs WebGL2 / server `gl` package, skipped
+gracefully otherwise). Params are plain properties — assign them in an
+updater (`fx.radius = interpolate(...)`). Rules: key BEFORE blur
+(`[chromaKey(), blur()]`, never the reverse); when several nodes share one
+look, put the effect on the `Sequence` (`seq.effects([...])`) — one layer
+pass instead of per-node captures.
+
 ## Optional add-ons
 
+- `@smoove/effects` — blur, chromaKey, shine, and water presets for the
+  `effects: [...]` config (see Effects above).
 - `@smoove/transitions` — `TransitionSeries` + presentations (fade, slide,
   wipe, dissolve, …) for scene-to-scene cuts. [rules/transitions.md](rules/transitions.md)
 - `@smoove/google-fonts` — typed per-family classes (`import Roboto from

@@ -1,5 +1,7 @@
 import type { Node as FlexilyNode } from "flexily/classic";
 import type Konva from "konva";
+import { drawNodeWithEffects, initNodeEffects } from "../../effects/apply.js";
+import type { SmooveEffect } from "../../effects/contract.js";
 import type { KMLayoutNode, LayoutBox } from "../contract.js";
 import { applySize, parseSize } from "./engine.js";
 import type { FlexChildProps, SizeValue } from "./types.js";
@@ -8,6 +10,7 @@ import type { FlexChildProps, SizeValue } from "./types.js";
 export type LeafConfig = FlexChildProps & {
   width?: SizeValue;
   height?: SizeValue;
+  effects?: SmooveEffect[];
 } & Record<string, unknown>;
 
 // Keys stripped before handing the config to Konva. width/height are included
@@ -115,12 +118,23 @@ export function FlexShape<N extends Konva.Shape, C extends LeafConfig = LeafConf
     constructor(config: LeafConfig = {}) {
       super(pickLeafConfig(config));
       applyLeafFlexAttrs(this, config);
+      initNodeEffects(this);
     }
     _kmMeasure(node: FlexilyNode): void {
       leafMeasure(this, node);
     }
     _kmPlace(box: LayoutBox): void {
       leafPlace(this, box);
+    }
+    effects(list?: SmooveEffect[]): SmooveEffect[] | this {
+      if (list === undefined) return (this.getAttr("effects") as SmooveEffect[] | undefined) ?? [];
+      this.setAttr("effects", list); // fires effectsChange → attach/detach sync
+      return this;
+    }
+    override drawScene(...args: Parameters<Konva.Shape["drawScene"]>): this {
+      if (drawNodeWithEffects(this, args[0])) return this;
+      super.drawScene(...args);
+      return this;
     }
   }
   return Wrapped as unknown as new (

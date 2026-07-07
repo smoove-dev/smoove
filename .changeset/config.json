@@ -5,6 +5,7 @@
   "fixed": [
     [
       "@smoove/core",
+      "@smoove/effects",
       "@smoove/player",
       "@smoove/transitions",
       "@smoove/renderer",

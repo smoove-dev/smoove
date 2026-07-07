@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@smoove/core": "workspace:*",
+    "@smoove/effects": "workspace:*",
     "@smoove/player": "workspace:*",
     "@smoove/renderer": "workspace:*",
     "@smoove/google-fonts": "workspace:*",
