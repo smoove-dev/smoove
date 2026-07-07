@@ -89,6 +89,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         <div className="hero__inner">
           <span className="pill">
             <span className="dot" /> smoove <span className="ver">v{version}</span>
+            <span className="alpha">alpha</span>
           </span>
           <h1>
             Smooth <span className="grad">moves</span>,

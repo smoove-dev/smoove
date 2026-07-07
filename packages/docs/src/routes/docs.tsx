@@ -1,5 +1,6 @@
 import browserCollections from "collections/browser";
 import { useFumadocsLoader } from "fumadocs-core/source/client";
+import { Banner } from "fumadocs-ui/components/banner";
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "fumadocs-ui/layouts/docs/page";
 import { isRouteErrorResponse, Link, redirect, useRouteError } from "react-router";
@@ -54,9 +55,14 @@ export default function Page({ loaderData }: Route.ComponentProps) {
   const { path, pageTree } = useFumadocsLoader(loaderData);
 
   return (
-    <DocsLayout {...baseOptions()} tree={pageTree}>
-      {clientLoader.useContent(path)}
-    </DocsLayout>
+    <>
+      <Banner id="smoove-alpha">
+        smoove is in alpha: APIs can change between releases.
+      </Banner>
+      <DocsLayout {...baseOptions()} tree={pageTree}>
+        {clientLoader.useContent(path)}
+      </DocsLayout>
+    </>
   );
 }
 

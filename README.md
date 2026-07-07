@@ -17,6 +17,9 @@
 
 <hr />
 
+> **smoove is in alpha.** APIs can change between releases while the engine
+> settles. Pin exact versions and check the release notes when you upgrade.
+
 A **Composition** is a `Konva.Stage` that owns a frame clock. A **Sequence**
 is a `Konva.Layer` scoped to a frame range: its updaters run and its layer
 paints only while playback is inside that range. Composition issues one

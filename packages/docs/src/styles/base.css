@@ -382,6 +382,16 @@ button {
   font-size: 11px;
   color: var(--ink-3);
 }
+.pill .alpha {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-2);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 1px 6px;
+}
 
 .mono {
   font-family: "JetBrains Mono", ui-monospace, monospace;
