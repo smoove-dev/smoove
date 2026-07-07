@@ -7,7 +7,7 @@ import { Circle, Composition, Ellipse, Line, RegularPolygon, Sequence } from "@s
  * twinkling sparks fill out the atmosphere. The docs hero plays it via
  * `<smoove-player src autoplay loop>` with no controls, pinned behind the page.
  *
- * Three design constraints shape it:
+ * Four design constraints shape it:
  *  - **Theme-agnostic.** No background Rect — the Konva stage stays transparent,
  *    so the page's own light/dark background shows through and the soft, glowing
  *    elements read on both.
@@ -19,10 +19,18 @@ import { Circle, Composition, Ellipse, Line, RegularPolygon, Sequence } from "@s
  *    integer `k`, so frame 0 and the last frame line up and the loop never
  *    jumps. Travellers that wrap (comet trails, the keyframe diamonds) fade to
  *    0 at their wrap point.
+ *  - **Cheap to draw.** Everything moves, so the whole layer repaints every
+ *    frame — and `shadowBlur` re-blurs per shape per frame, which profiled at
+ *    3–4× the entire frame cost on retina screens (the hero dropped to ~20fps).
+ *    So no canvas shadows anywhere: every glow is a radial-gradient fill fading
+ *    to transparent (orbs, comet heads, sparks, diamond halos) or a wide soft
+ *    under-stroke (ribbons). 30fps is plenty for an ambient backdrop and halves
+ *    the draw work; the homepage additionally caps the player at
+ *    `max-pixel-ratio="1"`.
  */
 const width = 1200;
 const height = 1200;
-const fps = 60;
+const fps = 30; // ambient backdrop — 30fps reads the same and halves the draw work
 const durationInFrames = fps * 30; // 30s — a long, slow, hypnotic loop
 const TAU = Math.PI * 2;
 
@@ -48,6 +56,10 @@ const scene = new Sequence();
 // Vertical travel is deliberately tight (by ∈ [0.42, 0.58], small ay) so
 // body + breathing + drift never reaches the top/bottom edge — the glow fades
 // out well inside the frame instead of being cut by it.
+// Each orb is one radial-gradient disc: a flat core out to ~a third of the
+// path radius, fading to fully transparent at the rim (so there is no hard
+// circle edge at all). Breathing animates `scale`, not `radius`, so the
+// gradient — fixed in local coordinates — breathes with the body.
 type Orb = {
   node: Circle;
   bx: number;
@@ -112,16 +124,22 @@ const ORB_SPECS = [
   },
 ];
 
+// Glow extent in units of the body radius — roughly where the old
+// shadowBlur:150 halo used to die out.
+const ORB_GLOW = 1.9;
+
 const orbs: Orb[] = ORB_SPECS.map((s) => {
+  const glowR = s.baseR * ORB_GLOW;
   const node = new Circle({
     x: s.bx * width,
     y: s.by * height,
-    radius: s.baseR,
-    fill: s.color,
-    opacity: 0.2,
-    shadowColor: s.color,
-    shadowBlur: 150,
-    shadowOpacity: 0.55,
+    radius: glowR,
+    opacity: 0.26,
+    fillRadialGradientStartPoint: { x: 0, y: 0 },
+    fillRadialGradientEndPoint: { x: 0, y: 0 },
+    fillRadialGradientStartRadius: 0,
+    fillRadialGradientEndRadius: glowR,
+    fillRadialGradientColorStops: [0, s.color, 0.35, s.color, 1, `${s.color}00`],
     listening: false,
   });
   scene.add(node);
@@ -244,13 +262,16 @@ const TRAIL = 10;
 const TRAIL_DT = 0.0045; // loop-time gap between trail samples (~0.14s)
 
 const comets = COMET_SPECS.map((s) => {
+  // Solid core out to the head radius, halo fading to transparent at ~3× —
+  // matches the old shadowBlur:18 glow without the per-frame blur pass.
   const head = new Circle({
-    radius: s.headR,
-    fill: s.color,
+    radius: s.headR * 3,
     opacity: 0.85,
-    shadowColor: s.color,
-    shadowBlur: 18,
-    shadowOpacity: 0.9,
+    fillRadialGradientStartPoint: { x: 0, y: 0 },
+    fillRadialGradientEndPoint: { x: 0, y: 0 },
+    fillRadialGradientStartRadius: 0,
+    fillRadialGradientEndRadius: s.headR * 3,
+    fillRadialGradientColorStops: [0, s.color, 0.33, s.color, 1, `${s.color}00`],
     listening: false,
   });
   const trail = Array.from({ length: TRAIL }, (_, i) => {
@@ -323,22 +344,25 @@ function ribbonY(s: RibbonSpec, u: number, t: number) {
 
 const ribbonX = (u: number) => -120 + u * (width + 240);
 
+// Each ribbon is two strokes over the same points: a wide, faint under-stroke
+// standing in for the old shadowBlur:14 glow, and the crisp line on top.
 const ribbons = RIBBON_SPECS.map((s) => {
-  const node = new Line({
-    points: [],
-    stroke: s.color,
-    strokeWidth: s.sw,
-    opacity: s.op,
-    lineCap: "round",
-    lineJoin: "round",
-    tension: 0.4,
-    shadowColor: s.color,
-    shadowBlur: 14,
-    shadowOpacity: 0.5,
-    listening: false,
-  });
+  const mkLine = (sw: number, op: number) =>
+    new Line({
+      points: [],
+      stroke: s.color,
+      strokeWidth: sw,
+      opacity: op,
+      lineCap: "round",
+      lineJoin: "round",
+      tension: 0.4,
+      listening: false,
+    });
+  const glow = mkLine(s.sw * 3, s.op * 0.35);
+  const node = mkLine(s.sw, s.op);
+  scene.add(glow);
   scene.add(node);
-  return { ...s, node };
+  return { ...s, node, glow };
 });
 
 // --- Keyframe diamonds: sunshine markers gliding along the ribbon tracks -----
@@ -358,18 +382,27 @@ const DIAMOND_SPECS: DiamondSpec[] = [
 ];
 
 const diamonds = DIAMOND_SPECS.map((s) => {
+  // Soft gradient halo behind the sharp diamond replaces the shadowBlur:12 glow.
+  const halo = new Circle({
+    radius: s.size * 2,
+    opacity: 0,
+    fillRadialGradientStartPoint: { x: 0, y: 0 },
+    fillRadialGradientEndPoint: { x: 0, y: 0 },
+    fillRadialGradientStartRadius: 0,
+    fillRadialGradientEndRadius: s.size * 2,
+    fillRadialGradientColorStops: [0, SUNSHINE, 0.5, `${SUNSHINE}55`, 1, `${SUNSHINE}00`],
+    listening: false,
+  });
   const node = new RegularPolygon({
     sides: 4,
     radius: s.size,
     fill: SUNSHINE,
     opacity: 0,
-    shadowColor: SUNSHINE,
-    shadowBlur: 12,
-    shadowOpacity: 0.9,
     listening: false,
   });
+  scene.add(halo);
   scene.add(node);
-  return { ...s, node };
+  return { ...s, node, halo };
 });
 
 // --- Sparks: tiny twinkling motes that gently bob -----------------------------
@@ -391,15 +424,20 @@ const sparks: Spark[] = Array.from({ length: 22 }, (_, i) => {
   // Scatter band + bob amplitude stays inside the vertical safe zone.
   const y = (Math.abs(gy) * 0.72 + 0.14) * height;
   const color = SPARK_COLORS[i % SPARK_COLORS.length];
+  // Solid mote with a twinkle halo (the old shadowBlur:10 wink, minus the blur
+  // pass). The mid-stop mimics a Gaussian falloff — a linear fade reads as a
+  // heavy bokeh blob, not a spark.
+  const r = 2 + (i % 3);
   const node = new Circle({
     x,
     y,
-    radius: 2 + (i % 3),
-    fill: color,
+    radius: r * 3.5,
     opacity: 0.5,
-    shadowColor: color,
-    shadowBlur: 10,
-    shadowOpacity: 0.9,
+    fillRadialGradientStartPoint: { x: 0, y: 0 },
+    fillRadialGradientEndPoint: { x: 0, y: 0 },
+    fillRadialGradientStartRadius: 0,
+    fillRadialGradientEndRadius: r * 3.5,
+    fillRadialGradientColorStops: [0, color, 0.28, color, 0.5, `${color}40`, 1, `${color}00`],
     listening: false,
   });
   scene.add(node);
@@ -414,7 +452,9 @@ scene.register((frame) => {
   for (const o of orbs) {
     o.node.x(o.bx + o.ax * Math.sin(t * TAU * o.fx + o.phase));
     o.node.y(o.by + o.ay * Math.cos(t * TAU * o.fy + o.phase));
-    o.node.radius(o.baseR + o.dR * Math.sin(t * TAU + o.phase));
+    const breathe = 1 + (o.dR / o.baseR) * Math.sin(t * TAU + o.phase);
+    o.node.scaleX(breathe);
+    o.node.scaleY(breathe);
   }
 
   for (const r of rings) {
@@ -441,15 +481,22 @@ scene.register((frame) => {
       pts.push(ribbonX(u), ribbonY(r, u, t));
     }
     r.node.points(pts);
+    r.glow.points(pts);
   }
 
   for (const d of diamonds) {
     // Wraps seamlessly: `laps` is an integer and opacity fades to 0 at u=0/1.
     const u = (((t * d.laps + d.offset) % 1) + 1) % 1;
-    d.node.x(ribbonX(u));
-    d.node.y(ribbonY(d.ribbon, u, t));
+    const x = ribbonX(u);
+    const y = ribbonY(d.ribbon, u, t);
+    const op = 0.85 * Math.sin(u * Math.PI);
+    d.node.x(x);
+    d.node.y(y);
     d.node.rotation(45 + t * 360 * d.spin);
-    d.node.opacity(0.85 * Math.sin(u * Math.PI));
+    d.node.opacity(op);
+    d.halo.x(x);
+    d.halo.y(y);
+    d.halo.opacity(op * 0.6);
   }
 
   for (const s of sparks) {

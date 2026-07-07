@@ -20,6 +20,7 @@ declare module "react" {
           volume?: number | string;
           playbackrate?: number | string;
           initialframe?: number | string;
+          "max-pixel-ratio"?: number | string;
         };
       "smoove-player-overlay": HTMLAttributes<HTMLElement>;
       "smoove-player-controls": HTMLAttributes<HTMLElement>;

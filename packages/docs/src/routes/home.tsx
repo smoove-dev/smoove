@@ -73,11 +73,14 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           stays at the top of the viewport as you scroll (behind all content). */}
       <div className="page-bg" aria-hidden="true">
         <ClientOnly>
+          {/* max-pixel-ratio=1: this is a dim, masked backdrop — rendering it at
+              retina density is invisible but quadruples the per-frame pixel work. */}
           <smoove-player
             ref={heroPlayerRef as React.Ref<HTMLElement>}
             src={homeBgUrl}
             autoplay
             loop
+            max-pixel-ratio="1"
           />
         </ClientOnly>
       </div>
