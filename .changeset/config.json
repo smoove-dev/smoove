@@ -1,0 +1,22 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.4/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "smoove-dev/smoove" }],
+  "commit": false,
+  "fixed": [
+    [
+      "@smoove/core",
+      "@smoove/player",
+      "@smoove/transitions",
+      "@smoove/renderer",
+      "@smoove/studio",
+      "@smoove/google-fonts",
+      "@smoove/vite",
+      "create-smoove"
+    ]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["@smoove/docs", "demo"]
+}

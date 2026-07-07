@@ -1,0 +1,61 @@
+name: ci
+
+on:
+  pull_request:
+    # labeled/unlabeled so the changeset job re-evaluates when the
+    # no-changeset label is toggled
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      # headless-gl (renderer's `gl` dep) compiles from source when no
+      # prebuilt binary matches the runner's Node ABI
+      - name: Install headless-gl build deps
+        run: sudo apt-get update && sudo apt-get install -y libxi-dev libglu1-mesa-dev libglew-dev pkg-config
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      # --ignore-scripts: biome needs no native builds
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm check
+
+  changeset:
+    # Skipped (counts as passing for required checks) on: the release PR,
+    # PRs labeled no-changeset, and pushes to main.
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.head_ref != 'changeset-release/main' &&
+      !contains(github.event.pull_request.labels.*.name, 'no-changeset')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      # Fails when a package in the release set changed with no changeset.
+      # Ignored packages (@smoove/docs, demo) never trigger it.
+      - run: pnpm exec changeset status --since=origin/main

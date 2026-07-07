@@ -50,6 +50,15 @@ consumers never deep-import; internal moves just need the barrel repointed.
   even if a skill or workflow says to. Leave changes in the working tree.
 - **pnpm workspaces.** Cross-package deps use `workspace:*`. Don't add a
   package outside `packages/*` or `demo/` without updating `pnpm-workspace.yaml`.
+- **Releases are Changesets-driven.** Every PR that touches a published
+  package includes a changeset (`pnpm changeset`); versioning and npm publish
+  happen from CI when the release PR merges (see `RELEASING.md`). Never
+  publish or bump versions by hand. A **new package** under `packages/*`
+  must be added to the `fixed` group in `.changeset/config.json` (all
+  packages version in lockstep), or to `ignore` if it's private like
+  `@smoove/docs`. New publishable packages also need a one-time
+  trusted-publisher registration on npmjs.com (steps in `RELEASING.md`) —
+  that part is for the maintainer, flag it in the PR.
 - **`core` extends Konva classes.** `Composition extends Konva.Stage`,
   `Sequence extends Konva.Layer`, `Flex`/`Block`/`Image`/`Text` extend
   `Konva.Group`, and each shape wrapper extends its `Konva.Shape` (via the

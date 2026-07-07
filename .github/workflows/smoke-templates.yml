@@ -1,0 +1,32 @@
+name: smoke-templates
+
+on:
+  # Run manually after a release to verify templates install the freshly
+  # published packages: gh workflow run smoke-templates.yml
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "templates/**"
+      - "packages/create/**"
+      - "scripts/smoke-create.sh"
+      - "scripts/sync-composition.mjs"
+      - ".github/workflows/smoke-templates.yml"
+
+jobs:
+  smoke:
+    # The release PR re-pins templates to a version that isn't on npm yet,
+    # so the templates can't install until after publish. Skip it there;
+    # dispatch this workflow after the release instead.
+    if: github.event_name == 'workflow_dispatch' || github.head_ref != 'changeset-release/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install headless-gl build deps
+        run: sudo apt-get update && sudo apt-get install -y libxi-dev libglu1-mesa-dev libglew-dev pkg-config
+      - run: pnpm install --frozen-lockfile
+      - run: ./scripts/smoke-create.sh

@@ -1,0 +1,58 @@
+name: release
+
+on:
+  push:
+    branches: [main]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write # push the version branch, tags, GitHub release
+  pull-requests: write # open/update the Version Packages PR
+  id-token: write # npm trusted publishing (OIDC)
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # With a fine-grained PAT in CHANGESETS_PAT, pushes to the release
+          # PR trigger CI (the default token's pushes don't). Optional; see
+          # RELEASING.md.
+          token: ${{ secrets.CHANGESETS_PAT || github.token }}
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install headless-gl build deps
+        run: sudo apt-get update && sudo apt-get install -y libxi-dev libglu1-mesa-dev libglew-dev pkg-config
+      - run: pnpm install --frozen-lockfile
+      # Publishing uses npm trusted publishing (OIDC) — there is no NPM_TOKEN.
+      # Without a ~/.npmrc, changesets/action writes one with a bogus
+      # _authToken=${NPM_TOKEN}; pre-creating a benign file keeps it out of
+      # pnpm's way so OIDC auth is used.
+      - name: Guard ~/.npmrc for OIDC
+        run: echo "registry=https://registry.npmjs.org/" > ~/.npmrc
+      - name: Version PR or publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: pnpm run release:version
+          publish: pnpm run release:publish
+          commit: "release: version packages"
+          title: "release: version packages"
+          # per-package releases are noise in a lockstep repo; we create one
+          # aggregate vX.Y.Z release below instead
+          createGithubReleases: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.CHANGESETS_PAT || secrets.GITHUB_TOKEN }}
+      - name: Create GitHub release
+        if: steps.changesets.outputs.published == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="$(node -p "require('./packages/core/package.json').version")"
+          gh release create "v$VERSION" --title "v$VERSION" --generate-notes
