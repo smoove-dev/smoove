@@ -32,6 +32,8 @@ and `create-smoove`:
 3. Repository: `smoove`
 4. Workflow filename: `release.yml` (the filename only, not the full path)
 5. Environment: leave empty
+6. Allowed actions: check "Allow npm publish" only (leave "npm stage
+   publish" unchecked; changesets uses a plain publish)
 
 Until every package is registered, the publish step fails with 404 or
 permission errors. That is the misconfiguration signal, not a code bug.
