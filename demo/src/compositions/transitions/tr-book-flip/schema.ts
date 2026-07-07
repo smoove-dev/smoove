@@ -1,8 +1,0 @@
-import { kf } from "@smoove/studio";
-import { type Direction, directionField } from "../_shared.js";
-
-export type BookFlipProps = { direction: Direction };
-
-export const schema = kf.object({ fields: { direction: directionField("from-right") } });
-
-export const defaults: BookFlipProps = { direction: "from-right" };
