@@ -1,7 +1,6 @@
 import {
   Circle,
   Composition,
-  Easing,
   interpolate,
   RegularPolygon,
   Sequence,

@@ -54,7 +54,15 @@ const triangle = new RegularPolygon({
 });
 gradientFill(triangle, 140, "#0b3d91", "#1f6feb", "#66d9e8");
 main.add(triangle);
-fluids.push({ node: triangle, cx: width * 0.34, cy: height * 0.46, ax: 44, ay: 30, phase: 0, spin: 1 });
+fluids.push({
+  node: triangle,
+  cx: width * 0.34,
+  cy: height * 0.46,
+  ax: 44,
+  ay: 30,
+  phase: 0,
+  spin: 1,
+});
 
 const hexagon = new RegularPolygon({
   x: width * 0.66,
@@ -67,7 +75,15 @@ const hexagon = new RegularPolygon({
 });
 gradientFill(hexagon, 130, "#0b5d4a", "#06d6a0", "#c7f9e5");
 main.add(hexagon);
-fluids.push({ node: hexagon, cx: width * 0.66, cy: height * 0.5, ax: 38, ay: 46, phase: 2.1, spin: -1 });
+fluids.push({
+  node: hexagon,
+  cx: width * 0.66,
+  cy: height * 0.5,
+  ax: 38,
+  ay: 46,
+  phase: 2.1,
+  spin: -1,
+});
 
 main.add(
   new Konva.Text({
