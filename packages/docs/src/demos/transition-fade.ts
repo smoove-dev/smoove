@@ -31,7 +31,7 @@ const scenes = [
   { label: "One", fill: "#1f6feb" },
   { label: "Two", fill: "#bb8009" },
   { label: "Three", fill: "#1a7f76" },
-];
+] as const;
 
 // Each scene is an opaque full-canvas panel so the fade reads as a clean blend.
 function buildScene(scene: { label: string; fill: string }) {
