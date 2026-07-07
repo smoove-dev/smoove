@@ -1,6 +1,6 @@
 packages:
   - "packages/*"
-  - "demo"
+  # - "demo"
 
 onlyBuiltDependencies:
   - skia-canvas
