@@ -88,6 +88,21 @@ origin.
 | `no-space-key` | boolean | off | Disable the spacebar play/pause shortcut. |
 | `no-keyboard` | boolean | off | Disable all keyboard shortcuts. |
 | `double-click-fullscreen` | boolean | off | Toggle fullscreen on double-click. |
+| `max-pixel-ratio` | number | device ratio | Cap the render resolution. The backing canvas normally tracks displayed size times the device pixel ratio; this lowers that ceiling. |
+
+The player already right-sizes its canvas: a composition displayed small
+renders small, instead of always rasterizing at authored resolution. On a
+retina display it still renders at the device pixel ratio, which is the
+right default for foreground video. For a player used as a page backdrop
+(dimmed, masked, or behind content), that extra density is invisible and
+costs several times the paint work, so cap it:
+
+```html
+<smoove-player src="/bg.js" autoplay loop max-pixel-ratio="1"></smoove-player>
+```
+
+See [best practices](/docs/best-practices) for keeping the composition itself
+cheap to draw.
 
 <Callout type="info" title="Which attributes react to live changes">
 `src`, `controls`, `loop`, `muted`, `volume`, and `playbackrate` re-apply when

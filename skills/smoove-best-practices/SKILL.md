@@ -58,6 +58,7 @@ fast-fix gotchas list.
 | Player is blank, no error | Composition set as *attribute* not *property*; or SSR hydration recreated it; or assets still buffering → [player.md](rules/player.md) |
 | Player intermittently blank on refresh (SSR/hydration) | Mount client-only → [player.md](rules/player.md) |
 | Player is 0×0 / off-screen | `styles.css` width cascade → [player.md](rules/player.md) |
+| Playback choppy on big/retina screens; page scroll janks on phones | Backdrop player at full device pixel ratio, or `shadowBlur` in the comp → [player.md](rules/player.md) |
 | Render throws "not in rendering mode" | `@smoove/renderer/register` imported after building the comp → [renderer.md](rules/renderer.md) |
 | Render fonts wrong / fall back | `Font` nodes self-register; only `fontFamily`-only text needs `fonts` registration → [renderer.md](rules/renderer.md) |
 | Render "could not probe video" / media missing | Asset URL not mapped to an fs path → [renderer.md](rules/renderer.md) |

@@ -47,8 +47,8 @@ assigned `composition` wins over `src`.
   `<smoove-player-controls>` / `<smoove-player-overlay>` children (light DOM,
   so restyle with plain selectors like `.smoove-player__btn`).
 - **Attributes:** `src`, `controls`, `loop`, `autoplay`, `muted`, `volume`,
-  `playbackrate`, `initialframe`, `no-click-to-play`, `no-space-key`,
-  `no-keyboard`, `double-click-fullscreen`.
+  `playbackrate`, `initialframe`, `max-pixel-ratio`, `no-click-to-play`,
+  `no-space-key`, `no-keyboard`, `double-click-fullscreen`.
 - **Methods:** `play`, `pause`, `toggle`, `stop`, `seekTo(frame)`,
   `stepBy(delta)`, `getCurrentFrame`, `isPlaying`, `setProps(props)`,
   volume/mute, loop, playback-rate, and fullscreen controls, `getScale`.
@@ -92,6 +92,26 @@ inline):
 Same file ships via the `@smoove/player/standalone` export and on unpkg. It is
 ESM-only (`type="module"`), because core uses top-level await.
 
+## Backdrop / background players
+
+The player right-sizes its backing canvas to `displayed size × devicePixelRatio`
+(capped at the device ratio), so a small player is cheap automatically. But a
+**full-page backdrop** player (hero background, ambient loop behind content) at
+retina density rasterizes millions of pixels per frame for a surface that is
+dim, masked, or behind content — and a `max(100vw,100vh)` cover-square renders
+mostly offscreen pixels on phones. Cap it:
+
+```html
+<smoove-player src="/bg.js" autoplay loop max-pixel-ratio="1"></smoove-player>
+```
+
+`max-pixel-ratio` bounds the effective pixel ratio (default: the device
+ratio). `1` is indistinguishable on a dim backdrop and cuts paint work ~4× on
+retina desktops, more on dpr-3 phones. Pair it with a comp authored for
+backdrop duty — 30fps, no `shadowBlur` (see the **smoove-video** skill's
+performance rule); the player can't fix a comp that blurs dozens of shapes
+per frame. Also honor `prefers-reduced-motion` by calling `player.pause()`.
+
 ## Gotchas — fast fixes
 
 - **Blank player, no console error → composition set as an attribute.** An
@@ -111,6 +131,11 @@ ESM-only (`type="module"`), because core uses top-level await.
   your page styles, so a bare `smoove-player { width: ... }` rule loses the
   cascade; inside a centering grid the `100%` goes cyclic → 0×0. Raise
   specificity (`body > smoove-player { ... }`) or set width inline.
+- **Choppy playback on big/retina screens, or phone scroll jank → too many
+  pixels or shadow blur.** Cap the player with `max-pixel-ratio="1"` for
+  backdrop use (above), and audit the comp for `shadowBlur` on animated
+  shapes — it profiles as the dominant per-frame cost; the smoove-video
+  skill's performance rule has gradient-glow replacements.
 - **`konva` is a peer dependency.** The consuming app pins the `konva` version;
   the player does not bundle it (except the standalone build). Mismatched or
   missing `konva` shows up as construction/render errors.
