@@ -197,6 +197,60 @@ interpolate(frame, [0, 30], [0, 1], { extrapolateRight: "clamp" });
 Math.min(1, frame / 30);
 ```
 
+## Fake glows with gradients, not `shadowBlur`
+
+In an animated scene, every active layer repaints on every frame, and canvas
+`shadowBlur` re-runs a Gaussian blur for each shadowed shape each time. For a
+glow effect, use a radial-gradient fill sized to the glow extent instead:
+solid core, a mid-stop, then a transparent rim. Give a glowing line a second,
+wider stroke at low opacity underneath the crisp one, and give a sharp shape
+(a diamond, a star) a gradient disc behind it.
+
+**Why:** in a glow-heavy scene we profiled, shadow blur cost more per frame
+than everything else combined, and it gets worse with screen size and pixel
+ratio. Gradient fills read the same and draw at a fraction of the price.
+`shadowBlur` is fine for a scene that draws once and holds still.
+
+```ts
+// ✅ do: glow as a radial gradient (the mid-stop mimics a blur's falloff)
+const spark = new Circle({
+  x, y,
+  radius: r * 3.5, // the glow extent, not the body
+  fillRadialGradientStartPoint: { x: 0, y: 0 },
+  fillRadialGradientEndPoint: { x: 0, y: 0 },
+  fillRadialGradientStartRadius: 0,
+  fillRadialGradientEndRadius: r * 3.5,
+  fillRadialGradientColorStops: [0, color, 0.28, color, 0.5, `${color}40`, 1, `${color}00`],
+});
+
+// 🚫 avoid in animated scenes: one Gaussian blur per shape, per frame
+const slow = new Circle({ x, y, radius: r, fill: color, shadowColor: color, shadowBlur: 10 });
+```
+
+One gotcha: gradient radii live in the node's local coordinates, so they
+don't follow an animated `radius()`. To pulse or breathe a gradient shape,
+animate `scale` and the gradient scales with the body.
+
+```ts
+// ✅ do: the gradient breathes with the body
+orb.scaleX(k);
+orb.scaleY(k);
+
+// 🚫 avoid: the body grows, the gradient stays put
+orb.radius(base + delta);
+```
+
+## Match `fps` to the motion
+
+Pick 30fps for ambient motion (backdrops, slow loops, drifting particles) and
+save 60fps for fast motion the eye tracks. And when a composition plays as a
+page backdrop, cap the player's resolution with
+[`max-pixel-ratio`](/docs/player#attributes).
+
+**Why:** `fps` is the redraw rate, so it multiplies the cost of everything
+above: half the frames, half the paint work. Slow motion reads identically at
+30fps.
+
 ## Next steps
 
 Put these to work in [Animating](/docs/interpolation): `interpolate`, `Easing`,

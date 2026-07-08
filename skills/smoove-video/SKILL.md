@@ -82,6 +82,16 @@ content) supports `fitText`, `maxLines`/`ellipsis`, a built-in `typewriter`
 reveal, and `highlights`. Details: [rules/text.md](rules/text.md) and,
 for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 
+## Performance
+
+An animated scene is a full-canvas repaint every frame. **Never `shadowBlur`
+in an animated scene** — canvas shadow blur re-runs per shape per frame and
+profiles as the dominant cost (choppy on retina/mobile). Fake glows instead:
+radial-gradient fills for dots/orbs, a wide faint under-stroke for lines, a
+gradient disc behind sharp shapes for halos. Use 30fps for ambient/background
+motion. Recipes + the scale-not-radius gotcha:
+[rules/performance.md](rules/performance.md).
+
 ## Optional add-ons
 
 - `@smoove/transitions` — `TransitionSeries` + presentations (fade, slide,
@@ -94,5 +104,6 @@ for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 [sequencing](rules/sequencing.md) · [layout](rules/layout.md) ·
 [animation](rules/animation.md) · [text](rules/text.md) ·
 [shapes](rules/shapes.md) · [media](rules/media.md) ·
+[performance](rules/performance.md) ·
 [transitions](rules/transitions.md) (optional) · [fonts](rules/fonts.md)
 (optional)
