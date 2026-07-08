@@ -8,3 +8,5 @@ dist
 build
 doc
 package-lock.json
+# Local demo app (not part of the published workspace)
+demo/
