@@ -19,5 +19,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@smoove/docs", "demo"]
+  "ignore": ["@smoove/docs"]
 }
