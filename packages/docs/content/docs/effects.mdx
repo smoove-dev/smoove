@@ -1,0 +1,135 @@
+---
+title: Effects
+description: Blur, chroma key, shine, and water on any node, group, or sequence.
+---
+
+Any smoove node, group, or `Sequence` accepts an `effects` array. Each entry
+is a preset from `@smoove/effects`; its params are plain properties you can
+assign from a frame callback, so effects animate on the same clock as
+everything else and render identically in the browser and on the server.
+
+```ts
+import { blur } from "@smoove/effects";
+
+const glow = blur({ radius: 12 });
+title.effects([glow]);
+
+seq.register((frame) => {
+  glow.radius = interpolate(frame, [0, 30], [12, 0]);
+});
+```
+
+Effects also work in node configs:
+
+```ts
+new Rect({ width: 400, height: 300, fill: "#3366ff", effects: [blur({ radius: 8 })] });
+```
+
+## blur
+
+A Gaussian blur of the node's pixels. `radius` is in stage px.
+
+```ts
+import { blur } from "@smoove/effects";
+
+const fx = blur({ radius: 16 });
+image.effects([fx]);
+
+seq.register((frame) => {
+  // Focus pull: sharp by frame 40.
+  fx.radius = interpolate(frame, [0, 40], [16, 0], { extrapolateRight: "clamp" });
+});
+```
+
+Where the canvas backend has native filters (Chromium, Firefox, and the
+server renderer) the blur is one hardware pass. Elsewhere it falls back to a
+CPU pass, slower but correct.
+
+## chromaKey
+
+Green-screen keying: pixels near the key color turn transparent, with a soft
+ramp at the boundary.
+
+```ts
+import { chromaKey } from "@smoove/effects";
+
+const video = new Video({ src: mediaSrc("presenter.mp4"), width: 1280, height: 720 });
+video.effects([chromaKey()]);
+```
+
+- `color`: key color, default `#00b140` (screen green).
+- `similarity`: chroma distance that keys fully out, default 45.
+- `smoothness`: soft alpha ramp past `similarity`, default 25.
+
+Order matters when stacking: key first, then blur. Blurring first smears the
+key color into the subject and the keyer then eats the blurred edges.
+
+```ts
+video.effects([chromaKey(), blur({ radius: 4 })]); // right
+```
+
+## shine
+
+A highlight band swept across the node's own pixels. It clips to the node's
+alpha, so text and logos light up without a halo around them. Animate
+`progress` from 0 to 1 for one full sweep.
+
+```ts
+import { shine } from "@smoove/effects";
+
+const sweep = shine({ angle: 30, width: 120, intensity: 0.7 });
+logo.effects([sweep]);
+
+seq.register((frame) => {
+  sweep.progress = interpolate(frame, [30, 60], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+});
+```
+
+## water
+
+A caustic water-surface distortion over the node's pixels, driven by the
+frame clock. Works on any node shape, including one that rotates.
+
+```ts
+import { water } from "@smoove/effects";
+
+triangle.effects([water({ waves: 0.5, caustic: 0.2, speed: 1.5 })]);
+```
+
+Water runs as a fragment shader. In the browser it needs WebGL2; on the
+server it needs the optional `gl` package plus `import "@smoove/renderer/gl"`.
+Where neither is available the pass is skipped and the node draws
+undistorted, so a missing GL stack never breaks a render.
+
+## Performance
+
+- Effects capture only the node's bounding box (plus the effect's bleed), so
+  a small node costs a small capture, whatever the stage size.
+- When several nodes share one look, put the effect on the `Sequence`
+  instead: `seq.effects([blur({ radius: 8 })])` runs one pass over the layer
+  with no per-node captures.
+- Static content with unchanged params is cached: the pipeline re-blits the
+  previous output, and a static node animating only its position stays a
+  cache hit.
+- `chromaKey` reads pixels back every frame the content changes. That is fine
+  for the typical one keyed video per composition; budget accordingly before
+  keying many large nodes at once.
+
+### Preview resolution
+
+During playback, effects capture and process at a capped device pixelRatio
+(default `1`), then blit to the display. Effects are visually soft, so a
+high-DPI screen gains little from processing them at 2x while paying four
+times the per-frame cost, and pixel-bound effects like `chromaKey` can miss
+the frame budget on retina. Server renders ignore the cap and always run at
+full resolution. Raise or lower it if you want crisper effects or cheaper
+playback:
+
+```ts
+import { setEffectPreviewMaxPixelRatio } from "@smoove/core";
+
+setEffectPreviewMaxPixelRatio(2); // crisp preview effects, more per-frame cost
+```

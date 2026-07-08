@@ -1,5 +1,12 @@
-import { createRequire } from "node:module";
-import { type GlPlatform, transpileTo100, VERTEX_SHADER_100 } from "@smoove/transitions";
+import { type GlPlatform, transpileTo100, VERTEX_SHADER_100 } from "@smoove/core";
+// Imported from the bare "module" specifier (not "node:module") on purpose: a
+// consuming app may alias `node:module` to a browser stub for its client bundle
+// (the demo and the create-smoove templates do), and `resolve.alias` applies to
+// the SSR graph too — a `node:module` import here would resolve to the stub and
+// silently disable headless-gl (no shader transitions/effects in server renders).
+// Regressed once via a lint autofix in c21da61 — do NOT "fix" this import.
+// biome-ignore lint/style/useNodejsImportProtocol: bare "module" deliberately dodges a `node:module` client alias.
+import { createRequire } from "module";
 import { Canvas } from "skia-canvas";
 
 const require = createRequire(import.meta.url);

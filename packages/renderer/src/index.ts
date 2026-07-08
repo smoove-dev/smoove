@@ -3,6 +3,7 @@
 export { mixAudio } from "./audio-mix.js";
 export { NullAudioSource, nullAudioSourceFactory } from "./audio-source-null.js";
 export { collectAudioTrack } from "./audio-track.js";
+export { installEffectCanvases } from "./effects-canvas.js";
 export { DEFAULT_FONT_CACHE_DIR, makeSkiaFontLoader } from "./font-loader.js";
 export { loadImageNode } from "./image-loader.js";
 export { registerServerMedia } from "./media-server.js";

@@ -1,7 +1,10 @@
 import Konva from "konva";
+import { applyLayerEffects, initNodeEffects } from "../effects/apply.js";
+import type { SmooveEffect } from "../effects/contract.js";
 import { isKMLayoutRoot } from "../layout/contract.js";
 import { MEDIA_MARK, TICK_MARK } from "../media/media-marker.js";
 import { getComposition } from "./composition.js";
+import { getEnvironment } from "./environment.js";
 
 export type SequenceOptions = Konva.LayerConfig & {
   /** Composition frame this sequence starts on. Defaults to `0`. */
@@ -12,6 +15,8 @@ export type SequenceOptions = Konva.LayerConfig & {
    * Resolved live once added (see {@link Sequence.durationInFrames}).
    */
   durationInFrames?: number;
+  /** Layer-wide effects applied after children draw (e.g. grain over a scene). */
+  effects?: SmooveEffect[];
 };
 
 export type Updater = (localFrame: number) => void;
@@ -58,6 +63,36 @@ export class Sequence extends Konva.Layer {
     super({ ...layerOpts, visible: false });
     this.from = from;
     this._durationInFrames = durationInFrames;
+    initNodeEffects(this);
+  }
+
+  effects(): SmooveEffect[];
+  effects(list: SmooveEffect[]): this;
+  effects(list?: SmooveEffect[]): SmooveEffect[] | this {
+    if (list === undefined) return (this.getAttr("effects") as SmooveEffect[] | undefined) ?? [];
+    this.setAttr("effects", list);
+    return this;
+  }
+
+  override drawScene(...args: Parameters<Konva.Layer["drawScene"]>): this {
+    // Server renders: truncate the layer canvas's skia display list before the
+    // redraw. skia-canvas replays the full recorded history on every pixel
+    // read (`getImageData`/`toBufferSync`), so without this a long render
+    // degrades quadratically. reset() wipes the pixelRatio scale Konva bakes
+    // into the context at setSize — reapply it.
+    const stage = this.getStage();
+    if (!args[0] && stage && getEnvironment(stage).isRendering) {
+      const canvas = this.getCanvas();
+      const raw = canvas.getContext()._context as CanvasRenderingContext2D & { reset?(): void };
+      if (raw.reset) {
+        raw.reset();
+        raw.scale(canvas.pixelRatio, canvas.pixelRatio);
+      }
+    }
+    super.drawScene(...args);
+    // biome-ignore lint/suspicious/noExplicitAny: structural canvas view for the post-pass helper.
+    applyLayerEffects(this, args[0] as any);
+    return this;
   }
 
   /**
@@ -117,6 +152,12 @@ export class Sequence extends Konva.Layer {
       for (const c of this.getChildren()) {
         if (isKMLayoutRoot(c)) c._kmComputeLayout();
       }
+      // Offline rendering: don't draw at all — `captureCanvas()` forces a
+      // synchronous `drawScene()` on every visible layer at capture time, so a
+      // draw here would run every effect chain twice per frame (and the
+      // rAF-fallback `batchDraw` would fire a third, torn draw between frames).
+      const stage = this.getStage();
+      if (stage && getEnvironment(stage).isRendering) return;
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the
       // newly-displayed layer (avoids a one-frame flash of stale content).

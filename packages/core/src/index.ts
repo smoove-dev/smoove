@@ -6,6 +6,21 @@ export {
 } from "./animation/interpolate.js";
 export { interpolateColors } from "./animation/interpolate-colors.js";
 export {
+  applyLayerEffects,
+  drawNodeWithEffects,
+  initNodeEffects,
+  setEffectPreviewMaxPixelRatio,
+} from "./effects/apply.js";
+export {
+  type EffectFrameContext,
+  type EffectPass,
+  isSmooveEffect,
+  type SmooveEffect,
+  type WithEffects,
+} from "./effects/contract.js";
+export { getContentVersion } from "./effects/dirty.js";
+export { type EffectCanvasFactory, setEffectCanvasFactory } from "./effects/passes.js";
+export {
   type BufferState,
   Composition,
   type CompositionEvent,
@@ -54,6 +69,21 @@ export {
   type SeriesSceneOptions,
 } from "./engine/series.js";
 export type { ReadonlySignal } from "./engine/signal.js";
+export {
+  EffectShaderRunner,
+  getEffectShaderRunner,
+  setEffectShaderFactory,
+} from "./gl/effect-runner.js";
+export type { GlPlatform, GlUniforms } from "./gl/platform.js";
+export {
+  compileShader,
+  createProgram,
+  createTexture,
+  type GlContext,
+  VERTEX_SHADER,
+  VERTEX_SHADER_100,
+} from "./gl/shared.js";
+export { transpileTo100 } from "./gl/transpile.js";
 export {
   type BackgroundValue,
   Block,

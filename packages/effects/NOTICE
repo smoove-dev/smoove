@@ -1,0 +1,8 @@
+This package includes GLSL shader code derived from Paper Shaders
+(https://github.com/paper-design/shaders), Copyright Paper Design,
+licensed under the Apache License, Version 2.0.
+Modifications: adapted uniform names/time handling to the smoove effect
+pipeline, removed the sizing/fit vertex system (plain v_uv), inlined
+helper chunks, replaced the upstream noise texture with procedural
+hash noise, and gated highlights by content coverage (the effect runs
+over a node-scoped capture, not a full-plane surface).

@@ -5,6 +5,7 @@
   "fixed": [
     [
       "@smoove/core",
+      "@smoove/effects",
       "@smoove/player",
       "@smoove/transitions",
       "@smoove/renderer",
@@ -18,5 +19,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@smoove/docs", "demo"]
+  "ignore": ["@smoove/docs"]
 }

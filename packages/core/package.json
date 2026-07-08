@@ -30,6 +30,7 @@
     "build": "tsc -b",
     "prepublishOnly": "pnpm build",
     "dev": "tsc -b --watch",
+    "test": "vitest run",
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
@@ -39,5 +40,9 @@
   },
   "peerDependencies": {
     "konva": ">=10"
+  },
+  "devDependencies": {
+    "konva": "^10.3.0",
+    "vitest": "^3.2.0"
   }
 }
