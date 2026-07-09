@@ -18,5 +18,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@smoove/docs"]
+  "ignore": ["@smoove/docs", "@smoove/kitchen-sink"]
 }
