@@ -10,7 +10,7 @@ type FieldProps = { field: SmooveField; value: unknown; onChange: (value: unknow
 
 const labelCls = "text-[12.5px] text-ink-2 font-medium";
 const inputCls =
-  "w-full bg-bg-2 border border-line rounded-control text-[13px] text-ink-1 placeholder:text-ink-3 px-3 py-2 outline-none focus:border-accent focus:shadow-[0_0_0_3px_var(--color-accent-soft)]";
+  "w-full bg-bg-2 border border-transparent rounded-control text-[13px] text-ink-1 placeholder:text-ink-3 px-3 py-2 outline-none focus:border-accent focus:shadow-[0_0_0_3px_var(--color-accent-soft)]";
 
 export function Field({ field, value, onChange }: FieldProps) {
   switch (field.type) {
@@ -113,7 +113,7 @@ export function Field({ field, value, onChange }: FieldProps) {
             <input
               value={current}
               onChange={(e) => onChange(e.target.value)}
-              className="w-[88px] bg-bg-2 border border-line rounded-control text-[12px] font-mono text-ink-1 px-2 py-1.5 outline-none focus:border-line-2"
+              className="w-[88px] bg-bg-2 border border-transparent rounded-control text-[12px] font-mono text-ink-1 px-2 py-1.5 outline-none focus:border-line-2"
             />
           </div>
         </Labeled>

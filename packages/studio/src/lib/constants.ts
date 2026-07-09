@@ -45,6 +45,13 @@ export const FORMATS: Array<SelectOption & { mul: number }> = [
 export const estMB = (w: number, h: number, frames: number, qf: number, mul: number): number =>
   (w * h * frames * qf * mul) / 90000;
 
+/** Approx. compressed bytes-per-pixel for a single still, by format. */
+const STILL_BPP: Record<string, number> = { png: 1.6, jpg: 0.28, webp: 0.2 };
+
+/** Estimated size (MB) of a single exported frame at `w`×`h` in `format`. */
+export const estFrameMB = (w: number, h: number, format: string): number =>
+  (w * h * (STILL_BPP[format] ?? 1.6)) / (1024 * 1024);
+
 export const prettyMB = (mb: number): string =>
   mb >= 1024
     ? `${(mb / 1024).toFixed(2)} GB`

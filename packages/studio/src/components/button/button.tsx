@@ -12,7 +12,7 @@ export const buttonCls = cva(
     variants: {
       tone: {
         primary:
-          "text-white border border-transparent bg-gradient-to-b from-accent-2 to-accent shadow-[0_2px_14px_-3px_var(--color-accent-soft)] hover:brightness-110",
+          "text-white border border-transparent bg-accent shadow-[0_2px_14px_-3px_var(--color-accent-soft)] hover:brightness-110",
         default: "text-ink-1 bg-bg-2 border border-line-2 hover:bg-bg-3",
         ghost: "text-ink-2 bg-transparent border border-transparent hover:bg-bg-2 hover:text-ink-1",
         danger: "text-danger bg-transparent border border-transparent hover:bg-danger/12",

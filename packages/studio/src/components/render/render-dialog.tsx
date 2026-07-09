@@ -2,20 +2,18 @@ import { type ReactNode, useEffect, useState } from "react";
 import { useComposition } from "../../hooks/use-composition.js";
 import { useStudio } from "../../hooks/use-studio.js";
 import { cn } from "../../lib/cn.js";
-import { estMB, FORMATS, prettyMB, QUALITY, RES_PRESETS } from "../../lib/constants.js";
+import { estMB, FORMATS, prettyMB, QUALITY } from "../../lib/constants.js";
 import { fmtTime } from "../../lib/format.js";
 import { useSignalValue } from "../../signals/signal-bridge.js";
 import { Button } from "../button/button.js";
 import { Icon } from "../icon/icon.js";
 import { StDialog } from "../primitives/dialog.js";
+import { DialogField } from "../primitives/dialog-field.js";
 import { StNumberField } from "../primitives/number-field.js";
 import { StSelect } from "../primitives/select.js";
 
 const Field = ({ label, children }: { label: string; children: ReactNode }) => (
-  <div className="mb-4">
-    <span className="block text-[11.5px] font-semibold text-ink-2 mb-1.5">{label}</span>
-    {children}
-  </div>
+  <DialogField label={label}>{children}</DialogField>
 );
 
 /** Server-render dialog (mocked): format/quality/resolution/fps/range → enqueue. */
@@ -41,12 +39,15 @@ export function RenderDialog({
 
   const [format, setFormat] = useState("mp4");
   const [quality, setQuality] = useState("standard");
-  const [preset, setPreset] = useState("720p");
   const [w, setW] = useState(baseW);
   const [h, setH] = useState(baseH);
   const [rfps, setRfps] = useState(compFps);
   const [range, setRange] = useState<"full" | "region">("full");
   const hasRegion = region.in != null || region.out != null;
+
+  // Output stays locked to the source aspect ratio: editing one dimension
+  // recomputes the other so exports never distort the composition.
+  const aspect = baseW / baseH;
 
   useEffect(() => {
     if (open) {
@@ -57,19 +58,16 @@ export function RenderDialog({
     }
   }, [open, compFps, baseW, baseH]);
 
-  const applyPreset = (p: string) => {
-    setPreset(p);
-    const f = RES_PRESETS.find((x) => x.value === p);
-    if (f?.w && f?.h) {
-      setW(f.w);
-      setH(f.h);
-    }
+  const clampDim = (val: number) => Math.max(16, Math.min(7680, Math.round(val || 0)));
+  const editW = (val: number) => {
+    const nw = clampDim(val);
+    setW(nw);
+    setH(clampDim(nw / aspect));
   };
-  const editDim = (which: "w" | "h", val: number) => {
-    const v = Math.max(16, Math.min(7680, Math.round(val || 0)));
-    if (which === "w") setW(v);
-    else setH(v);
-    setPreset("custom");
+  const editH = (val: number) => {
+    const nh = clampDim(val);
+    setH(nh);
+    setW(clampDim(nh * aspect));
   };
 
   const den = Math.max(1, total - 1);
@@ -130,45 +128,32 @@ export function RenderDialog({
           <Field label="Quality">
             <StSelect value={quality} onValueChange={setQuality} options={QUALITY} />
           </Field>
-          <Field label="Resolution">
-            <StSelect value={preset} onValueChange={applyPreset} options={RES_PRESETS} />
-            <div className="flex items-center gap-2 mt-2.5">
-              <StNumberField
-                value={w}
-                onValueChange={(v) => editDim("w", v)}
-                suffix="W"
-                min={16}
-                max={7680}
-              />
-              <span className="text-ink-3">
+          <DialogField label="Resolution" description="Aspect ratio locked to the source.">
+            <div className="flex items-center gap-2.5">
+              <StNumberField value={w} onValueChange={editW} suffix="W" min={16} max={7680} />
+              <span className="text-ink-3 flex-none">
                 <Icon name="close" size={12} />
               </span>
-              <StNumberField
-                value={h}
-                onValueChange={(v) => editDim("h", v)}
-                suffix="H"
-                min={16}
-                max={7680}
-              />
+              <StNumberField value={h} onValueChange={editH} suffix="H" min={16} max={7680} />
             </div>
+          </DialogField>
+          <Field label="Frame rate">
+            <StNumberField
+              value={rfps}
+              onValueChange={(v) => setRfps(Math.max(1, Math.min(120, v)))}
+              suffix="fps"
+              min={1}
+              max={120}
+            />
           </Field>
-          <div className="flex gap-3.5">
-            <Field label="Frame rate">
-              <StNumberField
-                value={rfps}
-                onValueChange={(v) => setRfps(Math.max(1, Math.min(120, v)))}
-                suffix="fps"
-                min={1}
-                max={120}
-              />
-            </Field>
+          {hasRegion && (
             <Field label="Range">
-              <div className="flex bg-bg-2 border border-line rounded-control p-[3px] gap-[3px]">
+              <div className="flex bg-bg-2 border border-transparent rounded-control p-[3px] gap-[3px]">
                 <button
                   type="button"
                   onClick={() => setRange("full")}
                   className={cn(
-                    "flex-1 text-[12px] font-semibold py-[7px] rounded-[5px]",
+                    "flex-1 text-[12px] font-semibold py-[7px] rounded-[5px] transition-colors",
                     range === "full"
                       ? "bg-bg-0 text-ink-1 shadow-[0_1px_4px_rgba(0,0,0,.3)]"
                       : "text-ink-3 hover:text-ink-1",
@@ -178,11 +163,9 @@ export function RenderDialog({
                 </button>
                 <button
                   type="button"
-                  onClick={() => hasRegion && setRange("region")}
-                  disabled={!hasRegion}
-                  title={hasRegion ? "" : "Set In/Out first"}
+                  onClick={() => setRange("region")}
                   className={cn(
-                    "flex-1 text-[12px] font-semibold py-[7px] rounded-[5px] disabled:opacity-40 disabled:cursor-not-allowed",
+                    "flex-1 text-[12px] font-semibold py-[7px] rounded-[5px] transition-colors",
                     range === "region"
                       ? "bg-bg-0 text-ink-1 shadow-[0_1px_4px_rgba(0,0,0,.3)]"
                       : "text-ink-3 hover:text-ink-1",
@@ -192,7 +175,7 @@ export function RenderDialog({
                 </button>
               </div>
             </Field>
-          </div>
+          )}
         </D.Body>
         <D.Footer>
           <div className="flex items-center gap-1.5 font-mono text-[11.5px] text-ink-2 whitespace-nowrap">
