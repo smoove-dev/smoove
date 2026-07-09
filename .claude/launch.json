@@ -1,6 +1,7 @@
 {
   "version": "0.0.1",
   "configurations": [
+    { "name": "kitchen-sink", "runtimeExecutable": "pnpm", "runtimeArgs": ["--filter", "@smoove/kitchen-sink", "exec", "react-router", "dev", "--port", "5190"], "port": 5190 },
     { "name": "demo", "runtimeExecutable": "pnpm", "runtimeArgs": ["dev"], "port": 5173 },
     {
       "name": "smoove-intro-pulsar",

@@ -10,7 +10,6 @@
     { "path": "./packages/vite" },
     { "path": "./packages/create" },
     { "path": "./packages/docs" },
-    { "path": "./demo" },
-    { "path": "./demo2" }
+    { "path": "./packages/kitchen-sink" }
   ]
 }

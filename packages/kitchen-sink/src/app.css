@@ -1,0 +1,159 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: #100f14;
+}
+
+#smoove-root {
+  height: 100vh;
+}
+
+.smoove-boot {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  color: #6b6a78;
+  font:
+    600 13px "Hanken Grotesk",
+    system-ui,
+    sans-serif;
+  letter-spacing: 0.04em;
+}
+
+/* Home doc — demo2 owns this styling (demo2 has no Tailwind build). */
+.smoove-doc-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  background: radial-gradient(120% 90% at 50% 0%, #16151c 0%, #0c0c0f 70%);
+}
+.smoove-doc {
+  max-width: 720px;
+  width: 100%;
+  padding: 48px 40px 80px;
+  color: #a4a2b2;
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.smoove-doc h1 {
+  color: #eceaf2;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+}
+.smoove-doc h2 {
+  color: #eceaf2;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 32px 0 10px;
+}
+.smoove-doc p {
+  margin: 0 0 14px;
+}
+.smoove-doc ul {
+  margin: 0 0 14px;
+  padding-left: 20px;
+}
+.smoove-doc li {
+  margin: 6px 0;
+}
+.smoove-doc code {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12.5px;
+  color: #ff5640;
+  background: #1e1d25;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+.smoove-doc pre {
+  background: #17161c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 16px;
+  overflow: auto;
+  margin: 14px 0;
+}
+.smoove-doc pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: #a4a2b2;
+  line-height: 1.6;
+}
+
+/* Player-only test page (/player). */
+.km-player-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #100f14;
+  color: #a4a2b2;
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+}
+.km-player-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  border-bottom: 1px solid #26242e;
+  background: #16151c;
+}
+.km-player-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #c8c6d6;
+}
+.km-player-pick select {
+  background: #100f14;
+  color: #e6e5ee;
+  border: 1px solid #34313d;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font: inherit;
+  cursor: pointer;
+}
+.km-player-link {
+  margin-left: auto;
+  color: #8f8da0;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+.km-player-link:hover {
+  color: #c8c6d6;
+}
+.km-player-main {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background: radial-gradient(120% 90% at 50% 0%, #16151c 0%, #0c0c0f 70%);
+}
+.km-player-stage {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+/* width/height are set imperatively (see routes/player.tsx) to the composition's
+   aspect ratio, contain-fitted to the stage, so the player is never stretched. */
+.km-player-el {
+  display: block;
+}
+.km-player-fallback {
+  color: #6b6a78;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
