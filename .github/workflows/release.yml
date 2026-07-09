@@ -30,8 +30,10 @@ jobs:
       # OIDC trusted publishing needs npm >= 11.5.1; Node 22 ships npm 10.x.
       # pnpm publish delegates registry auth to this npm, so without the
       # upgrade the OIDC exchange never happens and publish fails ENEEDAUTH.
+      # Pin the version: npm@latest currently resolves into the 12.x line
+      # whose provenance path is broken (missing 'sigstore', npm/cli#9722).
       - name: Upgrade npm for OIDC trusted publishing
-        run: npm install -g npm@latest
+        run: npm install -g npm@11.12.1
       - name: Install headless-gl build deps
         run: sudo apt-get update && sudo apt-get install -y libxi-dev libglu1-mesa-dev libglew-dev pkg-config
       - run: pnpm install --frozen-lockfile
