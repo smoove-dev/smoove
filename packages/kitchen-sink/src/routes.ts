@@ -6,6 +6,8 @@ export default [
     route("c/:id", "routes/composition.tsx"),
     route("queue", "routes/queue.tsx"),
   ]),
+  // Standalone player-only page (no Studio shell) for testing <smoove-player>.
+  route("player", "routes/player.tsx"),
   // Render API (resource routes — no UI). All HTTP for the render queue lives
   // here; the queue itself comes from @smoove/studio/server.
   route("api/render", "routes/api.render.ts"),

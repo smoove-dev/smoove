@@ -34,6 +34,12 @@ function SideRail() {
       <Studio.Brand onClick={() => navigate("/")} />
       <Studio.Section>
         <Studio.NavItem
+          icon="play"
+          title="Player"
+          active={location.pathname === "/player"}
+          onClick={() => navigate("/player")}
+        />
+        <Studio.NavItem
           icon="queue"
           title="Render Queue"
           badge={queueCount}
