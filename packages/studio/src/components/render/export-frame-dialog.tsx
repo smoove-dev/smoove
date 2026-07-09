@@ -1,19 +1,17 @@
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { useComposition } from "../../hooks/use-composition.js";
 import { usePlayback } from "../../hooks/use-playback.js";
 import { useStudio } from "../../hooks/use-studio.js";
-import { estMB } from "../../lib/constants.js";
+import { estFrameMB } from "../../lib/constants.js";
 import { fmtTime } from "../../lib/format.js";
 import { Button } from "../button/button.js";
 import { Icon } from "../icon/icon.js";
 import { StDialog } from "../primitives/dialog.js";
+import { DialogField } from "../primitives/dialog-field.js";
 import { StSelect } from "../primitives/select.js";
 
 const Field = ({ label, children }: { label: string; children: ReactNode }) => (
-  <div className="mb-4">
-    <span className="block text-[11.5px] font-semibold text-ink-2 mb-1.5">{label}</span>
-    {children}
-  </div>
+  <DialogField label={label}>{children}</DialogField>
 );
 
 const FMTS = [
@@ -38,6 +36,7 @@ export function ExportFrameDialog({
   const { frame, fps } = usePlayback();
   const [format, setFormat] = useState("png");
   const [scale, setScale] = useState("1");
+  const [preview, setPreview] = useState<string | null>(null);
 
   const baseW = comp?.width() ?? 1280;
   const baseH = comp?.height() ?? 720;
@@ -46,6 +45,26 @@ export function ExportFrameDialog({
   const h = Math.round(baseH * factor);
   const timeSec = frame / (fps || 30);
   const title = entry?.title ?? entry?.id ?? "Composition";
+
+  // Capture the exact frame that will be exported so the preview thumbnail is
+  // the real still, not a placeholder. Re-runs whenever the dialog opens or the
+  // frame/props change while it's open (the composition draws live).
+  useEffect(() => {
+    if (!open || !comp) {
+      setPreview(null);
+      return;
+    }
+    try {
+      setPreview(comp.captureCanvas().toDataURL("image/png"));
+    } catch {
+      setPreview(null);
+    }
+  }, [open, comp, frame]);
+
+  // Fit the thumbnail to the composition's aspect ratio (max 148×100).
+  const aspect = baseW / baseH;
+  const previewW = Math.round(Math.min(148, 100 * aspect));
+  const previewH = Math.round(previewW / aspect);
 
   const SCALES = [
     { value: "1", label: `1× · ${baseW}×${baseH}` },
@@ -68,7 +87,7 @@ export function ExportFrameDialog({
       frames: 1,
       frameNo: frame,
       rangeLabel: `Frame ${frame}`,
-      sizeEst: estMB(w, h, 1, format === "png" ? 4 : 1.2, 1) * 2,
+      sizeEst: estFrameMB(w, h, format),
     });
     onOpenChange(false);
     onSubmitted?.();
@@ -83,10 +102,19 @@ export function ExportFrameDialog({
           <div className="flex gap-3.5 items-center mb-4.5">
             <div className="relative flex-none">
               <div
-                className="w-[140px] h-[79px] rounded-ui grid place-items-center shadow-[0_0_0_1px_var(--color-line-2)_inset]"
-                style={{ background: "linear-gradient(135deg,#23204a,rgba(255,86,64,.4))" }}
+                className="rounded-ui overflow-hidden grid place-items-center bg-bg-2 shadow-[0_0_0_1px_var(--color-line-2)_inset]"
+                style={{ width: previewW, height: previewH }}
               >
-                <Icon name="camera" size={26} style={{ color: "rgba(255,255,255,.55)" }} />
+                {preview ? (
+                  <img
+                    src={preview}
+                    alt="Current frame"
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                  />
+                ) : (
+                  <Icon name="camera" size={26} style={{ color: "rgba(255,255,255,.35)" }} />
+                )}
               </div>
               <div className="absolute bottom-1.5 right-1.5 font-mono text-[9.5px] text-white bg-black/60 rounded px-1.5">
                 {fmtTime(timeSec)} · #{frame}

@@ -26,7 +26,7 @@ export function StSelect({
     <Select.Root value={value} onValueChange={(v) => onValueChange(String(v))}>
       <Select.Trigger
         className={cn(
-          "flex items-center justify-between gap-2 w-full bg-bg-2 border border-line rounded-control text-[13px] text-ink-1 px-3 py-2 text-left hover:border-line-2 data-[popup-open]:border-accent data-[popup-open]:shadow-[0_0_0_3px_var(--color-accent-soft)] outline-none",
+          "flex items-center justify-between gap-2 w-full bg-bg-2 border border-transparent rounded-control text-[13px] text-ink-1 px-3 py-2 text-left hover:bg-bg-3 data-[popup-open]:border-accent data-[popup-open]:shadow-[0_0_0_3px_var(--color-accent-soft)] outline-none",
           className,
         )}
       >
