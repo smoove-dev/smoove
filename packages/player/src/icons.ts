@@ -28,8 +28,10 @@ const PATHS: Record<string, TemplateResult> = {
       <path d="M13.5 8l3 4M16.5 8l-3 4" />
     </g>`,
   loop: svg`<g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 7h7a3 3 0 013 3M15 13H8a3 3 0 01-3-3" />
-      <path d="M13 5l2 2-2 2M7 15l-2-2 2-2" />
+      <path d="M4 8V7.5A2.5 2.5 0 016.5 5H12" />
+      <path d="M10.5 3l2 2-2 2" />
+      <path d="M14 10v.5A2.5 2.5 0 0111.5 13H6" />
+      <path d="M7.5 15l-2-2 2-2" />
     </g>`,
   fullscreen: svg`<path d="M4 7V4h3M16 7V4h-3M4 13v3h3M16 13v3h-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />`,
   fullscreenExit: svg`<path d="M7 4v3H4M13 4v3h3M7 16v-3H4M13 16v-3h3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />`,
