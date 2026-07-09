@@ -49,6 +49,7 @@ export function ExportFrameDialog({
   // Capture the exact frame that will be exported so the preview thumbnail is
   // the real still, not a placeholder. Re-runs whenever the dialog opens or the
   // frame/props change while it's open (the composition draws live).
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we do need this to be changed every frame, if the frame chagnes the preview should be changed
   useEffect(() => {
     if (!open || !comp) {
       setPreview(null);
