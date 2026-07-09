@@ -9,8 +9,5 @@
     "rootDirs": [".", "./.react-router/types"]
   },
   "include": ["src", "vite.config.ts", "react-router.config.ts", ".react-router/types/**/*"],
-  "references": [
-    { "path": "../core" },
-    { "path": "../studio" }
-  ]
+  "references": [{ "path": "../core" }, { "path": "../studio" }]
 }
