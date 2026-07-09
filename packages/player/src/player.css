@@ -93,6 +93,22 @@ smoove-player-controls {
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
   font-family: inherit;
 }
+/* Auto-hide: the host reflects `controls-hidden` while playing + idle. */
+smoove-player-controls {
+  transition: opacity 0.18s ease;
+}
+smoove-player[controls-hidden] smoove-player-controls {
+  opacity: 0;
+  pointer-events: none;
+}
+smoove-player[controls-hidden] {
+  cursor: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  smoove-player-controls {
+    transition: none;
+  }
+}
 smoove-player-controls-row {
   display: flex;
   align-items: center;

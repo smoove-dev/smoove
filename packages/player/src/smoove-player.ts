@@ -4,6 +4,8 @@ import type { PlayerApi, PlayerState } from "./player-api.js";
 import { createSignal } from "./signal.js";
 
 const TIMEUPDATE_INTERVAL_MS = 250;
+/** Idle delay before the control bar auto-hides during playback (YouTube-style). */
+const CONTROLS_HIDE_DELAY_MS = 3000;
 const now = (): number => (typeof performance?.now === "function" ? performance.now() : Date.now());
 
 /**
@@ -58,7 +60,7 @@ async function resolveComposition(input: unknown): Promise<Composition> {
  */
 export class SmoovePlayer extends HTMLElement implements PlayerApi {
   static get observedAttributes(): string[] {
-    return ["loop", "controls", "muted", "volume", "playbackrate", "src"];
+    return ["loop", "controls", "muted", "volume", "playbackrate", "src", "always-show-controls"];
   }
 
   // --- stable, player-owned reactive state -----------------------------------
@@ -91,6 +93,16 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
   private _loadSeq = 0;
   private _prevPlaying = false;
   private _lastTimeupdate = 0;
+
+  // --- controls auto-hide state ----------------------------------------------
+  // `_active` is set by recent pointer/keyboard activity and cleared by the idle
+  // timer; the bar only auto-hides while playing and none of the "keep shown"
+  // conditions hold.
+  private _controlsActive = false;
+  private _pointerDown = false;
+  private _lastPointerType = "";
+  private _touchTapRevealed = false;
+  private _idleTimer = 0;
 
   private _stage: HTMLDivElement | null = null;
   private _scaleEl: HTMLDivElement | null = null;
@@ -135,6 +147,13 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
   set controls(v: boolean) {
     this.toggleAttribute("controls", v);
   }
+  /** When set, the control bar never auto-hides (opts out of the idle-hide). */
+  get alwaysShowControls(): boolean {
+    return this.hasAttribute("always-show-controls");
+  }
+  set alwaysShowControls(v: boolean) {
+    this.toggleAttribute("always-show-controls", v);
+  }
   get autoPlay(): boolean {
     return this.hasAttribute("autoplay");
   }
@@ -178,11 +197,20 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
     document.addEventListener("fullscreenchange", this._onFullscreenChange);
     this.addEventListener("keydown", this._onKeyDown);
 
+    // Controls auto-hide: any activity inside the player keeps the bar up.
+    this.addEventListener("pointermove", this._onControlsActivity);
+    this.addEventListener("pointerenter", this._onControlsActivity);
+    this.addEventListener("pointerleave", this._onPointerLeave);
+    this.addEventListener("pointerdown", this._onPointerDown);
+    this.addEventListener("focusin", this._onFocusChange);
+    this.addEventListener("focusout", this._onFocusChange);
+
     if (this._comp) this._mount();
     // A composition assigned imperatively before connect wins; otherwise honor
     // a declarative `src`.
     else if (this.src) this._loadFromSrc(this.src);
     this._reconcileControls();
+    this._syncControlsVisibility();
   }
 
   disconnectedCallback(): void {
@@ -191,6 +219,15 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
     this._mutationObserver?.disconnect();
     document.removeEventListener("fullscreenchange", this._onFullscreenChange);
     this.removeEventListener("keydown", this._onKeyDown);
+    this.removeEventListener("pointermove", this._onControlsActivity);
+    this.removeEventListener("pointerenter", this._onControlsActivity);
+    this.removeEventListener("pointerleave", this._onPointerLeave);
+    this.removeEventListener("pointerdown", this._onPointerDown);
+    this.removeEventListener("focusin", this._onFocusChange);
+    this.removeEventListener("focusout", this._onFocusChange);
+    window.removeEventListener("pointerup", this._onWindowPointerUp);
+    window.removeEventListener("pointercancel", this._onWindowPointerUp);
+    clearTimeout(this._idleTimer);
     this._stage?.removeEventListener("click", this._onStageClick);
     this._stage?.removeEventListener("dblclick", this._onStageDblClick);
     this._appliedPixelRatio = 0;
@@ -219,6 +256,11 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
       if (this.isConnected && value) this._loadFromSrc(value);
       return;
     }
+    // Visibility-only attribute — recompute without needing a mounted composition.
+    if (name === "always-show-controls") {
+      this._syncControlsVisibility();
+      return;
+    }
     const comp = this._comp;
     if (!comp) return;
     switch (name) {
@@ -237,6 +279,7 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
         break;
       case "controls":
         this._reconcileControls();
+        this._syncControlsVisibility();
         break;
     }
   }
@@ -305,6 +348,7 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
     comp.setFrame(this.initialFrame);
     comp.refresh();
     this._layout();
+    this._syncControlsVisibility();
 
     if (this.autoPlay) {
       try {
@@ -336,6 +380,7 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
       }),
       comp.isPlaying.subscribe((playing) => {
         this._playing.set(playing);
+        this._onPlayingChange(playing);
         const frame = comp.frame.get();
         if (playing && !this._prevPlaying) {
           this._emit("play", { frame });
@@ -472,6 +517,14 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
 
   // --- interaction -----------------------------------------------------------
   private _onStageClick = (): void => {
+    // On touch while playing, a tap toggles the control bar instead of pausing:
+    // a tap that reveals hidden controls must not also pause. `_touchTapRevealed`
+    // captured (in `_onPointerDown`) whether the bar was hidden when the tap
+    // began, before activity re-showed it. Paused taps still play as normal.
+    if (this._lastPointerType === "touch" && this._playing.get()) {
+      if (!this._touchTapRevealed) this._hideControlsNow();
+      return;
+    }
     if (this.clickToPlay) this.toggle();
   };
 
@@ -480,6 +533,9 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
   };
 
   private _onKeyDown = (e: KeyboardEvent): void => {
+    // Any key reveals the controls (and resets the idle timer), even keys this
+    // player doesn't otherwise handle.
+    this._onControlsActivity();
     if (!this.keyboard) return;
     const target = e.target as HTMLElement | null;
     if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
@@ -521,6 +577,103 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
       if (!existingDefault) this.appendChild(createDefaultControls());
     } else if (existingDefault) {
       existingDefault.remove();
+    }
+    this._syncControlsVisibility();
+  }
+
+  // --- controls auto-hide ----------------------------------------------------
+  /** Register activity: reveal the bar and (re)arm the idle-hide timer. */
+  private _onControlsActivity = (): void => {
+    this._controlsActive = true;
+    this._armIdleTimer();
+    this._syncControlsVisibility();
+  };
+
+  private _onPointerLeave = (e: PointerEvent): void => {
+    // A touch "leave" fires when the finger lifts — ignore it. Only a real mouse
+    // leaving the player should drop activity and let the bar hide.
+    if (e.pointerType === "touch") return;
+    this._hideControlsNow();
+  };
+
+  private _onPointerDown = (e: PointerEvent): void => {
+    this._lastPointerType = e.pointerType;
+    // Capture whether the bar was hidden as the tap began, before activity
+    // re-shows it — the stage click handler needs the pre-tap state.
+    this._touchTapRevealed = e.pointerType === "touch" && this.hasAttribute("controls-hidden");
+    this._pointerDown = true;
+    window.addEventListener("pointerup", this._onWindowPointerUp);
+    window.addEventListener("pointercancel", this._onWindowPointerUp);
+    this._onControlsActivity();
+  };
+
+  private _onWindowPointerUp = (): void => {
+    this._pointerDown = false;
+    window.removeEventListener("pointerup", this._onWindowPointerUp);
+    window.removeEventListener("pointercancel", this._onWindowPointerUp);
+    this._onControlsActivity();
+  };
+
+  private _onFocusChange = (): void => {
+    this._syncControlsVisibility();
+  };
+
+  private _armIdleTimer(): void {
+    clearTimeout(this._idleTimer);
+    this._idleTimer = window.setTimeout(() => {
+      this._controlsActive = false;
+      this._syncControlsVisibility();
+    }, CONTROLS_HIDE_DELAY_MS);
+  }
+
+  private _hideControlsNow(): void {
+    this._controlsActive = false;
+    clearTimeout(this._idleTimer);
+    this._syncControlsVisibility();
+  }
+
+  private _onPlayingChange(playing: boolean): void {
+    // On play, flash the bar visible then let it idle-hide; on pause, show it.
+    if (playing) this._onControlsActivity();
+    else this._hideControlsNow();
+  }
+
+  /**
+   * Reflect a `controls-hidden` attribute per the YouTube-style rule: the bar
+   * (and mouse cursor, via CSS) hide only while playing and idle. It stays shown
+   * when paused, when `always-show-controls` is set, on recent activity, while a
+   * pointer is down (scrubbing), or while the bar is hovered or holds focus.
+   */
+  private _syncControlsVisibility(): void {
+    const controlsEl = this.querySelector(":scope > smoove-player-controls");
+    const show =
+      this.alwaysShowControls ||
+      !controlsEl ||
+      !this._playing.get() ||
+      this._controlsActive ||
+      this._pointerDown ||
+      this._matches(controlsEl, ":hover") ||
+      this._hasKeyboardFocus(controlsEl);
+    this.toggleAttribute("controls-hidden", !show);
+  }
+
+  /**
+   * True only when a control holds *keyboard* focus (`:focus-visible`). A mouse
+   * click leaves the clicked control focused but not focus-visible, so clicking
+   * play and moving away lets the bar idle-hide instead of pinning it open.
+   */
+  private _hasKeyboardFocus(controlsEl: Element): boolean {
+    const active = document.activeElement;
+    return (
+      active != null && controlsEl.contains(active) && this._matches(active, ":focus-visible")
+    );
+  }
+
+  private _matches(el: Element, selector: string): boolean {
+    try {
+      return el.matches(selector);
+    } catch {
+      return false;
     }
   }
 
