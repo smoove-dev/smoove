@@ -201,6 +201,8 @@ smoove-player-progress {
   width: 100%;
   padding: 6px 0;
   cursor: pointer;
+  /* Claim the touch gesture so dragging seeks instead of scrolling the page. */
+  touch-action: none;
 }
 .smoove-player__track {
   position: relative;
@@ -218,7 +220,7 @@ smoove-player-progress {
   left: 0;
   top: 0;
   bottom: 0;
-  background: linear-gradient(90deg, #ff5640, #15cda8);
+  background: #15cda8;
   border-radius: 2px;
 }
 .smoove-player__knob {
