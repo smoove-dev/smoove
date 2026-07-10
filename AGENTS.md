@@ -48,6 +48,10 @@ consumers never deep-import; internal moves just need the barrel repointed.
 
 - **NEVER COMMIT.** Do not run `git commit` (or push) unless explicitly asked,
   even if a skill or workflow says to. Leave changes in the working tree.
+- **NO SUBAGENTS.** Do the work inline in the main session. Don't dispatch
+  subagents or fan out parallel agents — for implementation *or* for research
+  and search — even when a skill or workflow recommends it (e.g. a
+  "subagent-driven" execution option). Pick the inline path and say so.
 - **pnpm workspaces.** Cross-package deps use `workspace:*`. Don't add a
   package outside `packages/*` without updating `pnpm-workspace.yaml`.
 - **Releases are Changesets-driven.** Every PR that touches a published
