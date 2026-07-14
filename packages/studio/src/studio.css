@@ -15,54 +15,17 @@
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities) source(none);
 
+/* Tokens live in theme.css so sibling packages (@smoove/editor) can compile
+   their own utilities against the same @theme. Exported as "./theme.css".
+   Must precede @source — @import has to come before other at-rules. */
+@import "./theme.css";
+
 /* Scan only this package's own source for class names (deterministic,
    independent of who runs the build / their CWD). */
 @source "./components";
 @source "./hooks";
 @source "./lib";
 @source "./index.ts";
-
-@theme {
-  /* ---- Surfaces (deepest → raised) ---- */
-  --color-stage: #0c0c0f;
-  --color-bg-0: #100f14;
-  --color-bg-1: #17161c;
-  --color-bg-2: #1e1d25;
-  --color-bg-3: #2a2933;
-  --color-line: color-mix(in oklab, #ffffff 8%, transparent);
-  --color-line-2: color-mix(in oklab, #ffffff 13%, transparent);
-
-  /* ---- Ink ---- */
-  --color-ink-1: #eceaf2;
-  --color-ink-2: #a4a2b2;
-  --color-ink-3: #6b6a78;
-
-  /* ---- Accent + status (change --color-accent to reskin) ---- */
-  --color-accent: #ff5640;
-  --color-accent-2: #15cda8;
-  --color-good: #46d39a;
-  --color-warn: #ffb44d;
-  --color-danger: #ff6b6b;
-
-  /* ---- Shape: route every corner through these two ---- */
-  --radius-ui: 10px;
-  --radius-control: 7px;
-
-  /* ---- Type ---- */
-  --font-display: "Comfortaa", system-ui, sans-serif;
-  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-
-  /* ---- Frame metrics ---- */
-  --spacing-sidebar: 256px;
-  --spacing-panel: 320px;
-}
-
-/* Tints derived from accent — regenerate automatically when accent changes. */
-@theme inline {
-  --color-accent-soft: color-mix(in oklab, var(--color-accent) 16%, transparent);
-  --color-accent-line: color-mix(in oklab, var(--color-accent) 40%, transparent);
-}
 
 @layer base {
   /* Scoped root — applies the base look without touching the host page. */

@@ -11,23 +11,29 @@
     "typecheck": "react-router typegen && tsc -b"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.11",
+    "@ai-sdk/google": "^4.0.11",
+    "@ai-sdk/openai-compatible": "^3.0.7",
+    "@ai-sdk/react": "^4.0.20",
     "@smoove/core": "workspace:*",
+    "@smoove/editor": "workspace:*",
     "@smoove/player": "workspace:*",
     "@smoove/renderer": "workspace:*",
     "@smoove/google-fonts": "workspace:*",
     "@smoove/studio": "workspace:*",
     "@smoove/transitions": "workspace:*",
+    "ai": "^7.0.19",
     "konva": "^10.3.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "react-router": "7.17.0"
   },
   "devDependencies": {
     "@smoove/vite": "workspace:*",
     "@react-router/dev": "7.17.0",
     "@react-router/node": "7.17.0",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.0",
     "typescript": "^5.6.3",
     "vite": "^6.3.6"
   }
