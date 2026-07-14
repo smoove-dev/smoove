@@ -8,7 +8,8 @@ export async function action({ request }: ActionFunctionArgs) {
   const body = (await request.json()) as AgentInput;
 
   try {
-    const result = await getAi().stream(body, request.signal);
+    const ai = await getAi();
+    const result = await ai.stream(body, request.signal);
     return createUIMessageStreamResponse({
       stream: toUIMessageStream({ stream: result.stream }),
     });

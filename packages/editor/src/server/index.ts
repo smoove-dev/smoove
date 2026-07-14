@@ -7,11 +7,21 @@
 export type * from "../types.js";
 export { type SetupAiOptions, setupAi } from "./ai.js";
 export { defineModel } from "./models.js";
+export { ProjectFs } from "./project/project-fs.js";
+export type * from "./project/types.js";
+export { smooveVideoSystemPrompt } from "./system-prompt.js";
 export {
-  type CompositionSummary,
+  type EditFileInput,
   type EditorToolContext,
   type EditorToolSet,
+  editFile,
   getDefaultSmooveEditorTools,
   getTimeline,
   listCompositions,
+  type ReadFileInput,
+  readFile,
+  scaffoldComposition,
+  typecheck,
+  type WriteFileInput,
+  writeFile,
 } from "./tools/index.js";

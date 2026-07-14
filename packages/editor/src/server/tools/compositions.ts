@@ -1,20 +1,11 @@
+import type { CompositionMeta } from "../project/types.js";
 import type { EditorToolContext } from "./context.js";
 
-export type CompositionSummary = {
-  id: string;
-  title?: string;
-  group?: string;
-  description?: string;
-  tags?: string[];
-};
-
-/** Plain function — callable directly, no LLM required. */
-export function listCompositions(ctx: EditorToolContext): CompositionSummary[] {
-  return ctx.registry.entries().map((e) => ({
-    id: e.id,
-    title: e.title,
-    group: e.group,
-    description: e.description,
-    tags: e.tags,
-  }));
+/**
+ * The project's compositions. Reads the filesystem on every call, so a
+ * composition scaffolded earlier in THIS turn is visible to the next tool call.
+ * Plain function — callable directly, no LLM required.
+ */
+export function listCompositions(ctx: EditorToolContext): Promise<CompositionMeta[]> {
+  return ctx.project.list();
 }

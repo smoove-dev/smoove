@@ -11,3 +11,11 @@ doc
 package-lock.json
 # Local demo app (not part of the published workspace)
 demo/
+
+# Vitest temp projects (see packages/editor/test/helpers.ts).
+packages/editor/test/.tmp/
+
+# The editor's scratch project — agent-authored compositions, not repo source.
+# The directory itself is kept (Vite must have something to glob and watch).
+packages/kitchen-sink/editor-project/*
+!packages/kitchen-sink/editor-project/.gitkeep

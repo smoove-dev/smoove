@@ -1,8 +1,19 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
-import { defineModel, type ModelSpec, setupAi } from "@smoove/editor/server";
-import registry from "../registry.js";
+import { defineModel, type ModelSpec, ProjectFs, setupAi } from "@smoove/editor/server";
+
+/** The editor's project: a real directory the agent reads and writes. This is
+    the editor's composition list — deliberately NOT the demo registry that
+    powers `/` and `/c/:id`. Gitignored scratch; created on first use. */
+const projectRoot = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../../editor-project",
+);
+
+export const project = new ProjectFs(projectRoot);
 
 /** Lazily constructed so a missing key surfaces as a request error rather than
     crashing the dev server at import time. */
@@ -36,7 +47,10 @@ function buildModels(): ModelSpec[] {
   return models;
 }
 
-export function getAi() {
-  if (!cached) cached = setupAi({ registry, models: buildModels() });
+export async function getAi() {
+  if (!cached) {
+    await project.init();
+    cached = setupAi({ project, models: buildModels() });
+  }
   return cached;
 }

@@ -12,6 +12,7 @@
     "dev:docs": "pnpm --filter docs run dev",
     "check": "biome check .",
     "format": "biome format --write .",
+    "test": "pnpm -r --if-present run test",
     "sync:templates": "node scripts/sync-composition.mjs",
     "release:version": "changeset version && node scripts/sync-template-versions.mjs && pnpm install --lockfile-only",
     "release:publish": "pnpm build && changeset publish"
