@@ -1,0 +1,22 @@
+/* ============================================================
+   @smoove/editor — Tailwind v4 source. Compiled at build to
+   dist/styles/editor.css and shipped via the "./styles.css" export.
+
+   Theme tokens are NOT redeclared here — they're imported from
+   @smoove/studio, which owns them. shadcn-bridge.css re-points shadcn's
+   variables at those tokens so the vendored AI Elements inherit the look.
+
+   The relative import into the studio workspace source is intentional:
+   editor's CSS is compiled inside this monorepo at build/publish time, and
+   consumers only ever eat the compiled dist/styles/editor.css. External
+   consumers who want to recolor import "@smoove/studio/theme.css".
+   ============================================================ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@import "../../studio/src/theme.css";
+@import "./shadcn-bridge.css";
+
+@source "./components";
+@source "./hooks";
+@source "./index.ts";

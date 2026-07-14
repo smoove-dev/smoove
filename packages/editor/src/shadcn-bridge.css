@@ -1,0 +1,73 @@
+/* ============================================================
+   shadcn → smoove token bridge.
+
+   AI Elements (vendored, unmodified) style themselves with shadcn's CSS
+   variables: bg-background, text-muted-foreground, border-border, …
+   Rather than fork their class names, we point those variables at smoove's
+   design tokens. Re-theming smoove re-themes AI Elements for free, and the
+   vendored source stays byte-comparable with upstream.
+
+   ONE deliberate exception: shadcn's `accent` means "muted hover surface",
+   but smoove's `--color-accent` is the hero accent (the red #ff5640). We do
+   NOT bridge `accent`/`accent-foreground` — that would grey out every hero
+   surface in the editor. Instead we expose a `surface-hover` token and repoint
+   the handful of vendored `bg-accent` / `text-accent-foreground` usages to it
+   (see NOTICE). smoove's `bg-accent` therefore keeps its hero meaning.
+   ============================================================ */
+
+:root {
+  --background: var(--color-bg-0);
+  --foreground: var(--color-ink-1);
+
+  --card: var(--color-bg-1);
+  --card-foreground: var(--color-ink-1);
+  --popover: var(--color-bg-2);
+  --popover-foreground: var(--color-ink-1);
+
+  --primary: var(--color-accent);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-bg-2);
+  --secondary-foreground: var(--color-ink-1);
+
+  --muted: var(--color-bg-1);
+  --muted-foreground: var(--color-ink-3);
+
+  /* shadcn's "accent" (hover surface), renamed so it can't collide with
+     smoove's hero --color-accent. Vendored bg-accent usages point here. */
+  --surface-hover: var(--color-bg-2);
+  --surface-hover-foreground: var(--color-ink-1);
+
+  --destructive: var(--color-danger);
+  --destructive-foreground: #ffffff;
+
+  --border: var(--color-line);
+  --input: var(--color-line-2);
+  --ring: var(--color-accent-line);
+
+  --radius: var(--radius-ui);
+}
+
+/* Tailwind v4: expose the bridged vars as utilities (bg-background, …).
+   Note: --color-accent / --color-accent-foreground are intentionally NOT
+   declared here — they stay owned by @smoove/studio's theme (the hero red). */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-hover-foreground: var(--surface-hover-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}

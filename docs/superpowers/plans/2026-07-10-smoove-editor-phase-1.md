@@ -994,6 +994,12 @@ export {
 
 - [ ] **Step 1: Write it**
 
+Accessors below are **verified against the real source**, not guessed:
+`useComposition()` returns `{ composition, selectedId, status, error, entry }`;
+`usePlayback()` returns `{ frame, … }`; `Composition.fps` is a plain `number` but
+**`Composition.durationInFrames` is a `ReadonlySignal<number>`** (call `.get()`);
+`Sequence.from` is a `number` and `Sequence.durationInFrames` is a getter.
+
 ```ts
 import { sequencesOf, useComposition, usePlayback } from "@smoove/studio";
 import { useCallback } from "react";
@@ -1001,27 +1007,26 @@ import type { EditorContext } from "../types.js";
 
 /** Snapshot the live composition + playhead for the agent's per-turn context. */
 export function useEditorContext(): () => EditorContext | undefined {
-  const composition = useComposition();
+  const { composition, selectedId } = useComposition();
   const { frame } = usePlayback();
 
   return useCallback(() => {
     if (!composition) return undefined;
     return {
-      compositionId: composition.id() ?? "",
+      compositionId: selectedId,
       frame,
       fps: composition.fps,
-      durationInFrames: composition.durationInFrames,
+      // durationInFrames is a signal on Composition, a getter on Sequence.
+      durationInFrames: composition.durationInFrames.get(),
       sequences: sequencesOf(composition).map((s) => ({
         name: s.name() || "sequence",
         from: s.from,
         durationInFrames: s.durationInFrames,
       })),
     };
-  }, [composition, frame]);
+  }, [composition, selectedId, frame]);
 }
 ```
-
-> **Risk, resolve while writing:** confirm the real accessors on `Composition`/`Sequence` (`.id()`, `.fps`, `.durationInFrames`, `.from`) and the signatures of `useComposition()` / `usePlayback()` in `packages/studio/src/hooks/`. Adjust this file to match; do **not** change `EditorContext`.
 
 ## Task D2: `<ChatRail>` composed from AI Elements
 
@@ -1562,6 +1567,6 @@ Select `@smoove/editor` and `@smoove/studio` (the `theme.css` export), bump `min
 - **Deferred to Phase 2+:** `ProjectFs` and all write tools (`readFile`/`writeFile`/`editFile`/`scaffoldComposition`/`typecheck`), the smoove-video skill in the system prompt, `plan.md` + the Plan tab, selection references, media/files (AI Elements' `PromptInput` attachments are already there to hang it on), props references, export.
 - **Type consistency:** `ModelMeta`, `ModelSpec`, `ModelInfo`, `SequenceInfo`, `EditorContext`, `EditorChatBody`, `AgentInput`, `AiRuntime` live once in `src/types.ts`. `EditorToolContext` lives once in `tools/context.ts`. `setupAi`, `defineModel`, `getDefaultSmooveEditorTools`, `listCompositions`, `getTimeline` are named identically in the plan, the barrel, and kitchen-sink's usage.
 - **No provider abstraction.** There is no `ProviderConfig` and no `resolveModel`. The AI SDK owns model construction; `defineModel` only adds picker metadata, and derives `id`/`label` from the model when omitted. This drops four dependencies from the published package and removes a layer that could only ever lag the SDK.
-- **Four flagged risks, each with a resolution step rather than a guess:** (1) the vendored components' real export names/props — read the files, conform `ChatRail` to them, never the reverse (D2); (2) `convertToModelMessages` sync-vs-async (C4); (3) `result.stream` as `toUIMessageStream`'s input (E2); (4) the real `Composition`/`Sequence` accessors behind `useEditorContext` (D1). None of them change a public contract.
+- **Three flagged risks, each with a resolution step rather than a guess:** (1) the vendored components' real export names/props — read the files, conform `ChatRail` to them, never the reverse (D2); (2) `convertToModelMessages` sync-vs-async (C4); (3) `result.stream` as `toUIMessageStream`'s input (E2). None of them change a public contract. (A fourth — the `Composition`/`Sequence` accessors — has since been resolved against the source and baked into D1: `durationInFrames` is a **signal** on `Composition` and a **getter** on `Sequence`.)
 - **The `--color-accent` collision is called out explicitly** (B5 Step 1): smoove's `accent` is the hero red, shadcn's `accent` is a muted hover surface. Both cannot be live. A plan that silently bridged it would have quietly greyed out every accent surface in the editor.
 - **Vendoring hygiene:** Apache-2.0 requires attribution + a statement of modification (`NOTICE`, B4 Step 6), and the vendored tree is excluded from Biome so it stays diffable against upstream (F2).

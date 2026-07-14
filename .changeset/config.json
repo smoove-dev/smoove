@@ -9,6 +9,7 @@
       "@smoove/transitions",
       "@smoove/renderer",
       "@smoove/studio",
+      "@smoove/editor",
       "@smoove/google-fonts",
       "@smoove/vite",
       "create-smoove"

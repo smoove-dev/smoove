@@ -12,7 +12,9 @@
       "!**/.source",
       "!**/.agents",
       "!**/.claude",
-      "!**/doc"
+      "!**/doc",
+      "!packages/editor/src/components/ai-elements",
+      "!packages/editor/src/components/ui"
     ]
   },
   "assist": { "actions": { "source": { "organizeImports": "on" } } },

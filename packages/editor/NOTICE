@@ -1,0 +1,23 @@
+@smoove/editor
+
+This product includes software developed by Vercel, Inc.
+
+The files under src/components/ai-elements/ and src/components/ui/ are
+derived from AI Elements (https://github.com/vercel/ai-elements), licensed
+under the Apache License, Version 2.0:
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Modifications by the smoove authors:
+  - Import paths rewritten from "@/..." aliases to relative specifiers (with
+    explicit ".js" extensions) so the package can be compiled with `tsc` and
+    published to npm.
+  - Theming is supplied by src/shadcn-bridge.css, which maps shadcn's CSS
+    variables onto smoove's design tokens. Component source is otherwise
+    unmodified, to keep the vendored copy re-syncable upstream.
+  - A small number of `bg-accent` / `text-accent-foreground` usages in the
+    vendored tree were repointed to a bridged `surface-hover` token, because
+    smoove's `--color-accent` is the hero accent (not shadcn's muted-hover
+    surface). See src/shadcn-bridge.css.
+  - The vendored tree is excluded from Biome formatting/linting (biome.json)
+    so it stays byte-comparable with upstream.

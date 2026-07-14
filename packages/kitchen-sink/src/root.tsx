@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import "@smoove/studio/styles.css";
+import "@smoove/editor/styles.css";
 import "./app.css";
 
 export function links() {

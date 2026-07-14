@@ -34,6 +34,12 @@ function SideRail() {
       <Studio.Brand onClick={() => navigate("/")} />
       <Studio.Section>
         <Studio.NavItem
+          icon="spark"
+          title="Editor"
+          active={location.pathname === "/editor"}
+          onClick={() => navigate("/editor")}
+        />
+        <Studio.NavItem
           icon="play"
           title="Player"
           active={location.pathname === "/player"}
