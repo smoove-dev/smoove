@@ -1,5 +1,5 @@
 ---
-"@smoove/player": minor
+"@smoove/player": patch
 ---
 
 Auto-hiding controls, plus default-chrome polish.
