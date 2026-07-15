@@ -93,6 +93,22 @@ smoove-player-controls {
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
   font-family: inherit;
 }
+/* Auto-hide: the host reflects `controls-hidden` while playing + idle. */
+smoove-player-controls {
+  transition: opacity 0.18s ease;
+}
+smoove-player[controls-hidden] smoove-player-controls {
+  opacity: 0;
+  pointer-events: none;
+}
+smoove-player[controls-hidden] {
+  cursor: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  smoove-player-controls {
+    transition: none;
+  }
+}
 smoove-player-controls-row {
   display: flex;
   align-items: center;
@@ -201,6 +217,8 @@ smoove-player-progress {
   width: 100%;
   padding: 6px 0;
   cursor: pointer;
+  /* Claim the touch gesture so dragging seeks instead of scrolling the page. */
+  touch-action: none;
 }
 .smoove-player__track {
   position: relative;
@@ -218,7 +236,7 @@ smoove-player-progress {
   left: 0;
   top: 0;
   bottom: 0;
-  background: linear-gradient(90deg, #ff5640, #15cda8);
+  background: #15cda8;
   border-radius: 2px;
 }
 .smoove-player__knob {
