@@ -50,11 +50,19 @@ jobs:
     steps:
       - name: Trigger Coolify deploy
         run: |
-          curl -fsS -X POST \
+          # Fail on any non-2xx. Without this, a Cloudflare Access bounce
+          # (302 -> login) reads as success and the deploy silently no-ops.
+          code=$(curl -sS -o /tmp/deploy-body -w '%{http_code}' -X POST \
             "${COOLIFY_BASE_URL}/api/v1/deploy?uuid=${COOLIFY_APP_UUID}" \
             -H "Authorization: Bearer ${COOLIFY_API_TOKEN}" \
             -H "CF-Access-Client-Id: ${CF_ACCESS_CLIENT_ID}" \
-            -H "CF-Access-Client-Secret: ${CF_ACCESS_CLIENT_SECRET}"
+            -H "CF-Access-Client-Secret: ${CF_ACCESS_CLIENT_SECRET}")
+          echo "HTTP $code"
+          cat /tmp/deploy-body
+          case "$code" in
+            2*) ;;
+            *) echo "::error::Coolify deploy returned HTTP $code (CF Access token likely not accepted)"; exit 1 ;;
+          esac
         env:
           COOLIFY_BASE_URL: ${{ secrets.COOLIFY_BASE_URL }}
           COOLIFY_APP_UUID: ${{ secrets.COOLIFY_APP_UUID }}
