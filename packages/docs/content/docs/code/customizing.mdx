@@ -1,0 +1,194 @@
+---
+title: Customizing
+description: Change the color theme, the font, and the language of a Code node.
+---
+
+A `Code` node has three things you will usually want to set: the color theme,
+the font, and the language. The theme and language live on the highlighter; the
+font lives on the node.
+
+## Theme
+
+The highlighter maps syntax to colors. `LezerHighlighter` takes a CodeMirror
+`HighlightStyle` as its second argument, and ships with a dark default when you
+leave it off:
+
+```ts
+import { LezerHighlighter } from "@smoove/code";
+import { parser } from "@lezer/javascript";
+
+// Uses the built-in dark theme.
+const highlighter = new LezerHighlighter(parser);
+```
+
+### Presets
+
+A few themes ship ready to use. Pass one as the second argument:
+
+```ts
+import { LezerHighlighter, dracula } from "@smoove/code";
+import { parser } from "@lezer/javascript";
+
+const highlighter = new LezerHighlighter(parser, dracula);
+```
+
+| Preset | Look |
+| --- | --- |
+| `nordDark` | The default. Cool, muted dark. |
+| `nordLight` | The same palette on a light background. |
+| `dracula` | Vivid dark. |
+| `githubLight` | Clean light. |
+
+`DefaultHighlightStyle` is the same value as `nordDark`, exported under both
+names.
+
+<Demo name="code-theme" label="the dracula preset" />
+
+### Build your own
+
+To theme it yourself, build a `HighlightStyle` from `@codemirror/language`. Each
+entry pairs a syntax tag (from `@lezer/highlight`) with a color:
+
+```ts
+import { HighlightStyle } from "@codemirror/language";
+import { tags } from "@lezer/highlight";
+import { LezerHighlighter } from "@smoove/code";
+import { parser } from "@lezer/javascript";
+
+const theme = HighlightStyle.define([
+  { tag: tags.keyword, color: "#c678dd" },
+  { tag: tags.string, color: "#98c379" },
+  { tag: tags.number, color: "#d19a66" },
+  { tag: tags.comment, color: "#7f848e", fontStyle: "italic" },
+  { tag: [tags.function(tags.variableName), tags.propertyName], color: "#61afef" },
+  { tag: [tags.typeName, tags.className], color: "#e5c07b" },
+]);
+
+const highlighter = new LezerHighlighter(parser, theme);
+```
+
+Only the tags you list get a color; anything else falls back to the node's
+`fill`. The tag set is large (keywords, strings, numbers, comments, function
+names, types, operators, and more), so you can go as coarse or as fine as you
+like.
+
+<Callout type="tip" title="makeHighlightStyle">
+For a compact palette instead of a full tag table, `makeHighlightStyle` takes
+one color per role (keyword, string, comment, and so on) and expands it into a
+`HighlightStyle`. The presets above are built with it.
+</Callout>
+
+```ts
+import { LezerHighlighter, makeHighlightStyle } from "@smoove/code";
+import { parser } from "@lezer/javascript";
+
+const theme = makeHighlightStyle({
+  keyword: "#c678dd",
+  name: "#e06c75",
+  variable: "#e5c07b",
+  func: "#61afef",
+  string: "#98c379",
+  number: "#d19a66",
+  comment: "#7f848e",
+  type: "#e5c07b",
+  operator: "#56b6c2",
+  punctuation: "#abb2bf",
+  constant: "#d19a66",
+  regexp: "#98c379",
+});
+
+const highlighter = new LezerHighlighter(parser, theme);
+```
+
+## Fill color
+
+`fill` is the color for text the theme does not color, and for every token when
+there is no highlighter at all:
+
+```ts
+new Code({ content: `plain, uncolored code`, fill: "#d8dee9", font });
+```
+
+## Fonts
+
+Give `Code` a monospace [`Font`](/docs/typography/fonts). A monospace face keeps
+columns aligned, which is what makes the diff read cleanly, and it is the path
+that works for offline rendering, where the server needs the real glyphs
+registered. Add the font to the sequence so it buffers before playback:
+
+```ts
+import { Code } from "@smoove/code";
+import JetBrainsMono from "@smoove/google-fonts/jetbrains-mono";
+
+const font = new JetBrainsMono({ weights: ["400"] });
+seq.add(font); // register it so preview and render both have the glyphs
+
+seq.add(new Code({ content, highlighter, font, fontSize: 24, lineHeight: 1.5 }));
+```
+
+- `font`: a monospace `Font` (or a specific `font.face(...)`). It re-lays-out
+  once the glyphs load.
+- `fontSize`: glyph size in pixels.
+- `lineHeight`: a multiplier, so line spacing is `fontSize * lineHeight`.
+
+For a quick browser-only preview you can skip the `Font` and set
+`fontFamily: "monospace"` instead, but a registered `Font` is what renders on
+the server. See [Fonts](/docs/typography/fonts) and
+[Google Fonts](/docs/typography/google-fonts).
+
+<Demo name="code-font" label="a monospace Google font" />
+
+## Language
+
+The language comes from the Lezer parser you hand to `LezerHighlighter`. Swap
+the parser to highlight a different language:
+
+```ts
+import { parser } from "@lezer/python";
+import { LezerHighlighter } from "@smoove/code";
+
+const python = new LezerHighlighter(parser);
+```
+
+The same parser also tokenizes the code for the diff, so transitions line up on
+real syntax boundaries rather than raw characters. One highlighter per language;
+build as many as you need and pass the right one to each `Code` node.
+
+<Demo name="code-language" label="highlighting Python" />
+
+## Props
+
+<Prop name="content" sig="string | CodeContent">
+The code to show. A string is static; the result of `interpolateCode` /
+`interpolateEdit` animates. Change it later with `setContent`.
+</Prop>
+
+<Prop name="highlighter" sig="CodeHighlighter | null">
+The syntax highlighter, usually a `LezerHighlighter`. Omit for plain, single
+color code.
+</Prop>
+
+<Prop name="font" sig="Font | FontFaceRef">
+A monospace font. Overrides `fontFamily` and is the path that works on the
+server.
+</Prop>
+
+<Prop name="fontFamily" sig="string" badge="default: monospace">
+Font family when no `font` is given.
+</Prop>
+
+<Prop name="fontSize" sig="number" badge="default: 32">
+Glyph size in pixels.
+</Prop>
+
+<Prop name="lineHeight" sig="number" badge="default: 1.4">
+Line-height multiplier; line spacing is `fontSize * lineHeight`.
+</Prop>
+
+<Prop name="fill" sig="string" badge="default: #d8dee9">
+Color for uncolored tokens and for all code when there is no highlighter.
+</Prop>
+
+<Prop name="selection" sig="CodeRange | CodeRange[]">
+Ranges to keep lit while the rest dims. Empty means show everything.
+</Prop>

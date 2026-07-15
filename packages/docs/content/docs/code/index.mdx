@@ -1,0 +1,121 @@
+---
+title: Code
+description: Render syntax-highlighted source code and morph between snapshots with a per-token diff, driven by the frame.
+---
+
+`Code` is a timeline node like [`Text`](/docs/typography/text): it renders
+highlighted source code and animates between snapshots. Give it two versions of
+a snippet and it diffs them token by token, holding the unchanged code in place
+while the parts that differ cross-fade.
+
+<Callout type="info" title="Install it first">
+`Code` ships as `@smoove/code`, separate from core, and you bring a Lezer parser
+for the language you want. See [Install](/docs/code/install).
+</Callout>
+
+```ts
+import { Code, interpolateCode, LezerHighlighter } from "@smoove/code";
+import JetBrainsMono from "@smoove/google-fonts/jetbrains-mono";
+import { parser } from "@lezer/javascript";
+
+const highlighter = new LezerHighlighter(parser);
+const font = new JetBrainsMono({ weights: ["400"] });
+
+const code = new Code({
+  x: 32,
+  y: 200,
+  content: `const number = 7;`,
+  highlighter,
+  font,
+  fontSize: 24,
+});
+seq.add(font); // register the font so preview and render both have the glyphs
+seq.add(code);
+```
+
+`content` accepts a plain string for static code, or the result of an
+`interpolate*` helper to animate. `highlighter` is optional; without one the
+code renders in a single `fill` color. Pass a monospace
+[`Font`](/docs/typography/fonts) so columns line up and offline rendering has
+the glyphs. See [Customizing](/docs/code/customizing#fonts).
+
+## Animate between snapshots
+
+`interpolateCode` reads the frame and returns what the node should show at that
+frame. Call it from a [`register`](/docs/sequencing) updater and hand the result
+to `setContent`:
+
+```ts
+const A = `const number = 7;`;
+const B = `const number = createSignal(7);`;
+
+seq.register((f) => {
+  code.setContent(interpolateCode(f, [0, 60], [A, B]));
+});
+```
+
+The signature mirrors [`interpolate`](/docs/interpolation): a frame, an input
+range, and the snapshots to move between. Before the range it holds `A`, after
+it holds `B`, and in between it plays the diff. Chain more snapshots by adding
+stops:
+
+```ts
+seq.register((f) => {
+  code.setContent(interpolateCode(f, [0, 50, 100, 150], [A, B, B, A]));
+});
+```
+
+The diff is computed once per transition and reused every frame, so scrubbing
+and offline rendering stay cheap.
+
+<Demo name="code" label="morph between snapshots, driven by the frame" />
+
+## Edit a range
+
+When you want precise control over what changes, describe the edit instead of
+diffing whole strings. `interpolateEdit` applies a set of edits to a base
+snippet over the range:
+
+```ts
+import { interpolateEdit, replace, insert, remove, word, lines } from "@smoove/code";
+
+seq.register((f) => {
+  code.setContent(
+    interpolateEdit(f, [0, 60], `const n = 7;`, [
+      replace(word(0, 6, 1), "value"),
+    ]),
+  );
+});
+```
+
+- `insert(point, code)` adds code at a `[line, column]` point.
+- `remove(range)` deletes a range.
+- `replace(range, code)` swaps a range for new code.
+
+Build ranges with `word(line, column, length?)`, `lines(from, to?)`, or
+`pointToPoint(startLine, startColumn, endLine, endColumn)`.
+
+<Demo name="code-edit" label="insert and replace, targeted by range" />
+
+## Select and dim
+
+`setSelection` keeps a range at full brightness and dims the rest. Animate
+between selections with `interpolateSelection`:
+
+```ts
+seq.register((f) => {
+  code.setSelection(
+    interpolateSelection(f, [0, 30], [[], code.findRanges("createSignal")]),
+  );
+});
+```
+
+An empty selection means "show everything", so the example above starts fully
+lit and dims down to just the matched word. `code.findRanges(pattern)` returns
+the ranges of a string or `RegExp` match in the current code.
+
+<Demo name="code-select" label="dim everything except the match" />
+
+## Next
+
+Change the colors, the language, or the type: [Customizing](/docs/code/customizing).

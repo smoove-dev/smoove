@@ -4,6 +4,7 @@
   "commit": false,
   "fixed": [
     [
+      "@smoove/code",
       "@smoove/core",
       "@smoove/player",
       "@smoove/transitions",

@@ -1,0 +1,50 @@
+{
+  "name": "@smoove/code",
+  "version": "0.1.7",
+  "description": "Animated, syntax-highlighted source code for smoove: a frame-driven Code node with interpolate-family transitions.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoove-dev/smoove.git",
+    "directory": "packages/code"
+  },
+  "homepage": "https://smoove.dev",
+  "bugs": "https://github.com/smoove-dev/smoove/issues",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "@smoove/core": "workspace:^",
+    "konva": ">=10"
+  },
+  "dependencies": {
+    "@codemirror/language": "^6.10.8",
+    "@lezer/common": "^1.2.3",
+    "@lezer/highlight": "^1.2.1"
+  },
+  "devDependencies": {
+    "@lezer/javascript": "^1.4.21",
+    "vitest": "^3.2.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

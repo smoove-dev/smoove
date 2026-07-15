@@ -1,0 +1,48 @@
+---
+title: Install
+description: Add @smoove/code and a Lezer language parser.
+---
+
+`Code` lives in `@smoove/code`, separate from core.
+
+```bash
+pnpm add @smoove/code
+```
+
+It has `@smoove/core` and `konva` as peers, so keep those installed alongside
+it.
+
+## Add a language parser
+
+Highlighting is driven by a Lezer parser that you supply, one per language. For
+JavaScript and TypeScript:
+
+```bash
+pnpm add @lezer/javascript
+```
+
+```ts
+import { LezerHighlighter } from "@smoove/code";
+import { parser } from "@lezer/javascript";
+
+const highlighter = new LezerHighlighter(parser);
+```
+
+Any Lezer grammar works the same way, for example `@lezer/python`,
+`@lezer/css`, `@lezer/html`, or `@lezer/json`. Pass its `parser` to
+`LezerHighlighter` and hand that to the `Code` node. To highlight a different
+dialect, swap the parser.
+
+<Callout type="tip" title="Highlighter is optional">
+Without a highlighter, code still renders and animates, just in a single color.
+Pass one when you want syntax colors. See
+[Customizing](/docs/code/customizing) for themes and fonts.
+</Callout>
+
+## Fonts on the server
+
+In the browser, `fontFamily: "monospace"` works out of the box. For offline
+rendering, register a real monospace face so the server has the glyphs. Pass a
+[`Font`](/docs/typography/fonts) (a monospace family from
+[Google Fonts](/docs/typography/google-fonts) is a quick option) as the `font`
+prop. See [Customizing](/docs/code/customizing#fonts).
