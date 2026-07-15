@@ -7,6 +7,9 @@ import basic from "./compositions/basic/index.js";
 import bouncing from "./compositions/bouncing/index.js";
 // Film.
 import code from "./compositions/code/index.js";
+import codeEdit from "./compositions/code-edit/index.js";
+import codeSelect from "./compositions/code-select/index.js";
+import codeTheme from "./compositions/code-theme/index.js";
 import cohabit from "./compositions/cohabit/index.js";
 import colors from "./compositions/colors/index.js";
 import customFont from "./compositions/custom-font/index.js";
@@ -82,6 +85,9 @@ export default defineRegistry([
   textTypewriter,
   textHighlight,
   code,
+  codeEdit,
+  codeSelect,
+  codeTheme,
   typewriter,
   flexTypewriter,
   customFont,

@@ -8,7 +8,11 @@ export {
   resolveContent,
   type SelectionContent,
 } from "./content.js";
-export { DefaultHighlightStyle } from "./default-highlight-style.js";
+// The default theme, also available under a named alias.
+export {
+  DefaultHighlightStyle,
+  DefaultHighlightStyle as nordDark,
+} from "./default-highlight-style.js";
 export { patienceDiff } from "./diff.js";
 export { defaultDiffer } from "./differ.js";
 export { type Edit, insert, remove, replace } from "./edit.js";
@@ -36,4 +40,12 @@ export {
   parseCodeScope,
   resolveScope,
 } from "./scope.js";
+export {
+  type CodePalette,
+  codeThemes,
+  dracula,
+  githubLight,
+  makeHighlightStyle,
+  nordLight,
+} from "./themes.js";
 export { type CodeTokenizer, defaultTokenize } from "./tokenizer.js";

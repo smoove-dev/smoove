@@ -1,32 +1,31 @@
 import { parser } from "@lezer/javascript";
-import { Code, interpolateCode, LezerHighlighter } from "@smoove/code";
+import { Code, insert, interpolateEdit, LezerHighlighter, lines, replace } from "@smoove/code";
 import { Composition, Easing, Sequence } from "@smoove/core";
 import JetBrainsMono from "@smoove/google-fonts/jetbrains-mono";
 import { codeCard, codeThemes } from "../../lib/code-card.js";
 
-const A = `function Counter() {
-  const [count, setCount] = useState(0);
-
-  return <span>{count}</span>;
+const base = `function sum(list) {
+  let total = 0;
+  for (const n of list) {
+    total += n;
+  }
+  return total;
 }`;
 
-const B = `function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <button onClick={() => setCount(count + 1)}>
-      {count}
-    </button>
-  );
-}`;
+// Target ranges directly instead of diffing whole strings: drop in a comment
+// and collapse the loop body into a reduce.
+const edits = [
+  insert([0, 0], "// sum a list of numbers\n"),
+  replace(lines(1, 5), "  return list.reduce((a, b) => a + b, 0);"),
+];
 
 const fps = 60;
 const theme = "dark";
 
 const comp = new Composition({
-  id: "code",
+  id: "code-edit",
   fps,
-  durationInFrames: fps * 2,
+  durationInFrames: fps * 1.5,
   width: 800,
   height: 450,
 });
@@ -36,9 +35,8 @@ const font = new JetBrainsMono({ weights: ["400"] });
 main.add(font);
 
 const code = new Code({
-  content: A,
-  // A React snippet, so enable JSX in the parser.
-  highlighter: new LezerHighlighter(parser.configure({ dialect: "jsx" })),
+  content: base,
+  highlighter: new LezerHighlighter(parser),
   font,
   fontSize: 22,
   fill: codeThemes[theme].fill,
@@ -50,9 +48,7 @@ comp.add(main);
 
 main.register((f) => {
   code.setContent(
-    interpolateCode(f, [10, 30, 80, 100], [A, B, B, A], {
-      easing: Easing.inOut(Easing.cubic),
-    }),
+    interpolateEdit(f, [12, 40], base, edits, { easing: Easing.inOut(Easing.cubic) }),
   );
 });
 

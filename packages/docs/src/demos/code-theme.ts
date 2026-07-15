@@ -1,30 +1,18 @@
 import { parser } from "@lezer/javascript";
-import { Code, interpolateCode, LezerHighlighter } from "@smoove/code";
+import { Code, interpolateCode, LezerHighlighter, nordLight } from "@smoove/code";
 import { Composition, Easing, Sequence } from "@smoove/core";
 import JetBrainsMono from "@smoove/google-fonts/jetbrains-mono";
-import { codeCard, codeThemes } from "../../lib/code-card.js";
+import { codeCard, codeThemes } from "../code-card.js";
 
-const A = `function Counter() {
-  const [count, setCount] = useState(0);
-
-  return <span>{count}</span>;
-}`;
-
-const B = `function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <button onClick={() => setCount(count + 1)}>
-      {count}
-    </button>
-  );
-}`;
+const A = `const items = [1, 2, 3];`;
+const B = `const items = [1, 2, 3].map((n) => n * 2);`;
 
 const fps = 60;
-const theme = "dark";
+// A light preset: switch the scene to light and theme the highlighter to match.
+const theme = "light";
 
 const comp = new Composition({
-  id: "code",
+  id: "code-theme",
   fps,
   durationInFrames: fps * 2,
   width: 800,
@@ -37,8 +25,7 @@ main.add(font);
 
 const code = new Code({
   content: A,
-  // A React snippet, so enable JSX in the parser.
-  highlighter: new LezerHighlighter(parser.configure({ dialect: "jsx" })),
+  highlighter: new LezerHighlighter(parser, nordLight),
   font,
   fontSize: 22,
   fill: codeThemes[theme].fill,

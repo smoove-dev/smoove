@@ -1,30 +1,20 @@
-import { parser } from "@lezer/javascript";
+import { parser } from "@lezer/python";
 import { Code, interpolateCode, LezerHighlighter } from "@smoove/code";
 import { Composition, Easing, Sequence } from "@smoove/core";
 import JetBrainsMono from "@smoove/google-fonts/jetbrains-mono";
-import { codeCard, codeThemes } from "../../lib/code-card.js";
+import { codeCard, codeThemes } from "../code-card.js";
 
-const A = `function Counter() {
-  const [count, setCount] = useState(0);
-
-  return <span>{count}</span>;
-}`;
-
-const B = `function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <button onClick={() => setCount(count + 1)}>
-      {count}
-    </button>
-  );
-}`;
+const A = `def greet(name):
+    return "Hello " + name`;
+const B = `def greet(name):
+    greeting = "Hello"
+    return f"{greeting} {name}"`;
 
 const fps = 60;
 const theme = "dark";
 
 const comp = new Composition({
-  id: "code",
+  id: "code-language",
   fps,
   durationInFrames: fps * 2,
   width: 800,
@@ -37,8 +27,8 @@ main.add(font);
 
 const code = new Code({
   content: A,
-  // A React snippet, so enable JSX in the parser.
-  highlighter: new LezerHighlighter(parser.configure({ dialect: "jsx" })),
+  // Swap the parser to highlight a different language, here Python.
+  highlighter: new LezerHighlighter(parser),
   font,
   fontSize: 22,
   fill: codeThemes[theme].fill,

@@ -2,7 +2,7 @@ import { parser } from "@lezer/javascript";
 import { Code, interpolateCode, LezerHighlighter } from "@smoove/code";
 import { Composition, Easing, Sequence } from "@smoove/core";
 import JetBrainsMono from "@smoove/google-fonts/jetbrains-mono";
-import { codeCard, codeThemes } from "../../lib/code-card.js";
+import { codeCard, codeThemes } from "../code-card.js";
 
 const A = `function Counter() {
   const [count, setCount] = useState(0);

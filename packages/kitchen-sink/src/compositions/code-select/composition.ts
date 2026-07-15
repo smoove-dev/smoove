@@ -1,30 +1,18 @@
 import { parser } from "@lezer/javascript";
-import { Code, interpolateCode, LezerHighlighter } from "@smoove/code";
+import { Code, interpolateSelection, LezerHighlighter } from "@smoove/code";
 import { Composition, Easing, Sequence } from "@smoove/core";
 import JetBrainsMono from "@smoove/google-fonts/jetbrains-mono";
 import { codeCard, codeThemes } from "../../lib/code-card.js";
 
-const A = `function Counter() {
-  const [count, setCount] = useState(0);
-
-  return <span>{count}</span>;
-}`;
-
-const B = `function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <button onClick={() => setCount(count + 1)}>
-      {count}
-    </button>
-  );
-}`;
+const src = `const total = price + tax;
+const label = "Total: " + total;
+render(label);`;
 
 const fps = 60;
 const theme = "dark";
 
 const comp = new Composition({
-  id: "code",
+  id: "code-select",
   fps,
   durationInFrames: fps * 2,
   width: 800,
@@ -36,9 +24,8 @@ const font = new JetBrainsMono({ weights: ["400"] });
 main.add(font);
 
 const code = new Code({
-  content: A,
-  // A React snippet, so enable JSX in the parser.
-  highlighter: new LezerHighlighter(parser.configure({ dialect: "jsx" })),
+  content: src,
+  highlighter: new LezerHighlighter(parser),
   font,
   fontSize: 22,
   fill: codeThemes[theme].fill,
@@ -48,9 +35,11 @@ const card = codeCard(comp, main, theme);
 card.add(code);
 comp.add(main);
 
+// Dim everything except the `total` uses, then bring it all back.
+const totals = code.findRanges("total");
 main.register((f) => {
-  code.setContent(
-    interpolateCode(f, [10, 30, 80, 100], [A, B, B, A], {
+  code.setSelection(
+    interpolateSelection(f, [12, 32, 78, 98], [[], totals, totals, []], {
       easing: Easing.inOut(Easing.cubic),
     }),
   );

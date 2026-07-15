@@ -11,8 +11,11 @@
     "typecheck": "react-router typegen && tsc -b"
   },
   "dependencies": {
+    "@lezer/javascript": "^1.4.21",
+    "@lezer/python": "^1.1.14",
     "@react-router/node": "8.1.0",
     "@react-router/serve": "8.1.0",
+    "@smoove/code": "workspace:*",
     "@smoove/core": "workspace:*",
     "@smoove/google-fonts": "workspace:*",
     "@smoove/player": "workspace:*",

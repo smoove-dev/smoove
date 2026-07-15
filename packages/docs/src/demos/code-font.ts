@@ -1,30 +1,18 @@
 import { parser } from "@lezer/javascript";
 import { Code, interpolateCode, LezerHighlighter } from "@smoove/code";
 import { Composition, Easing, Sequence } from "@smoove/core";
-import JetBrainsMono from "@smoove/google-fonts/jetbrains-mono";
-import { codeCard, codeThemes } from "../../lib/code-card.js";
+import DMMono from "@smoove/google-fonts/dm-mono";
+import { codeCard, codeThemes } from "../code-card.js";
 
-const A = `function Counter() {
-  const [count, setCount] = useState(0);
-
-  return <span>{count}</span>;
-}`;
-
-const B = `function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <button onClick={() => setCount(count + 1)}>
-      {count}
-    </button>
-  );
-}`;
+const A = `const add = (a, b) => a + b;`;
+const B = `const add = (a, b) => a + b;
+const total = [1, 2, 3].reduce(add, 0);`;
 
 const fps = 60;
 const theme = "dark";
 
 const comp = new Composition({
-  id: "code",
+  id: "code-font",
   fps,
   durationInFrames: fps * 2,
   width: 800,
@@ -32,13 +20,13 @@ const comp = new Composition({
 });
 const main = new Sequence();
 
-const font = new JetBrainsMono({ weights: ["400"] });
+// Pass any monospace Google font as `font`.
+const font = new DMMono({ weights: ["400", "500"] });
 main.add(font);
 
 const code = new Code({
   content: A,
-  // A React snippet, so enable JSX in the parser.
-  highlighter: new LezerHighlighter(parser.configure({ dialect: "jsx" })),
+  highlighter: new LezerHighlighter(parser),
   font,
   fontSize: 22,
   fill: codeThemes[theme].fill,
