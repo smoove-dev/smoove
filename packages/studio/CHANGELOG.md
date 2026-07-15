@@ -1,5 +1,14 @@
 # @smoove/studio
 
+## 0.1.8
+
+### Patch Changes
+
+- Updated dependencies [[`b4d6fdb`](https://github.com/smoove-dev/smoove/commit/b4d6fdb0f24d5775d9d26cc65d7ccfe5b8e66cbf)]:
+  - @smoove/player@0.1.8
+  - @smoove/core@0.1.8
+  - @smoove/renderer@0.1.8
+
 ## 0.1.7
 
 ### Patch Changes

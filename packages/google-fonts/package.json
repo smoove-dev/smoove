@@ -1,6 +1,6 @@
 {
   "name": "@smoove/google-fonts",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Typed, tree-shakeable Google Fonts for smoove. One Font subclass per family, imported as TS source with no build step.",
   "license": "MIT",
   "repository": {
