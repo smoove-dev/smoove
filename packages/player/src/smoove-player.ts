@@ -664,9 +664,7 @@ export class SmoovePlayer extends HTMLElement implements PlayerApi {
    */
   private _hasKeyboardFocus(controlsEl: Element): boolean {
     const active = document.activeElement;
-    return (
-      active != null && controlsEl.contains(active) && this._matches(active, ":focus-visible")
-    );
+    return active != null && controlsEl.contains(active) && this._matches(active, ":focus-visible");
   }
 
   private _matches(el: Element, selector: string): boolean {
