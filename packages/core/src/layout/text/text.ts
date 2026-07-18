@@ -161,6 +161,42 @@ export class Text extends Konva.Group implements KMLayoutNode {
     return this;
   }
 
+  /**
+   * Recolor the glyphs after construction. `fill` is not a layout input, so this
+   * skips re-measuring and just refreshes the overlays that derive from it (the
+   * typewriter cursor and fade glyphs read {@link _fillColor}) before repainting.
+   * Cheap enough to animate per frame. Replaces the transparent-`highlight`
+   * tint hack.
+   */
+  setFill(fill: string): this {
+    this._text.fill(fill);
+    this._layoutText();
+    this.getLayer()?.batchDraw();
+    return this;
+  }
+
+  /**
+   * Swap the font face after construction. Accepts a declarative {@link Font}
+   * (uses its preferred face) or a specific `font.face(selector)`, mirroring the
+   * `font` config. Unlike {@link setFill} the font DOES change metrics, so this
+   * re-lays-out now and again once the face finishes loading — the same
+   * font-ready hook the constructor installs.
+   */
+  setFont(font: Font | FontFaceRef): this {
+    const fontRef: FontFaceRef = font instanceof Font ? font.face() : font;
+    this._text.fontFamily(fontRef.family);
+    this._text.fontStyle(konvaFontStyle(fontRef.weight, fontRef.style));
+    this._layoutText();
+    this.getLayer()?.batchDraw();
+    if (!fontRef.isLoaded) {
+      fontRef.whenReady().then(() => {
+        this._layoutText();
+        this.getLayer()?.batchDraw();
+      });
+    }
+    return this;
+  }
+
   // ----- flex integration -------------------------------------------------
 
   /** @internal — {@link KMLayoutNode}: wrap-aware sizing + intrinsic measure. */
