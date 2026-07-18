@@ -9,8 +9,19 @@ description: Add sound to a composition, automate levels from the frame, and bal
 sounds it on the frame clock. Levels are driven by the frame, the same as
 everything else, so a mix scrubs and renders deterministically.
 
-`Audio` ships in the `@smoove/media` package (it pulls in the mediabunny
-decoder, which core stays free of): `pnpm add @smoove/media`.
+## Install
+
+`Audio` ships in the `@smoove/media` package, which owns the mediabunny
+decoder so `@smoove/core` stays free of it:
+
+```bash
+npm install @smoove/media
+# or
+pnpm add @smoove/media
+```
+
+Importing the package registers its browser decoders, so in the browser
+there is nothing else to wire up.
 
 ```ts
 import { Composition, Sequence } from "@smoove/core";
