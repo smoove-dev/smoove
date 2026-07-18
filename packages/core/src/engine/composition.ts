@@ -1,7 +1,7 @@
 import Konva from "konva";
+import { FONT_MARK, MEDIA_MARK } from "../markers.js";
 import type { AudioAsset } from "../media/audio/asset.js";
 import { type AudioChannel, AudioMixer } from "../media/audio/mixer.js";
-import { FONT_MARK, MEDIA_MARK } from "../media/media-marker.js";
 import { createEmitter, type Emitter } from "./emitter.js";
 import { detectEnvironment, type Environment, type EnvironmentMode } from "./environment.js";
 import { Sequence, type SequenceProvider } from "./sequence.js";

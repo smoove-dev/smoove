@@ -1,7 +1,7 @@
 import Konva from "konva";
 import { type Composition, getComposition } from "../../engine/composition.js";
 import { type FontFaceDescriptor, loadFontFace } from "../../engine/runtime-defaults.js";
-import { FONT_MARK, TICK_MARK } from "../../media/media-marker.js";
+import { FONT_MARK, TICK_MARK } from "../../markers.js";
 
 /** CSS font-style keyword. */
 export type FontStyleName = "normal" | "italic" | "oblique";

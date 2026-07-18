@@ -1,6 +1,4 @@
-import type { Composition } from "../../engine/composition.js";
-import type { MediaTiming } from "../media-time.js";
-import type { AudioSource } from "./audio-source.js";
+import type { AudioSource, Composition, MediaTiming } from "@smoove/core";
 
 /**
  * What an audio driver needs from the host {@link Audio}: the media source, the

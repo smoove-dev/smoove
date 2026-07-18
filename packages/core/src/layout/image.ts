@@ -5,7 +5,7 @@ import {
   type ImageLoader,
   type LoadedImage,
 } from "../engine/runtime-defaults.js";
-import { TICK_MARK } from "../media/media-marker.js";
+import { TICK_MARK } from "../markers.js";
 import type { KMLayoutNode, LayoutBox } from "./contract.js";
 import type { FlexilyNode } from "./flex/engine.js";
 import { applySize, parseSize } from "./flex/engine.js";

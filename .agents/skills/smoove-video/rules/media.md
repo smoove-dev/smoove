@@ -1,5 +1,8 @@
 # Media — Image, Audio, Video
 
+> `Audio`/`Video` ship in `@smoove/media` (they pull in `mediabunny`); `Image`
+> stays in `@smoove/core`. Add `@smoove/media` as a dependency to use them.
+
 ## Image
 
 `Image` (from `@smoove/core`) is a flex-aware, paint-capable wrapper —
@@ -29,7 +32,7 @@ manual load control, so there's no need to reach for raw `Konva.Image`.
 ## Audio (authoring only — playback wiring, not asset pipeline)
 
 ```ts
-import { Audio } from "@smoove/core";
+import { Audio } from "@smoove/media";
 
 main.add(new Audio({
   src: "/audio/track.mp3",
@@ -51,7 +54,7 @@ volume/mute across every `Audio`/`Video` node.
 ## Video
 
 ```ts
-import { Video } from "@smoove/core";
+import { Video } from "@smoove/media";
 
 main.add(new Video({
   width: "100%", height: "100%",

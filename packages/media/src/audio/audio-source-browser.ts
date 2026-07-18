@@ -1,4 +1,4 @@
-import type { AudioSource, SeekMode } from "./audio-source.js";
+import type { AudioSource, SeekMode } from "@smoove/core";
 
 type FastSeekAudio = HTMLAudioElement & {
   fastSeek?: (time: number) => void;

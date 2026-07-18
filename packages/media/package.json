@@ -1,15 +1,12 @@
 {
-  "name": "@smoove/core",
+  "name": "@smoove/media",
   "version": "0.2.0",
-  "description": "A timeline-driven animation engine for Konva. Runs in the browser or on the server and renders to any target.",
+  "description": "Timeline-driven Audio and Video nodes for smoove, decoded with mediabunny.",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/smoove-dev/smoove.git",
-    "directory": "packages/core"
+    "directory": "packages/media"
   },
   "homepage": "https://smoove.dev",
   "bugs": "https://github.com/smoove-dev/smoove/issues",
@@ -28,15 +25,18 @@
   ],
   "scripts": {
     "build": "tsc -b",
-    "prepublishOnly": "pnpm build",
     "dev": "tsc -b --watch",
-    "clean": "rm -rf dist *.tsbuildinfo"
-  },
-  "dependencies": {
-    "bezier-easing": "^2.1.0",
-    "flexily": "^0.7.1"
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
     "konva": ">=10"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@smoove/core": "workspace:^",
+    "mediabunny": "^1.49.0"
   }
 }

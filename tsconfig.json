@@ -3,6 +3,7 @@
   "references": [
     { "path": "./packages/timeline" },
     { "path": "./packages/core" },
+    { "path": "./packages/media" },
     { "path": "./packages/code" },
     { "path": "./packages/layout" },
     { "path": "./packages/transitions" },

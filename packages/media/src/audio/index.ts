@@ -1,15 +1,26 @@
+import type {
+  AudioChannel,
+  AudioMixer,
+  AudioSource,
+  AudioSourceFactory,
+  MediaTiming,
+} from "@smoove/core";
+import {
+  AUDIO_MARK,
+  createSignal,
+  detectEnvironment,
+  type Environment,
+  getComposition,
+  getDefaultAudioSourceFactory,
+  getEnvironment,
+  MEDIA_MARK,
+  type ReadonlySignal,
+  type Signal,
+} from "@smoove/core";
 import Konva from "konva";
-import { getComposition } from "../../engine/composition.js";
-import { detectEnvironment, type Environment, getEnvironment } from "../../engine/environment.js";
-import { getDefaultAudioSourceFactory } from "../../engine/runtime-defaults.js";
-import { createSignal, type ReadonlySignal, type Signal } from "../../engine/signal.js";
-import { AUDIO_MARK, MEDIA_MARK } from "../media-marker.js";
-import type { MediaTiming } from "../media-time.js";
 import type { AudioDriver, AudioDriverContext } from "./audio-driver.js";
 import { PreviewAudioDriver } from "./audio-for-preview.js";
 import { RenderingAudioDriver } from "./audio-for-rendering.js";
-import type { AudioSource, AudioSourceFactory } from "./audio-source.js";
-import type { AudioChannel, AudioMixer } from "./mixer.js";
 import type { AudioConfig } from "./types.js";
 
 /**
@@ -189,8 +200,4 @@ export class Audio extends Konva.Group implements AudioChannel {
     this._source.destroy();
     return super.destroy();
   }
-}
-
-export function isAudioNode(node: Konva.Node): node is Audio {
-  return node.getAttr(AUDIO_MARK) === true;
 }

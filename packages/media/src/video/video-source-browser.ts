@@ -1,4 +1,4 @@
-import type { SeekMode, VideoSource } from "./video-source.js";
+import type { SeekMode, VideoSource } from "@smoove/core";
 
 type RvfcVideo = HTMLVideoElement & {
   requestVideoFrameCallback?: (cb: () => void) => number;
