@@ -45,9 +45,21 @@ import Konva from "konva";
 row.add(new Konva.Rect({ width: 120, height: 120, fill: "#4ea1ff" }));
 ```
 
-Reach for raw `Konva.*` only for what core doesn't wrap — e.g. a plain
-`Konva.Group` with a custom `clipFunc` for a reveal-mask effect (core has no
-unopinionated group wrapper; `Flex`/`Block` are layout-opinionated).
+For an unopinionated container — manual grouping/transform, or a custom
+`clipFunc` for a reveal-mask effect — use core's `Group` (a marker-flagged
+`Konva.Group`), not raw `Konva.Group`; `Flex`/`Block` are the
+layout-opinionated containers.
+
+```ts
+import { Group } from "@smoove/core";
+
+const masked = new Group({ clipFunc: (ctx) => { ctx.rect(0, 0, 200, 80); } });
+masked.add(new Rect({ width: 400, height: 80, fill: "#4ea1ff" }));
+```
+
+`isGroupNode(node)` (also from `@smoove/core`) tells an author `Group` apart
+from the internal groups smoove builds inside `Text`/`Flex`. Reach for raw
+`Konva.*` only for a primitive core genuinely doesn't wrap.
 
 ## Sizing and origin
 

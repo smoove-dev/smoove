@@ -83,6 +83,10 @@ export type {
   Justify,
   SizeValue,
 } from "./layout/flex/types.js";
+// smoove's plain container: a marker-stamped Konva.Group, so apps get the full
+// drawing vocabulary from core without reaching into `Konva.*`. For automatic
+// layout use `Flex`/`Block`; `Group` is the manual transform/grouping container.
+export { Group, type GroupConfig, isGroupNode } from "./layout/group.js";
 export {
   Image,
   type ImageConfig,
