@@ -16,6 +16,16 @@ export type AudioConfig = {
   trimBefore?: number;
   /** Exclusive frame bound — media past this offset is trimmed (composition fps). */
   trimAfter?: number;
+  /**
+   * Play-window trim: a friendlier form of {@link trimBefore}/{@link trimAfter}
+   * expressed as "start here, play this many frames" instead of two absolute
+   * bounds you subtract by hand. `{ start, play }` maps to
+   * `trimBefore = start`, `trimAfter = start + play`. Wins over
+   * `trimBefore`/`trimAfter`/`startFrom`/`endAt` for the fields it sets; a
+   * `trim` without `play` leaves the end bound to `trimAfter`/`endAt` (natural
+   * end). All in composition fps.
+   */
+  trim?: { start?: number; play?: number };
   /** @deprecated alias of {@link trimBefore} (Remotion's pre-v4.0.319 name). */
   startFrom?: number;
   /** @deprecated alias of {@link trimAfter} (Remotion's pre-v4.0.319 name). */
@@ -23,7 +33,11 @@ export type AudioConfig = {
   /** Repeat the trimmed clip within its sequence window instead of freezing on the last frame. */
   loop?: boolean;
   muted?: boolean;
-  /** 0..1 */
+  /**
+   * Playback level. `1` is unity; `0` is silent. Values above `1` amplify —
+   * honored by the default preview path (Web Audio `GainNode`) and the render
+   * mux. The legacy `HTMLAudioElement` source physically caps at `1`.
+   */
   volume?: number;
   playbackRate?: number;
   /** Inject an alternative AudioSource. Defaults to BrowserAudioSource. */
