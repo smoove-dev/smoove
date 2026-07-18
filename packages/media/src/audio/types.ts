@@ -1,4 +1,4 @@
-import type { AudioSourceFactory } from "./audio-source.js";
+import type { AudioSourceFactory } from "@smoove/core";
 
 /**
  * Config for {@link Audio}. Mirrors Remotion's `<Audio>` playback props

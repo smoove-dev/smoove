@@ -9,8 +9,12 @@ description: Add sound to a composition, automate levels from the frame, and bal
 sounds it on the frame clock. Levels are driven by the frame, the same as
 everything else, so a mix scrubs and renders deterministically.
 
+`Audio` ships in the `@smoove/media` package (it pulls in the mediabunny
+decoder, which core stays free of): `pnpm add @smoove/media`.
+
 ```ts
-import { Audio, Composition, Sequence } from "@smoove/core";
+import { Composition, Sequence } from "@smoove/core";
+import { Audio } from "@smoove/media";
 
 const fps = 60;
 const comp = new Composition({ id: "scene", fps, durationInFrames: fps * 26, width: 1080, height: 1080 });

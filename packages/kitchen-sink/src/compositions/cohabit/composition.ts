@@ -1,13 +1,5 @@
-import {
-  Audio,
-  Block,
-  Composition,
-  Easing,
-  interpolate,
-  Sequence,
-  type ShadowProps,
-  Video,
-} from "@smoove/core";
+import { Block, Composition, Easing, interpolate, Sequence, type ShadowProps } from "@smoove/core";
+import { Audio, Video } from "@smoove/media";
 import Konva from "konva";
 import s1Music from "../../files/film/s1-audio.mp3";
 import s1aUrl from "../../files/film/s1a.mp4";

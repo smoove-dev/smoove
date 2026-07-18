@@ -1,7 +1,5 @@
-import type { Composition } from "../../engine/composition.js";
-import type { MediaTiming } from "../media-time.js";
-import { getMediaTime } from "../media-time.js";
-import type { VideoSource } from "./video-source.js";
+import type { Composition, MediaTiming, VideoSource } from "@smoove/core";
+import { getMediaTime } from "@smoove/core";
 
 /** Resolved per-video timing — alias of the shared {@link MediaTiming}. */
 export type VideoTiming = MediaTiming;

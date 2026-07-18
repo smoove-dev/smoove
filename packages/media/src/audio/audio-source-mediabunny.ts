@@ -1,5 +1,5 @@
+import type { AudioSource, SeekMode } from "@smoove/core";
 import { ALL_FORMATS, AudioBufferSink, Input, UrlSource } from "mediabunny";
-import type { AudioSource, SeekMode } from "./audio-source.js";
 
 /**
  * A preview {@link AudioSource} that also exposes a Mediabunny

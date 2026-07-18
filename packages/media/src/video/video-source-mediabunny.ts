@@ -1,3 +1,4 @@
+import type { SeekMode, VideoSource } from "@smoove/core";
 import {
   ALL_FORMATS,
   AudioBufferSink,
@@ -7,7 +8,6 @@ import {
   type WrappedCanvas,
 } from "mediabunny";
 import type { SchedulableAudioSource } from "../audio/audio-source-mediabunny.js";
-import type { SeekMode, VideoSource } from "./video-source.js";
 
 /** Reuse decoded frames within this window before issuing a seek (1/4 of a 60fps frame). */
 const SAME_FRAME_EPS = 1 / 240;

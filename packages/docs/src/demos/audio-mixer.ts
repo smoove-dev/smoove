@@ -1,4 +1,5 @@
-import { Audio, Composition, interpolate, interpolateColors, Sequence } from "@smoove/core";
+import { Composition, interpolate, interpolateColors, Sequence } from "@smoove/core";
+import { Audio } from "@smoove/media";
 import Konva from "konva";
 import musicAUrl from "./assets/music-a.mp3";
 import musicBUrl from "./assets/music-b.mp3";

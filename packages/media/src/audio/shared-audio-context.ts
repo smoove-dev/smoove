@@ -1,4 +1,4 @@
-import type { Composition } from "../../engine/composition.js";
+import type { Composition } from "@smoove/core";
 
 /**
  * Browser-only Web Audio bus, one per {@link Composition}. Owns the single

@@ -6,6 +6,7 @@
     [
       "@smoove/code",
       "@smoove/core",
+      "@smoove/media",
       "@smoove/player",
       "@smoove/transitions",
       "@smoove/renderer",

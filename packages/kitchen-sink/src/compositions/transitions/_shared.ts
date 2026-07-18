@@ -20,7 +20,8 @@
    running transition without rebuilding. In your own app you'd skip
    `live` and pass a fixed `presentation: dissolve({ … })`.
    ============================================================ */
-import { Composition, type Sequence, Video } from "@smoove/core";
+import { Composition, type Sequence } from "@smoove/core";
+import { Video } from "@smoove/media";
 import { kf } from "@smoove/studio";
 import { linearTiming, type Presentation, TransitionSeries } from "@smoove/transitions";
 import sceneAUrl from "../../files/film/s1a.mp4";
