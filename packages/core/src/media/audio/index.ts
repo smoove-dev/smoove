@@ -23,7 +23,7 @@ import type { AudioConfig } from "./types.js";
 export class Audio extends Konva.Group implements AudioChannel {
   /** Human label for mixer UIs — `config.name`, falling back to `config.src`. */
   readonly label: string;
-  /** Intrinsic audio level, 0..1 — scaled by the composition mixer's master. */
+  /** Intrinsic audio level (1 = unity, >1 amplifies) — scaled by the mixer's master. */
   readonly volume: ReadonlySignal<number>;
   readonly muted: ReadonlySignal<boolean>;
 
@@ -48,13 +48,17 @@ export class Audio extends Konva.Group implements AudioChannel {
     this.setAttr(AUDIO_MARK, true);
 
     this._src = config.src;
-    this._trimBefore = config.trimBefore ?? config.startFrom ?? 0;
-    this._trimAfter = config.trimAfter ?? config.endAt;
+    // A `trim` play-window is sugar over trimBefore/trimAfter: start → trimBefore,
+    // start + play → trimAfter. It wins over the absolute props for what it sets.
+    const win = config.trim;
+    this._trimBefore = win?.start ?? config.trimBefore ?? config.startFrom ?? 0;
+    this._trimAfter =
+      win?.play !== undefined ? (win.start ?? 0) + win.play : (config.trimAfter ?? config.endAt);
     this._loop = config.loop ?? false;
     this._playbackRate = config.playbackRate ?? 1;
 
     this.label = config.name ?? config.src;
-    this._volume = createSignal(config.volume ?? 1);
+    this._volume = createSignal(Math.max(0, config.volume ?? 1));
     this._muted = createSignal(config.muted ?? false);
     this.volume = this._volume;
     this.muted = this._muted;
@@ -152,7 +156,9 @@ export class Audio extends Konva.Group implements AudioChannel {
   }
 
   setVolume(volume: number): void {
-    this._volume.set(Math.max(0, Math.min(1, volume)));
+    // No upper clamp: >1 amplifies (Web Audio GainNode in preview, mux gain on
+    // render). Only guard against negative levels.
+    this._volume.set(Math.max(0, volume));
     this._applyAudio();
   }
 
