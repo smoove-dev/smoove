@@ -24,3 +24,11 @@ export const TICK_MARK = "__kmIsTick";
  * `layout/text/` (avoiding an import cycle).
  */
 export const FONT_MARK = "__kmIsFont";
+/**
+ * Set by smoove's {@link Group} container — distinguishes an author-created
+ * grouping node from the internal `Konva.Group`s smoove builds inside `Text`,
+ * `Flex`, etc. Not consumed by the engine today; stamped so tooling (studio
+ * tree, serialization, layout passes) can identify author groups later. Backs
+ * `isGroupNode`.
+ */
+export const GROUP_MARK = "__kmIsGroup";
