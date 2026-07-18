@@ -5,7 +5,11 @@ it wraps Konva text internally to support flex layout, wrapping, fit,
 typewriter reveal, and highlights. Two consequences:
 
 - To change content after construction, call `.setText("new copy")` — not
-  `.text(...)` (that's the raw Konva API and isn't wired through).
+  `.text(...)` (that's the raw Konva API and isn't wired through). Likewise
+  `.setFill("#color")` recolors and `.setFont(font)` swaps the face (both
+  return `this`). Use `.setFill()` to animate/tint text color instead of
+  faking it with a transparent `highlight` — e.g. `text.setFill(interpolateColors(...))`
+  in `register()`.
 - It participates in `Flex`/`Block` layout like any other wrapper (`width`,
   `flexGrow`, `alignSelf`, …).
 
