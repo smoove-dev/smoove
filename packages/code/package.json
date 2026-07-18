@@ -32,13 +32,13 @@
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
-    "@smoove/core": "workspace:^",
     "konva": ">=10"
   },
   "dependencies": {
     "@codemirror/language": "^6.10.8",
     "@lezer/common": "^1.2.3",
-    "@lezer/highlight": "^1.2.1"
+    "@lezer/highlight": "^1.2.1",
+    "@smoove/core": "workspace:^"
   },
   "devDependencies": {
     "@lezer/javascript": "^1.4.21",

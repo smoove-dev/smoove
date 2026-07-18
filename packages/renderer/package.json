@@ -41,6 +41,8 @@
   },
   "dependencies": {
     "@mediabunny/server": "^1.49.0",
+    "@smoove/core": "workspace:^",
+    "@smoove/transitions": "workspace:^",
     "mediabunny": "^1.49.0",
     "skia-canvas": "^3.0.8"
   },
@@ -48,13 +50,10 @@
     "gl": "^8.1.6"
   },
   "devDependencies": {
-    "@smoove/transitions": "workspace:*",
     "@types/node": "^22.10.0",
     "tsx": "^4.19.2"
   },
   "peerDependencies": {
-    "@smoove/core": "workspace:^",
-    "@smoove/transitions": "workspace:^",
     "konva": ">=10"
   },
   "peerDependenciesMeta": {

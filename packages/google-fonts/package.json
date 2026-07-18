@@ -25,7 +25,6 @@
     "prepublishOnly": "pnpm typecheck"
   },
   "peerDependencies": {
-    "@smoove/core": "workspace:^",
     "konva": ">=10"
   },
   "devDependencies": {
@@ -33,5 +32,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@smoove/core": "workspace:^"
   }
 }
