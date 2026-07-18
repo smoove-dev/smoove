@@ -36,6 +36,32 @@ function konvaFontStyle(weight: string, style: string): string {
   return parts.length > 0 ? parts.join(" ") : "normal";
 }
 
+/**
+ * Best-effort readiness for a bare `fontFamily` string. Canvas text does not
+ * trigger `@font-face` loading, so an unsized `Text` measures against a fallback
+ * face and clips (the recurring "Comfortaa → Rote" bug). In the browser we
+ * actively request the face via `document.fonts.load(shorthand)`, which resolves
+ * once the matching faces have loaded (and resolves harmlessly for a missing or
+ * system font — it never rejects on an unknown family). Returns `null` off the
+ * browser (server rendering registers faces up front, so measurement is already
+ * correct) or if the shorthand can't be built.
+ */
+function whenFontFamilyReady(
+  fontStyle: string,
+  fontSize: number,
+  fontFamily: string,
+): Promise<unknown> | null {
+  const fonts = (globalThis as { document?: { fonts?: FontFaceSet } }).document?.fonts;
+  if (!fonts?.load) return null;
+  // A valid CSS `font` shorthand: `<style/weight> <size>px <family>`.
+  const shorthand = `${fontStyle || "normal"} ${fontSize || 16}px ${fontFamily}`;
+  try {
+    return fonts.load(shorthand);
+  } catch {
+    return null;
+  }
+}
+
 /** Konva.Text internals we rely on for measurement (same pattern as flex-engine). */
 type KonvaTextInternal = Konva.Text & {
   _setTextData: () => void;
@@ -142,11 +168,20 @@ export class Text extends Konva.Group implements KMLayoutNode {
 
     // The font may not be loaded yet — Konva would have measured with a fallback
     // face. Re-layout + redraw once it lands (same shape as Image's load hook).
+    // A declarative `font` reports its own readiness; a bare `fontFamily` string
+    // can't, so we probe `document.fonts` for it (browser only, best-effort).
     if (fontRef && !fontRef.isLoaded) {
       fontRef.whenReady().then(() => {
         this._layoutText();
         this.getLayer()?.batchDraw();
       });
+    } else if (!fontRef && config.fontFamily) {
+      whenFontFamilyReady(this._text.fontStyle(), this._text.fontSize(), config.fontFamily)?.then(
+        () => {
+          this._layoutText();
+          this.getLayer()?.batchDraw();
+        },
+      );
     }
   }
 
