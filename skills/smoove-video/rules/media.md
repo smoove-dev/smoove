@@ -37,9 +37,18 @@ main.add(new Audio({
   trimAfter: 300,    // exclusive frame bound
   loop: false,
   muted: false,
-  volume: 0.8,        // 0..1
+  volume: 0.8,        // 1 = unity; >1 amplifies (e.g. 1.5 for a quiet SFX)
   playbackRate: 1,
 }));
+```
+
+Instead of the two absolute `trimBefore`/`trimAfter` bounds, you can pass a
+`trim` play-window — `{ start, play }` maps to `trimBefore = start`,
+`trimAfter = start + play`, so you say "start here, play this long" without
+subtracting by hand:
+
+```ts
+main.add(new Audio({ src: "/audio/whoosh.mp3", trim: { start: 6, play: 24 } }));
 ```
 
 `Audio` produces no pixels (no layout/visual props) — it's a Konva node
