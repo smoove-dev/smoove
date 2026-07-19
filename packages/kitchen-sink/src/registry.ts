@@ -36,6 +36,7 @@ import pulse from "./compositions/pulse/index.js";
 import ribbon from "./compositions/ribbon/index.js";
 import shapesFlex from "./compositions/shapes-flex/index.js";
 import shapesPlayground from "./compositions/shapes-playground/index.js";
+import smooveShowcase from "./compositions/snoove-showcase/index.js";
 import staggered from "./compositions/staggered/index.js";
 import textFit from "./compositions/text-fit/index.js";
 import textHighlight from "./compositions/text-highlight/index.js";
@@ -134,4 +135,5 @@ export default defineRegistry([
   // Film.
   cohabit,
   helloSmoove,
+  smooveShowcase
 ]);
