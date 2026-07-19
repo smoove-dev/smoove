@@ -1,6 +1,7 @@
 import type { Node as FlexilyNode } from "flexily/classic";
 import type Konva from "konva";
 import type { KMLayoutNode, LayoutBox } from "../contract.js";
+import { type Measurement, type MeasureOptions, measure as measureNode } from "../measure.js";
 import { applySize, parseSize } from "./engine.js";
 import type { FlexChildProps, SizeValue } from "./types.js";
 
@@ -109,7 +110,7 @@ export function FlexShape<N extends Konva.Shape, C extends LeafConfig = LeafConf
   Base: new (...args: any[]) => N,
 ): new (
   config: C,
-) => N & KMLayoutNode {
+) => N & KMLayoutNode & { measure(opts?: MeasureOptions): Measurement } {
   class Wrapped extends (Base as unknown as new (config?: unknown) => Konva.Shape) {
     readonly _kmRole = "leaf" as const;
     constructor(config: LeafConfig = {}) {
@@ -122,8 +123,12 @@ export function FlexShape<N extends Konva.Shape, C extends LeafConfig = LeafConf
     _kmPlace(box: LayoutBox): void {
       leafPlace(this, box);
     }
+    /** Measure this node's stage-space bounds — see {@link measureNode}. */
+    measure(opts?: MeasureOptions): Measurement {
+      return measureNode(this, opts);
+    }
   }
   return Wrapped as unknown as new (
     config: C,
-  ) => N & KMLayoutNode;
+  ) => N & KMLayoutNode & { measure(opts?: MeasureOptions): Measurement };
 }

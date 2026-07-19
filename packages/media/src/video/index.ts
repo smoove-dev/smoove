@@ -19,6 +19,9 @@ import {
   getDefaultVideoSourceFactory,
   getEnvironment,
   MEDIA_MARK,
+  type Measurement,
+  type MeasureOptions,
+  measure as measureNode,
   parseSize,
   type ReadonlySignal,
   type Signal,
@@ -226,6 +229,15 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
     this.width(box.width);
     this.height(box.height);
     this._layoutImage();
+  }
+
+  /**
+   * Measure this node's stage-space bounds — see {@link measureNode}. The
+   * frame pass never ticks media, so measuring a `Video` reads its layout
+   * box without seeking or decoding.
+   */
+  measure(opts?: MeasureOptions): Measurement {
+    return measureNode(this, opts);
   }
 
   private _ensureDriver(): VideoDriver | null {

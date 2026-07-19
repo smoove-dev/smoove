@@ -30,11 +30,17 @@
     "build": "tsc -b",
     "prepublishOnly": "pnpm build",
     "dev": "tsc -b --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
     "bezier-easing": "^2.1.0",
     "flexily": "^0.7.1"
+  },
+  "devDependencies": {
+    "skia-canvas": "^3.0.8",
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "konva": ">=10"

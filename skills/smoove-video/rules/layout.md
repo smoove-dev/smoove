@@ -109,3 +109,14 @@ flex-grown — give it an explicit size if you want it to shrink/grow.
 See `rules/assets/flex-card.composition.ts` for a complete worked example
 (gradient `Block` card, `Image` cover, `Text` heading/body, animated root
 width).
+
+## Measuring nodes
+
+`measure(node)` (or `node.measure()` on any smoove wrapper) returns stage-space
+bounds `{ x, y, width, height }`, laying the node out on demand — it works even
+for sequences that haven't been on screen, so never keep a dead sequence alive
+just to read geometry from it. Pass `{ at: localFrame }` to measure at a
+specific frame of the node's own sequence (e.g. a previous beat's final frame).
+`Text` results add `lines[]` with per-line `ink` rects and `baseline` — anchor
+underlines to `baseline` and masks to `ink`, not to the box. Bounds are final
+only once fonts are ready (`await comp.whenReady()`).

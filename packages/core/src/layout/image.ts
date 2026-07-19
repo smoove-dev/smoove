@@ -10,6 +10,7 @@ import type { KMLayoutNode, LayoutBox } from "./contract.js";
 import type { FlexilyNode } from "./flex/engine.js";
 import { applySize, parseSize } from "./flex/engine.js";
 import type { FlexChildProps, SizeValue } from "./flex/types.js";
+import { type Measurement, type MeasureOptions, measure as measureNode } from "./measure.js";
 
 export type ObjectFit = "cover" | "contain" | "fill" | "none";
 export type ObjectPosition =
@@ -157,6 +158,11 @@ export class Image extends Konva.Group implements KMLayoutNode {
     this.width(box.width);
     this.height(box.height);
     this._layoutImage();
+  }
+
+  /** Measure this node's stage-space bounds — see {@link measureNode}. */
+  measure(opts?: MeasureOptions): Measurement {
+    return measureNode(this, opts);
   }
 
   /** @internal */

@@ -1,6 +1,7 @@
 import { DIRECTION_LTR } from "flexily/classic";
 import Konva from "konva";
 import { isKMLayoutNode, type KMLayoutNode, type LayoutBox } from "../contract.js";
+import { type Measurement, type MeasureOptions, measure as measureNode } from "../measure.js";
 import {
   applyChildProps,
   applyContainerProps,
@@ -71,6 +72,11 @@ export class Flex extends Konva.Group implements KMLayoutNode {
     this.y(box.top);
     this.width(box.width);
     this.height(box.height);
+  }
+
+  /** Measure this node's stage-space bounds — see {@link measureNode}. */
+  measure(opts?: MeasureOptions): Measurement {
+    return measureNode(this, opts);
   }
 }
 

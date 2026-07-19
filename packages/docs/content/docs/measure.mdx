@@ -1,0 +1,81 @@
+---
+title: Measuring nodes
+description: Read any node's rendered bounds at any frame, on demand.
+---
+
+Layout normally runs only while a sequence is on screen. A node in a beat the
+playhead never reached has no computed geometry, so reading its position gives
+you zeros, and the old workaround was keeping a dead sequence alive as
+scaffolding just to read numbers out of it. `measure()` removes the coupling:
+it runs the layout math for the node you ask about, whenever you ask.
+
+## Measure a node
+
+Call `measure(node)` from `@smoove/core`, or `.measure()` on any smoove
+wrapper. Both return stage-space bounds:
+
+```ts
+import { measure } from "@smoove/core";
+
+const m = measure(tile); // or tile.measure()
+m.x; m.y; m.width; m.height;
+```
+
+The rect is axis-aligned and absolute, so a node in one sequence can consume
+another sequence's geometry directly. A rotated node reports the bounding box
+of its rotated shape.
+
+## Measure at a frame
+
+Bounds can depend on the frame: an updater may grow a box, a typewriter may
+still be revealing lines. Pass `{ at }` to measure at a specific local frame
+of the node's own sequence:
+
+```ts
+// Beat B anchors to beat A's final geometry:
+const m = measure(tile, { at: beatALength - 1 });
+```
+
+`measure({ at })` drives the sequence's updaters and ticks to that frame
+before reading. If the sequence is currently visible, it is restored to its
+live frame before the call returns, so the canvas never shows a stray frame.
+Media nodes are left alone; a measurement never seeks a video.
+
+<Demo name="measure-reveal" label="beat B rings a tile it measured from beat A, even seeking straight in" />
+
+## Text: lines, ink, baseline
+
+For `Text`, the measurement also carries one entry per rendered line:
+
+```ts
+const m = text.measure();
+for (const line of m.lines ?? []) {
+  line.x; line.y; line.width; line.height; // the line box
+  line.ink;      // tight rect around the actual glyphs
+  line.baseline; // stage-space y of the alphabetic baseline
+  line.range;    // char offsets into the displayed text
+}
+```
+
+The line box is the layout view: rendered width, one line-height tall. `ink`
+is the painted view: it hugs the real glyph edges, cap height to descender.
+Anchor underlines to `baseline` and masks or highlights to `ink`; the box
+alone will always sit a few pixels off the letterforms.
+
+<Demo name="measure-ink" label="line box, ink and baseline, all from one measure() call" />
+
+`Video` from `@smoove/media` carries the same `.measure()`, and measuring it
+never touches playback: the frame pass skips media, so no seek, no decode.
+
+## Fonts load first
+
+Measurement is synchronous and reflects the faces loaded right now. In the
+browser, measure after the composition's assets settle if the final glyph
+bounds matter:
+
+```ts
+await comp.whenReady();
+const m = text.measure();
+```
+
+Server rendering registers fonts up front, so bounds there are always final.

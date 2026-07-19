@@ -169,14 +169,7 @@ export class Sequence extends Konva.Layer implements MarkerSource {
       // Skip redundant work: same playhead, already active, and not forced.
       if (!becameActive && !force && local === this._lastLocal) return;
       this._lastLocal = local;
-      for (const u of this._updaters) u(local);
-      // Tick BEFORE layout: a ticked node may change its measured size (e.g. a
-      // Text typewriter revealing another line), and the flex pass must see the
-      // up-to-date size this frame rather than lagging one behind.
-      for (const v of this._media) v._kmTick?.(local);
-      for (const c of this.getChildren()) {
-        if (isKMLayoutRoot(c)) c._kmComputeLayout();
-      }
+      this._kmRunFrame(local, true);
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the
       // newly-displayed layer (avoids a one-frame flash of stale content).
@@ -188,6 +181,46 @@ export class Sequence extends Konva.Layer implements MarkerSource {
       this._lastLocal = -1;
       for (const v of this._media) v._kmDeactivate?.();
     }
+  }
+
+  /**
+   * Internal — the frame pass shared by {@link _apply} and `measure()`:
+   * updaters, ticks, then flex layout of every direct-child layout root. No
+   * visibility change, no draw, no `_lastLocal` bookkeeping — callers own
+   * that. With `tickMedia: false` (the measure path) media-only nodes
+   * (`MEDIA_MARK` without `TICK_MARK`) are skipped: media state never affects
+   * layout, and ticking a video at a foreign frame would trigger spurious
+   * seeks.
+   */
+  _kmRunFrame(local: number, tickMedia: boolean): void {
+    // While inactive there is no cached tickable list (that cache is built on
+    // activation), so collect on demand.
+    const tickables = this._active
+      ? this._media
+      : (this.find(
+          (n: Konva.Node) => n.getAttr(MEDIA_MARK) === true || n.getAttr(TICK_MARK) === true,
+        ) as MediaNode[]);
+    for (const u of this._updaters) u(local);
+    // Tick BEFORE layout: a ticked node may change its measured size (e.g. a
+    // Text typewriter revealing another line), and the flex pass must see the
+    // up-to-date size this frame rather than lagging one behind.
+    for (const v of tickables) {
+      if (!tickMedia && v.getAttr(MEDIA_MARK) === true && v.getAttr(TICK_MARK) !== true) {
+        continue;
+      }
+      v._kmTick?.(local);
+    }
+    for (const c of this.getChildren()) {
+      if (isKMLayoutRoot(c)) c._kmComputeLayout();
+    }
+  }
+
+  /**
+   * Internal — the live local frame while active, else `null`. `measure()`
+   * uses this to restore an active sequence after a foreign-frame pass.
+   */
+  _kmLiveLocal(): number | null {
+    return this._active ? this._lastLocal : null;
   }
 
   /**

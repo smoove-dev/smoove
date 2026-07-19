@@ -3,6 +3,7 @@ import type { KMLayoutNode, LayoutBox } from "./contract.js";
 import { normalizeEdges, parseSize } from "./flex/engine.js";
 import { layoutRoot } from "./flex/flex.js";
 import type { EdgeValue, FlexChildProps, FlexProps, SizeValue } from "./flex/types.js";
+import { type Measurement, type MeasureOptions, measure as measureNode } from "./measure.js";
 
 export type EdgeColor =
   | string
@@ -143,6 +144,11 @@ export class Block extends Konva.Group implements KMLayoutNode {
     this.width(box.width);
     this.height(box.height);
     this._layoutBackground();
+  }
+
+  /** Measure this node's stage-space bounds — see {@link measureNode}. */
+  measure(opts?: MeasureOptions): Measurement {
+    return measureNode(this, opts);
   }
 
   /** @internal */

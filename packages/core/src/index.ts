@@ -78,6 +78,7 @@ export {
   isKMLayoutRoot,
   type KMLayoutNode,
   type LayoutBox,
+  type LocalMeasuredLine,
   type MeasureContext,
 } from "./layout/contract.js";
 export {
@@ -109,6 +110,13 @@ export {
   type ObjectFit,
   type ObjectPosition,
 } from "./layout/image.js";
+export {
+  type MeasuredLine,
+  type MeasuredRect,
+  type Measurement,
+  type MeasureOptions,
+  measure,
+} from "./layout/measure.js";
 export {
   Arc,
   type ArcConfig,

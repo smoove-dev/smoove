@@ -1,9 +1,10 @@
 import Konva from "konva";
 import { stringToArray } from "konva/lib/shapes/Text.js";
 import { TICK_MARK } from "../../markers.js";
-import type { KMLayoutNode, LayoutBox, MeasureContext } from "../contract.js";
+import type { KMLayoutNode, LayoutBox, LocalMeasuredLine, MeasureContext } from "../contract.js";
 import { applySize, type FlexilyNode, parseSize, setTextWrapperMeasure } from "../flex/engine.js";
 import type { SizeValue } from "../flex/types.js";
+import { type Measurement, type MeasureOptions, measure as measureNode } from "../measure.js";
 import { Font, type FontFaceRef } from "./font.js";
 import {
   buildWordIndex,
@@ -13,6 +14,7 @@ import {
   pickKonvaConfig,
   snapToWord,
 } from "./geometry.js";
+import { baselineOffset, measureLineInk } from "./ink.js";
 import type {
   FitConfig,
   HighlightConfig,
@@ -255,6 +257,38 @@ export class Text extends Konva.Group implements KMLayoutNode {
     this.width(box.width);
     this.height(box.height);
     this._layoutText();
+  }
+
+  /** Measure this node's stage-space bounds — see {@link measureNode}. */
+  measure(opts?: MeasureOptions): Measurement {
+    return measureNode(this, opts);
+  }
+
+  /** @internal — {@link KMLayoutNode}: per-rendered-line geometry for `measure()`. */
+  _kmMeasureLines(): LocalMeasuredLine[] {
+    const geo = this._geo;
+    if (!geo) return [];
+    const blOff = baselineOffset(this._text, geo.lineH);
+    return geo.ranges.map((r, li) => {
+      const x = geo.pad + this._alignOffset(geo, r.width);
+      const y = geo.pad + li * geo.lineH;
+      const rect = { left: x, top: y, width: r.width, height: geo.lineH };
+      const baseline = y + blOff;
+      const ink = measureLineInk(this._text, geo.chars.slice(r.start, r.end).join(""));
+      return {
+        rect,
+        ink: ink
+          ? {
+              left: x - ink.left,
+              top: baseline - ink.ascent,
+              width: ink.left + ink.right,
+              height: ink.ascent + ink.descent,
+            }
+          : { ...rect },
+        baseline,
+        range: { start: r.start, end: r.end },
+      };
+    });
   }
 
   /**

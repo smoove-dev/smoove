@@ -8,6 +8,22 @@ export type LayoutBox = { left: number; top: number; width: number; height: numb
 export type MeasureContext = { parentIsColumn: boolean };
 
 /**
+ * Per-rendered-line geometry in node-local space, produced by
+ * {@link KMLayoutNode._kmMeasureLines}. `measure()` transforms these to stage
+ * space.
+ */
+export type LocalMeasuredLine = {
+  /** The line box: rendered width, one lineHeight tall. */
+  rect: LayoutBox;
+  /** Tight glyph ink rect (falls back to `rect` without canvas metrics). */
+  ink: LayoutBox;
+  /** Node-local y of the alphabetic baseline. */
+  baseline: number;
+  /** Char offsets into the displayed text. */
+  range: { start: number; end: number };
+};
+
+/**
  * The open contract that lets the flex engine ({@link buildChildren} /
  * {@link writeBack} in `flex/flex.ts`) handle a node without an `instanceof`
  * switch. Any wrapper that implements it self-describes how it participates in
@@ -30,6 +46,8 @@ export interface KMLayoutNode {
   _kmPlace(box: LayoutBox): void;
   /** Container-only: lay self out as a standalone flex root (called by Sequence). */
   _kmComputeLayout?(): void;
+  /** Text-like leaves: per-rendered-line geometry for `measure()`. */
+  _kmMeasureLines?(): LocalMeasuredLine[];
 }
 
 export function isKMLayoutNode(n: Konva.Node): n is Konva.Node & KMLayoutNode {
