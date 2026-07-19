@@ -1,5 +1,14 @@
 # @smoove/transitions
 
+## 0.3.1
+
+### Patch Changes
+
+- [#17](https://github.com/smoove-dev/smoove/pull/17) [`f94883e`](https://github.com/smoove-dev/smoove/commit/f94883ea196f7bc435f2f5ca7122aa54c40574f3) Thanks [@shemi](https://github.com/shemi)! - Timeline markers: name a scene in a `Series` or `TransitionSeries` and anchor anything to it. `series.marker("code")` returns a lazily-resolving handle with `start`, `end`, and `settled` points (each offsettable via `.add(n)`); `from:` accepts a marker anywhere a frame number worked, `Sequence` gains a marker-aware `until:`, and standalone sequences hand out their own via `sequence.marker()`. Retime a beat and every cue anchored to it moves in lockstep.
+
+- Updated dependencies [[`f94883e`](https://github.com/smoove-dev/smoove/commit/f94883ea196f7bc435f2f5ca7122aa54c40574f3)]:
+  - @smoove/core@0.3.1
+
 ## 0.3.0
 
 ### Patch Changes
