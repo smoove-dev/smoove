@@ -1,5 +1,12 @@
 # @smoove/transitions
 
+## 0.3.0
+
+### Patch Changes
+
+- Updated dependencies [[`02bb26c`](https://github.com/smoove-dev/smoove/commit/02bb26cb64d605f8f478b6d4221fa9f037d98063)]:
+  - @smoove/core@0.3.0
+
 ## 0.2.0
 
 ### Patch Changes
