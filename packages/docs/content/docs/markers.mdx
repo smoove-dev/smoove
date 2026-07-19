@@ -1,0 +1,114 @@
+---
+title: Timeline markers
+description: Name a beat, anchor cues to it, and retiming follows.
+---
+
+`Series` computes where every scene starts. But a cue pinned to a raw frame
+number (a whoosh at frame 60, a caption at frame 150) stops tracking the
+timeline the moment you retime a scene, and you get to hunt down every number
+by hand. Markers fix that: name a scene, grab a marker, and anchor the cue to
+the marker. Move the beat and the cue follows.
+
+## Name a scene
+
+Any scene in a `Series` (or a `TransitionSeries`) can take a `name`, and
+`series.marker(name)` returns a handle onto it:
+
+```ts
+const series = new Series();
+series
+  .add({ durationInFrames: 100, name: "intro" }, (seq) => seq.add(introScene))
+  .add({ durationInFrames: 120, name: "code" }, (seq) => seq.add(codeScene))
+  .add({ durationInFrames: 100, name: "outro" }, (seq) => seq.add(outroScene));
+
+const code = series.marker("code");
+```
+
+A marker stores no frame number. Every read resolves it from the series'
+current placement, so it always reflects the timeline as it is now. Names are
+unique per series; a duplicate throws at `add` time.
+
+## The three points
+
+A `Marker` exposes three anchorable points:
+
+```ts
+code.start; // the scene's window opens
+code.end; // the window closes
+code.settled; // start plus the incoming overlap
+```
+
+For back-to-back scenes `settled` equals `start`. Under a `TransitionSeries`
+they differ: `start` is the frame the incoming transition begins, `settled` is
+the frame it finishes and the scene stands on its own. Retiming the transition
+moves `settled` too.
+
+Each point has `.add(n)`, which returns a new point shifted by `n` frames:
+
+```ts
+code.start.add(-10); // 10 frames before the beat
+code.end.add(-30); // 30 frames before the window closes
+```
+
+## Anchor a sequence
+
+Everywhere `from` takes a number, it also takes a marker or a point (a bare
+`Marker` means its `.start`). `Sequence` additionally takes `until`, so a
+window can run from one beat to another:
+
+```ts
+// A cue badge, 10 frames ahead of the beat:
+comp.add(
+  new Sequence({ from: code.start.add(-10), durationInFrames: 50 }).add(badge),
+);
+
+// A span from "code" until "outro" begins:
+comp.add(
+  new Sequence({ from: code, until: series.marker("outro") }).add(underscore),
+);
+```
+
+`until` and `durationInFrames` are mutually exclusive; pick one way to say the
+length. Both scenes below are anchored this way:
+
+<Demo name="marker-cues" label="a cue badge and an until: span, both anchored to markers" />
+
+## Retime the beat
+
+The payoff. Both rows below run the same cue code, anchored to
+`series.marker("code").start`. The only difference is the intro's length. The
+beat moved, so the cue moved:
+
+<Demo name="marker-retime" label="two intros, one cue; the ring lands on the beat in both" />
+
+## Chain hand-placed sequences
+
+A standalone `Sequence` hands out its own marker (no name, a sequence is a
+single scene), so sequences chain without a series:
+
+```ts
+const intro = new Sequence({ from: 0, durationInFrames: 60 });
+const code = new Sequence({ from: intro.marker().end, durationInFrames: 90 });
+const sfx = new Sequence({ from: code.marker().start.add(-3), durationInFrames: 20 });
+```
+
+Stretch `intro` and the whole chain slides along.
+
+## Anchor a whole series
+
+`Series` and `TransitionSeries` accept markers in their own `from`, so an act
+can start when the previous act's finale settles:
+
+```ts
+const act2 = new Series({ from: act1.marker("finale").settled });
+```
+
+Circular anchors (an act anchored to itself through another) throw instead of
+hanging.
+
+## Resolving to a number
+
+`marker.resolve()` (or `point.resolve()`) returns the frame number right now.
+It is handy during setup, for example to place a static label where a beat
+falls. For anchoring, pass the marker itself: a number you resolved eagerly is
+frozen, and freezing is the exact bug markers exist to remove.

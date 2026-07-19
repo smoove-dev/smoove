@@ -58,6 +58,16 @@ main.register((frame) => {
 export default comp;
 ```
 
+## Sequence scenes & anchor cues
+
+`Series` lays scenes back-to-back and computes each `Sequence`'s `from`. Give
+scenes a `name` and anchor cues (SFX, captions, overlays) to **timeline
+markers** instead of frame numbers: `new Sequence({ from:
+series.marker("code").start.add(-10) })` moves with the beat when scenes are
+retimed, and `until:` spans one beat to another. Never hand-pin a cue's frame
+to a number derived from other scenes' durations. Details:
+[rules/sequencing.md](rules/sequencing.md).
+
 ## Animate
 
 `interpolate(frame, inputRange, outputRange, { easing, extrapolateLeft,

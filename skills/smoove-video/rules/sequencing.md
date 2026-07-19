@@ -104,6 +104,53 @@ series.durationInFrames; // total span, accounting for offsets
 negative `offset` may not push a scene's `from` below the series' own `from`
 (or below `0`) — `Series` throws rather than silently clamping it.
 
+## Timeline markers — anchor cues to beats, not frame numbers
+
+Never pin a cue (an SFX, a caption, an overlay) to a hand-computed frame
+number when it belongs to a beat — retiming the beat silently desyncs it.
+Give the scene a `name` and anchor to a marker instead:
+
+```ts
+const series = new Series()
+  .add({ durationInFrames: 100, name: "intro" }, (seq) => seq.add(introNode))
+  .add({ durationInFrames: 120, name: "code" }, (seq) => seq.add(codeNode))
+  .add({ durationInFrames: 100, name: "outro" }, (seq) => seq.add(outroNode));
+
+const code = series.marker("code"); // lazily-resolving handle, not a number
+
+comp.add(series);
+// A cue 10 frames before the beat:
+comp.add(new Sequence({ from: code.start.add(-10), durationInFrames: 50 }).add(badge));
+// A window from one beat until another (until replaces durationInFrames — never pass both):
+comp.add(new Sequence({ from: code, until: series.marker("outro") }).add(bedNode));
+```
+
+A `Marker` has three points, each accepted anywhere `from`/`until` take a
+number (a bare `Marker` means `.start`):
+
+- `marker.start` — the scene's window opens (in a `TransitionSeries`: the
+  incoming transition begins).
+- `marker.end` — the window closes.
+- `marker.settled` — start + incoming overlap (transition finished / overlap
+  absorbed); equals `.start` for back-to-back scenes.
+- `.add(n)` on any point returns a new point shifted by `n` frames.
+
+Markers resolve live on every read, so retiming any earlier scene moves
+everything anchored downstream. Standalone sequences chain the same way with
+`sequence.marker()` (no name — a sequence is one scene):
+
+```ts
+const introSeq = new Sequence({ from: 0, durationInFrames: 60 });
+const codeSeq = new Sequence({ from: introSeq.marker().end, durationInFrames: 90 });
+```
+
+A `Series`/`TransitionSeries` `from` also accepts a marker
+(`new Series({ from: act1.marker("finale").settled })`), so whole acts chain.
+Use `marker.resolve()` only for setup-time reads (e.g. placing a static
+label); anchoring with an eagerly resolved number re-creates the desync bug
+markers exist to fix. Scene names are unique per series (duplicates throw);
+circular anchors throw instead of hanging.
+
 ## `konva` — one copy only
 
 `konva` is a peer dependency; `Composition extends Konva.Stage` and every

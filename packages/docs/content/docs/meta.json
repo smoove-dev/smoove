@@ -15,6 +15,7 @@
     "interpolation",
     "easing",
     "sequencing",
+    "markers",
     "transitions",
     "---Building the Scene---",
     "shapes",

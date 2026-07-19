@@ -1,9 +1,19 @@
+import {
+  type FrameAnchor,
+  Marker,
+  type MarkerSource,
+  resolveFrameAnchor,
+  type ScenePlacement,
+} from "./marker.js";
 import { computeOffsets, type OffsetScene, type PlacedScene } from "./offsets.js";
 import { Sequence, type SequenceProvider } from "./sequence.js";
 
 export type SeriesOptions = {
-  /** Frame the series starts at. Default `0`. */
-  from?: number;
+  /**
+   * Frame the series starts at: an absolute frame or a `Marker`/`MarkerPoint`
+   * (e.g. another series' marker), resolved live. Default `0`.
+   */
+  from?: FrameAnchor;
 };
 
 export type SeriesSceneOptions = {
@@ -13,6 +23,8 @@ export type SeriesSceneOptions = {
    * overlaps the previous scene; positive leaves a gap. Default `0` (back-to-back).
    */
   offset?: number;
+  /** Optional scene name for `series.marker(name)`. Unique per series. */
+  name?: string;
 };
 
 type SceneDef = {
@@ -34,22 +46,64 @@ type SceneDef = {
  * series.durationInFrames; // total span accounting for offsets
  * ```
  */
-export class Series implements SequenceProvider {
-  readonly from: number;
+export class Series implements SequenceProvider, MarkerSource {
+  private readonly _from: FrameAnchor;
   private readonly _scenes: SceneDef[] = [];
 
   constructor(opts: SeriesOptions = {}) {
     const from = opts.from ?? 0;
-    if (!Number.isInteger(from) || from < 0) {
+    if (typeof from === "number" && (!Number.isInteger(from) || from < 0)) {
       throw new Error("Series: from must be a non-negative integer");
     }
-    this.from = from;
+    this._from = from;
+  }
+
+  /** Frame the series starts at. Marker-valued `from` resolves on every read. */
+  get from(): number {
+    return resolveFrameAnchor(this._from);
   }
 
   /** Append a scene. The `build` callback populates the created `Sequence`. */
   add(opts: SeriesSceneOptions, build: (seq: Sequence) => void): this {
+    if (opts.name !== undefined && this._scenes.some((s) => s.opts.name === opts.name)) {
+      throw new Error(`Series: duplicate scene name "${opts.name}"`);
+    }
     this._scenes.push({ opts, build });
     return this;
+  }
+
+  /**
+   * A lazily-resolving {@link Marker} onto the named scene. Resolution runs
+   * this series' placement at read time, so retiming any earlier scene moves
+   * the marker — and everything anchored to it — automatically.
+   */
+  marker(name: string): Marker {
+    if (typeof name !== "string" || name.length === 0) {
+      throw new Error("Series: marker name must be a non-empty string");
+    }
+    return new Marker(this, name);
+  }
+
+  /** @internal marker-source hook. `settled` = start + `max(0, −offset)`. */
+  _kmResolveMarker(name: string | undefined): ScenePlacement {
+    const i = this._scenes.findIndex((s) => s.opts.name === name);
+    if (name === undefined || i < 0) {
+      const names = this._scenes
+        .map((s) => s.opts.name)
+        .filter((n): n is string => n !== undefined);
+      throw new Error(
+        `Series: no scene named "${name}" (named scenes: ${names.length > 0 ? names.join(", ") : "none"})`,
+      );
+    }
+    const placed = this._place();
+    const p = placed[i];
+    if (!p) throw new Error(`Series: scene "${name}" has no placement`);
+    const offset = this._scenes[i]?.opts.offset ?? 0;
+    return {
+      from: p.from,
+      end: p.from + p.durationInFrames,
+      settled: p.from + Math.max(0, -offset),
+    };
   }
 
   private _place(): PlacedScene[] {
