@@ -45,6 +45,13 @@ start of the next one (so a 60+60-frame, 30-frame-transition series totals
 a transition is first or last (nothing to overlap), two transitions are
 adjacent, or a transition is longer than either scene it overlaps.
 
+`scene()` accepts a `name`, and `series.marker(name)` returns a timeline
+marker for anchoring cues to the beat (see markers in
+[sequencing](sequencing.md)). Under a transition the points differ:
+`marker.start` is the frame the incoming transition begins, `marker.settled`
+is the frame it finishes — cue a whoosh at `.start`, gate a caption on
+`.settled`. Retiming the transition moves `.settled` with it.
+
 ## Presentations
 
 `fade()`, `slide({ direction })`, `wipe({ direction })`, `dissolve()`,

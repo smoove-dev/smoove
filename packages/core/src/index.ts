@@ -21,6 +21,16 @@ export {
   getEnvironment,
 } from "./engine/environment.js";
 export {
+  type FrameAnchor,
+  Marker,
+  type MarkerKind,
+  MarkerPoint,
+  type MarkerSource,
+  // @internal — anchor resolution reused by @smoove/transitions.
+  resolveFrameAnchor,
+  type ScenePlacement,
+} from "./engine/marker.js";
+export {
   type ComputeOffsetsResult,
   // @internal — offset engine reused by @smoove/transitions.
   computeOffsets,

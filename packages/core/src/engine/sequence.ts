@@ -2,16 +2,34 @@ import Konva from "konva";
 import { isKMLayoutRoot } from "../layout/contract.js";
 import { MEDIA_MARK, TICK_MARK } from "../markers.js";
 import { getComposition } from "./composition.js";
+import {
+  type FrameAnchor,
+  Marker,
+  type MarkerSource,
+  resolveFrameAnchor,
+  type ScenePlacement,
+} from "./marker.js";
 
 export type SequenceOptions = Konva.LayerConfig & {
-  /** Composition frame this sequence starts on. Defaults to `0`. */
-  from?: number;
+  /**
+   * Composition frame this sequence starts on: an absolute frame, or a
+   * `Marker`/`MarkerPoint` resolved live (retiming the marked scene moves
+   * this sequence with it). Defaults to `0`.
+   */
+  from?: FrameAnchor;
   /**
    * How many frames the sequence spans. When omitted it defaults to the host
    * composition's `durationInFrames` — i.e. a layer spanning the whole comp.
    * Resolved live once added (see {@link Sequence.durationInFrames}).
+   * Mutually exclusive with {@link until}.
    */
   durationInFrames?: number;
+  /**
+   * End anchor: the span becomes `resolve(until) − resolve(from)`, kept live
+   * so retiming either end moves the window. Mutually exclusive with
+   * {@link durationInFrames}.
+   */
+  until?: FrameAnchor;
 };
 
 export type Updater = (localFrame: number) => void;
@@ -30,10 +48,11 @@ type MediaNode = Konva.Node & {
   _kmDeactivate?: () => void;
 };
 
-export class Sequence extends Konva.Layer {
-  readonly from: number;
-  /** Explicit span, or `undefined` to default to the host comp's duration. */
+export class Sequence extends Konva.Layer implements MarkerSource {
+  private readonly _from: FrameAnchor;
+  /** Explicit span, or `undefined` to default to `until`/the host comp's duration. */
   private readonly _durationInFrames?: number;
+  private readonly _until?: FrameAnchor;
   private readonly _updaters = new Set<Updater>();
   private _active = false;
   private _media: MediaNode[] = [];
@@ -43,9 +62,12 @@ export class Sequence extends Konva.Layer {
   private _lastLocal = -1;
 
   constructor(opts: SequenceOptions = {}) {
-    const { from = 0, durationInFrames, ...layerOpts } = opts;
-    if (!Number.isInteger(from) || from < 0) {
+    const { from = 0, durationInFrames, until, ...layerOpts } = opts;
+    if (typeof from === "number" && (!Number.isInteger(from) || from < 0)) {
       throw new Error("Sequence: from must be a non-negative integer");
+    }
+    if (durationInFrames !== undefined && until !== undefined) {
+      throw new Error("Sequence: durationInFrames and until are mutually exclusive — provide one");
     }
     // durationInFrames is optional: when omitted it resolves to the host comp's
     // duration (see the getter). Only validate an explicitly provided value.
@@ -55,24 +77,62 @@ export class Sequence extends Konva.Layer {
     ) {
       throw new Error("Sequence: durationInFrames must be a positive integer");
     }
+    if (typeof until === "number" && (!Number.isInteger(until) || until <= 0)) {
+      throw new Error("Sequence: until must be a positive integer frame");
+    }
     super({ ...layerOpts, visible: false });
-    this.from = from;
+    this._from = from;
     this._durationInFrames = durationInFrames;
+    this._until = until;
   }
 
   /**
-   * Frames this sequence spans. When constructed without an explicit
-   * `durationInFrames`, this resolves **live** to the host composition's
-   * `durationInFrames` — a layer that spans the whole comp. Before the sequence
-   * is added to a composition (no reachable stage) it reports `Infinity`,
-   * meaning "unbounded"; `_apply` is only ever driven by the comp, so by then
-   * the real duration is reachable.
+   * Composition frame this sequence starts on. Marker-valued `from` resolves
+   * on every read (live, like {@link durationInFrames}), so retiming the
+   * marked scene moves this sequence automatically.
+   */
+  get from(): number {
+    return resolveFrameAnchor(this._from);
+  }
+
+  /**
+   * Frames this sequence spans. With `until`, resolves live as
+   * `resolve(until) − resolve(from)`. When constructed without an explicit
+   * span, this resolves **live** to the host composition's
+   * `durationInFrames` — a layer that spans the whole comp. Before the
+   * sequence is added to a composition (no reachable stage) it reports
+   * `Infinity`, meaning "unbounded"; `_apply` is only ever driven by the
+   * comp, so by then the real duration is reachable.
    */
   get durationInFrames(): number {
+    if (this._until !== undefined) {
+      const from = this.from;
+      const until = resolveFrameAnchor(this._until);
+      const d = until - from;
+      if (d <= 0) {
+        throw new Error(`Sequence: until (${until}) must be after from (${from})`);
+      }
+      return d;
+    }
     if (this._durationInFrames !== undefined) return this._durationInFrames;
     const stage = this.getStage();
     const comp = stage && getComposition(stage);
     return comp ? comp.durationInFrames.get() : Number.POSITIVE_INFINITY;
+  }
+
+  /**
+   * A {@link Marker} onto this sequence's own placement — no name, a
+   * sequence *is* a single scene. Anchor other sequences to it:
+   * `new Sequence({ from: intro.marker().end })`.
+   */
+  marker(): Marker {
+    return new Marker(this);
+  }
+
+  /** @internal marker-source hook. A plain sequence has no incoming overlap. */
+  _kmResolveMarker(): ScenePlacement {
+    const from = this.from;
+    return { from, end: from + this.durationInFrames, settled: from };
   }
 
   register(updater: Updater): () => void {

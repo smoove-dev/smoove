@@ -65,6 +65,9 @@ placement* inside a `Series` or `TransitionSeries`.
 - Every read resolves by running the series' existing placement
   (`computeOffsets` for `Series`; the overlap-resolving placement in
   `TransitionSeries.sequences()`) and looking up the named scene.
+- A standalone `Sequence` is a marker source too: `sequence.marker()` (no
+  name — a sequence *is* a single scene) resolves from the sequence's own
+  live `from`/`durationInFrames` getters.
 
 A marker is a *view onto a scene*, not a positional entity: retiming any scene
 moves every marker derived from scenes placed after it, automatically.
@@ -98,8 +101,9 @@ codeMarker.resolve()        // sugar for codeMarker.start.resolve() → number
 - Anchoring APIs accept `number | Marker | MarkerPoint`; a bare `Marker`
   means its `.start`.
 - Resolution goes through an internal source hook,
-  `_kmResolveMarker(name): { from, end, settled }`, implemented by `Series`
-  and `TransitionSeries`. `Marker`/`MarkerPoint` are source-agnostic.
+  `_kmResolveMarker(name): { from, end, settled }`, implemented by `Series`,
+  `TransitionSeries`, and `Sequence` (which ignores the name).
+  `Marker`/`MarkerPoint` are source-agnostic.
 - `resolve()` is public — occasionally useful in updaters and for debugging —
   but anchoring APIs accept the handles themselves; eager `resolve()` at
   authoring time reintroduces the freeze bug and the docs say so.
@@ -113,6 +117,10 @@ codeMarker.resolve()        // sugar for codeMarker.start.resolve() → number
   re-entry and throws with the chain, instead of recursing forever.
 - Resolved frame `< 0` (e.g. `.add(-100)` past the timeline start) → throw at
   resolve time, mirroring the existing `computeOffsets` underflow error.
+- `.end` on a sequence marker whose sequence has *default* duration (resolves
+  to the host comp's duration; `Infinity` before it's attached) → throw
+  "sequence has no explicit duration and isn't attached to a composition"
+  rather than silently resolving to `Infinity`.
 
 ```ts
 series.marker("codee").resolve();
@@ -180,6 +188,26 @@ act2.add({ durationInFrames: 150, name: "reveal" }, buildReveal);
 
 comp.add(act1);
 comp.add(act2);
+```
+
+### Sequence as a marker source
+
+Any `Sequence` — including hand-placed ones outside any series — hands out
+the same handle via `sequence.marker()` (no name argument). It resolves from
+the sequence's own live getters: `{ from, end: from + durationInFrames,
+settled: from }` (no incoming overlap, so `settled === start`). Because a
+sequence's `from` can itself be marker-valued, chains compose; the cycle
+guard covers loops.
+
+```ts
+const intro = new Sequence({ from: 0, durationInFrames: 60 });
+
+// Chain a hand-placed sequence off another — no Series required:
+const code = new Sequence({ from: intro.marker().end, durationInFrames: 90 });
+
+// And an SFX off that:
+new Sequence({ from: code.marker().start.add(-3), durationInFrames: 20 })
+  .add(new Audio({ src: whoosh }));
 ```
 
 ### Audio (and anything else without its own timeline position)
@@ -268,7 +296,8 @@ Verify with `pnpm build` plus a headless Node script driving `setFrame(n)`:
 
 1. A `Series` with named scenes; an SFX-style `Sequence` anchored via
    `marker.start.add(-n)`; an `until:` span across two beats; a `TransitionSeries`
-   scene using `.settled`.
+   scene using `.settled`; two hand-placed sequences chained via
+   `sequence.marker().end`.
 2. Assert resolved `from`/`durationInFrames` for each anchored sequence.
 3. Retime one early scene (change its `durationInFrames`), rebuild, and
    assert every anchored value moved in lockstep.
