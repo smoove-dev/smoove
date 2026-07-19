@@ -118,8 +118,25 @@ seq.register((f) => {
 });
 ```
 
+The same machinery works outside a composition too: `buildEnvelope` decodes
+any file into an `AudioEnvelope`, and the `envelopeRmsAt` family reads it by
+media time in seconds. No `Audio` node needed.
+
+```ts
+import { buildEnvelope, envelopeRmsAt } from "@smoove/media";
+
+const env = await buildEnvelope("/audio/track.mp3", { bands: 24 });
+envelopeRmsAt(env, 12.5); // loudness at 12.5s into the file
+```
+
+If you know what you are doing, you can drop all the way to the decoder:
+`audio.source` returns the live media source, and on the default
+`MediabunnyAudioSource` (and its video counterpart) `source.input` is the
+underlying mediabunny `Input`, ready for track metadata or extra sinks. Read
+from it; the source owns its lifecycle, so never dispose it yourself.
+
 `waveform(fromFrame, toFrame, buckets)` returns the clip's static min/max
-outline — one signed pair per column, ready to draw as bars or a polygon. The
+outline: one signed pair per column, ready to draw as bars or a polygon. The
 outline never changes with playback, so build it once when the envelope lands
 (it returns all zeros while the decode is still in flight):
 

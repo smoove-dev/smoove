@@ -140,6 +140,12 @@ between frames (see the quantize gotcha in [animation.md](animation.md)).
 Working references: the kitchen-sink `audio-visuals`, `eq-spectrum`, and
 `audiogram` compositions.
 
+For analysis without a node, `buildEnvelope(src, opts)` and the
+`envelopeRmsAt` family are exported as plain functions (they take media-time
+seconds, not frames). Advanced escape hatch: `audio.source` / `video.source`
+return the live media source, and the default Mediabunny sources expose their
+`input` demuxer; read from it, never dispose it.
+
 ## Video
 
 ```ts

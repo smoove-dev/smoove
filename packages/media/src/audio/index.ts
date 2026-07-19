@@ -123,6 +123,17 @@ export class Audio extends Konva.Group implements AudioChannel {
     });
   }
 
+  /**
+   * Escape hatch for advanced use: the live {@link AudioSource}. Narrow with
+   * `isSchedulable(source)` for the decoded-buffer sink, or
+   * `source instanceof MediabunnyAudioSource` for its `.input` demuxer. The
+   * node replaces this instance on suspend/resume, so read it fresh each time
+   * rather than caching the reference.
+   */
+  get source(): AudioSource {
+    return this._source;
+  }
+
   /** @internal — {@link Composition.suspend}: drop the source to stop downloading/decoding. */
   _kmSuspend(): void {
     if (this._suspended) return;

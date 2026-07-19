@@ -54,6 +54,16 @@ export class MediabunnyAudioSource implements SchedulableAudioSource {
     return this._sink;
   }
 
+  /**
+   * Escape hatch for advanced use: the underlying Mediabunny {@link Input}
+   * (demuxer), or null until {@link load} resolves and after {@link destroy}.
+   * Read from it (track metadata, extra sinks); the source owns its lifecycle,
+   * so never dispose it yourself.
+   */
+  get input(): Input | null {
+    return this._input;
+  }
+
   get firstTimestamp(): number {
     return this._firstTimestamp;
   }
