@@ -1,5 +1,14 @@
 # @smoove/media
 
+## 0.3.2
+
+### Patch Changes
+
+- [`e21d9ca`](https://github.com/smoove-dev/smoove/commit/e21d9ca2f2e94742bda897c855e8332a1b032804) Thanks [@shemi](https://github.com/shemi)! - `Video` gains the same `.measure()` as the core wrappers: stage-space bounds on demand, at any frame, without seeking or decoding the clip.
+
+- Updated dependencies [[`e21d9ca`](https://github.com/smoove-dev/smoove/commit/e21d9ca2f2e94742bda897c855e8332a1b032804)]:
+  - @smoove/core@0.3.2
+
 ## 0.3.1
 
 ### Patch Changes
