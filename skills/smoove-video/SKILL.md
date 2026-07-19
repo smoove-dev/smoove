@@ -82,6 +82,14 @@ content) supports `fitText`, `maxLines`/`ellipsis`, a built-in `typewriter`
 reveal, and `highlights`. Details: [rules/text.md](rules/text.md) and,
 for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 
+## Media
+
+`Image` comes from `@smoove/core`; `Audio`/`Video` ship in `@smoove/media`
+(add it as a dependency). Passing `introspect` to `Audio` turns the clip's
+real sound into frame-pure signals — `rmsAt`/`peakAt`/`bandsAt`/`noveltyAt`/
+`waveform` — for meters, EQ bars, waveforms, and beat-synced motion that
+scrub and server-render deterministically. Details: [rules/media.md](rules/media.md).
+
 ## Performance
 
 An animated scene is a full-canvas repaint every frame. **Never `shadowBlur`

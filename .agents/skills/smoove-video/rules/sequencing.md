@@ -5,16 +5,21 @@
 ## Composition
 
 ```ts
+const fps = 30;
 const comp = new Composition({
   id: "my-scene",         // unique
-  fps: 30,
-  durationInFrames: 90,   // total length in frames (90 @ 30fps = 3s)
+  fps,
+  durationInFrames: fps * 3, // duration in seconds, not a bare frame count
   width: 1280,
   height: 720,
   loop: true,             // optional — wrap to frame 0 instead of auto-pausing at the end
   props: { headline: "Hello" }, // optional — typed props, see below
 });
 ```
+
+`comp.durationInFrames` is a reactive signal (like `comp.frame`/`comp.props`)
+— read it back with `comp.durationInFrames.get()` rather than hardcoding the
+same number a second time somewhere else in the scene.
 
 `Composition extends Konva.Stage`. Build the scene graph once at module load
 (everything below `comp` is plain Konva + smoove nodes), then animate by
@@ -44,12 +49,22 @@ specific frame without a running rAF loop.
 ## Sequence
 
 ```ts
-const main = new Sequence({ from: 0, durationInFrames: 90 });
+const main = new Sequence(); // spans the whole composition
 comp.add(main); // or: main is added once, after children are attached
 main.add(someNode); // a @smoove/core node — Rect, Text, Flex, Image, …
 main.register((localFrame) => {
   // localFrame is 0-based within this sequence's own window
 });
+```
+
+Both `Sequence` options default: `from` to `0`, and `durationInFrames` to the
+composition's own duration. So `new Sequence()` (no arguments at all) is a
+layer spanning the whole timeline, which is all a single-scene composition
+needs. Pass `from` and
+`durationInFrames` only when you want a partial window:
+
+```ts
+const outro = new Sequence({ from: 60, durationInFrames: 30 }); // frames 60 … 89
 ```
 
 `Sequence extends Konva.Layer` — a real Konva layer, so it has its own

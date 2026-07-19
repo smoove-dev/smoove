@@ -3,9 +3,8 @@
 // trailing frames (frame-pure — a max over recent `bandsAt` reads, no decaying
 // state), and a bass-weighted glow behind it all. Scrub it backwards; it's
 // identical every pass.
-import { Composition, interpolateColors, Sequence } from "@smoove/core";
+import { Circle, Composition, interpolateColors, Line, Rect, Sequence, Text } from "@smoove/core";
 import { Audio } from "@smoove/media";
-import Konva from "konva";
 import musicUrl from "../../files/sound/music-c.mp3";
 
 const FPS = 30;
@@ -43,21 +42,27 @@ const music = new Audio({
 });
 seq.add(music);
 
-seq.add(new Konva.Rect({ x: 0, y: 0, width: W, height: H, fill: INK, listening: false }));
+seq.add(new Rect({ x: 0, y: 0, width: W, height: H, fill: INK, listening: false }));
 
-// Bass-weighted glow behind the bars.
-const glow = new Konva.Circle({
+// Bass-weighted glow behind the bars: a radial-gradient disc (mid-stop mimics
+// Gaussian falloff), never shadowBlur. Gradient radii live in local coords, so
+// it breathes via scale, not radius.
+const GLOW_R = 440;
+const glow = new Circle({
   x: W / 2,
   y: H / 2,
-  radius: 320,
-  fill: TEAL,
-  opacity: 0.06,
+  radius: GLOW_R,
+  fillRadialGradientStartPoint: { x: 0, y: 0 },
+  fillRadialGradientEndPoint: { x: 0, y: 0 },
+  fillRadialGradientStartRadius: 0,
+  fillRadialGradientEndRadius: GLOW_R,
+  fillRadialGradientColorStops: [0, TEAL, 0.3, `${TEAL}55`, 0.6, `${TEAL}1e`, 1, `${TEAL}00`],
   listening: false,
 });
 seq.add(glow);
 
 seq.add(
-  new Konva.Text({
+  new Text({
     x: 0,
     y: 72,
     width: W,
@@ -68,8 +73,9 @@ seq.add(
     fontFamily: FONT,
     fill: WHITE,
     letterSpacing: 8,
+    listening: false,
   }),
-  new Konva.Text({
+  new Text({
     x: 0,
     y: 130,
     width: W,
@@ -80,6 +86,7 @@ seq.add(
     fontFamily: FONT,
     fill: DIM,
     letterSpacing: 2,
+    listening: false,
   }),
 );
 
@@ -92,14 +99,14 @@ const MIRROR = 0.45; // the reflection is squashed
 const slotW = EQ_W / N_BANDS;
 const barW = slotW * 0.66;
 
-const bars: Konva.Rect[] = [];
-const mirrors: Konva.Rect[] = [];
-const caps: Konva.Rect[] = [];
+const bars: Rect[] = [];
+const mirrors: Rect[] = [];
+const caps: Rect[] = [];
 for (let k = 0; k < N_BANDS; k++) {
   const x = EQ_X + k * slotW + (slotW - barW) / 2;
   // Bass → treble color sweep across the field.
   const color = interpolateColors(k, [0, N_BANDS / 2, N_BANDS - 1], [TEAL, GOLD, MAGENTA]);
-  const bar = new Konva.Rect({
+  const bar = new Rect({
     x,
     y: MID,
     width: barW,
@@ -108,7 +115,7 @@ for (let k = 0; k < N_BANDS; k++) {
     cornerRadius: 2,
     listening: false,
   });
-  const mirror = new Konva.Rect({
+  const mirror = new Rect({
     x,
     y: MID + 6,
     width: barW,
@@ -118,7 +125,7 @@ for (let k = 0; k < N_BANDS; k++) {
     cornerRadius: 2,
     listening: false,
   });
-  const cap = new Konva.Rect({
+  const cap = new Rect({
     x,
     y: MID,
     width: barW,
@@ -133,7 +140,7 @@ for (let k = 0; k < N_BANDS; k++) {
   seq.add(mirror, bar, cap);
 }
 seq.add(
-  new Konva.Line({
+  new Line({
     points: [EQ_X, MID + 2, EQ_X + EQ_W, MID + 2],
     stroke: DIM,
     strokeWidth: 1,
@@ -188,8 +195,10 @@ seq.register((f) => {
     cap.opacity(0.3 + 0.7 * hv);
   }
 
-  glow.radius(300 + 140 * bass);
-  glow.opacity(0.04 + 0.1 * bass);
+  const glowScale = (300 + 140 * bass) / GLOW_R;
+  glow.scaleX(glowScale);
+  glow.scaleY(glowScale);
+  glow.opacity(0.08 + 0.18 * bass);
 });
 
 comp.add(seq);

@@ -3,9 +3,8 @@
 // clip-rect that tracks the playhead, and a speaking ring around the avatar
 // that breathes with the voice's actual loudness (`rmsAt`) — it goes still in
 // the pauses between phrases, which no volume automation can fake.
-import { Composition, Sequence } from "@smoove/core";
+import { Circle, Composition, Group, Rect, Sequence, Text } from "@smoove/core";
 import { Audio } from "@smoove/media";
-import Konva from "konva";
 import voiceUrl from "../../files/sound/voice.wav";
 
 const FPS = 30;
@@ -40,9 +39,9 @@ const voice = new Audio({
 seq.add(voice);
 
 // ===== Card =====
-seq.add(new Konva.Rect({ x: 0, y: 0, width: W, height: H, fill: INK, listening: false }));
+seq.add(new Rect({ x: 0, y: 0, width: W, height: H, fill: INK, listening: false }));
 seq.add(
-  new Konva.Rect({
+  new Rect({
     x: 100,
     y: 230,
     width: W - 200,
@@ -56,7 +55,7 @@ seq.add(
 // ---- Avatar + speaking ring (rmsAt) ----
 const AV_X = W / 2;
 const AV_Y = 400;
-const speakRing = new Konva.Circle({
+const speakRing = new Circle({
   x: AV_X,
   y: AV_Y,
   radius: 74,
@@ -67,8 +66,8 @@ const speakRing = new Konva.Circle({
 });
 seq.add(
   speakRing,
-  new Konva.Circle({ x: AV_X, y: AV_Y, radius: 64, fill: "#1e293b", listening: false }),
-  new Konva.Text({
+  new Circle({ x: AV_X, y: AV_Y, radius: 64, fill: "#1e293b", listening: false }),
+  new Text({
     x: AV_X - 64,
     y: AV_Y - 20,
     width: 128,
@@ -83,7 +82,7 @@ seq.add(
 );
 
 seq.add(
-  new Konva.Text({
+  new Text({
     x: 0,
     y: 512,
     width: W,
@@ -93,8 +92,9 @@ seq.add(
     fontStyle: "700",
     fontFamily: FONT,
     fill: WHITE,
+    listening: false,
   }),
-  new Konva.Text({
+  new Text({
     x: 0,
     y: 560,
     width: W,
@@ -104,6 +104,7 @@ seq.add(
     fontStyle: "500",
     fontFamily: FONT,
     fill: DIM,
+    listening: false,
   }),
 );
 
@@ -118,11 +119,11 @@ const barW = slotW * 0.6;
 
 // Two identical bar fields: a dim base and a bright copy inside a clip group
 // whose width follows the playhead — the "played so far" fill.
-const makeBars = (fill: string): { group: Konva.Group; bars: Konva.Rect[] } => {
-  const group = new Konva.Group({ listening: false });
-  const bars: Konva.Rect[] = [];
+const makeBars = (fill: string): { group: Group; bars: Rect[] } => {
+  const group = new Group({ listening: false });
+  const bars: Rect[] = [];
   for (let b = 0; b < BUCKETS; b++) {
-    const bar = new Konva.Rect({
+    const bar = new Rect({
       x: WF_X + b * slotW + (slotW - barW) / 2,
       y: WF_MID - 1,
       width: barW,
@@ -141,14 +142,14 @@ const played = makeBars(ACCENT);
 played.group.clip({ x: WF_X, y: WF_MID - WF_AMP - 10, width: 0, height: 2 * (WF_AMP + 10) });
 seq.add(base.group, played.group);
 
-const playDot = new Konva.Circle({
+const playDot = new Circle({
   x: WF_X,
   y: WF_MID + WF_AMP + 34,
   radius: 5,
   fill: GOLD,
   listening: false,
 });
-const timeText = new Konva.Text({
+const timeText = new Text({
   x: WF_X,
   y: WF_MID + WF_AMP + 24,
   width: WF_W,
@@ -204,7 +205,7 @@ seq.register((f) => {
   });
   playDot.x(WF_X + WF_W * progress);
   const secs = Math.floor(f / FPS);
-  timeText.text(`0:${String(secs).padStart(2, "0")} / 0:09`);
+  timeText.setText(`0:${String(secs).padStart(2, "0")} / 0:09`);
 });
 
 comp.add(seq);

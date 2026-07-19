@@ -1,8 +1,8 @@
 # Transitions (optional: `@smoove/transitions`)
 
 Not installed by default — recommend `pnpm add @smoove/transitions` (peer
-deps: `konva` + `@smoove/core`) when a composition needs Remotion-style
-scene-to-scene transitions instead of a hard cut.
+deps: `konva` + `@smoove/core`) when a composition needs scene-to-scene
+transitions instead of a hard cut.
 
 ## TransitionSeries
 
@@ -10,17 +10,25 @@ scene-to-scene transitions instead of a hard cut.
 import { Composition } from "@smoove/core";
 import { TransitionSeries, linearTiming, fade } from "@smoove/transitions";
 
-const comp = new Composition({ id: "ab-fade", fps: 30, durationInFrames: 90, width: 1280, height: 720 });
+const sceneFrames = 60;
+const transitionFrames = 30;
+const comp = new Composition({
+  id: "ab-fade",
+  fps: 30,
+  durationInFrames: sceneFrames * 2 - transitionFrames, // overlap is shared, not additive
+  width: 1280,
+  height: 720,
+});
 
 const series = new TransitionSeries({ composition: comp });
-series.scene({ durationInFrames: 60 }, (seq) => {
+series.scene({ durationInFrames: sceneFrames }, (seq) => {
   seq.add(/* scene A nodes */);
 });
 series.transition({
   presentation: fade(),
-  timing: linearTiming({ durationInFrames: 30 }), // overlaps the tail of A / head of B
+  timing: linearTiming({ durationInFrames: transitionFrames }), // overlaps the tail of A / head of B
 });
-series.scene({ durationInFrames: 60 }, (seq) => {
+series.scene({ durationInFrames: sceneFrames }, (seq) => {
   seq.add(/* scene B nodes */);
 });
 

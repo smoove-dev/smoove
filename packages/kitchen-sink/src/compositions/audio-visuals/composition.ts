@@ -5,9 +5,8 @@
 //   4. a beat pulse              (noveltyAt)
 // All four read the clip's real decoded sound, so they scrub backwards and
 // render identically on the server.
-import { Composition, Sequence } from "@smoove/core";
+import { Circle, Composition, Line, Rect, Sequence, Text } from "@smoove/core";
 import { Audio } from "@smoove/media";
-import Konva from "konva";
 import musicUrl from "../../files/sound/music-c.mp3";
 
 const FPS = 30;
@@ -45,9 +44,9 @@ const music = new Audio({
 seq.add(music);
 
 // ===== Static scene =====
-seq.add(new Konva.Rect({ x: 0, y: 0, width: W, height: H, fill: INK, listening: false }));
+seq.add(new Rect({ x: 0, y: 0, width: W, height: H, fill: INK, listening: false }));
 seq.add(
-  new Konva.Text({
+  new Text({
     x: 0,
     y: 56,
     width: W,
@@ -58,11 +57,12 @@ seq.add(
     fontFamily: FONT,
     fill: WHITE,
     letterSpacing: 6,
+    listening: false,
   }),
 );
 
-const label = (text: string, y: number): Konva.Text =>
-  new Konva.Text({
+const label = (text: string, y: number): Text =>
+  new Text({
     x: 90,
     y,
     text,
@@ -71,19 +71,35 @@ const label = (text: string, y: number): Konva.Text =>
     fontFamily: FONT,
     fill: DIM,
     letterSpacing: 2,
+    listening: false,
   });
 
 // ---- 1. Beat pulse (noveltyAt) ----
 const PULSE_CY = 250;
-const pulseGlow = new Konva.Circle({
+// Glow = radial-gradient disc (mid-stop mimics Gaussian falloff), never
+// shadowBlur. Gradient radii live in local coords, so it breathes via scale.
+const GLOW_R = 180;
+const pulseGlow = new Circle({
   x: W / 2,
   y: PULSE_CY,
-  radius: 60,
-  fill: ACCENT,
-  opacity: 0.15,
+  radius: GLOW_R,
+  fillRadialGradientStartPoint: { x: 0, y: 0 },
+  fillRadialGradientEndPoint: { x: 0, y: 0 },
+  fillRadialGradientStartRadius: 0,
+  fillRadialGradientEndRadius: GLOW_R,
+  fillRadialGradientColorStops: [
+    0,
+    ACCENT,
+    0.28,
+    `${ACCENT}66`,
+    0.55,
+    `${ACCENT}22`,
+    1,
+    `${ACCENT}00`,
+  ],
   listening: false,
 });
-const pulseCore = new Konva.Circle({
+const pulseCore = new Circle({
   x: W / 2,
   y: PULSE_CY,
   radius: 34,
@@ -101,7 +117,7 @@ const WF_AMP = 70; // px per full-scale sample
 const WF_BUCKETS = 180;
 seq.add(label("WAVEFORM — waveform(0, total, buckets)", 372));
 seq.add(
-  new Konva.Rect({
+  new Rect({
     x: WF_X,
     y: WF_MID - WF_AMP - 8,
     width: WF_W,
@@ -111,14 +127,14 @@ seq.add(
     listening: false,
   }),
 );
-const wfShape = new Konva.Line({
+const wfShape = new Line({
   points: [],
   closed: true,
   fill: ACCENT,
   opacity: 0.7,
   listening: false,
 });
-const playhead = new Konva.Line({
+const playhead = new Line({
   points: [WF_X, WF_MID - WF_AMP, WF_X, WF_MID + WF_AMP],
   stroke: GOLD,
   strokeWidth: 2,
@@ -153,7 +169,7 @@ const VU_W = W - 180;
 const VU_H = 26;
 seq.add(label("VU METER — rmsAt(f) · peak hold peakAt(f, { holdFrames: 18 })", VU_Y - 38));
 seq.add(
-  new Konva.Rect({
+  new Rect({
     x: VU_X,
     y: VU_Y,
     width: VU_W,
@@ -163,7 +179,7 @@ seq.add(
     listening: false,
   }),
 );
-const vuFill = new Konva.Rect({
+const vuFill = new Rect({
   x: VU_X,
   y: VU_Y,
   width: 0,
@@ -172,7 +188,7 @@ const vuFill = new Konva.Rect({
   cornerRadius: 6,
   listening: false,
 });
-const vuHold = new Konva.Rect({
+const vuHold = new Rect({
   x: VU_X,
   y: VU_Y - 4,
   width: 3,
@@ -188,10 +204,10 @@ const EQ_X = 90;
 const EQ_W = W - 180;
 const EQ_MAX_H = 190;
 seq.add(label("SPECTRUM — bandsAt(f), 32 log-spaced bands", EQ_BASE - EQ_MAX_H - 38));
-const eqBars: Konva.Rect[] = [];
+const eqBars: Rect[] = [];
 const barW = (EQ_W / N_BANDS) * 0.72;
 for (let k = 0; k < N_BANDS; k++) {
-  const bar = new Konva.Rect({
+  const bar = new Rect({
     x: EQ_X + (k + 0.14) * (EQ_W / N_BANDS),
     y: EQ_BASE,
     width: barW,
@@ -227,8 +243,10 @@ seq.register((f) => {
   const rms = music.rmsAt(f, { normalized: true });
   pulseCore.radius(34 + 40 * novelty);
   pulseCore.strokeWidth(3 + 5 * novelty);
-  pulseGlow.radius(60 + 90 * novelty + 30 * rms);
-  pulseGlow.opacity(0.1 + 0.5 * novelty);
+  const glowScale = (60 + 90 * novelty + 30 * rms) / GLOW_R;
+  pulseGlow.scaleX(glowScale);
+  pulseGlow.scaleY(glowScale);
+  pulseGlow.opacity(0.15 + 0.55 * novelty);
 
   // Playhead tracks the timeline over the static outline.
   const px = WF_X + (f / TOTAL) * WF_W;
@@ -237,10 +255,12 @@ seq.register((f) => {
   // VU: bar is current loudness, tick holds the recent peak then decays.
   vuFill.width(VU_W * rms);
 
-  if (f % 10 === 0) {
-    const hold = music.peakAt(f, { holdFrames: 10, normalized: true });
-    vuHold.x(VU_X + VU_W * hold - 1.5);
-  }
+  // Stepped hold tick (moves every 10 frames), kept frame-pure: quantize the
+  // frame instead of skipping updates, so a seek to any frame shows the same
+  // reading playback would.
+  const holdFrame = f - (f % 10);
+  const hold = music.peakAt(holdFrame, { holdFrames: 10, normalized: true });
+  vuHold.x(VU_X + VU_W * hold - 1.5);
 
   // EQ: one bar per log-spaced band, bass on the left.
   const bands = music.bandsAt(f);

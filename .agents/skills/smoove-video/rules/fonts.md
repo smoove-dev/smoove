@@ -26,6 +26,16 @@ automatically once the face loads. `.face(selector)` picks a specific
 declared face (`"<weight>"` or `"<weight>-<style>"`); a bare `Font` uses its
 preferred face (400/normal, else the first declared).
 
+**Prefer a `Font` over a bare `fontFamily: "Name"` string.** A `Font`
+buffers before playback (no fallback-glyph flash) and loads the same face in
+the browser *and* in headless/server rendering. A bare `fontFamily` webfont
+now self-corrects its measurement in the browser too — `Text` re-lays-out
+once `document.fonts` reports the family ready, so an unsized label no longer
+clips to a fallback face — but that path is browser-only and best-effort, so
+reach for `Font` whenever the text must render identically on the server.
+(`document.fonts.check(...)` is not a reliable readiness test — it returns
+`true` for fonts that don't exist; use a `Font`'s `whenReady()`/`isLoaded`.)
+
 ## `@smoove/google-fonts` (optional install)
 
 Not installed by default — `pnpm add @smoove/google-fonts` for typed,
