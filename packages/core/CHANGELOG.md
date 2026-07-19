@@ -1,5 +1,11 @@
 # @smoove/core
 
+## 0.3.2
+
+### Patch Changes
+
+- [`e21d9ca`](https://github.com/smoove-dev/smoove/commit/e21d9ca2f2e94742bda897c855e8332a1b032804) Thanks [@shemi](https://github.com/shemi)! - Lifetime-independent measurement: `measure(node, { at? })` (also `.measure()` on every smoove wrapper) lays a node out on demand and returns its stage-space bounds, even inside a sequence that has never been on screen. Pass `{ at }` to measure at any local frame of the owning sequence; active sequences are restored to their live frame afterwards. `Text` measurements include per-line rects, glyph-tight ink bounds, and the alphabetic baseline, so masks and underlines can anchor to real glyph edges.
+
 ## 0.3.1
 
 ### Patch Changes

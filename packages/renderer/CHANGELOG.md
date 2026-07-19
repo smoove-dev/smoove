@@ -1,5 +1,13 @@
 # @smoove/renderer
 
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies [[`e21d9ca`](https://github.com/smoove-dev/smoove/commit/e21d9ca2f2e94742bda897c855e8332a1b032804)]:
+  - @smoove/core@0.3.2
+  - @smoove/transitions@0.3.2
+
 ## 0.3.1
 
 ### Patch Changes
