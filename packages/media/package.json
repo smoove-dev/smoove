@@ -27,7 +27,9 @@
     "build": "tsc -b",
     "dev": "tsc -b --watch",
     "clean": "rm -rf dist *.tsbuildinfo",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "peerDependencies": {
     "konva": ">=10"
@@ -38,5 +40,8 @@
   "dependencies": {
     "@smoove/core": "workspace:^",
     "mediabunny": "^1.49.0"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
   }
 }

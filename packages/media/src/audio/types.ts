@@ -40,6 +40,14 @@ export type AudioConfig = {
    */
   volume?: number;
   playbackRate?: number;
+  /**
+   * Decode the clip's loudness envelope up front so `rmsAt`/`peakAt`/`envelope`
+   * report the real sound. Pass an object to also compute spectral bands for
+   * EQ-style visuals (`bandsAt`/`noveltyAt`). Costs one full audio decode
+   * before frame 0 (and, in the browser, a second fetch of `src`); leave off
+   * unless a visual reads it.
+   */
+  introspect?: boolean | { bands?: number; windowHz?: number };
   /** Inject an alternative AudioSource. Defaults to BrowserAudioSource. */
   sourceFactory?: AudioSourceFactory;
 };

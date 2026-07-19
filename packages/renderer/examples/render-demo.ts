@@ -68,6 +68,9 @@ const audioPath = join(dir, "tone.wav");
   writeFileSync(audioPath, buf);
 }
 
+// The most recent comp's tone node — read after a render for the introspection smoke.
+let lastTone!: Audio;
+
 function buildComp(): Composition {
   const comp = new Composition({
     id: "renderer-demo",
@@ -95,9 +98,11 @@ function buildComp(): Composition {
   });
   comp.add(main);
 
-  // An Audio node in its own sequence (exercises audio asset collection + mux).
+  // An Audio node in its own sequence (exercises audio asset collection + mux
+  // and, via `introspect`, the envelope decode + delayRender gate).
   const audioSeq = new Sequence();
-  audioSeq.add(new Audio({ id: "tone", src: audioPath, volume: 0.6 }));
+  lastTone = new Audio({ id: "tone", src: audioPath, volume: 0.6, introspect: true });
+  audioSeq.add(lastTone);
   comp.add(audioSeq);
 
   return comp;
@@ -119,6 +124,12 @@ async function main(): Promise<void> {
   });
   console.log("\nrenderComposition:", result, `(${statSync(mp4).size} bytes)`);
   if (!result.hasAudio) throw new Error("expected audio track");
+
+  // Audio introspection smoke: the envelope must be decoded (delayRender gate)
+  // and frame-pure — mid-tone RMS of a sine at amplitude 0.5 is 0.5/sqrt(2).
+  const rms = lastTone.rmsAt(30);
+  console.log("rmsAt(30):", rms.toFixed(3));
+  if (rms < 0.05) throw new Error(`introspection failed: rmsAt(30) = ${rms}`);
 
   // 2) single still -> png
   const stillPath = join(dir, "still.png");

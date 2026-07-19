@@ -60,6 +60,18 @@ sequence's `[from, from+durationInFrames)` window. `Composition.mixer`
 (an `AudioMixer`) is the composition-level bus if you need master
 volume/mute across every `Audio`/`Video` node.
 
+### Audio-reactive visuals
+
+Construct the node with `introspect: true` (or `{ bands: N }` for a spectrum),
+then read `audio.rmsAt(f)` / `audio.peakAt(f, { holdFrames })` /
+`audio.bandsAt(f)` / `audio.noveltyAt(f)` in the updater (`f` is the
+sequence-local frame). Never fake meters from volume automation.
+
+```ts
+const music = new Audio({ src: musicUrl, introspect: true });
+seq.register((f) => meter.width(300 * music.rmsAt(f, { normalized: true })));
+```
+
 ## Video
 
 ```ts

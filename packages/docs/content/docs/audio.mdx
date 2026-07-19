@@ -83,6 +83,68 @@ cannot assign to it. Change the level with `audio.setVolume(0..1)`, mute with
 `audio.setMuted(true)`, and change speed with `audio.setPlaybackRate(n)`.
 </Callout>
 
+## Read the sound
+
+Volume automation is the level you set. Sometimes a visual needs the level of
+the sound itself: a VU meter, a waveform, motion that lands on the beat. Pass
+`introspect: true` and the clip's loudness becomes a frame-pure signal.
+
+```ts
+const music = new Audio({ src: musicUrl, introspect: true });
+
+seq.register((f) => {
+  meter.width(300 * music.rmsAt(f));                      // real loudness, 0..1
+  holdTick.x(300 * music.peakAt(f, { holdFrames: 18 }));  // decaying peak hold
+});
+```
+
+`rmsAt(f)` and `peakAt(f)` take the same local frame your updater receives and
+respect `trim`, `loop`, and `playbackRate`. They read a small envelope decoded
+once before frame 0, so scrubbing and server renders see identical values. The
+readings are pre-fader (the file's own loudness): multiply by your gain for a
+post-fader meter, or pass `{ normalized: true }` to scale against the clip's
+own loudest moment. Both return 0 until the envelope is ready, and `introspect`
+costs one extra decode of the clip, so enable it only where a visual reads it.
+
+For a spectrum, ask for bands:
+
+```ts
+const music = new Audio({ src: musicUrl, introspect: { bands: 24 } });
+
+seq.register((f) => {
+  const bands = music.bandsAt(f);          // 24 log-spaced magnitudes, bass → treble
+  bands.forEach((v, k) => eqBars[k].height(200 * v));
+  if (music.noveltyAt(f) > 0.7) kick();    // onset spike → beat-synced motion
+});
+```
+
+`waveform(fromFrame, toFrame, buckets)` returns the clip's static min/max
+outline — one signed pair per column, ready to draw as bars or a polygon. The
+outline never changes with playback, so build it once when the envelope lands
+(it returns all zeros while the decode is still in flight):
+
+```ts
+const podcast = new Audio({ src: voiceUrl, introspect: true });
+
+let drawn = false;
+seq.register(() => {
+  if (drawn) return;
+  const wf = podcast.waveform(0, DURATION, 120); // 120 columns
+  if (wf.max.every((v) => v === 0)) return;      // envelope still decoding
+  drawn = true;
+  wf.max.forEach((hi, i) => {
+    const lo = wf.min[i] ?? 0;
+    bars[i].y(MID - hi * SCALE);                 // top edge
+    bars[i].height((hi - lo) * SCALE);           // down to the bottom edge
+  });
+});
+```
+
+The raw table is on `audio.envelope` if you want to build something else from
+it.
+
+<Demo name="audiogram" label="a podcast audiogram: waveform with a played-portion fill, and a speaking ring driven by the voice's real loudness" />
+
 ## The master mixer
 
 Every composition has a master bus at `comp.mixer`. It scales and gates every

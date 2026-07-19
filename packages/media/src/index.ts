@@ -35,6 +35,7 @@ export {
   MediabunnyAudioSource,
   type SchedulableAudioSource,
 } from "./audio/audio-source-mediabunny.js";
+export type { AudioEnvelope } from "./audio/envelope.js";
 export { Audio } from "./audio/index.js";
 export type { AudioConfig } from "./audio/types.js";
 export { Video } from "./video/index.js";

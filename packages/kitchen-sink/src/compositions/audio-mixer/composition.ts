@@ -65,15 +65,27 @@ const comp = new Composition({
 });
 
 // ===== Audio nodes — each in its own range-gated Sequence =====
-const musicA = new Audio({ id: "music-a", name: "Music A", src: musicAUrl });
+const N_BANDS = 24;
+const musicA = new Audio({
+  id: "music-a",
+  name: "Music A",
+  src: musicAUrl,
+  introspect: { bands: N_BANDS },
+});
 const seqA = new Sequence({ from: 0, durationInFrames: A_END });
 seqA.add(musicA);
 
-const musicB = new Audio({ id: "music-b", name: "Music B", src: musicBUrl, volume: 0 });
+const musicB = new Audio({
+  id: "music-b",
+  name: "Music B",
+  src: musicBUrl,
+  volume: 0,
+  introspect: { bands: N_BANDS },
+});
 const seqB = new Sequence({ from: XF_FROM, durationInFrames: TOTAL - XF_FROM });
 seqB.add(musicB);
 
-const voice = new Audio({ id: "voice", name: "Voice", src: voiceUrl, volume: 0 });
+const voice = new Audio({ id: "voice", name: "Voice", src: voiceUrl, volume: 0, introspect: true });
 const seqV = new Sequence({ from: VO_FROM, durationInFrames: VO_END - VO_FROM });
 seqV.add(voice);
 
@@ -230,23 +242,33 @@ const render = (frame: number, playing: boolean) => {
   const bOn = inRange(frame, XF_FROM, TOTAL);
   const vOn = inRange(frame, VO_FROM, VO_END);
 
-  // Effective levels = intrinsic × master (what you'd actually hear).
-  const eA = (aOn ? iA : 0) * master * gate;
-  const eB = (bOn ? iB : 0) * master * gate;
-  const eV = (vOn ? iV : 0) * master * gate;
+  // Effective gain = intrinsic × master; the meter shows gain × the clip's
+  // real RMS loudness (rmsAt reads the decoded envelope at each node's
+  // sequence-local frame, normalized to the clip's own loudest moment so the
+  // bars use the full strip).
+  const gA = (aOn ? iA : 0) * master * gate;
+  const gB = (bOn ? iB : 0) * master * gate;
+  const gV = (vOn ? iV : 0) * master * gate;
+  const eA = Math.min(1, gA * musicA.rmsAt(frame, { normalized: true }));
+  const eB = Math.min(1, gB * musicB.rmsAt(frame - XF_FROM, { normalized: true }));
+  const eV = Math.min(1, gV * voice.rmsAt(frame - VO_FROM, { normalized: true }));
   const levels: Record<Strip["key"], number> = { A: eA, B: eB, V: eV };
 
   // Visualizer color blends Music A (gold) → Music B (teal) across the crossfade.
   const vizColor = interpolateColors(frame, [0, XF_FROM, XF_END, TOTAL], [GOLD, GOLD, TEAL, TEAL]);
   const combined = Math.max(eA, eB, eV * 0.85);
   const pulse = 1 + 0.12 * Math.sin(frame * 0.4);
+  const bandsA = musicA.bandsAt(frame);
+  const bandsB = musicB.bandsAt(frame - XF_FROM);
 
   for (let i = 0; i < N; i++) {
     const ang = (i / N) * Math.PI * 2 - Math.PI / 2;
     const cos = Math.cos(ang);
     const sin = Math.sin(ang);
-    const osc = 0.32 + 0.68 * Math.abs(Math.sin(frame * 0.22 + i * 0.55));
-    const len = 14 + 120 * combined * osc * pulse;
+    // Mirror the real spectrum around the circle: bar i reads a log-spaced band.
+    const k = Math.floor((Math.min(i, N - i) / (N / 2)) * (N_BANDS - 1));
+    const band = Math.max(gA * ((bandsA[k] ?? 0) as number), gB * ((bandsB[k] ?? 0) as number));
+    const len = 14 + 150 * Math.min(1, band * 2.5 + eV * 0.3) * pulse;
     const x1 = CX + cos * INNER;
     const y1 = CY + sin * INNER;
     const x2 = CX + cos * (INNER + len);
