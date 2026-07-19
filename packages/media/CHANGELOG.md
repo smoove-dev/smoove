@@ -1,5 +1,12 @@
 # @smoove/media
 
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [[`f94883e`](https://github.com/smoove-dev/smoove/commit/f94883ea196f7bc435f2f5ca7122aa54c40574f3)]:
+  - @smoove/core@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes
