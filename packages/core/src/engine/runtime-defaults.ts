@@ -1,16 +1,14 @@
 /**
  * Globally-overridable factories for the media sources and image loader that
- * nodes build at construction time. The browser is the default everywhere; a
- * server renderer swaps in Node-safe implementations **before** any composition
- * is constructed (e.g. `@smoove/renderer`'s `setupServerRendering()`),
- * since the browser defaults ({@link MediabunnyAudioSource}/
- * {@link MediabunnyVideoSource}) rely on `document`/WebCodecs and would throw in Node.
+ * nodes build at construction time. A server renderer swaps in Node-safe
+ * implementations **before** any composition
+ * is constructed (e.g. `@smoove/renderer`'s `setupServerRendering()`). In the
+ * browser, importing `@smoove/media` registers its `Mediabunny*` sources; until
+ * a factory is registered the defaults throw with guidance.
  */
 
 import type { AudioSource, AudioSourceFactory } from "../media/audio/audio-source.js";
-import { MediabunnyAudioSource } from "../media/audio/audio-source-mediabunny.js";
 import type { VideoSource, VideoSourceFactory } from "../media/video/video-source.js";
-import { MediabunnyVideoSource } from "../media/video/video-source-mediabunny.js";
 
 /** A drawable, loaded image with intrinsic dimensions — what {@link ImageLoader} resolves. */
 export type LoadedImage = CanvasImageSource & {
@@ -65,8 +63,16 @@ function domLoadFont(family: string, face: FontFaceDescriptor): Promise<void> {
   });
 }
 
-let videoFactory: VideoSourceFactory = (): VideoSource => new MediabunnyVideoSource();
-let audioFactory: AudioSourceFactory = (): AudioSource => new MediabunnyAudioSource();
+function unregisteredSource(kind: "Audio" | "Video"): never {
+  throw new Error(
+    `[smoove] No default ${kind} source factory registered. In the browser, ` +
+      `import "@smoove/media" before constructing a composition; on the server, ` +
+      `call setDefault${kind}SourceFactory() (e.g. @smoove/renderer's setup).`,
+  );
+}
+
+let videoFactory: VideoSourceFactory = (): VideoSource => unregisteredSource("Video");
+let audioFactory: AudioSourceFactory = (): AudioSource => unregisteredSource("Audio");
 let imageLoader: ImageLoader = domLoadImage;
 let fontLoader: FontLoader = domLoadFont;
 

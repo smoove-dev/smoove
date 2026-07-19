@@ -1,4 +1,4 @@
-import { getMediaTime } from "../media-time.js";
+import { getMediaTime } from "@smoove/core";
 import type { AudioDriver, AudioDriverContext } from "./audio-driver.js";
 
 /**

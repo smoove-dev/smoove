@@ -1,7 +1,8 @@
 import { defineRegistry } from "@smoove/studio";
-// Media.
 import audioMixer from "./compositions/audio-mixer/index.js";
-
+import audioVisuals from "./compositions/audio-visuals/index.js";
+// Media.
+import audiogram from "./compositions/audiogram/index.js";
 // Basics.
 import basic from "./compositions/basic/index.js";
 import bouncing from "./compositions/bouncing/index.js";
@@ -14,6 +15,7 @@ import cohabit from "./compositions/cohabit/index.js";
 import colors from "./compositions/colors/index.js";
 import customFont from "./compositions/custom-font/index.js";
 import easings from "./compositions/easings/index.js";
+import eqSpectrum from "./compositions/eq-spectrum/index.js";
 // Layout.
 import flexLayout from "./compositions/flex-layout/index.js";
 import flexRowGrow from "./compositions/flex-row-grow/index.js";
@@ -126,6 +128,9 @@ export default defineRegistry([
   // Media.
   videoSync,
   audioMixer,
+  audioVisuals,
+  eqSpectrum,
+  audiogram,
   // Film.
   cohabit,
   helloSmoove,

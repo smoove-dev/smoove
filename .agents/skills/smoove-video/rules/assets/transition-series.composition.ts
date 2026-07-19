@@ -7,6 +7,7 @@ import { fade, linearTiming, TransitionSeries } from "@smoove/transitions";
 
 const width = 1280;
 const height = 720;
+const fps = 30;
 const sceneFrames = 60;
 const transitionFrames = 30;
 // Total span: scenes overlap by `transitionFrames`, so it's not a simple sum.
@@ -14,7 +15,7 @@ const duration = sceneFrames * 2 - transitionFrames;
 
 const comp = new Composition({
   id: "transition-series",
-  fps: 30,
+  fps,
   durationInFrames: duration,
   width,
   height,

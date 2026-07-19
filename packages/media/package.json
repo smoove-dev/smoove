@@ -1,0 +1,47 @@
+{
+  "name": "@smoove/media",
+  "version": "0.2.0",
+  "description": "Timeline-driven Audio and Video nodes for smoove, decoded with mediabunny.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoove-dev/smoove.git",
+    "directory": "packages/media"
+  },
+  "homepage": "https://smoove.dev",
+  "bugs": "https://github.com/smoove-dev/smoove/issues",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "pnpm build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "konva": ">=10"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@smoove/core": "workspace:^",
+    "mediabunny": "^1.49.0"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}

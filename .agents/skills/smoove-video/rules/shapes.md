@@ -45,9 +45,21 @@ import Konva from "konva";
 row.add(new Konva.Rect({ width: 120, height: 120, fill: "#4ea1ff" }));
 ```
 
-Reach for raw `Konva.*` only for what core doesn't wrap — e.g. a plain
-`Konva.Group` with a custom `clipFunc` for a reveal-mask effect (core has no
-unopinionated group wrapper; `Flex`/`Block` are layout-opinionated).
+For an unopinionated container — manual grouping/transform, or a custom
+`clipFunc` for a reveal-mask effect — use core's `Group` (a marker-flagged
+`Konva.Group`), not raw `Konva.Group`; `Flex`/`Block` are the
+layout-opinionated containers.
+
+```ts
+import { Group } from "@smoove/core";
+
+const masked = new Group({ clipFunc: (ctx) => { ctx.rect(0, 0, 200, 80); } });
+masked.add(new Rect({ width: 400, height: 80, fill: "#4ea1ff" }));
+```
+
+`isGroupNode(node)` (also from `@smoove/core`) tells an author `Group` apart
+from the internal groups smoove builds inside `Text`/`Flex`. Reach for raw
+`Konva.*` only for a primitive core genuinely doesn't wrap.
 
 ## Sizing and origin
 
@@ -59,6 +71,25 @@ Positioning is origin-corrected: a centered-origin shape like `Circle` lands
 its *bounding box* at the flex slot, not its center, so it lines up flush
 with a top-left-origin `Rect` of the same box size in the same row — you
 don't need to hand-correct for Konva's differing origin conventions.
+
+## Relative positioning: getters over hardcoded numbers
+
+When one node should track another, read the other node's own getters
+instead of a guessed number — `next.x(prev.x() + gap)` keeps a fixed gap no
+matter how `prev` moves. When two nodes need to match, read the computed box
+with `getClientRect()` instead of copying a size by hand: it reports the
+node's actual rendered bounds, so it stays correct as the source node
+animates. This is the same "let it reflow" principle as `Flex`/`Block`
+layout, applied to plain nodes outside a container.
+
+```ts
+// name follows the avatar with a fixed gap, whatever the avatar's radius
+name.x(avatar.x() + avatar.radius() * 2 + 12);
+name.y(avatar.y());
+
+// underline matches the title's rendered width, even as the title animates
+underline.width(title.getClientRect().width);
+```
 
 ## Animating
 

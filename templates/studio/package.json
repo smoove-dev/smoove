@@ -15,6 +15,7 @@
     "@react-router/serve": "^8.1.0",
     "@smoove/core": "^0.2.0",
     "@smoove/google-fonts": "^0.2.0",
+    "@smoove/media": "^0.2.0",
     "@smoove/player": "^0.2.0",
     "@smoove/renderer": "^0.2.0",
     "@smoove/studio": "^0.2.0",

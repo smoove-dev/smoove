@@ -1,5 +1,5 @@
 import Konva from "konva";
-import { GROUP_MARK } from "../media/media-marker.js";
+import { GROUP_MARK } from "../markers.js";
 
 export type GroupConfig = Konva.GroupConfig;
 

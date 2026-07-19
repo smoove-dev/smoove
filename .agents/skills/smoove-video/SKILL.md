@@ -1,6 +1,6 @@
 ---
 name: smoove-video
-description: Use when creating, animating, or laying out a smoove (Konva-based, Remotion-style) video Composition or Sequence — timeline-driven scenes, Flex/Block layout, interpolate-based animation, or Text/shape authoring.
+description: Use when creating, animating, or laying out a smoove (Konva-based) video Composition or Sequence — timeline-driven scenes, Flex/Block layout, interpolate-based animation, or Text/shape authoring.
 metadata:
   tags: smoove, konva, video, animation, composition, motion
 ---
@@ -41,16 +41,18 @@ import { Circle, Composition, Rect, Sequence } from "@smoove/core";
 
 const width = 1280;
 const height = 720;
-const comp = new Composition({ id: "my-scene", fps: 30, durationInFrames: 90, width, height });
+const fps = 30;
+const comp = new Composition({ id: "my-scene", fps, durationInFrames: fps * 3, width, height });
 
-const main = new Sequence({ from: 0, durationInFrames: 90 });
+const main = new Sequence(); // spans the whole composition — no options needed
 main.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 const circle = new Circle({ x: 100, y: height / 2, radius: 60, fill: "#4ea1ff" });
 main.add(circle);
 comp.add(main);
 
 main.register((frame) => {
-  circle.x(100 + frame * ((width - 200) / 90));
+  const total = comp.durationInFrames.get();
+  circle.x(100 + frame * ((width - 200) / total));
 });
 
 export default comp;
@@ -80,6 +82,24 @@ content) supports `fitText`, `maxLines`/`ellipsis`, a built-in `typewriter`
 reveal, and `highlights`. Details: [rules/text.md](rules/text.md) and,
 for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 
+## Media
+
+`Image` comes from `@smoove/core`; `Audio`/`Video` ship in `@smoove/media`
+(add it as a dependency). Passing `introspect` to `Audio` turns the clip's
+real sound into frame-pure signals — `rmsAt`/`peakAt`/`bandsAt`/`noveltyAt`/
+`waveform` — for meters, EQ bars, waveforms, and beat-synced motion that
+scrub and server-render deterministically. Details: [rules/media.md](rules/media.md).
+
+## Performance
+
+An animated scene is a full-canvas repaint every frame. **Never `shadowBlur`
+in an animated scene** — canvas shadow blur re-runs per shape per frame and
+profiles as the dominant cost (choppy on retina/mobile). Fake glows instead:
+radial-gradient fills for dots/orbs, a wide faint under-stroke for lines, a
+gradient disc behind sharp shapes for halos. Use 30fps for ambient/background
+motion. Recipes + the scale-not-radius gotcha:
+[rules/performance.md](rules/performance.md).
+
 ## Optional add-ons
 
 - `@smoove/transitions` — `TransitionSeries` + presentations (fade, slide,
@@ -92,5 +112,6 @@ for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 [sequencing](rules/sequencing.md) · [layout](rules/layout.md) ·
 [animation](rules/animation.md) · [text](rules/text.md) ·
 [shapes](rules/shapes.md) · [media](rules/media.md) ·
+[performance](rules/performance.md) ·
 [transitions](rules/transitions.md) (optional) · [fonts](rules/fonts.md)
 (optional)

@@ -53,7 +53,7 @@ export {
   type SeriesOptions,
   type SeriesSceneOptions,
 } from "./engine/series.js";
-export type { ReadonlySignal } from "./engine/signal.js";
+export { createSignal, type ReadonlySignal, type Signal } from "./engine/signal.js";
 export {
   type BackgroundValue,
   Block,
@@ -70,6 +70,12 @@ export {
   type LayoutBox,
   type MeasureContext,
 } from "./layout/contract.js";
+export {
+  // @internal — flex sizing helpers reused by @smoove/media's Video node.
+  applySize,
+  type FlexilyNode,
+  parseSize,
+} from "./layout/flex/engine.js";
 export { Flex } from "./layout/flex/flex.js";
 export { FlexShape, type LeafConfig } from "./layout/flex/mixin.js";
 export type {
@@ -136,19 +142,18 @@ export type {
   TextConfig,
   TypewriterConfig,
 } from "./layout/text/types.js";
+export {
+  AUDIO_MARK,
+  FONT_MARK,
+  GROUP_MARK,
+  isAudioNode,
+  isVideoNode,
+  MEDIA_MARK,
+  TICK_MARK,
+  VIDEO_MARK,
+} from "./markers.js";
 export type { AudioAsset } from "./media/audio/asset.js";
 export type { AudioSource, AudioSourceFactory } from "./media/audio/audio-source.js";
-export { BrowserAudioSource } from "./media/audio/audio-source-browser.js";
-export {
-  MediabunnyAudioSource,
-  type SchedulableAudioSource,
-} from "./media/audio/audio-source-mediabunny.js";
-export { Audio, isAudioNode } from "./media/audio/index.js";
 export { type AudioChannel, AudioMixer } from "./media/audio/mixer.js";
-export type { AudioConfig } from "./media/audio/types.js";
 export { getMediaTime, type MediaTiming } from "./media/media-time.js";
-export { isVideoNode, Video } from "./media/video/index.js";
-export type { VideoConfig } from "./media/video/types.js";
-export type { VideoSource, VideoSourceFactory } from "./media/video/video-source.js";
-export { BrowserVideoSource } from "./media/video/video-source-browser.js";
-export { MediabunnyVideoSource } from "./media/video/video-source-mediabunny.js";
+export type { SeekMode, VideoSource, VideoSourceFactory } from "./media/video/video-source.js";

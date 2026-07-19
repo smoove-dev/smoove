@@ -1,5 +1,8 @@
 # Media — Image, Audio, Video
 
+> `Audio`/`Video` ship in `@smoove/media` (they pull in `mediabunny`); `Image`
+> stays in `@smoove/core`. Add `@smoove/media` as a dependency to use them.
+
 ## Image
 
 `Image` (from `@smoove/core`) is a flex-aware, paint-capable wrapper —
@@ -29,7 +32,7 @@ manual load control, so there's no need to reach for raw `Konva.Image`.
 ## Audio (authoring only — playback wiring, not asset pipeline)
 
 ```ts
-import { Audio } from "@smoove/core";
+import { Audio } from "@smoove/media";
 
 main.add(new Audio({
   src: "/audio/track.mp3",
@@ -57,10 +60,96 @@ sequence's `[from, from+durationInFrames)` window. `Composition.mixer`
 (an `AudioMixer`) is the composition-level bus if you need master
 volume/mute across every `Audio`/`Video` node.
 
+### Audio-reactive visuals (`introspect`)
+
+Pass `introspect` and the clip's **real decoded sound** becomes frame-pure
+signals on the node — never fake meters from volume automation (automation is
+the level you *set*; introspection is the level of the *sound*, and it dips in
+a voice-over's pauses where automation stays flat).
+
+```ts
+const music = new Audio({ src: musicUrl, introspect: true });           // loudness only
+const music = new Audio({ src: musicUrl, introspect: { bands: 24 } });  // + spectrum
+```
+
+The readers (all take the **sequence-local frame**, same `f` your updater
+receives; `trim`/`loop`/`playbackRate` are mapped for you):
+
+| Reader | Returns |
+|---|---|
+| `rmsAt(f, { normalized? })` | RMS loudness 0..1 at this frame |
+| `peakAt(f, { holdFrames?, normalized? })` | absolute peak; `holdFrames` = max over the trailing window (meter hold bar) |
+| `bandsAt(f)` | `Float32Array` of N log-spaced band magnitudes, bass → treble (needs `{ bands: N }`) |
+| `noveltyAt(f)` | spectral-flux onset strength 0..1 — spikes on beats (needs bands) |
+| `waveform(fromF, toF, buckets)` | static signed `{ min, max }` outline for drawing a waveform |
+| `envelope` | `ReadonlySignal<AudioEnvelope \| null>` — the raw tables (`maxRms`, `bands`, …) |
+
+Semantics that matter when authoring:
+
+- **Frame-pure.** The envelope is decoded once *before frame 0* (the
+  composition's buffering/render gates wait for it), so scrubbing backwards
+  and server renders read identical values. Until it's decoded, readers
+  return `0` (or an empty/zeroed array).
+- **Pre-fader.** Readings are the file's own loudness, not the mix — multiply
+  by your gain for a post-fader meter. `{ normalized: true }` rescales
+  against the clip's own loudest moment, so quiet program material still
+  fills the meter without hand-tuned gain constants.
+- **Costs a real decode** (plus a second fetch of `src` in the browser), so
+  enable it only on nodes a visual actually reads. Bands add an FFT fold at
+  build time — never per painted frame.
+
+Patterns (visual nodes are core wrappers — see [shapes.md](shapes.md)):
+
+```ts
+import { Group, Rect } from "@smoove/core";
+
+// VU meter + peak-hold tick
+seq.register((f) => {
+  vuFill.width(W * music.rmsAt(f, { normalized: true }));
+  vuHold.x(X + W * music.peakAt(f, { holdFrames: 18, normalized: true }));
+});
+
+// EQ bars, normalized to the clip's own loudest band (compute the max from
+// envelope.get().bands once, not per frame)
+seq.register((f) => {
+  const bands = music.bandsAt(f);
+  bands.forEach((v, k) => eqBars[k]?.height(2 + 200 * Math.min(1, v / maxBand)));
+});
+
+// Static waveform: build once when the envelope lands (all-zeros = still decoding)
+let drawn = false;
+seq.register(() => {
+  if (drawn) return;
+  const wf = music.waveform(0, TOTAL, 120);
+  if (wf.max.every((v) => v === 0)) return;
+  drawn = true;
+  // size one Rect per bucket from wf.max[i] / wf.min[i]
+});
+
+// "Played so far" fill: a bright copy of the waveform inside a Group whose
+// clip width tracks the playhead
+played.clip({ x: X, y: Y, width: W * (f / TOTAL), height: H });
+
+// Beat-synced motion: threshold the onset curve
+if (music.noveltyAt(f) > 0.7) kickScale = 1.2;
+```
+
+Per-band peak caps and other trailing-window reads must stay frame-pure: take
+a max over `bandsAt(t)` for the trailing frames, never keep decaying state
+between frames (see the quantize gotcha in [animation.md](animation.md)).
+Working references: the kitchen-sink `audio-visuals`, `eq-spectrum`, and
+`audiogram` compositions.
+
+For analysis without a node, `buildEnvelope(src, opts)` and the
+`envelopeRmsAt` family are exported as plain functions (they take media-time
+seconds, not frames). Advanced escape hatch: `audio.source` / `video.source`
+return the live media source, and the default Mediabunny sources expose their
+`input` demuxer; read from it, never dispose it.
+
 ## Video
 
 ```ts
-import { Video } from "@smoove/core";
+import { Video } from "@smoove/media";
 
 main.add(new Video({
   width: "100%", height: "100%",

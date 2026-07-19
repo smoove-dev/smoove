@@ -50,6 +50,7 @@
     "gl": "^8.1.6"
   },
   "devDependencies": {
+    "@smoove/media": "workspace:^",
     "@types/node": "^22.10.0",
     "tsx": "^4.19.2"
   },

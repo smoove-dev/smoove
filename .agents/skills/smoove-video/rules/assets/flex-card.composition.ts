@@ -6,18 +6,19 @@ import { Block, Composition, Flex, Image, Rect, Sequence, Text } from "@smoove/c
 
 const width = 1280;
 const height = 720;
-const duration = 180;
+const fps = 30;
+const duration = fps * 6;
 
 const comp = new Composition({
   id: "flex-card",
-  fps: 30,
+  fps,
   durationInFrames: duration,
   width,
   height,
   loop: true,
 });
 
-const main = new Sequence({ from: 0, durationInFrames: duration });
+const main = new Sequence();
 main.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
 
 const cardMin = Math.min(320, width - 80);

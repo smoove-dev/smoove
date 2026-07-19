@@ -34,8 +34,7 @@
   },
   "dependencies": {
     "bezier-easing": "^2.1.0",
-    "flexily": "^0.7.1",
-    "mediabunny": "^1.49.0"
+    "flexily": "^0.7.1"
   },
   "peerDependencies": {
     "konva": ">=10"

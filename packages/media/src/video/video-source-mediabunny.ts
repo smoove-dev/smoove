@@ -1,3 +1,4 @@
+import type { SeekMode, VideoSource } from "@smoove/core";
 import {
   ALL_FORMATS,
   AudioBufferSink,
@@ -7,7 +8,6 @@ import {
   type WrappedCanvas,
 } from "mediabunny";
 import type { SchedulableAudioSource } from "../audio/audio-source-mediabunny.js";
-import type { SeekMode, VideoSource } from "./video-source.js";
 
 /** Reuse decoded frames within this window before issuing a seek (1/4 of a 60fps frame). */
 const SAME_FRAME_EPS = 1 / 240;
@@ -108,6 +108,16 @@ export class MediabunnyVideoSource implements VideoSource, SchedulableAudioSourc
 
   get element(): CanvasImageSource | null {
     return this._ready ? this._canvas : null;
+  }
+
+  /**
+   * Escape hatch for advanced use: the underlying Mediabunny {@link Input}
+   * (demuxer), or null until {@link load} resolves and after {@link destroy}.
+   * Read from it (track metadata, extra sinks); the source owns its lifecycle,
+   * so never dispose it yourself.
+   */
+  get input(): Input | null {
+    return this._input;
   }
 
   get naturalWidth(): number {

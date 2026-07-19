@@ -25,6 +25,25 @@ main.register((frame) => {
 setInterval(() => box.x(box.x() + 4), 16);
 ```
 
+## Stepped values: quantize the frame, don't skip frames
+
+A subtler purity leak: updating a node only on every Nth frame
+(`if (frame % 10 === 0) { … }`) leaves stale state — a seek to frame 13 shows
+whatever the node held at the last *painted* frame, not what playback would
+show. Same for keeping decaying state between frames (a "falling" meter cap
+that subtracts a bit each call). To make a value move in steps or hold, stay
+a pure function of the frame: quantize it, or take a max over a trailing
+window, and compute **every** frame.
+
+```ts
+// ✅ stepped needle, pure — a seek to any frame shows the same reading
+const stepped = frame - (frame % 10);
+needle.x(meterX(music.peakAt(stepped, { holdFrames: 10 })));
+
+// 🚫 stale on seek/scrub — skipped frames keep the previous value
+if (frame % 10 === 0) needle.x(meterX(music.peakAt(frame)));
+```
+
 ## `interpolate`
 
 API-compatible with Remotion's `interpolate`:

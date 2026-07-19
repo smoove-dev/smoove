@@ -1,5 +1,5 @@
+import type { AudioSource, SeekMode } from "@smoove/core";
 import { ALL_FORMATS, AudioBufferSink, Input, UrlSource } from "mediabunny";
-import type { AudioSource, SeekMode } from "./audio-source.js";
 
 /**
  * A preview {@link AudioSource} that also exposes a Mediabunny
@@ -52,6 +52,16 @@ export class MediabunnyAudioSource implements SchedulableAudioSource {
 
   get sink(): AudioBufferSink | null {
     return this._sink;
+  }
+
+  /**
+   * Escape hatch for advanced use: the underlying Mediabunny {@link Input}
+   * (demuxer), or null until {@link load} resolves and after {@link destroy}.
+   * Read from it (track metadata, extra sinks); the source owns its lifecycle,
+   * so never dispose it yourself.
+   */
+  get input(): Input | null {
+    return this._input;
   }
 
   get firstTimestamp(): number {

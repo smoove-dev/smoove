@@ -8,8 +8,23 @@ fixed point in the footage, so the picture you see while scrubbing is the same
 picture a headless render writes out. You drop it into a [Sequence](/docs/sequencing)
 like any other node and the engine seeks the clip to match the playhead.
 
+## Install
+
+`Video` ships in the `@smoove/media` package, which owns the mediabunny
+decoder so `@smoove/core` stays free of it:
+
+```bash
+npm install @smoove/media
+# or
+pnpm add @smoove/media
+```
+
+Importing the package registers its browser decoders, so in the browser
+there is nothing else to wire up.
+
 ```ts
-import { Composition, Sequence, Video } from "@smoove/core";
+import { Composition, Sequence } from "@smoove/core";
+import { Video } from "@smoove/media";
 
 const fps = 60;
 const comp = new Composition({ id: "clip", fps, durationInFrames: fps * 10, width: 1080, height: 1080 });

@@ -1,23 +1,38 @@
+import type {
+  AudioChannel,
+  AudioMixer,
+  KMLayoutNode,
+  LayoutBox,
+  ObjectFit,
+  ObjectPosition,
+  SizeValue,
+  VideoSource,
+  VideoSourceFactory,
+} from "@smoove/core";
+import {
+  applySize,
+  createSignal,
+  detectEnvironment,
+  type Environment,
+  type FlexilyNode,
+  getComposition,
+  getDefaultVideoSourceFactory,
+  getEnvironment,
+  MEDIA_MARK,
+  parseSize,
+  type ReadonlySignal,
+  type Signal,
+  VIDEO_MARK,
+} from "@smoove/core";
 import Konva from "konva";
-import { getComposition } from "../../engine/composition.js";
-import { detectEnvironment, type Environment, getEnvironment } from "../../engine/environment.js";
-import { getDefaultVideoSourceFactory } from "../../engine/runtime-defaults.js";
-import { createSignal, type ReadonlySignal, type Signal } from "../../engine/signal.js";
-import type { KMLayoutNode, LayoutBox } from "../../layout/contract.js";
-import { applySize, type FlexilyNode, parseSize } from "../../layout/flex/engine.js";
-import type { SizeValue } from "../../layout/flex/types.js";
-import type { ObjectFit, ObjectPosition } from "../../layout/image.js";
 import type { AudioDriver, AudioDriverContext } from "../audio/audio-driver.js";
 import { PreviewAudioDriver } from "../audio/audio-for-preview.js";
 import { RenderingAudioDriver } from "../audio/audio-for-rendering.js";
 import { isSchedulable } from "../audio/audio-source-mediabunny.js";
-import type { AudioChannel, AudioMixer } from "../audio/mixer.js";
-import { MEDIA_MARK, VIDEO_MARK } from "../media-marker.js";
 import type { VideoDriver, VideoDriverContext, VideoTiming } from "./driver.js";
 import type { VideoConfig } from "./types.js";
 import { PreviewVideoDriver } from "./video-for-preview.js";
 import { RenderingVideoDriver } from "./video-for-rendering.js";
-import type { VideoSource, VideoSourceFactory } from "./video-source.js";
 
 const VIDEO_KEYS = [
   "src",
@@ -150,6 +165,16 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
     this._source.load(this._src).catch((err: unknown) => {
       console.error("[smoove] Video load failed:", err);
     });
+  }
+
+  /**
+   * Escape hatch for advanced use: the live {@link VideoSource}. Narrow with
+   * `source instanceof MediabunnyVideoSource` for its `.input` demuxer. The
+   * node replaces this instance on suspend/resume, so read it fresh each time
+   * rather than caching the reference.
+   */
+  get source(): VideoSource {
+    return this._source;
   }
 
   /** @internal — {@link Composition.suspend}: drop the source to stop downloading/decoding. */
@@ -358,10 +383,6 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
     this._img.size({ width: w, height: h });
     this._img.crop({ x: cx, y: cy, width: cropW, height: cropH });
   }
-}
-
-export function isVideoNode(node: Konva.Node): node is Video {
-  return node.getAttr(VIDEO_MARK) === true;
 }
 
 function positionOffset(

@@ -57,9 +57,6 @@ importers:
       konva:
         specifier: '>=10'
         version: 10.3.0
-      mediabunny:
-        specifier: ^1.49.0
-        version: 1.49.0
 
   packages/create:
     dependencies:
@@ -100,6 +97,9 @@ importers:
       '@smoove/google-fonts':
         specifier: workspace:*
         version: link:../google-fonts
+      '@smoove/media':
+        specifier: workspace:*
+        version: link:../media
       '@smoove/player':
         specifier: workspace:*
         version: link:../player
@@ -189,6 +189,9 @@ importers:
       '@smoove/google-fonts':
         specifier: workspace:*
         version: link:../google-fonts
+      '@smoove/media':
+        specifier: workspace:*
+        version: link:../media
       '@smoove/player':
         specifier: workspace:*
         version: link:../player
@@ -236,6 +239,22 @@ importers:
         specifier: ^6.3.6
         version: 6.4.3(@types/node@26.1.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
 
+  packages/media:
+    dependencies:
+      '@smoove/core':
+        specifier: workspace:^
+        version: link:../core
+      konva:
+        specifier: '>=10'
+        version: 10.3.0
+      mediabunny:
+        specifier: ^1.49.0
+        version: 1.49.0
+    devDependencies:
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/debug@4.1.13)(@types/node@26.1.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
+
   packages/player:
     dependencies:
       '@lit/context':
@@ -279,6 +298,9 @@ importers:
         specifier: ^3.0.8
         version: 3.0.8
     devDependencies:
+      '@smoove/media':
+        specifier: workspace:^
+        version: link:../media
       '@types/node':
         specifier: ^22.10.0
         version: 22.19.20

@@ -1,6 +1,6 @@
 import Konva from "konva";
 import { stringToArray } from "konva/lib/shapes/Text.js";
-import { TICK_MARK } from "../../media/media-marker.js";
+import { TICK_MARK } from "../../markers.js";
 import type { KMLayoutNode, LayoutBox, MeasureContext } from "../contract.js";
 import { applySize, type FlexilyNode, parseSize, setTextWrapperMeasure } from "../flex/engine.js";
 import type { SizeValue } from "../flex/types.js";

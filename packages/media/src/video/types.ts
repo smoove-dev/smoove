@@ -1,7 +1,11 @@
+import type {
+  FlexChildProps,
+  ObjectFit,
+  ObjectPosition,
+  SizeValue,
+  VideoSourceFactory,
+} from "@smoove/core";
 import type Konva from "konva";
-import type { FlexChildProps, SizeValue } from "../../layout/flex/types.js";
-import type { ObjectFit, ObjectPosition } from "../../layout/image.js";
-import type { VideoSourceFactory } from "./video-source.js";
 
 /**
  * Config for {@link Video}. Mirrors {@link ImageConfig} plus Remotion's

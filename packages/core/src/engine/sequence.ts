@@ -1,6 +1,6 @@
 import Konva from "konva";
 import { isKMLayoutRoot } from "../layout/contract.js";
-import { MEDIA_MARK, TICK_MARK } from "../media/media-marker.js";
+import { MEDIA_MARK, TICK_MARK } from "../markers.js";
 import { getComposition } from "./composition.js";
 
 export type SequenceOptions = Konva.LayerConfig & {
