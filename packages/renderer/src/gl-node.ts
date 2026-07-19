@@ -1,5 +1,10 @@
-import { createRequire } from "node:module";
 import { type GlPlatform, transpileTo100, VERTEX_SHADER_100 } from "@smoove/transitions";
+// Imported from the bare "module" specifier (not "node:module") on purpose: a
+// consuming app may alias `node:module` to a browser stub for its client bundle
+// (this renderer is server-only, so that stub must never reach it). Vite/Node
+// still resolve "module" to the real Node builtin in the SSR/server runtime.
+// biome-ignore lint/style/useNodejsImportProtocol: bare "module" deliberately dodges a `node:module` client alias.
+import { createRequire } from "module";
 import { Canvas } from "skia-canvas";
 
 const require = createRequire(import.meta.url);
