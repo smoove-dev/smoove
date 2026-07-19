@@ -1,5 +1,29 @@
 # @smoove/core
 
+## 0.3.0
+
+### Minor Changes
+
+- [#15](https://github.com/smoove-dev/smoove/pull/15) [`02bb26c`](https://github.com/smoove-dev/smoove/commit/02bb26cb64d605f8f478b6d4221fa9f037d98063) Thanks [@shemi](https://github.com/shemi)! - Extract the `Audio` and `Video` nodes (and their `mediabunny` decoders) into a
+  new `@smoove/media` package. `@smoove/core` no longer depends on `mediabunny`
+  (~10 MB) and no longer exports `Audio`, `Video`, `AudioConfig`, `VideoConfig`,
+  `BrowserAudioSource`, `MediabunnyAudioSource`, `BrowserVideoSource`, or
+  `MediabunnyVideoSource`.
+
+  **Migration:** import media authoring from `@smoove/media` and add it as a
+  dependency:
+
+  ```ts
+  // before
+  import { Audio, Video } from "@smoove/core";
+  // after
+  import { Audio, Video } from "@smoove/media";
+  ```
+
+  Importing `@smoove/media` (browser) auto-registers its sources. `isAudioNode` /
+  `isVideoNode` remain exported from `@smoove/core`. `@smoove/renderer` is
+  unchanged for correctly-importing apps.
+
 ## 0.2.0
 
 ### Minor Changes
