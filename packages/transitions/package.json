@@ -26,6 +26,8 @@
   "scripts": {
     "build": "tsc -b",
     "dev": "tsc -b --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "clean": "rm -rf dist *.tsbuildinfo",
     "prepublishOnly": "pnpm build"
   },
@@ -37,5 +39,9 @@
   },
   "dependencies": {
     "@smoove/core": "workspace:^"
+  },
+  "devDependencies": {
+    "skia-canvas": "^3.0.8",
+    "vitest": "^3.2.4"
   }
 }

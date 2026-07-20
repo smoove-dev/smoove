@@ -66,8 +66,14 @@ type Item = SceneItem | TransitionItem;
 
 let warnedNoWebGl = false;
 
-/** Reset a layer's transform to identity (used between/around transitions). */
+/** Reset a layer to its normal shown, identity-transform state (used between/around transitions). */
 function resetLayer(layer: Konva.Layer): void {
+  // Re-show the layer: a Tier B overlay hides its two scene layers each frame of
+  // the overlap so only the blended result paints. This runs first (scene
+  // registers tick before the overlay's), so during the overlap the overlay's
+  // later hide still wins; once the overlap ends the overlay stops running and
+  // this is what brings the scene back.
+  layer.visible(true);
   layer.opacity(1);
   layer.position({ x: 0, y: 0 });
   layer.scale({ x: 1, y: 1 });
@@ -319,6 +325,20 @@ export class TransitionSeries implements SequenceProvider, MarkerSource {
           overlay.add(image);
           overlay.register((local) => {
             const p = timing.getProgress(local, fps);
+            // Both scene layers are captured here and blended by the shader; the
+            // blended result is the only thing the viewer should see over the
+            // overlap. So show each layer just long enough to capture it (a
+            // hidden layer captures blank) and then hide it, leaving this overlay
+            // as the sole painter of the two scenes. The overlay composites over
+            // whatever sits behind it (e.g. a base layer) — exactly what each
+            // scene draws over normally — so a semi-transparent scene keeps its
+            // backdrop. Without this, the raw layers paint at full opacity under
+            // the overlay and bleed through wherever its output isn't fully
+            // opaque (the incoming scene shows from the overlap's first frame,
+            // the outgoing scene lingers on its last). Each scene's own register
+            // re-shows it (via resetLayer) once the overlap ends.
+            outgoingSeq.visible(true);
+            seq.visible(true);
             const incomingCanvas = seq.toCanvas({
               x: 0,
               y: 0,
@@ -343,6 +363,8 @@ export class TransitionSeries implements SequenceProvider, MarkerSource {
               dims.height,
             );
             image.image(out);
+            outgoingSeq.visible(false);
+            seq.visible(false);
           });
           overlaySeqs.push(overlay);
         }
