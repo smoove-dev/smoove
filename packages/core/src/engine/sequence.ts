@@ -56,6 +56,13 @@ export class Sequence extends Konva.Layer implements MarkerSource {
   private readonly _updaters = new Set<Updater>();
   private _active = false;
   private _media: MediaNode[] = [];
+  // Tickable cache is rebuilt lazily: `_apply` caches the media/tick subtree once
+  // per activation to avoid a `find()` every frame, but the subtree can still
+  // change *after* activation — a Composition activates a Sequence the moment it
+  // is added (to paint frame 0), and `comp.add(seq)` is commonly followed by
+  // `seq.add(video)`. Marking the cache dirty on every `add` keeps late-added
+  // media (and text tickers) from being silently dropped from the frame loop.
+  private _mediaDirty = true;
   // Last local frame applied while active — used to skip redundant re-applies
   // (updaters + layout + draw) when nothing about the playhead changed. `-1` is
   // a sentinel that never equals a real local frame, so the first apply always runs.
@@ -84,6 +91,34 @@ export class Sequence extends Konva.Layer implements MarkerSource {
     this._from = from;
     this._durationInFrames = durationInFrames;
     this._until = until;
+  }
+
+  /**
+   * Konva's `add`, plus a tickable-cache invalidation: media/text-ticker nodes
+   * added to an already-active Sequence (the usual `comp.add(seq)` then
+   * `seq.add(video)` order) must still join the frame loop. Direct adds cover
+   * the common case; nodes buried inside a subtree that is itself added here are
+   * caught too, because {@link _tickables} re-`find()`s the whole subtree.
+   */
+  override add(...children: (Konva.Group | Konva.Shape)[]): this {
+    super.add(...children);
+    this._mediaDirty = true;
+    return this;
+  }
+
+  /**
+   * The cached media/text-ticker descendants, rebuilt only when the subtree
+   * changed since the last walk. Includes media (`MEDIA_MARK`) plus non-media
+   * tickers (`TICK_MARK`, e.g. a Text typewriter).
+   */
+  private _tickables(): MediaNode[] {
+    if (this._mediaDirty) {
+      this._media = this.find(
+        (n: Konva.Node) => n.getAttr(MEDIA_MARK) === true || n.getAttr(TICK_MARK) === true,
+      ) as MediaNode[];
+      this._mediaDirty = false;
+    }
+    return this._media;
   }
 
   /**
@@ -159,11 +194,6 @@ export class Sequence extends Konva.Layer implements MarkerSource {
       if (becameActive) {
         this.visible(true);
         this._active = true;
-        // Cache tickable nodes once per activation — avoids a subtree walk every
-        // frame. Includes media (video/audio) plus non-media tickers (Text typewriter).
-        this._media = this.find(
-          (n: Konva.Node) => n.getAttr(MEDIA_MARK) === true || n.getAttr(TICK_MARK) === true,
-        ) as MediaNode[];
       }
       const local = frame - this.from;
       // Skip redundant work: same playhead, already active, and not forced.
@@ -193,13 +223,7 @@ export class Sequence extends Konva.Layer implements MarkerSource {
    * seeks.
    */
   _kmRunFrame(local: number, tickMedia: boolean): void {
-    // While inactive there is no cached tickable list (that cache is built on
-    // activation), so collect on demand.
-    const tickables = this._active
-      ? this._media
-      : (this.find(
-          (n: Konva.Node) => n.getAttr(MEDIA_MARK) === true || n.getAttr(TICK_MARK) === true,
-        ) as MediaNode[]);
+    const tickables = this._tickables();
     for (const u of this._updaters) u(local);
     // Tick BEFORE layout: a ticked node may change its measured size (e.g. a
     // Text typewriter revealing another line), and the flex pass must see the
