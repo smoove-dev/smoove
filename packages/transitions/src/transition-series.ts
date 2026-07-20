@@ -303,6 +303,15 @@ export class TransitionSeries implements SequenceProvider, MarkerSource {
             return;
           }
           resetLayer(seq);
+          // A GL overlay hides this layer through its incoming overlap (so only
+          // the blend paints), which leaves the layer's own canvas frozen at the
+          // frame it was hidden. `resetLayer` above re-shows it, but the first
+          // frame past the overlap otherwise repaints via the async batchDraw in
+          // Sequence._apply — one frame of stale pixels, seen as a flicker in
+          // live preview (server render draws synchronously, so never there).
+          // Draw synchronously on that reveal frame, the same remedy _apply uses
+          // when a sequence first becomes active.
+          if (incoming?.presentation.gl && local === incoming.duration) seq.draw();
         });
       }
 

@@ -1,6 +1,6 @@
 import { Composition } from "@smoove/core";
 import Konva from "konva";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { type GlCompositor, setCompositorFactory } from "./gl/compositor.js";
 import { fade } from "./presentations/fade.js";
 import { zoomBlur } from "./presentations/zoom-blur.js";
@@ -79,6 +79,18 @@ describe("TransitionSeries — Tier B (GL) scene visibility", () => {
     expect(layerB.visible()).toBe(true);
     expect(layerA.visible()).toBe(false); // scene A ended at 60
     expect(overlay?.visible()).toBe(false); // overlay window [50, 60) is closed
+  });
+
+  it("draws the incoming scene synchronously on the frame it is revealed", () => {
+    // The overlay hid the incoming layer through the overlap, freezing its own
+    // canvas. On the first frame past the overlap it is shown again — draw it
+    // synchronously there (as Sequence._apply does on activation) so live
+    // preview doesn't flash one frame of stale pixels via the async batchDraw.
+    const { comp, layerB } = buildSeries(makeComp(), zoomBlur);
+    comp.setFrame(55); // scene B is active but hidden by the overlay
+    const drawSpy = vi.spyOn(layerB, "draw");
+    comp.setFrame(60); // first frame past the overlap [50, 60) — the reveal
+    expect(drawSpy).toHaveBeenCalled(); // synchronous draw, not the async batchDraw
   });
 
   it("shows the outgoing scene normally before the overlap begins", () => {
