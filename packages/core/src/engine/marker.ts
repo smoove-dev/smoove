@@ -209,6 +209,69 @@ export class Marker {
   }
 }
 
+/** One beat in a {@link plan}: a length plus an optional shift off the previous beat's end. */
+export type PlanStep = {
+  /** Length in frames (positive integer). */
+  durationInFrames: number;
+  /**
+   * Frames between the previous beat's end and this beat's start: `0`
+   * back-to-back (default), negative overlaps, positive leaves a gap. Same
+   * semantics as `Series`.
+   */
+  offset?: number;
+};
+
+/** Shift a {@link FrameAnchor} by `n` frames without resolving it. */
+function shiftAnchor(anchor: FrameAnchor, n: number): FrameAnchor {
+  if (n === 0) return anchor;
+  if (typeof anchor === "number") return anchor + n;
+  const point = anchor instanceof Marker ? anchor.start : anchor;
+  return point.add(n);
+}
+
+/**
+ * Lay out named beats back to back and return a `Marker` per key, in insertion
+ * order. Sugar over chained `new Marker({...})`: the first beat starts at
+ * `opts.from` (default `0`, any anchor), each next beat at the previous end
+ * shifted by its `offset`. With a negative `offset` the beat's `settled` is
+ * `start + |offset|`, mirroring `Series`.
+ *
+ * ```ts
+ * const { intro, hero } = plan({
+ *   intro: { durationInFrames: 5 * fps },
+ *   hero:  { durationInFrames: 10 * fps, offset: -10 },
+ * });
+ * new Sequence({ span: hero });
+ * ```
+ */
+export function plan<T extends Record<string, PlanStep>>(
+  steps: T,
+  opts: { from?: FrameAnchor } = {},
+): { [K in keyof T]: Marker } {
+  const names = Object.keys(steps);
+  if (names.length === 0) {
+    throw new Error("plan: at least one step is required");
+  }
+  const out: Record<string, Marker> = {};
+  let prevEnd: FrameAnchor = opts.from ?? 0;
+  for (const name of names) {
+    const step = steps[name] as PlanStep;
+    const offset = step.offset ?? 0;
+    if (!Number.isInteger(offset)) {
+      throw new Error(`plan: "${name}" offset must be an integer (got ${offset})`);
+    }
+    const marker = new Marker(
+      makeDeclaredSource(
+        { start: shiftAnchor(prevEnd, offset), durationInFrames: step.durationInFrames },
+        Math.max(0, -offset),
+      ),
+    );
+    out[name] = marker;
+    prevEnd = marker.end;
+  }
+  return out as { [K in keyof T]: Marker };
+}
+
 /** A timeline position: an absolute frame, a `Marker` (its `.start`), or a `MarkerPoint`. */
 export type FrameAnchor = number | Marker | MarkerPoint;
 
