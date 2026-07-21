@@ -1,6 +1,6 @@
 {
   "name": "@smoove/transitions",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Scene transitions for smoove: TransitionSeries with 18 presentations and 2 timings.",
   "license": "MIT",
   "repository": {
