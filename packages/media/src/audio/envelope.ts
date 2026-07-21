@@ -6,14 +6,8 @@
  * get the real sound, deterministic under seek/scrub/server render.
  */
 
-import {
-  ALL_FORMATS,
-  AudioSampleSink,
-  FilePathSource,
-  Input,
-  type Source,
-  UrlSource,
-} from "mediabunny";
+import { ALL_FORMATS, AudioSampleSink, Input } from "mediabunny";
+import { makeInputSource } from "../input-source.js";
 import { fft, nextPow2 } from "./fft.js";
 
 /** A clip's decoded loudness envelope. Values are raw sample magnitudes, 0..1. */
@@ -288,21 +282,6 @@ function windowValue(table: Float32Array, windowHz: number, seconds: number): nu
 }
 
 /**
- * Mediabunny source for an envelope decode. Browser srcs are URLs; server
- * renders resolve Vite asset URLs to filesystem paths (the `mediaSrc` helper),
- * so anything that isn't `http(s)` is treated as a local path — mirrors the
- * renderer's `makeInputSource`.
- */
-function makeEnvelopeSource(src: string): Source {
-  if (/^https?:\/\//i.test(src)) return new UrlSource(src);
-  if (src.startsWith("file://")) return new FilePathSource(new URL(src).pathname);
-  // Root-relative/relative srcs: in a browser they're asset URLs (Vite serves
-  // them; fetch resolves against the page), in Node they're local paths.
-  if (typeof document !== "undefined") return new UrlSource(src);
-  return new FilePathSource(src);
-}
-
-/**
  * Decode `src`'s primary audio track once and fold it into an
  * {@link AudioEnvelope}. Streams PCM through the {@link EnvelopeBuilder};
  * nothing but the windowed table is retained.
@@ -312,7 +291,7 @@ export async function buildEnvelope(
   opts?: { windowHz?: number; bands?: number },
 ): Promise<AudioEnvelope> {
   const windowHz = opts?.windowHz ?? DEFAULT_WINDOW_HZ;
-  const input = new Input({ formats: ALL_FORMATS, source: makeEnvelopeSource(src) });
+  const input = new Input({ formats: ALL_FORMATS, source: makeInputSource(src) });
   try {
     const track = await input.getPrimaryAudioTrack();
     if (!track) throw new Error(`[smoove] no audio track in: ${src}`);
