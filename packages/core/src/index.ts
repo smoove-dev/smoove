@@ -26,9 +26,9 @@ export {
   type MarkerKind,
   type MarkerOptions,
   MarkerPoint,
-  plan,
-  type PlanStep,
   type MarkerSource,
+  type PlanStep,
+  plan,
   // @internal — anchor resolution reused by @smoove/transitions.
   resolveFrameAnchor,
   type ScenePlacement,

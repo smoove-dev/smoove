@@ -45,9 +45,9 @@ export {
   envelopeRmsAt,
   envelopeWaveform,
 } from "./audio/envelope.js";
-export { type MediaMetadata, probeMedia } from "./probe.js";
 export { Audio } from "./audio/index.js";
 export type { AudioConfig } from "./audio/types.js";
+export { type MediaMetadata, probeMedia } from "./probe.js";
 export { Video } from "./video/index.js";
 export type { VideoConfig } from "./video/types.js";
 export { BrowserVideoSource } from "./video/video-source-browser.js";
