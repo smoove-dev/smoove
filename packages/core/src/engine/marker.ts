@@ -56,6 +56,59 @@ function resolvePlacement(source: MarkerSource, name: string | undefined): Scene
 
 export type MarkerKind = "start" | "end" | "settled";
 
+/** Options for a directly declared marker: a named time range planned up front. */
+export type MarkerOptions = {
+  /** Where the range opens. Default `0`. A bare `Marker` means its `.start`. */
+  start?: FrameAnchor;
+  /** Length in frames (positive integer). Mutually exclusive with {@link until}. */
+  durationInFrames?: number;
+  /** Where the range closes. Mutually exclusive with {@link durationInFrames}. */
+  until?: FrameAnchor;
+};
+
+function isMarkerSource(x: MarkerSource | MarkerOptions): x is MarkerSource {
+  return typeof (x as MarkerSource)._kmResolveMarker === "function";
+}
+
+/**
+ * Source for a declared marker. `overlap` is the incoming overlap absorbed
+ * into `settled` — only `plan()` sets it; the public constructor path leaves
+ * it `0` so `settled === start`.
+ */
+function makeDeclaredSource(opts: MarkerOptions, overlap = 0): MarkerSource {
+  const { start = 0, durationInFrames } = opts;
+  // Presence check via `in`, not a read: `until` may be a getter onto a
+  // not-yet-constructed marker — it is only read lazily inside
+  // `_kmResolveMarker`, which is what lets declared markers chain in any
+  // construction order (and lets the circularity guard fire on real cycles).
+  const hasUntil = "until" in opts;
+  if ((durationInFrames === undefined) === !hasUntil) {
+    throw new Error("Marker: provide exactly one of durationInFrames or until");
+  }
+  if (
+    durationInFrames !== undefined &&
+    (!Number.isInteger(durationInFrames) || durationInFrames <= 0)
+  ) {
+    throw new Error("Marker: durationInFrames must be a positive integer");
+  }
+  if (typeof start === "number" && (!Number.isInteger(start) || start < 0)) {
+    throw new Error("Marker: start must be a non-negative integer");
+  }
+  return {
+    _kmResolveMarker(): ScenePlacement {
+      const from = resolveFrameAnchor(start);
+      const end =
+        durationInFrames !== undefined
+          ? from + durationInFrames
+          : resolveFrameAnchor(opts.until as FrameAnchor);
+      if (end <= from) {
+        throw new Error(`Marker: until (${end}) must be after start (${from})`);
+      }
+      return { from, end, settled: from + overlap };
+    },
+  };
+}
+
 /**
  * One anchorable point of a marked scene (`start`, `end`, or `settled`),
  * optionally shifted by an integer frame delta. Immutable: `add()` returns a
@@ -107,15 +160,33 @@ export class MarkerPoint {
 }
 
 /**
- * Handle onto a marked scene. Exposes the three anchorable points; using the
- * bare `Marker` as a {@link FrameAnchor} means its `.start`.
+ * Handle onto a marked scene, or a directly declared time range. Exposes the
+ * three anchorable points; using the bare `Marker` as a {@link FrameAnchor}
+ * means its `.start`.
  */
 export class Marker {
-  /** @internal — obtain via `series.marker(name)` / `sequence.marker()`. */
-  constructor(
-    private readonly _source: MarkerSource,
-    private readonly _name?: string,
-  ) {}
+  private readonly _source: MarkerSource;
+  private readonly _name?: string;
+
+  /**
+   * Declare a marker directly: `new Marker({ start, durationInFrames })` — a
+   * planned time range whose points anchor sequences, other markers, and the
+   * composition's duration. `start` accepts any anchor, so markers chain
+   * (`start: intro.end`). Derived markers still come from
+   * `series.marker(name)` / `sequence.marker()`.
+   */
+  constructor(options: MarkerOptions);
+  /** @internal — the derived-marker form used by `series.marker(name)` / `sequence.marker()`. */
+  constructor(source: MarkerSource, name?: string);
+  constructor(sourceOrOptions: MarkerSource | MarkerOptions, name?: string) {
+    if (isMarkerSource(sourceOrOptions)) {
+      this._source = sourceOrOptions;
+      this._name = name;
+    } else {
+      this._source = makeDeclaredSource(sourceOrOptions);
+      this._name = undefined;
+    }
+  }
 
   /** The scene's window-open frame (under a transition: the transition begins). */
   get start(): MarkerPoint {
