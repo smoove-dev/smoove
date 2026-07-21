@@ -160,3 +160,22 @@ describe("Composition durationInFrames from an anchor", () => {
     expect(seq.durationInFrames).toBe(90);
   });
 });
+
+describe("Sequence span", () => {
+  it("spans exactly the marker's range", () => {
+    const { hero } = plan({
+      intro: { durationInFrames: 100 },
+      hero: { durationInFrames: 200 },
+    });
+    const seq = new Sequence({ span: hero });
+    expect(seq.from).toBe(100);
+    expect(seq.durationInFrames).toBe(200);
+  });
+
+  it("is mutually exclusive with from/durationInFrames/until", () => {
+    const m = new Marker({ durationInFrames: 10 });
+    expect(() => new Sequence({ span: m, from: 0 })).toThrow(/span/);
+    expect(() => new Sequence({ span: m, durationInFrames: 5 })).toThrow(/span/);
+    expect(() => new Sequence({ span: m, until: 20 })).toThrow(/span/);
+  });
+});
