@@ -18,7 +18,7 @@ export const schema = kf.object({
     }),
     tagline: kf.text({
       label: "Tagline",
-      default: "Smooth moves, in code.",
+      default: "What you code is what you play.",
     }),
   },
 });

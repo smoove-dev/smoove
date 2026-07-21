@@ -112,3 +112,71 @@ hanging.
 It is handy during setup, for example to place a static label where a beat
 falls. For anchoring, pass the marker itself: a number you resolved eagerly is
 frozen, and freezing is the exact bug markers exist to remove.
+
+## Plan the timeline first
+
+Markers also work in the other direction: declare them before any sequence
+exists, then hang the scenes (and the comp itself) on the plan. `plan()` lays
+out named beats in one call and returns a `Marker` per key:
+
+```ts
+import { Composition, Sequence, plan } from "@smoove/core";
+
+const { intro, hero, outro } = plan({
+  intro: { durationInFrames: 5 * fps },
+  hero: { durationInFrames: 10 * fps },
+  outro: { durationInFrames: 5 * fps },
+});
+```
+
+Beats run back to back. A step's `offset` shifts it off the previous beat's
+end, with the same meaning as in `Series`: negative overlaps, positive leaves
+a gap. An overlapped beat's `settled` is `start` plus the overlap. The whole
+plan can start at any anchor via `plan(steps, { from: act1.marker("finale").end })`.
+
+A single range can also be declared directly, and `start` takes any anchor,
+so markers chain:
+
+```ts
+const intro = new Marker({ start: 0, durationInFrames: 5 * fps });
+const hero = new Marker({ start: intro.end, durationInFrames: 10 * fps });
+```
+
+Pass `until` instead of `durationInFrames` to close the range at another
+anchor. Provide exactly one of the two.
+
+## Span a sequence
+
+`span` covers exactly a marker's range, so filling a planned beat is one
+option instead of two:
+
+```ts
+comp.add(new Sequence({ span: hero }).add(heroScene));
+// the same window, spelled out:
+comp.add(new Sequence({ from: hero.start, until: hero.end }).add(heroScene));
+```
+
+`span` is mutually exclusive with `from`, `durationInFrames`, and `until`.
+
+## End the comp at a marker
+
+`durationInFrames` on the `Composition` accepts a marker point, so the comp
+ends where the last beat ends. Stretch any beat and the total length follows:
+
+```ts
+const comp = new Composition({
+  id: "planned",
+  fps,
+  durationInFrames: outro.end,
+  width: 1280,
+  height: 720,
+});
+```
+
+The anchor resolves on first read and is then cached, so a plan built around
+a `Series` added after the comp is constructed still resolves correctly.
+
+Declared and derived markers mix freely. A plan can hang off a series beat,
+a `Series` can start at a declared beat, and a cue can anchor to either. To
+size a beat from a real clip's length, probe the file first with
+[`probeMedia`](/docs/video#probe-metadata).

@@ -151,6 +151,43 @@ label); anchoring with an eagerly resolved number re-creates the desync bug
 markers exist to fix. Scene names are unique per series (duplicates throw);
 circular anchors throw instead of hanging.
 
+## Plan the timeline first — declared markers
+
+Markers can also be declared before any sequence exists, so the timeline is
+planned up front and scenes fill the plan in. `plan()` lays out named beats
+in one call; each key becomes a `Marker`:
+
+```ts
+import { Composition, Sequence, plan } from "@smoove/core";
+
+const { intro, hero, outro } = plan({
+  intro: { durationInFrames: 5 * fps },
+  hero:  { durationInFrames: 10 * fps, offset: -10 }, // 10-frame overlap with intro
+  outro: { durationInFrames: 5 * fps },
+});
+
+// The comp ends where the last beat ends. Retiming any beat retimes the comp.
+const comp = new Composition({ id: "planned", fps, durationInFrames: outro.end, width, height });
+
+comp.add(new Sequence({ span: intro }).add(introContent)); // spans exactly the beat
+comp.add(new Sequence({ span: hero }).add(heroContent));
+comp.add(new Sequence({ from: outro.start.add(-10), durationInFrames: 20 }).add(stinger));
+```
+
+- `span: marker` is sugar for `{ from: marker.start, until: marker.end }` and
+  is mutually exclusive with `from`/`durationInFrames`/`until`.
+- `offset` on a step shifts it off the previous beat's end, same semantics as
+  `Series` (negative overlaps, positive gaps; an overlapped beat's `settled`
+  is `start + |offset|`).
+- Single markers can be declared directly and chained by anchor:
+  `new Marker({ start: intro.end, durationInFrames: 90 })` (or `until:`
+  instead of `durationInFrames`). `plan()` is just this, chained for you.
+- Declared and derived markers interoperate: a plan can start at a series
+  beat (`plan(steps, { from: series.marker("code").end })`) and a `Series`
+  can start at a declared beat.
+- To size a beat from a real clip, probe the file first: see "Know a clip's
+  length up front" in [media.md](media.md).
+
 ## `konva` — one copy only
 
 `konva` is a peer dependency; `Composition extends Konva.Stage` and every

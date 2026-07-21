@@ -173,6 +173,30 @@ main.add(new Video({
 `startFrom`/`endAt` are deprecated aliases of `trimBefore`/`trimAfter`
 (pre-Remotion-v4.0.319 names) — prefer the new names in new code.
 
+## Know a clip's length up front (`probeMedia`)
+
+`probeMedia(src)` reads a file's container metadata (no frame decoding, so
+it's cheap) and works on URLs in the browser and file paths in Node. Await it
+at module top level, before building the comp, and let real clip lengths
+drive the timeline plan (see "Plan the timeline first" in
+[sequencing.md](sequencing.md)):
+
+```ts
+import { probeMedia } from "@smoove/media";
+
+const meta = await probeMedia(heroClip); // { duration, width, height, hasAudio, ... }
+
+const { hero } = plan({
+  hero: { durationInFrames: meta.durationInFrames(fps) }, // floor(duration * fps)
+});
+```
+
+`durationInFrames(fps)` floors, so the planned window never outruns the
+media. Results are memoized per `src`; probing a clip and then mounting it as
+a `Video` costs one metadata read. Because the probe runs once at module
+load, the values are constants for the life of the comp and frame-purity
+holds.
+
 This skill stops at *authoring* media nodes in a composition. Encoding,
 server-side rendering, and asset-pipeline concerns (`@smoove/renderer`) are
 out of scope.
