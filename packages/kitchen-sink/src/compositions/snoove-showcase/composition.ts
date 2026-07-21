@@ -37,6 +37,7 @@ import vo2Url from "./media/audio/vo/vo-2-video.mp3";
 import vo3Url from "./media/audio/vo/vo-3-describe.mp3";
 import vo4Url from "./media/audio/vo/vo-4-mix.mp3";
 import codeBgUrl from "./media/video/bg-code-drift.mp4";
+import bgEndVideoUrl from "./media/video/bg-end.mp4";
 import greetingBgUrl from "./media/video/bg-greeting-sunrise.mp4";
 import heroVideoUrl from "./media/video/hero-astronaut.mp4";
 import type { SmooveShowcaseProps } from "./schema";
@@ -73,7 +74,7 @@ const comp = new Composition<SmooveShowcaseProps>({
   height,
   loop: true,
   // `name` defaults to "there" — pass a real one and the greeting renders it.
-  props: { greeting: "Hi", name: "there", tagline: "Smooth moves, in code." },
+  props: { greeting: "Hi", name: "there", tagline: "What you code is what you play." },
 });
 const p = () => comp.props.get();
 
@@ -177,7 +178,7 @@ const captionPlate = (text: string, startFrame: number, typeFor: number) => {
       wrap: "none",
       ellipsis: false,
       typewriter: {
-        mode: "word",
+        mode: "letter",
         startFrame,
         durationInFrames: typeFor,
         fade: true,
@@ -233,7 +234,6 @@ const greetBg = new Video({
   src: greetingBgUrl,
   objectFit: "cover",
   muted: true,
-  loop: true,
 });
 greet.add(greetBg);
 
@@ -889,7 +889,6 @@ const codeBg = new Video({
   src: codeBgUrl,
   objectFit: "cover",
   muted: true,
-  loop: true,
 });
 
 // The canvas half — the frame the code describes.
@@ -990,7 +989,6 @@ const codeTick = (local: number) => {
   // scene, and each already blends it on/off. Fading here too would dim every
   // element inside the blend.
   const fade = 1;
-  codeBg.opacity(fade * 0.32); // the darkest plate — code has to read over it
   stage.opacity(fade);
   panel.opacity(fade);
 
@@ -1031,34 +1029,26 @@ const codeTick = (local: number) => {
 // Same as the code beat: nodes now, mounted by the TransitionSeries below.
 // The greeting's backdrop returns here, run much darker than at 0:00 (0.5) —
 // it bookends the piece without pulling focus off the meters.
-const MIX_BG_DIM = 0.22;
 const mixBg = new Group({
   width,
   height,
   x: 0,
   y: 0,
 });
-const mixBgRect = new Rect({
-  width,
-  height,
-  x: 0,
-  y: 0,
-  fill: "#000000",
-});
+
 const mixBgVideo = new Video({
   x: 0,
   y: 0,
   width,
   height,
-  src: greetingBgUrl,
+  src: bgEndVideoUrl,
   objectFit: "cover",
   muted: true,
   loop: true,
   // Dim from construction, not just from the first tick — the shader
   // transition samples this layer before any updater has run for it.
-  opacity: MIX_BG_DIM,
+  opacity: 1,
 });
-mixBg.add(mixBgRect);
 mixBg.add(mixBgVideo);
 
 // -- the mixer console -------------------------------------------------------
@@ -1201,7 +1191,7 @@ const strips = ["music", "voice", "fx"].map((label, i) => {
   return { segs, peak, knob, clip, db, appliedClip: "", appliedDb: "" };
 });
 
-const mixCaption = captionPlate("Music, voice and effects. Mixed on the timeline.", s(0.9), s(2.0));
+const mixCaption = captionPlate("Music, voice and effects. Mixed on the timeline.", s(1.8), s(1.6));
 meterNodes.push(mixCaption.box);
 
 // ===========================================================================
@@ -1264,7 +1254,7 @@ const VO: { from: FrameAnchor; dur: number; src: string; name: string }[] = [
   { from: codeMarker.start.add(s(4.2)), dur: s(3.45), src: vo3Url, name: "vo-3-describe.mp3" },
   // Sits mid-mixer, not at its head: the meters get to run on music + fx first,
   // so the duck is something you watch happen rather than arrive into.
-  { from: mixMarker.start.add(s(3.8)), dur: s(3.81), src: vo4Url, name: "vo-4-mix.mp3" },
+  { from: mixMarker.start.add(60), dur: s(4), src: vo4Url, name: "vo-4-mix.mp3" },
 ];
 
 // ===========================================================================
@@ -1283,7 +1273,7 @@ const MUSIC_DUCKED = 0.5;
 // used to fake). Refs kept so the mixer can reach each node and its `from`.
 type AudioTrack = { node: Audio; from: number; dur: number; name: string };
 const voTracks: AudioTrack[] = VO.map((line) => {
-  const node = new Audio({ src: line.src, volume: 1, introspect: true });
+  const node = new Audio({ src: line.src, volume: 2, introspect: true });
   // Sequence takes the live anchor; the record keeps a number for the mixer.
   const seq = new Sequence({ from: line.from, durationInFrames: line.dur });
   seq.add(node);
