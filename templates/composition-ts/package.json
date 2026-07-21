@@ -9,13 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@smoove/core": "^0.3.2",
-    "@smoove/google-fonts": "^0.3.2",
-    "@smoove/player": "^0.3.2",
+    "@smoove/core": "^0.3.4",
+    "@smoove/google-fonts": "^0.3.4",
+    "@smoove/player": "^0.3.4",
     "konva": "^10.3.0"
   },
   "devDependencies": {
-    "@smoove/vite": "^0.3.2",
+    "@smoove/vite": "^0.3.4",
     "typescript": "^6.0.3",
     "vite": "^8.1.3"
   },

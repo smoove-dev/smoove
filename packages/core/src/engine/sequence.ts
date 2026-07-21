@@ -30,6 +30,12 @@ export type SequenceOptions = Konva.LayerConfig & {
    * {@link durationInFrames}.
    */
   until?: FrameAnchor;
+  /**
+   * Span exactly this marker's range — sugar for
+   * `{ from: marker.start, until: marker.end }`. Mutually exclusive with
+   * `from`, `durationInFrames`, and `until`.
+   */
+  span?: Marker;
 };
 
 export type Updater = (localFrame: number) => void;
@@ -69,7 +75,13 @@ export class Sequence extends Konva.Layer implements MarkerSource {
   private _lastLocal = -1;
 
   constructor(opts: SequenceOptions = {}) {
-    const { from = 0, durationInFrames, until, ...layerOpts } = opts;
+    const { from = 0, durationInFrames, until, span, ...layerOpts } = opts;
+    if (
+      span !== undefined &&
+      ("from" in opts || durationInFrames !== undefined || until !== undefined)
+    ) {
+      throw new Error("Sequence: span is mutually exclusive with from/durationInFrames/until");
+    }
     if (typeof from === "number" && (!Number.isInteger(from) || from < 0)) {
       throw new Error("Sequence: from must be a non-negative integer");
     }
@@ -88,9 +100,9 @@ export class Sequence extends Konva.Layer implements MarkerSource {
       throw new Error("Sequence: until must be a positive integer frame");
     }
     super({ ...layerOpts, visible: false });
-    this._from = from;
+    this._from = span !== undefined ? span.start : from;
     this._durationInFrames = durationInFrames;
-    this._until = until;
+    this._until = span !== undefined ? span.end : until;
   }
 
   /**

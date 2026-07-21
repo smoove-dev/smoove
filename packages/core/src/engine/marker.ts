@@ -56,6 +56,59 @@ function resolvePlacement(source: MarkerSource, name: string | undefined): Scene
 
 export type MarkerKind = "start" | "end" | "settled";
 
+/** Options for a directly declared marker: a named time range planned up front. */
+export type MarkerOptions = {
+  /** Where the range opens. Default `0`. A bare `Marker` means its `.start`. */
+  start?: FrameAnchor;
+  /** Length in frames (positive integer). Mutually exclusive with {@link until}. */
+  durationInFrames?: number;
+  /** Where the range closes. Mutually exclusive with {@link durationInFrames}. */
+  until?: FrameAnchor;
+};
+
+function isMarkerSource(x: MarkerSource | MarkerOptions): x is MarkerSource {
+  return typeof (x as MarkerSource)._kmResolveMarker === "function";
+}
+
+/**
+ * Source for a declared marker. `overlap` is the incoming overlap absorbed
+ * into `settled` — only `plan()` sets it; the public constructor path leaves
+ * it `0` so `settled === start`.
+ */
+function makeDeclaredSource(opts: MarkerOptions, overlap = 0): MarkerSource {
+  const { start = 0, durationInFrames } = opts;
+  // Presence check via `in`, not a read: `until` may be a getter onto a
+  // not-yet-constructed marker — it is only read lazily inside
+  // `_kmResolveMarker`, which is what lets declared markers chain in any
+  // construction order (and lets the circularity guard fire on real cycles).
+  const hasUntil = "until" in opts;
+  if ((durationInFrames === undefined) === !hasUntil) {
+    throw new Error("Marker: provide exactly one of durationInFrames or until");
+  }
+  if (
+    durationInFrames !== undefined &&
+    (!Number.isInteger(durationInFrames) || durationInFrames <= 0)
+  ) {
+    throw new Error("Marker: durationInFrames must be a positive integer");
+  }
+  if (typeof start === "number" && (!Number.isInteger(start) || start < 0)) {
+    throw new Error("Marker: start must be a non-negative integer");
+  }
+  return {
+    _kmResolveMarker(): ScenePlacement {
+      const from = resolveFrameAnchor(start);
+      const end =
+        durationInFrames !== undefined
+          ? from + durationInFrames
+          : resolveFrameAnchor(opts.until as FrameAnchor);
+      if (end <= from) {
+        throw new Error(`Marker: until (${end}) must be after start (${from})`);
+      }
+      return { from, end, settled: from + overlap };
+    },
+  };
+}
+
 /**
  * One anchorable point of a marked scene (`start`, `end`, or `settled`),
  * optionally shifted by an integer frame delta. Immutable: `add()` returns a
@@ -107,15 +160,33 @@ export class MarkerPoint {
 }
 
 /**
- * Handle onto a marked scene. Exposes the three anchorable points; using the
- * bare `Marker` as a {@link FrameAnchor} means its `.start`.
+ * Handle onto a marked scene, or a directly declared time range. Exposes the
+ * three anchorable points; using the bare `Marker` as a {@link FrameAnchor}
+ * means its `.start`.
  */
 export class Marker {
-  /** @internal — obtain via `series.marker(name)` / `sequence.marker()`. */
-  constructor(
-    private readonly _source: MarkerSource,
-    private readonly _name?: string,
-  ) {}
+  private readonly _source: MarkerSource;
+  private readonly _name?: string;
+
+  /**
+   * Declare a marker directly: `new Marker({ start, durationInFrames })` — a
+   * planned time range whose points anchor sequences, other markers, and the
+   * composition's duration. `start` accepts any anchor, so markers chain
+   * (`start: intro.end`). Derived markers still come from
+   * `series.marker(name)` / `sequence.marker()`.
+   */
+  constructor(options: MarkerOptions);
+  /** @internal — the derived-marker form used by `series.marker(name)` / `sequence.marker()`. */
+  constructor(source: MarkerSource, name?: string);
+  constructor(sourceOrOptions: MarkerSource | MarkerOptions, name?: string) {
+    if (isMarkerSource(sourceOrOptions)) {
+      this._source = sourceOrOptions;
+      this._name = name;
+    } else {
+      this._source = makeDeclaredSource(sourceOrOptions);
+      this._name = undefined;
+    }
+  }
 
   /** The scene's window-open frame (under a transition: the transition begins). */
   get start(): MarkerPoint {
@@ -136,6 +207,69 @@ export class Marker {
   resolve(): number {
     return this.start.resolve();
   }
+}
+
+/** One beat in a {@link plan}: a length plus an optional shift off the previous beat's end. */
+export type PlanStep = {
+  /** Length in frames (positive integer). */
+  durationInFrames: number;
+  /**
+   * Frames between the previous beat's end and this beat's start: `0`
+   * back-to-back (default), negative overlaps, positive leaves a gap. Same
+   * semantics as `Series`.
+   */
+  offset?: number;
+};
+
+/** Shift a {@link FrameAnchor} by `n` frames without resolving it. */
+function shiftAnchor(anchor: FrameAnchor, n: number): FrameAnchor {
+  if (n === 0) return anchor;
+  if (typeof anchor === "number") return anchor + n;
+  const point = anchor instanceof Marker ? anchor.start : anchor;
+  return point.add(n);
+}
+
+/**
+ * Lay out named beats back to back and return a `Marker` per key, in insertion
+ * order. Sugar over chained `new Marker({...})`: the first beat starts at
+ * `opts.from` (default `0`, any anchor), each next beat at the previous end
+ * shifted by its `offset`. With a negative `offset` the beat's `settled` is
+ * `start + |offset|`, mirroring `Series`.
+ *
+ * ```ts
+ * const { intro, hero } = plan({
+ *   intro: { durationInFrames: 5 * fps },
+ *   hero:  { durationInFrames: 10 * fps, offset: -10 },
+ * });
+ * new Sequence({ span: hero });
+ * ```
+ */
+export function plan<T extends Record<string, PlanStep>>(
+  steps: T,
+  opts: { from?: FrameAnchor } = {},
+): { [K in keyof T]: Marker } {
+  const names = Object.keys(steps);
+  if (names.length === 0) {
+    throw new Error("plan: at least one step is required");
+  }
+  const out: Record<string, Marker> = {};
+  let prevEnd: FrameAnchor = opts.from ?? 0;
+  for (const name of names) {
+    const step = steps[name] as PlanStep;
+    const offset = step.offset ?? 0;
+    if (!Number.isInteger(offset)) {
+      throw new Error(`plan: "${name}" offset must be an integer (got ${offset})`);
+    }
+    const marker = new Marker(
+      makeDeclaredSource(
+        { start: shiftAnchor(prevEnd, offset), durationInFrames: step.durationInFrames },
+        Math.max(0, -offset),
+      ),
+    );
+    out[name] = marker;
+    prevEnd = marker.end;
+  }
+  return out as { [K in keyof T]: Marker };
 }
 
 /** A timeline position: an absolute frame, a `Marker` (its `.start`), or a `MarkerPoint`. */

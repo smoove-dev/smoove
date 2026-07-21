@@ -105,8 +105,31 @@ drive both. Add the package from [Rendering setup](/docs/rendering/install), the
 [Rendering](/docs/rendering).
 </Callout>
 
+## Probe metadata
+
+`probeMedia(src)` reads a clip's container metadata without decoding any
+frames, in the browser and in Node. Await it at module top level and let the
+real clip length drive the timeline plan:
+
+```ts
+import { probeMedia } from "@smoove/media";
+
+const meta = await probeMedia("/video/hero.mp4");
+meta.duration; // seconds
+meta.width; // display size of the video track
+meta.height;
+meta.durationInFrames(fps); // floor(duration * fps)
+```
+
+`durationInFrames(fps)` floors, so a window sized with it never outruns the
+media. Results are memoized per `src`: probing a clip and then mounting it as
+a `Video` costs one metadata read. See
+[Timeline markers](/docs/markers#plan-the-timeline-first) for the planning
+workflow this feeds.
+
 ## Next steps
 
 - [Audio](/docs/audio): sound tracks and the master mixer.
 - [Images](/docs/images): the `objectFit` and `objectPosition` controls in full.
 - [Sequencing](/docs/sequencing): the `from`/`durationInFrames` window that gates a clip.
+- [Timeline markers](/docs/markers): plan beats around real clip lengths.

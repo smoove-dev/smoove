@@ -1,5 +1,21 @@
 # @smoove/media
 
+## 0.3.4
+
+### Patch Changes
+
+- [#21](https://github.com/smoove-dev/smoove/pull/21) [`f965fa3`](https://github.com/smoove-dev/smoove/commit/f965fa3ecb66d99a395eed79aab14f3c1f888420) Thanks [@shemi](https://github.com/shemi)! - `probeMedia(src)` reads a media file's container metadata (duration, video size, track shape) without decoding frames, in the browser and in Node. Await it at module top level and feed `meta.durationInFrames(fps)` into a timeline plan so real clip lengths drive the beat layout. Results are memoized per src.
+
+- Updated dependencies [[`f965fa3`](https://github.com/smoove-dev/smoove/commit/f965fa3ecb66d99a395eed79aab14f3c1f888420)]:
+  - @smoove/core@0.3.4
+
+## 0.3.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @smoove/core@0.3.3
+
 ## 0.3.2
 
 ### Patch Changes

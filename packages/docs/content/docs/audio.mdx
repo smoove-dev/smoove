@@ -192,8 +192,28 @@ package from [Rendering setup](/docs/rendering/install), then see
 [Rendering media](/docs/rendering/media).
 </Callout>
 
+## Probe metadata
+
+`probeMedia(src)` reads a track's container metadata without decoding it, so
+a beat can last exactly as long as its voice-over:
+
+```ts
+import { probeMedia } from "@smoove/media";
+
+const meta = await probeMedia("/audio/vo.mp3");
+meta.duration; // seconds
+meta.sampleRate;
+meta.channels;
+meta.durationInFrames(fps); // floor(duration * fps)
+```
+
+Await it at module top level, before building the comp. See
+[Timeline markers](/docs/markers#plan-the-timeline-first) for the planning
+workflow this feeds.
+
 ## Next steps
 
 - [Video](/docs/video): footage that carries its own audio through the same mixer.
 - [Sequencing](/docs/sequencing): the `from`/`durationInFrames` window that gates a track.
 - [Player](/docs/player): master volume and mute controls in the `<smoove-player>` UI.
+- [Timeline markers](/docs/markers): plan beats around real clip lengths.
