@@ -10,15 +10,15 @@ export const schema = kf.object({
   fields: {
     greeting: kf.text({
       label: "Greeting",
-      default: "Hi"
+      default: "Hi",
     }),
     name: kf.text({
       label: "Name",
-      default: "there"
+      default: "there",
     }),
     tagline: kf.text({
       label: "Tagline",
-      default: "Smooth moves, in code."
+      default: "Smooth moves, in code.",
     }),
   },
 });

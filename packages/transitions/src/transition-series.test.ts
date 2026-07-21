@@ -21,7 +21,13 @@ function stubCompositor(): GlCompositor {
 let n = 0;
 function makeComp(): Composition {
   n += 1;
-  return new Composition({ id: `ts-t${n}`, fps: 30, durationInFrames: 300, width: 100, height: 100 });
+  return new Composition({
+    id: `ts-t${n}`,
+    fps: 30,
+    durationInFrames: 300,
+    width: 100,
+    height: 100,
+  });
 }
 
 function rect(name: string): Konva.Rect {
@@ -36,7 +42,10 @@ function rect(name: string): Konva.Rect {
 function buildSeries(comp: Composition, presentation: () => ReturnType<typeof zoomBlur>) {
   const series = new TransitionSeries({ composition: comp, from: 0 });
   series.scene({ durationInFrames: 60, name: "a" }, (seq) => seq.add(rect("rectA")));
-  series.transition({ presentation: presentation(), timing: linearTiming({ durationInFrames: 10 }) });
+  series.transition({
+    presentation: presentation(),
+    timing: linearTiming({ durationInFrames: 10 }),
+  });
   series.scene({ durationInFrames: 60, name: "b" }, (seq) => seq.add(rect("rectB")));
   comp.add(series);
 
@@ -107,7 +116,10 @@ describe("TransitionSeries — Tier A (non-GL) transitions are unaffected", () =
     // The hide/re-show only applies to GL overlays. A fade animates the layer's
     // own opacity, so the scene must stay visible through the overlap.
     const comp = makeComp();
-    const { layerA, layerB, overlay } = buildSeries(comp, () => fade() as ReturnType<typeof zoomBlur>);
+    const { layerA, layerB, overlay } = buildSeries(
+      comp,
+      () => fade() as ReturnType<typeof zoomBlur>,
+    );
 
     expect(overlay).toBeUndefined(); // Tier A: no GL overlay sequence
     comp.setFrame(55); // inside the overlap

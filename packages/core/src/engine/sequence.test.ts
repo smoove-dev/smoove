@@ -7,7 +7,13 @@ import { Sequence } from "./sequence.js";
 let n = 0;
 function makeComp(): Composition {
   n += 1;
-  return new Composition({ id: `seq-t${n}`, fps: 30, durationInFrames: 300, width: 320, height: 240 });
+  return new Composition({
+    id: `seq-t${n}`,
+    fps: 30,
+    durationInFrames: 300,
+    width: 320,
+    height: 240,
+  });
 }
 
 /** A minimal tickable: a Konva node flagged with TICK_MARK plus a spied `_kmTick`. */

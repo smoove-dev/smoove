@@ -135,5 +135,5 @@ export default defineRegistry([
   // Film.
   cohabit,
   helloSmoove,
-  smooveShowcase
+  smooveShowcase,
 ]);
