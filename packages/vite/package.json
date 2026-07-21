@@ -1,6 +1,6 @@
 {
   "name": "@smoove/vite",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Vite plugin for smoove: studio hot-reload wiring plus media imports that also work in the Node renderer.",
   "license": "MIT",
   "repository": {
