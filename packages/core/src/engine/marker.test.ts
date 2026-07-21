@@ -179,3 +179,25 @@ describe("Sequence span", () => {
     expect(() => new Sequence({ span: m, until: 20 })).toThrow(/span/);
   });
 });
+
+describe("mixed provenance", () => {
+  it("a Series can start at a declared marker's end", () => {
+    const { pre } = plan({ pre: { durationInFrames: 40 } });
+    const series = new Series({ from: pre.end });
+    series.add({ durationInFrames: 60, name: "a" }, () => {});
+    expect(series.marker("a").start.resolve()).toBe(40);
+  });
+
+  it("a declared marker can hang off a series beat", () => {
+    const series = new Series();
+    series
+      .add({ durationInFrames: 100, name: "intro" }, () => {})
+      .add({ durationInFrames: 120, name: "code" }, () => {});
+    const overlay = new Marker({
+      start: series.marker("code").start.add(-10),
+      durationInFrames: 50,
+    });
+    expect(overlay.start.resolve()).toBe(90);
+    expect(overlay.end.resolve()).toBe(140);
+  });
+});
