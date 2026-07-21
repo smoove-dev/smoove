@@ -4,6 +4,7 @@ import type { AudioAsset } from "../media/audio/asset.js";
 import { type AudioChannel, AudioMixer } from "../media/audio/mixer.js";
 import { createEmitter, type Emitter } from "./emitter.js";
 import { detectEnvironment, type Environment, type EnvironmentMode } from "./environment.js";
+import { type FrameAnchor, resolveFrameAnchor } from "./marker.js";
 import { Sequence, type SequenceProvider } from "./sequence.js";
 import { createSignal, derived, type ReadonlySignal, type Signal } from "./signal.js";
 
@@ -16,7 +17,12 @@ export type CompositionOptions<P extends Record<string, unknown> = Record<string
   Konva.StageConfig & {
     id: string;
     fps: number;
-    durationInFrames: number;
+    /**
+     * Total frames, or a `Marker`/`MarkerPoint` (e.g. `outro.end`) resolved
+     * lazily on first read — so a comp can end where its last planned beat
+     * ends, and retiming the plan retimes the comp.
+     */
+    durationInFrames: FrameAnchor;
     loop?: boolean;
     /** Initial props handed to the scene. Read live with `comp.props.get()` in
         updaters; pushed to with `comp.setProps()` by a player or the studio. */
@@ -110,6 +116,10 @@ export class Composition<
   private readonly _buffer: Signal<BufferState>;
   private readonly _emitter: Emitter<CompositionEventMap>;
 
+  // Anchor-valued duration pending lazy resolution on first read (see the
+  // durationInFrames wiring in the constructor). Null once resolved.
+  private _durationAnchor: FrameAnchor | null = null;
+
   private _rafId: number | null = null;
   private _startWallMs = 0;
   private _startFrame = 0;
@@ -142,7 +152,10 @@ export class Composition<
     if (!Number.isFinite(opts.fps) || opts.fps <= 0) {
       throw new Error("Composition: fps must be a positive number");
     }
-    if (!Number.isInteger(opts.durationInFrames) || opts.durationInFrames <= 0) {
+    if (
+      typeof opts.durationInFrames === "number" &&
+      (!Number.isInteger(opts.durationInFrames) || opts.durationInFrames <= 0)
+    ) {
       throw new Error("Composition: durationInFrames must be a positive integer");
     }
 
@@ -168,7 +181,15 @@ export class Composition<
 
     this._frame = createSignal(0);
     this._isPlaying = createSignal(false);
-    this._durationInFrames = createSignal(durationInFrames);
+    if (typeof durationInFrames === "number") {
+      this._durationInFrames = createSignal(durationInFrames);
+    } else {
+      // Resolved lazily on first read: the anchor may depend on a Series added
+      // after construction. Markers are immutable, so the first resolution is
+      // cached into the signal and never re-run.
+      this._durationInFrames = createSignal(0);
+      this._durationAnchor = durationInFrames;
+    }
     this._loop = createSignal(loop);
     this._playbackRate = createSignal(1);
     this._props = createSignal<P>(props ?? ({} as P));
@@ -176,7 +197,13 @@ export class Composition<
 
     this.frame = this._frame;
     this.isPlaying = this._isPlaying;
-    this.durationInFrames = this._durationInFrames;
+    this.durationInFrames = {
+      get: () => {
+        this._ensureDurationResolved();
+        return this._durationInFrames.get();
+      },
+      subscribe: (listener) => this._durationInFrames.subscribe(listener),
+    };
     this.loop = this._loop;
     this.playbackRate = this._playbackRate;
     this.props = this._props;
@@ -193,6 +220,19 @@ export class Composition<
     );
 
     this._emitter = createEmitter<CompositionEventMap>();
+  }
+
+  /** Resolve an anchor-valued duration into the signal, once. */
+  private _ensureDurationResolved(): void {
+    if (this._durationAnchor === null) return;
+    const resolved = resolveFrameAnchor(this._durationAnchor);
+    if (!Number.isInteger(resolved) || resolved <= 0) {
+      throw new Error(
+        `Composition: durationInFrames anchor resolved to ${resolved} — must be a positive integer`,
+      );
+    }
+    this._durationAnchor = null;
+    this._durationInFrames.set(resolved);
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: bridges Konva's typed event API with our composition events.
@@ -368,7 +408,7 @@ export class Composition<
   }
 
   setFrame(target: number): void {
-    const clamped = Math.max(0, Math.min(this._durationInFrames.get() - 1, Math.floor(target)));
+    const clamped = Math.max(0, Math.min(this.durationInFrames.get() - 1, Math.floor(target)));
     if (clamped === this._frame.get()) return;
     this._frame.set(clamped);
     if (this._isPlaying.get()) {
@@ -477,7 +517,7 @@ export class Composition<
    * entrypoint — e.g. `for (f) { await comp.renderFrame(f); capture(); }`.
    */
   async renderFrame(target: number): Promise<void> {
-    const clamped = Math.max(0, Math.min(this._durationInFrames.get() - 1, Math.floor(target)));
+    const clamped = Math.max(0, Math.min(this.durationInFrames.get() - 1, Math.floor(target)));
     this._frame.set(clamped);
     // force: offline render must apply every frame, even a re-rendered duplicate.
     this._applyFrame(clamped, true, true);
@@ -545,7 +585,7 @@ export class Composition<
   private _event(): CompositionEvent {
     return {
       frame: this._frame.get(),
-      durationInFrames: this._durationInFrames.get(),
+      durationInFrames: this.durationInFrames.get(),
     };
   }
 
@@ -586,7 +626,7 @@ export class Composition<
     const elapsedMs = now - this._startWallMs;
     // round (not floor) so small negative advances still register frame-by-frame.
     const advance = Math.round((elapsedMs / 1000) * this.fps * rate);
-    const lastFrame = this._durationInFrames.get() - 1;
+    const lastFrame = this.durationInFrames.get() - 1;
     const target = Math.max(0, Math.min(lastFrame, this._startFrame + advance));
 
     if (target !== this._frame.get()) {

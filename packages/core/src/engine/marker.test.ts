@@ -1,5 +1,14 @@
 import { describe, expect, it } from "vitest";
+import { Composition } from "./composition.js";
 import { Marker, plan } from "./marker.js";
+import { Sequence } from "./sequence.js";
+import { Series } from "./series.js";
+
+let compN = 0;
+function compOpts() {
+  compN += 1;
+  return { id: `marker-comp-${compN}`, fps: 30, width: 320, height: 240 };
+}
 
 describe("declared Marker", () => {
   it("resolves start/end/settled from start + durationInFrames", () => {
@@ -105,5 +114,49 @@ describe("plan()", () => {
   it("throws on an empty plan and on non-integer offsets", () => {
     expect(() => plan({})).toThrow(/at least one/);
     expect(() => plan({ a: { durationInFrames: 10, offset: 0.5 } })).toThrow(/integer/);
+  });
+});
+
+describe("Composition durationInFrames from an anchor", () => {
+  it("resolves a marker point lazily on first read", () => {
+    const { outro } = plan({
+      intro: { durationInFrames: 150 },
+      outro: { durationInFrames: 150 },
+    });
+    const comp = new Composition({ ...compOpts(), durationInFrames: outro.end });
+    expect(comp.durationInFrames.get()).toBe(300);
+  });
+
+  it("resolves a Series-derived anchor whose series is populated after construction", () => {
+    const series = new Series();
+    const comp = new Composition({
+      ...compOpts(),
+      durationInFrames: series.marker("outro").end,
+    });
+    series
+      .add({ durationInFrames: 100, name: "intro" }, () => {})
+      .add({ durationInFrames: 50, name: "outro" }, () => {});
+    comp.add(series);
+    expect(comp.durationInFrames.get()).toBe(150);
+  });
+
+  it("throws when the anchor resolves to a non-positive duration", () => {
+    const m = new Marker({ start: 0, durationInFrames: 10 });
+    const comp = new Composition({ ...compOpts(), durationInFrames: m.start });
+    expect(() => comp.durationInFrames.get()).toThrow(/positive integer/);
+  });
+
+  it("still validates plain numbers eagerly", () => {
+    expect(() => new Composition({ ...compOpts(), durationInFrames: 0 })).toThrow(
+      /positive integer/,
+    );
+  });
+
+  it("a spanning Sequence follows the resolved duration", () => {
+    const { only } = plan({ only: { durationInFrames: 90 } });
+    const comp = new Composition({ ...compOpts(), durationInFrames: only.end });
+    const seq = new Sequence();
+    comp.add(seq);
+    expect(seq.durationInFrames).toBe(90);
   });
 });
