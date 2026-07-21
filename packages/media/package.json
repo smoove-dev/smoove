@@ -1,6 +1,6 @@
 {
   "name": "@smoove/media",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Timeline-driven Audio and Video nodes for smoove, decoded with mediabunny.",
   "license": "MIT",
   "repository": {
