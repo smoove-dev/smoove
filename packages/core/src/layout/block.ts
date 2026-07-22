@@ -179,9 +179,16 @@ function applyBackground(
   w: number,
   h: number,
 ): void {
-  rect.fill("");
-  rect.fillLinearGradientColorStops([]);
-  rect.fillRadialGradientColorStops([]);
+  // Reset to a truly fill-less state. Konva's hasFill() treats an EMPTY stops
+  // array as "has fill" (`!![]`), and a zero-stop gradient paints opaque black
+  // under skia-canvas (transparent in browsers) — so clear the attrs to
+  // undefined rather than [] or a background-less Block blacks out every
+  // layer beneath it in server renders.
+  rect.setAttrs({
+    fill: undefined,
+    fillLinearGradientColorStops: undefined,
+    fillRadialGradientColorStops: undefined,
+  });
   if (bg === undefined) return;
   if (typeof bg === "string") {
     rect.fill(bg);
