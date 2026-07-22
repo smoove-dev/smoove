@@ -349,7 +349,7 @@ export function TimelineMixin<TBase extends TimelineBase>(
 
         v._kmTick?.(local, tickMedia);
       }
-      
+
       for (const c of this.getChildren()) {
         if (isKMLayoutRoot(c)) c._kmComputeLayout();
       }

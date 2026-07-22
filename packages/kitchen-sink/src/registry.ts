@@ -6,6 +6,9 @@ import audiogram from "./compositions/audiogram/index.js";
 // Basics.
 import basic from "./compositions/basic/index.js";
 import bouncing from "./compositions/bouncing/index.js";
+// Components.
+import clipPunch from "./compositions/clip-punch/index.js";
+import clipTimelines from "./compositions/clip-timelines/index.js";
 // Film.
 import code from "./compositions/code/index.js";
 import codeEdit from "./compositions/code-edit/index.js";
@@ -38,13 +41,10 @@ import shapesFlex from "./compositions/shapes-flex/index.js";
 import shapesPlayground from "./compositions/shapes-playground/index.js";
 import smooveShowcase from "./compositions/snoove-showcase/index.js";
 import staggered from "./compositions/staggered/index.js";
-// Components.
-import clipPunch from "./compositions/clip-punch/index.js";
-import clipTimelines from "./compositions/clip-timelines/index.js";
 import textFit from "./compositions/text-fit/index.js";
-import tickableMark from "./compositions/tickable-mark/index.js";
 import textHighlight from "./compositions/text-highlight/index.js";
 import textTypewriter from "./compositions/text-typewriter/index.js";
+import tickableMark from "./compositions/tickable-mark/index.js";
 import transforms from "./compositions/transforms/index.js";
 // Transitions.
 import trBookFlip from "./compositions/transitions/tr-book-flip/index.js";

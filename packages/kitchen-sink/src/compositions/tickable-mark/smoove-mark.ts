@@ -83,7 +83,7 @@ export function smooveMark(props: SmooveMarkProps): Clip {
     strokeLinearGradientEndPoint: { x: GRADIENT_X[1], y: MID_Y },
     strokeLinearGradientColorStops: [0, gradientFrom, 1, gradientTo],
   };
-  
+
   const bars = BARS.map(({ x, half }) => {
     const node = new Line({
       points: [x, MID_Y, x, MID_Y],

@@ -22,7 +22,7 @@ const comp = new Composition({
 
 const INK = "#0d1117";
 const TRACK = "#1f2933";
-const TEXT = "#e6edf3";
+// const TEXT = "#e6edf3";
 const MUTED = "#8b949e";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 const SANS = "Inter, ui-sans-serif, system-ui, sans-serif";
