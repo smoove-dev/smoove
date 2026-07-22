@@ -78,6 +78,30 @@ extrapolateRight })` + `Easing` (`Easing.in/out/inOut(Easing.cubic|quad|...)`,
 *after* updaters — animate `opacity()`, `scale()`, `rotation()`, or flex
 props (`flexGrow`, `gap`, `padding`, `alignSelf`) instead. Details: [rules/animation.md](rules/animation.md).
 
+## Components & nested timelines
+
+`Clip` is a range-gated, tickable `Group`: `Sequence` semantics without the
+per-layer canvas, nestable to any depth. A shareable component is a plain
+function that builds a `Clip`, registers an updater, and returns it:
+
+```ts
+export function pulseDot({ size, ...clipOpts }: Props): Clip {
+  const clip = new Clip(clipOpts); // from/durationInFrames + any GroupConfig
+  clip.add(new Circle({ /* geometry in a fixed unit box, scaled by size */ }));
+  clip.register((frame, { time }) => { /* seconds via info.time = fps-portable */ });
+  return clip;
+}
+seq.add(pulseDot({ size: 120, x: 400, y: 300, from: 60 }));
+```
+
+Every updater (on `Sequence` and `Clip`) receives `(frame, info)` with
+`info = { time, fps, durationInFrames, globalFrame }`. Every smoove node has
+`getComposition()`/`getSequence()`/`getClip()`, and `Composition`/`Sequence`/
+`Clip` expose cached `query()`/`queryOne()` (Konva selectors: `#id`, `.name`,
+`TypeName`), cheap to call every frame (e.g. duck the `#music` audio from a
+voice-over updater). Keep `Audio`/`Video` directly in a `Sequence` for now.
+Details: [rules/components.md](rules/components.md).
+
 ## Layout
 
 Drop `Flex`/`Block` into a sequence for CSS-flexbox-like auto layout
@@ -119,7 +143,8 @@ motion. Recipes + the scale-not-radius gotcha:
 
 ## Topic index
 
-[sequencing](rules/sequencing.md) · [layout](rules/layout.md) ·
+[sequencing](rules/sequencing.md) · [components](rules/components.md) ·
+[layout](rules/layout.md) ·
 [animation](rules/animation.md) · [text](rules/text.md) ·
 [shapes](rules/shapes.md) · [media](rules/media.md) ·
 [performance](rules/performance.md) ·

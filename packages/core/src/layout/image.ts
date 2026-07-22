@@ -1,4 +1,5 @@
 import Konva from "konva";
+import { findClip, findComposition, findSequence } from "../engine/ancestry.js";
 import { getComposition } from "../engine/composition.js";
 import {
   getDefaultImageLoader,
@@ -64,6 +65,21 @@ function pickKonvaConfig(config: ImageConfig): Konva.GroupConfig {
 }
 
 export class Image extends Konva.Group implements KMLayoutNode {
+  /** The owning composition, or `null` while detached — like `getStage()`. */
+  getComposition(): ReturnType<typeof findComposition> {
+    return findComposition(this);
+  }
+
+  /** The host sequence (nearest ancestor-or-self layer), or `null`. */
+  getSequence(): ReturnType<typeof findSequence> {
+    return findSequence(this);
+  }
+
+  /** The nearest ancestor-or-self `Clip`, or `null`. */
+  getClip(): ReturnType<typeof findClip> {
+    return findClip(this);
+  }
+
   readonly _kmRole = "leaf" as const;
   private readonly _img: Konva.Image;
   private _source: LoadedImage | null = null;

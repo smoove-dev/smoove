@@ -39,7 +39,7 @@ describe("Sequence tickable cache", () => {
     seq.add(node); // added after activation
 
     comp.setFrame(1);
-    expect(tick).toHaveBeenCalledWith(1);
+    expect(tick).toHaveBeenCalledWith(1, true);
   });
 
   it("still ticks nodes added before the sequence is added (baseline)", () => {
@@ -50,6 +50,6 @@ describe("Sequence tickable cache", () => {
     comp.add(seq);
 
     comp.setFrame(2);
-    expect(tick).toHaveBeenCalledWith(2);
+    expect(tick).toHaveBeenCalledWith(2, true);
   });
 });

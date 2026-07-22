@@ -1,5 +1,11 @@
 import type { Node as FlexilyNode } from "flexily/classic";
 import type Konva from "konva";
+import {
+  type AncestryMethods,
+  findClip,
+  findComposition,
+  findSequence,
+} from "../../engine/ancestry.js";
 import type { KMLayoutNode, LayoutBox } from "../contract.js";
 import { type Measurement, type MeasureOptions, measure as measureNode } from "../measure.js";
 import { applySize, parseSize } from "./engine.js";
@@ -110,7 +116,7 @@ export function FlexShape<N extends Konva.Shape, C extends LeafConfig = LeafConf
   Base: new (...args: any[]) => N,
 ): new (
   config: C,
-) => N & KMLayoutNode & { measure(opts?: MeasureOptions): Measurement } {
+) => N & KMLayoutNode & AncestryMethods & { measure(opts?: MeasureOptions): Measurement } {
   class Wrapped extends (Base as unknown as new (config?: unknown) => Konva.Shape) {
     readonly _kmRole = "leaf" as const;
     constructor(config: LeafConfig = {}) {
@@ -127,8 +133,20 @@ export function FlexShape<N extends Konva.Shape, C extends LeafConfig = LeafConf
     measure(opts?: MeasureOptions): Measurement {
       return measureNode(this, opts);
     }
+    /** The owning composition, or `null` while detached — like `getStage()`. */
+    getComposition(): ReturnType<typeof findComposition> {
+      return findComposition(this);
+    }
+    /** The host sequence (nearest ancestor-or-self layer), or `null`. */
+    getSequence(): ReturnType<typeof findSequence> {
+      return findSequence(this);
+    }
+    /** The nearest ancestor-or-self `Clip`, or `null`. */
+    getClip(): ReturnType<typeof findClip> {
+      return findClip(this);
+    }
   }
   return Wrapped as unknown as new (
     config: C,
-  ) => N & KMLayoutNode & { measure(opts?: MeasureOptions): Measurement };
+  ) => N & KMLayoutNode & AncestryMethods & { measure(opts?: MeasureOptions): Measurement };
 }

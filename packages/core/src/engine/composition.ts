@@ -7,6 +7,7 @@ import { detectEnvironment, type Environment, type EnvironmentMode } from "./env
 import { type FrameAnchor, resolveFrameAnchor } from "./marker.js";
 import { Sequence, type SequenceProvider } from "./sequence.js";
 import { createSignal, derived, type ReadonlySignal, type Signal } from "./signal.js";
+import { type QuerySelector, runQuery } from "./timeline.js";
 
 /** A SequenceProvider duck-types on a `sequences()` method (Konva layers lack one). */
 function isSequenceProvider(x: Konva.Layer | SequenceProvider): x is SequenceProvider {
@@ -146,6 +147,10 @@ export class Composition<
   // Reused scratch canvas for captureCanvas() — avoids a per-frame skia Canvas
   // allocation (native memory V8's GC can't see) during long renders.
   private _captureCanvas: HTMLCanvasElement | null = null;
+
+  // query()/queryOne() results per selector, valid while the structure
+  // version stands still (see structure.ts).
+  private readonly _queryCache = new Map<string, { v: number; res: Konva.Node[] }>();
 
   constructor(opts: CompositionOptions<P>) {
     if (!opts.id) throw new Error("Composition: id is required");
@@ -561,6 +566,21 @@ export class Composition<
       }
     }
     return scratch;
+  }
+
+  /**
+   * Query the whole stage with a Konva selector (`#id`, `.name`, `TypeName`),
+   * cached against the structure version — cheap to call every frame from any
+   * updater, including across sequences (e.g. find the `#music` audio from a
+   * voice-over sequence to duck it). Predicate selectors bypass the cache.
+   */
+  query<T extends Konva.Node = Konva.Node>(selector: QuerySelector): T[] {
+    return runQuery(this, this._queryCache, selector) as T[];
+  }
+
+  /** First {@link query} match, or `null`. */
+  queryOne<T extends Konva.Node = Konva.Node>(selector: QuerySelector): T | null {
+    return (this.query<T>(selector)[0] as T | undefined) ?? null;
   }
 
   /** @internal — {@link RenderingAudioDriver} records one sample per audio per frame. */

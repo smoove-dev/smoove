@@ -1,5 +1,6 @@
 import { DIRECTION_LTR } from "flexily/classic";
 import Konva from "konva";
+import { findClip, findComposition, findSequence } from "../../engine/ancestry.js";
 import { isKMLayoutNode, type KMLayoutNode, type LayoutBox } from "../contract.js";
 import { type Measurement, type MeasureOptions, measure as measureNode } from "../measure.js";
 import {
@@ -37,6 +38,21 @@ function pickKonvaConfig(config: FlexConfig): Konva.GroupConfig {
 }
 
 export class Flex extends Konva.Group implements KMLayoutNode {
+  /** The owning composition, or `null` while detached — like `getStage()`. */
+  getComposition(): ReturnType<typeof findComposition> {
+    return findComposition(this);
+  }
+
+  /** The host sequence (nearest ancestor-or-self layer), or `null`. */
+  getSequence(): ReturnType<typeof findSequence> {
+    return findSequence(this);
+  }
+
+  /** The nearest ancestor-or-self `Clip`, or `null`. */
+  getClip(): ReturnType<typeof findClip> {
+    return findClip(this);
+  }
+
   readonly _kmRole = "container" as const;
 
   constructor(config: FlexConfig) {

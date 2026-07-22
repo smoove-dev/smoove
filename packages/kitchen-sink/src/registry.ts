@@ -38,7 +38,11 @@ import shapesFlex from "./compositions/shapes-flex/index.js";
 import shapesPlayground from "./compositions/shapes-playground/index.js";
 import smooveShowcase from "./compositions/snoove-showcase/index.js";
 import staggered from "./compositions/staggered/index.js";
+// Components.
+import clipPunch from "./compositions/clip-punch/index.js";
+import clipTimelines from "./compositions/clip-timelines/index.js";
 import textFit from "./compositions/text-fit/index.js";
+import tickableMark from "./compositions/tickable-mark/index.js";
 import textHighlight from "./compositions/text-highlight/index.js";
 import textTypewriter from "./compositions/text-typewriter/index.js";
 import transforms from "./compositions/transforms/index.js";
@@ -103,6 +107,10 @@ export default defineRegistry([
   shapesPlayground,
   igStory,
   journey,
+  // Components.
+  tickableMark,
+  clipPunch,
+  clipTimelines,
   // Images.
   imageSlider,
   imageFade,
