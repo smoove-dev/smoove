@@ -1,0 +1,198 @@
+---
+title: Clips
+description: Nest a timeline inside a sequence, with local frames, range gating, and shareable components.
+---
+
+A `Clip` is a timeline you can nest. It covers a window on the timeline,
+`[from, from + durationInFrames)`, and only runs and paints while the playhead
+is inside it, the same way a [Sequence](/docs/sequencing) does. The difference
+is where it sits. A sequence is a layer on the composition; a clip is a group
+inside a sequence, so you can put one anywhere in the tree, at any depth.
+
+```ts
+import { Clip, Sequence } from "@smoove/core";
+
+const scene = new Sequence();
+
+const intro = new Clip({ from: 30, durationInFrames: 90 });
+intro.register((frame) => {
+  badge.opacity(interpolate(frame, [0, 15], [0, 1], { extrapolateRight: "clamp" }));
+});
+scene.add(intro);
+```
+
+That clip runs on frames 30 to 119 of `scene`, and its updater reads `0` on
+frame 30. While the playhead is outside the window, the clip is hidden and its
+updaters sit idle.
+
+Reach for a clip when part of a scene has its own beginning and end: a card
+that flies in and out, a callout that holds for a beat, a logo animation you
+want to drop into any composition.
+
+## The same options as a sequence
+
+`from`, `durationInFrames`, `until`, and `span` mean what they mean on a
+sequence, so moving code between the two is mechanical:
+
+```ts
+new Clip({ from: 30, durationInFrames: 90 }); // 90 frames, starting at 30
+new Clip({ from: 30, until: 120 }); // the same window, written as an end
+new Clip({ span: beat }); // exactly one marker's range
+new Clip(); // the whole parent timeline
+```
+
+Both options have defaults. `from` is `0`, and `durationInFrames` is whatever
+is left of the parent after `from`. A clip with no options covers its parent
+completely, which is the shape you want when you are grouping for structure
+rather than for timing.
+
+The frame numbers are **parent-local**. A clip inside a sequence counts in that
+sequence's frames, and a clip inside a clip counts in that clip's frames. You
+never have to know where a clip ended up on the composition to place something
+inside it.
+
+A clip also takes every `Group` option, so position, scale, opacity and
+rotation work as usual:
+
+```ts
+const card = new Clip({ from: 20, durationInFrames: 60, x: 240, y: 120 });
+```
+
+<Callout type="info" title="Two meanings of the word clip">
+Konva already has `clip` and `clipFunc` props for masking, and they keep
+working on a `Clip` node. `new Clip({ from: 30, clip: { x: 0, y: 0, width: 200,
+height: 200 } })` is a timeline that also masks its children. The timeline
+meaning is the class; the masking meaning is the prop.
+</Callout>
+
+## What an updater receives
+
+Every updater takes the local frame first, and a second argument with the rest
+of the frame's context:
+
+```ts
+clip.register((frame, info) => {
+  info.time; // local seconds: frame / fps
+  info.fps; // the composition's fps
+  info.durationInFrames; // this timeline's own span
+  info.globalFrame; // the composition frame
+});
+```
+
+This is the same signature on `Sequence`, so both kinds of timeline behave
+identically here. Updaters that only take `frame` keep working untouched.
+
+`info.time` is the one to reach for when you want motion that survives a change
+of frame rate. Timing written in frames is tied to the `fps` you wrote it at;
+timing written in seconds is not:
+
+```ts
+// plays over half a second at any fps
+const t = interpolate(info.time, [0, 0.5], [0, 1], { extrapolateRight: "clamp" });
+```
+
+## Nesting and local clocks
+
+Clips nest, and every level counts from its own zero. An inner clip's `from` is
+measured in the outer clip's frames, so a nested piece keeps its timing when
+you move the parent.
+
+```ts
+const outer = new Clip({ from: 30, durationInFrames: 120 }); // comp frames 30 to 149
+const inner = new Clip({ from: 40, durationInFrames: 60 }); // comp frames 70 to 129
+outer.add(inner);
+scene.add(outer);
+```
+
+Move `outer` to `from: 60` and the inner clip follows to frame 100, with no
+edit of its own. Gating nests the same way: when a parent clip closes, its
+children stop running whether or not their own window is still open.
+
+<Demo name="clip-nesting" label="a sequence, a clip, and a nested clip, each on its own clock" />
+
+## Anchoring to markers
+
+`from` and `until` accept [markers](/docs/markers) as well as numbers, which is
+how you keep a clip attached to a beat instead of to a frame count:
+
+```ts
+const beats = plan({
+  intro: { durationInFrames: 90 },
+  body: { durationInFrames: 150 },
+});
+
+scene.add(new Clip({ span: beats.body }));
+scene.add(new Clip({ from: beats.body.start.add(-10), durationInFrames: 40 }));
+```
+
+Marker points always resolve to composition frames. A clip re-bases them onto
+its parent for you, so a marker works at any nesting depth and still lands
+where the marker says.
+
+Clips hand out markers too. `clip.marker()` gives you a handle on the clip's own
+placement, so other parts of the scene can anchor to it:
+
+```ts
+const cue = new Sequence({ from: card.marker().end, durationInFrames: 30 });
+```
+
+## Writing a shareable component
+
+Because a clip carries its own timing, a component is a function that builds one
+and hands it back. No base class, no registration step:
+
+```ts
+// Geometry is authored in a 100 unit box, then scaled to the size asked for.
+export function beacon({ size, delay = 0, ...placement }: BeaconProps): Clip {
+  const clip = new Clip({ ...placement, scaleX: size / 100, scaleY: size / 100 });
+  const core = new Circle({ x: 50, y: 50, radius: 14, fill: "#80ffdb" });
+  clip.add(core);
+
+  clip.register((_frame, info) => {
+    const t = (info.time - delay + 2) % 2;
+    const beat = interpolate(t, [0, 0.12, 0.5], [1, 1.35, 1], { extrapolateRight: "clamp" });
+    core.scaleX(beat);
+    core.scaleY(beat);
+  });
+
+  return clip;
+}
+```
+
+Callers place it like any other node, and pass timing options through to the
+clip:
+
+```ts
+scene.add(beacon({ size: 160, x: 400, y: 200 }));
+scene.add(beacon({ size: 80, x: 700, y: 240, from: 45 }));
+```
+
+Three conventions make a component behave the same wherever it lands:
+
+- Author the geometry in a fixed box (100 units above) and scale the clip by
+  `size`, so the proportions hold at any size.
+- Author the timing in seconds through `info.time`, so the motion holds at any
+  frame rate.
+- Keep the updater a pure function of the frame, so the component scrubs and
+  renders like the rest of the scene.
+
+Accepting `ClipOptions` in the props is worth doing as well. It lets a caller
+pass `from`, `durationInFrames`, or `span` straight through, so your component
+can be scheduled on the timeline without knowing anything about it.
+
+<Demo name="clip-component" label="one beacon() component, mounted at three sizes and three delays" />
+
+## Media inside a clip
+
+Keep `Video` and `Audio` nodes directly in a `Sequence` for now. Media
+scheduling for offline rendering is computed from sequence windows, so a media
+node nested inside a clip is not yet placed correctly by the renderer. Shapes,
+text, images and groups are supported at any depth.
+
+## Next steps
+
+- [Sequencing](/docs/sequencing): arranging whole scenes, and `Series`.
+- [Timeline markers](/docs/markers): naming beats so retiming moves everything
+  anchored to them.
+- [Core concepts](/docs/core-concepts): the tick loop, and finding nodes from an
+  updater.

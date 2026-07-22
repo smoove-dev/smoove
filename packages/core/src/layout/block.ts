@@ -1,4 +1,5 @@
 import Konva from "konva";
+import { findClip, findComposition, findSequence } from "../engine/ancestry.js";
 import type { KMLayoutNode, LayoutBox } from "./contract.js";
 import { normalizeEdges, parseSize } from "./flex/engine.js";
 import { layoutRoot } from "./flex/flex.js";
@@ -79,6 +80,21 @@ function firstColor(c: EdgeColor | undefined): string | undefined {
 }
 
 export class Block extends Konva.Group implements KMLayoutNode {
+  /** The owning composition, or `null` while detached — like `getStage()`. */
+  getComposition(): ReturnType<typeof findComposition> {
+    return findComposition(this);
+  }
+
+  /** The host sequence (nearest ancestor-or-self layer), or `null`. */
+  getSequence(): ReturnType<typeof findSequence> {
+    return findSequence(this);
+  }
+
+  /** The nearest ancestor-or-self `Clip`, or `null`. */
+  getClip(): ReturnType<typeof findClip> {
+    return findClip(this);
+  }
+
   readonly _kmRole = "container" as const;
   private readonly _bg: Konva.Rect;
 
@@ -179,9 +195,16 @@ function applyBackground(
   w: number,
   h: number,
 ): void {
-  rect.fill("");
-  rect.fillLinearGradientColorStops([]);
-  rect.fillRadialGradientColorStops([]);
+  // Reset to a truly fill-less state. Konva's hasFill() treats an EMPTY stops
+  // array as "has fill" (`!![]`), and a zero-stop gradient paints opaque black
+  // under skia-canvas (transparent in browsers) — so clear the attrs to
+  // undefined rather than [] or a background-less Block blacks out every
+  // layer beneath it in server renders.
+  rect.setAttrs({
+    fill: undefined,
+    fillLinearGradientColorStops: undefined,
+    fillRadialGradientColorStops: undefined,
+  });
   if (bg === undefined) return;
   if (typeof bg === "string") {
     rect.fill(bg);

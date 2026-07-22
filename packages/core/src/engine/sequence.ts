@@ -1,44 +1,12 @@
 import Konva from "konva";
-import { isKMLayoutRoot } from "../layout/contract.js";
-import { MEDIA_MARK, TICK_MARK } from "../markers.js";
+import { findClip, findComposition, findSequence } from "./ancestry.js";
 import { getComposition } from "./composition.js";
-import {
-  type FrameAnchor,
-  Marker,
-  type MarkerSource,
-  resolveFrameAnchor,
-  type ScenePlacement,
-} from "./marker.js";
+import { type FrameAnchor, resolveFrameAnchor } from "./marker.js";
+import { parseTimelineOptions, TimelineMixin, type TimelineOptions } from "./timeline.js";
 
-export type SequenceOptions = Konva.LayerConfig & {
-  /**
-   * Composition frame this sequence starts on: an absolute frame, or a
-   * `Marker`/`MarkerPoint` resolved live (retiming the marked scene moves
-   * this sequence with it). Defaults to `0`.
-   */
-  from?: FrameAnchor;
-  /**
-   * How many frames the sequence spans. When omitted it defaults to the host
-   * composition's `durationInFrames` — i.e. a layer spanning the whole comp.
-   * Resolved live once added (see {@link Sequence.durationInFrames}).
-   * Mutually exclusive with {@link until}.
-   */
-  durationInFrames?: number;
-  /**
-   * End anchor: the span becomes `resolve(until) − resolve(from)`, kept live
-   * so retiming either end moves the window. Mutually exclusive with
-   * {@link durationInFrames}.
-   */
-  until?: FrameAnchor;
-  /**
-   * Span exactly this marker's range — sugar for
-   * `{ from: marker.start, until: marker.end }`. Mutually exclusive with
-   * `from`, `durationInFrames`, and `until`.
-   */
-  span?: Marker;
-};
+export type SequenceOptions = Konva.LayerConfig & TimelineOptions;
 
-export type Updater = (localFrame: number) => void;
+export type { FrameInfo, Updater } from "./timeline.js";
 
 /**
  * Anything that expands into a list of `Sequence`s — e.g. `Series` or
@@ -48,145 +16,54 @@ export type Updater = (localFrame: number) => void;
  */
 export type SequenceProvider = { sequences(): Sequence[] };
 
-/** Media nodes (video/audio) are discovered by marker attr to keep this file independent of `video/`+`audio/`. */
-type MediaNode = Konva.Node & {
-  _kmTick?: (localFrame: number) => void;
-  _kmDeactivate?: () => void;
-};
-
-export class Sequence extends Konva.Layer implements MarkerSource {
-  private readonly _from: FrameAnchor;
-  /** Explicit span, or `undefined` to default to `until`/the host comp's duration. */
-  private readonly _durationInFrames?: number;
-  private readonly _until?: FrameAnchor;
-  private readonly _updaters = new Set<Updater>();
-  private _active = false;
-  private _media: MediaNode[] = [];
-  // Tickable cache is rebuilt lazily: `_apply` caches the media/tick subtree once
-  // per activation to avoid a `find()` every frame, but the subtree can still
-  // change *after* activation — a Composition activates a Sequence the moment it
-  // is added (to paint frame 0), and `comp.add(seq)` is commonly followed by
-  // `seq.add(video)`. Marking the cache dirty on every `add` keeps late-added
-  // media (and text tickers) from being silently dropped from the frame loop.
-  private _mediaDirty = true;
-  // Last local frame applied while active — used to skip redundant re-applies
-  // (updaters + layout + draw) when nothing about the playhead changed. `-1` is
-  // a sentinel that never equals a real local frame, so the first apply always runs.
-  private _lastLocal = -1;
-
+/**
+ * A range-gated `Konva.Layer`: visible and ticked only while the playhead is
+ * in `[from, from + durationInFrames)`. The timeline behavior (options,
+ * `register`, `marker`, tickable discovery, the frame pass) lives in the
+ * shared {@link TimelineMixin}; this class owns the Layer duties — canvas
+ * visibility, draw scheduling, and being driven by `Composition._apply`.
+ */
+export class Sequence extends TimelineMixin(Konva.Layer) {
   constructor(opts: SequenceOptions = {}) {
-    const { from = 0, durationInFrames, until, span, ...layerOpts } = opts;
-    if (
-      span !== undefined &&
-      ("from" in opts || durationInFrames !== undefined || until !== undefined)
-    ) {
-      throw new Error("Sequence: span is mutually exclusive with from/durationInFrames/until");
-    }
-    if (typeof from === "number" && (!Number.isInteger(from) || from < 0)) {
-      throw new Error("Sequence: from must be a non-negative integer");
-    }
-    if (durationInFrames !== undefined && until !== undefined) {
-      throw new Error("Sequence: durationInFrames and until are mutually exclusive — provide one");
-    }
-    // durationInFrames is optional: when omitted it resolves to the host comp's
-    // duration (see the getter). Only validate an explicitly provided value.
-    if (
-      durationInFrames !== undefined &&
-      (!Number.isInteger(durationInFrames) || durationInFrames <= 0)
-    ) {
-      throw new Error("Sequence: durationInFrames must be a positive integer");
-    }
-    if (typeof until === "number" && (!Number.isInteger(until) || until <= 0)) {
-      throw new Error("Sequence: until must be a positive integer frame");
-    }
+    const { from, durationInFrames, until, span, ...layerOpts } = opts;
+    void from;
+    void durationInFrames;
+    void until;
+    void span;
+    const parsed = parseTimelineOptions("Sequence", opts);
     super({ ...layerOpts, visible: false });
-    this._from = span !== undefined ? span.start : from;
-    this._durationInFrames = durationInFrames;
-    this._until = span !== undefined ? span.end : until;
+    this._kmInitTimeline("Sequence", parsed);
   }
 
-  /**
-   * Konva's `add`, plus a tickable-cache invalidation: media/text-ticker nodes
-   * added to an already-active Sequence (the usual `comp.add(seq)` then
-   * `seq.add(video)` order) must still join the frame loop. Direct adds cover
-   * the common case; nodes buried inside a subtree that is itself added here are
-   * caught too, because {@link _tickables} re-`find()`s the whole subtree.
-   */
-  override add(...children: (Konva.Group | Konva.Shape)[]): this {
-    super.add(...children);
-    this._mediaDirty = true;
-    return this;
+  /** A `Sequence` lives in composition frames — anchors resolve absolutely. */
+  override _kmResolveAnchor(anchor: FrameAnchor): number {
+    return resolveFrameAnchor(anchor);
   }
 
-  /**
-   * The cached media/text-ticker descendants, rebuilt only when the subtree
-   * changed since the last walk. Includes media (`MEDIA_MARK`) plus non-media
-   * tickers (`TICK_MARK`, e.g. a Text typewriter).
-   */
-  private _tickables(): MediaNode[] {
-    if (this._mediaDirty) {
-      this._media = this.find(
-        (n: Konva.Node) => n.getAttr(MEDIA_MARK) === true || n.getAttr(TICK_MARK) === true,
-      ) as MediaNode[];
-      this._mediaDirty = false;
-    }
-    return this._media;
-  }
-
-  /**
-   * Composition frame this sequence starts on. Marker-valued `from` resolves
-   * on every read (live, like {@link durationInFrames}), so retiming the
-   * marked scene moves this sequence automatically.
-   */
-  get from(): number {
-    return resolveFrameAnchor(this._from);
-  }
-
-  /**
-   * Frames this sequence spans. With `until`, resolves live as
-   * `resolve(until) − resolve(from)`. When constructed without an explicit
-   * span, this resolves **live** to the host composition's
-   * `durationInFrames` — a layer that spans the whole comp. Before the
-   * sequence is added to a composition (no reachable stage) it reports
-   * `Infinity`, meaning "unbounded"; `_apply` is only ever driven by the
-   * comp, so by then the real duration is reachable.
-   */
-  get durationInFrames(): number {
-    if (this._until !== undefined) {
-      const from = this.from;
-      const until = resolveFrameAnchor(this._until);
-      const d = until - from;
-      if (d <= 0) {
-        throw new Error(`Sequence: until (${until}) must be after from (${from})`);
-      }
-      return d;
-    }
-    if (this._durationInFrames !== undefined) return this._durationInFrames;
+  /** Default span: the host composition's duration (live), else `Infinity`. */
+  override _kmDefaultDuration(): number {
     const stage = this.getStage();
     const comp = stage && getComposition(stage);
     return comp ? comp.durationInFrames.get() : Number.POSITIVE_INFINITY;
   }
 
-  /**
-   * A {@link Marker} onto this sequence's own placement — no name, a
-   * sequence *is* a single scene. Anchor other sequences to it:
-   * `new Sequence({ from: intro.marker().end })`.
-   */
-  marker(): Marker {
-    return new Marker(this);
+  override _kmAbsoluteStart(): number {
+    return this.from;
   }
 
-  /** @internal marker-source hook. A plain sequence has no incoming overlap. */
-  _kmResolveMarker(): ScenePlacement {
-    const from = this.from;
-    return { from, end: from + this.durationInFrames, settled: from };
+  /** The owning composition, or `null` while detached — like `getStage()`. */
+  getComposition(): ReturnType<typeof findComposition> {
+    return findComposition(this);
   }
 
-  register(updater: Updater): () => void {
-    this._updaters.add(updater);
-    return () => {
-      this._updaters.delete(updater);
-    };
+  /** Self-inclusive, like Konva's `getLayer()` on a layer: returns this sequence. */
+  getSequence(): ReturnType<typeof findSequence> {
+    return findSequence(this);
+  }
+
+  /** The nearest ancestor-or-self `Clip` — always `null` for a sequence. */
+  getClip(): ReturnType<typeof findClip> {
+    return findClip(this);
   }
 
   /**
@@ -202,52 +79,26 @@ export class Sequence extends Konva.Layer implements MarkerSource {
   _apply(frame: number, force = false): void {
     const inRange = frame >= this.from && frame < this.from + this.durationInFrames;
     if (inRange) {
-      const becameActive = !this._active;
+      const becameActive = !this._kmActive;
       if (becameActive) {
         this.visible(true);
-        this._active = true;
+        this._kmActive = true;
       }
       const local = frame - this.from;
       // Skip redundant work: same playhead, already active, and not forced.
-      if (!becameActive && !force && local === this._lastLocal) return;
-      this._lastLocal = local;
+      if (!becameActive && !force && local === this._kmLastLocal) return;
+      this._kmLastLocal = local;
       this._kmRunFrame(local, true);
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the
       // newly-displayed layer (avoids a one-frame flash of stale content).
       if (becameActive) this.draw();
       else this.batchDraw();
-    } else if (this._active) {
+    } else if (this._kmActive) {
       this.visible(false);
-      this._active = false;
-      this._lastLocal = -1;
-      for (const v of this._media) v._kmDeactivate?.();
-    }
-  }
-
-  /**
-   * Internal — the frame pass shared by {@link _apply} and `measure()`:
-   * updaters, ticks, then flex layout of every direct-child layout root. No
-   * visibility change, no draw, no `_lastLocal` bookkeeping — callers own
-   * that. With `tickMedia: false` (the measure path) media-only nodes
-   * (`MEDIA_MARK` without `TICK_MARK`) are skipped: media state never affects
-   * layout, and ticking a video at a foreign frame would trigger spurious
-   * seeks.
-   */
-  _kmRunFrame(local: number, tickMedia: boolean): void {
-    const tickables = this._tickables();
-    for (const u of this._updaters) u(local);
-    // Tick BEFORE layout: a ticked node may change its measured size (e.g. a
-    // Text typewriter revealing another line), and the flex pass must see the
-    // up-to-date size this frame rather than lagging one behind.
-    for (const v of tickables) {
-      if (!tickMedia && v.getAttr(MEDIA_MARK) === true && v.getAttr(TICK_MARK) !== true) {
-        continue;
-      }
-      v._kmTick?.(local);
-    }
-    for (const c of this.getChildren()) {
-      if (isKMLayoutRoot(c)) c._kmComputeLayout();
+      this._kmActive = false;
+      this._kmLastLocal = -1;
+      this._kmDeactivateSubtree();
     }
   }
 
@@ -256,7 +107,7 @@ export class Sequence extends Konva.Layer implements MarkerSource {
    * uses this to restore an active sequence after a foreign-frame pass.
    */
   _kmLiveLocal(): number | null {
-    return this._active ? this._lastLocal : null;
+    return this._kmActive ? this._kmLastLocal : null;
   }
 
   /**
@@ -266,10 +117,10 @@ export class Sequence extends Konva.Layer implements MarkerSource {
    * {@link _apply} re-activates it normally.
    */
   _kmHide(): void {
-    if (!this._active && !this.visible()) return;
+    if (!this._kmActive && !this.visible()) return;
     this.visible(false);
-    this._active = false;
-    this._lastLocal = -1;
-    for (const v of this._media) v._kmDeactivate?.();
+    this._kmActive = false;
+    this._kmLastLocal = -1;
+    this._kmDeactivateSubtree();
   }
 }

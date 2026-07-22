@@ -12,6 +12,11 @@ about putting several of these together.
 There are two moves you reach for constantly: staggering many nodes inside one
 sequence, and laying scenes back-to-back with `Series`.
 
+For a piece *within* a scene that has its own start and end, you want a
+[Clip](/docs/clips) rather than another sequence. It gates the same way and
+takes the same options, but it nests inside a sequence and counts frames from
+its own zero.
+
 ## Staggering N nodes
 
 A stagger is the same tween applied to many nodes, each shifted by a per-index
@@ -84,6 +89,8 @@ object and let each scene's updater destructure the part it needs.
 
 ## Next steps
 
+- [Clips](/docs/clips): nest a timeline inside a scene, and package one as a
+  reusable component.
 - [Timeline markers](/docs/markers): name a scene and anchor cues to it, so
   retiming a beat moves everything anchored to it.
 - [Shapes](/docs/shapes): the drawing vocabulary you sequence.
