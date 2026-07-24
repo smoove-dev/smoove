@@ -9,6 +9,8 @@ import "./app.css";
 import playerScriptUrl from "@smoove/player/standalone?url";
 import playerStylesUrl from "@smoove/player/styles.css?url";
 
+const GA_MEASUREMENT_ID = "G-J3MQYHTLYE";
+
 export function links() {
   return [
     { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
@@ -19,6 +21,9 @@ export function links() {
       href: "https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap",
     },
     { rel: "stylesheet", href: playerStylesUrl },
+    ...(import.meta.env.PROD
+      ? [{ rel: "preconnect" as const, href: "https://www.googletagmanager.com" }]
+      : []),
   ];
 }
 
@@ -35,6 +40,25 @@ export function Layout({ children }: { children: ReactNode }) {
         {/* Registers <smoove-player> + controls and pins window.Smoove / Konva.
             type="module" defers it, so element upgrade happens post-parse. */}
         <script type="module" src={playerScriptUrl} />
+        {/* Google Analytics (gtag.js). Production only, so local dev and
+            preview builds don't pollute the property. */}
+        {import.meta.env.PROD && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            />
+            <script
+              // biome-ignore lint/security/noDangerouslySetInnerHtml: gtag bootstrap must be inline.
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');`,
+              }}
+            />
+          </>
+        )}
       </head>
       <body>
         <RootProvider theme={{ defaultTheme: "dark" }}>{children}</RootProvider>
