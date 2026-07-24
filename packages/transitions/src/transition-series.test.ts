@@ -3,6 +3,8 @@ import Konva from "konva";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { type GlCompositor, setCompositorFactory } from "./gl/compositor.js";
 import { fade } from "./presentations/fade.js";
+import { none } from "./presentations/none.js";
+import { slide } from "./presentations/slide.js";
 import { zoomBlur } from "./presentations/zoom-blur.js";
 import { linearTiming } from "./timings/linear-timing.js";
 import { TransitionSeries } from "./transition-series.js";
@@ -125,5 +127,85 @@ describe("TransitionSeries — Tier A (non-GL) transitions are unaffected", () =
     comp.setFrame(55); // inside the overlap
     expect(layerA.visible()).toBe(true);
     expect(layerB.visible()).toBe(true);
+  });
+});
+
+describe("TransitionSeries — a scene's layer state is a pure function of the frame", () => {
+  /**
+   * Regression (showcase loop): a scene between two transitions inherits the
+   * layer state its *outgoing* transition left behind. `slide().exit` translates
+   * the layer and nothing puts it back — the layer is simply hidden when the
+   * scene leaves range. On the next pass (a loop, or a scrub back) the scene
+   * re-activates with that translation still applied, and every incoming
+   * presentation that doesn't happen to own `position` leaves it there for the
+   * whole overlap. `none()` owns nothing at all, so the scene played its entire
+   * incoming transition ~1000px off-screen and snapped into place the frame the
+   * overlap ended.
+   */
+  function buildLoopSeries() {
+    const comp = makeComp();
+    const series = new TransitionSeries({ composition: comp, from: 0 });
+    series.scene({ durationInFrames: 60, name: "a" }, (seq) => seq.add(rect("rectA")));
+    series.transition({ presentation: none(), timing: linearTiming({ durationInFrames: 20 }) });
+    series.scene({ durationInFrames: 60, name: "b" }, (seq) => seq.add(rect("rectB")));
+    series.transition({
+      presentation: slide({ direction: "from-right" }),
+      timing: linearTiming({ durationInFrames: 10 }),
+    });
+    series.scene({ durationInFrames: 60, name: "c" }, (seq) => seq.add(rect("rectC")));
+    comp.add(series);
+    const layerB = comp.getLayers().find((l) => l.findOne(".rectB"));
+    if (!layerB) throw new Error("scene layer not found");
+    // b: [40, 100) — its incoming none() overlap is [40, 60), its outgoing
+    // slide() overlap [90, 100).
+    return { comp, layerB, bStart: series.marker("b").start.resolve() };
+  }
+
+  it("re-enters a scene with an identity transform after its exit transition ran", () => {
+    const { comp, layerB, bStart } = buildLoopSeries();
+
+    comp.setFrame(95); // mid-exit: slide has pushed the layer off to the left
+    expect(layerB.x()).toBeLessThan(0);
+
+    comp.setFrame(120); // past scene b — it leaves range and is hidden
+    comp.setFrame(0); // loop back to the top
+    comp.setFrame(bStart); // scene b re-enters, inside its none() overlap
+
+    expect(layerB.x()).toBe(0);
+    expect(layerB.y()).toBe(0);
+  });
+
+  it("keeps the identity transform through the whole incoming overlap", () => {
+    const { comp, layerB, bStart } = buildLoopSeries();
+
+    comp.setFrame(95);
+    comp.setFrame(120);
+    comp.setFrame(0);
+    for (let f = bStart; f < bStart + 20; f++) {
+      comp.setFrame(f);
+      expect(layerB.x()).toBe(0);
+    }
+  });
+
+  it("still lets the incoming presentation own the state it animates", () => {
+    // The reset must not stomp the transition itself: a slide-in still slides.
+    const comp = makeComp();
+    const series = new TransitionSeries({ composition: comp, from: 0 });
+    series.scene({ durationInFrames: 60, name: "a" }, (seq) => seq.add(rect("rectA")));
+    series.transition({
+      presentation: slide({ direction: "from-right" }),
+      timing: linearTiming({ durationInFrames: 10 }),
+    });
+    series.scene({ durationInFrames: 60, name: "b" }, (seq) => seq.add(rect("rectB")));
+    comp.add(series);
+    const layerB = comp.getLayers().find((l) => l.findOne(".rectB"));
+    if (!layerB) throw new Error("scene layer not found");
+
+    comp.setFrame(50); // first frame of the overlap — fully off to the right
+    expect(layerB.x()).toBe(comp.width());
+    comp.setFrame(55); // halfway in
+    expect(layerB.x()).toBeCloseTo(comp.width() / 2);
+    comp.setFrame(60); // settled
+    expect(layerB.x()).toBe(0);
   });
 });

@@ -66,13 +66,19 @@ type Item = SceneItem | TransitionItem;
 
 let warnedNoWebGl = false;
 
-/** Reset a layer to its normal shown, identity-transform state (used between/around transitions). */
+/**
+ * Reset a layer to its normal shown, identity-transform state. Runs at the top
+ * of every frame of a transitioning scene, before the presentation applies its
+ * own state — so what a layer looks like on a given frame depends only on that
+ * frame, never on where a previous frame (or a previous pass over the timeline)
+ * left it.
+ */
 function resetLayer(layer: Konva.Layer): void {
   // Re-show the layer: a Tier B overlay hides its two scene layers each frame of
-  // the overlap so only the blended result paints. This runs first (scene
-  // registers tick before the overlay's), so during the overlap the overlay's
-  // later hide still wins; once the overlap ends the overlay stops running and
-  // this is what brings the scene back.
+  // the overlap so only the blended result paints. Scene registers tick before
+  // the overlay's, so during the overlap the overlay's later hide still wins;
+  // once the overlap ends the overlay stops running and this is what brings the
+  // scene back.
   layer.visible(true);
   layer.opacity(1);
   layer.position({ x: 0, y: 0 });
@@ -292,6 +298,17 @@ export class TransitionSeries implements SequenceProvider, MarkerSource {
       const dur = place.durationInFrames;
       if (incoming || outgoing) {
         seq.register((local) => {
+          // Clear whatever the last frame left on the layer *before* applying
+          // this frame's presentation. A presentation only ever sets the state
+          // it animates (`slide` position, `fade` opacity, `iris` clipFunc) and
+          // nothing puts that state back when the scene leaves range — so
+          // without this reset a scene inherits its own exit transition across
+          // a loop or a scrub, and any incoming presentation that doesn't
+          // happen to own the same property leaves it there for the whole
+          // overlap. `none()` owns nothing at all, which is how the showcase's
+          // layout→video hand-off ended up playing its whole overlap translated
+          // off-screen the second time through.
+          resetLayer(seq);
           if (incoming && local < incoming.duration && !incoming.presentation.gl) {
             const p = incoming.timing.getProgress(local, fps);
             incoming.presentation.enter?.(seq, p, dims);
@@ -302,7 +319,6 @@ export class TransitionSeries implements SequenceProvider, MarkerSource {
             outgoing.presentation.exit?.(seq, p, dims);
             return;
           }
-          resetLayer(seq);
           // A GL overlay hides this layer through its incoming overlap (so only
           // the blend paints), which leaves the layer's own canvas frozen at the
           // frame it was hidden. `resetLayer` above re-shows it, but the first
