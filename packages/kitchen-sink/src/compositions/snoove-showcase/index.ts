@@ -1,14 +1,13 @@
 import type { RegistryEntry } from "@smoove/studio";
-import { type SmooveShowcaseProps, schema } from "./schema";
 
-const entry: RegistryEntry<SmooveShowcaseProps> = {
+const entry: RegistryEntry = {
   id: "smoove-showcase",
-  title: "The Smoove Showcase",
-  group: "Film",
-  description: "Smoove showcase",
-  tags: ["stagger", "fade"],
+  title: "smoove showcase",
+  group: "Showcase",
+  description:
+    "A 48s square cut: greeting, logo, auto layout, masked video, code, the mix, and the call to action.",
+  tags: ["showcase", "square", "1080"],
   composition: () => import("./composition.js"),
-  propsSchema: schema,
 };
 
 export default entry;
