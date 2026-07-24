@@ -33,6 +33,24 @@ export const FONT_MARK = "__kmIsFont";
  * etc. Backs `isGroupNode`.
  */
 export const GROUP_MARK = "__kmIsGroup";
+/**
+ * Set by every timeline node (`Sequence`, `Clip`). Drives nearest-timeline
+ * ancestor walks — each timeline only ticks descendants whose nearest timeline
+ * ancestor is itself, so nothing is ticked twice or with a foreign clock.
+ */
+export const TIMELINE_MARK = "__kmIsTimeline";
+/** Additionally set by `Clip` — backs `isClipNode` / `getClip()`. */
+export const CLIP_MARK = "__kmIsClip";
+
+/** True if `node` is a `Clip`. Marker-based, so it survives across realms. */
+export function isClipNode(node: Konva.Node): boolean {
+  return node.getAttr(CLIP_MARK) === true;
+}
+
+/** True if `node` is a timeline (`Sequence` or `Clip`). */
+export function isTimelineNode(node: Konva.Node): boolean {
+  return node.getAttr(TIMELINE_MARK) === true;
+}
 
 /**
  * True if `node` is an audio media node. A pure mark check with no dependency

@@ -1,5 +1,6 @@
 import Konva from "konva";
 import { stringToArray } from "konva/lib/shapes/Text.js";
+import { findClip, findComposition, findSequence } from "../../engine/ancestry.js";
 import { TICK_MARK } from "../../markers.js";
 import type { KMLayoutNode, LayoutBox, LocalMeasuredLine, MeasureContext } from "../contract.js";
 import { applySize, type FlexilyNode, parseSize, setTextWrapperMeasure } from "../flex/engine.js";
@@ -79,6 +80,21 @@ type KonvaTextInternal = Konva.Text & {
  * the flex engine via {@link _measureForFlex}.
  */
 export class Text extends Konva.Group implements KMLayoutNode {
+  /** The owning composition, or `null` while detached — like `getStage()`. */
+  getComposition(): ReturnType<typeof findComposition> {
+    return findComposition(this);
+  }
+
+  /** The host sequence (nearest ancestor-or-self layer), or `null`. */
+  getSequence(): ReturnType<typeof findSequence> {
+    return findSequence(this);
+  }
+
+  /** The nearest ancestor-or-self `Clip`, or `null`. */
+  getClip(): ReturnType<typeof findClip> {
+    return findClip(this);
+  }
+
   readonly _kmRole = "leaf" as const;
   private readonly _text: KonvaTextInternal;
   /** Clipping wrapper around `_text` — reveals a char range without re-wrapping. */

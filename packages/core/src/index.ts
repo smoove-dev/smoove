@@ -6,6 +6,13 @@ export {
 } from "./animation/interpolate.js";
 export { interpolateColors } from "./animation/interpolate-colors.js";
 export {
+  type AncestryMethods,
+  findClip,
+  findComposition,
+  findSequence,
+} from "./engine/ancestry.js";
+export { Clip, type ClipOptions, isClip } from "./engine/clip.js";
+export {
   type BufferState,
   Composition,
   type CompositionEvent,
@@ -56,6 +63,7 @@ export {
   setDefaultVideoSourceFactory,
 } from "./engine/runtime-defaults.js";
 export {
+  type FrameInfo,
   Sequence,
   type SequenceOptions,
   type SequenceProvider,
@@ -67,6 +75,10 @@ export {
   type SeriesSceneOptions,
 } from "./engine/series.js";
 export { createSignal, type ReadonlySignal, type Signal } from "./engine/signal.js";
+// Type-only on purpose: timeline.js participates in an import cycle with
+// composition.js/sequence.js and must never be the first module of that
+// cluster to evaluate — see the ordering note in timeline.ts.
+export type { QuerySelector, TimelineOptions } from "./engine/timeline.js";
 export {
   type BackgroundValue,
   Block,
@@ -165,12 +177,16 @@ export type {
 } from "./layout/text/types.js";
 export {
   AUDIO_MARK,
+  CLIP_MARK,
   FONT_MARK,
   GROUP_MARK,
   isAudioNode,
+  isClipNode,
+  isTimelineNode,
   isVideoNode,
   MEDIA_MARK,
   TICK_MARK,
+  TIMELINE_MARK,
   VIDEO_MARK,
 } from "./markers.js";
 export type { AudioAsset } from "./media/audio/asset.js";

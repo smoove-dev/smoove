@@ -66,6 +66,21 @@ it's on screen.
 
 <Demo name="range-gate" label="three sequences, gated to their own windows" />
 
+### Clip: a sequence you can nest
+
+A `Sequence` is a layer, so it lives at the top of the composition. When you
+want the same range-gating *inside* a scene, use a [`Clip`](/docs/clips). It
+takes the same options, gates the same way, and nests to any depth, counting
+frames local to whatever timeline holds it.
+
+```ts
+const card = new Clip({ from: 20, durationInFrames: 60 });
+card.register((frame) => {
+  // 0 on frame 20 of the sequence that holds this clip
+});
+scene.add(card);
+```
+
 ### Local frame vs global frame
 
 The updater you pass to `seq.register(...)` receives the **sequence-local**
@@ -84,6 +99,21 @@ outro.register((local) => {
 Local frames let you write a sequence once and place it anywhere on the timeline
 without rewriting its ranges.
 
+An updater gets a second argument with the rest of the frame's context, on both
+`Sequence` and `Clip`:
+
+```ts
+outro.register((local, info) => {
+  info.time; // local seconds: local / fps
+  info.fps; // the composition's fps
+  info.durationInFrames; // this timeline's own span
+  info.globalFrame; // the composition frame
+});
+```
+
+Reading `info.time` instead of the frame keeps motion at the same speed if you
+change the composition's `fps` later.
+
 ## The tick loop
 
 On every tick (during playback, or on a seek) the composition processes each
@@ -91,7 +121,8 @@ sequence that's in range, in this order:
 
 1. **Updaters** run: your `register` callbacks set attributes from the frame
    (and from `comp.props.get()`, if the scene is parametrized).
-2. **Media ticks**: `Video`/`Audio` nodes sync to the frame.
+2. **Nested timelines and media tick**: any [`Clip`](/docs/clips) in range runs
+   its own updaters, and `Video`/`Audio` nodes sync to the frame.
 3. **Layout**: `Flex`/`Block` roots recompute, so animated sizes/gaps reflow.
 4. **Draw**: a `draw()` on the frame a sequence becomes active, `batchDraw()`
    after.
@@ -99,6 +130,56 @@ sequence that's in range, in this order:
 You only ever write step 1. The rest is the engine.
 
 <Demo name="frame-clock" label="attribute = f(frame), recomputed every tick" />
+
+## Finding nodes
+
+Keeping a reference to every node you animate is the usual way to work, and it
+is the clearest one. When a node is out of reach, because it lives in another
+sequence or inside a component you did not build, look it up by selector
+instead. `Composition`, `Sequence`, and `Clip` all have `query` and `queryOne`:
+
+```ts
+comp.queryOne<Audio>("#music"); // by id, first match or null
+scene.query(".bar"); // by name, every match in this subtree
+```
+
+Selectors are Konva's: `#id`, `.name`, or a type name like `Circle`. A query on
+the composition searches the whole stage, and a query on a sequence or clip
+searches its own subtree.
+
+Results are cached until the scene graph changes, so calling one every frame
+from an updater is fine. Here a voice-over sequence ducks a music track that
+lives in a different sequence:
+
+```ts
+voiceOver.register((frame, info) => {
+  const music = comp.queryOne<Audio>("#music");
+  music?.volume(
+    interpolate(frame, [0, 12, info.durationInFrames - 12, info.durationInFrames], [1, 0.25, 0.25, 1]),
+  );
+});
+```
+
+Set `id` and `name` when you construct a node. Renaming a node that is already
+in the scene does not refresh the cache.
+
+<Callout type="warn" title="One writer per property">
+Two updaters that both write `music.volume()` will fight, and which one wins
+depends on the order they were registered. Give every animated property a
+single owner.
+</Callout>
+
+Nodes can also look upward, the way Konva nodes reach their stage with
+`getStage()`:
+
+```ts
+node.getComposition(); // the owning Composition, or null while detached
+node.getSequence(); // the sequence this node is in
+node.getClip(); // the nearest clip, or null
+```
+
+These are how a component reads the context it was dropped into, `fps` and
+duration being the common ones.
 
 ## `play()` in the browser, `setFrame(n)` anywhere
 
@@ -124,5 +205,6 @@ pure and that guarantee holds. See [Best practices](/docs/best-practices).
 ## Next steps
 
 - [Best practices](/docs/best-practices): keep compositions deterministic.
+- [Clips](/docs/clips): nested timelines, and building components out of them.
 - [Interpolation](/docs/interpolation) and [Easing](/docs/easing): the tools your
   updaters lean on.

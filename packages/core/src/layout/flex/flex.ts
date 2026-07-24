@@ -1,5 +1,6 @@
 import { DIRECTION_LTR } from "flexily/classic";
 import Konva from "konva";
+import { findClip, findComposition, findSequence } from "../../engine/ancestry.js";
 import { isKMLayoutNode, type KMLayoutNode, type LayoutBox } from "../contract.js";
 import { type Measurement, type MeasureOptions, measure as measureNode } from "../measure.js";
 import {
@@ -7,6 +8,7 @@ import {
   applyContainerProps,
   applySize,
   FlexilyNode,
+  normalizeEdges,
   parseSize,
   setImageMeasure,
   setTextMeasure,
@@ -37,6 +39,21 @@ function pickKonvaConfig(config: FlexConfig): Konva.GroupConfig {
 }
 
 export class Flex extends Konva.Group implements KMLayoutNode {
+  /** The owning composition, or `null` while detached — like `getStage()`. */
+  getComposition(): ReturnType<typeof findComposition> {
+    return findComposition(this);
+  }
+
+  /** The host sequence (nearest ancestor-or-self layer), or `null`. */
+  getSequence(): ReturnType<typeof findSequence> {
+    return findSequence(this);
+  }
+
+  /** The nearest ancestor-or-self `Clip`, or `null`. */
+  getClip(): ReturnType<typeof findClip> {
+    return findClip(this);
+  }
+
   readonly _kmRole = "container" as const;
 
   constructor(config: FlexConfig) {
@@ -99,7 +116,10 @@ export function layoutRoot(group: Konva.Group, alwaysSetSize: boolean): void {
   if (h > 0) root.setHeight(h);
 
   const pairs: Pair[] = [];
-  buildChildren(group.getChildren(), root, pairs, group.attrs.flexDirection ?? "row");
+  buildChildren(group.getChildren(), root, pairs, group.attrs.flexDirection ?? "row", {
+    flex: root,
+    attrs: group.attrs as FlexProps,
+  });
 
   root.calculateLayout(w > 0 ? w : undefined, h > 0 ? h : undefined, DIRECTION_LTR);
 
@@ -112,6 +132,13 @@ export function layoutRoot(group: Konva.Group, alwaysSetSize: boolean): void {
 type Pair = {
   konva: Konva.Node;
   flex: ReturnType<typeof FlexilyNode.create>;
+  /** The containing flex node + its Konva attrs — used by the NaN-cross guard. */
+  parent: ParentRef | null;
+};
+
+type ParentRef = {
+  flex: ReturnType<typeof FlexilyNode.create>;
+  attrs: FlexProps;
 };
 
 function readPixelSize(sizeAttr: SizeValue | undefined): number {
@@ -128,6 +155,7 @@ export function buildChildren(
   parentFlex: ReturnType<typeof FlexilyNode.create>,
   pairs: Pair[],
   parentDirection = "row",
+  parent: ParentRef | null = null,
 ): void {
   // Skip the Block background rect and any hidden child (display:none semantics —
   // an invisible node takes no layout space, so staggered/toggled children don't
@@ -149,6 +177,7 @@ export function buildChildren(
           node,
           pairs,
           props.flexDirection ?? "row",
+          { flex: node, attrs: props },
         );
       } else {
         child._kmMeasure?.(node, { parentIsColumn });
@@ -172,17 +201,87 @@ export function buildChildren(
       if (typeof h === "number" && h > 0) node.setHeight(h);
     }
 
-    pairs.push({ konva: child, flex: node });
+    pairs.push({ konva: child, flex: node, parent });
     parentFlex.insertChild(node, i);
   });
 }
 
+/** A numeric edge value, else 0 (percent/undefined edges don't offset the guard). */
+function edgeNum(v: unknown): number {
+  return typeof v === "number" ? v : 0;
+}
+
+/**
+ * flexily workaround: `alignItems`/`alignSelf` of `center`/`flex-end` inside
+ * a container with a hug (auto) cross size computes the child's cross
+ * POSITION as `NaN`, even though every computed SIZE resolves correctly
+ * (verified against flexily 0.7.1 directly). Since the parent's cross size is
+ * resolved by write-back time, re-derive the offset here. Main-axis positions
+ * are never affected.
+ */
+function fixNaNCross(
+  pair: Pair,
+  left: number,
+  top: number,
+  width: number,
+  height: number,
+): { left: number; top: number } {
+  if (!Number.isNaN(left) && !Number.isNaN(top)) return { left, top };
+  const parent = pair.parent;
+  if (!parent) {
+    return { left: Number.isNaN(left) ? 0 : left, top: Number.isNaN(top) ? 0 : top };
+  }
+  const isRow = !(parent.attrs.flexDirection ?? "row").startsWith("column");
+  const pad = normalizeEdges(parent.attrs.padding);
+  const childAttrs = pair.konva.attrs as FlexChildProps;
+  const margin = normalizeEdges(childAttrs.margin);
+  const align =
+    childAttrs.alignSelf && childAttrs.alignSelf !== "auto"
+      ? childAttrs.alignSelf
+      : (parent.attrs.alignItems ?? "flex-start");
+  // Edges tuples are [top, right, bottom, left].
+  const cross = isRow
+    ? {
+        size: parent.flex.getComputedHeight(),
+        padStart: edgeNum(pad?.[0]),
+        padEnd: edgeNum(pad?.[2]),
+        mStart: edgeNum(margin?.[0]),
+        mEnd: edgeNum(margin?.[2]),
+        child: height,
+      }
+    : {
+        size: parent.flex.getComputedWidth(),
+        padStart: edgeNum(pad?.[3]),
+        padEnd: edgeNum(pad?.[1]),
+        mStart: edgeNum(margin?.[3]),
+        mEnd: edgeNum(margin?.[1]),
+        child: width,
+      };
+  const free = cross.size - cross.padStart - cross.padEnd - cross.mStart - cross.mEnd - cross.child;
+  const offset =
+    align === "center" && Number.isFinite(free)
+      ? Math.max(free / 2, 0)
+      : align === "flex-end" && Number.isFinite(free)
+        ? Math.max(free, 0)
+        : 0; // flex-start & stretch pin to the start edge
+  const pos = cross.padStart + cross.mStart + offset;
+  return isRow
+    ? { left: Number.isNaN(left) ? 0 : left, top: Number.isNaN(top) ? pos : top }
+    : { left: Number.isNaN(left) ? pos : left, top: Number.isNaN(top) ? 0 : top };
+}
+
 export function writeBack(pairs: Pair[]): void {
-  for (const { konva, flex } of pairs) {
-    const left = flex.getComputedLeft();
-    const top = flex.getComputedTop();
+  for (const pair of pairs) {
+    const { konva, flex } = pair;
     const width = flex.getComputedWidth();
     const height = flex.getComputedHeight();
+    const { left, top } = fixNaNCross(
+      pair,
+      flex.getComputedLeft(),
+      flex.getComputedTop(),
+      width,
+      height,
+    );
 
     if (isKMLayoutNode(konva)) {
       // Wrapper handles its own position/size/restyle (origin-corrected per shape).

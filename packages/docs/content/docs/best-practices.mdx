@@ -102,6 +102,43 @@ seq.register((frame) => {
 setInterval(() => box.x(box.x() + 4), 16); // invisible to scrubbing and rendering
 ```
 
+## Write reusable timing in seconds
+
+Inside a [component](/docs/clips) that other compositions will mount, read
+`info.time` rather than the raw frame. Scale its geometry from a `size` prop
+too, working in a fixed box.
+
+**Why:** a component gets dropped into compositions you didn't write. Frame
+counts are tied to the `fps` they were authored at; seconds hold at any frame
+rate, and a scaled box holds at any size.
+
+```ts
+// ✅ do
+clip.register((_frame, info) => {
+  ring.opacity(interpolate(info.time, [0, 0.5], [0, 1], { extrapolateRight: "clamp" }));
+});
+
+// 🚫 don't
+clip.register((frame) => {
+  ring.opacity(interpolate(frame, [0, 15], [0, 1], { extrapolateRight: "clamp" })); // half a second at 30fps only
+});
+```
+
+## Give every animated property one writer
+
+When more than one updater can reach a node, usually after finding it with
+[`query`](/docs/core-concepts), decide which updater owns each property.
+
+**Why:** updaters run in registration order, so two writers on the same
+property means the last one registered wins. That makes the output depend on
+the order you built the scene rather than on the timeline.
+
+```ts
+// 🚫 don't: both sequences fight over the same volume every frame
+voiceOver.register(() => music.volume(0.2));
+chorus.register(() => music.volume(1));
+```
+
 ## Keep compositions pure
 
 A composition should be a pure function of `frame` (and any `props`): no
