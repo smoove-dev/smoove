@@ -152,14 +152,6 @@ body {
   margin: 20px 0 0;
   text-wrap: balance;
 }
-/* The single focal gradient moment on the page — the Smoove gradient, on
-   display type only (per the brand brief). */
-.hero h1 .grad {
-  background: linear-gradient(102deg, #ff5640, #15cda8);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
 .hero p.sub {
   font-size: clamp(16px, 2.4vw, 20px);
   line-height: 1.55;

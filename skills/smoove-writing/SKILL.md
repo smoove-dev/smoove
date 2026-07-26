@@ -25,14 +25,16 @@ required.
 
 ## The brand
 
-**Essence: smooth moves, in code.** smoove is a timeline-driven animation
-engine for the canvas. Motion that is buttery in preview and light on the
-server, built on concepts humans and LLMs already understand. The name says
-it: every animation should feel smoove.
+**Essence: what you code is what you play.** smoove is a timeline-driven
+animation engine for the canvas. Your code is the timeline and the timeline
+is the playback, so the frame you write is the frame that plays. Motion that
+is buttery in preview and light on the server, built on concepts humans and
+LLMs already understand. The name says it: every animation should feel
+smoove.
 
-**One-liner:** a timeline-driven animation engine for Konva. Keyframe motion
-that runs anywhere, renders fast, and is built on familiar concepts an LLM
-can reason about to author videos.
+**One-liner:** a timeline-driven animation engine, built on top of Konva.
+Keyframe motion that runs anywhere, renders fast, and is built on familiar
+concepts an LLM can reason about to author videos.
 
 **Audience:** technical creators, developers first. The core circle is JS/TS
 developers adding real animation to canvas apps without adopting a heavy
@@ -65,9 +67,12 @@ Lead with what makes it good:
 | Anywhere | One engine, every runtime | Browser, Node, headless SSR |
 | Authorable | Familiar to humans and models alike | API built on known concepts plus documented skills |
 
-**Taglines to reuse or riff on:** "Smooth moves, in code." "Motion that
-glides." "Timelines for the canvas." "Describe the motion, smoove renders
-it."
+**The tagline, used verbatim on every front door (README, docs home, the
+showcase):** "What you code is what you play."
+
+**Secondary lines to riff on when the tagline would repeat itself:** "Smooth
+moves, in code." "Motion that glides." "Timelines for the canvas." "Describe
+the motion, smoove renders it."
 
 ## Voice
 
@@ -86,6 +91,12 @@ it."
   own. Konva is the one exception: smoove is the animation layer that rides
   on top of Konva, so name Konva freely, and never criticize it or claim to
   replace it.
+- Never write "an animation engine **for** Konva". That frames smoove as an
+  accessory to someone else's library. smoove is "a timeline-driven animation
+  engine", full stop, and where the foundation matters it is "built on top of
+  Konva". Lead with the standalone form in marketing copy (hero, taglines);
+  add "built on top of Konva" in technical copy where a reader needs to know
+  what it sits on (package descriptions, READMEs, docs intros).
 - No unmeasured numbers or absolute claims. Say "lighter" or "fast preview",
   not "3x faster" or "jitter-free" or "renders identically", until benchmarked.
 
@@ -120,8 +131,9 @@ Bad:
 
 Good:
 
-> smoove is a timeline-driven animation engine for Konva. You describe what
-> the canvas looks like at a given frame, and smoove owns the clock.
+> smoove is a timeline-driven animation engine, built on top of Konva. You
+> describe what the canvas looks like at a given frame, and smoove owns the
+> clock.
 >
 > ```ts
 > const comp = new Composition({ width: 1080, height: 1080, fps: 30 });
@@ -198,6 +210,7 @@ Test the document on a reader with zero context before calling it done.
 | Mistake | Fix |
 |---|---|
 | "Remotion-style timeline" | "timeline-driven", full stop |
+| "an animation engine for Konva" | "a timeline-driven animation engine", or "built on top of Konva" |
 | Bold term, dash, explanation bullets | Plain sentence bullets |
 | "deterministic, seekable, scrubbable" | "deterministic" (pick one) |
 | "3x faster renders" | "fast renders" until benchmarked |

@@ -1,8 +1,8 @@
 # @smoove/core
 
-A timeline-driven animation engine for [Konva](https://konvajs.org).
-Keyframe motion that runs anywhere: buttery in the browser, headless on
-the server.
+A timeline-driven animation engine, built on top of
+[Konva](https://konvajs.org). Keyframe motion that runs anywhere: buttery in
+the browser, headless on the server.
 
 A **Composition** is a `Konva.Stage` that owns a frame clock (fps +
 duration). A **Sequence** is a `Konva.Layer` scoped to a frame range: its

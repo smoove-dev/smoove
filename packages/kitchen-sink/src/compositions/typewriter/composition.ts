@@ -7,12 +7,12 @@ const CONVERSATION: Message[] = [
   { role: "user", text: "What is smoove?" },
   {
     role: "ai",
-    text: "smoove brings Remotion-style timeline-driven animation to Konva. A Composition owns a frame clock; a Sequence is a range-gated layer that paints only while the playhead is in range.",
+    text: "smoove is a timeline-driven animation engine, built on top of Konva. A Composition owns a frame clock; a Sequence is a range-gated layer that paints only while the playhead is in range.",
   },
   { role: "user", text: "Nice. How is this chat built?" },
   {
     role: "ai",
-    text: "Entirely from Flex, Block, and Text. Each bubble is a Block that hugs its text; the typing is the Text component's built-in typewriter, and the messages are staggered with per-message startFrame — all driven by one Sequence.",
+    text: "Entirely from Flex, Block, and Text. Each bubble is a Block that hugs its text; the typing is the Text component's built-in typewriter, and the messages are staggered with per-message startFrame, all driven by one Sequence.",
   },
 ];
 

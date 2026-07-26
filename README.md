@@ -4,13 +4,14 @@
 
 <h1 align="center">
   smoove<br />
-  <small>Smooth moves, in code.</small>
+  <small>What you code is what you play.</small>
 </h1>
 
 <p align="center">
-  A timeline-driven animation engine for <a href="https://konvajs.org">Konva</a>.
-  Keyframe motion that runs anywhere, renders fast, and is built on concepts
-  an LLM can reason about to author videos.
+  A timeline-driven animation engine, built on top of
+  <a href="https://konvajs.org">Konva</a>. Keyframe motion that runs anywhere,
+  renders fast, and is built on concepts an LLM can reason about to author
+  videos.
 </p>
 
 <p align="center">Smooth · Light · Anywhere</p>

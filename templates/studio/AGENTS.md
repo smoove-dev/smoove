@@ -1,7 +1,7 @@
 # AGENTS.md
 
-This is a smoove studio project. smoove brings Remotion-style
-timeline-driven animation to Konva: a `Composition` owns the frame clock
+This is a smoove studio project. smoove is a timeline-driven
+animation engine built on top of Konva: a `Composition` owns the frame clock
 (fps + durationInFrames), each `Sequence` is a range-gated layer, and you
 animate by mutating Konva/smoove nodes inside
 `sequence.register((frame) => ...)`. Every animated value must be a pure

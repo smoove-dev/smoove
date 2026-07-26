@@ -6,6 +6,6 @@ export type HelloSmooveProps = {
 
 export const schema = kf.object({
   fields: {
-    slogan: kf.text({ label: "Slogan", default: "Smooth moves, in code." }),
+    slogan: kf.text({ label: "Slogan", default: "What you code is what you play." }),
   },
 });

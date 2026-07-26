@@ -38,11 +38,11 @@ export function loader() {
 
 export function meta(_: Route.MetaArgs) {
   return [
-    { title: "smoove · Smooth moves, in code" },
+    { title: "smoove · What you code is what you play" },
     {
       name: "description",
       content:
-        "A timeline-driven animation engine for Konva. Animate any node, sequence it, loop it, and play it back smoothly in the browser or on the server.",
+        "A timeline-driven animation engine. Animate any node, sequence it, loop it, and play it back smoothly in the browser or on the server.",
     },
   ];
 }
@@ -95,13 +95,13 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             <span className="alpha">alpha</span>
           </span>
           <h1>
-            Smooth <span className="grad">moves</span>,
+            What you code
             <br />
-            in code.
+            is what you play.
           </h1>
           <p className="sub">
-            A timeline-driven animation engine for Konva. Animate any node's position, scale,
-            rotation, and color, then sequence it, loop it, and play it back smoothly.
+            A timeline-driven animation engine. Animate any node's position, scale, rotation, and
+            color, then sequence it, loop it, and play it back smoothly.
           </p>
           <div className="hero__cta">
             <Link className="btn btn--primary" to={getStarted}>
@@ -359,7 +359,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               <span className="brand__word">Smoove</span>
             </Link>
             <p>
-              A timeline and tweening engine for Konva. Free and open source under the MIT license.
+              A timeline and tweening engine, built on top of Konva. Free and open source under the
+              MIT license.
             </p>
             <div className="social">
               <a href={GH_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">

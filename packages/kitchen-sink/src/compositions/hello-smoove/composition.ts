@@ -16,7 +16,7 @@ const comp = new Composition({
   loop: true,
   // Editable in the studio (see the registry's propsSchema); the plain player
   // just uses this default.
-  props: { slogan: "Smooth moves, in code." },
+  props: { slogan: "What you code is what you play." },
 });
 const p = () => comp.props.get();
 

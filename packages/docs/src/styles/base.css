@@ -275,8 +275,8 @@ button {
   transform: translateY(0.5px);
 }
 /* Solid coral — the brand's button ("buttons, big moments"); the gradient is
-   reserved for the headline + mark so there's one focal gradient per view. A
-   soft top-left sheen (the brief's radial-highlight technique) adds depth. */
+   reserved for the mark, so there's one focal gradient per view. A soft
+   top-left sheen (the brief's radial-highlight technique) adds depth. */
 .btn--primary {
   color: #fff;
   background:
