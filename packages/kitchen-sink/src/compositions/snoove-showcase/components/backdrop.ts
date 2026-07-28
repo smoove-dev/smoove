@@ -20,7 +20,16 @@ function aurora(color: string, radius: number) {
     fillRadialGradientEndRadius: radius,
     // Solid-ish core → mid stop → transparent rim, mimicking a Gaussian
     // falloff. Without the mid stop a linear fade reads as a flat bokeh blob.
-    fillRadialGradientColorStops: [0, `${color}66`, 0.35, `${color}33`, 0.62, `${color}14`, 1, `${color}00`],
+    fillRadialGradientColorStops: [
+      0,
+      `${color}66`,
+      0.35,
+      `${color}33`,
+      0.62,
+      `${color}14`,
+      1,
+      `${color}00`,
+    ],
   });
 }
 

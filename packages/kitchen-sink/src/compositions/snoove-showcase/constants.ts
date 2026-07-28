@@ -32,11 +32,6 @@ export const BORDER = "#2b3440";
 
 // -- media -------------------------------------------------------------------
 
-import bgCode from "./media/video/bg-code.mp4";
-import bgEnd from "./media/video/bg-end.mp4";
-import bgGreeting from "./media/video/bg-greeting.mp4";
-import hero from "./media/video/hero.mp4";
-
 import music from "./media/audio/music.mp3";
 import codeTyping from "./media/audio/sfx/code-typing.mp3";
 import duckCue from "./media/audio/sfx/duck-cue.mp3";
@@ -47,11 +42,14 @@ import vo1 from "./media/audio/vo/vo-1.mp3";
 import vo2 from "./media/audio/vo/vo-2.mp3";
 import vo3 from "./media/audio/vo/vo-3.mp3";
 import vo4 from "./media/audio/vo/vo-4.mp3";
-
 import shotEngawa from "./media/images/shot-engawa.jpg";
 import shotSchoolyard from "./media/images/shot-schoolyard.jpg";
 import shotStreet from "./media/images/shot-street.jpg";
 import shotTatami from "./media/images/shot-tatami.jpg";
+import bgCode from "./media/video/bg-code.mp4";
+import bgEnd from "./media/video/bg-end.mp4";
+import bgGreeting from "./media/video/bg-greeting.mp4";
+import hero from "./media/video/hero.mp4";
 
 export const VIDEO = { bgGreeting, bgCode, bgEnd, hero };
 export const MUSIC = music;

@@ -6,9 +6,9 @@
  * open valley on the left to sit against.
  */
 import { Easing, interpolate, Rect, type Sequence, Text } from "@smoove/core";
+import { videoPlate } from "../components/video-plate.js";
 import { HEIGHT, TEXT, VIDEO, WIDTH } from "../constants.js";
 import { comfortaa } from "../fonts.js";
-import { videoPlate } from "../components/video-plate.js";
 
 const LINES = [
   // { text: "hi", y: 372, in: 6 },

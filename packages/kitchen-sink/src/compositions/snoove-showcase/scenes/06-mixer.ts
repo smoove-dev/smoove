@@ -13,9 +13,20 @@
  */
 import { Easing, Group, interpolate, Rect, type Sequence, Text } from "@smoove/core";
 import type { Audio } from "@smoove/media";
-import { AMBER, BORDER, CORAL, HEIGHT, INK, MUTED, TEAL, TEXT, VIDEO, WIDTH } from "../constants.js";
-import { comfortaa, mono } from "../fonts.js";
 import { videoPlate } from "../components/video-plate.js";
+import {
+  AMBER,
+  BORDER,
+  CORAL,
+  HEIGHT,
+  INK,
+  MUTED,
+  TEAL,
+  TEXT,
+  VIDEO,
+  WIDTH,
+} from "../constants.js";
+import { comfortaa, mono } from "../fonts.js";
 
 export const VO_AT = 18;
 
@@ -66,7 +77,15 @@ export function mixer(seq: Sequence, deps: MixerDeps) {
   seq.add(videoPlate({ src: VIDEO.bgEnd, zoom: [1.08, 1.18], driftX: 0.4, opacity: 0.3 }));
   seq.add(
     // Held down hard: the meters have to out-read the character behind them.
-    new Rect({ x: 0, y: 0, width: WIDTH, height: HEIGHT, fill: INK, opacity: 0.82, listening: false }),
+    new Rect({
+      x: 0,
+      y: 0,
+      width: WIDTH,
+      height: HEIGHT,
+      fill: INK,
+      opacity: 0.82,
+      listening: false,
+    }),
   );
 
   const kicker = new Text({
@@ -305,8 +324,8 @@ export function mixer(seq: Sequence, deps: MixerDeps) {
 
       // Perceptual, not linear: a linear meter sits near the floor most of the
       // time and reads as broken rather than as quiet.
-      const level = Math.pow(Math.min(1, rms), 0.55) * intro;
-      const holdSeg = Math.round(Math.pow(Math.min(1, peak), 0.55) * intro * (SEGMENTS - 1));
+      const level = Math.min(1, rms) ** 0.55 * intro;
+      const holdSeg = Math.round(Math.min(1, peak) ** 0.55 * intro * (SEGMENTS - 1));
       const lit = level * SEGMENTS;
 
       strip.segs.forEach((seg, s) => {
