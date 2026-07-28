@@ -18,6 +18,9 @@
  * drawn logo uses, so the hole in the frame is the logo animation itself.
  */
 import { Easing, Group, interpolate, Rect, type Sequence } from "@smoove/core";
+import { backdrop } from "../components/backdrop.js";
+import { markGeometryAt } from "../components/logo.js";
+import { videoPlate } from "../components/video-plate.js";
 import {
   CARD,
   CARD_IMAGE_X,
@@ -27,9 +30,6 @@ import {
   VIDEO,
   WIDTH,
 } from "../constants.js";
-import { backdrop } from "../components/backdrop.js";
-import { markGeometryAt } from "../components/logo.js";
-import { videoPlate } from "../components/video-plate.js";
 
 // -- beats -------------------------------------------------------------------
 
@@ -91,7 +91,13 @@ function roundRectPath(
  * Overlapping subpaths with the same winding union under the nonzero fill rule,
  * which is exactly what a clip path needs.
  */
-function capsulePath(ctx: CanvasRenderingContext2D, cx: number, cy: number, half: number, w: number) {
+function capsulePath(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  half: number,
+  w: number,
+) {
   const r = w / 2;
   ctx.moveTo(cx - r, cy - half);
   ctx.rect(cx - r, cy - half, w, half * 2);
@@ -177,23 +183,38 @@ export function video(seq: Sequence) {
 
   seq.register((frame) => {
     // Size: card image slot → full bleed → nothing.
-    const w = interpolate(frame, [GROW[0]!, GROW[1]!, CLOSE[0]!, CLOSE[1]!], [CARD.imageWidth, WIDTH, WIDTH, 0], {
-      easing: Easing.inOut(Easing.cubic),
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    });
-    const h = interpolate(frame, [GROW[0]!, GROW[1]!, CLOSE[0]!, CLOSE[1]!], [HANDOFF_IMAGE_H, HEIGHT, HEIGHT, 0], {
-      easing: Easing.inOut(Easing.cubic),
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    });
+    const w = interpolate(
+      frame,
+      [GROW[0]!, GROW[1]!, CLOSE[0]!, CLOSE[1]!],
+      [CARD.imageWidth, WIDTH, WIDTH, 0],
+      {
+        easing: Easing.inOut(Easing.cubic),
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      },
+    );
+    const h = interpolate(
+      frame,
+      [GROW[0]!, GROW[1]!, CLOSE[0]!, CLOSE[1]!],
+      [HANDOFF_IMAGE_H, HEIGHT, HEIGHT, 0],
+      {
+        easing: Easing.inOut(Easing.cubic),
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      },
+    );
     // Corner radius runs past half the box on the way out, so `roundRectPath`
     // clamps it to a circle — the rectangle *becomes* the circle, no crossfade.
-    const r = interpolate(frame, [GROW[0]!, GROW[1]!, CLOSE[0]!, CLOSE[0]! + 34], [14, 0, 0, WIDTH], {
-      easing: Easing.inOut(Easing.cubic),
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    });
+    const r = interpolate(
+      frame,
+      [GROW[0]!, GROW[1]!, CLOSE[0]!, CLOSE[0]! + 34],
+      [14, 0, 0, WIDTH],
+      {
+        easing: Easing.inOut(Easing.cubic),
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      },
+    );
 
     // Centre: the card's image slot → frame centre → the mark's dot, so the
     // collapse lands on the dot instead of merely near it.

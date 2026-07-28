@@ -94,7 +94,14 @@ export function codePanel({
     padding: [26, 30, 30, 30],
     cornerRadius: 18,
     background: {
-      gradient: { type: "linear", stops: [[0, "#11161ff2"], [1, "#0b0f15f2"]], angle: 120 },
+      gradient: {
+        type: "linear",
+        stops: [
+          [0, "#11161ff2"],
+          [1, "#0b0f15f2"],
+        ],
+        angle: 120,
+      },
     },
     borderSize: 1,
     borderColor: BORDER,

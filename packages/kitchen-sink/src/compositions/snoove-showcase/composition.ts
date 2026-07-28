@@ -20,11 +20,11 @@ import { crosswarp, linearTiming, none, slide, TransitionSeries } from "@smoove/
 import { FPS, HEIGHT, MUSIC, SFX, VO, WIDTH } from "./constants.js";
 import { comfortaa, mono } from "./fonts.js";
 import { greeting } from "./scenes/01-greeting.js";
-import { logo, VO_AT as LOGO_VO_AT } from "./scenes/02-logo.js";
+import { VO_AT as LOGO_VO_AT, logo } from "./scenes/02-logo.js";
 import { layout } from "./scenes/03-layout.js";
-import { SWISH_AT, video, VO_AT as VIDEO_VO_AT } from "./scenes/04-video.js";
-import { code, TYPING, VO_AT as CODE_VO_AT } from "./scenes/05-code.js";
-import { mixer, type Source, VO_AT as MIX_VO_AT } from "./scenes/06-mixer.js";
+import { SWISH_AT, VO_AT as VIDEO_VO_AT, video } from "./scenes/04-video.js";
+import { VO_AT as CODE_VO_AT, code, TYPING } from "./scenes/05-code.js";
+import { VO_AT as MIX_VO_AT, mixer, type Source } from "./scenes/06-mixer.js";
 import { outro } from "./scenes/07-outro.js";
 
 // ---------------------------------------------------------------------------

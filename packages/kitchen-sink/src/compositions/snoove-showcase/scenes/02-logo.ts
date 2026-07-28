@@ -5,9 +5,9 @@
  * Nothing else is on screen: this is the one beat that has to read as brand.
  */
 import type { Sequence } from "@smoove/core";
-import { HEIGHT, SLOGAN, WIDTH } from "../constants.js";
 import { backdrop } from "../components/backdrop.js";
 import { logoLockup } from "../components/logo.js";
+import { HEIGHT, SLOGAN, WIDTH } from "../constants.js";
 
 /**
  * Scene-local frame the voice-over starts, placed so "smoove" lands with the

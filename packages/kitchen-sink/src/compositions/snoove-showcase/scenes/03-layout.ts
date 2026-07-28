@@ -17,6 +17,7 @@
  * card's gaps never appear or disappear — nothing in the scene jumps.
  */
 import { Block, Easing, Flex, Image, interpolate, Rect, type Sequence, Text } from "@smoove/core";
+import { backdrop } from "../components/backdrop.js";
 import {
   AMBER,
   BORDER,
@@ -30,7 +31,6 @@ import {
   TEXT,
 } from "../constants.js";
 import { comfortaa, mono } from "../fonts.js";
-import { backdrop } from "../components/backdrop.js";
 
 // -- beats -------------------------------------------------------------------
 
@@ -152,7 +152,14 @@ export function layout(seq: Sequence) {
     padding: CARD.padding,
     cornerRadius: CARD.cornerRadius,
     background: {
-      gradient: { type: "linear", stops: [[0, "#1b2432"], [1, "#121821"]], angle: 135 },
+      gradient: {
+        type: "linear",
+        stops: [
+          [0, "#1b2432"],
+          [1, "#121821"],
+        ],
+        angle: 135,
+      },
     },
     borderSize: 1,
     borderColor: BORDER,

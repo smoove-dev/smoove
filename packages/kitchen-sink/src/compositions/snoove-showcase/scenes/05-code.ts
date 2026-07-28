@@ -11,6 +11,9 @@
  * calls, and each of those lines carries a live comment showing the value
  * `interpolate` returns this frame — the same value being written to the box.
  */
+
+import { parser } from "@lezer/javascript";
+import { Code, interpolateCode, LezerHighlighter, makeHighlightStyle } from "@smoove/code";
 import {
   Block,
   Circle,
@@ -21,11 +24,20 @@ import {
   type Sequence,
   Text,
 } from "@smoove/core";
-import { Code, interpolateCode, LezerHighlighter, makeHighlightStyle } from "@smoove/code";
-import { parser } from "@lezer/javascript";
-import { AMBER, BORDER, CORAL, HEIGHT, INK, MUTED, TEAL, TEXT, VIDEO, WIDTH } from "../constants.js";
-import { comfortaa, mono } from "../fonts.js";
 import { videoPlate } from "../components/video-plate.js";
+import {
+  AMBER,
+  BORDER,
+  CORAL,
+  HEIGHT,
+  INK,
+  MUTED,
+  TEAL,
+  TEXT,
+  VIDEO,
+  WIDTH,
+} from "../constants.js";
+import { comfortaa, mono } from "../fonts.js";
 
 /**
  * Scene-local frame of VO3. Placed near the end: the viewer watches the code
@@ -96,8 +108,14 @@ const SNAP_B = `const box = new Rect({
  */
 function animatedSnippet(rot: number, rad: number): string {
   // Pad the two calls to a common column so the `//` comments line up.
-  const l1 = `  box.rotation(interpolate(f, [0, ${RUN_SPAN}], [${ROT_RANGE[0]}, ${ROT_RANGE[1]}]));`.padEnd(55);
-  const l2 = `  box.cornerRadius(interpolate(f, [0, ${RUN_SPAN}], [${RAD_RANGE[0]}, ${RAD_RANGE[1]}]));`.padEnd(55);
+  const l1 =
+    `  box.rotation(interpolate(f, [0, ${RUN_SPAN}], [${ROT_RANGE[0]}, ${ROT_RANGE[1]}]));`.padEnd(
+      55,
+    );
+  const l2 =
+    `  box.cornerRadius(interpolate(f, [0, ${RUN_SPAN}], [${RAD_RANGE[0]}, ${RAD_RANGE[1]}]));`.padEnd(
+      55,
+    );
   return `const box = new Rect({
   width: 140,
   height: 140,
@@ -137,7 +155,15 @@ export function code(seq: Sequence) {
   seq.add(new Rect({ x: 0, y: 0, width: WIDTH, height: HEIGHT, fill: INK, listening: false }));
   seq.add(videoPlate({ src: VIDEO.bgCode, zoom: [1.1, 1.22], driftY: 0.4, opacity: 0.5 }));
   seq.add(
-    new Rect({ x: 0, y: 0, width: WIDTH, height: HEIGHT, fill: INK, opacity: 0.66, listening: false }),
+    new Rect({
+      x: 0,
+      y: 0,
+      width: WIDTH,
+      height: HEIGHT,
+      fill: INK,
+      opacity: 0.66,
+      listening: false,
+    }),
   );
 
   const kicker = new Text({
@@ -175,7 +201,14 @@ export function code(seq: Sequence) {
     height: PANEL_H,
     cornerRadius: 18,
     background: {
-      gradient: { type: "linear", stops: [[0, "#11161ff2"], [1, "#0b0f15f2"]], angle: 120 },
+      gradient: {
+        type: "linear",
+        stops: [
+          [0, "#11161ff2"],
+          [1, "#0b0f15f2"],
+        ],
+        angle: 120,
+      },
     },
     borderSize: 1,
     borderColor: BORDER,
@@ -186,7 +219,14 @@ export function code(seq: Sequence) {
   // child, so the panel has nothing to lay out anyway.
   ["#ff5f57", "#febc2e", "#28c840"].forEach((c, i) => {
     seq.add(
-      new Circle({ x: PANEL_X + 34 + i * 24, y: PANEL_Y + 32, radius: 7, fill: c, opacity: 0.9, listening: false }),
+      new Circle({
+        x: PANEL_X + 34 + i * 24,
+        y: PANEL_Y + 32,
+        radius: 7,
+        fill: c,
+        opacity: 0.9,
+        listening: false,
+      }),
     );
   });
   seq.add(
@@ -223,7 +263,14 @@ export function code(seq: Sequence) {
     height: STAGE_H,
     cornerRadius: 18,
     background: {
-      gradient: { type: "linear", stops: [[0, "#0f151ecc"], [1, "#0a0e14cc"]], angle: 120 },
+      gradient: {
+        type: "linear",
+        stops: [
+          [0, "#0f151ecc"],
+          [1, "#0a0e14cc"],
+        ],
+        angle: 120,
+      },
     },
     borderSize: 1,
     borderColor: BORDER,
