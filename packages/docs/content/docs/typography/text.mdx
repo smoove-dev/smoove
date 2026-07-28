@@ -39,6 +39,32 @@ Change the content with `setText("...")`, which re-runs fitting, clamping, and
 layout. Calling `.text(...)` throws.
 </Callout>
 
+## Resize after construction
+
+`setFontSize(32)` changes the size in place. Font size is a layout input, so it
+re-runs fit, clamp, and layout, and a box that hugs its text shrinks or grows
+to match:
+
+```ts
+const label = new Text({ text: "Marguerite Yourcenar", fontSize: 48 });
+label.setFontSize(24);
+label.fontSize(); // 24
+```
+
+`fontSize()` reads back the size the glyphs actually render at. Under
+[`fitText`](#fitting-text-to-a-box) that is the fitted size rather than the one
+you asked for, so a caller measuring a plate can ask the node instead of
+tracking the number itself:
+
+```ts
+const name = new Text({
+  text: longName,
+  width: 300,
+  fitText: { min: 12, max: 64 },
+});
+name.fontSize(); // whatever the fit landed on, 12 to 64
+```
+
 ## Typewriter
 
 Pass a `typewriter` config and the text reveals as a function of the local

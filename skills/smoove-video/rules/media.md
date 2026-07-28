@@ -22,6 +22,11 @@ const cover = new Image({
 });
 ```
 
+`cornerRadius` takes one number or `[topLeft, topRight, bottomRight,
+bottomLeft]`, and clamps the way CSS does: radii that overflow an edge scale
+down together, so `cornerRadius: 9999` on a square box is a disc rather than
+a squircle.
+
 It registers itself with the composition's asset-buffering gate, so
 playback/rendering waits for the image to load before painting — drop it
 into a `Flex`/`Block` like any other child, no manual readiness handling

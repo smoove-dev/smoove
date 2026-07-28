@@ -60,7 +60,7 @@ this one lands, because its tests are written against this harness.
 - Create: `packages/core/src/testing/probe.ts`
 - Test: `packages/core/src/testing/probe.test.ts`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `packages/core/src/testing/probe.test.ts`:
 
@@ -135,7 +135,7 @@ describe("probe", () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and confirm it fails**
+- [x] **Step 2: Run the test and confirm it fails**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/testing/probe.test.ts
@@ -143,7 +143,7 @@ pnpm --filter @smoove/core exec vitest run src/testing/probe.test.ts
 
 Expected: FAIL, cannot resolve `./probe.js`.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 Create `packages/core/src/testing/probe.ts`:
 
@@ -223,7 +223,7 @@ export function probe(
 }
 ```
 
-- [ ] **Step 4: Run the test and confirm it passes**
+- [x] **Step 4: Run the test and confirm it passes**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/testing/probe.test.ts
@@ -244,7 +244,7 @@ the source proves the expectation wrong, never the other way around.
 - Modify: `packages/core/src/testing/probe.ts`
 - Test: `packages/core/src/testing/probe.test.ts`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Append to `packages/core/src/testing/probe.test.ts`:
 
@@ -296,7 +296,7 @@ Add `countAt` and `probeAt` to the import at the top of the file:
 import { countAt, probe, probeAt } from "./probe.js";
 ```
 
-- [ ] **Step 2: Run the test and confirm it fails**
+- [x] **Step 2: Run the test and confirm it fails**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/testing/probe.test.ts
@@ -304,7 +304,7 @@ pnpm --filter @smoove/core exec vitest run src/testing/probe.test.ts
 
 Expected: FAIL, `probeAt is not a function`.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 Add to `packages/core/src/testing/probe.ts`. Add the `Composition` import at the
 top of the file:
@@ -341,7 +341,7 @@ export function countAt(comp: Composition, at: At, selector: QuerySelector = () 
 }
 ```
 
-- [ ] **Step 4: Run the test and confirm it passes**
+- [x] **Step 4: Run the test and confirm it passes**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/testing/probe.test.ts
@@ -361,7 +361,7 @@ Expected: PASS, 7 tests.
 nothing on the `Block` node itself. This is the hook that makes Phase 3's fill
 work assertable.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Append to `packages/core/src/testing/probe.test.ts`, adding
 `import { Block } from "../layout/block.js";` at the top:
@@ -409,7 +409,7 @@ describe("Block paint", () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and confirm it fails**
+- [x] **Step 2: Run the test and confirm it fails**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/testing/probe.test.ts
@@ -417,7 +417,7 @@ pnpm --filter @smoove/core exec vitest run src/testing/probe.test.ts
 
 Expected: FAIL, `paint` is `undefined` for the first two cases.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 In `packages/core/src/layout/block.ts`, add a method to the `Block` class,
 next to the other `_km`-prefixed internals:
@@ -440,7 +440,7 @@ next to the other `_km`-prefixed internals:
   }
 ```
 
-- [ ] **Step 4: Run the test and confirm it passes**
+- [x] **Step 4: Run the test and confirm it passes**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/testing/probe.test.ts
@@ -460,7 +460,7 @@ fill" to Konva, so `_kmProbePaint` checks `length > 0` rather than truthiness.
 - Create: `packages/core/src/testing/index.ts`
 - Modify: `packages/core/package.json`
 
-- [ ] **Step 1: Write the entry point**
+- [x] **Step 1: Write the entry point**
 
 Create `packages/core/src/testing/index.ts`:
 
@@ -475,7 +475,7 @@ export {
 } from "./probe.js";
 ```
 
-- [ ] **Step 2: Add the subpath export**
+- [x] **Step 2: Add the subpath export**
 
 In `packages/core/package.json`, replace the `exports` block with:
 
@@ -492,7 +492,7 @@ In `packages/core/package.json`, replace the `exports` block with:
   },
 ```
 
-- [ ] **Step 3: Build and confirm the subpath resolves**
+- [x] **Step 3: Build and confirm the subpath resolves**
 
 ```bash
 pnpm --filter @smoove/core build
@@ -506,7 +506,7 @@ ls packages/core/dist/testing/
 
 Expected: `index.d.ts`, `index.js`, `probe.d.ts`, `probe.js`.
 
-- [ ] **Step 4: Run the whole core suite**
+- [x] **Step 4: Run the whole core suite**
 
 ```bash
 pnpm --filter @smoove/core test
@@ -529,7 +529,7 @@ shipped composition works. Kitchen-sink composition modules expect the smoove
 Vite plugin, and vitest is Vite, so the plugin goes straight into a vitest
 config and the modules import directly.
 
-- [ ] **Step 1: Add the vitest config**
+- [x] **Step 1: Add the vitest config**
 
 Create `packages/kitchen-sink/vitest.config.ts`:
 
@@ -549,7 +549,7 @@ export default defineConfig({
 });
 ```
 
-- [ ] **Step 2: Add the setup file**
+- [x] **Step 2: Add the setup file**
 
 Create `packages/kitchen-sink/src/test/setup.ts`:
 
@@ -559,7 +559,7 @@ Create `packages/kitchen-sink/src/test/setup.ts`:
 import "konva/skia-backend";
 ```
 
-- [ ] **Step 3: Add the test script**
+- [x] **Step 3: Add the test script**
 
 In `packages/kitchen-sink/package.json`, add to `scripts`:
 
@@ -579,7 +579,7 @@ Then install:
 pnpm install
 ```
 
-- [ ] **Step 4: Write the failing test**
+- [x] **Step 4: Write the failing test**
 
 `bouncing` is the right first subject: it loads no assets, so nothing here
 depends on the network, and the ball's position is a closed-form function of
@@ -622,7 +622,7 @@ describe("bouncing composition", () => {
 });
 ```
 
-- [ ] **Step 5: Run it**
+- [x] **Step 5: Run it**
 
 ```bash
 pnpm --filter @smoove/kitchen-sink test
@@ -637,7 +637,7 @@ is reporting the stroked bounds; read what `getSelfRect` returns for a stroked
 `Konva.Circle` and correct the expectation to match the source, never the other
 way around.
 
-- [ ] **Step 6: Confirm the harness catches a real regression**
+- [x] **Step 6: Confirm the harness catches a real regression**
 
 Change `radius: 30` to `radius: 40` in
 `packages/kitchen-sink/src/compositions/bouncing/composition.ts:29`, re-run, and
@@ -660,7 +660,7 @@ reads it back. The internals already resize (`_applyFit` calls
 `this._text.fontSize(fs)` at `text.ts:499`) and already cache the result in
 `_resolvedFontSize`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `packages/core/src/layout/text/text-size.test.ts`:
 
@@ -725,7 +725,7 @@ describe("Text font size", () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and confirm it fails**
+- [x] **Step 2: Run the test and confirm it fails**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/layout/text/text-size.test.ts
@@ -733,7 +733,7 @@ pnpm --filter @smoove/core exec vitest run src/layout/text/text-size.test.ts
 
 Expected: FAIL, `text.fontSize is not a function`.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 In `packages/core/src/layout/text/text.ts`, add both methods immediately after
 `setFill` (around line 227):
@@ -763,7 +763,7 @@ In `packages/core/src/layout/text/text.ts`, add both methods immediately after
   }
 ```
 
-- [ ] **Step 4: Run the test and confirm it passes**
+- [x] **Step 4: Run the test and confirm it passes**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/layout/text/text-size.test.ts
@@ -771,7 +771,7 @@ pnpm --filter @smoove/core exec vitest run src/layout/text/text-size.test.ts
 
 Expected: PASS, 3 tests.
 
-- [ ] **Step 5: Run the full core suite**
+- [x] **Step 5: Run the full core suite**
 
 ```bash
 pnpm --filter @smoove/core test
@@ -796,7 +796,7 @@ The clamp has to happen inside the `clipFunc`, not in `normalizeCorners`:
 `normalizeCorners` runs in the constructor, before flex has sized the node, so
 it has no width or height to clamp against.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `packages/core/src/layout/image-corners.test.ts`:
 
@@ -832,7 +832,7 @@ describe("clampCorners", () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and confirm it fails**
+- [x] **Step 2: Run the test and confirm it fails**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/layout/image-corners.test.ts
@@ -840,7 +840,7 @@ pnpm --filter @smoove/core exec vitest run src/layout/image-corners.test.ts
 
 Expected: FAIL, `clampCorners` is not exported.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 In `packages/core/src/layout/image.ts`, add next to `normalizeCorners`:
 
@@ -894,7 +894,7 @@ to:
     }
 ```
 
-- [ ] **Step 4: Run the test and confirm it passes**
+- [x] **Step 4: Run the test and confirm it passes**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/layout/image-corners.test.ts
@@ -902,7 +902,7 @@ pnpm --filter @smoove/core exec vitest run src/layout/image-corners.test.ts
 
 Expected: PASS, 5 tests.
 
-- [ ] **Step 5: Run the full core suite**
+- [x] **Step 5: Run the full core suite**
 
 ```bash
 pnpm --filter @smoove/core test
@@ -923,7 +923,7 @@ Expected: PASS.
 replacement, so nine kitchen-sink compositions each hand-roll a generator with
 their own constants. This is a small function that every composition needs.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `packages/core/src/animation/random.test.ts`:
 
@@ -988,7 +988,7 @@ describe("random", () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and confirm it fails**
+- [x] **Step 2: Run the test and confirm it fails**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/animation/random.test.ts
@@ -996,7 +996,7 @@ pnpm --filter @smoove/core exec vitest run src/animation/random.test.ts
 
 Expected: FAIL, cannot resolve `./random.js`.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 Create `packages/core/src/animation/random.ts`:
 
@@ -1060,7 +1060,7 @@ export function random(seed: number | string): Random {
 }
 ```
 
-- [ ] **Step 4: Run the test and confirm it passes**
+- [x] **Step 4: Run the test and confirm it passes**
 
 ```bash
 pnpm --filter @smoove/core exec vitest run src/animation/random.test.ts
@@ -1068,7 +1068,7 @@ pnpm --filter @smoove/core exec vitest run src/animation/random.test.ts
 
 Expected: PASS, 8 tests.
 
-- [ ] **Step 5: Export it**
+- [x] **Step 5: Export it**
 
 In `packages/core/src/index.ts`, add next to the other `animation/` exports at
 the top of the file:
@@ -1077,7 +1077,7 @@ the top of the file:
 export { type Random, random } from "./animation/random.js";
 ```
 
-- [ ] **Step 6: Build and run the full suite**
+- [x] **Step 6: Build and run the full suite**
 
 ```bash
 pnpm --filter @smoove/core build && pnpm --filter @smoove/core test
@@ -1089,7 +1089,7 @@ Expected: exit 0, all tests pass.
 
 ## Wrap-up
 
-- [ ] **Run every package's tests and typecheck**
+- [x] **Run every package's tests and typecheck**
 
 ```bash
 pnpm -r test
@@ -1103,7 +1103,7 @@ Expected: pass. Kitchen-sink has pre-existing typecheck failures unrelated to
 this work; compare against `git stash` output rather than assuming any failure
 is new.
 
-- [ ] **Add a changeset**
+- [x] **Add a changeset**
 
 ```bash
 pnpm changeset
@@ -1113,7 +1113,7 @@ pnpm changeset
 Summary: "Add `@smoove/core/testing` probes, `Text.setFontSize`, CSS corner
 clamping on `Image`, and a seeded `random`."
 
-- [ ] **Report and stop**
+- [x] **Report and stop**
 
 Do not commit. Summarise what landed and what the numbers were, then hand back
 for review.

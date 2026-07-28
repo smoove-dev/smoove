@@ -47,6 +47,14 @@ bitmap: `"center"` (default), an edge (`"top"`, `"left"`, ...), or a corner
 single number or a `[topLeft, topRight, bottomRight, bottomLeft]` array like
 Konva.
 
+Radii clamp the way CSS does. When two radii sharing an edge add up to more
+than that edge, all four scale down by one common factor, which keeps the
+silhouette in proportion. So an oversized radius is the shortcut for a disc:
+
+```ts
+new Image({ width: 120, height: 120, src: avatarUrl, cornerRadius: 9999 });
+```
+
 ```ts
 new Image({
   width: 240,

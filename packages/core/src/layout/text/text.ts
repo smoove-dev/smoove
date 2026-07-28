@@ -229,6 +229,36 @@ export class Text extends Konva.Group implements KMLayoutNode {
   }
 
   /**
+   * The size the glyphs actually render at. With `fitText` this is the fitted
+   * size, not the configured one, which is what a caller measuring a plate
+   * needs to know.
+   */
+  fontSize(): number {
+    return this._resolvedFontSize;
+  }
+
+  /**
+   * Resize the glyphs after construction. Font size IS a layout input, so this
+   * re-runs fit + clamp + layout, unlike {@link setFill}.
+   *
+   * With `fitText` configured the fit wins outright: the search runs over
+   * `[min, max]` and overwrites this size, so read {@link fontSize} for where
+   * it landed rather than assuming the requested value took.
+   */
+  setFontSize(size: number): this {
+    this._text.fontSize(size);
+    // A hug-width Text pins its box at construction, and `_relayout` reads a
+    // non-zero width as the box to wrap INSIDE. Release it first, or smaller
+    // glyphs would re-wrap in the old box instead of the box shrinking to fit.
+    if (this.attrs.flexWidth === undefined && this.attrs.maxWidth === undefined) {
+      this.width(0);
+    }
+    this._layoutText();
+    this.getLayer()?.batchDraw();
+    return this;
+  }
+
+  /**
    * Swap the font face after construction. Accepts a declarative {@link Font}
    * (uses its preferred face) or a specific `font.face(selector)`, mirroring the
    * `font` config. Unlike {@link setFill} the font DOES change metrics, so this

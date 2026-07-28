@@ -81,7 +81,8 @@ generator of raw RGBA frames). For WebGL shader transitions, also
 - **Render disagrees with the preview → non-determinism.** `Date.now()`,
   `Math.random()`, `setInterval`, or anything not derived from `frame`/`props`
   looks fine in real-time playback but diverges frame-by-frame. Make the comp a
-  pure function of the frame — see the **smoove-video** skill.
+  pure function of the frame (core's seeded `random(seed)` covers the scatter
+  case) — see the **smoove-video** skill.
 - **`skia-canvas` native build got skipped → cryptic render failure.** pnpm ≥10
   / bun block postinstall scripts of non-allow-listed deps, so the skia-canvas /
   node-av native builds silently don't run in a scaffolded app. Allow them

@@ -25,6 +25,29 @@ main.register((frame) => {
 setInterval(() => box.x(box.x() + 4), 16);
 ```
 
+## Scatter: `random(seed)`, not `Math.random()`
+
+Confetti, starfields, jitter, and any other "scattered" look need randomness
+that survives a seek. Core ships a seeded generator, so don't hand-roll one:
+
+```ts
+import { random } from "@smoove/core";
+
+const r = random("confetti"); // number or string seed
+const dots = Array.from({ length: 80 }, () => ({
+  x: r.range(0, width),        // float in [min, max)
+  y: r.range(0, height),
+  size: r.int(2, 6),           // integer, both ends inclusive
+  tint: r.pick(["#ff2d3f", "#ffc53d", "#4ea1ff"]),
+}));
+```
+
+The same seed always walks the same sequence, in the browser and on the
+server. **Gotcha:** a generator is stateful, so it moves as you call it. Seed
+it at module scope and read the values into an array once, as above. A
+generator advanced *inside* an updater hands out different numbers on a seek
+than it did on playback, which is the exact bug the seed is there to prevent.
+
 ## Stepped values: quantize the frame, don't skip frames
 
 A subtler purity leak: updating a node only on every Nth frame

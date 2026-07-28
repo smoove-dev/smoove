@@ -112,7 +112,13 @@ export class Image extends Konva.Group implements KMLayoutNode {
 
     if (config.cornerRadius !== undefined) {
       const cr = normalizeCorners(config.cornerRadius);
-      this.clipFunc((ctx) => roundRectPath(ctx, 0, 0, this.width(), this.height(), cr));
+      // Clamp here, not in normalizeCorners: the constructor runs before flex
+      // has sized the node, so width/height are only known at draw time.
+      this.clipFunc((ctx) => {
+        const w = this.width();
+        const h = this.height();
+        roundRectPath(ctx, 0, 0, w, h, clampCorners(cr, w, h));
+      });
     }
 
     this.on("widthChange heightChange", () => this._layoutImage());
@@ -242,6 +248,23 @@ function positionOffset(
     fy = 0.5;
   }
   return { x: freeX * fx, y: freeY * fy };
+}
+
+/**
+ * CSS's corner-overflow rule (CSS Backgrounds 3, section 5.5): when the two
+ * radii sharing an edge sum to more than that edge, every radius scales by the
+ * smallest ratio needed to fit. Scaling all four rather than only the offender
+ * is what keeps the silhouette proportional, and it is why `cornerRadius: 9999`
+ * on a square yields a disc instead of a squircle.
+ *
+ * @internal exported for testing.
+ */
+export function clampCorners(r: number[], w: number, h: number): number[] {
+  const [tl = 0, tr = 0, br = 0, bl = 0] = r;
+  const ratio = (edge: number, a: number, b: number): number =>
+    a + b > 0 ? edge / (a + b) : Number.POSITIVE_INFINITY;
+  const f = Math.min(1, ratio(w, tl, tr), ratio(w, bl, br), ratio(h, tl, bl), ratio(h, tr, br));
+  return f < 1 ? [tl * f, tr * f, br * f, bl * f] : [tl, tr, br, bl];
 }
 
 function normalizeCorners(c: number | number[]): number[] {
