@@ -187,6 +187,22 @@ export class Block extends Konva.Group implements KMLayoutNode {
     this._bg.cornerRadius(this.attrs.cornerRadius ?? 0);
     this._bg.moveToBottom();
   }
+
+  /**
+   * @internal Testing probe: the paint the background rect actually resolved
+   * to, which is not readable from the `Block` node itself because painting
+   * happens on an internal child.
+   */
+  _kmProbePaint():
+    | { kind: "color"; color: string }
+    | { kind: "gradient"; stops: (number | string)[] }
+    | undefined {
+    const stops =
+      this._bg.fillLinearGradientColorStops() ?? this._bg.fillRadialGradientColorStops();
+    if (stops && stops.length > 0) return { kind: "gradient", stops };
+    const fill = this._bg.fill();
+    return typeof fill === "string" && fill ? { kind: "color", color: fill } : undefined;
+  }
 }
 
 function applyBackground(

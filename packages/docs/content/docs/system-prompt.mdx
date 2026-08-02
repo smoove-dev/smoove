@@ -54,7 +54,9 @@ Authoring hard rules:
 - Never use `requestAnimationFrame`, `setInterval`, CSS transitions, or
   `Konva.Tween`/`Konva.Animation`. Never read `Date.now()` or `Math.random()`
   inside an updater: anything not derived from `frame` breaks scrubbing and
-  headless rendering even though it looks fine during real-time playback.
+  headless rendering even though it looks fine during real-time playback. For
+  scatter, seed `random(seed)` from `@smoove/core` at module scope and read
+  its values out once.
 - Attach every node to a `Sequence` (`seq.add(node)`) before animating it.
   Updating an unattached node's attributes changes the values but nothing
   repaints.

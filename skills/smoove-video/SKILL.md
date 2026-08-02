@@ -23,9 +23,10 @@ re-flows any `Flex`/`Block` layout, then draws. You animate by mutating Konva
 node properties inside `sequence.register((localFrame) => { ... })` —
 **imperative, per-frame, pull-based, and a pure function of the frame**. No
 CSS transitions/keyframes, no React, no `setInterval`/`requestAnimationFrame`/
-`Konva.Tween`, no `Date.now()`/`Math.random()` — anything not derived from
-`frame` (and `props`) breaks scrubbing and headless rendering even though it
-looks fine during real-time playback. `@smoove/core`
+`Konva.Tween`, no `Date.now()`/`Math.random()` (core ships a seeded
+`random(seed)` for scatter) — anything not derived from `frame` (and `props`)
+breaks scrubbing and headless rendering even though it looks fine during
+real-time playback. `@smoove/core`
 re-exports the whole drawing vocabulary (`Rect`, `Circle`, `Text`, `Image`,
 …) — **import shapes and nodes from `@smoove/core`, not `Konva.*` directly**;
 reach for raw Konva only for something core doesn't wrap (see
@@ -111,9 +112,11 @@ no manual wiring. Details: [rules/layout.md](rules/layout.md).
 
 ## Text & fonts
 
-`Text` (extends `Konva.Group`, not `Konva.Text` — use `.setText()` to change
-content) supports `fitText`, `maxLines`/`ellipsis`, a built-in `typewriter`
-reveal, and `highlights`. Details: [rules/text.md](rules/text.md) and,
+`Text` (extends `Konva.Group`, not `Konva.Text` — use `.setText()` for content
+and `.setFontSize()` for size) supports `fitText`, `maxLines`/`ellipsis`, a
+built-in `typewriter` reveal, and `highlights`. `.fontSize()` reads back the
+size the glyphs actually render at, which is the fitted one under `fitText`.
+Details: [rules/text.md](rules/text.md) and,
 for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 
 ## Media
@@ -134,6 +137,22 @@ gradient disc behind sharp shapes for halos. Use 30fps for ambient/background
 motion. Recipes + the scale-not-radius gotcha:
 [rules/performance.md](rules/performance.md).
 
+## Verify what you built
+
+When a brief carries numbers ("the title lands by 0.5s", "six cards at the
+end"), assert them instead of eyeballing a preview. `@smoove/core/testing`
+drives the clock and reports what is on screen, headless:
+
+```ts
+import { countAt, probeAt } from "@smoove/core/testing";
+
+await comp.whenReady();
+probeAt(comp, { time: 0.5 }, ".title")[0]?.box.y; // stage-space, at that frame
+countAt(comp, { time: 6.0 }, ".card"); // how many actually paint
+```
+
+Details: [rules/testing.md](rules/testing.md).
+
 ## Optional add-ons
 
 - `@smoove/transitions` — `TransitionSeries` + presentations (fade, slide,
@@ -147,6 +166,6 @@ motion. Recipes + the scale-not-radius gotcha:
 [layout](rules/layout.md) ·
 [animation](rules/animation.md) · [text](rules/text.md) ·
 [shapes](rules/shapes.md) · [media](rules/media.md) ·
-[performance](rules/performance.md) ·
+[performance](rules/performance.md) · [testing](rules/testing.md) ·
 [transitions](rules/transitions.md) (optional) · [fonts](rules/fonts.md)
 (optional)

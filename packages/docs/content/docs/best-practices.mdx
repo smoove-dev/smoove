@@ -146,7 +146,27 @@ external mutable state, no `Date.now()`, no random values that change between
 renders.
 
 **Why:** purity is what makes preview, scrubbing, and headless render produce
-identical output. If you need randomness, seed it from the frame or a fixed seed.
+identical output.
+
+For scatter (confetti, starfields, jitter), reach for `random(seed)` from
+`@smoove/core`. The same seed walks the same sequence every run, in the browser
+and on the server:
+
+```ts
+import { random } from "@smoove/core";
+
+const r = random("confetti");
+const dots = Array.from({ length: 80 }, () => ({
+  x: r.range(0, width),   // float in [min, max)
+  size: r.int(2, 6),      // integer, both ends inclusive
+  tint: r.pick(["#ff2d3f", "#ffc53d"]),
+}));
+```
+
+A generator is stateful, so it moves as you call it. Seed it at module scope
+and read the values out once, as above. One advanced inside an updater hands
+out different numbers on a seek than it did on playback, which is the bug the
+seed exists to prevent.
 
 External data belongs in [`props`](/docs/dynamic-props): read `comp.props.get()`
 inside the updater and change it with `comp.setProps(...)`, which re-renders for

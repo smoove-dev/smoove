@@ -5,6 +5,7 @@ export {
   interpolate,
 } from "./animation/interpolate.js";
 export { interpolateColors } from "./animation/interpolate-colors.js";
+export { type Random, random } from "./animation/random.js";
 export {
   type AncestryMethods,
   findClip,

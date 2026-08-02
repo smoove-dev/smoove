@@ -10,6 +10,12 @@ typewriter reveal, and highlights. Two consequences:
   return `this`). Use `.setFill()` to animate/tint text color instead of
   faking it with a transparent `highlight` — e.g. `text.setFill(interpolateColors(...))`
   in `register()`.
+- To resize after construction, call `.setFontSize(32)` — font size is a
+  layout input, so it re-runs fit, clamp, and layout (unlike `.setFill()`).
+  `.fontSize()` reads back the size the glyphs actually render at, so with
+  `fitText` you get the fitted size rather than the one you asked for. Don't
+  destroy and rebuild a node to change its size, and don't track the current
+  size in composition state.
 - It participates in `Flex`/`Block` layout like any other wrapper (`width`,
   `flexGrow`, `alignSelf`, …).
 

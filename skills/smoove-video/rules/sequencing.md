@@ -27,7 +27,8 @@ registering per-frame updaters — never recreate nodes inside an updater.
 
 **Keep the composition pure.** Every node's attributes should be derivable
 from `frame` and `props` alone — no external mutable state, no `Date.now()`,
-no `Math.random()` (seed randomness from the frame or a fixed seed instead).
+no `Math.random()` (use core's seeded `random(seed)` instead, see
+[animation.md](animation.md)).
 This is what makes scrubbing and repeated/headless rendering produce
 identical output; an impure updater looks fine during a single real-time
 playback and then desyncs the moment you seek or re-render.

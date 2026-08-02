@@ -1,0 +1,125 @@
+---
+title: Testing
+description: Drive a composition to any frame and assert what is on screen, headless.
+---
+
+A composition is a pure function of the frame, which makes it testable like any
+other function. `@smoove/core/testing` drives the clock and reports what
+actually paints, with no browser and no rendering.
+
+This is for the numbers a brief hands you. "The title lands by 0.5s", "six
+cards on screen at the end": those are acceptance criteria, and they belong in
+a test rather than in a preview you check once and hope stays true.
+
+## Set it up
+
+vitest is Vite, so the smoove plugin goes straight into a vitest config, and
+composition modules import directly with their media and font imports intact:
+
+```ts
+// vitest.config.ts
+import { smoove } from "@smoove/vite";
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  plugins: [smoove()],
+  test: {
+    environment: "node",
+    setupFiles: ["./src/test/setup.ts"],
+  },
+});
+```
+
+The setup file loads the same canvas backend the server renderer uses, so a
+composition ticks against the real server code path:
+
+```ts
+// src/test/setup.ts
+import "konva/skia-backend";
+```
+
+That backend is `skia-canvas`. It ships with `@smoove/renderer`; add it as a
+dev dependency if you are testing an app that does not render.
+
+## Probe a frame
+
+```ts
+import { countAt, probeAt } from "@smoove/core/testing";
+import { describe, expect, it } from "vitest";
+import comp from "./composition.js";
+
+describe("intro", () => {
+  it("puts the title in place by half a second", async () => {
+    await comp.whenReady();
+
+    const [title] = probeAt(comp, { time: 0.5 }, ".title");
+    expect(title?.visible).toBe(true);
+    expect(title?.box.y).toBeCloseTo(180, 1);
+    expect(title?.paint).toEqual({ kind: "color", color: "#f5f5f5" });
+  });
+
+  it("ends on the full card grid", async () => {
+    await comp.whenReady();
+    expect(countAt(comp, { time: 6.0 }, ".card")).toBe(6);
+  });
+});
+```
+
+`probeAt(comp, at, selector)` drives the composition to `at` and reports every
+match. `at` is a global frame number, or `{ time }` in seconds, rounded to the
+nearest frame. `countAt` is the same walk, counting only what paints. `probe`
+reads the frame the composition already sits on, which is what you want when
+something else moved the playhead.
+
+Selectors are Konva selectors: `#id`, `.name`, or a type name like `Circle`.
+Name the nodes you plan to assert on, the same way you would for
+[`query()`](/docs/components).
+
+## What a probe reports
+
+```ts
+{
+  node,       // the Konva node itself, for anything the probe doesn't cover
+  name,       // Konva name(), the handle a .selector matches
+  box,        // stage-space, axis-aligned, via measure()
+  opacity,    // effective, every ancestor folded in
+  visible,    // does this actually paint
+  paint,      // the fill it resolved to
+}
+```
+
+`visible` is the honest question rather than the configured one. It is false
+for a node in a sequence the playhead has not reached, false under a hidden
+ancestor, and false when effective opacity reaches zero. A node that sits in
+the tree painting nothing does not count as on screen, which is why `countAt`
+counts what a viewer would count.
+
+`box` comes from [`measure()`](/docs/measure), so it is stage-space and
+absolute: a node in one sequence can be compared against a node in another.
+
+`paint` is what the node resolved to, not what was passed in. It is
+`{ kind: "color", color }`, `{ kind: "gradient", stops }`, or undefined when
+nothing paints. A `Block` reports its background here too, even though it
+paints through an internal rect you cannot reach from the outside.
+
+## Fonts and images load first
+
+`await comp.whenReady()` before the first probe. Assets load asynchronously,
+and a box measured before the real face arrives was measured against a
+fallback. Server rendering registers fonts up front, so this only bites in
+tests that load assets over the network.
+
+## Walking the timeline
+
+`probeAt` leaves the playhead where it drove it, so successive calls read as a
+walk rather than a set of independent reads:
+
+```ts
+const rise = [0, 15, 30].map((f) => probeAt(comp, f, ".bar")[0]?.box.height);
+expect(rise[0]).toBeLessThan(rise[2]);
+```
+
+One warning about what you assert. Derive the expected numbers from the
+composition's own updater, not from what a passing test printed. A test that
+only records today's output will not tell you the day it changes, which is the
+entire job.
