@@ -12,7 +12,10 @@
       "!**/.source",
       "!**/.agents",
       "!**/.claude",
-      "!**/doc"
+      "!**/doc",
+      "!**/files/lottie",
+      "!**/demos/assets",
+      "!**/lottie/src/fixtures"
     ]
   },
   "assist": { "actions": { "source": { "organizeImports": "on" } } },

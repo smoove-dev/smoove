@@ -1,0 +1,151 @@
+---
+title: Lottie
+description: Play Lottie animations on the composition clock, resampled onto your frame rate.
+---
+
+A Lottie file ships with its own frame rate and its own idea of time. `Lottie`
+takes that clock away and gives the animation to your composition, so it moves
+because the playhead moved. Scrub it, seek it, render it headlessly, and you
+get the same frame every time.
+
+<Demo name="lottie" />
+
+## Install
+
+`Lottie` ships in `@smoove/lottie`, so `@smoove/core` stays free of the
+rasterizer:
+
+```bash
+npm install @smoove/lottie
+# or
+pnpm add @smoove/lottie
+```
+
+Importing the package registers its renderer, so there is nothing else to wire
+up.
+
+```ts
+import { Composition, Sequence } from "@smoove/core";
+import { Lottie } from "@smoove/lottie";
+
+const comp = new Composition({
+  id: "hero",
+  fps: 30,
+  durationInFrames: 90,
+  width: 1280,
+  height: 720,
+});
+
+const main = new Sequence();
+main.add(new Lottie({ src: "/checkmark.json", width: 240, height: 240 }));
+
+comp.add(main);
+export default comp;
+```
+
+## Frame rates do not have to match
+
+The demo above runs two animations on one 30 fps timeline: the robot is
+authored at 30 fps, the banner at 60. For each of your frames the node works out
+where each animation should be, including the positions between its own frames,
+so a mismatch costs you nothing.
+
+`speed` scales that same mapping:
+
+```ts
+new Lottie({ src: "/spinner.json", width: 200, height: 200, speed: 0.5, loop: true });
+```
+
+Without `loop`, the animation holds on its last frame once it reaches the end.
+With it, the animation repeats for as long as its [Sequence](/docs/sequencing)
+is on screen.
+
+## Playing part of an animation
+
+`segment` takes a range in the animation's own frames:
+
+```ts
+new Lottie({ src: "/logo.json", segment: [0, 24] });
+```
+
+`marker` takes a name the animation already carries, which survives the file
+being re-exported at a different length:
+
+```ts
+new Lottie({ src: "/logo.lottie", marker: "intro" });
+```
+
+`trimBefore` and `trimAfter` are counted in composition frames, the same as
+[Video](/docs/video) counts them.
+
+## Sizing and layout
+
+Sizing works the way it works everywhere else, so a `Lottie` drops into a
+[Flex](/docs/layout) as a normal child:
+
+```ts
+new Lottie({
+  src: "/burst.json",
+  width: "50%",
+  objectFit: "cover",
+  objectPosition: "top",
+  cornerRadius: 16,
+});
+```
+
+Omit `width` and `height` and the node measures itself from the animation's
+authored size.
+
+The animation is rasterized at the size it is drawn, scaled by the stage pixel
+ratio, so it stays sharp on a retina preview. Large animations can trade some
+of that sharpness back for speed with `pixelRatio`.
+
+## Loading
+
+`src` points at a `.json` or `.lottie` URL. `data` takes the animation itself,
+as parsed JSON, a JSON string, or `.lottie` bytes:
+
+```ts
+import burst from "./burst.json";
+
+new Lottie({ data: burst, width: 300, height: 300 });
+```
+
+Reach for `data` when you [render on a server](/docs/rendering), since an
+imported animation needs no URL resolved at render time.
+
+The composition holds its first paint until the animation is ready, in preview
+and in a render alike, so no frame is captured half-loaded. `lottie.ready`
+resolves at the same moment if you want to await it yourself.
+
+## Serving the renderer yourself
+
+Drawing is done by a WebAssembly rasterizer that the browser fetches from a CDN
+by default. Point the package at your own copy before you build any node:
+
+```ts
+import wasmUrl from "@lottiefiles/dotlottie-web/dotlottie-player.wasm?url";
+import { setLottieWasmUrl } from "@smoove/lottie";
+
+setLottieWasmUrl(wasmUrl);
+```
+
+Headless rendering needs no setup. The file is read from disk, so a render
+never reaches for the network.
+
+## Config
+
+| Prop | Type | Notes |
+| --- | --- | --- |
+| `src` | `string` | URL of a `.json` or `.lottie` animation |
+| `data` | `string \| ArrayBuffer \| object` | The animation itself. Use one of `src` or `data` |
+| `width` / `height` | `number \| string` | Defaults to the animation's authored size |
+| `objectFit` | `"contain" \| "cover" \| "fill" \| "none"` | Defaults to `"contain"` |
+| `objectPosition` | `"center" \| "top" \| ...` | Defaults to `"center"` |
+| `cornerRadius` | `number \| number[]` | Clips the animation |
+| `speed` | `number` | Playback rate against composition time |
+| `loop` | `boolean` | Repeat instead of holding the last frame |
+| `trimBefore` / `trimAfter` | `number` | Composition frames |
+| `segment` | `[number, number]` | Animation frames |
+| `marker` | `string` | A marker name from the animation |
+| `pixelRatio` | `number` | Rasterization scale. Defaults to the stage pixel ratio |

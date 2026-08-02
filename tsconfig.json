@@ -5,6 +5,7 @@
     { "path": "./packages/core" },
     { "path": "./packages/media" },
     { "path": "./packages/code" },
+    { "path": "./packages/lottie" },
     { "path": "./packages/layout" },
     { "path": "./packages/transitions" },
     { "path": "./packages/renderer" },

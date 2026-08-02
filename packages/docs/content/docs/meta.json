@@ -28,6 +28,7 @@
     "---Media---",
     "video",
     "audio",
+    "lottie",
     "---Playback & Export---",
     "player",
     "rendering",
