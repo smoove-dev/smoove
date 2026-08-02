@@ -1,5 +1,13 @@
 # @smoove/renderer
 
+## 0.3.6
+
+### Patch Changes
+
+- Updated dependencies [[`8e7bbc1`](https://github.com/smoove-dev/smoove/commit/8e7bbc1268451777fc4223d5f8b88534ad748cec), [`5c49115`](https://github.com/smoove-dev/smoove/commit/5c49115e0c64c11779f7702adce321764aac50ea)]:
+  - @smoove/core@0.3.6
+  - @smoove/transitions@0.3.6
+
 ## 0.3.5
 
 ### Patch Changes
