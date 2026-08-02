@@ -1,5 +1,12 @@
 # @smoove/code
 
+## 0.3.6
+
+### Patch Changes
+
+- Updated dependencies [[`8e7bbc1`](https://github.com/smoove-dev/smoove/commit/8e7bbc1268451777fc4223d5f8b88534ad748cec)]:
+  - @smoove/core@0.3.6
+
 ## 0.3.5
 
 ### Patch Changes
