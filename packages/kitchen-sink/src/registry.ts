@@ -33,6 +33,7 @@ import imageFade from "./compositions/image-fade/index.js";
 import imageSlider from "./compositions/image-slider/index.js";
 import journey from "./compositions/journey/index.js";
 import keyframes from "./compositions/keyframes/index.js";
+import lottie from "./compositions/lottie/index.js";
 // Featured (ungrouped) — the props-driven intro.
 import pulse from "./compositions/pulse/index.js";
 // Text.
@@ -140,6 +141,7 @@ export default defineRegistry([
   audioVisuals,
   eqSpectrum,
   audiogram,
+  lottie,
   // Film.
   cohabit,
   helloSmoove,

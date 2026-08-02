@@ -1,0 +1,48 @@
+{
+  "name": "@smoove/lottie",
+  "version": "0.3.5",
+  "description": "Timeline-driven Lottie animations for smoove: a frame-pure Lottie node that plays on the composition clock.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoove-dev/smoove.git",
+    "directory": "packages/lottie"
+  },
+  "homepage": "https://smoove.dev",
+  "bugs": "https://github.com/smoove-dev/smoove/issues",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "konva": ">=10"
+  },
+  "dependencies": {
+    "@lottiefiles/dotlottie-web": "^0.78.2",
+    "@smoove/core": "workspace:^"
+  },
+  "devDependencies": {
+    "skia-canvas": "^3.0.8",
+    "vitest": "^3.2.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

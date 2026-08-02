@@ -104,6 +104,9 @@ importers:
       '@smoove/google-fonts':
         specifier: workspace:*
         version: link:../google-fonts
+      '@smoove/lottie':
+        specifier: workspace:*
+        version: link:../lottie
       '@smoove/media':
         specifier: workspace:*
         version: link:../media
@@ -196,6 +199,9 @@ importers:
       '@smoove/google-fonts':
         specifier: workspace:*
         version: link:../google-fonts
+      '@smoove/lottie':
+        specifier: workspace:*
+        version: link:../lottie
       '@smoove/media':
         specifier: workspace:*
         version: link:../media
@@ -245,6 +251,25 @@ importers:
       vite:
         specifier: ^6.3.6
         version: 6.4.3(@types/node@26.1.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/debug@4.1.13)(@types/node@26.1.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
+
+  packages/lottie:
+    dependencies:
+      '@lottiefiles/dotlottie-web':
+        specifier: ^0.78.2
+        version: 0.78.2
+      '@smoove/core':
+        specifier: workspace:^
+        version: link:../core
+      konva:
+        specifier: '>=10'
+        version: 10.3.0
+    devDependencies:
+      skia-canvas:
+        specifier: ^3.0.8
+        version: 3.0.8
       vitest:
         specifier: ^3.2.4
         version: 3.2.7(@types/debug@4.1.13)(@types/node@26.1.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
@@ -1114,6 +1139,10 @@ packages:
 
   '@lit/reactive-element@2.1.2':
     resolution: {integrity: sha512-pbCDiVMnne1lYUIaYNN5wrwQXDtHaYtg7YEFPeW+hws6U47WeFvISGUWekPGKWOP1ygrs0ef0o1VJMk1exos5A==}
+
+  '@lottiefiles/dotlottie-web@0.78.2':
+    resolution: {integrity: sha512-ERBw7qATlekpFnR1xwNoTeXsXqw0FzCiEgei0IwPiquT277m36/o0aSWZDK7CgkhVd1NYre3M9fH+6n4waUfHA==}
+    engines: {node: '>=18.17.0', npm: '>=9.5.0'}
 
   '@manypkg/find-root@1.1.0':
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
@@ -5726,6 +5755,8 @@ snapshots:
   '@lit/reactive-element@2.1.2':
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.6.0
+
+  '@lottiefiles/dotlottie-web@0.78.2': {}
 
   '@manypkg/find-root@1.1.0':
     dependencies:
