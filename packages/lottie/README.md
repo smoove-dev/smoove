@@ -32,7 +32,8 @@ pnpm add @smoove/lottie
 
 Give it a 24 fps animation on a 30 fps timeline and the node works out where
 the animation should be at each of your frames, including the fractional
-positions between its own. Nothing stutters and nothing needs to match.
+positions between its own. The two frame rates do not have to divide evenly, or
+match at all.
 
 The same math covers playback rate:
 
