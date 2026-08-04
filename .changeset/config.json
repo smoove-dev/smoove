@@ -5,6 +5,7 @@
   "fixed": [
     [
       "@smoove/code",
+      "@smoove/effects",
       "@smoove/lottie",
       "@smoove/core",
       "@smoove/media",

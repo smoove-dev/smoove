@@ -1,15 +1,16 @@
-import type { GlUniforms } from "../types.js";
 import { createProgram, createTexture, type GlContext, VERTEX_SHADER } from "./shared.js";
+import type { GlUniforms } from "./types.js";
 
 type CanvasImage = HTMLCanvasElement | OffscreenCanvas;
 
 type ProgramEntry = {
   program: WebGLProgram;
-  uTime: WebGLUniformLocation | null;
-  uPrev: WebGLUniformLocation | null;
-  uNext: WebGLUniformLocation | null;
-  extra: Map<string, WebGLUniformLocation | null>;
+  /** Lazily-resolved uniform locations by name. `null` means not declared. */
+  locations: Map<string, WebGLUniformLocation | null>;
 };
+
+/** Default sampler names bound by {@link GlCompositor.renderPass}. */
+const DEFAULT_SAMPLERS = ["u_tex0", "u_tex1", "u_tex2", "u_tex3"];
 
 /**
  * A rendering backend for the compositor. The DOM and Node (skia + headless-gl)
@@ -39,10 +40,17 @@ export interface GlPlatform {
 }
 
 /**
- * One shared WebGL surface that runs any Tier B fragment shader over two
- * captured scene canvases. `u_prev` is bound to the **incoming** scene and
- * `u_next` to the **outgoing** scene (Remotion's inverted binding); `u_time` is
- * the transition progress. Pure in `(progress, textures)` → reproducible.
+ * One shared WebGL surface that runs a fragment shader over one or more
+ * captured canvases. Two consumers ride it:
+ *
+ * - **Transitions** via {@link render}, which binds the incoming scene to
+ *   `u_prev` and the outgoing to `u_next` (Remotion's inverted binding) with
+ *   `u_time` as progress.
+ * - **Effects** via {@link renderPass}, which binds sources to `u_tex0`,
+ *   `u_tex1`, ... and sets arbitrary named uniforms.
+ *
+ * Both are pure in `(fragment, sources, uniforms)` → reproducible, which is
+ * what lets a server render seek to any frame and get identical pixels.
  *
  * The actual GL surface is supplied by a {@link GlPlatform}: a DOM/WebGL2
  * backend in the browser, or a headless-gl/skia backend during server
@@ -51,8 +59,8 @@ export interface GlPlatform {
 export class GlCompositor {
   private readonly platform: GlPlatform;
   private readonly gl: GlContext;
-  private readonly prevTex: WebGLTexture;
-  private readonly nextTex: WebGLTexture;
+  /** Textures by sampler slot, created on first use. */
+  private readonly texPool: WebGLTexture[] = [];
   private readonly programs = new Map<string, ProgramEntry>();
 
   private constructor(platform: GlPlatform) {
@@ -63,8 +71,6 @@ export class GlCompositor {
     const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-    this.prevTex = createTexture(gl);
-    this.nextTex = createTexture(gl);
   }
 
   /** Wrap a custom backend (e.g. the Node headless-gl platform). */
@@ -81,7 +87,11 @@ export class GlCompositor {
     } catch {
       return null;
     }
-    const gl = canvas.getContext("webgl2", { premultipliedAlpha: true });
+    // Straight alpha, matching the server platform: it reads the framebuffer
+    // back with `readPixels` straight into an ImageData, whose channels are not
+    // premultiplied. Both consumers author their fragments the same way, so the
+    // two paths would otherwise disagree on every semi-transparent pixel.
+    const gl = canvas.getContext("webgl2", { premultipliedAlpha: false });
     if (!gl) return null;
     return new GlCompositor({
       gl,
@@ -100,7 +110,7 @@ export class GlCompositor {
     });
   }
 
-  private getEntry(fragment: string, extraNames: string[]): ProgramEntry {
+  private getEntry(fragment: string): ProgramEntry {
     let entry = this.programs.get(fragment);
     if (!entry) {
       const program = createProgram(
@@ -108,41 +118,70 @@ export class GlCompositor {
         this.platform.prepareFragment(fragment),
         this.platform.vertexShader,
       );
-      entry = {
-        program,
-        uTime: this.gl.getUniformLocation(program, "u_time"),
-        uPrev: this.gl.getUniformLocation(program, "u_prev"),
-        uNext: this.gl.getUniformLocation(program, "u_next"),
-        extra: new Map(),
-      };
+      entry = { program, locations: new Map() };
       this.programs.set(fragment, entry);
-    }
-    for (const name of extraNames) {
-      if (!entry.extra.has(name)) {
-        entry.extra.set(name, this.gl.getUniformLocation(entry.program, name));
-      }
     }
     return entry;
   }
 
+  /** Texture for sampler slot `i`, created on first use. */
+  private texture(i: number): WebGLTexture {
+    let tex = this.texPool[i];
+    if (!tex) {
+      tex = createTexture(this.gl);
+      this.texPool[i] = tex;
+    }
+    return tex;
+  }
+
+  /** Cached uniform location lookup; `null` when the fragment doesn't declare it. */
+  private location(entry: ProgramEntry, name: string): WebGLUniformLocation | null {
+    if (!entry.locations.has(name)) {
+      entry.locations.set(name, this.gl.getUniformLocation(entry.program, name));
+    }
+    return entry.locations.get(name) ?? null;
+  }
+
+  private setUniform(entry: ProgramEntry, name: string, value: number | number[]): void {
+    const gl = this.gl;
+    const loc = this.location(entry, name);
+    if (loc === null) return;
+    if (typeof value === "number") {
+      gl.uniform1f(loc, value);
+    } else if (value.length === 2) {
+      gl.uniform2f(loc, value[0] as number, value[1] as number);
+    } else if (value.length === 3) {
+      gl.uniform3f(loc, value[0] as number, value[1] as number, value[2] as number);
+    } else if (value.length === 4) {
+      gl.uniform4f(
+        loc,
+        value[0] as number,
+        value[1] as number,
+        value[2] as number,
+        value[3] as number,
+      );
+    }
+  }
+
   /**
-   * Render the blended frame and return an image to draw (reused across calls —
-   * copy/draw it immediately).
+   * Run `fragment` over `sources` and return an image to draw (reused across
+   * calls — copy/draw it immediately).
+   *
+   * Sources bind to `samplerNames[i]`, defaulting to `u_tex0`, `u_tex1`, ...
+   * Uniform names the fragment doesn't declare are skipped, so a caller can
+   * pass a full param set to a shader that only reads some of it.
    */
-  render(
+  renderPass(
     fragment: string,
-    incoming: CanvasImage,
-    outgoing: CanvasImage,
-    progress: number,
+    sources: readonly CanvasImage[],
     uniforms: GlUniforms,
     width: number,
     height: number,
+    samplerNames: readonly string[] = DEFAULT_SAMPLERS,
   ): CanvasImageSource {
     const gl = this.gl;
     this.platform.resize(width, height);
-
-    const extraNames = Object.keys(uniforms);
-    const entry = this.getEntry(fragment, extraNames);
+    const entry = this.getEntry(fragment);
 
     gl.viewport(0, 0, width, height);
     gl.clearColor(0, 0, 0, 0);
@@ -153,40 +192,48 @@ export class GlCompositor {
     gl.enableVertexAttribArray(aPos);
     gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, this.prevTex);
-    this.platform.uploadScene(incoming, width, height);
-    gl.uniform1i(entry.uPrev, 0);
-
-    gl.activeTexture(gl.TEXTURE1);
-    gl.bindTexture(gl.TEXTURE_2D, this.nextTex);
-    this.platform.uploadScene(outgoing, width, height);
-    gl.uniform1i(entry.uNext, 1);
-
-    gl.uniform1f(entry.uTime, progress);
+    for (let i = 0; i < sources.length; i++) {
+      gl.activeTexture(gl.TEXTURE0 + i);
+      gl.bindTexture(gl.TEXTURE_2D, this.texture(i));
+      this.platform.uploadScene(sources[i] as CanvasImage, width, height);
+      const name = samplerNames[i];
+      if (name === undefined) continue;
+      const loc = this.location(entry, name);
+      if (loc !== null) gl.uniform1i(loc, i);
+    }
 
     for (const [name, value] of Object.entries(uniforms)) {
-      const loc = entry.extra.get(name) ?? null;
-      if (loc === null) continue;
-      if (typeof value === "number") {
-        gl.uniform1f(loc, value);
-      } else if (value.length === 2) {
-        gl.uniform2f(loc, value[0] as number, value[1] as number);
-      } else if (value.length === 3) {
-        gl.uniform3f(loc, value[0] as number, value[1] as number, value[2] as number);
-      } else if (value.length === 4) {
-        gl.uniform4f(
-          loc,
-          value[0] as number,
-          value[1] as number,
-          value[2] as number,
-          value[3] as number,
-        );
-      }
+      this.setUniform(entry, name, value);
     }
 
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     return this.platform.result(width, height);
+  }
+
+  /**
+   * Render a transition frame. `u_prev` is the **incoming** scene and `u_next`
+   * the **outgoing** one (Remotion's inverted binding); `u_time` is progress.
+   *
+   * A thin wrapper over {@link renderPass} that keeps the transition's uniform
+   * names, so the two consumers share one code path.
+   */
+  render(
+    fragment: string,
+    incoming: CanvasImage,
+    outgoing: CanvasImage,
+    progress: number,
+    uniforms: GlUniforms,
+    width: number,
+    height: number,
+  ): CanvasImageSource {
+    return this.renderPass(
+      fragment,
+      [incoming, outgoing],
+      { ...uniforms, u_time: progress },
+      width,
+      height,
+      ["u_prev", "u_next"],
+    );
   }
 }
 

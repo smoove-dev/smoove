@@ -15,6 +15,7 @@
     "@lezer/javascript": "^1.4.21",
     "@smoove/code": "workspace:*",
     "@smoove/core": "workspace:*",
+    "@smoove/effects": "workspace:*",
     "@smoove/google-fonts": "workspace:*",
     "@smoove/lottie": "workspace:*",
     "@smoove/media": "workspace:*",

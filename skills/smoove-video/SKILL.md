@@ -153,6 +153,47 @@ countAt(comp, { time: 6.0 }, ".card"); // how many actually paint
 
 Details: [rules/testing.md](rules/testing.md).
 
+## Effects (optional)
+
+`@smoove/effects` post-processes a node as it draws. `flameWrap` wraps fire
+around a node — its rounded box by default, or its alpha edge with
+`shape: "silhouette"` so a burning `Text` burns letter by letter:
+
+```ts
+import { flameWrap } from "@smoove/effects";
+
+const fire = flameWrap({ radius: 40, intensity: 0 }); // match your cornerRadius
+card.effects([fire]);
+seq.register((frame) => {
+  fire.intensity = interpolate(frame, [0, 20], [0, 1], { extrapolateLeft: "clamp" });
+});
+```
+
+Three rules. `intensity: 0` disables the effect, so animate it from 0 to
+ignite. Put the effect on the node you want burning, never on the `Sequence`,
+because cost tracks the area being shaded. Keep that node's box near its
+content: a centred `Text` with `width: 1280` makes the effect shade the whole
+frame, so give it a width close to the glyphs and centre it with `x`.
+`flameWrap` needs WebGL; where there is none the fire is skipped and the node
+draws normally.
+
+`droplets` puts rain on a pane of glass in front of a node, and inverts the
+box rule: it refracts what is behind it, so its node is meant to hold a scene
+(a `Video`, an `Image`, a `Group` with a whole layout), and it never paints
+outside that node's alpha. Animate `intensity` for a squall; move `blur` with
+it to fog the window up and clear it again.
+
+```ts
+import { droplets } from "@smoove/effects";
+
+const rain = droplets({ intensity: 0, vignette: 0.5 });
+pane.effects([rain]);
+seq.register((frame) => {
+  rain.intensity = interpolate(frame, [0, 60], [0, 1.15], { extrapolateLeft: "clamp" });
+  rain.blur = 2 + rain.intensity * 4;
+});
+```
+
 ## Optional add-ons
 
 - `@smoove/transitions` — `TransitionSeries` + presentations (fade, slide,

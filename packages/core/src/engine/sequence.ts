@@ -1,4 +1,5 @@
 import Konva from "konva";
+import { initNodeEffects } from "../effects/apply.js";
 import { findClip, findComposition, findSequence } from "./ancestry.js";
 import { getComposition } from "./composition.js";
 import { type FrameAnchor, resolveFrameAnchor } from "./marker.js";
@@ -89,6 +90,7 @@ export class Sequence extends TimelineMixin(Konva.Layer) {
       if (!becameActive && !force && local === this._kmLastLocal) return;
       this._kmLastLocal = local;
       this._kmRunFrame(local, true);
+      this._kmWireEffects();
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the
       // newly-displayed layer (avoids a one-frame flash of stale content).
@@ -100,6 +102,25 @@ export class Sequence extends TimelineMixin(Konva.Layer) {
       this._kmLastLocal = -1;
       this._kmDeactivateSubtree();
     }
+  }
+
+  /**
+   * Internal — route any node carrying an `effects` chain through the effects
+   * pipeline. Runs after the frame pass, so an updater that assigns `effects`
+   * on the frame it becomes visible is still picked up.
+   *
+   * `initNodeEffects` is idempotent and the walk stops early once a frame finds
+   * nothing, so a composition with no effects pays one `find` per frame and a
+   * composition with effects pays one `find` plus a no-op call per node.
+   */
+  private _kmWireEffects(): void {
+    const withEffects = this.find((node: Konva.Node) => {
+      const chain = node.getAttr("effects") as unknown;
+      return Array.isArray(chain) && chain.length > 0;
+    });
+    for (const node of withEffects) initNodeEffects(node);
+    const own = this.getAttr("effects") as unknown;
+    if (Array.isArray(own) && own.length > 0) initNodeEffects(this);
   }
 
   /**

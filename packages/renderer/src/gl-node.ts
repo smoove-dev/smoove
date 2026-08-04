@@ -1,4 +1,4 @@
-import { type GlPlatform, transpileTo100, VERTEX_SHADER_100 } from "@smoove/transitions";
+import { type GlPlatform, transpileTo100, VERTEX_SHADER_100 } from "@smoove/core";
 // Imported from the bare "module" specifier (not "node:module") on purpose: a
 // consuming app may alias `node:module` to a browser stub for its client bundle
 // (this renderer is server-only, so that stub must never reach it). Vite/Node
@@ -33,7 +33,7 @@ export function createNodeGlPlatform(): GlPlatform | null {
     return null;
   }
 
-  const gl = createGl(1, 1, { preserveDrawingBuffer: true, premultipliedAlpha: true });
+  const gl = createGl(1, 1, { preserveDrawingBuffer: true, premultipliedAlpha: false });
   if (!gl) return null;
   const resizeExt = gl.getExtension("STACKGL_resize_drawingbuffer") as ResizeExt | null;
 

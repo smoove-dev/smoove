@@ -1,0 +1,45 @@
+{
+  "name": "@smoove/effects",
+  "version": "0.3.6",
+  "description": "Visual effects for smoove: fire that wraps any node, rain running down the glass in front of it, and a chroma key that drops a green screen out of a clip.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoove-dev/smoove.git",
+    "directory": "packages/effects"
+  },
+  "homepage": "https://smoove.dev",
+  "bugs": "https://github.com/smoove-dev/smoove/issues",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "pnpm build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@smoove/core": "workspace:^",
+    "konva": ">=10"
+  },
+  "devDependencies": {
+    "skia-canvas": "^3.0.8",
+    "vitest": "^3.2.4"
+  }
+}

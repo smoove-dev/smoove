@@ -1,0 +1,397 @@
+---
+title: Effects
+description: Post-process any node as it draws. flameWrap sets a node on fire, droplets rains on it, chromaKey drops a green screen out of it, blur pulls it out of focus.
+---
+
+An effect is a post-process that runs while a node draws. smoove captures the
+node, runs the effect over those pixels, and blits the result where the node
+would have gone. Effects read the frame clock, so scrubbing to frame 900 shows
+the same pixels as playing to it.
+
+<Demo name="flame-wrap" />
+
+## Install
+
+Effects ship in `@smoove/effects`:
+
+```bash
+npm install @smoove/effects
+# or
+pnpm add @smoove/effects
+```
+
+## Apply one
+
+Every node has an `effects` chain:
+
+```ts
+import { Block } from "@smoove/core";
+import { flameWrap } from "@smoove/effects";
+
+const card = new Block({ width: 620, padding: 48, cornerRadius: 40 });
+card.effects([flameWrap({ radius: 40 })]);
+```
+
+Effects are live objects. Keep a reference and set a parameter to animate it:
+
+```ts
+const fire = flameWrap({ intensity: 0 });
+card.effects([fire]);
+
+seq.register((frame) => {
+  fire.intensity = interpolate(frame, [0, 20], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+});
+```
+
+Order in the array is the order the passes run, so it is yours to control.
+
+## flameWrap
+
+Fire wrapped around a node, with heat distortion, sparks, a molten rim, smoke,
+and scorching. Flames climb off the top edge, glow at the sides, eat into the
+edge, and char and light whatever survives inside.
+
+The burn loops on its own. To ignite something, animate `intensity` from 0.
+At `intensity: 0` the effect switches off and the node draws through the normal
+path, so an unlit card costs nothing.
+
+```ts
+const fire = flameWrap({
+  radius: 40,
+  height: 150,
+  sparks: 1.8,
+  melt: 5,
+});
+```
+
+### Two shapes
+
+`shape` decides what the flames follow.
+
+`box`, the default, wraps the node's bounding box with `radius` rounding its
+corners. Set `radius` to the same value as your `Block`'s `cornerRadius` and the
+burn line follows the card exactly. Nothing is derived from the node's pixels,
+so this is the cheaper of the two.
+
+`silhouette` reads the outline from the node's own alpha instead, so a burning
+`Text` burns letter by letter and a cutout PNG burns along its cutout, with no
+per-shape configuration. It costs a distance field, rebuilt whenever the node's
+content changes, and ignores `radius`.
+
+```ts
+title.effects([flameWrap({ shape: "silhouette" })]);
+```
+
+<Demo name="flame-text" />
+
+### Parameters you will reach for
+
+`color` is the flame tint as linear RGB in 0 to 1. `intensity` scales the whole
+effect and doubles as the ignition control. `height` is how far flames climb
+above an edge, in px, and `speed` is the flow rate. `turbulence` bends the
+flames, and `sparks` sets how bright the embers are.
+
+### Full reference
+
+| Parameter | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `shape` | `"box" \| "silhouette"` | `"box"` | Whether the flames follow the node's rounded box or its alpha |
+| `color` | `[number, number, number]` | `[0.31, 0.54, 1]` | Flame tint, linear RGB in 0 to 1 |
+| `intensity` | `number` | `0.5` | Overall strength, 0 to 3. Zero disables the effect |
+| `height` | `number` | `170` | Flame reach above an edge, px |
+| `spread` | `number` | `8` | Glow reach at the sides and below, px |
+| `radius` | `number` | `40` | Corner radius of the burning outline, px. `box` only |
+| `speed` | `number` | `0.25` | Flow rate of the fire |
+| `scale` | `number` | `0.75` | Flame detail, 0 broad to 1 fine |
+| `turbulence` | `number` | `0.5` | Wave amplitude, 0 to 1 |
+| `turbulenceScale` | `number` | `0.5` | Wave frequency, 0.2 to 3 |
+| `turbulenceReach` | `number` | `25` | How far the heat warp extends, px |
+| `sparks` | `number` | `1.5` | Spark brightness, 0 to 3. Zero turns them off |
+| `sparkSize` | `number` | `0.35` | Spark size multiplier |
+| `sparkDensity` | `number` | `1` | Spark count, 0.3 to 2.5 |
+| `sparkSpeed` | `number` | `1` | Spark rise and flicker rate |
+| `rim` | `number` | `2.5` | Molten edge glow, 0 to 3 |
+| `melt` | `number` | `4.5` | How far the burning edge eats into the node, px |
+| `distortion` | `number` | `10` | Heat shimmer displacement, px |
+| `smoke` | `number` | `1.5` | Smoke amount, 0 to 2 |
+| `ember` | `number` | `2` | Burnt edge glow, 0 to 2 |
+| `scorch` | `number` | `0` | Charring of what survives, 0 to 2 |
+
+Values outside a range clamp rather than throw, so an easing overshoot is safe.
+
+## droplets
+
+Rain running down a pane of glass in front of a node. Drops swell, let go and
+slide, leaving wet trails that cut through the fog, with a fine drizzle between
+them and everything behind bending through the water.
+
+<Demo name="droplets" />
+
+The glass is exactly the node's box, and every pixel the effect paints is gated
+on the node's own alpha, so it never spills outside what the node already
+covered and it asks for no padding at all.
+
+```ts
+import { droplets } from "@smoove/effects";
+
+pane.effects([droplets({ intensity: 0.9, blur: 4, vignette: 0.5 })]);
+```
+
+The rain loops on its own. Animate `intensity` for a squall that arrives and
+passes, and move `blur` with it if you want the window to fog up and clear:
+
+```ts
+const rain = droplets({ intensity: 0 });
+pane.effects([rain]);
+
+seq.register((frame) => {
+  rain.intensity = interpolate(frame, [0, 60], [0, 1.15], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  rain.blur = 2 + rain.intensity * 4;
+});
+```
+
+### Put it in front of something
+
+This is the one effect that wants a big node. Refraction has nothing to show
+over a flat colour, so the water reads best in front of a scene: a `Video`, an
+`Image`, or a `Group` holding a whole layout. Put the effect on that node and
+everything inside it goes behind the glass.
+
+On a plain card it is `sheen` that keeps the drops visible, since that is the
+light catching the water rather than the content bending through it.
+
+### Full reference
+
+| Parameter | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `intensity` | `number` | `0.5` | How hard it is raining, 0 to 1.25 |
+| `speed` | `number` | `1` | Animation rate of the whole effect |
+| `scale` | `number` | `0.7` | Pattern size. Higher means smaller drops |
+| `dropWidth` | `number` | `1` | Width of the drops and their trails |
+| `dropLength` | `number` | `1` | How elongated a falling drop is |
+| `refraction` | `number` | `0.2` | How strongly a drop bends what is behind it |
+| `blur` | `number` | `0` | Defocus of the glass outside the drops, px |
+| `vignette` | `number` | `0` | Darkening toward the node's edges, 0 to 1 |
+| `fallSpeed` | `number` | `1` | How fast the running drops slide down |
+| `wiggle` | `number` | `1` | Horizontal wander of the running drops |
+| `staticDrops` | `number` | `0.2` | Amount of fine drizzle that never runs |
+| `sheen` | `number` | `0.6` | How brightly the water catches the light, 0 to 3 |
+| `tint` | `[number, number, number]` | `[1, 1, 1]` | Tint colour, linear RGB in 0 to 1 |
+| `tintStrength` | `number` | `0` | Strength of that tint, 0 to 1 |
+
+`intensity: 0` switches the rain off, but the effect stays on while `blur`,
+`vignette` or `tintStrength` is doing something, since a fogged or tinted pane
+is a look of its own. With all four at zero the node draws through the normal
+path and costs nothing.
+
+`blur` is a real radius in px and every length here is in CSS px, so a 2x render
+matches its 1x preview.
+
+## chromaKey
+
+Keying: one colour becomes transparency, and whatever the node sits on shows
+through. The matte ignores brightness, so a shadow falling across the screen
+keys like the lit part of it, and what survives is despilled, with the green the
+screen bounced onto hair and shoulders taken back out.
+
+<Demo name="chroma-key" />
+
+Put it on the node holding the footage, not on the `Sequence`. An effect only
+touches the node it is on, so keying the `Video` leaves a title above it sharp
+and lets the scene behind it through the hole:
+
+```ts
+import { chromaKey } from "@smoove/effects";
+import { Video } from "@smoove/media";
+
+const clip = new Video({ src, width: 420, height: 720, objectFit: "cover" });
+clip.effects([chromaKey({ color: "#249530" })]);
+```
+
+### Sample the screen, never guess it
+
+A screen lit for camera is nothing like `#00ff00`. It comes back off the sensor
+dull and uneven, somewhere around `#249530`, so step one of every key is to pull
+a frame, eyedropper the middle of the screen, and paste that hex in. `color`
+takes a hex string or `[r, g, b]` in 0 to 1.
+
+Then widen `similarity` until the screen is gone, and only then reach for
+`smoothness` to soften the edge. `similarity` is measured against the key
+colour's own distance from grey: 0 is the key colour and 1 is neutral, whatever
+the screen looked like, so a setting that worked on a bright screen still works
+on a dull one. It stops at 0.95, because a key that reaches neutral takes the
+whites and greys of the subject with it.
+
+`choke` is for the last pixel. Compression leaves a half-green rim around a
+subject that no colour threshold can separate, and a choke of 1 or 2 eats it
+spatially. Negative values grow the matte back where a hot key has bitten into
+an edge.
+
+### Crop to the screen first
+
+The studio around the screen is not the screen colour, and no key will remove
+it. Crop before you key, with the node's own box:
+
+```ts
+// The screen fills the middle of a 1920x1080 plate, so a portrait box on
+// objectFit "cover" lands entirely on green.
+const clip = new Video({ src, width: 420, height, objectFit: "cover" });
+```
+
+### Dissolve it in
+
+`strength` crossfades the whole key against the untouched pixel. Animate it from
+0 and the background dissolves away rather than cutting:
+
+```ts
+const key = chromaKey({ color: "#249530", strength: 0 });
+clip.effects([key]);
+
+seq.register((frame) => {
+  key.strength = interpolate(frame, [24, 54], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+});
+```
+
+### Full reference
+
+| Parameter | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `color` | `string \| [number, number, number]` | `[0, 1, 0]` | The colour to remove, as hex or RGB in 0 to 1 |
+| `strength` | `number` | `1` | How much of the key to apply, 0 to 1 |
+| `similarity` | `number` | `0.5` | How far toward neutral the key reaches, 0 to 0.95 |
+| `smoothness` | `number` | `0.15` | Width of the ramp at the edge of that range, 0 to 0.5 |
+| `spill` | `number` | `0.5` | How much of the screen's cast to take off what is kept, 0 to 1 |
+| `choke` | `number` | `0` | Shrink the matte by this many px, negative grows it |
+
+`strength: 0` switches the effect off and the node draws through the normal
+path, so an unkeyed clip costs nothing. Keying a white, grey or black backdrop
+works too, on plain RGB distance instead of colour, but there is no hue to
+separate the subject from and `similarity` takes longer to land.
+
+## blur
+
+Two kernels behind one factory. `gaussian` is the workhorse, `lens` is what a
+camera does.
+
+<Demo name="blur" />
+
+```ts
+import { blur } from "@smoove/effects";
+
+backdrop.effects([blur({ radius: 24 })]);
+```
+
+That is one canvas filter, which Skia implements natively and browsers run on
+the GPU. It never reads pixels back, so it stays on the fast path. Reach for it
+to push a backdrop away, to soften a plate behind a title, or to blur something
+in as it arrives.
+
+`lens` is the other one:
+
+```ts
+plate.effects([blur({ type: "lens", radius: 32, bloom: 0.7, blades: 6 })]);
+```
+
+A Gaussian kernel falls off toward its edge, so a bright highlight gets dimmer
+as it spreads and the picture reads as frosted glass. A lens defocuses through a
+flat aperture, so the highlight keeps its brightness and grows into a bokeh ball
+instead. `bloom` is how hard those highlights hold up.
+
+### Pull focus
+
+`radius` is a number on the timeline like any other:
+
+```ts
+const focus = blur({ type: "lens", radius: 40 });
+title.effects([focus]);
+
+seq.register((frame) => {
+  focus.radius = interpolate(frame, [0, 24], [40, 0], {
+    extrapolateRight: "clamp",
+  });
+});
+```
+
+`radius` means the same amount of blur under either type, so switching `type`
+changes the character of a shot and not its strength.
+
+### Full reference
+
+| Parameter | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `type` | `"gaussian" \| "lens"` | `"gaussian"` | Which kernel to run |
+| `radius` | `number` | `8` | How far the blur reaches, in px |
+| `bloom` | `number` | `0.5` | Lens only. How hard highlights bloom, 0 to 1 |
+| `blades` | `number` | `0` | Lens only. Aperture sides. Under 3 is round |
+| `bladeAngle` | `number` | `0` | Lens only. Turns a polygonal aperture, in degrees |
+
+`radius: 0` switches the effect off and the node draws through the normal path,
+so a sharp node costs nothing.
+
+`blades` shapes the aperture the way an iris does, reaching a little further
+toward a vertex than across an edge. The effect is subtle at the tap count the
+shader can afford: it gives the defocus a shape rather than a crisp hexagon.
+
+`gaussian` runs anywhere a canvas does. `lens` needs WebGL, which the browser
+player and the server renderer both provide.
+
+## Keep the node's box tight
+
+An effect's cost tracks the area it has to shade: the node's bounding box grown
+by however far the effect bleeds past it. That makes one authoring choice worth
+knowing about.
+
+A centred `Text` given `width: 1280` has a bounding box the full width of the
+stage, even though the glyphs occupy a fraction of it. Under `silhouette` the
+fire still lands only on the letters, but the shader pays for the whole frame —
+and under `box` the flames would wrap the stage. Give the text a box close to its
+content instead:
+
+```ts
+const titleWidth = 760;
+const title = new Text({
+  x: (width - titleWidth) / 2,
+  y: 250,
+  width: titleWidth,
+  text: "BURN",
+  align: "center",
+});
+```
+
+For the same reason, put `flameWrap` on the node you want burning rather than on
+the whole `Sequence`. A Sequence-level chain shades every pixel of the frame on
+every frame.
+
+`droplets` is the exception that proves the rule. It refracts what is behind the
+glass, so its node is meant to hold a scene, and it pays for that scene's area
+every frame. Give it the group you want rained on, not the stage.
+
+`chromaKey` sits in the same place: its node is the shot, and the shot is
+usually a full-frame `Video`. Cropping the clip's box to the screen is what
+keeps that area down, and it is what makes the key work at all.
+
+`blur` grows its own region, since it has to spread past the node's edge to
+blur at all. A `radius` of 24 pads a 200 by 40 title out to roughly five times
+its own pixels. That is cheap under `gaussian` and not under `lens`, which is
+the main reason to pick one over the other.
+
+## Two things to expect
+
+Flames can be clipped. The effect paints inside the captured region and nothing
+larger, so a node inside a group with a `clipFunc`, or a burning title at the
+very edge of the stage, loses the part of the fire that falls outside.
+
+Most effects here need WebGL, which the browser player and the server renderer
+both provide. Where no WebGL is available the pass is skipped, the node draws as
+usual, and a warning is logged once. Nothing else in the chain is affected.
+`blur` at its default `gaussian` type is the exception: it is a canvas filter
+and runs anywhere.

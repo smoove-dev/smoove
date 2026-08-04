@@ -5,7 +5,9 @@ import audioVisuals from "./compositions/audio-visuals/index.js";
 import audiogram from "./compositions/audiogram/index.js";
 // Basics.
 import basic from "./compositions/basic/index.js";
+import blur from "./compositions/blur/index.js";
 import bouncing from "./compositions/bouncing/index.js";
+import chromaKey from "./compositions/chroma-key/index.js";
 // Components.
 import clipPunch from "./compositions/clip-punch/index.js";
 import clipTimelines from "./compositions/clip-timelines/index.js";
@@ -17,8 +19,13 @@ import codeTheme from "./compositions/code-theme/index.js";
 import cohabit from "./compositions/cohabit/index.js";
 import colors from "./compositions/colors/index.js";
 import customFont from "./compositions/custom-font/index.js";
+import droplets from "./compositions/droplets/index.js";
+import dropletsVideo from "./compositions/droplets-video/index.js";
 import easings from "./compositions/easings/index.js";
 import eqSpectrum from "./compositions/eq-spectrum/index.js";
+import flameCard from "./compositions/flame-card/index.js";
+import flameText from "./compositions/flame-text/index.js";
+import flameWrap from "./compositions/flame-wrap/index.js";
 // Layout.
 import flexLayout from "./compositions/flex-layout/index.js";
 import flexRowGrow from "./compositions/flex-row-grow/index.js";
@@ -97,6 +104,13 @@ export default defineRegistry([
   codeSelect,
   codeTheme,
   typewriter,
+  flameCard,
+  flameText,
+  flameWrap,
+  droplets,
+  dropletsVideo,
+  chromaKey,
+  blur,
   flexTypewriter,
   customFont,
   googleFont,
