@@ -35,6 +35,8 @@
     "build": "tsc -b",
     "dev": "tsc -b --watch",
     "clean": "rm -rf dist *.tsbuildinfo",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "example": "tsx examples/render-demo.ts",
     "example:mixer": "tsx examples/audio-mixer.ts",
     "prepublishOnly": "pnpm build"
@@ -50,9 +52,11 @@
     "gl": "^8.1.6"
   },
   "devDependencies": {
+    "@smoove/effects": "workspace:^",
     "@smoove/media": "workspace:^",
     "@types/node": "^22.10.0",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "konva": ">=10"

@@ -1,0 +1,101 @@
+---
+title: Effects
+description: Post-process any node as it draws. flameWrap sets a node on fire, droplets rains on it, chromaKey drops a green screen out of it, blur pulls it out of focus.
+---
+
+An effect is a post-process that runs while a node draws. smoove captures the
+node, runs the effect over those pixels, and blits the result where the node
+would have gone. Effects read the frame clock, so scrubbing to frame 900 shows
+the same pixels as playing to it.
+
+<Demo name="flame-wrap" />
+
+## Install
+
+Effects ship in `@smoove/effects`:
+
+```bash
+npm install @smoove/effects
+# or
+pnpm add @smoove/effects
+```
+
+## Apply one
+
+Every node has an `effects` chain:
+
+```ts
+import { Block } from "@smoove/core";
+import { flameWrap } from "@smoove/effects";
+
+const card = new Block({ width: 620, padding: 48, cornerRadius: 40 });
+card.effects([flameWrap({ radius: 40 })]);
+```
+
+Effects are live objects. Keep a reference and set a parameter to animate it:
+
+```ts
+const fire = flameWrap({ intensity: 0 });
+card.effects([fire]);
+
+seq.register((frame) => {
+  fire.intensity = interpolate(frame, [0, 20], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+});
+```
+
+Order in the array is the order the passes run, so it is yours to control.
+
+## The catalog
+
+| Effect | What it does |
+| --- | --- |
+| [flameWrap](/docs/effects/flame-wrap) | Fire wrapped around a node, with heat distortion, sparks, smoke and scorching |
+| [droplets](/docs/effects/droplets) | Rain running down a pane of glass in front of a scene |
+| [chromaKey](/docs/effects/chroma-key) | One colour keyed out to transparency, with the spill taken back off |
+| [blur](/docs/effects/blur) | A Gaussian defocus, or a lens with real bokeh |
+
+Every effect has an off switch built into its own parameters, usually
+`intensity`, `strength` or `radius` at zero. Off means the node draws through
+the normal path and the effect costs nothing, so leaving a dormant effect in a
+chain is fine.
+
+## Keep the node's box tight
+
+An effect's cost tracks the area it has to shade: the node's bounding box grown
+by however far the effect bleeds past it. That makes one authoring choice worth
+knowing about.
+
+A centred `Text` given `width: 1280` has a bounding box the full width of the
+stage, even though the glyphs occupy a fraction of it. The shader pays for the
+whole frame, and an effect that follows the node's box wraps the stage instead
+of the words. Give the text a box close to its content:
+
+```ts
+const titleWidth = 760;
+const title = new Text({
+  x: (width - titleWidth) / 2,
+  y: 250,
+  width: titleWidth,
+  text: "BURN",
+  align: "center",
+});
+```
+
+For the same reason, put an effect on the node you want treated rather than on
+the whole `Sequence`. A Sequence-level chain shades every pixel of the frame on
+every frame. Each effect's page ends with what its own area works out to.
+
+## Two things to expect
+
+Effects can be clipped. The pass paints inside the captured region and nothing
+larger, so a node inside a group with a `clipFunc`, or a burning title at the
+very edge of the stage, loses whatever falls outside.
+
+Most effects here need WebGL, which the browser player and the server renderer
+both provide. Where no WebGL is available the pass is skipped, the node draws as
+usual, and a warning is logged once. Nothing else in the chain is affected.
+[blur](/docs/effects/blur) at its default `gaussian` type is the exception: it
+is a canvas filter and runs anywhere.

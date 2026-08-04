@@ -6,6 +6,22 @@ export {
 } from "./animation/interpolate.js";
 export { interpolateColors } from "./animation/interpolate-colors.js";
 export { type Random, random } from "./animation/random.js";
+export { createCpuCanvas } from "./effects/apply.js";
+export {
+  type EffectFrameContext,
+  type EffectPadding,
+  type EffectPaddingBox,
+  type EffectPass,
+  type EffectRect,
+  isSmooveEffect,
+  maxPadding,
+  normalizePadding,
+  type SmooveEffect,
+} from "./effects/contract.js";
+// Content versioning: an effect that precomputes something from a node's pixels
+// caches it against this, and it is what makes "did this node's content change"
+// answerable from outside the pipeline.
+export { contentVersion, peekContentVersion } from "./effects/dirty.js";
 export {
   type AncestryMethods,
   findClip,
@@ -80,6 +96,25 @@ export { createSignal, type ReadonlySignal, type Signal } from "./engine/signal.
 // composition.js/sequence.js and must never be the first module of that
 // cluster to evaluate — see the ordering note in timeline.ts.
 export type { QuerySelector, TimelineOptions } from "./engine/timeline.js";
+// The one WebGL bridge, shared by @smoove/transitions (Tier B presentations)
+// and @smoove/effects (shader passes). Lives here so neither package has to
+// depend on the other; @smoove/transitions re-exports all of it for back-compat.
+export {
+  GlCompositor,
+  type GlPlatform,
+  getCompositor,
+  setCompositorFactory,
+} from "./gl/compositor.js";
+export {
+  compileShader,
+  createProgram,
+  createTexture,
+  type GlContext,
+  VERTEX_SHADER,
+  VERTEX_SHADER_100,
+} from "./gl/shared.js";
+export { transpileTo100 } from "./gl/transpile.js";
+export type { GlUniforms } from "./gl/types.js";
 export {
   type BackgroundValue,
   Block,

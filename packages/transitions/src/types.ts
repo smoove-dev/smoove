@@ -1,14 +1,8 @@
+import type { GlUniforms } from "@smoove/core";
 import type Konva from "konva";
 
 /** Scene dimensions handed to a presentation — the Composition stage size. */
 export type PresentationDims = { width: number; height: number };
-
-/**
- * Extra (per-effect) uniforms a GL presentation uploads each frame, keyed by
- * GLSL uniform name. A `number` → `uniform1f`; a `number[]` of length 2/3/4 →
- * `uniform2f`/`uniform3f`/`uniform4f`.
- */
-export type GlUniforms = Record<string, number | number[]>;
 
 /**
  * How a transition renders. A geometric (Tier A) presentation implements

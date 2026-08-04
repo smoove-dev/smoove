@@ -1,4 +1,5 @@
-import type { GlUniforms, Presentation, PresentationDims } from "../types.js";
+import type { GlUniforms } from "@smoove/core";
+import type { Presentation, PresentationDims } from "../types.js";
 
 /**
  * Wrap a fragment shader (+ optional per-effect uniforms) into a Tier B

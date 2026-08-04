@@ -2,6 +2,7 @@ import {
   type Composition,
   computeOffsets,
   type FrameAnchor,
+  getCompositor,
   Marker,
   type MarkerSource,
   type OffsetScene,
@@ -12,7 +13,6 @@ import {
   type SequenceProvider,
 } from "@smoove/core";
 import Konva from "konva";
-import { getCompositor } from "./gl/compositor.js";
 import { fade } from "./presentations/fade.js";
 import type { Presentation, PresentationDims, Timing } from "./types.js";
 

@@ -1,4 +1,5 @@
 import type Konva from "konva";
+import { withDerivedWrites } from "../effects/dirty.js";
 import { isKMLayoutRoot } from "../layout/contract.js";
 import { MEDIA_MARK, TICK_MARK, TIMELINE_MARK } from "../markers.js";
 import { getComposition } from "./composition.js";
@@ -350,9 +351,14 @@ export function TimelineMixin<TBase extends TimelineBase>(
         v._kmTick?.(local, tickMedia);
       }
 
-      for (const c of this.getChildren()) {
-        if (isKMLayoutRoot(c)) c._kmComputeLayout();
-      }
+      // Layout writes are derived from state that already bumped, so they must
+      // not count as content changes: otherwise every Flex/Block subtree
+      // invalidates its cached effect data on every frame.
+      withDerivedWrites(() => {
+        for (const c of this.getChildren()) {
+          if (isKMLayoutRoot(c)) c._kmComputeLayout();
+        }
+      });
     }
 
     /** @internal deactivate every tickable this timeline drives (recurses via clips). */

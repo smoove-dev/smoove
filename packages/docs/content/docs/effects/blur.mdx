@@ -1,0 +1,76 @@
+---
+title: blur
+description: A defocus you can put on the timeline, either as a fast frosted-glass fall-off or as a real lens with bokeh.
+---
+
+Two kernels behind one factory. `gaussian` is the workhorse, `lens` is what a
+camera does.
+
+<Demo name="blur" />
+
+```ts
+import { blur } from "@smoove/effects";
+
+backdrop.effects([blur({ radius: 24 })]);
+```
+
+That is one canvas filter, which Skia implements natively and browsers run on
+the GPU. It never reads pixels back, so it stays on the fast path. Reach for it
+to push a backdrop away, to soften a plate behind a title, or to blur something
+in as it arrives.
+
+`lens` is the other one:
+
+```ts
+plate.effects([blur({ type: "lens", radius: 32, bloom: 0.7, blades: 6 })]);
+```
+
+A Gaussian kernel falls off toward its edge, so a bright highlight gets dimmer
+as it spreads and the picture reads as frosted glass. A lens defocuses through a
+flat aperture, so the highlight keeps its brightness and grows into a bokeh ball
+instead. `bloom` is how hard those highlights hold up.
+
+## Pull focus
+
+`radius` is a number on the timeline like any other:
+
+```ts
+const focus = blur({ type: "lens", radius: 40 });
+title.effects([focus]);
+
+seq.register((frame) => {
+  focus.radius = interpolate(frame, [0, 24], [40, 0], {
+    extrapolateRight: "clamp",
+  });
+});
+```
+
+`radius` means the same amount of blur under either type, so switching `type`
+changes the character of a shot and not its strength.
+
+## Full reference
+
+| Parameter | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `type` | `"gaussian" \| "lens"` | `"gaussian"` | Which kernel to run |
+| `radius` | `number` | `8` | How far the blur reaches, in px |
+| `bloom` | `number` | `0.5` | Lens only. How hard highlights bloom, 0 to 1 |
+| `blades` | `number` | `0` | Lens only. Aperture sides. Under 3 is round |
+| `bladeAngle` | `number` | `0` | Lens only. Turns a polygonal aperture, in degrees |
+
+`radius: 0` switches the effect off and the node draws through the normal path,
+so a sharp node costs nothing.
+
+`blades` shapes the aperture the way an iris does, reaching a little further
+toward a vertex than across an edge. The effect is subtle at the tap count the
+shader can afford: it gives the defocus a shape rather than a crisp hexagon.
+
+## What it costs
+
+`blur` grows its own region, since it has to spread past the node's edge to
+blur at all. A `radius` of 24 pads a 200 by 40 title out to roughly five times
+its own pixels. That is cheap under `gaussian` and not under `lens`, which is
+the main reason to pick one over the other.
+
+`gaussian` runs anywhere a canvas does. `lens` needs WebGL, which the browser
+player and the server renderer both provide.

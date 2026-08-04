@@ -20,13 +20,13 @@ void main() {
 
 export function compileShader(gl: GlContext, source: string, type: number): WebGLShader {
   const shader = gl.createShader(type);
-  if (!shader) throw new Error("transitions: failed to create shader");
+  if (!shader) throw new Error("smoove: failed to create shader");
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
     const log = gl.getShaderInfoLog(shader);
     gl.deleteShader(shader);
-    throw new Error(`transitions: failed to compile shader: ${log}`);
+    throw new Error(`smoove: failed to compile shader: ${log}`);
   }
   return shader;
 }
@@ -37,7 +37,7 @@ export function createProgram(
   vertex: string = VERTEX_SHADER,
 ): WebGLProgram {
   const program = gl.createProgram();
-  if (!program) throw new Error("transitions: failed to create WebGL program");
+  if (!program) throw new Error("smoove: failed to create WebGL program");
   const vs = compileShader(gl, vertex, gl.VERTEX_SHADER);
   const fs = compileShader(gl, fragment, gl.FRAGMENT_SHADER);
   gl.attachShader(program, vs);
@@ -46,14 +46,14 @@ export function createProgram(
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
     const log = gl.getProgramInfoLog(program);
     gl.deleteProgram(program);
-    throw new Error(`transitions: failed to link program: ${log}`);
+    throw new Error(`smoove: failed to link program: ${log}`);
   }
   return program;
 }
 
 export function createTexture(gl: GlContext): WebGLTexture {
   const tex = gl.createTexture();
-  if (!tex) throw new Error("transitions: failed to create texture");
+  if (!tex) throw new Error("smoove: failed to create texture");
   gl.bindTexture(gl.TEXTURE_2D, tex);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);

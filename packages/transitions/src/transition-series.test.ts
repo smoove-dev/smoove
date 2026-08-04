@@ -1,7 +1,6 @@
-import { Composition } from "@smoove/core";
+import { Composition, type GlCompositor, setCompositorFactory } from "@smoove/core";
 import Konva from "konva";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { type GlCompositor, setCompositorFactory } from "./gl/compositor.js";
 import { fade } from "./presentations/fade.js";
 import { none } from "./presentations/none.js";
 import { slide } from "./presentations/slide.js";

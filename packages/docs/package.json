@@ -17,6 +17,7 @@
     "@react-router/serve": "8.1.0",
     "@smoove/code": "workspace:*",
     "@smoove/core": "workspace:*",
+    "@smoove/effects": "workspace:*",
     "@smoove/google-fonts": "workspace:*",
     "@smoove/lottie": "workspace:*",
     "@smoove/media": "workspace:*",

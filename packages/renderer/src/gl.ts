@@ -1,4 +1,4 @@
-import { GlCompositor, setCompositorFactory } from "@smoove/transitions";
+import { GlCompositor, setCompositorFactory } from "@smoove/core";
 import { createNodeGlPlatform } from "./gl-node.js";
 
 let warned = false;
