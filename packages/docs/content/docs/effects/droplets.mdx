@@ -1,0 +1,84 @@
+---
+title: droplets
+description: Put a rain-streaked pane of glass in front of a scene, with running drops, drizzle and refraction.
+---
+
+Rain running down a pane of glass in front of a node. Drops swell, let go and
+slide, leaving wet trails that cut through the fog, with a fine drizzle between
+them and everything behind bending through the water.
+
+<Demo name="droplets" />
+
+The glass is exactly the node's box, and every pixel the effect paints is gated
+on the node's own alpha, so it never spills outside what the node already
+covered and it asks for no padding at all.
+
+```ts
+import { droplets } from "@smoove/effects";
+
+pane.effects([droplets({ intensity: 0.9, blur: 4, vignette: 0.5 })]);
+```
+
+## Bring the weather in
+
+The rain loops on its own. Animate `intensity` for a squall that arrives and
+passes, and move `blur` with it if you want the window to fog up and clear:
+
+```ts
+const rain = droplets({ intensity: 0 });
+pane.effects([rain]);
+
+seq.register((frame) => {
+  rain.intensity = interpolate(frame, [0, 60], [0, 1.15], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  rain.blur = 2 + rain.intensity * 4;
+});
+```
+
+## Put it in front of something
+
+This is the one effect that wants a big node. Refraction has nothing to show
+over a flat colour, so the water reads best in front of a scene: a `Video`, an
+`Image`, or a `Group` holding a whole layout. Put the effect on that node and
+everything inside it goes behind the glass.
+
+On a plain card it is `sheen` that keeps the drops visible, since that is the
+light catching the water rather than the content bending through it.
+
+## Full reference
+
+| Parameter | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `intensity` | `number` | `0.5` | How hard it is raining, 0 to 1.25 |
+| `speed` | `number` | `1` | Animation rate of the whole effect |
+| `scale` | `number` | `0.7` | Pattern size. Higher means smaller drops |
+| `dropWidth` | `number` | `1` | Width of the drops and their trails |
+| `dropLength` | `number` | `1` | How elongated a falling drop is |
+| `refraction` | `number` | `0.2` | How strongly a drop bends what is behind it |
+| `blur` | `number` | `0` | Defocus of the glass outside the drops, px |
+| `vignette` | `number` | `0` | Darkening toward the node's edges, 0 to 1 |
+| `fallSpeed` | `number` | `1` | How fast the running drops slide down |
+| `wiggle` | `number` | `1` | Horizontal wander of the running drops |
+| `staticDrops` | `number` | `0.2` | Amount of fine drizzle that never runs |
+| `sheen` | `number` | `0.6` | How brightly the water catches the light, 0 to 3 |
+| `tint` | `[number, number, number]` | `[1, 1, 1]` | Tint colour, linear RGB in 0 to 1 |
+| `tintStrength` | `number` | `0` | Strength of that tint, 0 to 1 |
+
+`intensity: 0` switches the rain off, but the effect stays on while `blur`,
+`vignette` or `tintStrength` is doing something, since a fogged or tinted pane
+is a look of its own. With all four at zero the node draws through the normal
+path and costs nothing.
+
+`blur` is a real radius in px and every length here is in CSS px, so a 2x render
+matches its 1x preview.
+
+## What it costs
+
+`droplets` is the exception to keeping a node's box tight. It refracts what is
+behind the glass, so its node is meant to hold a scene, and it pays for that
+scene's area every frame. Give it the group you want rained on, not the stage.
+
+`droplets` needs WebGL. Where none is available the pass is skipped and the node
+draws as usual.

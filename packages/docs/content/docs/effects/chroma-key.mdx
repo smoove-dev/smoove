@@ -1,0 +1,95 @@
+---
+title: chromaKey
+description: Drop a green screen out of a shot, with a matte that ignores brightness and a despill that cleans up the edges.
+---
+
+Keying: one colour becomes transparency, and whatever the node sits on shows
+through. The matte ignores brightness, so a shadow falling across the screen
+keys like the lit part of it, and what survives is despilled, with the green the
+screen bounced onto hair and shoulders taken back out.
+
+<Demo name="chroma-key" />
+
+Put it on the node holding the footage, not on the `Sequence`. An effect only
+touches the node it is on, so keying the `Video` leaves a title above it sharp
+and lets the scene behind it through the hole:
+
+```ts
+import { chromaKey } from "@smoove/effects";
+import { Video } from "@smoove/media";
+
+const clip = new Video({ src, width: 420, height: 720, objectFit: "cover" });
+clip.effects([chromaKey({ color: "#249530" })]);
+```
+
+## Sample the screen, never guess it
+
+A screen lit for camera is nothing like `#00ff00`. It comes back off the sensor
+dull and uneven, somewhere around `#249530`, so step one of every key is to pull
+a frame, eyedropper the middle of the screen, and paste that hex in. `color`
+takes a hex string or `[r, g, b]` in 0 to 1.
+
+Then widen `similarity` until the screen is gone, and only then reach for
+`smoothness` to soften the edge. `similarity` is measured against the key
+colour's own distance from grey: 0 is the key colour and 1 is neutral, whatever
+the screen looked like, so a setting that worked on a bright screen still works
+on a dull one. It stops at 0.95, because a key that reaches neutral takes the
+whites and greys of the subject with it.
+
+`choke` is for the last pixel. Compression leaves a half-green rim around a
+subject that no colour threshold can separate, and a choke of 1 or 2 eats it
+spatially. Negative values grow the matte back where a hot key has bitten into
+an edge.
+
+## Crop to the screen first
+
+The studio around the screen is not the screen colour, and no key will remove
+it. Crop before you key, with the node's own box:
+
+```ts
+// The screen fills the middle of a 1920x1080 plate, so a portrait box on
+// objectFit "cover" lands entirely on green.
+const clip = new Video({ src, width: 420, height, objectFit: "cover" });
+```
+
+## Dissolve it in
+
+`strength` crossfades the whole key against the untouched pixel. Animate it from
+0 and the background dissolves away rather than cutting:
+
+```ts
+const key = chromaKey({ color: "#249530", strength: 0 });
+clip.effects([key]);
+
+seq.register((frame) => {
+  key.strength = interpolate(frame, [24, 54], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+});
+```
+
+## Full reference
+
+| Parameter | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `color` | `string \| [number, number, number]` | `[0, 1, 0]` | The colour to remove, as hex or RGB in 0 to 1 |
+| `strength` | `number` | `1` | How much of the key to apply, 0 to 1 |
+| `similarity` | `number` | `0.5` | How far toward neutral the key reaches, 0 to 0.95 |
+| `smoothness` | `number` | `0.15` | Width of the ramp at the edge of that range, 0 to 0.5 |
+| `spill` | `number` | `0.5` | How much of the screen's cast to take off what is kept, 0 to 1 |
+| `choke` | `number` | `0` | Shrink the matte by this many px, negative grows it |
+
+`strength: 0` switches the effect off and the node draws through the normal
+path, so an unkeyed clip costs nothing. Keying a white, grey or black backdrop
+works too, on plain RGB distance instead of colour, but there is no hue to
+separate the subject from and `similarity` takes longer to land.
+
+## What it costs
+
+The key's node is the shot, and the shot is usually a full-frame `Video`.
+Cropping the clip's box to the screen is what keeps that area down, and it is
+what makes the key work at all.
+
+`chromaKey` needs WebGL. Where none is available the pass is skipped and the
+node draws as usual.
