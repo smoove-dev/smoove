@@ -1,8 +1,8 @@
 // Bootstrap that runs INSIDE Vite's module graph so there is exactly one
 // @smoove/core instance (see the headless-comp-verify-recipe notes).
+import { setupServerRendering } from "@smoove/renderer";
 // biome-ignore lint/style/useNodejsImportProtocol: bare "module" matches the renderer's own import.
 import { createRequire } from "module";
-import { setupServerRendering } from "@smoove/renderer";
 import "@smoove/renderer/gl";
 import registry from "../src/registry.js";
 
