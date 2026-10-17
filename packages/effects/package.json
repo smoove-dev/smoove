@@ -34,8 +34,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "@smoove/core": "workspace:^"
+  },
   "peerDependencies": {
-    "@smoove/core": "workspace:^",
     "konva": ">=10"
   },
   "devDependencies": {
