@@ -92,9 +92,8 @@ export class Block extends Konva.Group implements KMLayoutNode {
   readonly _kmRole = "container" as const;
   private readonly _bg: Konva.Rect;
   /**
-   * Per-edge border painter. Only used when the four edges are not identical —
-   * a uniform border stays on `_bg`'s stroke, which handles rounded corners and
-   * dashes for free.
+   * Border painter, uniform or per-edge — `_bg` never strokes. Hidden while
+   * the Block has no border.
    */
   private readonly _border: Konva.Shape;
 
@@ -109,14 +108,14 @@ export class Block extends Konva.Group implements KMLayoutNode {
       listening: false,
       cornerRadius: config.cornerRadius,
     });
-    this._bg.setAttr("__blockBg", true);
+    this._bg.setAttr("__blockChrome", true);
     super.add(this._bg);
 
     this._border = new Konva.Shape({
       listening: false,
-      sceneFunc: (ctx, shape) => this._drawBorder(ctx, shape),
+      sceneFunc: (ctx) => this._drawBorder(ctx),
     });
-    this._border.setAttr("__blockBg", true);
+    this._border.setAttr("__blockChrome", true);
     this._border.visible(false);
     super.add(this._border);
 
@@ -211,10 +210,10 @@ export class Block extends Konva.Group implements KMLayoutNode {
    * A uniform border is one stroked rounded rect, inset by half its width so
    * the stroke (which canvas centres on the path) lands wholly inside — that
    * path also keeps dashes working. Edges that differ in width or colour are
-   * painted instead as the four CSS trapezoids, mitred 45 degrees at the
-   * corners and clipped to the rounded silhouette.
+   * painted instead as the four CSS trapezoids, joined along the line from each
+   * outer corner to its inner corner and clipped to the rounded silhouette.
    */
-  private _drawBorder(ctx: Konva.Context, _shape: Konva.Shape): void {
+  private _drawBorder(ctx: Konva.Context): void {
     const w = this.width();
     const h = this.height();
     const edges = normalizeEdges(this.attrs.borderSize);

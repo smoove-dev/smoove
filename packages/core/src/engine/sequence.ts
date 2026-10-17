@@ -95,19 +95,20 @@ export class Sequence extends TimelineMixin(Konva.Layer) {
       // current frame (e.g. by `comp.add(seq)`) and only then filled would
       // otherwise dedupe every later apply at that same frame, leaving
       // everything added afterwards un-laid-out until the playhead moved.
-      const structure = structureVersion();
       if (
         !becameActive &&
         !force &&
         local === this._kmLastLocal &&
-        structure === this._kmLastStructure
+        structureVersion() === this._kmLastStructure
       ) {
         return;
       }
       this._kmLastLocal = local;
-      this._kmLastStructure = structure;
       this._kmRunFrame(local, true);
       this._kmWireEffects();
+      // Recorded after the frame runs, so nodes it rebuilds itself don't read as
+      // a structural change and disable the dedupe for the next same-frame apply.
+      this._kmLastStructure = structureVersion();
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the
       // newly-displayed layer (avoids a one-frame flash of stale content).

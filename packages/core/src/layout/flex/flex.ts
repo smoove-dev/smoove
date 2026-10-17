@@ -157,10 +157,10 @@ export function buildChildren(
   parentDirection = "row",
   parent: ParentRef | null = null,
 ): void {
-  // Skip the Block background rect and any hidden child (display:none semantics —
+  // Skip the Block's own paint (background, border) and any hidden child (display:none semantics —
   // an invisible node takes no layout space, so staggered/toggled children don't
   // leave gaps).
-  const laidOut = children.filter((c) => !c.attrs.__blockBg && c.visible() !== false);
+  const laidOut = children.filter((c) => !c.attrs.__blockChrome && c.visible() !== false);
   const parentIsColumn = parentDirection.startsWith("column");
   laidOut.forEach((child, i) => {
     const node = FlexilyNode.create();

@@ -624,12 +624,15 @@ export class Composition<
     // frame is painted over not-yet-loaded fonts. Offline rendering never
     // buffers (fonts gate via delayRender), so this only affects preview.
     if (this._buffer.get() === "buffering") return;
-    // Recorded only past the buffering guard: a buffering call paints nothing,
-    // so counting it would let `setFrame(0)` dedupe against a frame never applied.
-    this._lastAppliedStructure = structureVersion();
     for (const child of this.getChildren()) {
       if (child instanceof Sequence) child._apply(frame, force);
     }
+    // Recorded after the apply, so nodes the frame itself rebuilds (a Text's
+    // highlights, say) don't count as a structural change and defeat the next
+    // same-frame dedupe. And only past the buffering guard: a buffering call
+    // paints nothing, so counting it would let `setFrame(0)` dedupe against a
+    // frame never applied.
+    this._lastAppliedStructure = structureVersion();
     if (emit) this._emitter.emit("time", this._event());
   }
 
