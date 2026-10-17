@@ -106,8 +106,8 @@ main.register((frame) => {
   coreOutline.width(w);
   rawOutline.width(w);
   // The Sequence recomputes each Flex root after this updater runs.
-  coreRow.setAttrs({ flexWidth: w });
-  rawRow.setAttrs({ flexWidth: w });
+  coreRow.width(w);
+  rawRow.width(w);
 });
 
 comp.add(main);

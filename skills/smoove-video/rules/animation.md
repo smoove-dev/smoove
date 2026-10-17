@@ -130,14 +130,14 @@ actual physically-modeled spring (e.g. for a transition's progress curve),
 
 ## The one big gotcha: animating Flex/Block children
 
-A `Flex`/`Block` re-places every child's `x`/`y`/`width`/`height` from its
-own layout pass *after* your updater runs each tick (see
-[layout.md](layout.md)). So:
+A `Flex`/`Block` re-places every child's `x`/`y` from its own layout pass
+*after* your updater runs each tick (see [layout.md](layout.md)). So:
 
 - ✅ Safe on any node, flex child or not: `opacity()`, `scale()`,
-  `rotation()`, `setAttr("flexGrow", …)`/`gap`/`padding` (on a Flex/Block).
+  `rotation()`, `width()`/`height()` (layout reflows around the new size),
+  `setAttr("flexGrow", …)`/`gap`/`padding` (on a Flex/Block).
 - ✅ Safe on a **root** Flex/Block/shape (the node you `sequence.add()`'d
-  directly, not nested inside another Flex/Block): `x()`, `y()`, `width()`.
+  directly, not nested inside another Flex/Block): `x()`, `y()`.
 - ❌ Animating `x()`/`y()` directly on a node that's a *child* of a
   Flex/Block gets silently overwritten every frame. For a "slide in" effect
   on a flex child, either lift it out of the flex container (give it

@@ -163,7 +163,7 @@ main.register((local) => {
   const t = interpolate(local, [0, duration / 2, duration], [0, 1, 0], {
     easing: Easing.inOut(Easing.cubic),
   });
-  box1.setAttr("flexWidth", Math.round(colW * (0.4 + 0.6 * t)));
+  box1.width(Math.round(colW * (0.4 + 0.6 * t)));
 });
 
 comp.add(main);

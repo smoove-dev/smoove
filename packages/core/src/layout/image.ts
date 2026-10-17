@@ -10,9 +10,10 @@ import { TICK_MARK } from "../markers.js";
 import type { KMLayoutNode, LayoutBox } from "./contract.js";
 import { clampCorners, normalizeCorners, roundRectPath } from "./corners.js";
 import type { FlexilyNode } from "./flex/engine.js";
-import { applySize, parseSize } from "./flex/engine.js";
-import type { FlexChildProps, SizeValue } from "./flex/types.js";
+import { applySize } from "./flex/engine.js";
+import type { FlexChildProps, SizeInput } from "./flex/types.js";
 import { type Measurement, type MeasureOptions, measure as measureNode } from "./measure.js";
+import { declaredHeight, declaredWidth, Sized } from "./size.js";
 
 export type ObjectFit = "cover" | "contain" | "fill" | "none";
 export type ObjectPosition =
@@ -28,8 +29,8 @@ export type ObjectPosition =
 
 export type ImageConfig = Omit<Konva.GroupConfig, "width" | "height"> &
   FlexChildProps & {
-    width?: SizeValue;
-    height?: SizeValue;
+    width?: SizeInput;
+    height?: SizeInput;
     src: HTMLImageElement | string;
     objectFit?: ObjectFit;
     objectPosition?: ObjectPosition;
@@ -57,15 +58,12 @@ const IMG_KEYS = [
 function pickKonvaConfig(config: ImageConfig): Konva.GroupConfig {
   const out: Record<string, unknown> = { ...config };
   for (const k of IMG_KEYS) delete out[k];
-  const w = parseSize(config.width as SizeValue | undefined);
-  const h = parseSize(config.height as SizeValue | undefined);
-  out.width = w?.kind === "px" ? w.value : undefined;
-  out.height = h?.kind === "px" ? h.value : undefined;
+  // width/height pass through untouched: `Sized` reads `%`/`"auto"` off them.
   out.cornerRadius = undefined;
   return out as Konva.GroupConfig;
 }
 
-export class Image extends Konva.Group implements KMLayoutNode {
+export class Image extends Sized(Konva.Group) implements KMLayoutNode {
   /** The owning composition, or `null` while detached — like `getStage()`. */
   getComposition(): ReturnType<typeof findComposition> {
     return findComposition(this);
@@ -107,8 +105,6 @@ export class Image extends Konva.Group implements KMLayoutNode {
       objectFit: config.objectFit ?? "cover",
       objectPosition: config.objectPosition ?? "center",
       cornerRadius: config.cornerRadius,
-      flexWidth: config.width,
-      flexHeight: config.height,
     });
 
     if (config.cornerRadius !== undefined) {
@@ -167,17 +163,18 @@ export class Image extends Konva.Group implements KMLayoutNode {
 
   /** @internal — {@link KMLayoutNode}: size from explicit width/height (cover/contain handle the rest). */
   _kmMeasure(node: FlexilyNode): void {
-    const w = this.attrs.flexWidth as SizeValue | undefined;
-    const h = this.attrs.flexHeight as SizeValue | undefined;
-    // With neither size given, report the bitmap's intrinsic size — the same
-    // contract every other leaf follows (shape wrappers use `getSelfRect`).
-    // Without this an unsized Image measures 0x0 and contributes nothing to the
-    // layout, which is worse than the raw `Konva.Image` fallback in `flex.ts`.
+    const w = declaredWidth(this);
+    const h = declaredHeight(this);
+    // With neither size given, report the bitmap's intrinsic size, as the raw
+    // `Konva.Image` fallback in `flex.ts` does. It goes in as a measured content
+    // size, not a fixed width/height, so `flexGrow`, `flexBasis` and
+    // `alignItems: "stretch"` can still resize it, the way CSS treats an image's
+    // natural size as a starting point.
     if (w === undefined && h === undefined) {
       const src = this._source;
       if (src && src.naturalWidth > 0 && src.naturalHeight > 0) {
-        node.setWidth(src.naturalWidth);
-        node.setHeight(src.naturalHeight);
+        const size = { width: src.naturalWidth, height: src.naturalHeight };
+        node.setMeasureFunc(() => size);
         return;
       }
     }
@@ -188,8 +185,8 @@ export class Image extends Konva.Group implements KMLayoutNode {
   _kmPlace(box: LayoutBox): void {
     this.x(box.left);
     this.y(box.top);
-    this.width(box.width);
-    this.height(box.height);
+    this._kmBoxWidth(box.width);
+    this._kmBoxHeight(box.height);
     this._layoutImage();
   }
 
@@ -200,8 +197,9 @@ export class Image extends Konva.Group implements KMLayoutNode {
 
   /** @internal */
   _layoutImage(): void {
-    const w = this.width();
-    const h = this.height();
+    // The laid-out box, read raw: this runs from size setters and write-back.
+    const w = (this.attrs.width as number | undefined) ?? 0;
+    const h = (this.attrs.height as number | undefined) ?? 0;
     if (w <= 0 || h <= 0) return;
     const src = this._source;
     const fit = (this.attrs.objectFit ?? "cover") as ObjectFit;

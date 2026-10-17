@@ -68,8 +68,9 @@ row.add(new Rect({ width: 120, height: 120, fill: "#80ffdb" }));
 
 ## Sizing in pixels or percent
 
-`width` and `height` accept a number (pixels) or a percentage string, so a child
-can track its container as it resizes.
+`width` and `height` accept a number (pixels), a percentage string, or `"auto"`,
+so a child can track its container as it resizes. On a root `Flex`, the one you
+add straight to a `Sequence`, a percentage is a share of the composition.
 
 ```ts
 const panel = new Flex({ width: 600, flexDirection: "column", gap: 8 });
@@ -90,14 +91,20 @@ move themselves.
 
 <Demo name="flex-reflow" label="gap and one child's flexGrow, animated straight from the frame" />
 
-<Callout type="warn" title="Animate the container's own size with setAttrs({ flexWidth })">
-A `Flex` stores its `width`/`height` config as the `flexWidth`/`flexHeight`
-attrs, separate from Konva's bounding-box `width`/`height`. So calling
-`flex.width(600)` in an updater sets the Konva box, not the size the layout reads.
-To animate the container's own size, set the layout attr directly:
-`flex.setAttrs({ flexWidth: 600 })`. Child sizes, `gap`, and `padding` animate
-the same way: `flex.setAttrs({ gap: 24 })`.
-</Callout>
+Size works the same way on every node. Call `width()` or `height()` with
+pixels, a percentage, or `"auto"`, and the layout reflows around it on the same
+frame:
+
+```ts
+seq.register((frame) => {
+  card.width(`${40 + frame / 2}%`); // a share of the parent, written from the frame
+  row.setAttrs({ gap: 8 + frame / 4 });
+});
+
+card.width(); // reads the laid-out size in px, already up to date
+```
+
+The getter always returns pixels, even after you set a percentage or `"auto"`.
 
 Nest a `Flex` inside another `Flex` and the inner one is both a child (it takes
 `flexGrow`, `alignSelf`, and the rest) and a container (it lays out its own
@@ -105,6 +112,27 @@ children). Build a whole layout tree this way and the engine walks all of it
 each tick.
 
 <Demo name="flex-layout" label="a card whose content reflows as the container resizes" />
+
+## Breaking out of a Flex
+
+A `Flex` owns where its children go. Each tick it places them again, so `x()`
+and `y()` on a child are overwritten on the same frame. That is what keeps a
+layout from drifting.
+
+When a node should sit somewhere by hand, take it out of the `Flex`. Add it to
+the `Sequence`, or to a plain `Group`, and its `x()` and `y()` are yours:
+
+```ts
+const badge = new Rect({ width: 24, height: 24, fill: "#ff6b4e" });
+seq.add(badge); // not row.add(badge)
+
+seq.register((frame) => {
+  badge.x(40 + frame * 2);
+});
+```
+
+`opacity()`, `scale()` and `rotation()` never touch layout, so they are safe to
+animate on a child that stays inside.
 
 ## Next steps
 

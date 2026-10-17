@@ -69,7 +69,7 @@ export const reflowCases: LayoutCase[] = [
     id: "reflow-size",
     group: "Animated reflow",
     title: "animating a container's size",
-    note: "Growing the card's flex width drags its percent-sized child along with it.",
+    note: "Growing the card with width() drags its percent-sized child along with it.",
     frames: FRAMES,
     build: (root, seq) => {
       root.setAttrs({ flexDirection: "column", alignItems: "flex-start" });
@@ -83,7 +83,7 @@ export const reflowCases: LayoutCase[] = [
       cardNode.add(new Block({ name: "child", width: "100%", height: 40, background: "#4ea1ff" }));
       root.add(cardNode);
       seq.register((frame) => {
-        cardNode.setAttr("flexWidth", 200 + frame * 4);
+        cardNode.width(200 + frame * 4);
       });
     },
     expect: (p, frame) => {
@@ -167,7 +167,7 @@ export const reflowCases: LayoutCase[] = [
     id: "reflow-child-position-is-owned-by-layout",
     group: "Animated reflow",
     title: "a child's x is owned by the layout pass",
-    note: "Updaters run before layout, so setting x on a flex child has no effect. Animate opacity, scale, or rotation instead.",
+    note: "Updaters run before layout, so setting x on a flex child has no effect. Animate opacity, scale, or rotation instead, or move the node out of the Flex to place it by hand.",
     divergence:
       "Intended: Sequence runs updaters, then re-places every flex child. Hand-positioning structure inside a Flex or Block cannot work, and this case exists so the behaviour stays deliberate.",
     build: (root, seq) => {
@@ -184,31 +184,30 @@ export const reflowCases: LayoutCase[] = [
     },
   },
   {
-    id: "reflow-width-setter-is-ignored",
+    id: "reflow-percent-width",
     group: "Animated reflow",
-    title: "width() does not drive layout",
-    note: 'Layout reads the size a node was configured with, so animating size means setAttr("flexWidth"), not width().',
-    divergence:
-      "Layout reads the `flexWidth` attr, while `width()` writes Konva's `width`. Calling `width()` in an updater is overwritten on the same tick. The layout rules doc still shows `card.width(...)` for this.",
-    frames: [1, 30],
+    title: "animating a percentage width",
+    note: "width() takes a percentage, so a card can grow as a share of its parent, written from the frame.",
+    frames: FRAMES,
     build: (root, seq) => {
       root.setAttrs({ flexDirection: "column", alignItems: "flex-start" });
       const cardNode = new Block({
         name: "card",
         flexDirection: "row",
-        width: 200,
+        width: "40%",
         height: 100,
         background: "#1f2937",
       });
       cardNode.add(new Block({ name: "child", width: "100%", height: 40, background: "#4ea1ff" }));
       root.add(cardNode);
       seq.register((frame) => {
-        cardNode.width(200 + frame * 4);
+        cardNode.width(`${40 + frame}%`);
       });
     },
-    expect: (p) => {
-      // Pinned as-is: the card stays at its configured 200 regardless of the updater.
-      expect(p.box(".card").width).toBeCloseTo(200, 0);
+    expect: (p, frame) => {
+      const width = (480 * (40 + frame)) / 100;
+      expect(p.box(".card").width).toBeCloseTo(width, 0);
+      expect(p.box(".child").width).toBeCloseTo(width, 0);
     },
   },
 ];

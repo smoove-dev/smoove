@@ -2,10 +2,11 @@ import Konva from "konva";
 import { findClip, findComposition, findSequence } from "../engine/ancestry.js";
 import type { KMLayoutNode, LayoutBox } from "./contract.js";
 import { clampCorners, normalizeCorners, roundRectPath } from "./corners.js";
-import { normalizeEdges, parseSize } from "./flex/engine.js";
+import { normalizeEdges } from "./flex/engine.js";
 import { layoutRoot } from "./flex/flex.js";
-import type { EdgeValue, FlexChildProps, FlexProps, SizeValue } from "./flex/types.js";
+import type { EdgeValue, FlexChildProps, FlexProps, SizeInput } from "./flex/types.js";
 import { type Measurement, type MeasureOptions, measure as measureNode } from "./measure.js";
+import { Sized } from "./size.js";
 
 export type EdgeColor =
   | string
@@ -34,8 +35,8 @@ export type ShadowProps = {
 export type BlockConfig = Omit<Konva.GroupConfig, "width" | "height"> &
   FlexProps &
   FlexChildProps & {
-    width?: SizeValue;
-    height?: SizeValue;
+    width?: SizeInput;
+    height?: SizeInput;
     borderSize?: EdgeValue;
     borderColor?: EdgeColor;
     borderStyle?: "solid" | "dashed";
@@ -65,15 +66,12 @@ const BLOCK_KEYS = [
 function pickKonvaConfig(config: BlockConfig): Konva.GroupConfig {
   const out: Record<string, unknown> = { ...config };
   for (const k of BLOCK_KEYS) delete out[k];
-  const w = parseSize(config.width as SizeValue | undefined);
-  const h = parseSize(config.height as SizeValue | undefined);
-  out.width = w?.kind === "px" ? w.value : undefined;
-  out.height = h?.kind === "px" ? h.value : undefined;
+  // width/height pass through untouched: `Sized` reads `%`/`"auto"` off them.
   out.cornerRadius = undefined;
   return out as Konva.GroupConfig;
 }
 
-export class Block extends Konva.Group implements KMLayoutNode {
+export class Block extends Sized(Konva.Group) implements KMLayoutNode {
   /** The owning composition, or `null` while detached — like `getStage()`. */
   getComposition(): ReturnType<typeof findComposition> {
     return findComposition(this);
@@ -136,8 +134,6 @@ export class Block extends Konva.Group implements KMLayoutNode {
       shadow: config.shadow,
       background: config.background,
       cornerRadius: config.cornerRadius,
-      flexWidth: config.width,
-      flexHeight: config.height,
     });
 
     this.on("widthChange heightChange", () => this._layoutBackground());
@@ -151,7 +147,7 @@ export class Block extends Konva.Group implements KMLayoutNode {
    * by their parent Flex instead.
    */
   computeLayout(): void {
-    layoutRoot(this, true);
+    layoutRoot(this);
     this._layoutBackground();
   }
 
@@ -164,8 +160,8 @@ export class Block extends Konva.Group implements KMLayoutNode {
   _kmPlace(box: LayoutBox): void {
     this.x(box.left);
     this.y(box.top);
-    this.width(box.width);
-    this.height(box.height);
+    this._kmBoxWidth(box.width);
+    this._kmBoxHeight(box.height);
     this._layoutBackground();
   }
 
@@ -176,8 +172,10 @@ export class Block extends Konva.Group implements KMLayoutNode {
 
   /** @internal */
   _layoutBackground(): void {
-    const w = this.width();
-    const h = this.height();
+    // The laid-out box, read raw: this runs from size setters and layout
+    // write-back, where a flushing `width()` would start another layout.
+    const w = (this.attrs.width as number | undefined) ?? 0;
+    const h = (this.attrs.height as number | undefined) ?? 0;
     this._bg.x(0);
     this._bg.y(0);
     this._bg.width(w);

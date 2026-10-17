@@ -83,9 +83,8 @@ main.register((frame) => {
   const t = frame / (duration - 1);
   const eased = 0.5 - 0.5 * Math.cos(Math.PI * 2 * t);
   const w = cardMin + (cardMax - cardMin) * eased;
-  // Animate the container's own layout width via the flexWidth attr. Calling
-  // card.width(w) would set Konva's bounding box, which the layout never reads.
-  card.setAttrs({ flexWidth: w });
+  // width() sets the size the layout aims for; the content reflows this frame.
+  card.width(w);
   card.x((width - w) / 2);
   card.y(
     interpolate(t, [0, 1], [(height - 360) / 2, (height - 360) / 2], {

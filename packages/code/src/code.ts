@@ -1,4 +1,11 @@
-import { FlexShape, Font, type FontFaceRef, type LeafConfig } from "@smoove/core";
+import {
+  declaredHeight,
+  declaredWidth,
+  FlexShape,
+  Font,
+  type FontFaceRef,
+  type LeafConfig,
+} from "@smoove/core";
 import Konva from "konva";
 import {
   type CodeContent,
@@ -290,8 +297,8 @@ export class Code extends CodeBase {
     this._cursor.measureSize(this._scope);
     this._size = this._cursor.getSize();
 
-    if (this.attrs.flexWidth === undefined) this.width(this._size.x);
-    if (this.attrs.flexHeight === undefined) this.height(this._size.y);
+    if (declaredWidth(this) === undefined) this._kmBoxWidth(this._size.x);
+    if (declaredHeight(this) === undefined) this._kmBoxHeight(this._size.y);
   }
 
   private _sceneFunc(context: Konva.Context): void {

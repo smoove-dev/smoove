@@ -107,12 +107,9 @@ scene.register((frame) => {
   // pushes the rating row down on the same tick.
   headline.setText(text);
 
-  // A flex child's layout size is `flexWidth`/`flexHeight`, not the Konva box,
-  // so animate the size the layout reads (calling `rule.width(...)` would only
-  // move the bounding box and the layout would keep drawing it at 0).
-  // TODO: this should be fixed..
+  // width() is the size the layout reads, so the rule grows in place.
   const grow = interpolate(frame, [0, 24], [0, 480], { extrapolateRight: "clamp" });
-  rule.setAttrs({ flexWidth: grow });
+  rule.width(grow);
   rule.fill(accent);
 
   pips.forEach((pip, i) => {

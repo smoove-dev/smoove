@@ -8,47 +8,34 @@ import {
 } from "../../engine/ancestry.js";
 import type { KMLayoutNode, LayoutBox } from "../contract.js";
 import { type Measurement, type MeasureOptions, measure as measureNode } from "../measure.js";
-import { applySize, parseSize } from "./engine.js";
-import type { FlexChildProps, SizeValue } from "./types.js";
+import { declaredHeight, declaredWidth, Sized, type SizedApi } from "../size.js";
+import { applySize } from "./engine.js";
+import type { FlexChildProps, SizeInput } from "./types.js";
 
 /** Common shape-config shape: a Konva config plus flex-child props + size values. */
 export type LeafConfig = FlexChildProps & {
-  width?: SizeValue;
-  height?: SizeValue;
+  width?: SizeInput;
+  height?: SizeInput;
 } & Record<string, unknown>;
 
-// Keys stripped before handing the config to Konva. width/height are included
-// so they're removed when there's no px size: for radius/points shapes Konva
-// maps width/height onto geometry, so a leftover `width: undefined` in the
-// constructor config would wipe the radius.
-const STRIP_KEYS = [
-  "flexGrow",
-  "flexShrink",
-  "flexBasis",
-  "alignSelf",
-  "margin",
-  "width",
-  "height",
-] as const;
+// Keys stripped before handing the config to Konva. width/height stay: the
+// `Sized` setters read px, `%` and `"auto"` off them, and only a px size
+// reaches Konva's own setter (which, for radius/points shapes, maps it onto
+// geometry — so no size leaves the radius alone).
+const STRIP_KEYS = ["flexGrow", "flexShrink", "flexBasis", "alignSelf", "margin"] as const;
 
 /**
- * Strip smoove-only keys and translate `width`/`height` (which may be a
- * `%` string) into a plain Konva config. Mirrors the per-wrapper
+ * Strip smoove-only keys into a plain Konva config. Mirrors the per-wrapper
  * `pickKonvaConfig` helpers in `block.ts`/`image.ts`/`video.ts` so leaf shapes
  * don't each re-implement it.
  */
 export function pickLeafConfig(config: LeafConfig): Record<string, unknown> {
   const out: Record<string, unknown> = { ...config };
   for (const k of STRIP_KEYS) delete out[k];
-  // Only pixel sizes go back to Konva; `%`/hug is resolved later by the engine.
-  const w = parseSize(config.width as SizeValue | undefined);
-  const h = parseSize(config.height as SizeValue | undefined);
-  if (w?.kind === "px") out.width = w.value;
-  if (h?.kind === "px") out.height = h.value;
   return out;
 }
 
-/** Record flex child props + the original `width`/`height` size values as attrs. */
+/** Record flex child props as attrs. */
 export function applyLeafFlexAttrs(node: Konva.Node, config: LeafConfig): void {
   node.setAttrs({
     flexGrow: config.flexGrow,
@@ -56,8 +43,6 @@ export function applyLeafFlexAttrs(node: Konva.Node, config: LeafConfig): void {
     flexBasis: config.flexBasis,
     alignSelf: config.alignSelf,
     margin: config.margin,
-    flexWidth: config.width,
-    flexHeight: config.height,
   });
 }
 
@@ -70,8 +55,8 @@ export function applyLeafFlexAttrs(node: Konva.Node, config: LeafConfig): void {
  * isn't reliably consulted for these leaf nodes.
  */
 export function leafMeasure(shape: Konva.Shape, node: FlexilyNode): void {
-  const w = shape.attrs.flexWidth as SizeValue | undefined;
-  const h = shape.attrs.flexHeight as SizeValue | undefined;
+  const w = declaredWidth(shape);
+  const h = declaredHeight(shape);
   if (w === undefined && h === undefined) {
     const r = shape.getSelfRect();
     if (r.width > 0) node.setWidth(r.width);
@@ -92,11 +77,13 @@ export function leafMeasure(shape: Konva.Shape, node: FlexilyNode): void {
  * size (or keep them un-stretched) for predictable results.
  */
 export function leafPlace(shape: Konva.Shape, box: LayoutBox): void {
+  // Size first: a centred shape's origin offset is half its laid-out size, and
+  // `width()` may have just set a different (declared) size on it.
+  (shape as Konva.Shape & SizedApi)._kmBoxWidth(box.width);
+  (shape as Konva.Shape & SizedApi)._kmBoxHeight(box.height);
   const r = shape.getSelfRect();
   shape.x(box.left - r.x);
   shape.y(box.top - r.y);
-  shape.width(box.width);
-  shape.height(box.height);
 }
 
 /**
@@ -116,8 +103,11 @@ export function FlexShape<N extends Konva.Shape, C extends LeafConfig = LeafConf
   Base: new (...args: any[]) => N,
 ): new (
   config: C,
-) => N & KMLayoutNode & AncestryMethods & { measure(opts?: MeasureOptions): Measurement } {
-  class Wrapped extends (Base as unknown as new (config?: unknown) => Konva.Shape) {
+) => N &
+  SizedApi &
+  KMLayoutNode &
+  AncestryMethods & { measure(opts?: MeasureOptions): Measurement } {
+  class Wrapped extends Sized(Base as unknown as new (config?: unknown) => Konva.Shape) {
     readonly _kmRole = "leaf" as const;
     constructor(config: LeafConfig = {}) {
       super(pickLeafConfig(config));
@@ -148,5 +138,8 @@ export function FlexShape<N extends Konva.Shape, C extends LeafConfig = LeafConf
   }
   return Wrapped as unknown as new (
     config: C,
-  ) => N & KMLayoutNode & AncestryMethods & { measure(opts?: MeasureOptions): Measurement };
+  ) => N &
+    SizedApi &
+    KMLayoutNode &
+    AncestryMethods & { measure(opts?: MeasureOptions): Measurement };
 }
