@@ -66,6 +66,11 @@ export function createNodeGlPlatform(): GlPlatform | null {
     result(width, height) {
       gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
       const ctx = out.getContext("2d");
+      // Truncate the display list before writing this frame's pixels. skia-canvas
+      // records draw commands forever and every read replays the whole history,
+      // so without this a long render's readbacks pile up and each frame costs
+      // more than the last (see doc/effects-performance-research.md, S0).
+      (ctx as unknown as { reset?: () => void }).reset?.();
       const img = ctx.createImageData(width, height);
       const row = width * 4;
       // GL framebuffer is bottom-up; flip rows into a top-down image.
