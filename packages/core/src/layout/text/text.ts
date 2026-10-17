@@ -4,8 +4,8 @@ import { findClip, findComposition, findSequence } from "../../engine/ancestry.j
 import { TICK_MARK } from "../../markers.js";
 import type { KMLayoutNode, LayoutBox, LocalMeasuredLine, MeasureContext } from "../contract.js";
 import { applySize, type FlexilyNode, parseSize, setTextWrapperMeasure } from "../flex/engine.js";
-import type { SizeValue } from "../flex/types.js";
 import { type Measurement, type MeasureOptions, measure as measureNode } from "../measure.js";
+import { declaredHeight, declaredWidth, Sized } from "../size.js";
 import { Font, type FontFaceRef } from "./font.js";
 import {
   buildWordIndex,
@@ -79,7 +79,7 @@ type KonvaTextInternal = Konva.Text & {
  * layout primitives it `extends Konva.Group`, exposing intrinsic text size to
  * the flex engine via {@link _measureForFlex}.
  */
-export class Text extends Konva.Group implements KMLayoutNode {
+export class Text extends Sized(Konva.Group) implements KMLayoutNode {
   /** The owning composition, or `null` while detached — like `getStage()`. */
   getComposition(): ReturnType<typeof findComposition> {
     return findComposition(this);
@@ -163,8 +163,6 @@ export class Text extends Konva.Group implements KMLayoutNode {
       flexBasis: config.flexBasis,
       alignSelf: config.alignSelf,
       margin: config.margin,
-      flexWidth: config.width,
-      flexHeight: config.height,
       maxWidth: config.maxWidth,
       maxHeight: config.maxHeight,
       maxLines: config.maxLines,
@@ -250,8 +248,8 @@ export class Text extends Konva.Group implements KMLayoutNode {
     // A hug-width Text pins its box at construction, and `_relayout` reads a
     // non-zero width as the box to wrap INSIDE. Release it first, or smaller
     // glyphs would re-wrap in the old box instead of the box shrinking to fit.
-    if (this.attrs.flexWidth === undefined && this.attrs.maxWidth === undefined) {
-      this.width(0);
+    if (declaredWidth(this) === undefined && this.attrs.maxWidth === undefined) {
+      this._kmBoxWidth(0);
     }
     this._layoutText();
     this.getLayer()?.batchDraw();
@@ -285,13 +283,13 @@ export class Text extends Konva.Group implements KMLayoutNode {
   /** @internal — {@link KMLayoutNode}: wrap-aware sizing + intrinsic measure. */
   _kmMeasure(node: FlexilyNode, ctx: MeasureContext): void {
     if (
-      this.attrs.flexWidth === undefined &&
+      declaredWidth(this) === undefined &&
       this.attrs.maxWidth === undefined &&
       ctx.parentIsColumn
     ) {
       node.setWidthPercent(100);
     } else {
-      applySize(node, this.attrs.flexWidth as SizeValue | undefined, undefined);
+      applySize(node, declaredWidth(this), undefined);
     }
     setTextWrapperMeasure(node, this, ctx.parentIsColumn);
   }
@@ -300,8 +298,8 @@ export class Text extends Konva.Group implements KMLayoutNode {
   _kmPlace(box: LayoutBox): void {
     this.x(box.left);
     this.y(box.top);
-    this.width(box.width);
-    this.height(box.height);
+    this._kmBoxWidth(box.width);
+    this._kmBoxHeight(box.height);
     this._layoutText();
   }
 
@@ -379,7 +377,10 @@ export class Text extends Konva.Group implements KMLayoutNode {
   }
 
   private _relayout(): void {
-    const boxW = this._boxWidth(this.width() > 0 ? this.width() : BIG);
+    // The laid-out box, read raw: a flushing `width()` here would start a
+    // layout from inside one.
+    const current = (this.attrs.width as number | undefined) ?? 0;
+    const boxW = this._boxWidth(current > 0 ? current : BIG);
     const boxH = this._boxHeight();
 
     // Always lay out the FULL text so line breaks are fixed: a typewriter then
@@ -404,10 +405,10 @@ export class Text extends Konva.Group implements KMLayoutNode {
     // When not reserving, the box grows one whole line at a time (never mid-word).
     const ownH = reserve ? m.height : this._visibleLines(reveal) * this._geo.lineH + pad * 2;
 
-    if (this.attrs.flexWidth === undefined && this.attrs.maxWidth === undefined) {
-      this.width(finalW);
+    if (declaredWidth(this) === undefined && this.attrs.maxWidth === undefined) {
+      this._kmBoxWidth(finalW);
     }
-    if (this.attrs.flexHeight === undefined) this.height(ownH);
+    if (declaredHeight(this) === undefined) this._kmBoxHeight(ownH);
 
     this._layoutHighlights();
     this._layoutReveal(reveal);
@@ -495,7 +496,7 @@ export class Text extends Konva.Group implements KMLayoutNode {
   // ----- fitting / clamping ----------------------------------------------
 
   private _boxWidth(fallback: number): number {
-    const explicit = parseSize(this.attrs.flexWidth as SizeValue | undefined);
+    const explicit = parseSize(declaredWidth(this));
     if (explicit?.kind === "px") return explicit.value;
     const maxW = this.attrs.maxWidth as number | undefined;
     if (typeof maxW === "number") return maxW;
@@ -503,7 +504,7 @@ export class Text extends Konva.Group implements KMLayoutNode {
   }
 
   private _boxHeight(): number {
-    const explicit = parseSize(this.attrs.flexHeight as SizeValue | undefined);
+    const explicit = parseSize(declaredHeight(this));
     if (explicit?.kind === "px") return explicit.value;
     const maxH = this.attrs.maxHeight as number | undefined;
     if (typeof maxH === "number") return maxH;

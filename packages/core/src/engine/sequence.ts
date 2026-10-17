@@ -3,6 +3,7 @@ import { initNodeEffects } from "../effects/apply.js";
 import { findClip, findComposition, findSequence } from "./ancestry.js";
 import { getComposition } from "./composition.js";
 import { type FrameAnchor, resolveFrameAnchor } from "./marker.js";
+import { structureVersion } from "./structure.js";
 import { parseTimelineOptions, TimelineMixin, type TimelineOptions } from "./timeline.js";
 
 export type SequenceOptions = Konva.LayerConfig & TimelineOptions;
@@ -35,6 +36,9 @@ export class Sequence extends TimelineMixin(Konva.Layer) {
     super({ ...layerOpts, visible: false });
     this._kmInitTimeline("Sequence", parsed);
   }
+
+  /** Structure version at the last applied frame — part of {@link _apply}'s dedupe key. */
+  private _kmLastStructure = -1;
 
   /** A `Sequence` lives in composition frames — anchors resolve absolutely. */
   override _kmResolveAnchor(anchor: FrameAnchor): number {
@@ -87,10 +91,24 @@ export class Sequence extends TimelineMixin(Konva.Layer) {
       }
       const local = frame - this.from;
       // Skip redundant work: same playhead, already active, and not forced.
-      if (!becameActive && !force && local === this._kmLastLocal) return;
+      // Structure is part of the dedupe key. A sequence activated at the
+      // current frame (e.g. by `comp.add(seq)`) and only then filled would
+      // otherwise dedupe every later apply at that same frame, leaving
+      // everything added afterwards un-laid-out until the playhead moved.
+      if (
+        !becameActive &&
+        !force &&
+        local === this._kmLastLocal &&
+        structureVersion() === this._kmLastStructure
+      ) {
+        return;
+      }
       this._kmLastLocal = local;
       this._kmRunFrame(local, true);
       this._kmWireEffects();
+      // Recorded after the frame runs, so nodes it rebuilds itself don't read as
+      // a structural change and disable the dedupe for the next same-frame apply.
+      this._kmLastStructure = structureVersion();
       // Draw synchronously the frame in which a sequence becomes visible — this
       // ensures fresh pixels are on the canvas before the browser paints the
       // newly-displayed layer (avoids a one-frame flash of stale content).

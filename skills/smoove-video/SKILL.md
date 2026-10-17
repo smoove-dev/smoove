@@ -74,10 +74,12 @@ to a number derived from other scenes' durations. Details:
 `interpolate(frame, inputRange, outputRange, { easing, extrapolateLeft,
 extrapolateRight })` + `Easing` (`Easing.in/out/inOut(Easing.cubic|quad|...)`,
 `Easing.bezier(...)`, `Easing.spring`-style timings live in
-`@smoove/transitions`). **Gotcha:** a `Flex`/`Block` child's `x()`/`y()`/
-`width()`/`height()` are overwritten every tick by the layout pass that runs
-*after* updaters — animate `opacity()`, `scale()`, `rotation()`, or flex
-props (`flexGrow`, `gap`, `padding`, `alignSelf`) instead. Details: [rules/animation.md](rules/animation.md).
+`@smoove/transitions`). **Gotcha:** a `Flex`/`Block` child's `x()`/`y()` are
+overwritten every tick by the layout pass that runs *after* updaters, so
+animate `opacity()`, `scale()`, `rotation()`, its size, or flex props
+(`flexGrow`, `gap`, `padding`, `alignSelf`) instead. Size is `width()`/
+`height()` on every node (px, `"50%"` or `"auto"`), and layout reflows around
+it on the same frame. Details: [rules/animation.md](rules/animation.md).
 
 ## Components & nested timelines
 

@@ -197,6 +197,13 @@ export {
   type WedgeConfig,
 } from "./layout/shapes.js";
 export {
+  declaredHeight,
+  declaredWidth,
+  Sized,
+  type SizedApi,
+  type SizeInput,
+} from "./layout/size.js";
+export {
   Font,
   type FontConfig,
   type FontFace,

@@ -136,12 +136,19 @@ export function applySize(
   }
 }
 
-export function applyContainerProps(node: FlexilyNode, props: FlexProps): void {
+export function applyContainerProps(
+  node: FlexilyNode,
+  props: FlexProps & { borderSize?: EdgeValue },
+): void {
   node.setFlexDirection(flexDirection(props.flexDirection ?? "row"));
   if (props.justifyContent) node.setJustifyContent(justifyContent(props.justifyContent));
   if (props.alignItems) node.setAlignItems(alignItems(props.alignItems));
   if (props.gap !== undefined) node.setGap(GUTTER_ALL, props.gap);
   applyEdges(node, normalizeEdges(props.padding), "setPadding");
+  // A `Block`'s border occupies layout space the way CSS's does: it insets the
+  // content box without changing the node's own size (flexily sizes
+  // border-box). `Flex` has no border of its own, so this is a no-op there.
+  applyEdges(node, normalizeEdges(props.borderSize), "setBorder");
 }
 
 export function applyChildProps(node: FlexilyNode, props: FlexChildProps): void {

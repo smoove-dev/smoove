@@ -1,5 +1,5 @@
 import type Konva from "konva";
-import type { FlexChildProps, SizeValue } from "../flex/types.js";
+import type { FlexChildProps, SizeInput } from "../flex/types.js";
 import type { Font, FontFaceRef } from "./font.js";
 
 export type TextAlign = "left" | "center" | "right" | "justify";
@@ -83,8 +83,8 @@ export type TextConfig = Omit<Konva.GroupConfig, "width" | "height" | "text"> &
     /** Text content. */
     text: string;
     // ----- layout (CSS-like) -----
-    width?: SizeValue;
-    height?: SizeValue;
+    width?: SizeInput;
+    height?: SizeInput;
     maxWidth?: number;
     maxHeight?: number;
     fontSize?: number;

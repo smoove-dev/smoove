@@ -80,13 +80,12 @@ comp.add(seq);
 seq.register(() => {
   const pr = p();
 
-  // Center the frame on the stage; its size is set via the flex size attrs so
+  // Center the frame on the stage; its size is set with width()/height() so
   // Block.computeLayout lays the children out inside exactly these bounds.
   frame.x((W - pr.frameWidth) / 2);
   frame.y((H - FRAME_H) / 2);
+  frame.width(pr.frameWidth).height(FRAME_H);
   frame.setAttrs({
-    flexWidth: pr.frameWidth,
-    flexHeight: FRAME_H,
     flexDirection: pr.direction,
     justifyContent: pr.justify,
     alignItems: pr.align,
@@ -96,9 +95,8 @@ seq.register(() => {
 
   // Drive each box's size from props — the flex pass on the next tick reflows
   // the siblings (and shrinks them once A + B + gaps exceed the frame).
-  boxA.setAttrs({ flexWidth: pr.aWidth, flexHeight: pr.aHeight, fill: pr.accent });
-  boxB.setAttr("flexWidth", pr.bWidth);
-  boxB.setAttr("flexHeight", pr.bHeight);
+  boxA.width(pr.aWidth).height(pr.aHeight).fill(pr.accent);
+  boxB.width(pr.bWidth).height(pr.bHeight);
   boxC.setAttr("flexGrow", pr.cGrow);
 });
 

@@ -1,6 +1,6 @@
 import Konva from "konva";
 import { FlexShape } from "./flex/mixin.js";
-import type { FlexChildProps, SizeValue } from "./flex/types.js";
+import type { FlexChildProps, SizeInput } from "./flex/types.js";
 
 /**
  * smoove wrappers for Konva's drawing primitives. Each one keeps Konva's
@@ -17,8 +17,8 @@ import type { FlexChildProps, SizeValue } from "./flex/types.js";
 
 type WithFlex<C> = Omit<C, "width" | "height"> &
   FlexChildProps & {
-    width?: SizeValue;
-    height?: SizeValue;
+    width?: SizeInput;
+    height?: SizeInput;
   };
 
 export type RectConfig = WithFlex<Konva.RectConfig>;

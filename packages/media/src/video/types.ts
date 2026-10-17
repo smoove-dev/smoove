@@ -2,7 +2,7 @@ import type {
   FlexChildProps,
   ObjectFit,
   ObjectPosition,
-  SizeValue,
+  SizeInput,
   VideoSourceFactory,
 } from "@smoove/core";
 import type Konva from "konva";
@@ -14,8 +14,8 @@ import type Konva from "konva";
  */
 export type VideoConfig = Omit<Konva.GroupConfig, "width" | "height"> &
   FlexChildProps & {
-    width?: SizeValue;
-    height?: SizeValue;
+    width?: SizeInput;
+    height?: SizeInput;
     src: string;
     /** Human label for the audio mixer channel / UIs. Defaults to {@link src}. */
     name?: string;

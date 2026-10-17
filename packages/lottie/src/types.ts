@@ -1,4 +1,4 @@
-import type { FlexChildProps, ObjectFit, ObjectPosition, SizeValue } from "@smoove/core";
+import type { FlexChildProps, ObjectFit, ObjectPosition, SizeInput } from "@smoove/core";
 import type Konva from "konva";
 import type { LottieEngineFactory } from "./engine.js";
 
@@ -12,8 +12,8 @@ export type LottieData = string | ArrayBuffer | Record<string, unknown>;
  */
 export type LottieConfig = Omit<Konva.ShapeConfig, "width" | "height"> &
   FlexChildProps & {
-    width?: SizeValue;
-    height?: SizeValue;
+    width?: SizeInput;
+    height?: SizeInput;
     /** URL of a `.json` or `.lottie` animation. Mutually exclusive with {@link data}. */
     src?: string;
     /** Inline animation payload. Mutually exclusive with {@link src}. */

@@ -1,9 +1,10 @@
 import {
+  declaredHeight,
+  declaredWidth,
   FlexShape,
   getComposition,
   type ObjectFit,
   type ObjectPosition,
-  type SizeValue,
   TICK_MARK,
 } from "@smoove/core";
 import Konva from "konva";
@@ -194,8 +195,8 @@ export class Lottie extends LottieBase {
   private _applyIntrinsicSize(): void {
     const size = this._engine.intrinsicSize;
     if (!size) return;
-    if ((this.attrs.flexWidth as SizeValue | undefined) === undefined) this.width(size.width);
-    if ((this.attrs.flexHeight as SizeValue | undefined) === undefined) this.height(size.height);
+    if (declaredWidth(this) === undefined) this._kmBoxWidth(size.width);
+    if (declaredHeight(this) === undefined) this._kmBoxHeight(size.height);
     this._syncSurface();
   }
 

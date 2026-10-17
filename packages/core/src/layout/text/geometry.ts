@@ -1,6 +1,4 @@
 import type Konva from "konva";
-import { parseSize } from "../flex/engine.js";
-import type { SizeValue } from "../flex/types.js";
 import type { TextAlign, TextConfig } from "./types.js";
 
 /** Keys consumed by the wrapper; everything else is forwarded to the Group. */
@@ -34,10 +32,7 @@ const TEXT_KEYS = [
 export function pickKonvaConfig(config: TextConfig): Konva.GroupConfig {
   const out: Record<string, unknown> = { ...config };
   for (const k of TEXT_KEYS) delete out[k];
-  const w = parseSize(config.width as SizeValue | undefined);
-  const h = parseSize(config.height as SizeValue | undefined);
-  out.width = w?.kind === "px" ? w.value : undefined;
-  out.height = h?.kind === "px" ? h.value : undefined;
+  // width/height pass through untouched: `Sized` reads `%`/`"auto"` off them.
   return out as Konva.GroupConfig;
 }
 

@@ -4,6 +4,15 @@ import { findClip, findComposition, findSequence } from "../../engine/ancestry.j
 import { isKMLayoutNode, type KMLayoutNode, type LayoutBox } from "../contract.js";
 import { type Measurement, type MeasureOptions, measure as measureNode } from "../measure.js";
 import {
+  declaredHeight,
+  declaredWidth,
+  enterLayout,
+  exitLayout,
+  markLaidOut,
+  Sized,
+  type SizedApi,
+} from "../size.js";
+import {
   applyChildProps,
   applyContainerProps,
   applySize,
@@ -31,14 +40,11 @@ const FLEX_KEYS = [
 function pickKonvaConfig(config: FlexConfig): Konva.GroupConfig {
   const out: Record<string, unknown> = { ...config };
   for (const k of FLEX_KEYS) delete out[k];
-  const w = parseSize(config.width as SizeValue | undefined);
-  const h = parseSize(config.height as SizeValue | undefined);
-  out.width = w?.kind === "px" ? w.value : undefined;
-  out.height = h?.kind === "px" ? h.value : undefined;
+  // width/height pass through untouched: `Sized` reads `%`/`"auto"` off them.
   return out as Konva.GroupConfig;
 }
 
-export class Flex extends Konva.Group implements KMLayoutNode {
+export class Flex extends Sized(Konva.Group) implements KMLayoutNode {
   /** The owning composition, or `null` while detached — like `getStage()`. */
   getComposition(): ReturnType<typeof findComposition> {
     return findComposition(this);
@@ -69,13 +75,11 @@ export class Flex extends Konva.Group implements KMLayoutNode {
       flexBasis: config.flexBasis,
       alignSelf: config.alignSelf,
       margin: config.margin,
-      flexWidth: config.width,
-      flexHeight: config.height,
     });
   }
 
   computeLayout(): void {
-    layoutRoot(this, false);
+    layoutRoot(this);
   }
 
   /** @internal — {@link KMLayoutNode}: lay self out as a flex root (Sequence calls this). */
@@ -87,8 +91,8 @@ export class Flex extends Konva.Group implements KMLayoutNode {
   _kmPlace(box: LayoutBox): void {
     this.x(box.left);
     this.y(box.top);
-    this.width(box.width);
-    this.height(box.height);
+    this._kmBoxWidth(box.width);
+    this._kmBoxHeight(box.height);
   }
 
   /** Measure this node's stage-space bounds — see {@link measureNode}. */
@@ -101,32 +105,36 @@ export class Flex extends Konva.Group implements KMLayoutNode {
  * Lay out a Konva.Group as a Flexily root: build the layout tree from the
  * group's attrs + children, compute, and write positions/sizes back.
  *
- * When `alwaysSetSize` is true the group's own width/height are always pulled
- * from the computed content size — needed for a hug-content root that draws a
- * background (Block) so the background isn't 0×0. Flex passes false, preserving
- * its behavior of only writing self-size when an explicit px size is given.
+ * The root's own size is always written back, so `width()` on a hugging root
+ * reports what it hugged to.
  */
-export function layoutRoot(group: Konva.Group, alwaysSetSize: boolean): void {
-  const w = readPixelSize(group.attrs.flexWidth);
-  const h = readPixelSize(group.attrs.flexHeight);
+export function layoutRoot(group: Konva.Group & SizedApi): void {
+  enterLayout();
+  try {
+    const w = rootSize(group, declaredWidth(group), "width");
+    const h = rootSize(group, declaredHeight(group), "height");
 
-  const root = FlexilyNode.create();
-  applyContainerProps(root, group.attrs as FlexProps);
-  if (w > 0) root.setWidth(w);
-  if (h > 0) root.setHeight(h);
+    const root = FlexilyNode.create();
+    applyContainerProps(root, group.attrs as FlexProps);
+    if (w > 0) root.setWidth(w);
+    if (h > 0) root.setHeight(h);
 
-  const pairs: Pair[] = [];
-  buildChildren(group.getChildren(), root, pairs, group.attrs.flexDirection ?? "row", {
-    flex: root,
-    attrs: group.attrs as FlexProps,
-  });
+    const pairs: Pair[] = [];
+    buildChildren(group.getChildren(), root, pairs, group.attrs.flexDirection ?? "row", {
+      flex: root,
+      attrs: group.attrs as FlexProps,
+    });
 
-  root.calculateLayout(w > 0 ? w : undefined, h > 0 ? h : undefined, DIRECTION_LTR);
+    root.calculateLayout(w > 0 ? w : undefined, h > 0 ? h : undefined, DIRECTION_LTR);
 
-  if (alwaysSetSize || w > 0) group.width(root.getComputedWidth());
-  if (alwaysSetSize || h > 0) group.height(root.getComputedHeight());
-  writeBack(pairs);
-  root.freeRecursive();
+    group._kmBoxWidth(root.getComputedWidth());
+    group._kmBoxHeight(root.getComputedHeight());
+    writeBack(pairs);
+    root.freeRecursive();
+  } finally {
+    exitLayout();
+  }
+  markLaidOut(group);
 }
 
 type Pair = {
@@ -141,12 +149,23 @@ type ParentRef = {
   attrs: FlexProps;
 };
 
-function readPixelSize(sizeAttr: SizeValue | undefined): number {
-  const parsed = parseSize(sizeAttr);
+/**
+ * A root's size in px. A root has no flex parent, so `%` resolves against the
+ * composition — `width: "100%"` fills the frame. No size means hug: return 0
+ * (not the node's current Konva size), since falling back to the last-computed
+ * size would pin a hugging root to its first-tick size.
+ */
+function rootSize(
+  group: Konva.Group,
+  size: SizeValue | undefined,
+  axis: "width" | "height",
+): number {
+  const parsed = parseSize(size);
   if (parsed?.kind === "px") return parsed.value;
-  // No explicit px size → hug content. Return 0 (not the node's current Konva
-  // size): falling back to the last-computed size would pin a hug-content root
-  // to its first-tick height and stop it re-growing as children change size.
+  if (parsed?.kind === "pct") {
+    const comp = findComposition(group);
+    return comp ? (comp[axis]() * parsed.value) / 100 : 0;
+  }
   return 0;
 }
 
@@ -157,10 +176,10 @@ export function buildChildren(
   parentDirection = "row",
   parent: ParentRef | null = null,
 ): void {
-  // Skip the Block background rect and any hidden child (display:none semantics —
+  // Skip the Block's own paint (background, border) and any hidden child (display:none semantics —
   // an invisible node takes no layout space, so staggered/toggled children don't
   // leave gaps).
-  const laidOut = children.filter((c) => !c.attrs.__blockBg && c.visible() !== false);
+  const laidOut = children.filter((c) => !c.attrs.__blockChrome && c.visible() !== false);
   const parentIsColumn = parentDirection.startsWith("column");
   laidOut.forEach((child, i) => {
     const node = FlexilyNode.create();
@@ -171,7 +190,7 @@ export function buildChildren(
       if (child._kmRole === "container") {
         const props = child.attrs as FlexProps;
         applyContainerProps(node, props);
-        applySize(node, child.attrs.flexWidth, child.attrs.flexHeight);
+        applySize(node, declaredWidth(child), declaredHeight(child));
         buildChildren(
           (child as unknown as Konva.Container).getChildren(),
           node,
@@ -184,13 +203,13 @@ export function buildChildren(
       }
     } else if (child instanceof Konva.Text) {
       // Raw Konva.Text (no wrapper): measure with wrap awareness.
-      if (child.attrs.flexWidth === undefined && parentIsColumn) node.setWidthPercent(100);
-      else applySize(node, child.attrs.flexWidth, undefined);
+      if (declaredWidth(child) === undefined && parentIsColumn) node.setWidthPercent(100);
+      else applySize(node, declaredWidth(child), undefined);
       setTextMeasure(node, child, parentIsColumn);
     } else if (child instanceof Konva.Image) {
       // Raw Konva.Image (no wrapper): intrinsic size from the bitmap.
-      applySize(node, child.attrs.flexWidth, child.attrs.flexHeight);
-      if (child.attrs.flexWidth === undefined && child.attrs.flexHeight === undefined) {
+      applySize(node, declaredWidth(child), declaredHeight(child));
+      if (declaredWidth(child) === undefined && declaredHeight(child) === undefined) {
         setImageMeasure(node, child);
       }
     } else {

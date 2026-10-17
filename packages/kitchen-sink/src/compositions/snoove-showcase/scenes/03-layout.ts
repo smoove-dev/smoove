@@ -6,12 +6,10 @@
  * hand-positioned and nothing is re-created.
  *
  * The beats are *animated through the layout*, not toggled: each frame we set
- * `flexHeight` (and opacity) on the children, and the flex pass recomputes the
+ * `height()` (and opacity) on the children, and the flex pass recomputes the
  * row, the column and the card from those — so the card's height eases from one
- * beat to the next instead of snapping. That easing is the demo. It has to be
- * `flexHeight` and not `height()`: the layout pass writes `width`/`height` back
- * onto every child after the updaters run, so animating those directly would be
- * overwritten. `opacity` is never touched by layout and is always safe.
+ * beat to the next instead of snapping. That easing is the demo. `opacity` is
+ * never touched by layout and is always safe.
  *
  * Both shots and both extra rows are present the whole time at height 0, so the
  * card's gaps never appear or disappear — nothing in the scene jumps.
@@ -267,11 +265,11 @@ export function layout(seq: Sequence) {
     readout.opacity(intro);
 
     // Beat 2 — the image slot morphs from a 2.3:1 crop to a 0.56:1 one. Setting
-    // the two children's `flexHeight` is the whole move; the row, the column and
+    // the two children's `height()` is the whole move; the row, the column and
     // the card all re-derive their own heights from it.
     const t2 = ramp(frame, BEAT_2);
-    imgWide.setAttr("flexHeight", WIDE_H * (1 - t2));
-    imgTall.setAttr("flexHeight", TALL_H * t2);
+    imgWide.height(WIDE_H * (1 - t2));
+    imgTall.height(TALL_H * t2);
     // The incoming shot reaches full strength early, so it fills its slot as
     // that slot grows (cover-cropped, it reads as a band opening up) while the
     // outgoing one clears out fast. Fading it in late instead leaves a hole in
@@ -290,9 +288,9 @@ export function layout(seq: Sequence) {
     // Beat 3 — two children ease open from height 0, staggered.
     const t3a = ramp(frame, BEAT_3, 14);
     const t3b = ramp(frame, BEAT_3 + 8, 14);
-    chips.setAttr("flexHeight", CHIPS_H * t3a);
+    chips.height(CHIPS_H * t3a);
     chips.opacity(t3a);
-    thumbs.setAttr("flexHeight", THUMBS_H * t3b);
+    thumbs.height(THUMBS_H * t3b);
     thumbs.opacity(t3b);
 
     const beat = frame >= BEAT_3 ? 2 : frame >= BEAT_2 ? 1 : 0;

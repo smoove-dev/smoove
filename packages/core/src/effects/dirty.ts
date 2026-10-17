@@ -51,6 +51,11 @@ export function withDerivedWrites<T>(fn: () => T): T {
   }
 }
 
+/** Whether the current write runs inside {@link withDerivedWrites}. */
+export function isDerivedWrite(): boolean {
+  return derivedDepth > 0;
+}
+
 function bumpAncestors(node: Konva.Node): void {
   if (derivedDepth > 0) return;
   if (tracked.size === 0) return;

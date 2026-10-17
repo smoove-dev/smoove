@@ -21,6 +21,9 @@ export type EdgeValue =
 
 export type SizeValue = number | `${number}%`;
 
+/** What a `width`/`height` config or setter accepts. `"auto"` hands the size back to layout. */
+export type SizeInput = SizeValue | "auto" | undefined;
+
 export type FlexProps = {
   flexDirection?: FlexDirection;
   justifyContent?: Justify;
@@ -40,6 +43,6 @@ export type FlexChildProps = {
 export type FlexConfig = Omit<Konva.GroupConfig, "width" | "height"> &
   FlexProps &
   FlexChildProps & {
-    width?: SizeValue;
-    height?: SizeValue;
+    width?: SizeInput;
+    height?: SizeInput;
   };

@@ -5,13 +5,14 @@ import type {
   LayoutBox,
   ObjectFit,
   ObjectPosition,
-  SizeValue,
   VideoSource,
   VideoSourceFactory,
 } from "@smoove/core";
 import {
   applySize,
   createSignal,
+  declaredHeight,
+  declaredWidth,
   detectEnvironment,
   type Environment,
   type FlexilyNode,
@@ -22,9 +23,9 @@ import {
   type Measurement,
   type MeasureOptions,
   measure as measureNode,
-  parseSize,
   type ReadonlySignal,
   type Signal,
+  Sized,
   VIDEO_MARK,
 } from "@smoove/core";
 import Konva from "konva";
@@ -60,10 +61,7 @@ const VIDEO_KEYS = [
 function pickKonvaConfig(config: VideoConfig): Konva.GroupConfig {
   const out: Record<string, unknown> = { ...config };
   for (const k of VIDEO_KEYS) delete out[k];
-  const w = parseSize(config.width as SizeValue | undefined);
-  const h = parseSize(config.height as SizeValue | undefined);
-  out.width = w?.kind === "px" ? w.value : undefined;
-  out.height = h?.kind === "px" ? h.value : undefined;
+  // width/height pass through untouched: `Sized` reads `%`/`"auto"` off them.
   out.cornerRadius = undefined;
   return out as Konva.GroupConfig;
 }
@@ -74,7 +72,7 @@ function pickKonvaConfig(config: VideoConfig): Konva.GroupConfig {
  * driven by the composition's frame clock. Picks a {@link RenderingVideoDriver}
  * or {@link PreviewVideoDriver} based on the composition's {@link Environment}.
  */
-export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
+export class Video extends Sized(Konva.Group) implements AudioChannel, KMLayoutNode {
   readonly _kmRole = "leaf" as const;
   /** Human label for mixer UIs — `config.name`, falling back to `config.src`. */
   readonly label: string;
@@ -128,8 +126,6 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
       objectFit: config.objectFit ?? "cover",
       objectPosition: config.objectPosition ?? "center",
       cornerRadius: config.cornerRadius,
-      flexWidth: config.width,
-      flexHeight: config.height,
     });
 
     if (config.cornerRadius !== undefined) {
@@ -215,19 +211,15 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
 
   /** @internal — {@link KMLayoutNode}: size from explicit width/height (cover/contain handle the rest). */
   _kmMeasure(node: FlexilyNode): void {
-    applySize(
-      node,
-      this.attrs.flexWidth as SizeValue | undefined,
-      this.attrs.flexHeight as SizeValue | undefined,
-    );
+    applySize(node, declaredWidth(this), declaredHeight(this));
   }
 
   /** @internal — {@link KMLayoutNode}: write the computed box back + re-fit the frame. */
   _kmPlace(box: LayoutBox): void {
     this.x(box.left);
     this.y(box.top);
-    this.width(box.width);
-    this.height(box.height);
+    this._kmBoxWidth(box.width);
+    this._kmBoxHeight(box.height);
     this._layoutImage();
   }
 
@@ -355,8 +347,9 @@ export class Video extends Konva.Group implements AudioChannel, KMLayoutNode {
 
   /** @internal */
   _layoutImage(): void {
-    const w = this.width();
-    const h = this.height();
+    // The laid-out box, read raw: this runs from size setters and write-back.
+    const w = (this.attrs.width as number | undefined) ?? 0;
+    const h = (this.attrs.height as number | undefined) ?? 0;
     if (w <= 0 || h <= 0) return;
     const fit = (this.attrs.objectFit ?? "cover") as ObjectFit;
     const pos = (this.attrs.objectPosition ?? "center") as ObjectPosition;
