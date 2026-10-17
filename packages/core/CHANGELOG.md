@@ -1,5 +1,81 @@
 # @smoove/core
 
+## 0.4.0
+
+### Minor Changes
+
+- [#32](https://github.com/smoove-dev/smoove/pull/32) [`7afbe52`](https://github.com/smoove-dev/smoove/commit/7afbe528fb59a5615c8c8dc522c290d5c54d70af) Thanks [@shemi](https://github.com/shemi)! - `Block` borders now follow the CSS box model.
+
+  Three things change, all of them visible.
+
+  Per-edge `borderColor` and `borderSize` are painted rather than collapsed. The
+  types have always accepted `[top, right, bottom, left]`, but the implementation
+  stroked the whole outline at the largest of the four widths in the first colour.
+  Edges that differ are now drawn as four mitred bands, clipped to the corner
+  radius; a uniform border still takes the single-stroke path, so dashes and
+  rounded corners are unaffected.
+
+  A border occupies layout space. It insets the content box the way CSS does,
+  without changing the node's own size — a 20px border on a 240x120 `Block` now
+  leaves 200x80 for its children, where before the border reserved nothing and
+  overlapped its own content.
+
+  A border paints inside the box. Canvas centres a stroke on its path, so a border
+  used to sit half outside the node's bounds. It is now drawn wholly inside, which
+  moves a uniform border inward by half its width. At the 1-4px borders most
+  layouts use the shift is a pixel or two; a thick border will move noticeably.
+
+  `borderStyle: "dashed"` still requires a uniform border. Dashes ride a stroked
+  path, which per-edge painting replaces with filled polygons, so a dashed border
+  whose edges differ paints solid instead.
+
+- [#32](https://github.com/smoove-dev/smoove/pull/32) [`7afbe52`](https://github.com/smoove-dev/smoove/commit/7afbe528fb59a5615c8c8dc522c290d5c54d70af) Thanks [@shemi](https://github.com/shemi)! - `width()` and `height()` now size every node, inside a layout or not.
+
+  Setting a size is the size you want, and a `Flex` or `Block` reflows around it
+  on the same frame. It takes pixels, a percentage, or `"auto"` to hand the size
+  back to the layout:
+
+  ```ts
+  seq.register((frame) => {
+    card.width(`${40 + frame}%`);
+    hero.height(320);
+    badge.width("auto");
+  });
+  ```
+
+  Reading always returns the laid-out size in pixels, and a read right after a
+  set already sees the new layout.
+
+  This replaces the `flexWidth` and `flexHeight` attrs. Layout no longer reads
+  them, and setting one logs a warning that points at `width()` or `height()`.
+  Change `node.setAttr("flexWidth", 600)` to `node.width(600)`.
+
+  A percentage on a root `Flex` or `Block` (one added straight to a `Sequence`)
+  is now a share of the composition, so `width: "100%"` fills the frame. It used
+  to be ignored. A root `Flex` that hugs its content also reports that size from
+  `width()`, where it used to read 0.
+
+### Patch Changes
+
+- [#29](https://github.com/smoove-dev/smoove/pull/29) [`db1ff40`](https://github.com/smoove-dev/smoove/commit/db1ff40dde7e490867d1f344b78389c5ceec2326) Thanks [@shemi](https://github.com/shemi)! - Add `@smoove/effects` with `flameWrap`: fire wrapped around a node, with heat distortion, sparks, a molten rim, smoke and scorching. It wraps the node's rounded box by default (`radius` to match your corners) or its alpha edge with `shape: "silhouette"`, so a burning `Text` burns letter by letter. Nodes and Sequences gain an `effects` chain (`card.effects([flameWrap()])`), and effects read the frame clock, so a burn scrubs and renders the same in the browser and on the server.
+
+  The WebGL bridge moves from `@smoove/transitions` into `@smoove/core` so both transitions and effects share one compositor. Everything is re-exported from `@smoove/transitions`, so existing imports keep working.
+
+- [#32](https://github.com/smoove-dev/smoove/pull/32) [`7afbe52`](https://github.com/smoove-dev/smoove/commit/7afbe528fb59a5615c8c8dc522c290d5c54d70af) Thanks [@shemi](https://github.com/shemi)! - Fix two layout bugs found by the new layout conformance suite.
+
+  An `Image` with no explicit `width`/`height` measured 0x0 and contributed
+  nothing to a `Flex`/`Block`, even though every other leaf reports its intrinsic
+  size. It now measures its bitmap's natural dimensions, matching the raw
+  `Konva.Image` fallback and the documented behaviour.
+
+  Content added to a `Sequence` after that sequence was already activated at the
+  current frame was never laid out until the playhead moved — which included the
+  common `comp.add(seq)` then build then `setFrame(0)` order, leaving frame 0
+  un-laid-out for a first paint or a headless still capture. The frame dedupe in
+  `Composition.setFrame` and `Sequence._apply` now takes the scene-graph structure
+  version into account, so a structural change makes the same frame worth
+  re-applying.
+
 ## 0.3.6
 
 ### Patch Changes

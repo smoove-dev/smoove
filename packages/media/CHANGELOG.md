@@ -1,5 +1,38 @@
 # @smoove/media
 
+## 0.4.0
+
+### Patch Changes
+
+- [#32](https://github.com/smoove-dev/smoove/pull/32) [`7afbe52`](https://github.com/smoove-dev/smoove/commit/7afbe528fb59a5615c8c8dc522c290d5c54d70af) Thanks [@shemi](https://github.com/shemi)! - `width()` and `height()` now size every node, inside a layout or not.
+
+  Setting a size is the size you want, and a `Flex` or `Block` reflows around it
+  on the same frame. It takes pixels, a percentage, or `"auto"` to hand the size
+  back to the layout:
+
+  ```ts
+  seq.register((frame) => {
+    card.width(`${40 + frame}%`);
+    hero.height(320);
+    badge.width("auto");
+  });
+  ```
+
+  Reading always returns the laid-out size in pixels, and a read right after a
+  set already sees the new layout.
+
+  This replaces the `flexWidth` and `flexHeight` attrs. Layout no longer reads
+  them, and setting one logs a warning that points at `width()` or `height()`.
+  Change `node.setAttr("flexWidth", 600)` to `node.width(600)`.
+
+  A percentage on a root `Flex` or `Block` (one added straight to a `Sequence`)
+  is now a share of the composition, so `width: "100%"` fills the frame. It used
+  to be ignored. A root `Flex` that hugs its content also reports that size from
+  `width()`, where it used to read 0.
+
+- Updated dependencies [[`7afbe52`](https://github.com/smoove-dev/smoove/commit/7afbe528fb59a5615c8c8dc522c290d5c54d70af), [`db1ff40`](https://github.com/smoove-dev/smoove/commit/db1ff40dde7e490867d1f344b78389c5ceec2326), [`7afbe52`](https://github.com/smoove-dev/smoove/commit/7afbe528fb59a5615c8c8dc522c290d5c54d70af), [`7afbe52`](https://github.com/smoove-dev/smoove/commit/7afbe528fb59a5615c8c8dc522c290d5c54d70af)]:
+  - @smoove/core@0.4.0
+
 ## 0.3.6
 
 ### Patch Changes
