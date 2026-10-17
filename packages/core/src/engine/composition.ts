@@ -7,6 +7,7 @@ import { detectEnvironment, type Environment, type EnvironmentMode } from "./env
 import { type FrameAnchor, resolveFrameAnchor } from "./marker.js";
 import { Sequence, type SequenceProvider } from "./sequence.js";
 import { createSignal, derived, type ReadonlySignal, type Signal } from "./signal.js";
+import { structureVersion } from "./structure.js";
 import { type QuerySelector, runQuery } from "./timeline.js";
 
 /** A SequenceProvider duck-types on a `sequences()` method (Konva layers lack one). */
@@ -147,6 +148,9 @@ export class Composition<
   // Reused scratch canvas for captureCanvas() — avoids a per-frame skia Canvas
   // allocation (native memory V8's GC can't see) during long renders.
   private _captureCanvas: HTMLCanvasElement | null = null;
+
+  /** Structure version at the last applied frame — see the dedupe guard in {@link setFrame}. */
+  private _lastAppliedStructure = -1;
 
   // query()/queryOne() results per selector, valid while the structure
   // version stands still (see structure.ts).
@@ -414,7 +418,12 @@ export class Composition<
 
   setFrame(target: number): void {
     const clamped = Math.max(0, Math.min(this.durationInFrames.get() - 1, Math.floor(target)));
-    if (clamped === this._frame.get()) return;
+    // A composition starts life on frame 0, so `setFrame(0)` would dedupe
+    // against the initial value and apply nothing — leaving frame 0
+    // un-laid-out for the first paint or a headless still capture. Structure is
+    // therefore part of the dedupe key: anything added since the last apply
+    // makes this frame worth re-applying even though the number is unchanged.
+    if (clamped === this._frame.get() && structureVersion() === this._lastAppliedStructure) return;
     this._frame.set(clamped);
     if (this._isPlaying.get()) {
       this._startFrame = clamped;
@@ -615,6 +624,9 @@ export class Composition<
     // frame is painted over not-yet-loaded fonts. Offline rendering never
     // buffers (fonts gate via delayRender), so this only affects preview.
     if (this._buffer.get() === "buffering") return;
+    // Recorded only past the buffering guard: a buffering call paints nothing,
+    // so counting it would let `setFrame(0)` dedupe against a frame never applied.
+    this._lastAppliedStructure = structureVersion();
     for (const child of this.getChildren()) {
       if (child instanceof Sequence) child._apply(frame, force);
     }

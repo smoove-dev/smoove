@@ -36,13 +36,16 @@
     "dev": "tsc -b --watch",
     "test": "vitest run",
     "test:watch": "vitest",
-    "clean": "rm -rf dist *.tsbuildinfo"
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "test:conformance": "vitest run conformance",
+    "test:conformance:types": "tsc -p tsconfig.conformance.json"
   },
   "dependencies": {
     "bezier-easing": "^2.1.0",
     "flexily": "^0.7.1"
   },
   "devDependencies": {
+    "@types/node": "^26.2.0",
     "skia-canvas": "^3.0.8",
     "vitest": "^3.2.4"
   },

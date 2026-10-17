@@ -1,7 +1,8 @@
 // Worked example for rules/layout.md — a gradient Block "card" (cover image +
-// heading + body) whose ROOT Flex animates width/position directly. Note that
-// only the root is animated by x()/y()/width() — its children (cover, heading,
-// body) are positioned by the flex layout pass and are never animated that way.
+// heading + body) whose ROOT Flex animates its size and position. Size goes
+// through the flexWidth attr (what layout reads); position goes through x()/y()
+// (nothing places a root but you). The children (cover, heading, body) are
+// positioned by the flex layout pass and are never animated directly.
 import { Block, Composition, Flex, Image, Rect, Sequence, Text } from "@smoove/core";
 
 const width = 1280;
@@ -89,8 +90,10 @@ main.register((frame) => {
   const t = frame / (duration - 1);
   const eased = 0.5 - 0.5 * Math.cos(Math.PI * 2 * t);
   const w = cardMin + (cardMax - cardMin) * eased;
-  // ✅ root Flex — its own x()/y()/width() are not overwritten by any parent layout pass.
-  card.width(w);
+  // ✅ root Flex — nothing places it but us. Its SIZE lives in the flexWidth
+  // attr (the layout pass rewrites Konva's width from it every tick), so
+  // card.width(w) would be silently overwritten. Position is ours to set.
+  card.setAttr("flexWidth", w);
   card.x((width - w) / 2);
   card.y((height - 360) / 2);
 });

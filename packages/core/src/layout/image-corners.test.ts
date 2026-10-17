@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { clampCorners } from "./image.js";
+import { clampCorners } from "./corners.js";
 
 describe("clampCorners", () => {
   it("leaves radii that already fit alone", () => {

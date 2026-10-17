@@ -76,7 +76,7 @@ stays correct for free:
 // ✅ do: animate the container, children follow
 main.register((frame) => {
   growKid.setAttr("flexGrow", 1 + Math.sin(frame / 20));   // layout recomputes from this
-  card.width(220 + frame);                                  // root Flex/Block's own size
+  card.setAttr("flexWidth", 220 + frame);                   // a container's own size
   row.setAttr("gap", 4 + 24 * Math.sin(frame / 30));
 });
 
@@ -92,12 +92,20 @@ positioning things a `Flex`/`Block` could lay out for you.
 *child* of a Flex/Block.** Each tick, `Sequence._apply` runs your updaters
 *first*, then walks every top-level `Flex`/`Block` and recomputes layout —
 which re-`_kmPlace`s every child from its flex props, overwriting any
-`x()`/`y()` you set on a *child* node in the same frame. This does work on
-the **root** `Flex`/`Block` itself (the one you `sequence.add()`'d directly)
+`x()`/`y()` you set on a *child* node in the same frame. `x()`/`y()` **do**
+work on the **root** `Flex`/`Block` (the one you `sequence.add()`'d directly)
 since nothing places it but you — see `rules/assets/flex-card.composition.ts`
-for a card whose root `Flex` slides via `card.x()`/`card.width()`.
+for a card whose root `Flex` slides via `card.x()`.
 `opacity()`, `scale()`, `rotation()` are untouched by layout and are always
 safe to animate on any node, child or root.
+
+**Gotcha — `width()`/`height()` never drive layout, not even on a root.** A
+`Flex`/`Block` keeps its configured size in the `flexWidth`/`flexHeight`
+attrs, separate from Konva's bounding-box `width`/`height`, and the layout
+pass writes the Konva box *from* those attrs every tick. So `card.width(600)`
+in an updater is silently overwritten on the same frame. To animate a
+container's own size, set the layout attr: `card.setAttr("flexWidth", 600)`
+(or `card.setAttrs({ flexWidth: 600, flexHeight: 300 })`).
 
 ## Sizing
 

@@ -8,6 +8,7 @@ import {
 } from "../engine/runtime-defaults.js";
 import { TICK_MARK } from "../markers.js";
 import type { KMLayoutNode, LayoutBox } from "./contract.js";
+import { clampCorners, normalizeCorners, roundRectPath } from "./corners.js";
 import type { FlexilyNode } from "./flex/engine.js";
 import { applySize, parseSize } from "./flex/engine.js";
 import type { FlexChildProps, SizeValue } from "./flex/types.js";
@@ -166,11 +167,21 @@ export class Image extends Konva.Group implements KMLayoutNode {
 
   /** @internal — {@link KMLayoutNode}: size from explicit width/height (cover/contain handle the rest). */
   _kmMeasure(node: FlexilyNode): void {
-    applySize(
-      node,
-      this.attrs.flexWidth as SizeValue | undefined,
-      this.attrs.flexHeight as SizeValue | undefined,
-    );
+    const w = this.attrs.flexWidth as SizeValue | undefined;
+    const h = this.attrs.flexHeight as SizeValue | undefined;
+    // With neither size given, report the bitmap's intrinsic size — the same
+    // contract every other leaf follows (shape wrappers use `getSelfRect`).
+    // Without this an unsized Image measures 0x0 and contributes nothing to the
+    // layout, which is worse than the raw `Konva.Image` fallback in `flex.ts`.
+    if (w === undefined && h === undefined) {
+      const src = this._source;
+      if (src && src.naturalWidth > 0 && src.naturalHeight > 0) {
+        node.setWidth(src.naturalWidth);
+        node.setHeight(src.naturalHeight);
+        return;
+      }
+    }
+    applySize(node, w, h);
   }
 
   /** @internal — {@link KMLayoutNode}: write the computed box back + re-fit the bitmap. */
@@ -248,50 +259,4 @@ function positionOffset(
     fy = 0.5;
   }
   return { x: freeX * fx, y: freeY * fy };
-}
-
-/**
- * CSS's corner-overflow rule (CSS Backgrounds 3, section 5.5): when the two
- * radii sharing an edge sum to more than that edge, every radius scales by the
- * smallest ratio needed to fit. Scaling all four rather than only the offender
- * is what keeps the silhouette proportional, and it is why `cornerRadius: 9999`
- * on a square yields a disc instead of a squircle.
- *
- * @internal exported for testing.
- */
-export function clampCorners(r: number[], w: number, h: number): number[] {
-  const [tl = 0, tr = 0, br = 0, bl = 0] = r;
-  const ratio = (edge: number, a: number, b: number): number =>
-    a + b > 0 ? edge / (a + b) : Number.POSITIVE_INFINITY;
-  const f = Math.min(1, ratio(w, tl, tr), ratio(w, bl, br), ratio(h, tl, bl), ratio(h, tr, br));
-  return f < 1 ? [tl * f, tr * f, br * f, bl * f] : [tl, tr, br, bl];
-}
-
-function normalizeCorners(c: number | number[]): number[] {
-  if (typeof c === "number") return [c, c, c, c];
-  if (c.length === 1) return [c[0] ?? 0, c[0] ?? 0, c[0] ?? 0, c[0] ?? 0];
-  if (c.length === 2) return [c[0] ?? 0, c[1] ?? 0, c[0] ?? 0, c[1] ?? 0];
-  return [c[0] ?? 0, c[1] ?? 0, c[2] ?? 0, c[3] ?? 0];
-}
-
-function roundRectPath(
-  ctx: Konva.Context | CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  r: number[],
-): void {
-  const [tl, tr, br, bl] = r;
-  ctx.beginPath();
-  ctx.moveTo(x + (tl ?? 0), y);
-  ctx.lineTo(x + w - (tr ?? 0), y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + (tr ?? 0));
-  ctx.lineTo(x + w, y + h - (br ?? 0));
-  ctx.quadraticCurveTo(x + w, y + h, x + w - (br ?? 0), y + h);
-  ctx.lineTo(x + (bl ?? 0), y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - (bl ?? 0));
-  ctx.lineTo(x, y + (tl ?? 0));
-  ctx.quadraticCurveTo(x, y, x + (tl ?? 0), y);
-  ctx.closePath();
 }
