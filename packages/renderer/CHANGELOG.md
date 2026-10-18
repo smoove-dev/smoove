@@ -1,5 +1,13 @@
 # @smoove/renderer
 
+## 0.4.1
+
+### Patch Changes
+
+- Updated dependencies [[`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b), [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b), [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b), [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b)]:
+  - @smoove/core@0.4.1
+  - @smoove/transitions@0.4.1
+
 ## 0.4.0
 
 ### Patch Changes

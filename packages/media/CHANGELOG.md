@@ -1,5 +1,16 @@
 # @smoove/media
 
+## 0.4.1
+
+### Patch Changes
+
+- [#34](https://github.com/smoove-dev/smoove/pull/34) [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b) Thanks [@shemi](https://github.com/shemi)! - A hidden `Video` stops decoding. When the video, or any group above it, is `visible(false)`, it skips the seek and decode for that frame, since nothing would paint it. Its sound plays on: audio follows the sequence range, `setMuted()` and `setVolume()`, never visibility.
+
+  That makes hiding the cheap way to cut away from footage. Put a full-screen graphic over the speaker and hide their `Video`, and the voice keeps going while the decoder rests. Showing it again seeks straight to the current frame, and a server render still waits for that frame before capturing it.
+
+- Updated dependencies [[`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b), [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b), [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b), [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b)]:
+  - @smoove/core@0.4.1
+
 ## 0.4.0
 
 ### Patch Changes

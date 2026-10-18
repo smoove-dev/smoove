@@ -1,5 +1,63 @@
 # @smoove/core
 
+## 0.4.1
+
+### Patch Changes
+
+- [#34](https://github.com/smoove-dev/smoove/pull/34) [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b) Thanks [@shemi](https://github.com/shemi)! - A `Flex` or `Block` inside a plain `Group` now reflows during playback. Every frame, a `Sequence` or `Clip` lays out each layout below it that no other layout places, at any depth, so a component that wraps its layout in a `Group` for a transform plays and seeks correctly. Before, only layouts added straight to the `Sequence` or `Clip` were reflowed, and one behind a `Group` painted at stale positions on a seek.
+
+  ```ts
+  const body = new Group({ x: 540, y: 900, scaleX: 1.1, scaleY: 1.1 });
+  clip.add(body);
+  body.add(row); // a Block: now laid out every frame, no measure() call needed
+  ```
+
+  `measure()` lays out the root that actually places the node, so a layout behind a `Group` that itself sits inside another layout measures correctly too.
+
+  A plain `Group` can also sit directly in a `Flex`/`Block` now. It's placed at its slot; before, the layout pass threw.
+
+- [#34](https://github.com/smoove-dev/smoove/pull/34) [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b) Thanks [@shemi](https://github.com/shemi)! - `Text` highlights repaint on their own. Mutate a highlight in place from an updater (`hl.progress = …`, or move `start`/`end` to box the word being spoken) and the marks update on the same frame, wherever the `Text` sits. Before, a `Text` added straight to a sequence, with no typewriter and no flex parent, only repainted after a call to the internal `_layoutText()`.
+
+  ```ts
+  const spoken: HighlightConfig = { start: 0, end: 5, background: "#FFD43B" };
+  const caption = new Text({
+    text: "hello world",
+    fontSize: 72,
+    highlights: [spoken],
+  });
+  seq.add(caption);
+  seq.register((frame) => {
+    spoken.progress = interpolate(frame, [0, 4], [0, 1], {
+      extrapolateRight: "clamp",
+    });
+  });
+  ```
+
+  Replacing the array with `setAttr("highlights", [...])` repaints right away. A frame where no highlight changed skips the repaint.
+
+- [#34](https://github.com/smoove-dev/smoove/pull/34) [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b) Thanks [@shemi](https://github.com/shemi)! - Every `npm create smoove` project is testable from the first install. The studio and both composition templates ship vitest, a `test` script, a vitest config with the smoove plugin, a setup file that loads the server renderer's Node canvas and font loaders, and a sample test for the hello-smoove composition. `npm test` passes on a fresh scaffold, and the "Next steps" note mentions it.
+
+  `probeAt` and `countAt` in `@smoove/core/testing` now accept a composition with typed props. A `Composition<{ slogan: string }>` used to fail to type-check against them, so a test for any composition with props needed a cast.
+
+  ```ts
+  const comp = new Composition({
+    id: "intro",
+    fps: 30,
+    durationInFrames: 90,
+    width,
+    height,
+    props: { slogan: "hi" },
+  });
+  probeAt(comp, { time: 1 }, ".title"); // type-checks
+  ```
+
+- [#34](https://github.com/smoove-dev/smoove/pull/34) [`cc4cd88`](https://github.com/smoove-dev/smoove/commit/cc4cd88ee6416aaf6989a280fa9e509a2634644b) Thanks [@shemi](https://github.com/shemi)! - Add `Text.getText()`, the read side of `setText()`. It returns the full content you set, even while an ellipsis trims the line or a typewriter is halfway through, so a test can check a counter or a caption without reaching into private fields.
+
+  ```ts
+  counter.setText("45,999");
+  counter.getText(); // "45,999"
+  ```
+
 ## 0.4.0
 
 ### Minor Changes
