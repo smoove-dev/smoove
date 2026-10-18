@@ -60,3 +60,35 @@ export function isKMLayoutRoot(
 ): n is Konva.Node & Required<Pick<KMLayoutNode, "_kmComputeLayout">> {
   return typeof (n as Partial<KMLayoutNode>)._kmComputeLayout === "function";
 }
+
+function isKMContainer(n: Konva.Node | null): boolean {
+  return n !== null && isKMLayoutNode(n) && n._kmRole === "container";
+}
+
+/**
+ * A layout container nobody else lays out: its parent is not a Flex/Block
+ * (a `Sequence`, a `Clip`, a plain `Group`, …). A container nested straight
+ * in another container is part of that container's flex tree instead, while
+ * one behind a plain `Group` is its own root, since a flex pass never
+ * descends into a raw group.
+ */
+export function isIndependentLayoutRoot(
+  n: Konva.Node,
+): n is Konva.Node & Required<Pick<KMLayoutNode, "_kmComputeLayout">> {
+  return isKMLayoutRoot(n) && !isKMContainer(n.getParent());
+}
+
+/**
+ * The independent layout root whose pass places `node`: the nearest
+ * container at or above it, then up through directly nested containers.
+ * `null` when no layout places it.
+ */
+export function layoutRootOf(
+  node: Konva.Node,
+): (Konva.Node & Required<Pick<KMLayoutNode, "_kmComputeLayout">>) | null {
+  let cur: Konva.Node | null = node;
+  while (cur && !isKMContainer(cur)) cur = cur.getParent();
+  if (!cur) return null;
+  while (isKMContainer(cur.getParent())) cur = cur.getParent() as Konva.Node;
+  return isKMLayoutRoot(cur) ? cur : null;
+}
