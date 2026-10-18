@@ -1,5 +1,21 @@
 # Fonts
 
+## Picking faces
+
+- Pair across families of type: a serif with a sans, or a sans with a
+  monospace. Two sans faces side by side read as a mistake.
+- One face with personality per scene, set against a plain one that
+  carries the reading.
+- Load the weights you'll use. For strong contrast that's often 300 and 900,
+  for example `new Archivo({ weights: ["300", "900"] })` from
+  `@smoove/google-fonts/archivo`, or two faces on a `Font`.
+- Be suspicious of the faces every generated design reaches for first:
+  Inter, Roboto, Open Sans, Lato, Poppins, Playfair Display. Use one when you
+  can say why it suits this subject, not because it came to mind.
+
+The examples below use Roboto and Playfair Display to show the API. They are
+not a recommendation.
+
 ## `Font` — declarative custom/local fonts (always available, `@smoove/core`)
 
 ```ts
