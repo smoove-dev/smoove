@@ -10,8 +10,9 @@ metadata:
 Any time you're authoring or editing smoove (`@smoove/*`) composition code — a
 new scene, an animated layout, text, shapes, or media. Out of scope: running
 or previewing a composition (`@smoove/player`, the Studio) and rendering to
-MP4/stills (`@smoove/renderer`) — this skill only covers writing the
-`composition.ts` code itself.
+MP4/stills (`@smoove/renderer`) — this skill covers writing the
+`composition.ts` code itself, plus the quick checks in "Check your work
+without rendering" below.
 
 ## Mental model
 
@@ -24,7 +25,8 @@ node properties inside `sequence.register((localFrame) => { ... })` —
 **imperative, per-frame, pull-based, and a pure function of the frame**. No
 CSS transitions/keyframes, no React, no `setInterval`/`requestAnimationFrame`/
 `Konva.Tween`, no `Date.now()`/`Math.random()` (core ships a seeded
-`random(seed)` for scatter) — anything not derived from `frame` (and `props`)
+`random(seed)` for scatter: call it for a float, or use `.range`/`.int`/
+`.pick`) — anything not derived from `frame` (and `props`)
 breaks scrubbing and headless rendering even though it looks fine during
 real-time playback. `@smoove/core`
 re-exports the whole drawing vocabulary (`Rect`, `Circle`, `Text`, `Image`,
@@ -66,7 +68,10 @@ scenes a `name` and anchor cues (SFX, captions, overlays) to **timeline
 markers** instead of frame numbers: `new Sequence({ from:
 series.marker("code").start.add(-10) })` moves with the beat when scenes are
 retimed, and `until:` spans one beat to another. Never hand-pin a cue's frame
-to a number derived from other scenes' durations. Details:
+to a number derived from other scenes' durations. Frames that come from data
+(a transcript's word timings, a beat map, a subtitle file) are the exception:
+the data is the source of truth, so build markers from it. `comp.add` order
+is z-order: later sequences paint on top. Details:
 [rules/sequencing.md](rules/sequencing.md).
 
 ## Animate
@@ -110,7 +115,11 @@ Details: [rules/components.md](rules/components.md).
 Drop `Flex`/`Block` into a sequence for CSS-flexbox-like auto layout
 (`flexDirection`, `justifyContent`, `alignItems`, `gap`, `padding`,
 gradients/shadows/borders/`cornerRadius` on `Block`). Reflow is automatic —
-no manual wiring. Details: [rules/layout.md](rules/layout.md).
+no manual wiring. Reach for it when content is dynamic (props, templates,
+lists of varying length); when every line of copy is static and known up
+front, as in a reel or a one-off explainer, fixed `x`/`y` is simpler and
+exact. Details, including the current limitations:
+[rules/layout.md](rules/layout.md).
 
 ## Text & fonts
 
@@ -118,6 +127,8 @@ no manual wiring. Details: [rules/layout.md](rules/layout.md).
 and `.setFontSize()` for size) supports `fitText`, `maxLines`/`ellipsis`, a
 built-in `typewriter` reveal, and `highlights`. `.fontSize()` reads back the
 size the glyphs actually render at, which is the fitted one under `fitText`.
+`ellipsis` defaults to on and truncates silently, so give headlines and
+labels a `width` and `ellipsis: false`. Word-by-word captions have a recipe.
 Details: [rules/text.md](rules/text.md) and,
 for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 
@@ -127,7 +138,9 @@ for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 (add it as a dependency). Passing `introspect` to `Audio` turns the clip's
 real sound into frame-pure signals — `rmsAt`/`peakAt`/`bandsAt`/`noveltyAt`/
 `waveform` — for meters, EQ bars, waveforms, and beat-synced motion that
-scrub and server-render deterministically. Details: [rules/media.md](rules/media.md).
+scrub and server-render deterministically. Editing real footage (cutting
+silences, reframing 16:9 to 9:16, covering the speaker with a graphic) has
+its own section. Details: [rules/media.md](rules/media.md).
 
 ## Performance
 
@@ -153,9 +166,27 @@ probeAt(comp, { time: 0.5 }, ".title")[0]?.box.y; // stage-space, at that frame
 countAt(comp, { time: 6.0 }, ".card"); // how many actually paint
 ```
 
-Details: [rules/testing.md](rules/testing.md).
+Probes lay layouts out on demand, so they can pass while playback paints a
+stale frame; [rules/testing.md](rules/testing.md) says how to check what
+playback itself laid out, and the setup file that works with fonts.
+
+## Check your work without rendering
+
+MP4 renders are slow, and the user usually just wants to see the result.
+Prefer, in order: `tsc`, headless tests (above), and the running studio
+preview. Render only when asked.
+
+- In the studio, seek with its own timeline. Calling `comp.setFrame()` from
+  the browser console can leave a stale canvas on screen.
+- Check this skill is installed in the project. `npm create smoove` can
+  finish without installing it. Look for `.agents/skills/smoove-video`, and
+  if it's missing run `npx skills add smoove-dev/smoove -s smoove-video`.
 
 ## Effects (optional)
+
+`@smoove/effects` is its own package: `npm i @smoove/effects`. As of 0.4 the
+published 0.3.6 still peers on `@smoove/core@^0.3.6`, so in a 0.4 project
+npm refuses it until you pass `--legacy-peer-deps` (it works at runtime).
 
 `@smoove/effects` post-processes a node as it draws. `flameWrap` wraps fire
 around a node — its rounded box by default, or its alpha edge with
@@ -164,7 +195,8 @@ around a node — its rounded box by default, or its alpha edge with
 ```ts
 import { flameWrap } from "@smoove/effects";
 
-const fire = flameWrap({ radius: 40, intensity: 0 }); // match your cornerRadius
+// color is [r, g, b] in 0..1; the default is blue ([0.31, 0.54, 1])
+const fire = flameWrap({ radius: 40, intensity: 0, color: [1, 0.42, 0.08] }); // match your cornerRadius
 card.effects([fire]);
 seq.register((frame) => {
   fire.intensity = interpolate(frame, [0, 20], [0, 1], { extrapolateLeft: "clamp" });
