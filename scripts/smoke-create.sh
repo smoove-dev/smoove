@@ -16,11 +16,11 @@ scaffold() {
   echo "--- $name ---"
   SMOOVE_CREATE_TEMPLATE_DIR="$ROOT/templates" node "$ROOT/packages/create/dist/index.js" \
     "$@" "$TMP/$name" --no-git --no-skill --no-install
-  (cd "$TMP/$name" && npm install --no-audit --no-fund && npm run build)
+  (cd "$TMP/$name" && npm install --no-audit --no-fund && npm run build && npm test)
 }
 
 scaffold comp-ts composition --ts
 scaffold comp-js composition --js
 scaffold studio studio
 
-echo "smoke-create: all templates scaffold, install, and build ✔"
+echo "smoke-create: all templates scaffold, install, build, and pass their tests ✔"

@@ -202,6 +202,113 @@ a `Video` costs one metadata read. Because the probe runs once at module
 load, the values are constants for the life of the comp and frame-purity
 holds.
 
+Probe for edit planning too, not just playback: the source's `width`/
+`height` drive the reframe below, `hasAudio` tells you whether the cut needs
+audio fades, and the duration bounds every trim you compute from a
+transcript.
+
+## Editing real footage
+
+"Cut the quiet moments" and "make it vertical" are edits, not placement.
+
+### Cutting
+
+Two ways, with different costs:
+
+- One `Video` per kept segment, each in its own `Sequence` with
+  `trimBefore`/`trimAfter`. Everything stays in smoove, but every segment is
+  its own decoder. Fine for a handful of cuts.
+- Pre-cut the footage outside smoove (ffmpeg, from the same segment list) and
+  play one `Video`. One decoder however many cuts, so it scales to dozens.
+  Keep the segment list as data next to the comp so cues can still map
+  source time to output frames.
+
+```ts
+// a few cuts: one Video per segment, back to back
+const keep = [[0, 212], [260, 431], [470, 618]]; // source frames, comp fps
+const edit = new Series();
+for (const [a, b] of keep) {
+  edit.add({ durationInFrames: b - a }, (seq) => {
+    const clip = new Video({ src: talkUrl, width: W, height: H, objectFit: "cover", trimBefore: a, trimAfter: b });
+    seq.add(clip);
+    // short audio fades at both ends, so a cut never clicks
+    seq.register((f) => clip.setVolume(interpolate(f, [0, 2, b - a - 2, b - a], [0, 1, 1, 0])));
+  });
+}
+comp.add(edit);
+```
+
+Either way, snap every boundary to the composition's frame grid. Convert
+transcript seconds once with `Math.round(t * fps)` and use those integers
+for the trims, the pre-cut (as times `k / fps`, encoded at the comp's fps)
+and the cue table alike. Sub-frame leftovers add up across many cuts, and
+audio and video drift apart. With one pre-cut `Video`, put the fades in the
+cut itself (`afade`) or drive `setVolume()` from the segment list the same
+way.
+
+### Reframing 16:9 to 9:16
+
+`objectFit: "cover"` with `objectPosition` picks one fixed crop; it can't pan
+or zoom over time. To follow a speaker, size the `Video` to the source at a
+base scale that fills the frame height, then set `x`/`y`/`scale` every frame
+so a subject point (a face track, or hand-placed keys) stays centred,
+clamped so no edge of the source shows:
+
+```ts
+const meta = await probeMedia(talkUrl); // 1920x1080
+const BASE = H / meta.height; // zoom 1 fills the 1920px-tall frame
+const video = new Video({ src: talkUrl, width: meta.width * BASE, height: meta.height * BASE, objectFit: "fill" });
+talk.add(video);
+
+talk.register((frame) => {
+  const seg = segmentAt(frame);
+  const z = seg.index % 2 ? 1.16 : 1; // alternate wide and tight on every cut
+  const s = BASE * z;
+  const { x: fx, y: fy } = faceAt(frame); // subject point in source px
+  video.scaleX(z);
+  video.scaleY(z);
+  video.x(Math.min(0, Math.max(W - meta.width * s, W / 2 - fx * s)));
+  video.y(Math.min(0, Math.max(H - meta.height * s, H * 0.3 - fy * s)));
+});
+```
+
+Alternating the zoom between wide and tight on every cut turns a jump cut
+into a deliberate punch-in. A slow drift-in within each segment keeps a
+static lecture shot alive.
+
+### Cutting away: cover the speaker, hide the picture
+
+Visibility controls a `Video`'s picture, never its sound:
+
+- `visible(false)` on the video, or on any group above it, stops the
+  picture. Nothing is painted and nothing is decoded.
+- The sound follows the `Sequence`'s range, `setMuted()` and `setVolume()`.
+  A hidden video keeps talking.
+- To silence it, `setMuted(true)`, `setVolume(0)`, or end its range.
+
+So when a graphic takes the screen and the speaker should keep talking, put
+the graphics in a later sequence (later `comp.add` paints on top, see
+[sequencing.md](sequencing.md)) over an opaque full-frame background, and
+hide the speaker's `Video` for the same frames. The voice plays on and the
+decoder rests while nobody can see it:
+
+```ts
+const onStage = merge(windows); // see "Graphics only while they move"
+const covered = (f: number) => onStage.some(([a, b]) => f >= a && f < b);
+
+gfx.register((frame) => stageBg.visible(covered(frame)));
+talk.register((frame) => video.visible(!covered(frame))); // picture off, sound on
+```
+
+Showing it again seeks straight to the current frame, and a server render
+waits for that frame before capturing it. (On `@smoove/media` 0.4.0 and
+earlier a hidden video still decodes; the sound is the same either way.)
+
+Two things not to hide with: the `Sequence` itself (its visibility belongs
+to the engine, which sets it from the range), and `opacity(0)` (a
+transparent video still decodes, so keep fades short). Oversize the stage
+background a little if anything shakes the layer.
+
 This skill stops at *authoring* media nodes in a composition. Encoding,
 server-side rendering, and asset-pipeline concerns (`@smoove/renderer`) are
 out of scope.

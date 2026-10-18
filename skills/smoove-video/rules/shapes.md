@@ -57,6 +57,20 @@ const masked = new Group({ clipFunc: (ctx) => { ctx.rect(0, 0, 200, 80); } });
 masked.add(new Rect({ width: 400, height: 80, fill: "#4ea1ff" }));
 ```
 
+The `clipFunc` reads values you set in the updater, so it can morph. A
+full-frame video shrinking into a rounded card:
+
+```ts
+let m = { x: 0, y: 0, w: W, h: H, r: 0 };
+const card = new Group({ clipFunc: (ctx) => ctx.roundRect(m.x, m.y, m.w, m.h, m.r) });
+seq.add(card);
+card.add(video); // full-frame Video
+seq.register((f) => {
+  const t = interpolate(f, [30, 50], [0, 1], { easing: Easing.inOut(Easing.cubic), extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  m = { x: 90 * t, y: 300 * t, w: W - 180 * t, h: H - 600 * t, r: 48 * t };
+});
+```
+
 `isGroupNode(node)` (also from `@smoove/core`) tells an author `Group` apart
 from the internal groups smoove builds inside `Text`/`Flex`. Reach for raw
 `Konva.*` only for a primitive core genuinely doesn't wrap.

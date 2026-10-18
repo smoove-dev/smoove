@@ -42,6 +42,10 @@ const dots = Array.from({ length: 80 }, () => ({
 }));
 ```
 
+That is the whole API: call `r()` itself for a float in `[0, 1)`, plus
+`r.range(min, max)`, `r.int(min, max)` and `r.pick(items)`. There is no
+`next()`.
+
 The same seed always walks the same sequence, in the browser and on the
 server. **Gotcha:** a generator is stateful, so it moves as you call it. Seed
 it at module scope and read the values into an array once, as above. A

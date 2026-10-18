@@ -1,6 +1,6 @@
 import Konva from "konva";
 import { Sequence } from "../engine/sequence.js";
-import { isKMLayoutNode, isKMLayoutRoot, type KMLayoutNode, type LayoutBox } from "./contract.js";
+import { isKMLayoutNode, type KMLayoutNode, type LayoutBox, layoutRootOf } from "./contract.js";
 
 export type MeasureOptions = {
   /**
@@ -37,7 +37,7 @@ let measuring = false;
 /**
  * Measure a node's rendered bounds independent of its sequence's lifetime.
  *
- * Runs the flex compute path for the node's outermost layout root on demand
+ * Runs the flex compute path for the layout root that places the node on demand
  * (so a node in a never-activated sequence still measures correctly) and
  * returns stage-space bounds. With `{ at }`, the owning sequence's updaters
  * and ticks are first driven to that local frame — an active sequence is
@@ -76,15 +76,13 @@ export function measure(node: Konva.Node, opts: MeasureOptions = {}): Measuremen
   }
 }
 
-/** Lay out the outermost KM layout root on the node's ancestor chain. */
+/**
+ * Lay out the root that places `node`. Not the outermost root on the chain:
+ * a flex pass never descends into a plain `Group`, so a layout behind one is
+ * placed by its own root, not by any layout further up.
+ */
 function computeRootOf(node: Konva.Node): void {
-  let root: (Konva.Node & Required<Pick<KMLayoutNode, "_kmComputeLayout">>) | null = null;
-  let cur: Konva.Node | null = node;
-  while (cur && !(cur instanceof Konva.Layer) && !(cur instanceof Konva.Stage)) {
-    if (isKMLayoutRoot(cur)) root = cur;
-    cur = cur.getParent();
-  }
-  root?._kmComputeLayout();
+  layoutRootOf(node)?._kmComputeLayout();
 }
 
 function read(node: Konva.Node): Measurement {

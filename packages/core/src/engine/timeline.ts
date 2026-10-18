@@ -1,6 +1,6 @@
 import type Konva from "konva";
 import { withDerivedWrites } from "../effects/dirty.js";
-import { isKMLayoutRoot } from "../layout/contract.js";
+import { isIndependentLayoutRoot, type KMLayoutNode } from "../layout/contract.js";
 import { MEDIA_MARK, TICK_MARK, TIMELINE_MARK } from "../markers.js";
 import { getComposition } from "./composition.js";
 import { type FrameAnchor, Marker, type MarkerSource, type ScenePlacement } from "./marker.js";
@@ -64,6 +64,9 @@ export type FrameInfo = {
 };
 
 export type Updater = (localFrame: number, info: FrameInfo) => void;
+
+/** A Flex/Block the frame pass lays out as a standalone root. */
+type LayoutRootNode = Konva.Node & Required<Pick<KMLayoutNode, "_kmComputeLayout">>;
 
 /**
  * The internal tick contract (media nodes, `Text` tickers, nested `Clip`s):
@@ -226,6 +229,8 @@ export function TimelineMixin<TBase extends TimelineBase>(
     // never matches a real version, so the first read always builds.
     private _kmTickCache: TickableNode[] = [];
     private _kmTickCacheVersion = 0;
+    private _kmRootCache: LayoutRootNode[] = [];
+    private _kmRootCacheVersion = 0;
     private readonly _kmQueryCache = new Map<string, QueryEntry>();
 
     /** @internal called once from the subclass constructor. */
@@ -327,8 +332,28 @@ export function TimelineMixin<TBase extends TimelineBase>(
     }
 
     /**
+     * The layout roots this timeline lays out each frame: every Flex/Block
+     * that no other layout places (its parent is not a Flex/Block), at any
+     * depth below this timeline, whose nearest timeline is this one. A root
+     * behind a plain `Group` counts; one inside a nested clip belongs to that
+     * clip. Rebuilt only when the structure version moved.
+     */
+    _kmLayoutRoots(): LayoutRootNode[] {
+      const v = structureVersion();
+      if (this._kmRootCacheVersion !== v) {
+        this._kmRootCache = this.find(
+          (n: Konva.Node) =>
+            isIndependentLayoutRoot(n) && nearestTimeline(n) === (this as unknown as KMTimeline),
+        ) as LayoutRootNode[];
+        this._kmRootCacheVersion = v;
+      }
+      return this._kmRootCache;
+    }
+
+    /**
      * @internal the frame pass shared by activation drivers and `measure()`:
-     * updaters, ticks, then flex layout of every direct-child layout root. No
+     * updaters, ticks, then flex layout of every layout root this timeline
+     * owns (see {@link _kmLayoutRoots}). No
      * visibility change, no draw — callers own that. With `tickMedia: false`
      * (the measure path) media-only nodes are skipped and nested clips
      * forward the flag: media state never affects layout, and ticking a video
@@ -355,9 +380,8 @@ export function TimelineMixin<TBase extends TimelineBase>(
       // not count as content changes: otherwise every Flex/Block subtree
       // invalidates its cached effect data on every frame.
       withDerivedWrites(() => {
-        for (const c of this.getChildren()) {
-          if (isKMLayoutRoot(c)) c._kmComputeLayout();
-        }
+        // Read after updaters and ticks: either may have added a layout.
+        for (const r of this._kmLayoutRoots()) r._kmComputeLayout();
       });
     }
 

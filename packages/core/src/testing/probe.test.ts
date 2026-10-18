@@ -162,3 +162,23 @@ describe("Block paint", () => {
     expect(probeAt(comp, 0, ".card")[0]?.paint).toBeUndefined();
   });
 });
+
+describe("probe targets", () => {
+  it("accepts a composition with typed props", () => {
+    // Typed props make Composition<P> invariant in P; probes must still take it.
+    const comp = new Composition({
+      id: "probe-typed-props",
+      fps: 30,
+      durationInFrames: 60,
+      width: 320,
+      height: 240,
+      props: { slogan: "hi" },
+    });
+    const seq = new Sequence();
+    comp.add(seq);
+    seq.add(new Konva.Rect({ name: "r", width: 10, height: 10, fill: "#fff" }));
+
+    expect(probeAt(comp, { time: 1 }, ".r")).toHaveLength(1);
+    expect(countAt(comp, 2, ".r")).toBe(1);
+  });
+});

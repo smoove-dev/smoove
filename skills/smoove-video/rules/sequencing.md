@@ -109,7 +109,8 @@ negative `offset` may not push a scene's `from` below the series' own `from`
 
 Never pin a cue (an SFX, a caption, an overlay) to a hand-computed frame
 number when it belongs to a beat — retiming the beat silently desyncs it.
-Give the scene a `name` and anchor to a marker instead:
+(Frames read from a transcript or beat map are different: see "Cues from
+data" below.) Give the scene a `name` and anchor to a marker instead:
 
 ```ts
 const series = new Series()
@@ -188,6 +189,85 @@ comp.add(new Sequence({ from: outro.start.add(-10), durationInFrames: 20 }).add(
   can start at a declared beat.
 - To size a beat from a real clip, probe the file first: see "Know a clip's
   length up front" in [media.md](media.md).
+
+## Cues from data
+
+"Never hand-pin a cue's frame" is about hand math. Frames computed from
+external timing data (a transcript's word timings, a beat map, a subtitle
+file) are the source of truth, so use them, and build markers from them so
+every cue moves when the data is regenerated (a re-cut, a new transcript):
+
+```ts
+import { Marker, Sequence } from "@smoove/core";
+import data from "./cut-data.json"; // generated: words with output-frame timings
+
+type Word = { text: string; from: number; to: number; phrase: string };
+const words: Word[] = data.words;
+const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+/** Output frame where `text` is spoken in `phrase` (nth occurrence). Throws if missing. */
+export function cue(phrase: string, text: string, nth = 0): number {
+  const hit = words.filter((w) => w.phrase === phrase && norm(w.text).startsWith(norm(text)))[nth];
+  if (!hit) throw new Error(`no word "${text}" in phrase ${phrase}`);
+  return hit.from;
+}
+
+// a marker per beat, straight from the data
+const nobody = new Marker({ start: cue("hook", "nobody"), durationInFrames: 45 });
+comp.add(new Sequence({ from: nobody.start.add(-2), until: nobody.end }).add(stamp));
+```
+
+Throwing on a missing word matters: when the transcript changes, a cue that
+no longer exists fails at load instead of silently landing on frame 0.
+
+## Z-order: `comp.add` order
+
+Each `Sequence` is its own layer, and layers paint in the order you add
+them: a later `comp.add` paints on top. A talking-head edit usually stacks
+three:
+
+```ts
+comp.add(talk);     // speaker footage (and its legibility gradients)
+comp.add(gfx);      // full-screen graphics, with an opaque stage behind them
+comp.add(captions); // captions over everything, graphics included
+```
+
+While the graphics layer covers the speaker, hide the speaker's `Video` too:
+its voice keeps playing and its picture stops decoding (see "Cutting away"
+in [media.md](media.md)).
+
+## Graphics only while they move
+
+A reel cuts to a graphic for the moment it explains something, then back to
+the speaker. Give each graphic short windows around its cue and show the
+opaque stage only inside them. Merge windows less than about a second apart,
+or the edit flashes the speaker for a few frames between two graphics:
+
+```ts
+type Window = [from: number, to: number];
+const windows: Window[] = [
+  [cue("scales", "small") - 4, cue("scales", "large") + 40],
+  [cue("quicker", "quicker") - 4, cue("quicker", "quicker") + 50],
+];
+
+function merge(ws: Window[], gap = fps): Window[] {
+  const out: Window[] = [];
+  for (const [a, b] of [...ws].sort((x, y) => x[0] - y[0])) {
+    const last = out[out.length - 1];
+    if (last && a - last[1] < gap) last[1] = Math.max(last[1], b);
+    else out.push([a, b]);
+  }
+  return out;
+}
+const onStage = merge(windows); // computed once, at module scope
+
+gfx.register((frame) => {
+  stageBg.visible(onStage.some(([a, b]) => frame >= a && frame < b));
+});
+```
+
+Each graphic's own content lives in a `Clip` spanning its windows, so it is
+inert (and costs nothing) the rest of the time.
 
 ## `konva` — one copy only
 

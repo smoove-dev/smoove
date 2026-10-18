@@ -23,5 +23,14 @@ Flex/Block layout, interpolate-based animation, text, shapes, and media:
 - `src/layouts/studio-layout.tsx`, `src/routes/` — the studio shell
   (React Router). Rarely needs changes.
 - `src/server/`, `src/routes/api.render.*` — the server render queue.
+- `src/compositions/<name>/composition.test.ts` — headless tests for a
+  composition (vitest + `@smoove/core/testing`); `npm test` runs them all.
+
+## Verify
+
+Run `npm test` and `npm run typecheck` after changing a composition. When
+the brief carries numbers ("the title lands by 0.5s"), add a test that
+asserts them with the probes in `@smoove/core/testing`. Prefer tests and the
+studio preview over rendering video; render only when asked.
 
 Docs: https://smoove.dev

@@ -311,7 +311,8 @@ export function writeBack(pairs: Pair[]): void {
     // Raw Konva fallback. Origin-correct via getSelfRect so centered-origin
     // shapes (e.g. a bare Konva.Circle) land their bounding box at the slot;
     // top-left-origin nodes have selfRect.x === 0, so this is a no-op for them.
-    const r = (konva as Konva.Shape).getSelfRect();
+    // Containers (a plain Group) have no self rect: their origin is the slot.
+    const r = konva instanceof Konva.Shape ? konva.getSelfRect() : { x: 0, y: 0 };
     konva.x(left - r.x);
     konva.y(top - r.y);
     if (konva instanceof Konva.Text) {

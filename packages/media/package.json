@@ -42,6 +42,7 @@
     "mediabunny": "^1.49.0"
   },
   "devDependencies": {
+    "skia-canvas": "^3.0.8",
     "vitest": "^3.2.4"
   }
 }

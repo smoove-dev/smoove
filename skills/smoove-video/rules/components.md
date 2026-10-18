@@ -74,6 +74,17 @@ Conventions that make a component play the same in any composition:
 - Keep the updater a pure function of the frame, like all smoove animation.
 - Take `ClipOptions` in the props and spread them into the `Clip`, so the
   consumer controls placement and range (`from`, `durationInFrames`).
+- A `Flex`/`Block` reflows anywhere in the clip, inside plain `Group`s too,
+  so wrap it however the component needs. (On `@smoove/core` 0.4.0 and
+  earlier, add it straight to the clip instead: see "Current limitations" in
+  [layout.md](layout.md).)
+
+```ts
+const clip = new Clip(clipOpts);
+const body = new Group({ scaleX: size / 100, scaleY: size / 100 });
+clip.add(body);
+body.add(new Block({ width: 100, flexDirection: "column", gap: 8 }).add(title, caption));
+```
 
 Reference implementation: `packages/kitchen-sink/src/compositions/tickable-mark/`
 (the smoove logo icon as a `smooveMark()` component).
@@ -91,13 +102,13 @@ const musicTrack = new Audio({ id: "music", src: musicSrc });
 
 voiceOver.register((frame, { durationInFrames }) => {
   const music = voiceOver.getComposition()?.queryOne<Audio>("#music");
-  music?.volume(interpolate(frame, [0, 15, durationInFrames - 15, durationInFrames], [1, 0.2, 0.2, 1]));
+  music?.setVolume(interpolate(frame, [0, 15, durationInFrames - 15, durationInFrames], [1, 0.2, 0.2, 1]));
 });
 ```
 
 Query on the `Composition` to reach across sequences (the music usually lives
 in a different sequence than the voice-over). Keep a single writer per
-animated property: exactly one updater should own `music.volume()`. Set
+animated property: exactly one updater should call `music.setVolume()`. Set
 `id`/`name` at construction; renaming a mounted node does not invalidate the
 cache. Predicate queries (`query(n => ...)`) work but are uncached.
 

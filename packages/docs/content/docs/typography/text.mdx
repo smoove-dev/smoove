@@ -32,12 +32,15 @@ For a custom typeface, pass a `font`: a [`Font`](/docs/typography/fonts) node or
 `font.face(...)`. It overrides `fontFamily`/`fontStyle` and re-lays-out once the
 glyphs load. See [Fonts](/docs/typography/fonts) and [Google Fonts](/docs/typography/google-fonts).
 
-<Callout type="warn" title="Update content with setText, not text()">
+<Callout type="warn" title="Use setText and getText, not text()">
 The `Text` wrapper extends `Konva.Group` (it composes an internal Konva text
 node plus the highlight and cursor layers), so it has no `.text()` accessor.
 Change the content with `setText("...")`, which re-runs fitting, clamping, and
-layout. Calling `.text(...)` throws.
+layout, and read it back with `getText()`. Calling `.text(...)` throws.
 </Callout>
+
+`getText()` is always the full string you set. An ellipsis-trimmed line or a
+typewriter halfway through still reads back whole.
 
 ## Resize after construction
 
@@ -126,13 +129,10 @@ override, `paddingStart`/`paddingEnd`, `cornerRadiusStart`/`cornerRadiusEnd`
 
 <Demo name="text-highlight" label="an animated sweep, mixed corner radii, and a highlight spanning wrapped lines" />
 
-<Callout type="info" title="Re-render a direct-child Text after changing progress">
-A `Text` inside a flex `Flex`/`Block` reflows every tick, so just set
-`highlights[i].progress`. A `Text` added straight to a sequence (not in a flex
-container) needs a nudge to repaint: call `text._layoutText()` after you change
-`progress`. A `Text` with a `typewriter` re-renders every frame anyway, so it
-picks up progress changes without the extra call.
-</Callout>
+Mutate a highlight in place from an updater, anywhere the `Text` sits, and it
+repaints on the same frame. To change the set (new keywords on a new caption
+line), replace the array: `text.setAttr("highlights", [...accents, spoken])`.
+Highlights paint in order, so the last one sits on top.
 
 ## Fitting text to a box
 

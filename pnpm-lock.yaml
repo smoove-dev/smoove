@@ -311,6 +311,9 @@ importers:
         specifier: ^1.49.0
         version: 1.49.0
     devDependencies:
+      skia-canvas:
+        specifier: ^3.0.8
+        version: 3.0.8
       vitest:
         specifier: ^3.2.4
         version: 3.2.7(@types/debug@4.1.13)(@types/node@26.2.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
