@@ -196,10 +196,18 @@ export class Video extends Sized(Konva.Group) implements AudioChannel, KMLayoutN
     this._acquireSource();
   }
 
-  /** @internal — called by Sequence on each tick while this video is on-stage. */
+  /**
+   * @internal — called by Sequence on each tick while this video is on-stage.
+   *
+   * Visibility gates the picture only. A hidden video (or one under a hidden
+   * ancestor) skips the seek/decode, since nothing would paint it; its sound
+   * keeps following range, `muted` and `volume`. Drivers seek to the exact
+   * media time every tick, so the first tick after a re-show lands on the
+   * right frame with no resync.
+   */
   _kmTick(localFrame: number): void {
-    const driver = this._ensureDriver();
-    driver?.tick(localFrame);
+    const driver = this._ensureDriver(); // also builds the audio driver
+    if (this.isVisible()) driver?.tick(localFrame);
     this._audioDriver?.tick(localFrame);
   }
 
