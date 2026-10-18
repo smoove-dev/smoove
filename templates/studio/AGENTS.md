@@ -30,7 +30,7 @@ Flex/Block layout, interpolate-based animation, text, shapes, and media:
 
 Run `npm test` and `npm run typecheck` after changing a composition. When
 the brief carries numbers ("the title lands by 0.5s"), add a test that
-asserts them with `probeAt`/`countAt`. Prefer tests and the studio preview
-over rendering video; render only when asked.
+asserts them with the probes in `@smoove/core/testing`. Prefer tests and the
+studio preview over rendering video; render only when asked.
 
 Docs: https://smoove.dev

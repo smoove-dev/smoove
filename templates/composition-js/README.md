@@ -20,9 +20,10 @@ and check what is on screen, headless in Node. `src/composition.test.js`
 is a starting point:
 
 ```js
-import { probeAt } from "@smoove/core/testing";
+import { probe } from "@smoove/core/testing";
 
-expect(probeAt(comp, { time: 3.5 }, ".wordmark")[0]?.visible).toBe(true);
+comp.setFrame(3.5 * comp.fps);
+expect(probe(comp, ".wordmark")[0]?.visible).toBe(true);
 ```
 
 Give the nodes you test a `name`. `src/test/setup.js` loads the same Node
