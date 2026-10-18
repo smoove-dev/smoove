@@ -1,5 +1,12 @@
 # @smoove/google-fonts
 
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies [[`5b2420d`](https://github.com/smoove-dev/smoove/commit/5b2420da72645d8c30c4bd90a2e9f9b93c151f44)]:
+  - @smoove/core@0.4.2
+
 ## 0.4.1
 
 ### Patch Changes
