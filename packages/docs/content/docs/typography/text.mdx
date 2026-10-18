@@ -32,12 +32,15 @@ For a custom typeface, pass a `font`: a [`Font`](/docs/typography/fonts) node or
 `font.face(...)`. It overrides `fontFamily`/`fontStyle` and re-lays-out once the
 glyphs load. See [Fonts](/docs/typography/fonts) and [Google Fonts](/docs/typography/google-fonts).
 
-<Callout type="warn" title="Update content with setText, not text()">
+<Callout type="warn" title="Use setText and getText, not text()">
 The `Text` wrapper extends `Konva.Group` (it composes an internal Konva text
 node plus the highlight and cursor layers), so it has no `.text()` accessor.
 Change the content with `setText("...")`, which re-runs fitting, clamping, and
-layout. Calling `.text(...)` throws.
+layout, and read it back with `getText()`. Calling `.text(...)` throws.
 </Callout>
+
+`getText()` is always the full string you set. An ellipsis-trimmed line or a
+typewriter halfway through still reads back whole.
 
 ## Resize after construction
 

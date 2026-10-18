@@ -214,6 +214,15 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
     }
   }
 
+  /**
+   * The text content: what the constructor or the last {@link setText} set.
+   * Always the full string, never the display (an ellipsis-trimmed line or a
+   * typewriter mid-reveal); `measure()` lines carry the displayed ranges.
+   */
+  getText(): string {
+    return this._fullText;
+  }
+
   /** Replace the text content. Re-runs fit + clamp + layout. */
   setText(text: string): this {
     this._fullText = text;
