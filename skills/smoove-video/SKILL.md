@@ -34,6 +34,27 @@ re-exports the whole drawing vocabulary (`Rect`, `Circle`, `Text`, `Image`,
 reach for raw Konva only for something core doesn't wrap (see
 [rules/shapes.md](rules/shapes.md)).
 
+## Plan the video first
+
+For a new video, settle the plan before any code. Write a six-line brief
+(who watches, the takeaway, length, where it plays, must-haves, the feel),
+name the rhythm in a few words, and get the user to approve a numbered beat
+list where every beat says what it does for the takeaway. The approved list
+becomes a `plan()` call, one marker per beat, so retiming is a one-number
+change. Skip all of this for edits to an existing composition. Details:
+[rules/planning.md](rules/planning.md).
+
+## Design for video
+
+Frames are seen once, at speed, often on a phone. Size everything from the
+canvas's short side (`u = Math.min(width, height) / 1080`): headlines of 64
+to 120 times `u`, and nothing under 24 times `u` without a reason. Build
+each frame in three layers (backdrop, subject, detail), give the eye two
+places to go, and pin content to edges instead of floating it in the middle.
+With no brand to follow, start from a look in
+[rules/looks.md](rules/looks.md) for the palette and fonts. Details:
+[rules/direction.md](rules/direction.md).
+
 ## Create a composition
 
 A composition is a single module that default-exports a `Composition` built
@@ -237,7 +258,8 @@ seq.register((frame) => {
 
 ## Topic index
 
-[sequencing](rules/sequencing.md) · [components](rules/components.md) ·
+[planning](rules/planning.md) · [direction](rules/direction.md) ·
+[looks](rules/looks.md) · [sequencing](rules/sequencing.md) · [components](rules/components.md) ·
 [layout](rules/layout.md) ·
 [animation](rules/animation.md) · [text](rules/text.md) ·
 [shapes](rules/shapes.md) · [media](rules/media.md) ·

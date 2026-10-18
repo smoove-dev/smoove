@@ -157,7 +157,8 @@ circular anchors throw instead of hanging.
 
 Markers can also be declared before any sequence exists, so the timeline is
 planned up front and scenes fill the plan in. `plan()` lays out named beats
-in one call; each key becomes a `Marker`:
+in one call, and each key becomes a `Marker`. (Deciding which beats a video
+needs, before you declare them, is covered in [planning.md](planning.md).)
 
 ```ts
 import { Composition, Sequence, plan } from "@smoove/core";

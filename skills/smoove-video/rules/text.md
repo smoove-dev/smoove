@@ -44,6 +44,79 @@ highlights — it's the project convention to import from `@smoove/core`
 rather than reach for `Konva.Text` directly, and a plain `Text({ text, ... })`
 with no `width`/flex parent behaves like a normal static label.
 
+## Type for video
+
+Text in a video is read in passing, at a size and speed the viewer doesn't
+control. A few adjustments from web habits:
+
+- Push weights far apart. A 900 headline over 300 body copy reads as two
+  voices; 400 against 700 looks like one once things move. Both faces have to
+  be loaded (see [fonts.md](fonts.md)).
+- Take sizes from "Scale to the canvas" in [direction.md](direction.md),
+  times the canvas factor `u`.
+- Pull large type tighter, by about 3 to 5 percent of the font size.
+  `letterSpacing` is in pixels, so compute it from the size.
+- Give every line enough time. Someone should finish reading it with about a
+  third of its screen time to spare. If they can't, cut words before you
+  extend the hold.
+- What appears first reads as what matters most. Reveal text in order of
+  importance, not in the order you added the nodes.
+- Light text on a dark background looks bolder and more crowded than the
+  same text dark on light. Set body copy one weight lighter (300 where you'd
+  use 400) and loosen `lineHeight` by about 0.1. Headlines are big enough
+  not to need it.
+
+```ts
+const size = Math.round(96 * u);
+const title = new Text({
+  text: "Launch day",
+  fontSize: size,
+  fontStyle: "900",
+  letterSpacing: -0.04 * size, // about 4 percent tighter
+  width: Math.round(0.8 * width),
+  ellipsis: false,
+});
+```
+
+### Numbers that change
+
+In most fonts each digit has its own width, so a counting number shuffles
+sideways as it ticks: "1,111" is narrower than "8,888". Canvas has no switch
+for equal-width digits, so fix it in the layout:
+
+- Set the counter in a monospace face, where every digit is the same width.
+- Give it a fixed `width` and `align: "right"`, so the last digit stays put
+  while new digits grow to the left.
+- For a proportional face you can't give up, put each digit in its own
+  fixed-width `Text`, one slot per digit.
+
+Format the number with an explicit locale. `toLocaleString()` with no
+argument uses the machine's locale, which can differ between the browser
+and the render server, and the same frame comes out with different
+separators.
+
+```ts
+import JetBrainsMono from "@smoove/google-fonts/jetbrains-mono";
+
+const mono = new JetBrainsMono({ weights: ["700"] });
+seq.add(mono);
+
+const counter = new Text({
+  text: "0",
+  font: mono.face("700"),
+  fontSize: Math.round(140 * u),
+  width: Math.round(560 * u),
+  align: "right",
+  ellipsis: false,
+});
+seq.add(counter);
+
+seq.register((frame) => {
+  const value = Math.round(interpolate(frame, [0, 45], [0, 12480], { extrapolateRight: "clamp" }));
+  counter.setText(value.toLocaleString("en-US"));
+});
+```
+
 ## Fit-to-box
 
 ```ts
