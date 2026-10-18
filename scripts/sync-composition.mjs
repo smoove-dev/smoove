@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// The create-smoove sample composition is written ONCE, in templates/shared/,
-// and copied verbatim into every template. The file deliberately contains no
-// TypeScript-only syntax, so the same bytes are a valid .ts and .js module.
+// The create-smoove sample composition and its test are written ONCE, in
+// templates/shared/, and copied verbatim into every template. Both files
+// deliberately contain no TypeScript-only syntax, so the same bytes are a
+// valid .ts and .js module.
 //
 //   node scripts/sync-composition.mjs           copy source -> targets
 //   node scripts/sync-composition.mjs --check   fail if any copy drifted
@@ -14,33 +15,40 @@ import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
-const SOURCE = join(root, "templates/shared/composition.ts");
-const TARGETS = [
-  join(root, "templates/composition-ts/src/composition.ts"),
-  join(root, "templates/composition-js/src/composition.js"),
-  join(root, "templates/studio/src/compositions/hello-smoove/composition.ts"),
+// Each template's directory for the sample, and the extension it ships as.
+const DESTS = [
+  ["templates/composition-ts/src", ".ts"],
+  ["templates/composition-js/src", ".js"],
+  ["templates/studio/src/compositions/hello-smoove", ".ts"],
 ];
+const FILES = ["composition", "composition.test"];
 
 const check = process.argv.includes("--check");
-const source = readFileSync(SOURCE);
 
 let drifted = false;
-for (const target of TARGETS) {
-  const rel = relative(root, target);
-  if (check) {
-    if (!source.equals(readFileSync(target))) {
-      console.error(`DRIFT: ${rel} differs from templates/shared/composition.ts`);
-      drifted = true;
+for (const file of FILES) {
+  const sourceRel = `templates/shared/${file}.ts`;
+  const source = readFileSync(join(root, sourceRel));
+  for (const [dir, ext] of DESTS) {
+    const target = join(root, dir, `${file}${ext}`);
+    const rel = relative(root, target);
+    if (check) {
+      if (!source.equals(readFileSync(target))) {
+        console.error(`DRIFT: ${rel} differs from ${sourceRel}`);
+        drifted = true;
+      }
+    } else {
+      copyFileSync(join(root, sourceRel), target);
+      console.log(`synced ${rel}`);
     }
-  } else {
-    copyFileSync(SOURCE, target);
-    console.log(`synced ${rel}`);
   }
+  // The .js copy must parse as plain JavaScript — catches TS-only syntax
+  // (type annotations, `as const`, generics) sneaking into the source.
+  execFileSync(process.execPath, [
+    "--check",
+    join(root, "templates/composition-js/src", `${file}.js`),
+  ]);
 }
-
-// The .js copy must parse as plain JavaScript — catches TS-only syntax
-// (type annotations, `as const`, generics) sneaking into the source.
-execFileSync(process.execPath, ["--check", TARGETS.find((t) => t.endsWith(".js"))]);
 
 if (drifted) process.exit(1);
 console.log(check ? "sync-composition: all copies in sync ✔" : "sync-composition: done ✔");

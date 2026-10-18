@@ -78,7 +78,14 @@ export function probe(
 /** A point on the timeline: a global frame, or a time in seconds. */
 export type At = number | { time: number };
 
-function toFrame(comp: Composition, at: At): number {
+/**
+ * What a probe drives: any composition, whatever its props type. Only the
+ * props-independent members are picked, so a `Composition<{ slogan: string }>`
+ * is accepted as readily as an untyped one.
+ */
+export type ProbeTarget = Pick<Composition, "fps" | "setFrame" | "find">;
+
+function toFrame(comp: ProbeTarget, at: At): number {
   return typeof at === "number" ? at : Math.round(at.time * comp.fps);
 }
 
@@ -89,12 +96,12 @@ function toFrame(comp: Composition, at: At): number {
  * The frame stays where it was driven to, so successive calls read as a
  * timeline walk rather than a set of independent probes.
  */
-export function probeAt(comp: Composition, at: At, selector: QuerySelector = () => true): Probe[] {
+export function probeAt(comp: ProbeTarget, at: At, selector: QuerySelector = () => true): Probe[] {
   comp.setFrame(toFrame(comp, at));
   return probe(comp, selector);
 }
 
 /** How many matching nodes actually paint at `at`. */
-export function countAt(comp: Composition, at: At, selector: QuerySelector = () => true): number {
+export function countAt(comp: ProbeTarget, at: At, selector: QuerySelector = () => true): number {
   return probeAt(comp, at, selector).filter((p) => p.visible).length;
 }

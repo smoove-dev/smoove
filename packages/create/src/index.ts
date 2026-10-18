@@ -166,8 +166,15 @@ async function main(): Promise<void> {
 
   // -- summary -----------------------------------------------------------
   const dev = pm === "npm" ? "npm run dev" : `${pm} dev`;
+  const test = pm === "npm" ? "npm test" : `${pm} test`;
   p.note(
-    [`cd ${dir}`, opts.install ? dev : `${pm} install && ${dev}`, "", ...notes].join("\n"),
+    [
+      `cd ${dir}`,
+      opts.install ? dev : `${pm} install && ${dev}`,
+      `${test}   # headless composition tests`,
+      "",
+      ...notes,
+    ].join("\n"),
     "Next steps",
   );
   p.outro(`Docs: ${pc.underline("https://smoove.dev")}`);

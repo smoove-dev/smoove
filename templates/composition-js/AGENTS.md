@@ -18,5 +18,12 @@ Flex/Block layout, interpolate-based animation, text, shapes, and media:
 
 - `src/composition.js` — the composition. This is the file to edit.
 - `src/main.js` — mounts `<smoove-player>`. Rarely needs changes.
+- `src/composition.test.js` — headless tests (vitest + `@smoove/core/testing`).
+
+## Verify
+
+Run `npm test` after changing the composition. When the brief carries
+numbers ("the title lands by 0.5s"), add a test that asserts them with
+`probeAt`/`countAt`. Prefer tests and the dev preview over rendering video.
 
 Docs: https://smoove.dev

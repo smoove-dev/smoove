@@ -19,6 +19,23 @@ timeline, and inspector.
    imports it).
 3. List the entry in `src/registry.ts`.
 
+## Test it
+
+    npm test
+
+A composition is a pure function of the frame, so tests drive it to a frame
+and check what is on screen, headless in Node. Put a `composition.test.ts`
+next to each composition; `hello-smoove` ships one to start from:
+
+```ts
+import { probeAt } from "@smoove/core/testing";
+
+expect(probeAt(comp, { time: 3.5 }, ".wordmark")[0]?.visible).toBe(true);
+```
+
+Give the nodes you test a `name`. `src/test/setup.ts` loads the same Node
+canvas and font loaders the render queue uses.
+
 ## Render to video
 
 Open a composition, choose "Render…" from the menu, and watch it in the

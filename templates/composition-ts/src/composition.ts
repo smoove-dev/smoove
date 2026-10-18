@@ -95,6 +95,7 @@ const bars = BARS.map(({ x, half }) => {
 });
 
 const dot = new Circle({
+  name: "dot", // a name lets tests find it: probeAt(comp, frame, ".dot")
   x: DOT_HOME * S,
   y: MID,
   radius: 3.5 * S,
@@ -115,6 +116,7 @@ const wordmarkClip = new Konva.Group({
   clip: { x: -8, y: -90, width: 0, height: 180 },
 });
 const wordmark = new Text({
+  name: "wordmark",
   font: comfortaa.face("700"),
   text: "smoove",
   fontSize: 108,
