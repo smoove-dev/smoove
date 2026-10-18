@@ -10,14 +10,14 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@smoove/core": "^0.4.1",
-    "@smoove/google-fonts": "^0.4.1",
-    "@smoove/player": "^0.4.1",
+    "@smoove/core": "^0.4.2",
+    "@smoove/google-fonts": "^0.4.2",
+    "@smoove/player": "^0.4.2",
     "konva": "^10.3.0"
   },
   "devDependencies": {
-    "@smoove/renderer": "^0.4.1",
-    "@smoove/vite": "^0.4.1",
+    "@smoove/renderer": "^0.4.2",
+    "@smoove/vite": "^0.4.2",
     "vite": "^8.1.3",
     "vitest": "^5.0.5"
   },

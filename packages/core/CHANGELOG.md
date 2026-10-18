@@ -1,5 +1,26 @@
 # @smoove/core
 
+## 0.4.2
+
+### Patch Changes
+
+- [#36](https://github.com/smoove-dev/smoove/pull/36) [`5b2420d`](https://github.com/smoove-dev/smoove/commit/5b2420da72645d8c30c4bd90a2e9f9b93c151f44) Thanks [@shemi](https://github.com/shemi)! - A `Text` with no width now re-measures when its font face finishes loading. It used to keep the width it measured against the fallback face, so a label in a wider face got clipped, most visibly with `wrap: "none"`. Now it hugs the loaded glyphs, as the fonts guide promises, and no longer needs an explicit width.
+
+  ```ts
+  const mono = new IBMPlexMono({ weights: ["400"] });
+  seq.add(mono);
+  seq.add(
+    new Text({
+      text: "radius 6  stroke 2  snappy",
+      font: mono.face("400"),
+      fontSize: 26,
+      wrap: "none",
+    }),
+  );
+  ```
+
+  `setFont()` re-hugs the same way, on the swap and again when the new face loads.
+
 ## 0.4.1
 
 ### Patch Changes
