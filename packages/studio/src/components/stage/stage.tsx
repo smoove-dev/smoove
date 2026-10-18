@@ -57,7 +57,10 @@ export function Stage({ className, showStatus = false }: StageProps) {
     // No autoplay: a composition loads stopped (paused on frame 0) by default.
     store.setPlayer(el);
     return () => {
-      if (store.player.get() === el) store.setPlayer(null);
+      if (store.player.get() === el) {
+        store.setPlayer(null);
+        store.setMounted(null);
+      }
     };
   }, [store]);
 
@@ -76,6 +79,7 @@ export function Stage({ className, showStatus = false }: StageProps) {
         else el.pause();
       }
     }
+    store.setMounted(comp ?? null);
   }, [comp, store]);
 
   // apply per-layer enable/disable

@@ -13,6 +13,11 @@ it removes is two pieces of by-hand wiring:
 One call turns both on; if your project only does one of them, the other is
 a no-op.
 
+In development it also mounts the [`@smoove/agent`](https://github.com/smoove-dev/smoove/tree/main/packages/agent) bridge, which
+lets a coding agent ask the open studio tab for its status, seek it, and take
+snapshots. It writes `.smoove/agent.json` in the project, so add `.smoove/`
+to your `.gitignore`. Pass `smoove({ agent: false })` to turn it off.
+
 ## Install
 
 ```sh

@@ -41,6 +41,9 @@ export function createStore(opts: StudioStoreOptions) {
   const composition = new Signal.State<Composition | null>(null);
   /** The mounted `<smoove-player>` API — registered by the Stage. */
   const player = new Signal.State<PlayerApi | null>(null);
+  /** The composition the Stage's player has mounted (and restored the playhead
+      on), or null. Lags `composition` by one effect, so a seek can wait for it. */
+  const mounted = new Signal.State<Composition | null>(null);
   const loadStatus = new Signal.State<Record<string, LoadStatus>>({});
   const loadError = new Signal.State<string | null>(null);
   const tlMode = new Signal.State<TlMode>("progress");
@@ -156,6 +159,7 @@ export function createStore(opts: StudioStoreOptions) {
 
   // ---- layout / playback-view actions ---------------------------------------
   const setPlayer = (api: PlayerApi | null) => player.set(api);
+  const setMounted = (comp: Composition | null) => mounted.set(comp);
   const setTlMode = (m: TlMode) => tlMode.set(m);
   const setPanelOpen = (open: boolean) => panelOpen.set(open);
   const setPanelTab = (t: PanelTab) => panelTab.set(t);
@@ -269,6 +273,7 @@ export function createStore(opts: StudioStoreOptions) {
     selectedId,
     composition,
     player,
+    mounted,
     loadStatus,
     loadError,
     tlMode,
@@ -288,6 +293,7 @@ export function createStore(opts: StudioStoreOptions) {
     loadActive,
     takeRestore,
     setPlayer,
+    setMounted,
     setToastSink,
     setTlMode,
     setPanelOpen,

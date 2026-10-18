@@ -1,6 +1,8 @@
 import { createHash } from "node:crypto";
+import { sep } from "node:path";
+import { createAgentBridge } from "@smoove/agent/server";
 import { type Plugin as EsbuildPlugin, build as esbuildBuild } from "esbuild";
-import { type Plugin, type ResolvedConfig, transformWithEsbuild } from "vite";
+import { type Plugin, type ResolvedConfig, transformWithEsbuild, type ViteDevServer } from "vite";
 
 /**
  * @smoove/vite — makes the studio feel like a framework under Vite.
@@ -59,6 +61,14 @@ export interface SmooveOptions {
    * test, so `./font.woff2?url` matches.
    */
   serverAssets?: RegExp;
+  /**
+   * Mount the agent bridge (`@smoove/agent`) on the dev server, so a coding
+   * agent can ask the open studio tab for its status, seek it, and take
+   * snapshots. Development only; production builds never include it. It writes
+   * `.smoove/agent.json` (the URL and a per-run token) in the Vite root.
+   * Default `true`.
+   */
+  agent?: boolean;
 }
 
 const DEFAULT_SERVER_ASSETS =
@@ -82,6 +92,9 @@ export function smoove(options: SmooveOptions = {}): Plugin {
       isBuild = config.command === "build";
       base = config.base;
       assetsDir = config.build.assetsDir;
+    },
+    configureServer(server) {
+      if (options.agent !== false) mountAgentBridge(server);
     },
     async load(id, loadOptions) {
       // `X.ts?comp-url` → the served URL of a compiled standalone player module.
@@ -145,6 +158,39 @@ export const reactMotionStudio = smoove;
 export default smoove;
 
 // ---------------------------------------------------------------- internals
+
+/**
+ * Mount the agent bridge ahead of Vite's own middleware, write the discovery
+ * file once the server listens, and remove it when the server closes.
+ */
+function mountAgentBridge(server: ViteDevServer): void {
+  const root = server.config.root;
+  const bridge = createAgentBridge({ root });
+  server.middlewares.use(bridge.handle);
+
+  const http = server.httpServer;
+  if (http) {
+    const onListening = (): void => {
+      const addr = http.address();
+      if (!addr || typeof addr !== "object") return;
+      const proto = server.config.server.https ? "https" : "http";
+      bridge.listening(`${proto}://localhost:${addr.port}${server.config.base}`);
+    };
+    if (http.listening) onListening();
+    else http.once("listening", onListening);
+    http.once("close", () => bridge.close());
+  }
+
+  // A source edit holds agent requests for a moment, so a snapshot taken right
+  // after it waits for the hot update. The bridge's own `.smoove/` writes don't.
+  const own = `${sep}.smoove${sep}`;
+  const onChange = (file: string): void => {
+    if (!file.includes(own)) bridge.fileChanged();
+  };
+  server.watcher.on("change", onChange);
+  server.watcher.on("add", onChange);
+  server.watcher.on("unlink", onChange);
+}
 
 /** The `&`-separated flags of an id's query string (`a.ts?x&y` → `["x", "y"]`). */
 function queryFlags(id: string): string[] {

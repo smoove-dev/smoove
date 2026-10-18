@@ -25,7 +25,7 @@ accumulating until you merge it. To hold a release, leave the PR open.
 
 For each of `@smoove/core`, `@smoove/player`, `@smoove/transitions`,
 `@smoove/renderer`, `@smoove/studio`, `@smoove/google-fonts`, `@smoove/vite`,
-and `create-smoove`:
+`@smoove/agent`, and `create-smoove`:
 
 1. npmjs.com → the package → Settings → Trusted publisher → GitHub Actions.
 2. Organization or user: `smoove-dev`

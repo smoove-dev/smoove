@@ -1,6 +1,7 @@
 import { Toast } from "@base-ui/react/toast";
 import { Tooltip } from "@base-ui/react/tooltip";
 import { type ReactNode, useEffect, useRef, useState } from "react";
+import { useAgentBridge } from "../../agent/use-agent-bridge.js";
 import { cn } from "../../lib/cn.js";
 import { createStore, type StudioStore } from "../../store/store.js";
 import type { Registry, RenderBackend } from "../../types.js";
@@ -15,6 +16,12 @@ export type StudioProps = {
   selectedId?: string;
   /** Called when a composition is selected, so a router can sync the URL. */
   onNavigate?: (id: string) => void;
+  /**
+   * Answer a coding agent through the dev server's agent bridge (status, seek
+   * and snapshots). Only does anything when the smoove Vite plugin mounted the
+   * bridge, which it does in development. Default `true`.
+   */
+  agent?: boolean;
   className?: string;
   children: ReactNode;
 };
@@ -30,6 +37,7 @@ export function StudioRoot({
   render,
   selectedId,
   onNavigate,
+  agent = true,
   className,
   children,
 }: StudioProps) {
@@ -49,6 +57,7 @@ export function StudioRoot({
     });
   }
   const store = storeRef.current;
+  useAgentBridge(store, agent);
 
   // Sync the active id from the route (selection itself happens in the route).
   // biome-ignore lint/correctness/useExhaustiveDependencies: store is stable.
