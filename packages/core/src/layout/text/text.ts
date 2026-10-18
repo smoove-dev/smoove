@@ -200,16 +200,10 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
     // A declarative `font` reports its own readiness; a bare `fontFamily` string
     // can't, so we probe `document.fonts` for it (browser only, best-effort).
     if (fontRef && !fontRef.isLoaded) {
-      fontRef.whenReady().then(() => {
-        this._layoutText();
-        this.getLayer()?.batchDraw();
-      });
+      fontRef.whenReady().then(() => this._remeasure());
     } else if (!fontRef && config.fontFamily) {
       whenFontFamilyReady(this._text.fontStyle(), this._text.fontSize(), config.fontFamily)?.then(
-        () => {
-          this._layoutText();
-          this.getLayer()?.batchDraw();
-        },
+        () => this._remeasure(),
       );
     }
   }
@@ -267,14 +261,7 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
    */
   setFontSize(size: number): this {
     this._text.fontSize(size);
-    // A hug-width Text pins its box at construction, and `_relayout` reads a
-    // non-zero width as the box to wrap INSIDE. Release it first, or smaller
-    // glyphs would re-wrap in the old box instead of the box shrinking to fit.
-    if (declaredWidth(this) === undefined && this.attrs.maxWidth === undefined) {
-      this._kmBoxWidth(0);
-    }
-    this._layoutText();
-    this.getLayer()?.batchDraw();
+    this._remeasure();
     return this;
   }
 
@@ -289,15 +276,26 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
     const fontRef: FontFaceRef = font instanceof Font ? font.face() : font;
     this._text.fontFamily(fontRef.family);
     this._text.fontStyle(konvaFontStyle(fontRef.weight, fontRef.style));
+    this._remeasure();
+    if (!fontRef.isLoaded) fontRef.whenReady().then(() => this._remeasure());
+    return this;
+  }
+
+  /**
+   * Re-lay-out after the glyph metrics changed (a new size, a new face, or a
+   * face that just finished loading) and repaint.
+   *
+   * A hug-width Text pins its box on every layout, and `_relayout` reads a
+   * non-zero width as the box to wrap INSIDE. Release it first, or the new
+   * glyphs would re-wrap (or, with `wrap: "none"`, clip) in the box measured
+   * for the old ones instead of the box re-hugging them.
+   */
+  private _remeasure(): void {
+    if (declaredWidth(this) === undefined && this.attrs.maxWidth === undefined) {
+      this._kmBoxWidth(0);
+    }
     this._layoutText();
     this.getLayer()?.batchDraw();
-    if (!fontRef.isLoaded) {
-      fontRef.whenReady().then(() => {
-        this._layoutText();
-        this.getLayer()?.batchDraw();
-      });
-    }
-    return this;
   }
 
   // ----- flex integration -------------------------------------------------
