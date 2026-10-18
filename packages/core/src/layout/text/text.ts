@@ -115,6 +115,8 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
   private _localFrame = 0;
   private _geo: Geometry | null = null;
   private _inLayout = false;
+  /** {@link highlightKey} of the highlights last painted, to skip unchanged frames. */
+  private _hlKey = "";
 
   constructor(config: TextConfig) {
     super(pickKonvaConfig(config));
@@ -175,10 +177,21 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
 
     this._resolvedFontSize = this._text.fontSize();
 
-    if (config.typewriter) this.setAttr(TICK_MARK, true);
+    // Every Text ticks: a typewriter re-lays-out each frame, and highlights
+    // mutated in place (`hl.progress = …`) repaint on the next tick, so no
+    // author ever has to ask for a relayout.
+    this.setAttr(TICK_MARK, true);
 
     this.on("widthChange heightChange", () => {
       if (!this._inLayout) this._layoutText();
+    });
+    // A replaced array (`setAttr("highlights", [...])`) repaints right away,
+    // even outside a frame pass. Glyph geometry is unchanged, so only the
+    // marks are rebuilt.
+    this.on("highlightsChange", () => {
+      if (this._inLayout) return;
+      this._layoutHighlights();
+      this.getLayer()?.batchDraw();
     });
     this._layoutText();
 
@@ -446,7 +459,14 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
   /** @internal Called by Sequence each frame. */
   _kmTick(localFrame: number): void {
     this._localFrame = localFrame;
-    this._layoutText();
+    if (this.attrs.typewriter) {
+      this._layoutText();
+      return;
+    }
+    // No reveal to advance: only repaint highlights, and only when an updater
+    // changed them this frame.
+    const highlights = this.attrs.highlights as HighlightConfig[] | undefined;
+    if (highlightKey(highlights) !== this._hlKey) this._layoutHighlights();
   }
 
   /** @internal Called by Sequence when the sequence leaves range. */
@@ -713,6 +733,7 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
     this._hlText.destroyChildren();
     const geo = this._geo;
     const highlights = this.attrs.highlights as HighlightConfig[] | undefined;
+    this._hlKey = highlightKey(highlights);
     if (!geo || !highlights) return;
 
     for (const h of highlights) {
@@ -901,4 +922,17 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
       this._charWidth(geo.chars.slice(r.start, localEnd).join(""));
     return { x, y: geo.pad + li * geo.lineH };
   }
+}
+
+/**
+ * Everything a highlight paints from, as one string: two equal keys paint the
+ * same marks. Cheap enough to build every frame for a handful of highlights.
+ */
+function highlightKey(highlights: readonly HighlightConfig[] | undefined): string {
+  if (!highlights || highlights.length === 0) return "";
+  let key = "";
+  for (const h of highlights) {
+    key += `${h.start},${h.end},${h.progress ?? 1},${h.background},${h.color ?? ""},${h.paddingStart ?? 0},${h.paddingEnd ?? 0},${h.height ?? ""},${h.cornerRadiusStart ?? 0},${h.cornerRadiusEnd ?? 0}|`;
+  }
+  return key;
 }

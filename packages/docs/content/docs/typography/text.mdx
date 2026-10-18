@@ -126,13 +126,10 @@ override, `paddingStart`/`paddingEnd`, `cornerRadiusStart`/`cornerRadiusEnd`
 
 <Demo name="text-highlight" label="an animated sweep, mixed corner radii, and a highlight spanning wrapped lines" />
 
-<Callout type="info" title="Re-render a direct-child Text after changing progress">
-A `Text` inside a flex `Flex`/`Block` reflows every tick, so just set
-`highlights[i].progress`. A `Text` added straight to a sequence (not in a flex
-container) needs a nudge to repaint: call `text._layoutText()` after you change
-`progress`. A `Text` with a `typewriter` re-renders every frame anyway, so it
-picks up progress changes without the extra call.
-</Callout>
+Mutate a highlight in place from an updater, anywhere the `Text` sits, and it
+repaints on the same frame. To change the set (new keywords on a new caption
+line), replace the array: `text.setAttr("highlights", [...accents, spoken])`.
+Highlights paint in order, so the last one sits on top.
 
 ## Fitting text to a box
 

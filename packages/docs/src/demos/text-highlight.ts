@@ -172,13 +172,12 @@ main.register((local) => {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  // big is a direct child — set progress and re-render it.
+  // big is a direct child: the Text repaints its own highlight on the next tick.
   hlLong.progress = interpolate(local, [80, 220], [0, 1], {
     easing: Easing.out(Easing.cubic),
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  big._layoutText();
 });
 
 comp.add(main);
