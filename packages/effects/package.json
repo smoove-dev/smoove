@@ -1,6 +1,6 @@
 {
   "name": "@smoove/effects",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Visual effects for smoove: fire that wraps any node, rain running down the glass in front of it, and a chroma key that drops a green screen out of a clip.",
   "license": "MIT",
   "repository": {
