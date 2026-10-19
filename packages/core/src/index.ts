@@ -36,6 +36,7 @@ export {
   type CompositionEventMap,
   type CompositionEventName,
   type CompositionOptions,
+  type CompositionPlan,
   getComposition,
 } from "./engine/composition.js";
 export {

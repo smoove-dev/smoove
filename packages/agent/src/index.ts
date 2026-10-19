@@ -17,8 +17,28 @@ export const SNAPS_DIR = ".smoove/snaps";
 /** How long the server waits for a tab to answer one request. */
 export const TAB_TIMEOUT_MS = 15_000;
 
+/** Where contact sheets are written, relative to the Vite root. */
+export const SHEETS_DIR = ".smoove/sheets";
+
 /** Snapshot width when the request doesn't name one. */
 export const DEFAULT_SNAPSHOT_WIDTH = 640;
+
+/** Contact-sheet tile width when the request doesn't name one. */
+export const DEFAULT_TILE_WIDTH = 320;
+
+/** Tiles per row on a contact sheet. */
+export const SHEET_COLUMNS = 4;
+
+/** Evenly spaced frame counts a sheet accepts, and the fallback count. */
+export const MIN_SHEET_FRAMES = 2;
+export const MAX_SHEET_FRAMES = 24;
+export const FALLBACK_SHEET_FRAMES = 8;
+
+/** How long the server waits for its own headless tab to connect. */
+export const HEADLESS_CONNECT_MS = 30_000;
+
+/** Query parameter that marks the tab the server launched in its headless browser. */
+export const AGENT_TAB_PARAM = "smoove-agent-tab";
 
 /* ============================================================ errors */
 
@@ -32,7 +52,11 @@ export type ErrorCode =
   | "frame-out-of-range"
   | "not-active"
   | "composition-error"
-  | "tab-error";
+  | "tab-error"
+  | "no-browser"
+  | "unknown-beat"
+  | "render-error"
+  | "no-server";
 
 export interface AgentErrorBody {
   code: ErrorCode;
@@ -65,9 +89,13 @@ export interface DrawnBy {
   headless: boolean;
 }
 
+/**
+ * Every answer has this shape. `warnings` are things the agent should know
+ * about a successful answer, such as video the headless tab couldn't draw.
+ */
 export type AgentResponse<T> =
-  | { ok: true; data: T; drawnBy?: DrawnBy }
-  | { ok: false; error: AgentErrorBody; drawnBy?: DrawnBy };
+  | { ok: true; data: T; drawnBy?: DrawnBy; warnings?: string[] }
+  | { ok: false; error: AgentErrorBody; drawnBy?: DrawnBy; warnings?: string[] };
 
 /* ============================================================ discovery */
 
@@ -89,6 +117,10 @@ export interface TabSummary {
   visible: boolean;
   focused: boolean;
   headless: boolean;
+  /** True for the tab the server launched in its own headless browser. */
+  owned: boolean;
+  /** The composition the tab shows, or null on a page with none open. */
+  composition: string | null;
   /** ISO timestamp of the last focus gain, or null if it never had focus. */
   lastFocusAt: string | null;
   connectedAt: string;
@@ -143,8 +175,10 @@ export interface StatusData {
 /* ============================================================ seek */
 
 export interface SeekParams {
-  /** Zero-based frame. */
+  /** Zero-based frame. Ignored when `at` is given. */
   frame: number;
+  /** A point in time by beat name (see {@link parseAt}). Wins over `frame`. */
+  at?: string;
   /** Switch to this composition first, if it isn't the open one. */
   composition?: string;
 }
@@ -156,12 +190,23 @@ export interface SeekData {
 
 /* ============================================================ snapshot */
 
-export interface SnapshotParams {
+/**
+ * Set by the server, never by an agent: the tab may switch to the requested
+ * composition (or open the first one) because nobody is watching it. Only the
+ * server's own headless tab gets this.
+ */
+export interface MaySwitch {
+  maySwitch?: boolean;
+}
+
+export interface SnapshotParams extends MaySwitch {
   /** Zero-based frame. Defaults to the current frame. */
   frame?: number;
+  /** A point in time by beat name (see {@link parseAt}). Wins over `frame`. */
+  at?: string;
   /** Output width in pixels. Defaults to 640, capped at the composition's width. */
   width?: number;
-  /** Must be the open composition, if given. */
+  /** The composition to draw. Defaults to the open one. */
   composition?: string;
 }
 
@@ -181,6 +226,206 @@ export interface SnapshotResult {
   frame: number;
   width: number;
   height: number;
+  warnings?: string[];
+}
+
+/* ============================================================ beats */
+
+/** One beat: a planned marker, or a top-level sequence when there's no plan. */
+export interface Beat {
+  name: string;
+  /** First frame. */
+  start: number;
+  /** The frame the beat is fully revealed (after its incoming overlap). */
+  settled: number;
+  /** The first frame after the beat (exclusive). */
+  end: number;
+  /** The frame a contact sheet shows for this beat (see {@link sheetFrame}). */
+  sheet: number;
+}
+
+/**
+ * The frame a contact sheet shows for a beat: one before the earlier of its
+ * end and the next beat's start, so entrances are done and exits haven't
+ * begun. Never before the beat's own start, never past the composition.
+ */
+export function sheetFrame(
+  beat: { start: number; end: number },
+  nextStart: number | null,
+  durationInFrames: number,
+): number {
+  const stop =
+    nextStart != null && nextStart > beat.start ? Math.min(beat.end, nextStart) : beat.end;
+  const last = Math.min(stop, durationInFrames) - 1;
+  return Math.max(beat.start, Math.min(last, durationInFrames - 1), 0);
+}
+
+/** Fill in each beat's sheet frame from the beat after it (in start order). */
+export function withSheetFrames(
+  beats: Array<Omit<Beat, "sheet">>,
+  durationInFrames: number,
+): Beat[] {
+  const ordered = [...beats].sort((a, b) => a.start - b.start);
+  return beats.map((b) => {
+    const i = ordered.indexOf(b);
+    const next = ordered.slice(i + 1).find((n) => n.start > b.start);
+    return { ...b, sheet: sheetFrame(b, next?.start ?? null, durationInFrames) };
+  });
+}
+
+export type BeatPoint = "start" | "settled" | "last" | "end" | "sheet";
+
+/**
+ * Parse `--at` text: `hook` (the sheet frame), or `hook.start`, `hook.settled`,
+ * `hook.last` (the beat's last frame) or `hook.end` (the first frame after it).
+ * The point is split off the last dot, so beat names may contain dots.
+ */
+export function parseAt(text: string): { beat: string; point: BeatPoint } {
+  const dot = text.lastIndexOf(".");
+  if (dot > 0) {
+    const point = text.slice(dot + 1);
+    if (point === "start" || point === "settled" || point === "last" || point === "end") {
+      return { beat: text.slice(0, dot), point };
+    }
+  }
+  return { beat: text, point: "sheet" };
+}
+
+/** The frame an `--at` text names among `beats`, or an `unknown-beat` error. */
+export function resolveAt(text: string, beats: Beat[]): number {
+  const { beat, point } = parseAt(text);
+  const found = beats.find((b) => b.name === beat);
+  if (!found) {
+    const names = beats.map((b) => b.name);
+    throw new AgentError(
+      "unknown-beat",
+      names.length > 0
+        ? `There's no beat named "${beat}". The beats are: ${names.join(", ")}.`
+        : `There's no beat named "${beat}". This composition has no plan and no named sequences.`,
+    );
+  }
+  switch (point) {
+    case "start":
+      return found.start;
+    case "settled":
+      return found.settled;
+    case "last":
+      return Math.max(found.start, found.end - 1);
+    case "end":
+      return found.end;
+    default:
+      return found.sheet;
+  }
+}
+
+/* ============================================================ sheet */
+
+export interface SheetParams extends MaySwitch {
+  composition?: string;
+  /** Evenly spaced frames, 2 to 24. Omit for one tile per beat. */
+  frames?: number;
+  /** Tile width in pixels. Default 320. */
+  width?: number;
+}
+
+export interface SheetTile {
+  frame: number;
+  /** The beat this tile shows, when the sheet is by beat. */
+  beat: string | null;
+}
+
+export interface SheetData {
+  path: string;
+  composition: string;
+  /** `beats` (one tile per beat or sequence) or `even` (evenly spaced). */
+  mode: "beats" | "even";
+  tileWidth: number;
+  tileHeight: number;
+  /** The whole sheet's size in pixels. */
+  width: number;
+  height: number;
+  tiles: SheetTile[];
+}
+
+/** What a tab's sheet handler hands back; the client posts the bytes. */
+export interface SheetResult extends Omit<SheetData, "path"> {
+  png: Blob;
+  warnings?: string[];
+}
+
+/* ============================================================ timeline */
+
+export interface TimelineParams extends MaySwitch {
+  composition?: string;
+}
+
+export interface TimelineNode {
+  /** The node's name, or its id, or a generated label. */
+  name: string;
+  /** `sequence`, `clip`, or a kind from a name prefix (`audio:`, `video:`, ...). */
+  kind: string;
+  /** Absolute composition frames; `end` is exclusive. */
+  start: number;
+  end: number;
+  children: TimelineNode[];
+}
+
+export interface TimelineData {
+  composition: string;
+  width: number;
+  height: number;
+  fps: number;
+  durationInFrames: number;
+  /** Where the beats came from: the composition's plan, or its sequences. */
+  beatsFrom: "plan" | "sequences";
+  beats: Beat[];
+  sequences: TimelineNode[];
+}
+
+/* ============================================================ render */
+
+export type RenderFormat = "mp4" | "webm";
+
+export interface RenderParams {
+  composition?: string;
+  format?: RenderFormat;
+  /** Inclusive frame range. Both or neither. */
+  from?: number;
+  to?: number;
+  /** Absolute path inside the project. Default `out/<composition>.<format>`. */
+  out?: string;
+}
+
+/** The tab's answer to a render request: the job is queued in its studio. */
+export interface RenderQueued {
+  jobId: string;
+  composition: string;
+  format: RenderFormat;
+}
+
+export type RenderState = "queued" | "rendering" | "saving" | "done" | "error" | "canceled";
+
+export interface RenderData {
+  jobId: string;
+  composition: string;
+  format: RenderFormat;
+  status: RenderState;
+  /** 0 to 1. */
+  progress: number;
+  /** Where the file goes (or went). */
+  out: string;
+  error: string | null;
+}
+
+/** `POST tab/job` body: a tab reports a render job's progress. */
+export interface TabJobUpdate {
+  tabId: string;
+  jobId: string;
+  status: "queued" | "rendering" | "done" | "error" | "canceled";
+  progress: number;
+  /** The host's download URL, once done. */
+  result?: string;
+  error?: string;
 }
 
 /* ============================================================ tab protocol */
@@ -188,7 +433,10 @@ export interface SnapshotResult {
 export type TabRequest =
   | { id: string; type: "status"; params: Record<string, never> }
   | { id: string; type: "seek"; params: SeekParams }
-  | { id: string; type: "snapshot"; params: SnapshotParams };
+  | { id: string; type: "snapshot"; params: SnapshotParams }
+  | { id: string; type: "sheet"; params: SheetParams }
+  | { id: string; type: "timeline"; params: TimelineParams }
+  | { id: string; type: "render"; params: RenderParams & { composition: string } };
 
 export type TabRequestType = TabRequest["type"];
 
@@ -214,4 +462,6 @@ export interface TabPresence {
   visible: boolean;
   focused: boolean;
   path: string;
+  /** The composition the tab shows, or null. */
+  composition?: string | null;
 }

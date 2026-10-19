@@ -5,12 +5,12 @@ import type { StudioLayer } from "../types.js";
 
 const KIND_RE = /^(audio|video|group|transition|sequence):/i;
 
-function inferKind(name: string): LayerKind {
+export function inferKind(name: string): LayerKind {
   const m = KIND_RE.exec(name);
   return (m?.[1]?.toLowerCase() as LayerKind | undefined) ?? "sequence";
 }
 
-const stripPrefix = (name: string): string => name.replace(KIND_RE, "").trim();
+export const stripPrefix = (name: string): string => name.replace(KIND_RE, "").trim();
 
 /** Top-level `Sequence`s of a composition, in tree order. */
 export function sequencesOf(comp: Composition): Sequence[] {

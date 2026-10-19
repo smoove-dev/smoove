@@ -4,7 +4,7 @@ import type { AudioAsset } from "../media/audio/asset.js";
 import { type AudioChannel, AudioMixer } from "../media/audio/mixer.js";
 import { createEmitter, type Emitter } from "./emitter.js";
 import { detectEnvironment, type Environment, type EnvironmentMode } from "./environment.js";
-import { type FrameAnchor, resolveFrameAnchor } from "./marker.js";
+import { type FrameAnchor, type Marker, resolveFrameAnchor } from "./marker.js";
 import { Sequence, type SequenceProvider } from "./sequence.js";
 import { createSignal, derived, type ReadonlySignal, type Signal } from "./signal.js";
 import { structureVersion } from "./structure.js";
@@ -31,7 +31,16 @@ export type CompositionOptions<P extends Record<string, unknown> = Record<string
     props?: P;
     /** Force the runtime environment. Defaults to ambient detection (see `detectEnvironment`). */
     mode?: EnvironmentMode;
+    /**
+     * The beats this composition was planned with: the object `plan()`
+     * returned. The engine doesn't read it. It's there so tools (the studio,
+     * the agent's contact sheet and timeline) can name and find each beat.
+     */
+    plan?: CompositionPlan;
   };
+
+/** A composition's beats by name, as `plan()` returns them. */
+export type CompositionPlan = Readonly<Record<string, Marker>>;
 
 export type CompositionEvent = {
   frame: number;
@@ -91,6 +100,7 @@ export class Composition<
 > extends Konva.Stage {
   readonly fps: number;
   readonly environment: Environment;
+  private _plan: CompositionPlan | null;
   /** Composition-level audio bus — master volume/mute scaling every Video and Audio. */
   readonly mixer = new AudioMixer();
   readonly frame: ReadonlySignal<number>;
@@ -168,7 +178,7 @@ export class Composition<
       throw new Error("Composition: durationInFrames must be a positive integer");
     }
 
-    const { fps, durationInFrames, loop = false, props, mode, ...stageOpts } = opts;
+    const { fps, durationInFrames, loop = false, props, mode, plan, ...stageOpts } = opts;
     // Konva requires a container element. In the browser, fall back to a
     // detached <div> when none is given, so a Composition can be constructed
     // up-front and mounted later via `setContainer` (e.g. handed to a player).
@@ -187,6 +197,7 @@ export class Composition<
 
     this.fps = fps;
     this.environment = detectEnvironment(mode);
+    this._plan = plan ? Object.freeze({ ...plan }) : null;
 
     this._frame = createSignal(0);
     this._isPlaying = createSignal(false);
@@ -340,6 +351,21 @@ export class Composition<
   }
 
   /** `true` between {@link suspend} and {@link resume}. */
+  /** The beats passed as the `plan` option or to {@link setPlan}, or null. */
+  get plan(): CompositionPlan | null {
+    return this._plan;
+  }
+
+  /**
+   * Register the beats after construction, for markers that need the
+   * composition first (a `TransitionSeries`'s `series.marker(name)`). Same as
+   * the `plan` option; the engine doesn't read it.
+   */
+  setPlan(plan: CompositionPlan | null): this {
+    this._plan = plan ? Object.freeze({ ...plan }) : null;
+    return this;
+  }
+
   get isSuspended(): boolean {
     return this._suspended;
   }
