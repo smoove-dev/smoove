@@ -1,6 +1,6 @@
 ---
 name: smoove-video
-description: Use when creating, animating, or laying out a smoove (Konva-based) video Composition or Sequence — timeline-driven scenes, Flex/Block layout, interpolate-based animation, or Text/shape authoring.
+description: Use when creating, animating, or laying out a smoove (Konva-based) video Composition or Sequence: timeline-driven scenes, Flex/Block layout, interpolate-based animation, or Text/shape authoring, or when checking a composition in the studio with the smoove command (snapshots, contact sheets, the timeline) instead of rendering.
 metadata:
   tags: smoove, konva, video, animation, composition, motion
 ---
@@ -191,17 +191,30 @@ Probes lay layouts out on demand, so they can pass while playback paints a
 stale frame; [rules/testing.md](rules/testing.md) says how to check what
 playback itself laid out, and the setup file that works with fonts.
 
-## Check your work without rendering
+## Working in the studio
 
-MP4 renders are slow, and the user usually just wants to see the result.
-Prefer, in order: `tsc`, headless tests (above), and the running studio
-preview. Render only when asked.
+MP4 renders are slow, and the user wants to see the result, not wait for it.
+In a studio project (one made with `npm create smoove`, studio template),
+look at your work with the `smoove` command:
 
-- In the studio, seek with its own timeline. Calling `comp.setFrame()` from
-  the browser console can leave a stale canvas on screen.
-- Check this skill is installed in the project. `npm create smoove` can
-  finish without installing it. Look for `.agents/skills/smoove-video`, and
-  if it's missing run `npx skills add smoove-dev/smoove -s smoove-video`.
+1. Never render a video to check your work. Look with `npx smoove sheet`,
+   `snap` and `timeline`, and the tests. Run `npx smoove render` only when
+   the user asks for a video.
+2. Start the studio yourself with `npx smoove start`, and give the user the
+   URL it prints so they can watch.
+3. Loop: write, typecheck, test, then one `npx smoove sheet --comp <id>` per
+   pass. Read the image, fix, repeat. One sheet per pass, not one image per
+   beat; use `snap --at <beat>` for a closer look at one moment.
+
+Pass the plan to the composition (`plan: beats`, see
+[rules/planning.md](rules/planning.md)), so the sheet shows one tile per beat
+and `--at` knows the names. The commands, what they print, and how to read a
+sheet: [rules/studio.md](rules/studio.md).
+
+Without a studio (a plain player app), prefer `tsc`, the headless tests
+above, and the running preview. Either way, check this skill is installed in
+the project: look for `.agents/skills/smoove-video`, and if it's missing run
+`npx skills add smoove-dev/smoove -s smoove-video`.
 
 ## Effects (optional)
 
@@ -258,7 +271,7 @@ seq.register((frame) => {
 
 ## Topic index
 
-[planning](rules/planning.md) · [direction](rules/direction.md) ·
+[planning](rules/planning.md) · [studio](rules/studio.md) · [direction](rules/direction.md) ·
 [looks](rules/looks.md) · [sequencing](rules/sequencing.md) · [components](rules/components.md) ·
 [layout](rules/layout.md) ·
 [animation](rules/animation.md) · [text](rules/text.md) ·

@@ -103,20 +103,31 @@ const secs = (s: number) => Math.round(s * fps); // plan steps need whole frames
 // For: indie devs who only test in CI.
 // Takeaway: your test suite can run in the browser.
 // Rhythm: tease, reveal, prove, prove, land.
-const { tease, reveal, proofA, proofB, land } = plan({
+const beats = plan({
   tease: { durationInFrames: secs(2.5) }, // the pain, in their words
   reveal: { durationInFrames: secs(3) }, // the takeaway, said plainly
   proofA: { durationInFrames: secs(4) },
   proofB: { durationInFrames: secs(4) },
   land: { durationInFrames: secs(2.5) }, // what to do next
 });
+const { tease, reveal, proofA, proofB, land } = beats;
 
-const comp = new Composition({ id: "browser-tests", fps, width, height, durationInFrames: land.end });
+const comp = new Composition({
+  id: "browser-tests",
+  fps,
+  width,
+  height,
+  durationInFrames: land.end,
+  plan: beats, // names the beats for the studio and the smoove command
+});
 comp.add(new Sequence({ span: tease }).add(teaseScene));
 ```
 
 Retiming a beat now means changing one number in the plan, and every marker
-after it moves. Overlaps, gaps and `span` are covered in
+after it moves. Passing `plan: beats` to the composition gives the beats
+their names outside the code: the studio's timeline labels its tracks with
+them, `npx smoove sheet` shows one tile per beat, and `--at reveal` jumps to
+one (see [studio.md](studio.md)). Overlaps, gaps and `span` are covered in
 [sequencing.md](sequencing.md).
 
 ## When there is a voiceover

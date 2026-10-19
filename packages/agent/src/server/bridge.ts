@@ -71,6 +71,8 @@ export interface AgentBridgeOptions {
   launchBrowser?: BrowserLauncher | false;
   /** How long to wait for the headless tab to connect. Default 30 seconds. */
   headlessConnectMs?: number;
+  /** How long a request waits for a tab that closed mid-request to reconnect. Default 5 seconds. */
+  reconnectMs?: number;
 }
 
 type Next = (err?: unknown) => void;
@@ -93,7 +95,7 @@ interface Pending {
   tab: Tab;
   type: TabRequestType;
   params: TabRequest["params"];
-  settle: (status: number, body: AgentResponse<unknown>) => void;
+  settle: (status: number, body: AgentResponse<unknown>, closed?: boolean) => void;
   timer: ReturnType<typeof setTimeout>;
 }
 
@@ -101,12 +103,15 @@ interface RenderRecord extends RenderData {
   tab: Tab;
 }
 
-type Out = { status: number; body: AgentResponse<unknown> };
+/** An answer for the agent. `closed` marks one where the tab went away before answering. */
+type Out = { status: number; body: AgentResponse<unknown>; closed?: boolean };
 
 const JSON_LIMIT = 1 << 20;
 const PNG_LIMIT = 64 << 20;
 const MAX_SNAPSHOT_WIDTH = 8192;
 const MAX_TILE_WIDTH = 1920;
+/** How long a request waits for a closed tab to reconnect before trying again anyway. */
+const RECONNECT_WAIT_MS = 5000;
 
 /**
  * The dev-server half of the bridge. Agent-facing endpoints need the per-run
@@ -125,6 +130,7 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
   const pingMs = options.pingMs ?? 15_000;
   const now = options.now ?? Date.now;
   const headlessConnectMs = options.headlessConnectMs ?? HEADLESS_CONNECT_MS;
+  const reconnectMs = options.reconnectMs ?? RECONNECT_WAIT_MS;
   const launcher =
     options.launchBrowser === false
       ? null
@@ -142,6 +148,8 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
 
   let browser: LaunchedBrowser | null = null;
   let ownedWaiters: Array<(tab: Tab) => void> = [];
+  /** Called on every tab connection, for requests waiting out a reload. */
+  let connectWaiters: Array<() => void> = [];
 
   const onExit = (): void => {
     browser?.close();
@@ -202,19 +210,26 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
       ownedWaiters = [];
       for (const w of waiters) w(tab);
     }
+    const reconnects = connectWaiters;
+    connectWaiters = [];
+    for (const w of reconnects) w();
     req.on("close", () => {
       if (!tabs.remove(tab.id)) return;
       for (const [id, p] of pending) {
         if (p.tab !== tab) continue;
         pending.delete(id);
         clearTimeout(p.timer);
-        p.settle(502, {
-          ok: false,
-          error: {
-            code: "tab-error",
-            message: `The studio tab at ${tab.path} closed before it answered. Run the request again.`,
+        p.settle(
+          502,
+          {
+            ok: false,
+            error: {
+              code: "tab-error",
+              message: `The studio tab at ${tab.path} closed before it answered. Run the request again.`,
+            },
           },
-        });
+          true,
+        );
       }
       for (const job of renders.values()) {
         if (job.tab !== tab || !unfinished(job)) continue;
@@ -258,10 +273,46 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
         type,
         params,
         timer,
-        settle: (status, body) => resolve({ status, body: { ...body, drawnBy: drawnBy(tab) } }),
+        settle: (status, body, closed) =>
+          resolve({ status, body: { ...body, drawnBy: drawnBy(tab) }, closed }),
       });
       sendEvent(tab, "request", { id, type, params } as TabRequest);
     });
+  }
+
+  /** Resolve on the next tab connection, or after `ms`. */
+  function nextConnect(ms: number): Promise<void> {
+    return new Promise((resolve) => {
+      const timer = setTimeout(done, ms);
+      function done(): void {
+        clearTimeout(timer);
+        connectWaiters = connectWaiters.filter((w) => w !== done);
+        resolve();
+      }
+      connectWaiters.push(done);
+    });
+  }
+
+  /**
+   * Pick a tab and forward the request. A tab that reloads mid-request (a
+   * fresh project's first load, where Vite reloads the page as it optimizes
+   * dependencies, or a full hot reload) closes before it answers: wait for it
+   * to reconnect, pick again and resend, within the reply timeout. Not for
+   * render, whose first try may already have queued a job.
+   */
+  async function dispatch(
+    type: TabRequestType,
+    pick: () => Promise<{ tab: Tab; params: TabRequest["params"] } | Out>,
+  ): Promise<Out> {
+    const deadline = now() + timeoutMs;
+    for (let attempt = 1; ; attempt++) {
+      const picked = await pick();
+      if ("status" in picked) return picked;
+      const out = await forward(picked.tab, type, picked.params);
+      const left = deadline - now();
+      if (!out.closed || type === "render" || attempt >= 4 || left <= 0) return out;
+      await nextConnect(Math.min(left, reconnectMs));
+    }
   }
 
   function noTab(req: IncomingMessage, what = "No studio tab is connected."): Out {
@@ -562,26 +613,31 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
 
     if (sub === "status" && method === "GET") {
       await settleAfterEdit();
-      const user = tabs.pick(tabs.users());
-      if (!user) {
-        const data: StatusData = { server: serverStatus(req), studio: null, openUrl: openUrl(req) };
-        return send(res, 200, { ok: true, data });
-      }
-      return sendOut(res, await forward(user, "status", {}));
+      const empty = (): Out => ({
+        status: 200,
+        body: {
+          ok: true,
+          data: { server: serverStatus(req), studio: null, openUrl: openUrl(req) },
+        },
+      });
+      const out = await dispatch("status", async () => {
+        const user = tabs.pick(tabs.users());
+        return user ? { tab: user, params: {} } : empty();
+      });
+      return sendOut(res, out);
     }
 
     if (sub === "seek" && method === "POST") {
       const params = parseSeek(await readJson<Record<string, unknown>>(req));
       if (typeof params === "string") return send(res, 400, fail("bad-request", params));
       await settleAfterEdit();
-      const user = tabs.pick(tabs.users());
-      if (!user) {
-        return sendOut(
-          res,
-          noTab(req, "Seek moves the user's view, and no user has a studio tab open."),
-        );
-      }
-      return sendOut(res, await forward(user, "seek", params));
+      const out = await dispatch("seek", async () => {
+        const user = tabs.pick(tabs.users());
+        return user
+          ? { tab: user, params }
+          : noTab(req, "Seek moves the user's view, and no user has a studio tab open.");
+      });
+      return sendOut(res, out);
     }
 
     if ((sub === "snapshot" || sub === "sheet" || sub === "timeline") && method === "POST") {
@@ -594,12 +650,12 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
             : parseTimeline(body);
       if (typeof params === "string") return send(res, 400, fail("bad-request", params));
       await settleAfterEdit();
-      const picked = await target(req, sub, params.composition);
-      if ("status" in picked) return sendOut(res, picked);
-      return sendOut(
-        res,
-        await forward(picked.tab, sub, { ...params, maySwitch: picked.maySwitch }),
-      );
+      const out = await dispatch(sub, async () => {
+        const picked = await target(req, sub, params.composition);
+        if ("status" in picked) return picked;
+        return { tab: picked.tab, params: { ...params, maySwitch: picked.maySwitch } };
+      });
+      return sendOut(res, out);
     }
 
     if (sub === "render" && method === "POST") {

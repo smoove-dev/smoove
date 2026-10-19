@@ -75,6 +75,12 @@ export const PATHS = {
     </>
   ),
   code: <path d="M7 6l-3 3 3 3M11 6l3 3-3 3" {...p} />,
+  panelLeft: (
+    <>
+      <rect x="3" y="4" width="12" height="10" rx="1.6" {...p} />
+      <path d="M7 4v10" {...p} />
+    </>
+  ),
   panelRight: (
     <>
       <rect x="3" y="4" width="12" height="10" rx="1.6" {...p} />

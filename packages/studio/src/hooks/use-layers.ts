@@ -17,11 +17,34 @@ export function sequencesOf(comp: Composition): Sequence[] {
   return comp.getChildren((n) => n instanceof Sequence) as Sequence[];
 }
 
+/**
+ * The name of the plan beat that spans exactly `from` to `end`, if the
+ * composition registered a plan. A scene from a series has no name of its
+ * own; its beat does.
+ */
+export function beatNameFor(comp: Composition, from: number, end: number): string | null {
+  const plan = comp.plan;
+  if (!plan) return null;
+  for (const [key, marker] of Object.entries(plan)) {
+    try {
+      if (marker.start.resolve() === from && marker.end.resolve() === end)
+        return marker.name ?? key;
+    } catch {
+      // A marker that can't resolve yet names nothing.
+    }
+  }
+  return null;
+}
+
 /** Derive timeline tracks from a composition's top-level Sequences. */
 export function deriveLayers(comp: Composition): StudioLayer[] {
   const total = comp.durationInFrames.get() || 1;
   return sequencesOf(comp).map((s, i) => {
-    const raw = s.name() || s.id() || `Layer ${i + 1}`;
+    const raw =
+      s.name() ||
+      s.id() ||
+      beatNameFor(comp, s.from, s.from + s.durationInFrames) ||
+      `Layer ${i + 1}`;
 
     return {
       name: stripPrefix(raw) || `Layer ${i + 1}`,

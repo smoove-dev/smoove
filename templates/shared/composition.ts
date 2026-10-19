@@ -1,16 +1,36 @@
-import { Circle, Composition, Easing, interpolate, Line, Rect, Sequence, Text } from "@smoove/core";
+import {
+  Circle,
+  Composition,
+  Easing,
+  interpolate,
+  Line,
+  plan,
+  Rect,
+  Sequence,
+  Text,
+} from "@smoove/core";
 import Comfortaa from "@smoove/google-fonts/comfortaa";
 import Konva from "konva";
 
 const fps = 60;
-const durationInFrames = fps * 4;
 const width = 1280;
 const height = 720;
+
+// The beats, back to back. Registering them on the composition names them for
+// tools: `npx smoove sheet` shows one tile per beat, and
+// `npx smoove snap --at lockup` jumps to one.
+export const beats = plan({
+  mark: { durationInFrames: 34 }, // the dot pops in and blinks
+  sweep: { durationInFrames: 48 }, // it glides left, then sweeps the bars in
+  lockup: { durationInFrames: 38 }, // the logo makes room for the wordmark
+  slogan: { durationInFrames: 120 }, // the slogan types itself, then holds
+});
 
 const comp = new Composition({
   id: "hello-smoove",
   fps,
-  durationInFrames,
+  durationInFrames: beats.slogan.end,
+  plan: beats,
   width,
   height,
   loop: true,

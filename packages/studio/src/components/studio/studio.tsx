@@ -42,6 +42,7 @@ export function StudioRoot({
   children,
 }: StudioProps) {
   const [portalEl, setPortalEl] = useState<HTMLDivElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   // Keep onNavigate fresh without rebuilding the store.
   const navRef = useRef(onNavigate);
@@ -59,6 +60,20 @@ export function StudioRoot({
   const store = storeRef.current;
   useAgentBridge(store, agent);
 
+  // The layout band comes from the studio's own size, so it follows the box a
+  // host gives it, not the window. Remembered layout loads after mount, so the
+  // server render and the first client render agree.
+  useEffect(() => {
+    store.restoreLayout();
+    const el = rootRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const measure = (): void => store.setSize(el.clientWidth, el.clientHeight);
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    measure();
+    return () => ro.disconnect();
+  }, [store]);
+
   // Sync the active id from the route (selection itself happens in the route).
   // biome-ignore lint/correctness/useExhaustiveDependencies: store is stable.
   useEffect(() => {
@@ -71,8 +86,9 @@ export function StudioRoot({
         <Toast.Provider>
           <PortalContainerContext.Provider value={portalEl}>
             <div
+              ref={rootRef}
               className={cn(
-                "smoove-studio h-full w-full flex flex-col bg-bg-0 text-ink-1 font-sans select-none overflow-hidden",
+                "smoove-studio relative h-full w-full flex flex-col bg-bg-0 text-ink-1 font-sans select-none overflow-hidden",
                 className,
               )}
             >

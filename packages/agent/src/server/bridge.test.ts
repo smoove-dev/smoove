@@ -30,9 +30,21 @@ let server: Server;
 let origin: string;
 
 async function start(
-  opts: { timeoutMs?: number; settleMs?: number; launchBrowser?: BrowserLauncher | false } = {},
+  opts: {
+    timeoutMs?: number;
+    settleMs?: number;
+    reconnectMs?: number;
+    launchBrowser?: BrowserLauncher | false;
+  } = {},
 ) {
-  bridge = createAgentBridge({ root, token: TOKEN, settleMs: 0, launchBrowser: false, ...opts });
+  bridge = createAgentBridge({
+    root,
+    token: TOKEN,
+    settleMs: 0,
+    reconnectMs: 50,
+    launchBrowser: false,
+    ...opts,
+  });
   server = createServer((req, res) =>
     bridge.handle(req, res, () => {
       // Stands in for a host's render download route.
@@ -441,15 +453,42 @@ describe("forwarding to a tab", () => {
     tab.close();
   });
 
-  it("fails a pending request when its tab disconnects", async () => {
+  it("fails a pending request when its tab disconnects and doesn't come back", async () => {
     await start();
     const tab = await FakeTab.connect();
     const pending = agent("seek", { json: { frame: 1 } });
     await tab.nextRequest();
     tab.close();
     const res = await pending;
-    expect((await res.json()).error.code).toBe("tab-error");
+    expect((await res.json()).error.code).toBe("no-tab");
     await expect.poll(() => bridge.tabs().length).toBe(0);
+  });
+
+  it("resends to a tab that reloads mid-request", async () => {
+    await start({ reconnectMs: 2000 });
+    const first = await FakeTab.connect();
+    const pending = agent("status");
+    await first.nextRequest(1);
+    first.close();
+    // The page comes back (Vite reloading it on a project's first run).
+    const second = await FakeTab.connect();
+    const req = await second.nextRequest(1);
+    expect(req.type).toBe("status");
+    await second.reply(req.id, { ok: true, data: { catalog: [], active: null } });
+    const body = await (await pending).json();
+    expect(body.ok).toBe(true);
+    expect(body.drawnBy.tabId).toBe(second.id);
+    second.close();
+  });
+
+  it("never resends a render, which may already be queued", async () => {
+    await start({ reconnectMs: 2000 });
+    const tab = await FakeTab.connect();
+    const pending = agent("render", { json: {} });
+    await tab.nextRequest(1);
+    tab.close();
+    const body = await (await pending).json();
+    expect(body.error.code).toBe("tab-error");
   });
 
   it("holds requests briefly right after a file change", async () => {
