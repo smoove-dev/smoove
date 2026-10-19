@@ -205,6 +205,10 @@ look at your work with the `smoove` command:
 3. Loop: write, typecheck, test, then one `npx smoove sheet --comp <id>` per
    pass. Read the image, fix, repeat. One sheet per pass, not one image per
    beat; use `snap --at <beat>` for a closer look at one moment.
+4. When the user says "this", "here" or "that one", run `npx smoove context`
+   before anything else. It lists the nodes they marked on the frame, with the
+   file and line that made each one. With no mark, ask them to drag a
+   rectangle over the thing in the studio.
 
 Pass the plan to the composition (`plan: beats`, see
 [rules/planning.md](rules/planning.md)), so the sheet shows one tile per beat

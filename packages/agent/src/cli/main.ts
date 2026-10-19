@@ -5,7 +5,10 @@ import { parseArgs } from "node:util";
 import {
   AGENT_PREFIX,
   type AgentResponse,
+  type ContextData,
   type DrawnBy,
+  MARK_MIN_COVER,
+  type MarkRect,
   type RenderData,
   type SeekData,
   type SheetData,
@@ -57,6 +60,7 @@ Run it from inside the project. Every command takes --json for the raw answer.
   smoove sheet                    A contact sheet: one tile per beat
   smoove timeline                 Beats and sequences, in frames
   smoove render                   Render a video (only when the user asks for one)
+  smoove context                  Read and clear the user's mark from the studio
 
 Options:
   --comp <id>        The composition (default: the one the user is watching)
@@ -151,6 +155,8 @@ export async function main(argv: string[], io: Io = defaultIo): Promise<number> 
         );
       case "render":
         return await render(io, values);
+      case "context":
+        return await call(io, values, "POST", "context", {}, formatContext);
       default:
         throw new UsageError(`Unknown command "${command}".`);
     }
@@ -312,6 +318,47 @@ export function formatStatus(data: StatusData): string {
     lines.push(parts.join(", "));
   }
   if (data.studio) lines.push(`Compositions: ${data.studio.catalog.map((c) => c.id).join(", ")}`);
+  const mark = data.server.mark;
+  if (mark) {
+    lines.push(
+      `A mark is waiting on ${mark.composition}, frame ${mark.frame}. Run smoove context.`,
+    );
+  }
+  return lines.join("\n");
+}
+
+function at(r: MarkRect): string {
+  const n = (v: number) => String(Math.round(v));
+  return `${n(r.x)},${n(r.y)} size ${n(r.width)} by ${n(r.height)}`;
+}
+
+/** The user's mark: the frame, the image, then the covered nodes, smallest first. */
+export function formatContext(data: ContextData): string {
+  const mark = data.mark;
+  if (!mark) {
+    return "No mark. Ask the user to drag a rectangle over the thing they mean in the studio.";
+  }
+  const beat = mark.beat ? ` (beat: ${mark.beat})` : "";
+  const lines = [
+    `Mark on ${mark.composition}, frame ${mark.frame}${beat}, rectangle at ${at(mark.rect)}.`,
+    `Image: ${mark.image ?? "none"}`,
+    "",
+  ];
+  const below = `No node is more than ${Math.round(MARK_MIN_COVER * 100)} percent inside the rectangle.`;
+  if (mark.nodes.length === 0) lines.push(`${below} Look at the image.`);
+  else if (mark.closest) lines.push(`${below} These come closest:`);
+  mark.nodes.forEach((node, i) => {
+    const label = node.name ?? node.id ?? "unnamed";
+    const text = node.text != null ? ` ${JSON.stringify(node.text)}` : "";
+    lines.push(
+      `${i + 1}. ${label} (${node.type}${text}), ${Math.round(node.cover * 100)}% inside, box ${at(node.box)}`,
+    );
+    const src = node.source;
+    if (src) {
+      lines.push(`   ${src.file}:${src.line}:${src.column}${src.inherited ? " (inherited)" : ""}`);
+    }
+    if (node.ancestors.length > 0) lines.push(`   in ${[...node.ancestors].reverse().join(", ")}`);
+  });
   return lines.join("\n");
 }
 

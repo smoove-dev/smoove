@@ -4,9 +4,9 @@ import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import type { TabRequest } from "../index.js";
+import type { Mark, MarkInput, StatusData, TabRequest } from "../index.js";
 import { type AgentBridge, createAgentBridge } from "../server/bridge.js";
-import { formatTimeline, type Io, main } from "./main.js";
+import { formatContext, formatStatus, formatTimeline, type Io, main } from "./main.js";
 
 let root: string;
 let bridge: AgentBridge | null = null;
@@ -180,6 +180,157 @@ describe("smoove", () => {
         "  hook (sequence): frames 0 to 74",
         "    logo (clip): frames 10 to 39",
       ].join("\n"),
+    );
+  });
+});
+
+function walkthroughMark(): Mark {
+  return {
+    id: "m1",
+    composition: "promo",
+    frame: 120,
+    beat: "land",
+    rect: { x: 312, y: 180, width: 640, height: 160 },
+    nodes: [
+      {
+        name: "title",
+        id: null,
+        type: "Text",
+        box: { x: 330, y: 196, width: 600, height: 120 },
+        cover: 0.98,
+        text: "Launch day",
+        ancestors: ["hero", "card"],
+        source: { file: "src/compositions/promo.ts", line: 42, column: 17, inherited: false },
+      },
+      {
+        name: "card",
+        id: null,
+        type: "Flex",
+        box: { x: 300, y: 170, width: 680, height: 220 },
+        cover: 0.71,
+        ancestors: ["hero"],
+        source: { file: "src/compositions/promo.ts", line: 35, column: 16, inherited: false },
+      },
+    ],
+    drawnAt: "2026-10-19T20:00:00.000Z",
+    drawnBy: { tabId: "t1", path: "/c/promo", visible: true, headless: false },
+    image: "/path/to/project/.smoove/marks/promo-f120.png",
+  };
+}
+
+/** Connect a tab, read its id from the hello event, and post `mark` from it. */
+async function postMarkFromTab(mark: MarkInput): Promise<() => void> {
+  const abort = new AbortController();
+  const res = await fetch(`${origin}/__smoove/agent/tab/connect?path=/c/promo`, {
+    signal: abort.signal,
+  });
+  const reader = res.body?.getReader();
+  const decoder = new TextDecoder();
+  let buf = "";
+  let tabId = "";
+  while (!tabId) {
+    const chunk = await reader?.read();
+    if (!chunk || chunk.done) throw new Error("stream closed");
+    buf += decoder.decode(chunk.value, { stream: true });
+    const m = /event: hello\ndata: (.*)\n/.exec(buf);
+    if (m?.[1]) tabId = (JSON.parse(m[1]) as { tabId: string }).tabId;
+  }
+  await fetch(`${origin}/__smoove/agent/tab/mark`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ tabId, mark }),
+  });
+  return () => abort.abort();
+}
+
+describe("smoove context", () => {
+  it("formats a mark as the spec's sample", () => {
+    expect(formatContext({ mark: walkthroughMark() })).toBe(
+      [
+        "Mark on promo, frame 120 (beat: land), rectangle at 312,180 size 640 by 160.",
+        "Image: /path/to/project/.smoove/marks/promo-f120.png",
+        "",
+        '1. title (Text "Launch day"), 98% inside, box 330,196 size 600 by 120',
+        "   src/compositions/promo.ts:42:17",
+        "   in card, hero",
+        "2. card (Flex), 71% inside, box 300,170 size 680 by 220",
+        "   src/compositions/promo.ts:35:16",
+        "   in hero",
+      ].join("\n"),
+    );
+  });
+
+  it("marks an inherited source and skips a missing one", () => {
+    const mark = walkthroughMark();
+    const [title, card] = mark.nodes;
+    if (!title || !card) throw new Error("fixture");
+    title.source = { file: "src/x.ts", line: 3, column: 1, inherited: true };
+    card.source = null;
+    card.ancestors = [];
+    const text = formatContext({ mark });
+    expect(text).toContain("   src/x.ts:3:1 (inherited)");
+    expect(text.split("\n").slice(-1)[0]).toBe(
+      "2. card (Flex), 71% inside, box 300,170 size 680 by 220",
+    );
+  });
+
+  it("lists the closest nodes when none passed the threshold", () => {
+    const mark = { ...walkthroughMark(), closest: true };
+    const lines = formatContext({ mark }).split("\n");
+    expect(lines[3]).toBe(
+      "No node is more than 60 percent inside the rectangle. These come closest:",
+    );
+    expect(lines[4]).toBe('1. title (Text "Launch day"), 98% inside, box 330,196 size 600 by 120');
+  });
+
+  it("says when there's no mark", () => {
+    expect(formatContext({ mark: null })).toBe(
+      "No mark. Ask the user to drag a rectangle over the thing they mean in the studio.",
+    );
+  });
+
+  it("says when no node passed the threshold", () => {
+    const mark = { ...walkthroughMark(), nodes: [] };
+    expect(formatContext({ mark }).split("\n")).toEqual([
+      "Mark on promo, frame 120 (beat: land), rectangle at 312,180 size 640 by 160.",
+      "Image: /path/to/project/.smoove/marks/promo-f120.png",
+      "",
+      "No node is more than 60 percent inside the rectangle. Look at the image.",
+    ]);
+  });
+
+  it("reads and clears the mark, exiting 0 even with no mark", async () => {
+    await startServer();
+    const { id: _id, drawnAt: _a, drawnBy: _b, image: _i, ...rest } = walkthroughMark();
+    const close = await postMarkFromTab({ id: "m1", ...rest });
+    const first = io();
+    expect(await main(["context"], first.io)).toBe(0);
+    expect(first.out.join("\n")).toContain('1. title (Text "Launch day")');
+
+    const json = io();
+    expect(await main(["context", "--json"], json.io)).toBe(0);
+    expect(JSON.parse(json.out.join(""))).toEqual({ ok: true, data: { mark: null } });
+
+    const none = io();
+    expect(await main(["context"], none.io)).toBe(0);
+    expect(none.out.join("\n")).toMatch(/^No mark\./);
+    close();
+  });
+
+  it("status mentions a waiting mark", () => {
+    const data: StatusData = {
+      server: {
+        url: "http://localhost:5190/",
+        pid: 1,
+        startedAt: "2026-10-19T20:00:00.000Z",
+        tabs: [],
+        mark: { composition: "promo", frame: 120 },
+      },
+      studio: null,
+      openUrl: "http://localhost:5190/",
+    };
+    expect(formatStatus(data)).toContain(
+      "A mark is waiting on promo, frame 120. Run smoove context.",
     );
   });
 });

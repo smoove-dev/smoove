@@ -1,7 +1,6 @@
 import {
   type ActiveComposition,
   AgentError,
-  type Beat,
   DEFAULT_SNAPSHOT_WIDTH,
   DEFAULT_TILE_WIDTH,
   FALLBACK_SHEET_FRAMES,
@@ -21,7 +20,6 @@ import {
   type TimelineData,
   type TimelineNode,
   type TimelineParams,
-  withSheetFrames,
 } from "@smoove/agent";
 import {
   type HandlerContext,
@@ -29,13 +27,14 @@ import {
   type JobProgress,
   type TabHandlers,
 } from "@smoove/agent/client";
-import { type Composition, isClip, VIDEO_MARK } from "@smoove/core";
+import { type Composition, isClip } from "@smoove/core";
 import type Konva from "konva";
 import { inferKind, sequencesOf, stripPrefix } from "../hooks/use-layers.js";
 import { estMB } from "../lib/constants.js";
 import type { StudioStore } from "../store/store.js";
 import type { RenderRequest } from "../types.js";
-import { encodePng, ensurePixelRatio, redrawVisible, scaleCanvas } from "./capture.js";
+import { beatsOf } from "./beats.js";
+import { captureFrames, encodePng, scaleCanvas } from "./capture.js";
 import { abortable, until, watch } from "./until.js";
 
 /** The handlers a studio tab answers the bridge with. */
@@ -136,41 +135,6 @@ export function createAgentHandlers(store: StudioStore): TabHandlers {
   }
 
   /**
-   * Draw each frame, hand the full-size capture to `use` (it's a reused
-   * scratch canvas: copy it before returning), then put back the frame and
-   * playback the user had. Returns the video nodes visible in any frame.
-   */
-  async function capture(
-    comp: Composition,
-    frames: number[],
-    ratio: number,
-    use: (canvas: HTMLCanvasElement, index: number) => void,
-  ): Promise<Konva.Node[]> {
-    const original = comp.frame.get();
-    const wasPlaying = comp.isPlaying.get();
-    if (wasPlaying) comp.pause();
-    const videos = new Set<Konva.Node>();
-    const restoreRatio = ensurePixelRatio(comp, ratio);
-    try {
-      for (let i = 0; i < frames.length; i++) {
-        // Microtasks only when nothing gates the frame, so the browser gets
-        // no chance to paint a captured frame on screen.
-        await comp.renderFrame(frames[i] as number);
-        for (const v of comp.find((n: Konva.Node) => n.getAttr(VIDEO_MARK) === true)) {
-          if (v.isVisible()) videos.add(v);
-        }
-        use(comp.captureCanvas(), i);
-      }
-    } finally {
-      restoreRatio();
-      comp.setFrame(original);
-      redrawVisible(comp);
-      if (wasPlaying) comp.play();
-    }
-    return [...videos];
-  }
-
-  /**
    * A warning when the image left video out: only from a headless browser,
    * and only one that can't decode H.264 (some headless builds ship without
    * it; an installed Chrome usually has it).
@@ -189,34 +153,6 @@ export function createAgentHandlers(store: StudioStore): TabHandlers {
   }
 
   // ---------------------------------------------------------------- beats
-
-  function beatsOf(comp: Composition): { from: "plan" | "sequences"; beats: Beat[] } {
-    const total = comp.durationInFrames.get();
-    const plan = comp.plan;
-    if (plan && Object.keys(plan).length > 0) {
-      const raw = Object.entries(plan).map(([name, m]) => ({
-        name: m.name ?? name,
-        start: m.start.resolve(),
-        settled: m.settled.resolve(),
-        end: m.end.resolve(),
-      }));
-      return { from: "plan", beats: withSheetFrames(raw, total) };
-    }
-    const raw = sequencesOf(comp)
-      .map((s, i) => {
-        const label = s.name() || s.id() || "";
-        return {
-          kind: inferKind(label),
-          name: stripPrefix(label) || `sequence ${i + 1}`,
-          start: s.from,
-          settled: s.from,
-          end: Math.min(s.from + s.durationInFrames, total),
-        };
-      })
-      .filter((b) => b.kind !== "audio" && b.kind !== "transition" && b.end > b.start)
-      .map(({ kind: _kind, ...b }) => b);
-    return { from: "sequences", beats: withSheetFrames(raw, total) };
-  }
 
   function frameFor(
     comp: Composition,
@@ -289,7 +225,7 @@ export function createAgentHandlers(store: StudioStore): TabHandlers {
     const height = Math.max(1, Math.round((width * compH) / compW));
 
     let scaled: HTMLCanvasElement | null = null;
-    const videos = await capture(comp, [frame], width / compW, (canvas) => {
+    const videos = await captureFrames(comp, [frame], width / compW, (canvas) => {
       scaled = scaleCanvas(canvas, width, height);
     });
     if (!scaled) throw new Error("The snapshot drew nothing.");
@@ -344,7 +280,7 @@ export function createAgentHandlers(store: StudioStore): TabHandlers {
     g.font = `${fontPx}px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`;
     g.textBaseline = "middle";
 
-    const videos = await capture(
+    const videos = await captureFrames(
       comp,
       tiles.map((t) => t.frame),
       tileW / compW,

@@ -50,6 +50,14 @@ npx smoove sheet --comp my-video          # one tile per beat
 npx smoove snap --comp my-video --at hook # one moment, by beat name
 ```
 
+To point at something, drag a rectangle over it on the frame, then tell the
+agent what to change: "make this bigger". The agent reads your mark and
+knows which node you mean, down to the line of code that made it:
+
+```bash
+npx smoove context
+```
+
 Looking never moves your playhead. When you're happy, ask for the video, and
 the agent renders it through the studio's queue:
 
