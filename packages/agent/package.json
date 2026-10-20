@@ -1,6 +1,6 @@
 {
   "name": "@smoove/agent",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "The bridge between a coding agent and the smoove studio: the dev-server half behind the smoove command's status, seeking, snapshots, contact sheets, the timeline and renders, and the studio tab's half that answers it.",
   "license": "MIT",
   "repository": {

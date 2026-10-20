@@ -1,5 +1,12 @@
 # @smoove/player
 
+## 0.5.1
+
+### Patch Changes
+
+- Updated dependencies [[`2c0d29e`](https://github.com/smoove-dev/smoove/commit/2c0d29e6e7a6772993a923bdf5588144671d6c75)]:
+  - @smoove/core@0.5.1
+
 ## 0.5.0
 
 ### Patch Changes
