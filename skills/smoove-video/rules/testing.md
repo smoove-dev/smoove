@@ -167,7 +167,7 @@ in [sequencing.md](sequencing.md).
 ## The checks file
 
 Next to each composition, a checks file says what it promises, and
-`npx smoove check` holds it to that (see [studio.md](studio.md)). It's
+`npx smoove agent check` holds it to that (see [studio.md](studio.md)). It's
 TypeScript, named after the composition, and imports its beats, so the
 promises move when the plan is retimed:
 

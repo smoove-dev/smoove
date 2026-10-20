@@ -19,8 +19,8 @@ Usage:
   npm create smoove [template] [dir] [options]
 
 Templates:
-  studio        Full studio: React Router app with timeline UI, props panel,
-                and a server render queue.
+  studio        A studio project: a compositions folder, with the studio's
+                timeline, props panel and render queue ready to run.
   composition   Minimal Vite app: one composition, <smoove-player> preview,
                 autoreload.
 
@@ -177,7 +177,11 @@ async function main(): Promise<void> {
       opts.install ? dev : `${pm} install && ${dev}`,
       `${test}   # headless composition tests`,
       ...(template === "studio"
-        ? ["", "Working with a coding agent? It can run the studio itself: npx smoove start"]
+        ? [
+            "",
+            "Add a composition with: npx smoove new",
+            "Working with a coding agent? It can run the studio itself: npx smoove agent start",
+          ]
         : []),
       "",
       ...notes,

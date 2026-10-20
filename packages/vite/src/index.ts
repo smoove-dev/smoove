@@ -66,10 +66,16 @@ export interface SmooveOptions {
    * Mount the agent bridge (`@smoove/agent`) on the dev server, so a coding
    * agent can ask the open studio tab for its status, seek it, and take
    * snapshots. Development only; production builds never include it. It writes
-   * `.smoove/agent.json` (the URL and a per-run token) in the Vite root.
+   * `.smoove/agent.json` (the URL and a per-run token) in the project root.
    * Default `true`.
    */
   agent?: boolean;
+  /**
+   * The project root, when it isn't Vite's `root` (the studio preset runs Vite
+   * from a hidden app folder). The agent bridge writes `.smoove/` here, and
+   * source tags are relative to it. Default: Vite's resolved `root`.
+   */
+  root?: string;
 }
 
 const DEFAULT_SERVER_ASSETS =
@@ -92,12 +98,12 @@ export function smoove(options: SmooveOptions = {}): Plugin {
     enforce: "pre",
     configResolved(config: ResolvedConfig) {
       isBuild = config.command === "build";
-      root = config.root;
+      root = options.root ?? config.root;
       base = config.base;
       assetsDir = config.build.assetsDir;
     },
     configureServer(server) {
-      if (options.agent !== false) mountAgentBridge(server);
+      if (options.agent !== false) mountAgentBridge(server, root);
     },
     resolveId(id) {
       // Dev only: the helper source-tagged files import (see source-tags.ts).
@@ -185,8 +191,7 @@ export default smoove;
  * Mount the agent bridge ahead of Vite's own middleware, write the discovery
  * file once the server listens, and remove it when the server closes.
  */
-function mountAgentBridge(server: ViteDevServer): void {
-  const root = server.config.root;
+function mountAgentBridge(server: ViteDevServer, root: string): void {
   const bridge = createAgentBridge({ root });
   server.middlewares.use(bridge.handle);
 

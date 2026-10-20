@@ -2,7 +2,7 @@
   "mcpServers": {
     "smoove": {
       "command": "npx",
-      "args": ["smoove", "mcp"]
+      "args": ["smoove", "agent", "mcp"]
     }
   }
 }

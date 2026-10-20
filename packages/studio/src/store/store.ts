@@ -341,6 +341,8 @@ export function createStore(opts: StudioStoreOptions) {
     clearRegion,
     isLayerOff,
     toggleLayer,
+    /** A render backend was given: the studio can render and export frames on a server. */
+    canRender: render != null,
     addToast,
     dismissToast,
     updateJob,

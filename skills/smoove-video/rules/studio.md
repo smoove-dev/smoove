@@ -3,14 +3,29 @@
 A studio project (made with `npm create smoove`, studio template) ships the
 `smoove` command. It lets you look at your work without rendering: frames
 and contact sheets come back as PNG files, drawn by a real browser with the
-real fonts. Run it from inside the project as `npx smoove`. Every command
-takes `--json` for the raw answer, and exits with 1 when something went wrong.
+real fonts. The commands for you live under `npx smoove agent`; run them
+from inside the project. Every one takes `--json` for the raw answer, and
+exits with 1 when something went wrong. (`npx smoove start` runs the same
+studio in the foreground, for a person at a terminal.)
+
+## Add a composition
+
+```sh
+npx smoove new --title "Product launch" --format portrait --seconds 8
+```
+
+It writes `compositions/product-launch/`: an `index.ts` entry, the
+composition (a title card to build from), its props schema, checks and
+tests. `--id`, `--group` and `--description` are optional. Every
+composition lives in its own folder under `compositions/`, and its
+`index.ts` is required: the studio lists every folder that has one, with no
+registry file to edit.
 
 ## Start and stop
 
 ```sh
-npx smoove start   # runs the dev server in the background, prints the URL
-npx smoove stop
+npx smoove agent start   # runs the dev server in the background, prints the URL
+npx smoove agent stop
 ```
 
 Give the URL to the user so they can watch. `start` is safe to repeat: when
@@ -21,12 +36,12 @@ start.
 ## Look
 
 ```sh
-npx smoove sheet --comp promo                # one tile per beat, on one PNG
-npx smoove sheet --comp promo --frames 8     # eight evenly spaced frames instead
-npx smoove snap --comp promo --at hook       # one frame, 640 pixels wide
-npx smoove snap --comp promo --frame 120 --width 1080
-npx smoove timeline --comp promo             # beats and sequences, in frames
-npx smoove status                            # what the user's tab shows
+npx smoove agent sheet --comp promo                # one tile per beat, on one PNG
+npx smoove agent sheet --comp promo --frames 8     # eight evenly spaced frames instead
+npx smoove agent snap --comp promo --at hook       # one frame, 640 pixels wide
+npx smoove agent snap --comp promo --frame 120 --width 1080
+npx smoove agent timeline --comp promo             # beats and sequences, in frames
+npx smoove agent status                            # what the user's tab shows
 ```
 
 Each image command prints the file's path (under `.smoove/snaps/` or
@@ -47,7 +62,7 @@ first frame after it) name the others.
 Beats come from the composition's plan (`new Composition({ plan: beats })`,
 or `comp.setPlan(...)` for a `TransitionSeries`, see
 [transitions.md](transitions.md)). Without a plan, the top-level sequences
-are the beats, named by their `name`. `npx smoove timeline` lists them.
+are the beats, named by their `name`. `npx smoove agent timeline` lists them.
 
 ## Read a contact sheet
 
@@ -60,15 +75,15 @@ a test.
 
 ## Check before you look
 
-`npx smoove check` asks the questions you would otherwise answer by
+`npx smoove agent check` asks the questions you would otherwise answer by
 watching, and prints every finding with its node, frames, beat, and the file
 and line that made the node:
 
 ```sh
-npx smoove check --comp promo
-npx smoove check --all                 # every composition
-npx smoove check --only layout,style   # some of purity, layout, intent, motion, style
-npx smoove check --images              # an image of each error and held warning
+npx smoove agent check --comp promo
+npx smoove agent check --all                 # every composition
+npx smoove agent check --only layout,style   # some of purity, layout, intent, motion, style
+npx smoove agent check --images              # an image of each error and held warning
 ```
 
 It reads the project's files for code that breaks scrubbing (`Math.random()`,
@@ -119,7 +134,7 @@ The user points by dragging a rectangle over the frame in the studio. Read
 it with:
 
 ```sh
-npx smoove context
+npx smoove agent context
 ```
 
 It prints the composition, the frame and its beat, the path of an image of
@@ -170,8 +185,8 @@ user the URL it returns.
 ## Move the user's view, and render
 
 ```sh
-npx smoove seek 90 --comp promo   # moves the user's playhead
-npx smoove render --comp promo    # writes out/promo.mp4 through the studio's queue
+npx smoove agent seek 90 --comp promo   # moves the user's playhead
+npx smoove render --comp promo          # writes out/promo.mp4 through the studio's queue
 ```
 
 Both affect the user. Seek only when they ask to be shown something. Render
@@ -179,12 +194,14 @@ only when they ask for a video; never to check your own work.
 
 ## When something fails
 
-- `no-server`: run `npx smoove start`.
+- `no-server`: run `npx smoove agent start`.
 - `composition-error`: the composition threw while building. The message
   has the error; fix the code.
 - `unknown-beat`: the message lists the beat names that exist.
 - `frame-out-of-range`: the message gives the valid range, counting from 0.
 - `no-browser`: no headless browser could start. Ask the user to open the
   studio URL, and try again.
+- `render-off`: the project's `smoove.config.ts` has `render: false`. Tell
+  the user; don't change the setting yourself.
 - `tab-timeout`: the tab took over 15 seconds, usually a composition still
   loading media. Try again.

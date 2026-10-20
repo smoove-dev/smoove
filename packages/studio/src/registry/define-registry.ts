@@ -1,5 +1,5 @@
 import type { Composition } from "@smoove/core";
-import type { CompositionInput, Registry, RegistryEntry } from "../types.js";
+import type { CompositionInput, Registry, RegistryEntry, RegistryProblem } from "../types.js";
 
 /** Unwrap a loader result that may be a Composition or a `{ default }` module. */
 function unwrap(value: Composition | { default: Composition }): Composition {
@@ -12,24 +12,67 @@ function resolve(input: CompositionInput): Promise<Composition> {
   return Promise.resolve(value).then(unwrap);
 }
 
+/** Where the registry came from, when the studio found it on disk. */
+export interface RegistrySources {
+  /** The folder under `compositions/` each entry came from, in the same order. */
+  folders?: string[];
+  /** Folders under `compositions/` with no index file. */
+  missing?: string[];
+}
+
 /**
  * Build a Registry from id-keyed entries. `load(id)` is memoized so the preview
  * and an in-process render share one construction. Isomorphic — no React/DOM
  * imports — so a render worker can import it in Node.
+ *
+ * With `sources.folders` (the studio's own discovery), a duplicate id is a
+ * problem naming both folders and the later entry is left out, instead of an
+ * error that would take the whole studio down. Each problem is logged once.
  */
-export function defineRegistry(entries: RegistryEntry[]): Registry {
+export function defineRegistry(entries: RegistryEntry[], sources?: RegistrySources): Registry {
   const byId = new Map<string, RegistryEntry>();
-  for (const e of entries) {
+  const folderOf = new Map<string, string>();
+  const kept: RegistryEntry[] = [];
+  const problems: RegistryProblem[] = [];
+  const folders = sources?.folders;
+  entries.forEach((e, i) => {
     if (!e.id) throw new Error("defineRegistry: every entry needs an id");
-    if (byId.has(e.id)) throw new Error(`defineRegistry: duplicate id "${e.id}"`);
+    const folder = folders?.[i];
+    if (byId.has(e.id)) {
+      if (folder === undefined) throw new Error(`defineRegistry: duplicate id "${e.id}"`);
+      problems.push({
+        level: "error",
+        message: `compositions/${folderOf.get(e.id)} and compositions/${folder} both use the id "${e.id}". The studio shows compositions/${folderOf.get(e.id)} and leaves the other out until one of them changes its id.`,
+      });
+      return;
+    }
     byId.set(e.id, e);
+    kept.push(e);
+    if (folder === undefined) return;
+    folderOf.set(e.id, folder);
+    if (folder !== e.id) {
+      problems.push({
+        level: "warning",
+        message: `compositions/${folder} has the id "${e.id}". Name the folder after the id so they're easy to find.`,
+      });
+    }
+  });
+  for (const folder of sources?.missing ?? []) {
+    problems.push({
+      level: "error",
+      message: `compositions/${folder} has no index.ts, so the studio can't show it. Add an index.ts that default-exports the composition's entry.`,
+    });
   }
+  for (const p of problems)
+    (p.level === "error" ? console.error : console.warn)(`[smoove] ${p.message}`);
+
   const loaded = new Map<string, Composition>();
   const pending = new Map<string, Promise<Composition>>();
   const listeners = new Set<(id: string) => void>();
 
   return {
-    entries: () => entries,
+    entries: () => kept,
+    problems: () => problems,
     peek: (id) => loaded.get(id),
     update(id, composition, checks) {
       const entry = byId.get(id);

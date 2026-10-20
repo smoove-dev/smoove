@@ -1114,6 +1114,7 @@ function statusFor(code: ErrorCode): number {
       return 404;
     case "no-tab":
     case "not-active":
+    case "render-off":
       return 409;
     case "composition-error":
       return 422;

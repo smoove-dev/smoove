@@ -34,7 +34,7 @@ describe("hello-smoove", () => {
   });
 
   it("passes its checks", async () => {
-    // The same checks `npx smoove check` runs. Errors fail the test; warnings
+    // The same checks `npx smoove agent check` runs. Errors fail the test; warnings
     // are left to the command's report.
     const report = await runChecks(comp, checks);
     expect(report.findings.filter((f) => f.severity === "error")).toEqual([]);

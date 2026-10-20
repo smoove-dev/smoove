@@ -344,6 +344,12 @@ export function createAgentHandlers(store: StudioStore): TabHandlers {
     _ctx: HandlerContext,
     report: (progress: JobProgress) => void,
   ): Promise<RenderQueued> {
+    if (!store.canRender) {
+      throw new AgentError(
+        "render-off",
+        "Rendering is turned off in smoove.config.ts (render: false).",
+      );
+    }
     const id = params.composition ?? (hasActive() ? store.selectedId.get() : null);
     if (id == null) {
       throw new AgentError(

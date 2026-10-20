@@ -17,7 +17,7 @@ const width = 1280;
 const height = 720;
 
 // Every color in the video, decided once. The checks file declares the same
-// palette, so `npx smoove check` warns about any color outside it.
+// palette, so `npx smoove agent check` warns about any color outside it.
 export const palette = {
   bg: "#0d1117",
   fg: "#e6edf3",
@@ -28,8 +28,8 @@ export const palette = {
 };
 
 // The beats, back to back. Registering them on the composition names them for
-// tools: `npx smoove sheet` shows one tile per beat, and
-// `npx smoove snap --at lockup` jumps to one.
+// tools: `npx smoove agent sheet` shows one tile per beat, and
+// `npx smoove agent snap --at lockup` jumps to one.
 export const beats = plan({
   mark: { durationInFrames: 34 }, // the dot pops in and blinks
   sweep: { durationInFrames: 48 }, // it glides left, then sweeps the bars in

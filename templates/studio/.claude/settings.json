@@ -4,15 +4,16 @@
   ],
   "permissions": {
     "allow": [
-      "Bash(npx smoove start:*)",
-      "Bash(npx smoove stop:*)",
-      "Bash(npx smoove status:*)",
-      "Bash(npx smoove snap:*)",
-      "Bash(npx smoove sheet:*)",
-      "Bash(npx smoove timeline:*)",
-      "Bash(npx smoove context:*)",
-      "Bash(npx smoove check:*)",
-      "Bash(npx smoove render_status:*)",
+      "Bash(npx smoove agent start:*)",
+      "Bash(npx smoove agent stop:*)",
+      "Bash(npx smoove agent status:*)",
+      "Bash(npx smoove agent snap:*)",
+      "Bash(npx smoove agent sheet:*)",
+      "Bash(npx smoove agent timeline:*)",
+      "Bash(npx smoove agent context:*)",
+      "Bash(npx smoove agent check:*)",
+      "Bash(npx smoove agent render_status:*)",
+      "Bash(npx smoove new:*)",
       "Bash(npm test:*)",
       "Bash(npm run test:*)",
       "Bash(npm run typecheck:*)",
@@ -24,7 +25,8 @@
       "mcp__smoove__timeline",
       "mcp__smoove__context",
       "mcp__smoove__check",
-      "mcp__smoove__render_status"
+      "mcp__smoove__render_status",
+      "mcp__smoove__new"
     ]
   }
 }

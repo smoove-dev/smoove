@@ -51,6 +51,10 @@ import ribbon from "./compositions/ribbon/index.js";
 export default defineRegistry([pulse, ribbon]);
 ```
 
+A studio project made with `npm create smoove` has no such file to write: its
+studio finds every `compositions/<folder>/index.ts` itself, and the generated
+registry gets the same hot reload.
+
 Each entry is the default export of a composition directory. When you edit a
 composition's source, you want the studio to swap in the new version in place,
 keeping the current selection, props, and playhead, rather than reloading the page.
