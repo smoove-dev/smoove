@@ -18,6 +18,9 @@ const HELP = `create-smoove — scaffold a smoove video project
 Usage:
   npm create smoove [template] [dir] [options]
 
+Without a terminal (a coding agent, CI), the template defaults to studio
+and the directory to ./my-smoove-studio.
+
 Templates:
   studio        A studio project: a compositions folder, with the studio's
                 timeline, props panel and render queue ready to run.
@@ -53,24 +56,32 @@ async function main(): Promise<void> {
   // -- resolve template ------------------------------------------------
   let template = opts.template;
   if (!template) {
-    if (!interactive) bail("Pass a template (studio | composition) in non-interactive mode.");
-    template = guard(
-      await p.select({
-        message: "Which template?",
-        options: [
-          {
-            value: "studio" as const,
-            label: "studio",
-            hint: "timeline UI, props panel, server rendering",
-          },
-          {
-            value: "composition" as const,
-            label: "composition",
-            hint: "one composition + player preview, Vite",
-          },
-        ],
-      }),
-    );
+    if (!interactive) {
+      // No terminal usually means a coding agent. The studio is where an agent
+      // works best (AGENTS.md, the skill, `smoove agent`), so default to it.
+      template = "studio";
+      p.log.info(
+        "No template given, so using studio: the best fit for a coding agent. Pass `composition` for a single-scene Vite app.",
+      );
+    } else {
+      template = guard(
+        await p.select({
+          message: "Which template?",
+          options: [
+            {
+              value: "studio" as const,
+              label: "studio",
+              hint: "timeline UI, props panel, server rendering",
+            },
+            {
+              value: "composition" as const,
+              label: "composition",
+              hint: "one composition + player preview, Vite",
+            },
+          ],
+        }),
+      );
+    }
   }
 
   // -- resolve language (composition only) -----------------------------
@@ -95,14 +106,18 @@ async function main(): Promise<void> {
   // -- resolve target dir ----------------------------------------------
   let dir = opts.dir;
   if (!dir) {
-    if (!interactive) bail("Pass a target directory in non-interactive mode.");
-    dir = guard(
-      await p.text({
-        message: "Where should the project go?",
-        placeholder: template === "studio" ? "./my-smoove-studio" : "./my-composition",
-        validate: (v) => (v?.trim() ? undefined : "Enter a directory"),
-      }),
-    ).trim();
+    if (!interactive) {
+      dir = template === "studio" ? "my-smoove-studio" : "my-composition";
+      p.log.info(`No directory given, so using ./${dir}.`);
+    } else {
+      dir = guard(
+        await p.text({
+          message: "Where should the project go?",
+          placeholder: template === "studio" ? "./my-smoove-studio" : "./my-composition",
+          validate: (v) => (v?.trim() ? undefined : "Enter a directory"),
+        }),
+      ).trim();
+    }
   }
   const targetDir = path.resolve(dir);
   if (existsSync(targetDir) && readdirSync(targetDir).length > 0) {
@@ -180,7 +195,8 @@ async function main(): Promise<void> {
         ? [
             "",
             "Add a composition with: npx smoove new",
-            "Working with a coding agent? It can run the studio itself: npx smoove agent start",
+            "Coding agent? Read AGENTS.md next: it starts the studio with",
+            "npx smoove agent start and checks its own frames as it works.",
           ]
         : []),
       "",
