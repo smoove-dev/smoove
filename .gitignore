@@ -9,6 +9,9 @@ dist
 build
 doc
 package-lock.json
+# smoove agent bridge: discovery file (holds the per-run token) and snapshots
+.smoove/
+
 # Local demo app (not part of the published workspace)
 demo/
 

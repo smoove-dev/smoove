@@ -30,6 +30,7 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
+    "@smoove/agent": "workspace:^",
     "esbuild": "^0.25.0"
   },
   "peerDependencies": {

@@ -21,6 +21,15 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
 
+  packages/agent:
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.0
+        version: 22.19.20
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/debug@4.1.13)(@types/node@22.19.20)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
+
   packages/code:
     dependencies:
       '@codemirror/language':
@@ -386,6 +395,9 @@ importers:
       '@base-ui/react':
         specifier: ^1.5.0
         version: 1.5.0(@types/react@18.3.29)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@smoove/agent':
+        specifier: workspace:^
+        version: link:../agent
       '@smoove/core':
         specifier: workspace:^
         version: link:../core
@@ -445,6 +457,9 @@ importers:
 
   packages/vite:
     dependencies:
+      '@smoove/agent':
+        specifier: workspace:^
+        version: link:../agent
       esbuild:
         specifier: ^0.25.0
         version: 0.25.12

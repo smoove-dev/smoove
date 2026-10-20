@@ -4,6 +4,7 @@
   "commit": false,
   "fixed": [
     [
+      "@smoove/agent",
       "@smoove/code",
       "@smoove/effects",
       "@smoove/lottie",
