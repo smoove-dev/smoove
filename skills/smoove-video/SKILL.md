@@ -212,6 +212,10 @@ look at your work with the `smoove` command:
    file and line that made each one. With no mark, ask them to drag a
    rectangle over the thing in the studio.
 
+The project's `.mcp.json` also registers these commands as MCP tools
+(`mcp__smoove__snap` and the rest). When you have them, use them: same
+commands, same results, and `snap` and `sheet` hand you the image directly.
+
 Pass the plan to the composition (`plan: beats`, see
 [rules/planning.md](rules/planning.md)), so the sheet shows one tile per beat
 and `--at` knows the names. The commands, what they print, and how to read a

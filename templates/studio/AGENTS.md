@@ -20,6 +20,11 @@ watch as you work:
 
 Stop it with `npx smoove stop` when you're done.
 
+The project also registers the same commands as MCP tools (`.mcp.json`). When
+the smoove tools are available, use them: they're the same commands as
+`npx smoove`, and `snap` and `sheet` hand you the image directly. The command
+works when they aren't.
+
 Then loop:
 
 1. Write or change the composition.

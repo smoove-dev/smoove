@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "smoove": {
+      "command": "npx",
+      "args": ["smoove", "mcp"]
+    }
+  }
+}

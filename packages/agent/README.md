@@ -65,6 +65,29 @@ layout,style` runs some groups, `--all` checks every composition, and
 `--images` writes an image of each error and held warning under
 `.smoove/checks/`.
 
+### As MCP tools
+
+`smoove mcp` serves the same commands as MCP tools over standard input and
+output, for agents that prefer tools over a shell. Register it in the
+project's `.mcp.json`; the studio template already does:
+
+```json
+{
+  "mcpServers": {
+    "smoove": { "command": "npx", "args": ["smoove", "mcp"] }
+  }
+}
+```
+
+Each tool carries its command's name and takes its options by their full
+names (`composition`, `frame`, `at` and so on). `snap` and `sheet` return the
+image itself as well as its path. `context` attaches the marked frame only
+with `image: true`, and `check` lists image paths without attaching them.
+The text a tool returns is the command's output, word for word. Through
+MCP, a render that runs past 50 seconds hands back its job id, since some
+clients cut tool calls off after a minute; `render_status` follows it (also
+`smoove render_status <job>` in the shell).
+
 ### Beats
 
 A sheet shows one tile per beat, and `--at` names a point in a beat. Beats
