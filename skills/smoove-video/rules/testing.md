@@ -164,6 +164,67 @@ it("reads 45,999 after 'one less'", async () => {
 `cue(phrase, word)` is a few lines over the word list, see "Cues from data"
 in [sequencing.md](sequencing.md).
 
+## The checks file
+
+Next to each composition, a checks file says what it promises, and
+`npx smoove check` holds it to that (see [studio.md](studio.md)). It's
+TypeScript, named after the composition, and imports its beats, so the
+promises move when the plan is retimed:
+
+```ts
+// composition.check.ts
+import { appearsBy, before, defineChecks, keepsMoving, staysInFrame } from "@smoove/core/testing";
+import comp, { beats, look } from "./composition";
+
+export default defineChecks(comp, {
+  intent: [
+    appearsBy(".title", beats.hook.settled),
+    before(".title", ".tagline"),
+    staysInFrame(".tagline"),
+    keepsMoving({ except: [beats.outro] }),
+  ],
+  allow: [
+    { select: ".ghost", checks: ["layout/off-canvas"], reason: "the ghost word bleeds off the left edge on purpose" },
+  ],
+  style: { palette: look.palette, fonts: look.fonts },
+});
+```
+
+Point the registry entry at it, the same way it points at the composition:
+`checks: () => import("./composition.check.js")`.
+
+The four intents:
+
+- `appearsBy(selector, at)`: every match is visible at `at`.
+- `before(first, second)`: `first` is visible before `second` is.
+- `staysInFrame(selector)`: once visible, the box never leaves the canvas.
+- `keepsMoving({ maxStill, except })`: no stretch longer than `maxStill`
+  (two seconds by default) where nothing changes, except in the beats
+  listed, like an end card that holds.
+
+`at` is a frame number, `{ time }` in seconds, or a beat point such as
+`beats.hook.settled` or `beats.land.end`; prefer beat points. "Visible" is
+the probe's test, so a node at scale 0 or behind a closed clip still counts
+as visible: pick nodes whose opacity or sequence decides when they show. A
+selector that matches nothing fails, so a renamed node can't pass quietly.
+
+Each allow entry needs a reason, and can be limited with `beats`. The
+command counts allowed findings, and warns about an entry that matches
+nothing. Purity errors can't be allowed.
+
+Use intents for timing and presence, and probe tests (above) for numbers and
+content. A test can run the same checks:
+
+```ts
+import { runChecks } from "@smoove/core/testing";
+import checks from "./composition.check";
+
+it("passes its checks", async () => {
+  const report = await runChecks(comp, checks);
+  expect(report.findings.filter((f) => f.severity === "error")).toEqual([]);
+});
+```
+
 ## Gotchas
 
 - `await comp.whenReady()` first. Fonts and images load asynchronously, and a

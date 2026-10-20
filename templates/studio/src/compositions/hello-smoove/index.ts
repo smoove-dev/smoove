@@ -10,6 +10,7 @@ const entry: RegistryEntry<HelloSmooveProps> = {
   tags: ["intro", "props"],
   propsSchema: schema,
   composition: () => import("./composition.js"),
+  checks: () => import("./composition.check.js"),
 };
 
 export default entry;

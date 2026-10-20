@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { closestMarked, coverage, dropFillers, MARK_MIN_COVER, selectMarked } from "./index.js";
+import { closestMarked, coverage, MARK_MIN_COVER, selectMarked } from "./index.js";
 
 const rect = { x: 0, y: 0, width: 100, height: 100 };
 
@@ -47,50 +47,6 @@ describe("selectMarked", () => {
       rect,
     );
     expect(picked.map((p) => p.n)).toEqual(["a", "b"]);
-  });
-});
-
-describe("dropFillers", () => {
-  type Item = {
-    n: string;
-    box: { x: number; y: number; width: number; height: number };
-    tagged: boolean;
-    parent: Item | null;
-  };
-  const box = { x: 10, y: 10, width: 50, height: 20 };
-
-  it("drops an untagged node that only fills an ancestor's box", () => {
-    const text: Item = { n: "Text", box, tagged: true, parent: null };
-    const inner: Item = { n: "Group", box: { ...box }, tagged: false, parent: text };
-    const konvaText: Item = {
-      n: "Konva.Text",
-      box: { ...box, x: 10.2 },
-      tagged: false,
-      parent: inner,
-    };
-    const kept = dropFillers(
-      [text, inner, konvaText],
-      (i) => i.parent,
-      (i) => i.tagged,
-    );
-    expect(kept.map((i) => i.n)).toEqual(["Text"]);
-  });
-
-  it("keeps a tagged node with its parent's box, and untagged parts with their own box", () => {
-    const block: Item = { n: "Block", box, tagged: true, parent: null };
-    const text: Item = { n: "Text", box: { ...box }, tagged: true, parent: block };
-    const token: Item = {
-      n: "token",
-      box: { x: 12, y: 12, width: 8, height: 8 },
-      tagged: false,
-      parent: block,
-    };
-    const kept = dropFillers(
-      [block, text, token],
-      (i) => i.parent,
-      (i) => i.tagged,
-    );
-    expect(kept.map((i) => i.n)).toEqual(["Block", "Text", "token"]);
   });
 });
 

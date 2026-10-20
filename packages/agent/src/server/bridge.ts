@@ -10,6 +10,9 @@ import {
   type AgentErrorBody,
   type AgentResponse,
   type BridgeHello,
+  CHECK_TIMEOUT_MS,
+  CHECKS_DIR,
+  type CheckParams,
   type ContextData,
   DEFAULT_SNAPSHOT_WIDTH,
   DEFAULT_TILE_WIDTH,
@@ -58,6 +61,8 @@ export interface AgentBridgeOptions {
   root: string;
   /** Reply timeout. Default 15 seconds. */
   timeoutMs?: number;
+  /** Reply timeout for a check, which sweeps many frames. Default 120 seconds. */
+  checkTimeoutMs?: number;
   /**
    * After a source file changes, hold requests this long before forwarding
    * them, so the tab has received the hot update and started its rebuild.
@@ -133,6 +138,7 @@ const RECONNECT_WAIT_MS = 5000;
 export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
   const root = options.root;
   const timeoutMs = options.timeoutMs ?? TAB_TIMEOUT_MS;
+  const checkTimeoutMs = options.checkTimeoutMs ?? CHECK_TIMEOUT_MS;
   const settleMs = options.settleMs ?? 300;
   const pingMs = options.pingMs ?? 15_000;
   const now = options.now ?? Date.now;
@@ -218,6 +224,24 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
     writeFileSync(path, bytes);
     marks.putImage(id, path);
     return send(res, 200, { ok: true, data: null });
+  }
+
+  async function checkImage(req: IncomingMessage, res: ServerResponse, q: URLSearchParams) {
+    const bytes = await readBody(req, PNG_LIMIT);
+    if (!tabs.get(q.get("tabId") ?? "")) return send(res, 404, fail("bad-request", "Unknown tab."));
+    const dir = join(root, CHECKS_DIR);
+    mkdirSync(dir, { recursive: true });
+    const path = join(
+      dir,
+      checkFileName(
+        q.get("composition") ?? "",
+        Number(q.get("index") ?? 0),
+        q.get("code") ?? "",
+        Number(q.get("frame") ?? 0),
+      ),
+    );
+    writeFileSync(path, bytes);
+    return send(res, 200, { ok: true, data: { path } });
   }
 
   async function postMark(req: IncomingMessage, res: ServerResponse) {
@@ -308,7 +332,12 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
     if (wait > 0) await new Promise((r) => setTimeout(r, wait));
   }
 
-  function forward(tab: Tab, type: TabRequestType, params: TabRequest["params"]): Promise<Out> {
+  function forward(
+    tab: Tab,
+    type: TabRequestType,
+    params: TabRequest["params"],
+    waitMs = timeoutMs,
+  ): Promise<Out> {
     const id = randomUUID();
     return new Promise((resolve) => {
       const timer = setTimeout(() => {
@@ -320,12 +349,12 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
             ok: false,
             error: {
               code: "tab-timeout",
-              message: `The studio tab at ${tab.path} didn't answer within ${Math.round(timeoutMs / 1000)} seconds. It may still be loading the composition; check the browser console, then try again.`,
+              message: `The studio tab at ${tab.path} didn't answer within ${Math.round(waitMs / 1000)} seconds. It may still be loading the composition; check the browser console, then try again.`,
             },
             drawnBy: drawnBy(tab),
           },
         });
-      }, timeoutMs);
+      }, waitMs);
       pending.set(id, {
         tab,
         type,
@@ -361,12 +390,13 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
   async function dispatch(
     type: TabRequestType,
     pick: () => Promise<{ tab: Tab; params: TabRequest["params"] } | Out>,
+    waitMs = timeoutMs,
   ): Promise<Out> {
-    const deadline = now() + timeoutMs;
+    const deadline = now() + waitMs;
     for (let attempt = 1; ; attempt++) {
       const picked = await pick();
       if ("status" in picked) return picked;
-      const out = await forward(picked.tab, type, picked.params);
+      const out = await forward(picked.tab, type, picked.params, Math.max(1, deadline - now()));
       const left = deadline - now();
       if (!out.closed || type === "render" || attempt >= 4 || left <= 0) return out;
       await nextConnect(Math.min(left, reconnectMs));
@@ -429,17 +459,18 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
    */
   async function target(
     req: IncomingMessage,
-    type: "snapshot" | "sheet" | "timeline" | "render",
+    type: "snapshot" | "sheet" | "timeline" | "render" | "check",
     composition: string | undefined,
   ): Promise<{ tab: Tab; maySwitch: boolean } | Out> {
     const users = tabs.users();
+    // A check seeks through hundreds of frames, so it never goes to a tab someone watches.
     if (type === "render") {
       const user = tabs.pick(users);
       if (user) return { tab: user, maySwitch: false };
-    } else if (composition) {
+    } else if (type !== "check" && composition) {
       const showing = tabs.pick(users.filter((t) => t.composition === composition));
       if (showing) return { tab: showing, maySwitch: false };
-    } else {
+    } else if (type !== "check") {
       const user = tabs.pick(users);
       if (user) return { tab: user, maySwitch: false };
     }
@@ -645,6 +676,7 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
         );
       }
       if (sub === "tab/mark-image" && method === "POST") return markImage(req, res, q);
+      if (sub === "tab/check-image" && method === "POST") return checkImage(req, res, q);
       if (sub === "tab/mark" && method === "POST") return postMark(req, res);
       if (sub === "tab/mark-clear" && method === "POST") return clearMark(req, res);
       if (sub === "tab/job" && method === "POST") {
@@ -719,6 +751,22 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
       return sendOut(res, out);
     }
 
+    if (sub === "check" && method === "POST") {
+      const params = parseCheck(await readJson<Record<string, unknown>>(req));
+      if (typeof params === "string") return send(res, 400, fail("bad-request", params));
+      await settleAfterEdit();
+      const out = await dispatch(
+        "check",
+        async () => {
+          const picked = await target(req, "check", params.composition);
+          if ("status" in picked) return picked;
+          return { tab: picked.tab, params: { ...params, maySwitch: picked.maySwitch } };
+        },
+        checkTimeoutMs,
+      );
+      return sendOut(res, out);
+    }
+
     if (sub === "render" && method === "POST") {
       const params = parseRender(await readJson<Record<string, unknown>>(req), root);
       if (typeof params === "string") return send(res, 400, fail("bad-request", params));
@@ -747,7 +795,7 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
       404,
       fail(
         "bad-request",
-        `No endpoint ${method} ${AGENT_PREFIX}${sub}. The endpoints are GET status, POST seek, POST snapshot, POST sheet, POST timeline, POST render, GET render/<job id> and POST context.`,
+        `No endpoint ${method} ${AGENT_PREFIX}${sub}. The endpoints are GET status, POST seek, POST snapshot, POST sheet, POST timeline, POST render, GET render/<job id>, POST context and POST check.`,
       ),
     );
   }
@@ -825,6 +873,19 @@ export function snapshotFileName(composition: string, frame: number, width: numb
 /** `promo`, 120 → `promo-f120.png`. */
 export function markFileName(composition: string, frame: number): string {
   return `${safeName(composition)}-f${frame}.png`;
+}
+
+/**
+ * `promo`, finding 3, `layout/contrast`, 120 → `promo-3-layout-contrast-f120.png`.
+ * The finding's index keeps two findings on the same frame apart.
+ */
+export function checkFileName(
+  composition: string,
+  index: number,
+  code: string,
+  frame: number,
+): string {
+  return `${safeName(composition)}-${index}-${safeName(code.replace("/", "-"))}-f${frame}.png`;
 }
 
 /** Enough shape to hold and print a mark; the tab built it. */
@@ -973,6 +1034,26 @@ function parseSheet(body: Record<string, unknown> | null): SheetParams | string 
     out.width = w;
   } else {
     out.width = DEFAULT_TILE_WIDTH;
+  }
+  return out;
+}
+
+function parseCheck(body: Record<string, unknown> | null): CheckParams | string {
+  const b = body ?? {};
+  const out: CheckParams = {};
+  if (b.composition !== undefined) {
+    if (typeof b.composition !== "string") return "composition must be a string.";
+    out.composition = b.composition;
+  }
+  if (b.groups !== undefined) {
+    if (!Array.isArray(b.groups) || !b.groups.every((g) => typeof g === "string")) {
+      return "groups must be a list of strings.";
+    }
+    out.groups = b.groups as string[];
+  }
+  if (b.images !== undefined) {
+    if (typeof b.images !== "boolean") return "images must be true or false.";
+    out.images = b.images;
   }
   return out;
 }

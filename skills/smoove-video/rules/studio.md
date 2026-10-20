@@ -58,6 +58,52 @@ shows settled moments, so check motion itself (an entrance's timing, a
 transition) with `snap --at <beat>.start` and a few frames after it, or with
 a test.
 
+## Check before you look
+
+`npx smoove check` asks the questions you would otherwise answer by
+watching, and prints every finding with its node, frames, beat, and the file
+and line that made the node:
+
+```sh
+npx smoove check --comp promo
+npx smoove check --all                 # every composition
+npx smoove check --only layout,style   # some of purity, layout, intent, motion, style
+npx smoove check --images              # an image of each error and held warning
+```
+
+It reads the project's files for code that breaks scrubbing (`Math.random()`,
+the clock, a `random(seed)` generator advanced inside an updater), then
+sweeps the composition in the headless tab, never the user's.
+
+Four kinds of finding are errors, and the command exits with 1 while any is
+left:
+
+- `purity/seek-mismatch`: a node comes out different when you jump to a
+  frame than when you play up to it. Some value isn't a function of the
+  frame.
+- `purity/layout-child-position`: an updater sets x or y on a node a `Flex`
+  or `Block` positions. Layout overwrites it; animate scale or opacity, or
+  move the parent.
+- `intent/...`: an intent in the checks file failed, or its selector
+  matches nothing.
+- `layout/text-ellipsis` and `layout/text-overflow`, when held: text cut or
+  trimmed through a beat's settled stretch.
+
+Everything else is a warning: text off the canvas (`layout/off-canvas`) or,
+on a vertical canvas, outside the safe zone (`layout/safe-zone`), contrast
+below the floor (`layout/contrast`, with a palette color that passes), a
+stretch of more than two seconds where nothing moves (`motion/frozen`),
+colors outside the palette (`style/color`), fonts that weren't declared
+(`style/font`), and text drawn in a fallback face (`style/fallback-font`).
+
+A finding is held when it's still there on a beat's settled stretch (from
+the moment the beat is fully revealed to the frame the sheet shows), or
+lasts half a second. Shorter ones, like a title sliding in from off the
+canvas, say "passing" and come last. Fix every error. Fix each warning too,
+or, when it's on purpose, add an allow entry with a reason to the checks
+file ([testing.md](testing.md)). Decoration needs none: shapes and glows
+may bleed off the edge, and text under 30 percent opacity skips contrast.
+
 ## Who draws the image
 
 A request about the composition the user has open is drawn by the user's

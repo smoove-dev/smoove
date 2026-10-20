@@ -31,10 +31,11 @@ export function defineRegistry(entries: RegistryEntry[]): Registry {
   return {
     entries: () => entries,
     peek: (id) => loaded.get(id),
-    update(id, composition) {
+    update(id, composition, checks) {
       const entry = byId.get(id);
       if (!entry) return;
       entry.composition = composition;
+      if (checks) entry.checks = checks;
       loaded.delete(id);
       pending.delete(id);
       for (const fn of listeners) fn(id);

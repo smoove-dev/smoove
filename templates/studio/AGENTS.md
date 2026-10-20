@@ -24,9 +24,12 @@ Then loop:
 
 1. Write or change the composition.
 2. Run `npm run typecheck` and `npm test`, and fix what they report.
-3. Run `npx smoove sheet --comp <id>`. It writes one contact sheet with a
+3. Run `npx smoove check --comp <id>`. Fix every error before you look.
+   Fix each warning too, or, when it's on purpose, add an allow entry with
+   a reason to the composition's checks file.
+4. Run `npx smoove sheet --comp <id>`. It writes one contact sheet with a
    tile per beat, and prints the image's path. Read the image.
-4. Fix what looks wrong, and go back to step 2.
+5. Fix what looks wrong, and go back to step 2.
 
 For a closer look at one moment, use
 `npx smoove snap --comp <id> --at <beat>` (or `--frame <n>`). Use
@@ -51,6 +54,10 @@ Two rules:
   animation code lives). Its sibling `index.ts` is the registry entry.
 - `src/registry.ts`: the catalog the studio and the server renderer share.
   New compositions must be listed here.
+- `src/compositions/<name>/composition.check.ts`: the composition's checks
+  file: what it promises (the title appears by a beat, nothing sits still
+  too long), the allow list, and its palette and fonts. `npx smoove check`
+  and the tests both read it; the registry entry points at it.
 - `src/compositions/<name>/composition.test.ts`: headless tests for a
   composition (vitest and `@smoove/core/testing`). `npm test` runs them all.
   When the brief carries numbers ("the title lands by 0.5 seconds"), assert

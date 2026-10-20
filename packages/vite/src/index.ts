@@ -373,7 +373,7 @@ function buildOutput(code: string, specs: string[]): string {
       `  import.meta.hot.accept(${JSON.stringify(specs)}, (__mods) => {`,
       "    for (const __m of __mods) {",
       "      const __e = __m && __m.default;",
-      `      if (__e && __e.id) ${REG}.update(__e.id, __e.composition);`,
+      `      if (__e && __e.id) ${REG}.update(__e.id, __e.composition, __e.checks);`,
       "    }",
       "  });",
       "}",

@@ -7,6 +7,7 @@ import audiogram from "./compositions/audiogram/index.js";
 import basic from "./compositions/basic/index.js";
 import blur from "./compositions/blur/index.js";
 import bouncing from "./compositions/bouncing/index.js";
+import checkLab from "./compositions/check-lab/index.js";
 import chromaKey from "./compositions/chroma-key/index.js";
 // Components.
 import clipPunch from "./compositions/clip-punch/index.js";
@@ -87,6 +88,7 @@ export default defineRegistry([
   // Featured.
   pulse,
   // Basics.
+  checkLab,
   basic,
   bouncing,
   staggered,

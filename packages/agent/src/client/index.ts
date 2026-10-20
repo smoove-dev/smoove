@@ -12,6 +12,8 @@ import {
   AgentError,
   type AgentResponse,
   type BridgeHello,
+  type CheckParams,
+  type CheckResult,
   type MarkInput,
   type RenderParams,
   type RenderQueued,
@@ -48,6 +50,8 @@ export interface TabHandlers {
   snapshot(params: SnapshotParams, ctx: HandlerContext): Promise<SnapshotResult>;
   sheet(params: SheetParams, ctx: HandlerContext): Promise<SheetResult>;
   timeline(params: TimelineParams, ctx: HandlerContext): Promise<TimelineData>;
+  /** Run the checks on a composition. Images, if any, are posted before the data. */
+  check(params: CheckParams, ctx: HandlerContext): Promise<CheckResult>;
   /**
    * Queue a render and resolve once it's queued. Call `report` with every
    * later change to the job until it's done, failed or canceled.
@@ -262,6 +266,24 @@ export async function connectAgentTab(opts: ConnectOptions): Promise<AgentTabCon
             ok: true,
             data: await handlers.timeline(req.params, ctx),
           });
+        case "check": {
+          const { images, ...data } = await handlers.check(req.params, ctx);
+          for (const img of images ?? []) {
+            if (signal.aborted) return;
+            const finding = data.findings[img.finding];
+            if (!finding) continue;
+            const path = await postCheckImage(
+              data.composition,
+              img.finding,
+              finding.code,
+              img.frame,
+              img.png,
+            );
+            if (path) finding.image = path;
+          }
+          if (signal.aborted) return;
+          return await postJson(req.id, { ok: true, data });
+        }
         case "render": {
           // Progress reported before the server knows the job id would be
           // dropped, so hold it until the reply is in.
@@ -325,6 +347,35 @@ export async function connectAgentTab(opts: ConnectOptions): Promise<AgentTabCon
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     }).catch(() => {});
+  }
+
+  /** Post one finding's image; the server answers where it wrote it. */
+  async function postCheckImage(
+    composition: string,
+    index: number,
+    code: string,
+    frame: number,
+    png: Blob,
+  ): Promise<string | null> {
+    if (!tabId || closed) return null;
+    const qs = new URLSearchParams({
+      tabId,
+      composition,
+      index: String(index),
+      code,
+      frame: String(frame),
+    });
+    try {
+      const res = await fetch(`${base}tab/check-image?${qs}`, {
+        method: "POST",
+        headers: { "Content-Type": "image/png" },
+        body: png,
+      });
+      const body = (await res.json()) as AgentResponse<{ path: string }>;
+      return body.ok ? body.data.path : null;
+    } catch {
+      return null;
+    }
   }
 
   async function postMark(mark: MarkInput, png: Blob): Promise<void> {

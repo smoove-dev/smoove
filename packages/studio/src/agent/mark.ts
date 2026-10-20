@@ -1,15 +1,14 @@
 import {
   closestMarked,
   DEFAULT_SNAPSHOT_WIDTH,
-  dropFillers,
   MARK_TEXT_MAX,
   type MarkInput,
   type MarkNode,
   type MarkRect,
-  type SourceLocation,
   selectMarked,
 } from "@smoove/agent";
 import { type Composition, measure } from "@smoove/core";
+import { dropFillers, sourceOf, typeOf } from "@smoove/core/testing";
 import type Konva from "konva";
 import { beatAt, beatsOf } from "./beats.js";
 import { captureFrames, encodePng, scaleCanvas } from "./capture.js";
@@ -91,24 +90,6 @@ function union(rects: MarkRect[]): MarkRect | null {
   const right = Math.max(...live.map((r) => r.x + r.width));
   const bottom = Math.max(...live.map((r) => r.y + r.height));
   return { x, y, width: right - x, height: bottom - y };
-}
-
-/** The node's own source tag, or its nearest tagged ancestor's (inherited). */
-export function sourceOf(node: Konva.Node): SourceLocation | null {
-  let cur: Konva.Node | null = node;
-  while (cur) {
-    const tag = (cur as Tagged)._smooveSource;
-    if (tag) return { ...tag, inherited: cur !== node };
-    cur = cur.getParent();
-  }
-  return null;
-}
-
-/** The class the author wrote. A smoove Text extends a Konva Group, so the class name won't do. */
-function typeOf(node: Konva.Node): string {
-  const name = node.constructor?.name ?? "";
-  // A minified build mangles constructor names to a letter or two.
-  return name.length > 2 ? name : node.getClassName();
 }
 
 function textOf(node: Konva.Node): string | undefined {
@@ -207,7 +188,7 @@ export async function buildMark(
 }
 
 /** A bright outline over a thin dark one, so it reads on any frame. */
-function strokeRect(canvas: HTMLCanvasElement, rect: MarkRect, scale: number): void {
+export function strokeRect(canvas: HTMLCanvasElement, rect: MarkRect, scale: number): void {
   const g = canvas.getContext("2d");
   if (!g) return;
   const x = rect.x * scale;

@@ -25,6 +25,7 @@ smoove snap --comp promo --at hook   # one frame as a PNG
 smoove sheet --comp promo            # one tile per beat, on one PNG
 smoove timeline --comp promo         # beats and sequences, in frames
 smoove context                       # what the user marked on the frame
+smoove check --comp promo            # purity, layout, motion and style problems
 smoove seek 90                       # move the user's playhead
 smoove render --comp promo           # render a video, only when the user asks
 smoove stop
@@ -44,6 +45,25 @@ Images land under `.smoove/snaps/` and `.smoove/sheets/`, and the command
 prints their paths. Snapshots are 640 pixels wide by default and sheet tiles
 320, because every image an agent reads costs it context. `--width` changes
 both.
+
+### Checks
+
+`smoove check` asks the questions an agent would otherwise answer by
+watching. It scans the project's files for code that breaks scrubbing, like
+`Math.random()` or the clock, then sweeps the composition in the headless
+tab: it jumps to frames and compares them with playback, and looks for text
+cut by an ellipsis, content off the canvas, low contrast, colors outside the
+palette, stretches where nothing moves, and the intents in the
+composition's checks file. Each finding names the node, the frames, the
+beat, and the file and line.
+
+Only four kinds of finding are errors, and they make the command exit with
+1: a frame that changes when you jump to it, an updater moving a node its
+Flex or Block positions, a failed intent, and text cut or overflowing
+through a beat's settled stretch. Everything else is a warning. `--only
+layout,style` runs some groups, `--all` checks every composition, and
+`--images` writes an image of each error and held warning under
+`.smoove/checks/`.
 
 ### Beats
 

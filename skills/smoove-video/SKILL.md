@@ -202,9 +202,11 @@ look at your work with the `smoove` command:
    the user asks for a video.
 2. Start the studio yourself with `npx smoove start`, and give the user the
    URL it prints so they can watch.
-3. Loop: write, typecheck, test, then one `npx smoove sheet --comp <id>` per
-   pass. Read the image, fix, repeat. One sheet per pass, not one image per
-   beat; use `snap --at <beat>` for a closer look at one moment.
+3. Loop: write, typecheck, test, `npx smoove check --comp <id>`, then one
+   `npx smoove sheet --comp <id>` per pass. Read the image, fix, repeat.
+   Fix every error check reports; fix each warning or allow it, with a
+   reason, in the composition's checks file. One sheet per pass, not one
+   image per beat; use `snap --at <beat>` for a closer look at one moment.
 4. When the user says "this", "here" or "that one", run `npx smoove context`
    before anything else. It lists the nodes they marked on the frame, with the
    file and line that made each one. With no mark, ask them to drag a

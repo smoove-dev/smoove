@@ -5,6 +5,7 @@ import { MEDIA_MARK, TICK_MARK, TIMELINE_MARK } from "../markers.js";
 import { getComposition } from "./composition.js";
 import { type FrameAnchor, Marker, type MarkerSource, type ScenePlacement } from "./marker.js";
 import { structureVersion } from "./structure.js";
+import { inUpdaters } from "./write-watch.js";
 
 /**
  * The shared **timeline core** behind `Sequence` (a stage-level `Konva.Layer`)
@@ -363,7 +364,9 @@ export function TimelineMixin<TBase extends TimelineBase>(
       const tickables = this._kmTickables();
       if (this._kmUpdaters.size > 0) {
         const info = this._kmFrameInfo(local);
-        for (const u of this._kmUpdaters) u(local, info);
+        inUpdaters(() => {
+          for (const u of this._kmUpdaters) u(local, info);
+        });
       }
       // Tick BEFORE layout: a ticked node may change its measured size (e.g. a
       // Text typewriter revealing another line), and the flex pass must see the
