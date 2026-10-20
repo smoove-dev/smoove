@@ -87,6 +87,34 @@ export function resolveDefaults(
   return overrides ? deepMerge(base, overrides) : base;
 }
 
+/**
+ * `fresh` (the defaults for a schema as it is now) with the values from `old`
+ * that still fit: same key, same kind of value. Plain objects are fitted key
+ * by key; keys only `old` has are dropped.
+ */
+export function keepEdits(
+  fresh: Record<string, unknown>,
+  old: Record<string, unknown>,
+): Record<string, unknown> {
+  const out: Record<string, unknown> = { ...fresh };
+  for (const [k, v] of Object.entries(fresh)) {
+    if (!(k in old)) continue;
+    const prev = old[k];
+    if (isPlainObject(v)) {
+      if (isPlainObject(prev)) out[k] = keepEdits(v, prev);
+    } else if (sameKind(v, prev)) {
+      out[k] = prev;
+    }
+  }
+  return out;
+}
+
+/** Both arrays, or both the same primitive type. */
+function sameKind(a: unknown, b: unknown): boolean {
+  if (Array.isArray(a) || Array.isArray(b)) return Array.isArray(a) && Array.isArray(b);
+  return typeof a === typeof b && !isPlainObject(b);
+}
+
 function deepMerge(
   base: Record<string, unknown>,
   over: Record<string, unknown>,

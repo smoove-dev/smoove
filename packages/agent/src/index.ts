@@ -244,16 +244,21 @@ export interface Beat {
   settled: number;
   /** The first frame after the beat (exclusive). */
   end: number;
+  /**
+   * The last frame of the beat's held stretch: one before the earlier of its
+   * end and the next beat's start (see {@link heldToFrame}).
+   */
+  heldTo: number;
   /** The frame a contact sheet shows for this beat (see {@link sheetFrame}). */
   sheet: number;
 }
 
 /**
- * The frame a contact sheet shows for a beat: one before the earlier of its
- * end and the next beat's start, so entrances are done and exits haven't
- * begun. Never before the beat's own start, never past the composition.
+ * The last frame a beat holds before the next one comes in: one before the
+ * earlier of its end and the next beat's start. Never before the beat's own
+ * start, never past the composition.
  */
-export function sheetFrame(
+export function heldToFrame(
   beat: { start: number; end: number },
   nextStart: number | null,
   durationInFrames: number,
@@ -264,16 +269,36 @@ export function sheetFrame(
   return Math.max(beat.start, Math.min(last, durationInFrames - 1), 0);
 }
 
-/** Fill in each beat's sheet frame from the beat after it (in start order). */
+/**
+ * The frame a contact sheet shows for a beat: two thirds of the way from its
+ * settled frame to {@link heldToFrame}. Late enough that entrances are done,
+ * early enough that an exit at the beat's end, such as a fade out, hasn't
+ * begun.
+ */
+export function sheetFrame(
+  beat: { start: number; settled: number; end: number },
+  nextStart: number | null,
+  durationInFrames: number,
+): number {
+  const last = heldToFrame(beat, nextStart, durationInFrames);
+  const from = Math.min(Math.max(beat.start, beat.settled), last);
+  return from + Math.round(((last - from) * 2) / 3);
+}
+
+/** Fill in each beat's held stretch and sheet frame from the beat after it (in start order). */
 export function withSheetFrames(
-  beats: Array<Omit<Beat, "sheet">>,
+  beats: Array<Omit<Beat, "heldTo" | "sheet">>,
   durationInFrames: number,
 ): Beat[] {
   const ordered = [...beats].sort((a, b) => a.start - b.start);
   return beats.map((b) => {
     const i = ordered.indexOf(b);
-    const next = ordered.slice(i + 1).find((n) => n.start > b.start);
-    return { ...b, sheet: sheetFrame(b, next?.start ?? null, durationInFrames) };
+    const next = ordered.slice(i + 1).find((n) => n.start > b.start)?.start ?? null;
+    return {
+      ...b,
+      heldTo: heldToFrame(b, next, durationInFrames),
+      sheet: sheetFrame(b, next, durationInFrames),
+    };
   });
 }
 

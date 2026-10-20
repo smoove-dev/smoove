@@ -128,9 +128,10 @@ const comp = new Composition({ id: "promo", fps, width, height, durationInFrames
 ```
 
 A composition without a plan uses its top-level sequences instead. `--at
-hook` is the frame the sheet shows for that beat: its last frame before the
-next beat comes in. `hook.start`, `hook.settled`, `hook.last` and `hook.end`
-name the other points.
+hook` is the frame the sheet shows for that beat: two thirds of the way from
+its settled frame to its last frame before the next beat comes in, so a fade
+out at the end hasn't started. `hook.start`, `hook.settled`, `hook.last` and
+`hook.end` name the other points.
 
 ### Which tab draws
 

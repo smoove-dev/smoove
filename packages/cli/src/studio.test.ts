@@ -19,8 +19,9 @@ const deps: StudioDeps = {
   start: (r, port) => record(`start ${r} ${port ?? ""}`.trim()),
   serve: (r, port) => record(`serve ${r} ${port ?? ""}`.trim()),
   build: (r) => record(`build ${r}`),
-  test: (r) => record(`test ${r}`),
-  runScript: (r, script) => record(`script ${script} ${r}`),
+  test: (r, args) => record(`test ${r}${args.length > 0 ? ` ${args.join(" ")}` : ""}`),
+  runScript: (r, script, args) =>
+    record(`script ${script} ${r}${args.length > 0 ? ` ${args.join(" ")}` : ""}`),
 };
 
 function io(cwd = root): Io {
@@ -61,6 +62,11 @@ describe("in a preset project", () => {
     expect(calls).toEqual([`build ${root}`, `test ${root}`]);
   });
 
+  it("hands test its Vitest arguments", async () => {
+    await runStudioCommand("test", { args: ["compositions/intro", "-t", "checks"] }, io(), deps);
+    expect(calls).toEqual([`test ${root} compositions/intro -t checks`]);
+  });
+
   it("works from a subfolder of the project", async () => {
     const sub = join(root, "compositions", "intro");
     mkdirSync(sub, { recursive: true });
@@ -83,6 +89,11 @@ describe("in a detached project", () => {
       `script build ${root}`,
       `script test ${root}`,
     ]);
+  });
+
+  it("hands the test script its Vitest arguments", async () => {
+    await runStudioCommand("test", { args: ["--reporter=default"] }, io(), deps);
+    expect(calls).toEqual([`script test ${root} --reporter=default`]);
   });
 });
 

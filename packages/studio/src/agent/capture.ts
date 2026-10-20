@@ -1,5 +1,6 @@
 import { type Composition, VIDEO_MARK } from "@smoove/core";
 import type Konva from "konva";
+import { holdPlayerSignals } from "../signals/signal-bridge.js";
 
 /**
  * Make sure every layer's backing canvas holds at least `ratio` pixels per
@@ -95,6 +96,7 @@ export async function captureFrames(
   if (wasPlaying) comp.pause();
   const videos = new Set<Konva.Node>();
   const restoreRatio = ensurePixelRatio(comp, ratio);
+  const release = holdPlayerSignals();
   try {
     for (let i = 0; i < frames.length; i++) {
       // Microtasks only when nothing gates the frame, so the browser gets
@@ -109,6 +111,7 @@ export async function captureFrames(
     restoreRatio();
     comp.setFrame(original);
     redrawVisible(comp);
+    release();
     if (wasPlaying) comp.play();
   }
   return [...videos];

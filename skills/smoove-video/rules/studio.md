@@ -54,8 +54,9 @@ Without `--comp`, a command uses the composition the user has open.
 ## Points in time
 
 `--at` names a point by beat: `hook` is the frame the contact sheet shows for
-that beat, its last frame before the next beat comes in, so entrances have
-finished and exits haven't started. `hook.start`, `hook.settled` (fully
+that beat, two thirds of the way from its settled frame to its last frame
+before the next beat comes in. By then entrances have finished, and a fade
+out at the beat's end hasn't started. `hook.start`, `hook.settled` (fully
 revealed, after an incoming transition), `hook.last` and `hook.end` (the
 first frame after it) name the others.
 

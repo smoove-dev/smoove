@@ -74,11 +74,15 @@ export function defineRegistry(entries: RegistryEntry[], sources?: RegistrySourc
     entries: () => kept,
     problems: () => problems,
     peek: (id) => loaded.get(id),
-    update(id, composition, checks) {
+    update(id, composition, checks, props) {
       const entry = byId.get(id);
       if (!entry) return;
       entry.composition = composition;
       if (checks) entry.checks = checks;
+      if (props) {
+        entry.propsSchema = props.propsSchema;
+        entry.defaultProps = props.defaultProps;
+      }
       loaded.delete(id);
       pending.delete(id);
       for (const fn of listeners) fn(id);

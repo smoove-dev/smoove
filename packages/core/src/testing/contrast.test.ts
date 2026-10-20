@@ -57,6 +57,21 @@ describe("contrastSweep", () => {
     expect(hits[0]?.details?.floor).toBe(3);
   });
 
+  it("leaves text mid-fade for the frames where it holds", async () => {
+    const faded = (animate: boolean) => {
+      const { comp, seq } = onBackground("#0c0b16");
+      const text = new Text({ text: "Ships", fontSize: 34, fill: "#f5f2ff", x: 100, y: 100 });
+      seq.add(text);
+      // Fades in over the whole clip, or holds at the same faint opacity.
+      seq.register((f) => text.opacity(animate ? 0.35 + (0.65 * f) / 29 : 0.35));
+      return comp;
+    };
+    const fading = await contrastSweep(sweepContext(faded(true)), PALETTE);
+    expect(fading.filter((h) => h.code === "layout/contrast")).toEqual([]);
+    const held = await contrastSweep(sweepContext(faded(false)), PALETTE);
+    expect(held.length).toBeGreaterThan(0);
+  });
+
   it("passes light text on near-black", async () => {
     const { comp, seq } = onBackground("#0c0b16");
     seq.add(new Text({ text: "Readable", fontSize: 34, fill: "#f5f2ff", x: 100, y: 100 }));

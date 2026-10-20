@@ -41,7 +41,12 @@ export type Intent =
   | { kind: "stays-in-frame"; select: string }
   | { kind: "keeps-moving"; maxStill: CheckAt; except: Marker[] };
 
-/** Every node `select` matches is visible at `at`. */
+/**
+ * Every node `select` matches has been visible by `at`: on some frame up to
+ * and including it. A node that fades out before `at` still passes. Give a
+ * node its own name when a shared one (`.caption`) matches others that come
+ * later.
+ */
 export function appearsBy(select: string, at: CheckAt): Intent {
   return { kind: "appears-by", select, at };
 }
@@ -179,7 +184,9 @@ function messageFor(code: CheckCode, d: Record<string, unknown> = {}, fps = 30):
     case "purity/layout-child-position":
       return `An updater sets ${String(d.attr ?? "x")} on a node its Flex or Block positions, so layout overwrites it. Animate scale or opacity instead, or move the parent.`;
     case "intent/appears-by":
-      return `Expected to be visible by frame ${String(d.frame)}, but it isn't.`;
+      return Number(d.matches) > 1
+        ? `Expected to be visible by frame ${String(d.frame)}, but it isn't. ${String(d.select)} matches ${String(d.matches)} nodes and each one has to be; give this one its own name if only it should be.`
+        : `Expected to be visible by frame ${String(d.frame)}, but it isn't.`;
     case "intent/before":
       return `Expected ${String(d.first)} to appear before ${String(d.second)}, but ${String(d.second)} came first (frame ${String(d.secondAt)}).`;
     case "intent/stays-in-frame":
@@ -346,12 +353,14 @@ function intentHits(comp: Composition, intents: Intent[], beats: CheckBeat[]): F
     }
     if (intent.kind === "appears-by") {
       const frame = Math.max(0, Math.min(rows.length - 1, frameOf(comp, intent.at)));
-      for (const n of matched.get(intent.select) ?? []) {
-        if (!rows[frame]?.get(n)) {
+      const nodes = matched.get(intent.select) ?? [];
+      for (const n of nodes) {
+        if (!rows.slice(0, frame + 1).some((row) => row.get(n))) {
           out.push(
             make("intent/appears-by", n, [{ from: frame, to: frame }], {
               frame,
               select: intent.select,
+              matches: nodes.length,
             }),
           );
         }

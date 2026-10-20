@@ -19,7 +19,9 @@ class StuckFont extends Font {
 
 let n = 0;
 // One beat: an entrance over frames 0 to 9, then held from 10 to 29.
-const BEATS: CheckBeat[] = [{ name: "only", start: 0, settled: 10, end: 30, sheet: 29 }];
+const BEATS: CheckBeat[] = [
+  { name: "only", start: 0, settled: 10, end: 30, heldTo: 29, sheet: 29 },
+];
 function makeComp(): { comp: Composition; seq: Sequence } {
   n += 1;
   const comp = new Composition({

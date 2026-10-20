@@ -6,7 +6,14 @@ import {
   DEFAULT_SNAPSHOT_WIDTH,
 } from "@smoove/agent";
 import type { Composition } from "@smoove/core";
-import { type CheckGroup, type Checks, checksFrom, runChecks } from "@smoove/core/testing";
+import {
+  type CheckGroup,
+  type CheckReport,
+  type Checks,
+  checksFrom,
+  runChecks,
+} from "@smoove/core/testing";
+import { holdPlayerSignals } from "../signals/signal-bridge.js";
 import type { RegistryEntry } from "../types.js";
 import { beatsOf } from "./beats.js";
 import { captureFrames, encodePng, scaleCanvas } from "./capture.js";
@@ -50,10 +57,18 @@ export async function answerCheck(
   if (target !== comp) await target.whenReady();
 
   const { beats } = beatsOf(target);
-  const report = await runChecks(target, checks, {
-    beats,
-    ...(params.groups ? { groups: params.groups as CheckGroup[] } : {}),
-  });
+  // The sweeps seek through hundreds of frames; the studio's React views
+  // catch up once, after.
+  const release = holdPlayerSignals();
+  let report: CheckReport;
+  try {
+    report = await runChecks(target, checks, {
+      beats,
+      ...(params.groups ? { groups: params.groups as CheckGroup[] } : {}),
+    });
+  } finally {
+    release();
+  }
   // Core's Finding is the agent's wire shape: this assignment is the guard.
   const findings: CheckFinding[] = report.findings;
   const allowed: CheckResult["allowed"] = report.allowed;

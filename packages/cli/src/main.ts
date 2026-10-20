@@ -39,8 +39,11 @@ const ARGS: Record<string, string> = {
   render_status: "<job>",
 };
 
-/** The top-level commands the command line runs itself (not MCP tools). */
-const LOCAL = ["start", "build", "test"] as const;
+/**
+ * The top-level commands the command line runs itself (not MCP tools).
+ * `test` is one too, but `main` hands it to Vitest before parsing flags.
+ */
+const LOCAL = ["start", "build"] as const;
 
 function line(spelling: string, summary: string): string {
   return `  ${spelling.padEnd(36)}${summary}`;
@@ -58,7 +61,7 @@ const USAGE = [
   ...COMMANDS.filter((c) => c.group === "top" && c.name !== "new").map((c) =>
     line(`smoove ${c.name} ${ARGS[c.name] ?? ""}`.trim(), c.summary),
   ),
-  line("smoove test", "Run the compositions' tests"),
+  line("smoove test [vitest args]", "Run the compositions' tests"),
   "",
   "For coding agents:",
   ...COMMANDS.filter((c) => c.group === "agent").map((c) =>
@@ -227,6 +230,11 @@ export function printResult(io: Io, json: boolean, result: CommandResult): numbe
 
 /** Run one command. Resolves to the exit code: 0 ok, 1 failed, 2 bad usage. */
 export async function main(argv: string[], io: Io = defaultIo): Promise<number> {
+  // Everything after `smoove test` is Vitest's (file filters, -t, --reporter).
+  if (argv[0] === "test") {
+    const { runStudioCommand } = await import("./studio.js");
+    return runStudioCommand("test", { args: argv.slice(1) }, io);
+  }
   let values: Values;
   let positionals: string[];
   try {
@@ -343,9 +351,9 @@ async function askForNew(values: Values, io: Io): Promise<Values> {
   return { ...values, ...(await promptNew(values, root)) };
 }
 
-/** The commands the command line runs itself: the studio and its tests. */
+/** The commands the command line runs itself: the studio, and detach. */
 async function runLocal(name: string, values: Values, io: Io): Promise<number> {
-  if (name === "start" || name === "build" || name === "test") {
+  if (name === "start" || name === "build") {
     const { runStudioCommand } = await import("./studio.js");
     return runStudioCommand(name, { prod: values.prod, port: int("port", values.port) }, io);
   }

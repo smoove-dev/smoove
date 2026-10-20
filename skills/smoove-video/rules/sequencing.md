@@ -77,6 +77,22 @@ stage non-overlapping or overlapping scenes (a title sequence at `[0, 60)`,
 a body sequence at `[30, 120)`, etc.) — each gets its own visibility window
 and its own `register()` callbacks.
 
+Every sequence is a canvas, so keep a composition to a handful of them
+(Konva warns past five layers). A sequence per scene is fine. Anything
+smaller that comes and goes, such as a caption, a callout or a lower third,
+is a `Clip` inside a sequence that spans the timeline, with
+`new Clip({ span: beats.hook })` for its window (see
+[components.md](components.md)):
+
+```ts
+const captions = new Sequence(); // one layer for every caption
+for (const [beat, line] of [[beats.hook, "Code it"], [beats.land, "Play it"]] as const) {
+  const clip = new Clip({ span: beat });
+  clip.add(new Text({ name: "caption", text: line, fontSize: 48, fill: "#f5f2ff" }));
+  captions.add(clip);
+}
+```
+
 `register()` returns an unregister function; you rarely need to call it for
 a sequence's whole lifetime, but it's there if you build dynamic updaters.
 

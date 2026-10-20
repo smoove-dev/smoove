@@ -4,15 +4,21 @@ import { type CheckBeat, sweepStride } from "./findings.js";
 type Range = { name: string; start: number; settled: number; end: number };
 
 /**
- * The frame a contact sheet shows for a beat: one before the earlier of its
- * end and the next beat's start, never before its own start, never past the
- * composition. The same rule as `sheetFrame` in `@smoove/agent`.
+ * The last frame a beat holds before the next one comes in, and the frame a
+ * contact sheet shows for it: two thirds of the way there from its settled
+ * frame, so entrances are done and an exit at its end hasn't begun. The same
+ * rules as `heldToFrame` and `sheetFrame` in `@smoove/agent`.
  */
-function sheetOf(beat: Range, nextStart: number | null, total: number): number {
+function framesOf(
+  beat: Range,
+  nextStart: number | null,
+  total: number,
+): { heldTo: number; sheet: number } {
   const stop =
     nextStart != null && nextStart > beat.start ? Math.min(beat.end, nextStart) : beat.end;
-  const last = Math.min(stop, total) - 1;
-  return Math.max(beat.start, Math.min(last, total - 1), 0);
+  const heldTo = Math.max(beat.start, Math.min(Math.min(stop, total) - 1, total - 1), 0);
+  const from = Math.min(Math.max(beat.start, beat.settled), heldTo);
+  return { heldTo, sheet: from + Math.round(((heldTo - from) * 2) / 3) };
 }
 
 function withSheets(ranges: Range[], total: number): CheckBeat[] {
@@ -20,7 +26,7 @@ function withSheets(ranges: Range[], total: number): CheckBeat[] {
   return ranges.map((r) => {
     const i = ordered.indexOf(r);
     const next = ordered.slice(i + 1).find((n) => n.start > r.start);
-    return { ...r, sheet: sheetOf(r, next?.start ?? null, total) };
+    return { ...r, ...framesOf(r, next?.start ?? null, total) };
   });
 }
 
@@ -66,7 +72,7 @@ export function checkBeats(comp: Composition): CheckBeat[] {
 /**
  * The frames a sweep visits, ascending and without repeats: every tenth of a
  * second for the sweep or every half second for contrast, plus every beat's
- * start, settled and sheet frames, the first frame and the last.
+ * start, settled, sheet and held-to frames, the first frame and the last.
  */
 export function sampleFrames(
   durationInFrames: number,
@@ -79,12 +85,13 @@ export function sampleFrames(
   const set = new Set<number>([0, last]);
   for (let f = 0; f <= last; f += stride) set.add(f);
   for (const b of beats) {
-    for (const f of [b.start, b.settled, b.sheet]) if (f >= 0 && f <= last) set.add(f);
+    for (const f of [b.start, b.settled, b.sheet, b.heldTo ?? b.sheet])
+      if (f >= 0 && f <= last) set.add(f);
   }
   return [...set].sort((a, b) => a - b);
 }
 
-/** Whether `frame` sits on some beat's settled stretch (settled to sheet, both included). */
+/** Whether `frame` sits on some beat's held stretch (settled to heldTo, both included). */
 export function isHeldFrame(frame: number, beats: CheckBeat[]): boolean {
-  return beats.some((b) => frame >= b.settled && frame <= b.sheet);
+  return beats.some((b) => frame >= b.settled && frame <= (b.heldTo ?? b.sheet));
 }

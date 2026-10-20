@@ -6,8 +6,8 @@ import type { CheckBeat } from "./findings.js";
 import { checkBeats, isHeldFrame, sampleFrames } from "./sampling.js";
 
 const beats: CheckBeat[] = [
-  { name: "hook", start: 0, settled: 10, end: 100, sheet: 99 },
-  { name: "land", start: 100, settled: 112, end: 300, sheet: 299 },
+  { name: "hook", start: 0, settled: 10, end: 100, heldTo: 99, sheet: 99 },
+  { name: "land", start: 100, settled: 112, end: 300, heldTo: 299, sheet: 299 },
 ];
 
 describe("sampleFrames", () => {
@@ -59,10 +59,14 @@ describe("checkBeats", () => {
     });
     const got = checkBeats(comp);
     expect(got.map((b) => b.name)).toEqual(["hook", "land", "outro"]);
-    // Same rule as @smoove/agent's sheetFrame: one before the earlier of the
-    // beat's end and the next beat's start.
-    expect(got[0]?.sheet).toBe((got[1]?.start ?? 0) - 1);
-    expect(got[2]?.sheet).toBe(comp.durationInFrames.get() - 1);
+    // Same rules as @smoove/agent's heldToFrame and sheetFrame: held to one
+    // before the earlier of the beat's end and the next beat's start, with the
+    // sheet two thirds of the way there from settled.
+    const hook = got[0] as CheckBeat;
+    expect(hook.heldTo).toBe((got[1]?.start ?? 0) - 1);
+    expect(hook.sheet).toBe(hook.settled + Math.round(((hook.heldTo - hook.settled) * 2) / 3));
+    expect(got[2]?.heldTo).toBe(comp.durationInFrames.get() - 1);
+    expect(got[2]?.sheet).toBeLessThan(comp.durationInFrames.get() - 1);
   });
 
   it("falls back to top-level sequences", () => {
@@ -77,8 +81,8 @@ describe("checkBeats", () => {
     comp.add(new Sequence({ name: "b", from: 60, durationInFrames: 60 }));
     const got = checkBeats(comp);
     expect(got).toEqual([
-      { name: "a", start: 0, settled: 0, end: 60, sheet: 59 },
-      { name: "b", start: 60, settled: 60, end: 120, sheet: 119 },
+      { name: "a", start: 0, settled: 0, end: 60, heldTo: 59, sheet: 39 },
+      { name: "b", start: 60, settled: 60, end: 120, heldTo: 119, sheet: 99 },
     ]);
   });
 });
