@@ -197,20 +197,24 @@ MP4 renders are slow, and the user wants to see the result, not wait for it.
 In a studio project (one made with `npm create smoove`, studio template),
 look at your work with the `smoove` command:
 
-1. Never render a video to check your work. Look with `npx smoove sheet`,
-   `snap` and `timeline`, and the tests. Run `npx smoove render` only when
-   the user asks for a video.
-2. Start the studio yourself with `npx smoove start`, and give the user the
-   URL it prints so they can watch.
-3. Loop: write, typecheck, test, `npx smoove check --comp <id>`, then one
-   `npx smoove sheet --comp <id>` per pass. Read the image, fix, repeat.
-   Fix every error check reports; fix each warning or allow it, with a
-   reason, in the composition's checks file. One sheet per pass, not one
+1. Never render a video to check your work. Look with
+   `npx smoove agent sheet`, `snap` and `timeline`, and the tests. Run
+   `npx smoove render` only when the user asks for a video.
+2. Start the studio yourself with `npx smoove agent start`, and give the
+   user the URL it prints so they can watch.
+3. A new composition starts with
+   `npx smoove new --title "<title>" --format landscape|portrait|square`:
+   one folder under `compositions/`, with the `index.ts` entry the studio
+   needs. There's no registry to edit.
+4. Loop: write, typecheck, test, `npx smoove agent check --comp <id>`, then
+   one `npx smoove agent sheet --comp <id>` per pass. Read the image, fix,
+   repeat. Fix every error check reports; fix each warning or allow it, with
+   a reason, in the composition's checks file. One sheet per pass, not one
    image per beat; use `snap --at <beat>` for a closer look at one moment.
-4. When the user says "this", "here" or "that one", run `npx smoove context`
-   before anything else. It lists the nodes they marked on the frame, with the
-   file and line that made each one. With no mark, ask them to drag a
-   rectangle over the thing in the studio.
+5. When the user says "this", "here" or "that one", run
+   `npx smoove agent context` before anything else. It lists the nodes they
+   marked on the frame, with the file and line that made each one. With no
+   mark, ask them to drag a rectangle over the thing in the studio.
 
 The project's `.mcp.json` also registers these commands as MCP tools
 (`mcp__smoove__snap` and the rest). When you have them, use them: same

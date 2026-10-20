@@ -55,6 +55,7 @@ export type ErrorCode =
   | "tab-error"
   | "no-browser"
   | "unknown-beat"
+  | "render-off"
   | "render-error"
   | "no-server"
   | "checks-error";

@@ -19,7 +19,7 @@ const root = fileURLToPath(new URL("..", import.meta.url));
 const DESTS = [
   ["templates/composition-ts/src", ".ts"],
   ["templates/composition-js/src", ".js"],
-  ["templates/studio/src/compositions/hello-smoove", ".ts"],
+  ["templates/studio/compositions/hello-smoove", ".ts"],
 ];
 const FILES = ["composition", "composition.check", "composition.test"];
 

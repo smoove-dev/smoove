@@ -68,7 +68,12 @@ export type Registry = {
   update(id: string, composition: CompositionInput, checks?: RegistryEntry["checks"]): void;
   /** Subscribe to entry changes (id passed to listener). Returns unsubscribe. */
   onChange(listener: (id: string) => void): () => void;
+  /** What's wrong with the compositions the studio found on disk: a folder
+      without an index file, a duplicate id, an id that differs from its folder. */
+  problems(): RegistryProblem[];
 };
+
+export type RegistryProblem = { level: "error" | "warning"; message: string };
 
 /* ============================================================ render (mock) */
 

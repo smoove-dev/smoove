@@ -8,6 +8,11 @@
     "types": ["react", "react-dom", "node"]
   },
   "include": ["src"],
-  "exclude": ["src/studio.css"],
-  "references": [{ "path": "../agent" }, { "path": "../core" }, { "path": "../renderer" }]
+  "exclude": ["src/studio.css", "src/**/*.test.ts"],
+  "references": [
+    { "path": "../agent" },
+    { "path": "../core" },
+    { "path": "../renderer" },
+    { "path": "../vite" }
+  ]
 }

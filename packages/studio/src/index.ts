@@ -102,6 +102,8 @@ export const Studio = Object.assign(StudioRoot, {
 export { Icon, type IconProps } from "./components/icon/icon.js";
 export type { IconName } from "./components/icon/paths.js";
 export type { StudioProps } from "./components/studio/studio.js";
+// Registry (isomorphic)
+export { defineConfig, type StudioConfig } from "./config/define.js";
 export { useComposition } from "./hooks/use-composition.js";
 export { applyLayerVisibility, deriveLayers, sequencesOf } from "./hooks/use-layers.js";
 export { usePlayback } from "./hooks/use-playback.js";
@@ -112,7 +114,6 @@ export { useShortcuts } from "./hooks/use-shortcuts.js";
 export { useStudio } from "./hooks/use-studio.js";
 // Catalog constants
 export { LAYER_KINDS, type LayerKind, type LayerKindMeta, ZOOM_STEPS } from "./lib/constants.js";
-// Registry (isomorphic)
 export { defineRegistry } from "./registry/define-registry.js";
 export { createPropsSignal } from "./registry/props-signal.js";
 // Schema DSL

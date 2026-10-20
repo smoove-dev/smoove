@@ -1,4 +1,4 @@
-// What this composition promises, checked by `npx smoove check` and by the
+// What this composition promises, checked by `npx smoove agent check` and by the
 // "passes its checks" test. Times come from the beats, so retiming the plan
 // moves them too.
 import { appearsBy, before, defineChecks, keepsMoving, staysInFrame } from "@smoove/core/testing";

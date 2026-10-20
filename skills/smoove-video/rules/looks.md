@@ -189,7 +189,7 @@ seq.add(card);
 ```
 
 Declare the look in the composition's checks file, as
-`style: { palette: look.palette, fonts: look.fonts }`, and `npx smoove check`
+`style: { palette: look.palette, fonts: look.fonts }`, and `npx smoove agent check`
 warns about any color or font that strays from it ([testing.md](testing.md)).
 
 A look is a set. Taking the colors of one and the fonts of another is fine

@@ -1,8 +1,7 @@
 node_modules
-build
 dist
-.react-router
-# smoove: the studio bridge, snapshots and contact sheets
+# the studio app smoove runs, its build, and the bridge's snapshots and sheets
 .smoove/
+build
 # videos that `npx smoove render` writes
 out/

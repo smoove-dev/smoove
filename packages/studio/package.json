@@ -23,17 +23,33 @@
       "types": "./dist/server/index.d.ts",
       "import": "./dist/server/index.js"
     },
-    "./styles.css": "./dist/styles/studio.css"
+    "./styles.css": "./dist/styles/studio.css",
+    "./vite": {
+      "types": "./dist/preset/vite-plugin.d.ts",
+      "import": "./dist/preset/vite-plugin.js"
+    },
+    "./virtual": {
+      "types": "./virtual.d.ts"
+    },
+    "./preset": {
+      "types": "./dist/preset/index.d.ts",
+      "import": "./dist/preset/index.js"
+    },
+    "./tsconfig.json": "./tsconfig.project.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "virtual.d.ts",
+    "template",
+    "tsconfig.project.json"
   ],
   "scripts": {
     "build": "tsc -b && pnpm run build:css",
     "build:css": "tailwindcss -i ./src/studio.css -o ./dist/styles/studio.css --minify",
     "dev": "concurrently -k \"tsc -b --watch --preserveWatchOutput\" \"tailwindcss -i ./src/studio.css -o ./dist/styles/studio.css --watch\"",
     "clean": "rm -rf dist *.tsbuildinfo",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "test": "vitest run"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
@@ -41,12 +57,18 @@
     "@smoove/core": "workspace:^",
     "@smoove/player": "workspace:^",
     "@smoove/renderer": "workspace:^",
-    "signal-polyfill": "^0.2.2"
+    "signal-polyfill": "^0.2.2",
+    "@smoove/vite": "workspace:^"
   },
   "peerDependencies": {
     "konva": ">=10",
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "vite": ">=8",
+    "@react-router/dev": ">=8",
+    "@react-router/serve": ">=8",
+    "react-router": ">=8",
+    "vitest": ">=3"
   },
   "peerDependenciesMeta": {
     "@smoove/renderer": {
@@ -59,7 +81,12 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "concurrently": "^9.1.0",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "vitest": "^3.2.4",
+    "vite": "^8.0.0",
+    "@react-router/dev": "^8.1.0",
+    "@react-router/serve": "^8.1.0",
+    "react-router": "^8.1.0"
   },
   "publishConfig": {
     "access": "public"

@@ -81,13 +81,20 @@ export interface ChecksOptions {
 }
 
 export interface Checks {
-  readonly composition: Composition;
+  readonly composition: AnyComposition;
   readonly options: ChecksOptions;
   readonly __smooveChecks: true;
 }
 
+/**
+ * A composition with any props. `Composition<P>` is invariant in P (through
+ * setProps), so a typed composition doesn't fit a plain `Composition` param.
+ */
+// biome-ignore lint/suspicious/noExplicitAny: the checks never read props; P is invariant via setProps.
+type AnyComposition = Composition<any>;
+
 /** What a checks file default-exports. Throws when an allow entry has no reason. */
-export function defineChecks(comp: Composition, options: ChecksOptions): Checks {
+export function defineChecks(comp: AnyComposition, options: ChecksOptions): Checks {
   for (const entry of options.allow ?? []) {
     if (typeof entry.reason !== "string" || entry.reason.trim() === "") {
       throw new Error(
@@ -444,7 +451,7 @@ function codeMatches(code: CheckCode, list: Array<CheckCode | CheckGroup>): bool
  * composition is left on the frame it was on.
  */
 export async function runChecks(
-  comp: Composition,
+  comp: AnyComposition,
   checks?: Checks | null,
   options: RunOptions = {},
 ): Promise<CheckReport> {

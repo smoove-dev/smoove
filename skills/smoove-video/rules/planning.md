@@ -126,7 +126,7 @@ comp.add(new Sequence({ span: tease }).add(teaseScene));
 Retiming a beat now means changing one number in the plan, and every marker
 after it moves. Passing `plan: beats` to the composition gives the beats
 their names outside the code: the studio's timeline labels its tracks with
-them, `npx smoove sheet` shows one tile per beat, and `--at reveal` jumps to
+them, `npx smoove agent sheet` shows one tile per beat, and `--at reveal` jumps to
 one (see [studio.md](studio.md)). Overlaps, gaps and `span` are covered in
 [sequencing.md](sequencing.md).
 
