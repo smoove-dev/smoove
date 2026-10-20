@@ -50,6 +50,21 @@ npx smoove sheet --comp my-video          # one tile per beat
 npx smoove snap --comp my-video --at hook # one moment, by beat name
 ```
 
+Before it looks, the agent checks. One command sweeps the video for the
+problems you'd otherwise catch by watching: text cut off by an ellipsis or
+running off the frame, text too faint to read against what's behind it,
+colors outside the palette, a stretch where nothing moves, and code that
+looks fine in playback but breaks when you scrub:
+
+```bash
+npx smoove check --comp my-video
+```
+
+Each finding names the node, the frames and the line of code, so the agent
+goes straight to the fix. The composition's checks file says what the video
+promises, such as "the title is on screen by the end of the hook", and the
+check holds it to that.
+
 To point at something, drag a rectangle over it on the frame, then tell the
 agent what to change: "make this bigger". The agent reads your mark and
 knows which node you mean, down to the line of code that made it:

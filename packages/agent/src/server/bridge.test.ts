@@ -34,6 +34,7 @@ let origin: string;
 async function start(
   opts: {
     timeoutMs?: number;
+    checkTimeoutMs?: number;
     settleMs?: number;
     reconnectMs?: number;
     launchBrowser?: BrowserLauncher | false;
@@ -1030,5 +1031,104 @@ describe("marks", () => {
     });
     expect(res.status).toBe(403);
     tab.close();
+  });
+});
+
+describe("check", () => {
+  const data = {
+    composition: "promo",
+    hasChecksFile: true,
+    frames: 600,
+    beats: 3,
+    samples: 208,
+    findings: [],
+    allowed: [],
+    colorsInUse: [],
+  };
+
+  async function withOwned(opts: { timeoutMs?: number; checkTimeoutMs?: number } = {}) {
+    const fake = fakeLauncher();
+    await start({ launchBrowser: fake.launcher, ...opts });
+    bridge.listening(origin);
+    const user = await FakeTab.connect({ composition: "promo" });
+    const pending = agent("check", { json: { composition: "promo" } });
+    await new Promise<void>((r) => {
+      const wait = () => (fake.launched.length > 0 ? r() : setTimeout(wait, 5));
+      wait();
+    });
+    const owned = await fake.connectOwned();
+    const req = await owned.nextRequest(1);
+    return { user, owned, req, pending };
+  }
+
+  it("goes to the headless tab even when a user tab shows the composition", async () => {
+    const { user, owned, req, pending } = await withOwned();
+    expect(req.type).toBe("check");
+    expect(req.params).toMatchObject({ composition: "promo", maySwitch: true });
+    await owned.reply(req.id, { ok: true, data });
+    const body = await (await pending).json();
+    expect(body.ok).toBe(true);
+    expect(body.data.samples).toBe(208);
+    expect(user.requests).toHaveLength(0);
+    user.close();
+    owned.close();
+  });
+
+  it("waits longer than the tab timeout", async () => {
+    const { user, owned, req, pending } = await withOwned({ timeoutMs: 50, checkTimeoutMs: 5_000 });
+    await new Promise((r) => setTimeout(r, 200));
+    await owned.reply(req.id, { ok: true, data });
+    const res = await pending;
+    expect(res.status).toBe(200);
+    user.close();
+    owned.close();
+  });
+
+  it("passes a checks-error through unchanged", async () => {
+    const { user, owned, req, pending } = await withOwned();
+    await owned.reply(req.id, {
+      ok: false,
+      error: { code: "checks-error", message: "src/promo.check.ts: boom" },
+    });
+    const body = await (await pending).json();
+    expect(body.error).toEqual({ code: "checks-error", message: "src/promo.check.ts: boom" });
+    user.close();
+    owned.close();
+  });
+
+  it("writes a finding's image and answers its path", async () => {
+    await start();
+    const tab = await FakeTab.connect();
+    const qs = new URLSearchParams({
+      tabId: tab.id,
+      composition: "promo",
+      code: "layout/contrast",
+      frame: "120",
+      index: "3",
+    });
+    const res = await fetch(`${origin}/__smoove/agent/tab/check-image?${qs}`, {
+      method: "POST",
+      headers: { "Content-Type": "image/png" },
+      body: new Uint8Array([1, 2, 3]),
+    });
+    const body = await res.json();
+    expect(body.ok).toBe(true);
+    expect(body.data.path).toBe(
+      join(root, ".smoove", "checks", "promo-3-layout-contrast-f120.png"),
+    );
+    expect([...readFileSync(body.data.path)]).toEqual([1, 2, 3]);
+    tab.close();
+  });
+
+  it("needs the token, and refuses a check image from another origin", async () => {
+    await start();
+    const res = await fetch(`${origin}/__smoove/agent/check`, { method: "POST", body: "{}" });
+    expect(res.status).toBe(401);
+    const img = await fetch(`${origin}/__smoove/agent/tab/check-image?tabId=x`, {
+      method: "POST",
+      headers: { Origin: "http://evil.example", "Content-Type": "image/png" },
+      body: new Uint8Array([1]),
+    });
+    expect(img.status).toBe(403);
   });
 });

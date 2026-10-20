@@ -8,6 +8,7 @@
       "Bash(npx smoove sheet:*)",
       "Bash(npx smoove timeline:*)",
       "Bash(npx smoove context:*)",
+      "Bash(npx smoove check:*)",
       "Bash(npm test:*)",
       "Bash(npm run test:*)",
       "Bash(npm run typecheck:*)"

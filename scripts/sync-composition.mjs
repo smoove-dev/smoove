@@ -21,7 +21,7 @@ const DESTS = [
   ["templates/composition-js/src", ".js"],
   ["templates/studio/src/compositions/hello-smoove", ".ts"],
 ];
-const FILES = ["composition", "composition.test"];
+const FILES = ["composition", "composition.check", "composition.test"];
 
 const check = process.argv.includes("--check");
 

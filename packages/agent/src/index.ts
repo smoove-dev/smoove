@@ -56,7 +56,8 @@ export type ErrorCode =
   | "no-browser"
   | "unknown-beat"
   | "render-error"
-  | "no-server";
+  | "no-server"
+  | "checks-error";
 
 export interface AgentErrorBody {
   code: ErrorCode;
@@ -570,34 +571,61 @@ export function closestMarked<T extends { box: MarkRect }>(
     .slice(0, count);
 }
 
-/** Same box, give or take half a pixel on each edge. */
-function sameBox(a: MarkRect, b: MarkRect): boolean {
-  return (
-    Math.abs(a.x - b.x) <= 0.5 &&
-    Math.abs(a.y - b.y) <= 0.5 &&
-    Math.abs(a.x + a.width - (b.x + b.width)) <= 0.5 &&
-    Math.abs(a.y + a.height - (b.y + b.height)) <= 0.5
-  );
+/* ============================================================ checks */
+
+/** Where finding images are written, relative to the Vite root. */
+export const CHECKS_DIR = ".smoove/checks";
+
+/** How long the server waits for a check: a sweep seeks through every sampled frame. */
+export const CHECK_TIMEOUT_MS = 120_000;
+
+export interface CheckParams extends MaySwitch {
+  composition?: string;
+  /** Run only these groups: purity, layout, intent, motion, style. */
+  groups?: string[];
+  /** Write an image for each error and held warning. */
+  images?: boolean;
 }
 
 /**
- * Leave out a node that has no source tag of its own and only fills an
- * ancestor's box: a smoove node's own parts, like the Konva Text inside a
- * Text or a Block's background. Tagged nodes, and parts with a box of their
- * own (the tokens in a Code node), stay.
+ * The wire shape of a finding. `@smoove/core/testing`'s `Finding` must fit
+ * it; the studio type-checks that, since this package depends on no smoove
+ * package.
  */
-export function dropFillers<T extends { box: MarkRect }>(
-  items: T[],
-  parentOf: (item: T) => T | null,
-  tagged: (item: T) => boolean,
-): T[] {
-  return items.filter((item) => {
-    if (tagged(item)) return true;
-    for (let p = parentOf(item); p; p = parentOf(p)) {
-      if (sameBox(p.box, item.box)) return false;
-    }
-    return true;
-  });
+export interface CheckFinding {
+  code: string;
+  severity: "error" | "warning";
+  held: boolean;
+  message: string;
+  composition: string;
+  node: Omit<MarkNode, "cover"> | null;
+  /** Both ends included. */
+  frames: Array<{ from: number; to: number }>;
+  beats: string[];
+  source: SourceLocation | null;
+  details?: Record<string, unknown>;
+  /** Absolute path of the finding's image, with `images`. */
+  image?: string;
+}
+
+export interface CheckData {
+  composition: string;
+  /** Every composition id in the studio's catalog, for `smoove check --all`. */
+  catalog: string[];
+  hasChecksFile: boolean;
+  /** Whether the checks file declares a palette. Without one, `colorsInUse` is worth printing. */
+  hasPalette: boolean;
+  frames: number;
+  beats: number;
+  samples: number;
+  findings: CheckFinding[];
+  allowed: Array<CheckFinding & { reason: string }>;
+  colorsInUse: string[];
+}
+
+/** What a tab's check handler hands back; the client posts the images, then the data. */
+export interface CheckResult extends CheckData {
+  images?: Array<{ finding: number; frame: number; png: Blob }>;
 }
 
 /* ============================================================ tab protocol */
@@ -608,7 +636,8 @@ export type TabRequest =
   | { id: string; type: "snapshot"; params: SnapshotParams }
   | { id: string; type: "sheet"; params: SheetParams }
   | { id: string; type: "timeline"; params: TimelineParams }
-  | { id: string; type: "render"; params: RenderParams & { composition: string } };
+  | { id: string; type: "render"; params: RenderParams & { composition: string } }
+  | { id: string; type: "check"; params: CheckParams };
 
 export type TabRequestType = TabRequest["type"];
 

@@ -1,6 +1,8 @@
 import {
   type ActiveComposition,
   AgentError,
+  type CheckParams,
+  type CheckResult,
   DEFAULT_SNAPSHOT_WIDTH,
   DEFAULT_TILE_WIDTH,
   FALLBACK_SHEET_FRAMES,
@@ -35,6 +37,7 @@ import type { StudioStore } from "../store/store.js";
 import type { RenderRequest } from "../types.js";
 import { beatsOf } from "./beats.js";
 import { captureFrames, encodePng, scaleCanvas } from "./capture.js";
+import { answerCheck } from "./check.js";
 import { abortable, until, watch } from "./until.js";
 
 /** The handlers a studio tab answers the bridge with. */
@@ -414,7 +417,12 @@ export function createAgentHandlers(store: StudioStore): TabHandlers {
     return { jobId, composition: id, format };
   }
 
-  return { status, seek, snapshot, sheet, timeline, render };
+  async function check(params: CheckParams, ctx: HandlerContext): Promise<CheckResult> {
+    const { id, comp } = await open(params, ctx);
+    return answerCheck(id, comp, store.entries, params);
+  }
+
+  return { status, seek, snapshot, sheet, timeline, render, check };
 }
 
 let h264: Promise<boolean> | null = null;

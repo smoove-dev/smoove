@@ -1,3 +1,4 @@
+export { contrastRatio, parseColor, type RGBA, relativeLuminance } from "./animation/color.js";
 export { Easing } from "./animation/easing.js";
 export {
   type ExtrapolateType,

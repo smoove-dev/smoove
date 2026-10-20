@@ -5,6 +5,8 @@ import { parseArgs } from "node:util";
 import {
   AGENT_PREFIX,
   type AgentResponse,
+  type CheckData,
+  type CheckFinding,
   type ContextData,
   type DrawnBy,
   MARK_MIN_COVER,
@@ -17,6 +19,7 @@ import {
   type TimelineData,
   type TimelineNode,
 } from "../index.js";
+import { type LintFinding, lintProject } from "../lint/lint.js";
 import {
   alive,
   DEV_FILE,
@@ -61,6 +64,7 @@ Run it from inside the project. Every command takes --json for the raw answer.
   smoove timeline                 Beats and sequences, in frames
   smoove render                   Render a video (only when the user asks for one)
   smoove context                  Read and clear the user's mark from the studio
+  smoove check                    Check a composition for purity, layout, motion and style problems
 
 Options:
   --comp <id>        The composition (default: the one the user is watching)
@@ -73,6 +77,9 @@ Options:
   --from <n> --to <n>  Render: a frame range, both inclusive
   --out <path>       Render: where the file goes (default out/<comp>.<format>)
   --no-wait          Render: return once the job is queued
+  --all              Check: every composition in the catalog
+  --only <groups>    Check: some of purity, layout, intent, motion, style (comma-separated)
+  --images           Check: write an image for each error and held warning
   --json             Print the bridge's JSON answer`;
 
 type Values = {
@@ -89,6 +96,9 @@ type Values = {
   out?: string;
   port?: string;
   "no-wait"?: boolean;
+  all?: boolean;
+  only?: string;
+  images?: boolean;
 };
 
 class UsageError extends Error {}
@@ -115,6 +125,9 @@ export async function main(argv: string[], io: Io = defaultIo): Promise<number> 
         out: { type: "string" },
         port: { type: "string" },
         "no-wait": { type: "boolean" },
+        all: { type: "boolean" },
+        only: { type: "string" },
+        images: { type: "boolean" },
       },
     });
     values = parsed.values as Values;
@@ -157,6 +170,8 @@ export async function main(argv: string[], io: Io = defaultIo): Promise<number> 
         return await render(io, values);
       case "context":
         return await call(io, values, "POST", "context", {}, formatContext);
+      case "check":
+        return await check(io, values);
       default:
         throw new UsageError(`Unknown command "${command}".`);
     }
@@ -606,4 +621,162 @@ function fail(io: Io, values: Values, code: string, message: string): number {
   if (values.json) io.out(JSON.stringify({ ok: false, error: { code, message } }));
   else io.err(message);
   return 1;
+}
+
+// ---------------------------------------------------------------- check
+
+const CHECK_GROUPS = ["purity", "layout", "intent", "motion", "style"];
+/** Node text in a check report is cut to this many characters. */
+const CHECK_TEXT_SHOWN = 34;
+
+function plural(n: number, word: string): string {
+  return `${n} ${word}${n === 1 ? "" : "s"}`;
+}
+
+function listOf(items: string[]): string {
+  if (items.length <= 1) return items.join("");
+  return `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
+}
+
+function frameText(f: CheckFinding): string | null {
+  if (f.frames.length === 0) return null;
+  const ranges = f.frames.map((r) =>
+    r.to > r.from ? `frames ${r.from} to ${r.to}` : `frame ${r.from}`,
+  );
+  const beats =
+    f.beats.length === 0 ? "" : `${f.beats.length === 1 ? "beat" : "beats"} ${listOf(f.beats)}`;
+  const tail = beats
+    ? f.held
+      ? `, held through ${beats}`
+      : `, passing, in ${beats}`
+    : f.held
+      ? ", held"
+      : ", passing";
+  return `${ranges.join(", ")}${tail}`;
+}
+
+function nodeText(f: CheckFinding): string {
+  const n = f.node;
+  if (!n) return "";
+  const label = n.name ?? (n.id ? `#${n.id}` : "an unnamed node");
+  const text =
+    n.text === undefined
+      ? ""
+      : ` "${n.text.length > CHECK_TEXT_SHOWN ? `${n.text.slice(0, CHECK_TEXT_SHOWN)}…` : n.text}"`;
+  return `: ${label} (${n.type}${text})`;
+}
+
+function findingLines(f: CheckFinding): string[] {
+  const lines = [`${f.severity} ${f.code}${nodeText(f)}`];
+  const frames = frameText(f);
+  if (frames) lines.push(`  ${frames}`);
+  if (f.source) {
+    lines.push(
+      `  ${f.source.file}:${f.source.line}:${f.source.column}${f.source.inherited ? " (inherited)" : ""}`,
+    );
+  }
+  lines.push(`  ${f.message}`);
+  if (f.image) lines.push(`  Image: ${f.image}`);
+  return lines;
+}
+
+const lintAsFinding = (l: LintFinding, composition: string): CheckFinding => ({
+  code: l.code,
+  severity: "warning",
+  held: false,
+  message: l.message,
+  composition,
+  node: null,
+  frames: [],
+  beats: [],
+  source: l.source,
+});
+
+/** A check report for one composition, with the lint's findings after the tab's. */
+export function formatCheck(data: CheckData, lint: LintFinding[]): string {
+  const all = [...data.findings, ...lint.map((l) => lintAsFinding(l, data.composition))];
+  const errors = all.filter((f) => f.severity === "error").length;
+  const warnings = all.length - errors;
+  const head = `Checked ${data.composition}: ${data.frames} frames, ${plural(data.beats, "beat")}, ${data.samples} samples.`;
+  const counts =
+    all.length === 0
+      ? "No errors and no warnings."
+      : `${plural(errors, "error")}, ${plural(warnings, "warning")}${data.allowed.length > 0 ? `, ${data.allowed.length} allowed` : ""}.`;
+  const lines = [`${head} ${counts}`];
+  if (!data.hasChecksFile) lines.push(`${data.composition} has no checks file.`);
+  if (!data.hasPalette && data.colorsInUse.length > 0) {
+    lines.push(`Colors in use, most used first: ${data.colorsInUse.join(", ")}.`);
+  }
+  for (const f of all) lines.push("", ...findingLines(f));
+  return lines.join("\n");
+}
+
+function lintFor(io: Io): LintFinding[] {
+  const root = findPackageRoot(io.cwd);
+  return root ? lintProject(root) : [];
+}
+
+async function check(io: Io, values: Values): Promise<number> {
+  let groups: string[] | undefined;
+  if (values.only !== undefined) {
+    groups = values.only
+      .split(",")
+      .map((g) => g.trim())
+      .filter(Boolean);
+    const bad = groups.find((g) => !CHECK_GROUPS.includes(g));
+    if (bad || groups.length === 0) {
+      throw new UsageError(
+        `--only takes some of ${CHECK_GROUPS.join(", ")}, not "${bad ?? values.only}".`,
+      );
+    }
+  }
+  const lint = !groups || groups.includes("purity") ? lintFor(io) : [];
+
+  const s = server(io);
+  if (!s) {
+    const message = "The other checks need the studio. Run npx smoove start.";
+    if (values.json) {
+      io.out(
+        JSON.stringify({
+          ok: false,
+          error: { code: "no-server", message },
+          data: { reports: [], lint },
+        }),
+      );
+    } else {
+      const lines = [`Lint: ${plural(lint.length, "warning")}.`];
+      for (const l of lint) lines.push("", ...findingLines(lintAsFinding(l, "")));
+      io.out(lines.join("\n"));
+      io.err(message);
+    }
+    return 1;
+  }
+
+  const body = (composition: string | undefined) => ({
+    ...(composition ? { composition } : {}),
+    ...(groups ? { groups } : {}),
+    ...(values.images ? { images: true } : {}),
+  });
+  const reports: CheckData[] = [];
+  const first = await request<CheckData>(s, "POST", "check", body(values.comp));
+  if (!first) return noServer(io, values);
+  if (!first.ok) return print(io, values, first, () => "");
+  reports.push(first.data);
+  if (values.all) {
+    for (const id of first.data.catalog) {
+      if (id === first.data.composition) continue;
+      const next = await request<CheckData>(s, "POST", "check", body(id));
+      if (!next) return noServer(io, values);
+      if (!next.ok) return print(io, values, next, () => "");
+      reports.push(next.data);
+    }
+  }
+
+  const failed = reports.some((r) => r.findings.some((f) => f.severity === "error"));
+  if (values.json) {
+    io.out(JSON.stringify({ ok: true, data: { reports, lint } }));
+  } else {
+    io.out(reports.map((r, i) => formatCheck(r, i === 0 ? lint : [])).join("\n\n"));
+  }
+  return failed ? 1 : 0;
 }

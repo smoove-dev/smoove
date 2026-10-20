@@ -4,9 +4,10 @@ import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import type { Mark, MarkInput, StatusData, TabRequest } from "../index.js";
+import type { CheckData, CheckFinding, Mark, MarkInput, StatusData, TabRequest } from "../index.js";
+import type { LintFinding } from "../lint/lint.js";
 import { type AgentBridge, createAgentBridge } from "../server/bridge.js";
-import { formatContext, formatStatus, formatTimeline, type Io, main } from "./main.js";
+import { formatCheck, formatContext, formatStatus, formatTimeline, type Io, main } from "./main.js";
 
 let root: string;
 let bridge: AgentBridge | null = null;
@@ -38,9 +39,11 @@ async function startServer() {
 /** A studio tab that answers the first request with `answer`. */
 async function tabAnswering(
   answer: (req: TabRequest) => { body: BodyInit; type: string; query?: Record<string, string> },
+  connectQuery: Record<string, string> = {},
 ) {
   const abort = new AbortController();
-  const res = await fetch(`${origin}/__smoove/agent/tab/connect?path=/c/promo&composition=promo`, {
+  const cq = new URLSearchParams({ path: "/c/promo", composition: "promo", ...connectQuery });
+  const res = await fetch(`${origin}/__smoove/agent/tab/connect?${cq}`, {
     signal: abort.signal,
   });
   const reader = res.body?.getReader();
@@ -332,5 +335,215 @@ describe("smoove context", () => {
     expect(formatStatus(data)).toContain(
       "A mark is waiting on promo, frame 120. Run smoove context.",
     );
+  });
+});
+
+describe("smoove check", () => {
+  const finding = (over: Partial<CheckFinding>): CheckFinding => ({
+    code: "layout/off-canvas",
+    severity: "warning",
+    held: false,
+    message: "m",
+    composition: "promo",
+    node: null,
+    frames: [],
+    beats: [],
+    source: null,
+    ...over,
+  });
+  const node = (name: string, text: string, line: number, column: number) => ({
+    name,
+    id: null,
+    type: "Text",
+    box: { x: 0, y: 0, width: 10, height: 10 },
+    text,
+    ancestors: [],
+    source: { file: "src/compositions/promo/composition.ts", line, column, inherited: false },
+  });
+  const sample: CheckData = {
+    composition: "promo",
+    catalog: ["promo", "intro"],
+    hasChecksFile: true,
+    hasPalette: true,
+    frames: 600,
+    beats: 3,
+    samples: 208,
+    findings: [
+      finding({
+        code: "layout/text-ellipsis",
+        severity: "error",
+        held: true,
+        message:
+          "The text is cut with an ellipsis. Give it more width, a smaller font size, or fewer words.",
+        node: node("title", "Launch day, finally here for everyone", 42, 17),
+        source: node("title", "", 42, 17).source,
+        frames: [{ from: 96, to: 179 }],
+        beats: ["land"],
+      }),
+      finding({
+        code: "layout/contrast",
+        held: true,
+        message:
+          "Contrast 2.0 to 1, #9a95b8 on #ffd23f, under the floor of 4.5 to 1. The palette's bg, #0c0b16, passes.",
+        node: node("caption", "Ships Monday", 58, 19),
+        source: node("caption", "", 58, 19).source,
+        frames: [{ from: 120, to: 179 }],
+        beats: ["land"],
+      }),
+    ],
+    allowed: [{ ...finding({}), reason: "on purpose" }],
+    colorsInUse: [],
+  };
+  const lint: LintFinding[] = [
+    {
+      code: "purity/math-random",
+      message:
+        "Math.random() changes between page loads and renders. Use random(seed) at module scope.",
+      source: {
+        file: "src/compositions/promo/composition.ts",
+        line: 77,
+        column: 12,
+        inherited: false,
+      },
+    },
+  ];
+
+  it("formats the spec's sample report", () => {
+    expect(formatCheck(sample, lint)).toBe(
+      [
+        "Checked promo: 600 frames, 3 beats, 208 samples. 1 error, 2 warnings, 1 allowed.",
+        "",
+        'error layout/text-ellipsis: title (Text "Launch day, finally here for every…")',
+        "  frames 96 to 179, held through beat land",
+        "  src/compositions/promo/composition.ts:42:17",
+        "  The text is cut with an ellipsis. Give it more width, a smaller font size, or fewer words.",
+        "",
+        'warning layout/contrast: caption (Text "Ships Monday")',
+        "  frames 120 to 179, held through beat land",
+        "  src/compositions/promo/composition.ts:58:19",
+        "  Contrast 2.0 to 1, #9a95b8 on #ffd23f, under the floor of 4.5 to 1. The palette's bg, #0c0b16, passes.",
+        "",
+        "warning purity/math-random",
+        "  src/compositions/promo/composition.ts:77:12",
+        "  Math.random() changes between page loads and renders. Use random(seed) at module scope.",
+      ].join("\n"),
+    );
+  });
+
+  it("says so when everything passes, and when there's no checks file or palette", () => {
+    const clean = {
+      ...sample,
+      findings: [],
+      allowed: [],
+      hasChecksFile: false,
+      hasPalette: false,
+      colorsInUse: ["#0d1117", "#e6edf3"],
+    };
+    expect(formatCheck(clean, [])).toBe(
+      [
+        "Checked promo: 600 frames, 3 beats, 208 samples. No errors and no warnings.",
+        "promo has no checks file.",
+        "Colors in use, most used first: #0d1117, #e6edf3.",
+      ].join("\n"),
+    );
+  });
+
+  /** A bridge whose headless tab answers every check with `reply(params)`. */
+  async function startWithChecks(reply: (params: Record<string, unknown>) => CheckData) {
+    const seen: Array<Record<string, unknown>> = [];
+    bridge = createAgentBridge({
+      root,
+      settleMs: 0,
+      launchBrowser: (url) => {
+        const secret = new URL(url).searchParams.get("smoove-agent-tab") ?? "";
+        void tabAnswering(
+          (req) => {
+            seen.push(req.params as Record<string, unknown>);
+            return {
+              body: JSON.stringify({
+                ok: true,
+                data: reply(req.params as Record<string, unknown>),
+              }),
+              type: "application/json",
+            };
+          },
+          { "smoove-agent-tab": secret },
+        );
+        return { exited: new Promise<void>(() => {}), close: () => {} };
+      },
+    });
+    const b = bridge;
+    server = createServer((req, res) => b.handle(req, res, () => res.end()));
+    await new Promise<void>((r) => server?.listen(0, "127.0.0.1", () => r()));
+    origin = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
+    bridge.listening(origin);
+    return seen;
+  }
+
+  const warningsOnly = { ...sample, findings: [sample.findings[1] as CheckFinding] };
+
+  it("exits 1 with an error and 0 with warnings only", async () => {
+    await startWithChecks(() => sample);
+    const a = io();
+    expect(await main(["check"], a.io)).toBe(1);
+    bridge?.close();
+    server?.closeAllConnections();
+    await startWithChecks(() => warningsOnly);
+    const b = io();
+    expect(await main(["check"], b.io)).toBe(0);
+    expect(b.out.join("\n")).toContain("warning layout/contrast");
+  });
+
+  it("prints the lint and exits 1 when no dev server runs", async () => {
+    mkdirSync(join(root, "src"));
+    writeFileSync(
+      join(root, "src", "a.ts"),
+      'import { Text } from "@smoove/core";\nMath.random();\n',
+    );
+    const a = io();
+    expect(await main(["check"], a.io)).toBe(1);
+    const text = [...a.out, ...a.err].join("\n");
+    expect(text).toContain("warning purity/math-random");
+    expect(text).toContain("The other checks need the studio. Run npx smoove start.");
+  });
+
+  it("sends --only groups, runs the lint only with purity, and refuses an unknown group", async () => {
+    mkdirSync(join(root, "src"));
+    writeFileSync(
+      join(root, "src", "a.ts"),
+      'import { Text } from "@smoove/core";\nMath.random();\n',
+    );
+    const seen = await startWithChecks(() => warningsOnly);
+    const a = io();
+    await main(["check", "--only", "layout,style"], a.io);
+    expect(seen.at(-1)?.groups).toEqual(["layout", "style"]);
+    expect(a.out.join("\n")).not.toContain("purity/math-random");
+    const b = io();
+    await main(["check", "--only", "purity"], b.io);
+    expect(seen.at(-1)?.groups).toEqual(["purity"]);
+    expect(b.out.join("\n")).toContain("purity/math-random");
+    expect(await main(["check", "--only", "nope"], io().io)).toBe(2);
+  });
+
+  it("checks every composition with --all, exiting with the worst result", async () => {
+    const seen = await startWithChecks((p) =>
+      p.composition === "intro"
+        ? { ...sample, composition: "intro" }
+        : { ...warningsOnly, composition: "promo" },
+    );
+    const a = io();
+    expect(await main(["check", "--all"], a.io)).toBe(1);
+    expect(seen.map((p) => p.composition ?? null)).toEqual([null, "intro"]);
+    expect(a.out.join("\n")).toContain("Checked intro");
+  });
+
+  it("prints the reports and the lint as JSON", async () => {
+    await startWithChecks(() => warningsOnly);
+    const a = io();
+    expect(await main(["check", "--json"], a.io)).toBe(0);
+    const body = JSON.parse(a.out.join(""));
+    expect(body.ok).toBe(true);
+    expect(body.data.reports[0].composition).toBe("promo");
+    expect(Array.isArray(body.data.lint)).toBe(true);
   });
 });

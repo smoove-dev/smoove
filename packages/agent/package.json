@@ -46,6 +46,9 @@
     "test:watch": "vitest",
     "prepublishOnly": "pnpm build"
   },
+  "dependencies": {
+    "@babel/parser": "^7.29.0"
+  },
   "devDependencies": {
     "@types/node": "^22.10.0",
     "vitest": "^3.2.4"

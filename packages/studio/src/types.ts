@@ -51,6 +51,9 @@ export interface RegistryEntry<P extends Record<string, unknown> = Record<string
   /** The Composition (default-exported), or a lazy loader resolving to one.
       Props live on the comp's `props` signal — set via `comp.setProps`. */
   composition: CompositionInput;
+  /** The composition's checks file, as a lazy import: `() => import("./composition.check.js")`.
+      `smoove check` imports it fresh on every run. */
+  checks?: () => Promise<unknown>;
 }
 
 export type Registry = {
@@ -62,7 +65,7 @@ export type Registry = {
   peek(id: string): Composition | undefined;
   /** Swap an entry's composition + drop its cached instance, then notify
       listeners. Used for dev hot-reload of composition source. */
-  update(id: string, composition: CompositionInput): void;
+  update(id: string, composition: CompositionInput, checks?: RegistryEntry["checks"]): void;
   /** Subscribe to entry changes (id passed to listener). Returns unsubscribe. */
   onChange(listener: (id: string) => void): () => void;
 };

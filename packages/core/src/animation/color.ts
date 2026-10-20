@@ -228,3 +228,20 @@ export const parseColor = (input: string): RGBA => {
 
   throw new Error(`interpolateColors(): unsupported color format "${input}"`);
 };
+
+/** One sRGB channel (0 to 255) as linear light. */
+const linear = (channel: number): number => {
+  const c = channel / 255;
+  return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+};
+
+/** WCAG relative luminance of a color, from 0 (black) to 1 (white). Alpha is ignored. */
+export const relativeLuminance = (c: RGBA): number =>
+  0.2126 * linear(c.r) + 0.7152 * linear(c.g) + 0.0722 * linear(c.b);
+
+/** WCAG contrast ratio of two colors, from 1 (the same) to 21 (black on white). */
+export const contrastRatio = (a: RGBA, b: RGBA): number => {
+  const la = relativeLuminance(a);
+  const lb = relativeLuminance(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+};
