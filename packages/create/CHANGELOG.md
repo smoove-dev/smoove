@@ -1,5 +1,11 @@
 # create-smoove
 
+## 0.5.1
+
+### Patch Changes
+
+- [#49](https://github.com/smoove-dev/smoove/pull/49) [`6a83d44`](https://github.com/smoove-dev/smoove/commit/6a83d44f14df88873362072f4f2d007b82b56784) Thanks [@shemi](https://github.com/shemi)! - Run without a terminal and without arguments, `npm create smoove` now scaffolds the studio template into `./my-smoove-studio` instead of stopping with an error. A coding agent that runs the bare command lands in the studio, with its `AGENTS.md` and the smoove-video skill. The closing notes point agents at `AGENTS.md`.
+
 ## 0.5.0
 
 ### Minor Changes
