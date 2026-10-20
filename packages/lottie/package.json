@@ -1,6 +1,6 @@
 {
   "name": "@smoove/lottie",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Timeline-driven Lottie animations for smoove: a frame-pure Lottie node that plays on the composition clock.",
   "license": "MIT",
   "repository": {
