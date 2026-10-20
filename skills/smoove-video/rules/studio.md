@@ -67,6 +67,38 @@ The output says which one drew each image. A warning after the path is
 worth reading: for example, a headless browser without H.264 support leaves
 video areas empty, and says so.
 
+## What the user marked
+
+The user points by dragging a rectangle over the frame in the studio. Read
+it with:
+
+```sh
+npx smoove context
+```
+
+It prints the composition, the frame and its beat, the path of an image of
+that frame with the rectangle drawn on it, and the nodes the rectangle
+covers. A node counts when more than 60 percent of its own box is inside;
+for text, the box is where the words sit, not the text's full width. The
+smallest come first, so the first one is usually what the user meant. When
+nothing passes, it lists the three nodes the rectangle covers most and says
+so: check those against the image.
+Each node line gives its name (or "unnamed"), its type, its text for a Text,
+how much of it is inside, and its box in composition pixels. Under it come
+the file, line and column of the `new` that made it, and its named
+ancestors, innermost first.
+
+A location marked "(inherited)" belongs to the nearest ancestor that has
+one: the node was built inside a package, such as the parts of a `Code`
+node. Nodes made in a loop share a line; tell them apart by text, box or
+order. A node made in a helper function points at the helper's `new`.
+
+Reading the mark clears it, and the rectangle leaves the user's screen. The user can also clear it themselves, with the × on its corner, a click on the frame, or Escape. The
+user writes what they want in their message to you, not in the studio.
+Open the image only when the names and boxes aren't enough. With no mark,
+the command says so; ask the user to drag a rectangle over the thing they
+mean.
+
 ## Move the user's view, and render
 
 ```sh

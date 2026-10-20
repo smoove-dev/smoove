@@ -12,6 +12,7 @@ import {
   AgentError,
   type AgentResponse,
   type BridgeHello,
+  type MarkInput,
   type RenderParams,
   type RenderQueued,
   type SeekData,
@@ -24,6 +25,9 @@ import {
   type TabCancel,
   type TabHello,
   type TabJobUpdate,
+  type TabMarkClear,
+  type TabMarkEvent,
+  type TabMarkPost,
   type TabPresence,
   type TabRequest,
   type TimelineData,
@@ -61,6 +65,8 @@ export interface ConnectOptions {
   composition?: () => string | null;
   /** Path prefix of the bridge. Default `/__smoove/agent/`. */
   base?: string;
+  /** The server's current mark id changed (null: no mark), e.g. the agent read it. */
+  onMark?: (id: string | null) => void;
 }
 
 export interface AgentTabConnection {
@@ -68,10 +74,60 @@ export interface AgentTabConnection {
   readonly tabId: string | null;
   /** Report this tab's state again, e.g. after it switched compositions. */
   notify(): void;
+  /** The mark this tab drew and the agent hasn't read yet, kept across a page reload. */
+  readonly heldMark: MarkInput | null;
+  /**
+   * Send the user's mark: the image, then the mark. Held, so it's sent again
+   * if the stream reconnects (a dev server restart) before the agent reads it.
+   */
+  sendMark(mark: MarkInput, png: Blob): Promise<void>;
+  /** Clear this tab's mark on the server (the user pressed Escape). */
+  clearMark(id: string): Promise<void>;
   close(): void;
 }
 
 const OWNED_KEY = "smoove-agent-tab";
+const HELD_KEY = "smoove-agent-mark";
+
+type Held = { mark: MarkInput; png: Blob };
+
+/**
+ * The tab's unread mark, kept in session storage: a dev server restart makes
+ * Vite reload the page, and the mark has to survive that to be sent again.
+ */
+function loadHeld(): Held | null {
+  try {
+    const raw = sessionStorage.getItem(HELD_KEY);
+    if (!raw) return null;
+    const { mark, png } = JSON.parse(raw) as { mark: MarkInput; png: string };
+    const binary = atob(png.slice(png.indexOf(",") + 1));
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return { mark, png: new Blob([bytes], { type: "image/png" }) };
+  } catch {
+    return null;
+  }
+}
+
+function saveHeld(held: Held | null): void {
+  try {
+    if (!held) {
+      sessionStorage.removeItem(HELD_KEY);
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        sessionStorage.setItem(HELD_KEY, JSON.stringify({ mark: held.mark, png: reader.result }));
+      } catch {
+        // Storage full or blocked: the mark still works until the page reloads.
+      }
+    };
+    reader.readAsDataURL(held.png);
+  } catch {
+    // Same: a convenience only.
+  }
+}
 
 /**
  * The marker the server put in the URL when it opened this page in its own
@@ -120,6 +176,8 @@ export async function connectAgentTab(opts: ConnectOptions): Promise<AgentTabCon
   let tabId: string | null = null;
   let chain: Promise<void> = Promise.resolve();
   let closed = false;
+  /** The mark this tab drew and the server hasn't dropped yet. */
+  let held: Held | null = loadHeld();
 
   const focused = (): boolean => typeof document !== "undefined" && document.hasFocus();
   const visible = (): boolean =>
@@ -145,6 +203,15 @@ export async function connectAgentTab(opts: ConnectOptions): Promise<AgentTabCon
     tabId = hello.tabId;
     // The stream (re)opened: make sure the server has this tab's latest state.
     reportPresence();
+    if (held) void postMark(held.mark, held.png).catch(() => {});
+  });
+  stream.addEventListener("mark", (e) => {
+    const { id } = JSON.parse((e as MessageEvent<string>).data) as TabMarkEvent;
+    if (held && held.mark.id !== id) {
+      held = null;
+      saveHeld(null);
+    }
+    opts.onMark?.(id);
   });
   stream.addEventListener("request", (e) => {
     const req = JSON.parse((e as MessageEvent<string>).data) as TabRequest;
@@ -260,6 +327,27 @@ export async function connectAgentTab(opts: ConnectOptions): Promise<AgentTabCon
     }).catch(() => {});
   }
 
+  async function postMark(mark: MarkInput, png: Blob): Promise<void> {
+    if (!tabId || closed) return;
+    const qs = new URLSearchParams({
+      tabId,
+      id: mark.id,
+      composition: mark.composition,
+      frame: String(mark.frame),
+    });
+    await fetch(`${base}tab/mark-image?${qs}`, {
+      method: "POST",
+      headers: { "Content-Type": "image/png" },
+      body: png,
+    });
+    const body: TabMarkPost = { tabId, mark };
+    await fetch(`${base}tab/mark`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  }
+
   function reportPresence(): void {
     if (!tabId || closed) return;
     const body: TabPresence = {
@@ -285,6 +373,27 @@ export async function connectAgentTab(opts: ConnectOptions): Promise<AgentTabCon
       return tabId;
     },
     notify: reportPresence,
+    get heldMark() {
+      return held?.mark ?? null;
+    },
+    async sendMark(mark, png) {
+      held = { mark, png };
+      saveHeld(held);
+      await postMark(mark, png);
+    },
+    async clearMark(id) {
+      if (held?.mark.id === id) {
+        held = null;
+        saveHeld(null);
+      }
+      if (!tabId || closed) return;
+      const body: TabMarkClear = { tabId, id };
+      await fetch(`${base}tab/mark-clear`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+    },
     close() {
       if (closed) return;
       closed = true;

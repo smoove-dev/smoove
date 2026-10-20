@@ -8,6 +8,7 @@ import { useStudio } from "../../hooks/use-studio.js";
 import { cn } from "../../lib/cn.js";
 import { fpsHealth } from "../../lib/format.js";
 import { usePlayerSignal, useSignalValue } from "../../signals/signal-bridge.js";
+import { MarkOverlay } from "./mark-overlay.js";
 
 const PAD = 40;
 /** The margin in a narrow studio (`p-3`). */
@@ -125,6 +126,7 @@ export function Stage({ className, showStatus = false }: StageProps) {
           style={{ width: w * scale, height: h * scale }}
         >
           <smoove-player ref={playerRef} style={{ position: "absolute", inset: 0 }} />
+          {comp && <MarkOverlay scale={scale} w={w} h={h} />}
         </div>
       </div>
 

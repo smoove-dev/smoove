@@ -3,6 +3,7 @@ import { sep } from "node:path";
 import { createAgentBridge } from "@smoove/agent/server";
 import { type Plugin as EsbuildPlugin, build as esbuildBuild } from "esbuild";
 import { type Plugin, type ResolvedConfig, transformWithEsbuild, type ViteDevServer } from "vite";
+import { SOURCE_MODULE, SOURCE_MODULE_CODE, tagSources } from "./source-tags.js";
 
 /**
  * @smoove/vite — makes the studio feel like a framework under Vite.
@@ -82,6 +83,7 @@ export function smoove(options: SmooveOptions = {}): Plugin {
   const serverAssets = options.serverAssets ?? DEFAULT_SERVER_ASSETS;
 
   let isBuild = false;
+  let root = process.cwd();
   let base = "/";
   let assetsDir = "assets";
 
@@ -90,13 +92,21 @@ export function smoove(options: SmooveOptions = {}): Plugin {
     enforce: "pre",
     configResolved(config: ResolvedConfig) {
       isBuild = config.command === "build";
+      root = config.root;
       base = config.base;
       assetsDir = config.build.assetsDir;
     },
     configureServer(server) {
       if (options.agent !== false) mountAgentBridge(server);
     },
+    resolveId(id) {
+      // Dev only: the helper source-tagged files import (see source-tags.ts).
+      if (id === SOURCE_MODULE && !isBuild) return `\0${SOURCE_MODULE}`;
+      return null;
+    },
     async load(id, loadOptions) {
+      if (id === `\0${SOURCE_MODULE}`) return SOURCE_MODULE_CODE;
+
       // `X.ts?comp-url` → the served URL of a compiled standalone player module.
       if (queryFlags(id).includes("comp-url")) {
         const compFile = id.split("?")[0] ?? id;
@@ -129,28 +139,40 @@ export function smoove(options: SmooveOptions = {}): Plugin {
     },
     async transform(code, id) {
       const file = id.split("?")[0] ?? id;
-      if (!include.test(file)) return null;
-      if (!code.includes("defineRegistry")) return null;
-
-      // Parse a type-stripped copy (acorn can't read TS); edits apply to `code`.
-      let program: AnyNode;
-      try {
-        const js = await toJs(code, file);
-        program = this.parse(js);
-      } catch {
-        return null;
+      if (include.test(file) && code.includes("defineRegistry")) {
+        const out = await registryTransform.call(this, code, file);
+        if (out) return out;
       }
-
-      // Only act on a module whose default export is `defineRegistry([...])`.
-      // (Gating on the call — not the filename — keeps us off the studio's own
-      // `define-registry.js`, which also ends in "registry".)
-      const array = registryArray(program);
-      if (!array) return null;
-
-      const specs = entrySpecs(array, defaultImports(program));
-      return { code: buildOutput(code, specs), map: null };
+      // Dev only, and only with the agent bridge: tag where each node was
+      // created, for the studio's marks (`smoove context`).
+      if (!isBuild && options.agent !== false) return tagSources(code, id, root);
+      return null;
     },
   };
+
+  async function registryTransform(
+    this: { parse: (code: string) => unknown },
+    code: string,
+    file: string,
+  ): Promise<{ code: string; map: null } | null> {
+    // Parse a type-stripped copy (acorn can't read TS); edits apply to `code`.
+    let program: AnyNode;
+    try {
+      const js = await toJs(code, file);
+      program = this.parse(js) as AnyNode;
+    } catch {
+      return null;
+    }
+
+    // Only act on a module whose default export is `defineRegistry([...])`.
+    // (Gating on the call — not the filename — keeps us off the studio's own
+    // `define-registry.js`, which also ends in "registry".)
+    const array = registryArray(program);
+    if (!array) return null;
+
+    const specs = entrySpecs(array, defaultImports(program));
+    return { code: buildOutput(code, specs), map: null };
+  }
 }
 
 /** Alias under the name the framework is marketed with. */

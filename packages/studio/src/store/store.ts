@@ -15,6 +15,7 @@ import type {
   WritableSignal,
 } from "../types.js";
 import { createLayoutState } from "./layout.js";
+import { createMarkState } from "./mark.js";
 
 export type LoadStatus = "idle" | "loading" | "ready" | "error";
 export type TlMode = "progress" | "layered";
@@ -61,6 +62,7 @@ export function createStore(opts: StudioStoreOptions) {
   const toasts = new Signal.State<Toast[]>([]);
 
   const layout = createLayoutState();
+  const marks = createMarkState();
 
   const queueCount = new Signal.Computed(
     () => jobs.get().filter((j) => j.status === "queued" || j.status === "rendering").length,
@@ -152,8 +154,14 @@ export function createStore(opts: StudioStoreOptions) {
     return r;
   };
   async function reloadActive(id: string): Promise<void> {
+    // One save can fire several updates in a row. Only the first sees the
+    // mounted composition; the later ones would read the emptied player's
+    // frame 0, so they keep the frame the first one saved. The same holds
+    // across a failed build: fix the file and the playhead comes back.
     const api = player.get();
-    pendingRestore = api ? { frame: api.getCurrentFrame(), playing: api.isPlaying() } : null;
+    if (composition.get() && api) {
+      pendingRestore = { frame: api.getCurrentFrame(), playing: api.isPlaying() };
+    }
     wiredProps.delete(id);
     composition.set(null); // force the Stage to remount even if React keeps the ref
     await loadActive();
@@ -288,6 +296,8 @@ export function createStore(opts: StudioStoreOptions) {
   return {
     // layout (size, band, drawers, timeline height)
     ...layout,
+    // the user's mark for the agent (see agent/mark.ts)
+    ...marks,
     // config / data
     registry,
     entries,

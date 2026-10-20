@@ -34,6 +34,10 @@ For a closer look at one moment, use
 Name the beats with `plan()` and pass the plan to the `Composition`, so the
 sheet and `--at` can use the names.
 
+When the user says "this", "here" or "that one", run `npx smoove context`
+first. It lists the nodes they marked on the frame, with the file and line
+of each.
+
 Two rules:
 
 - Never render a video to check your work. Run `npx smoove render` only when

@@ -131,6 +131,8 @@ export interface ServerStatus {
   pid: number;
   startedAt: string;
   tabs: TabSummary[];
+  /** The mark waiting for `smoove context`, or null. */
+  mark: { composition: string; frame: number } | null;
 }
 
 export interface CatalogEntry {
@@ -426,6 +428,176 @@ export interface TabJobUpdate {
   /** The host's download URL, once done. */
   result?: string;
   error?: string;
+}
+
+/* ============================================================ marks */
+
+/** Where mark images are written, relative to the Vite root. */
+export const MARKS_DIR = ".smoove/marks";
+
+/** A node counts as marked when more than this share of its box is inside the rectangle. */
+export const MARK_MIN_COVER = 0.6;
+
+/** When no node passes {@link MARK_MIN_COVER}, a mark lists this many closest ones instead. */
+export const MARK_CLOSEST = 3;
+
+/** A marked Text node's text is cut to this many characters. */
+export const MARK_TEXT_MAX = 80;
+
+/** A rectangle in composition pixels. */
+export interface MarkRect {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+/** Where a node was created. Lines and columns are 1-based. */
+export interface SourceLocation {
+  /** Relative to the project root, with forward slashes. */
+  file: string;
+  line: number;
+  column: number;
+  /** True when the node has no tag of its own and this is its nearest tagged ancestor's. */
+  inherited: boolean;
+}
+
+/** One node the user's rectangle covers. */
+export interface MarkNode {
+  name: string | null;
+  id: string | null;
+  /** The class the author wrote, e.g. `Text`. */
+  type: string;
+  /** Axis-aligned bounds in composition pixels. */
+  box: MarkRect;
+  /** The share of `box` inside the rectangle, from 0 to 1. */
+  cover: number;
+  /** Text nodes only, cut to {@link MARK_TEXT_MAX} characters. */
+  text?: string;
+  /** Named ancestors, outermost first. */
+  ancestors: string[];
+  source: SourceLocation | null;
+}
+
+/** A mark as a tab sends it. The tab picks the id. */
+export interface MarkInput {
+  id: string;
+  composition: string;
+  /** Zero-based. */
+  frame: number;
+  /** The beat that contains the frame, or null. */
+  beat: string | null;
+  rect: MarkRect;
+  /** Smallest first (see {@link selectMarked}), or the closest ones when `closest`. */
+  nodes: MarkNode[];
+  /**
+   * True when no node passed the threshold, so `nodes` holds the best-covered
+   * ones instead (see {@link closestMarked}).
+   */
+  closest?: boolean;
+}
+
+/** A mark as the server holds it and `smoove context` reads it. */
+export interface Mark extends MarkInput {
+  /** ISO timestamp. */
+  drawnAt: string;
+  drawnBy: DrawnBy;
+  /** Absolute path of the frame image with the rectangle drawn on it, or null. */
+  image: string | null;
+}
+
+export interface ContextData {
+  /** Null when there's no mark. */
+  mark: Mark | null;
+}
+
+/** `POST tab/mark` body. */
+export interface TabMarkPost {
+  tabId: string;
+  mark: MarkInput;
+}
+
+/** `POST tab/mark-clear` body. */
+export interface TabMarkClear {
+  tabId: string;
+  id: string;
+}
+
+/** The `mark` event on a tab stream: the server's current mark id, or null. */
+export interface TabMarkEvent {
+  id: string | null;
+}
+
+/** The share of `box`'s own area inside `rect`, from 0 to 1. A box with no area is 0. */
+export function coverage(box: MarkRect, rect: MarkRect): number {
+  const area = box.width * box.height;
+  if (!(area > 0)) return 0;
+  const w = Math.min(box.x + box.width, rect.x + rect.width) - Math.max(box.x, rect.x);
+  const h = Math.min(box.y + box.height, rect.y + rect.height) - Math.max(box.y, rect.y);
+  if (w <= 0 || h <= 0) return 0;
+  return (w * h) / area;
+}
+
+/**
+ * The candidates more than `min` inside `rect`, each with its coverage,
+ * smallest area first so the most specific thing the user framed leads.
+ * Equal areas keep their input order.
+ */
+export function selectMarked<T extends { box: MarkRect }>(
+  candidates: T[],
+  rect: MarkRect,
+  min = MARK_MIN_COVER,
+): Array<T & { cover: number }> {
+  return candidates
+    .map((c) => ({ ...c, cover: coverage(c.box, rect) }))
+    .filter((c) => c.cover > min)
+    .sort((a, b) => a.box.width * a.box.height - b.box.width * b.box.height);
+}
+
+/**
+ * The fallback when nothing passes: the `count` candidates the rectangle
+ * covers most, most covered first. Untouched candidates never count.
+ */
+export function closestMarked<T extends { box: MarkRect }>(
+  candidates: T[],
+  rect: MarkRect,
+  count = MARK_CLOSEST,
+): Array<T & { cover: number }> {
+  return candidates
+    .map((c) => ({ ...c, cover: coverage(c.box, rect) }))
+    .filter((c) => c.cover > 0)
+    .sort((a, b) => b.cover - a.cover)
+    .slice(0, count);
+}
+
+/** Same box, give or take half a pixel on each edge. */
+function sameBox(a: MarkRect, b: MarkRect): boolean {
+  return (
+    Math.abs(a.x - b.x) <= 0.5 &&
+    Math.abs(a.y - b.y) <= 0.5 &&
+    Math.abs(a.x + a.width - (b.x + b.width)) <= 0.5 &&
+    Math.abs(a.y + a.height - (b.y + b.height)) <= 0.5
+  );
+}
+
+/**
+ * Leave out a node that has no source tag of its own and only fills an
+ * ancestor's box: a smoove node's own parts, like the Konva Text inside a
+ * Text or a Block's background. Tagged nodes, and parts with a box of their
+ * own (the tokens in a Code node), stay.
+ */
+export function dropFillers<T extends { box: MarkRect }>(
+  items: T[],
+  parentOf: (item: T) => T | null,
+  tagged: (item: T) => boolean,
+): T[] {
+  return items.filter((item) => {
+    if (tagged(item)) return true;
+    for (let p = parentOf(item); p; p = parentOf(p)) {
+      if (sameBox(p.box, item.box)) return false;
+    }
+    return true;
+  });
 }
 
 /* ============================================================ tab protocol */

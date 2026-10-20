@@ -10,12 +10,15 @@ import {
   type AgentErrorBody,
   type AgentResponse,
   type BridgeHello,
+  type ContextData,
   DEFAULT_SNAPSHOT_WIDTH,
   DEFAULT_TILE_WIDTH,
   type DiscoveryInfo,
   type ErrorCode,
   HEADLESS_CONNECT_MS,
+  MARKS_DIR,
   MAX_SHEET_FRAMES,
+  type MarkInput,
   MIN_SHEET_FRAMES,
   type RenderData,
   type RenderFormat,
@@ -32,6 +35,9 @@ import {
   type StudioStatus,
   TAB_TIMEOUT_MS,
   type TabJobUpdate,
+  type TabMarkClear,
+  type TabMarkEvent,
+  type TabMarkPost,
   type TabPresence,
   type TabRequest,
   type TabRequestType,
@@ -44,6 +50,7 @@ import {
   type LaunchedBrowser,
   NoBrowserError,
 } from "./headless.js";
+import { MarkStore } from "./marks.js";
 import { drawnBy, summarize, type Tab, TabList } from "./tabs.js";
 
 export interface AgentBridgeOptions {
@@ -142,6 +149,7 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
   const tabs = new TabList(now);
   const pending = new Map<string, Pending>();
   const renders = new Map<string, RenderRecord>();
+  const marks = new MarkStore();
   let url: string | null = null;
   let lastChangeAt = Number.NEGATIVE_INFINITY;
   let closed = false;
@@ -181,7 +189,57 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
       pid: process.pid,
       startedAt,
       tabs: tabs.all().map(summarize),
+      mark: markSummary(),
     };
+  }
+
+  function markSummary(): StatusData["server"]["mark"] {
+    const m = marks.current();
+    return m ? { composition: m.composition, frame: m.frame } : null;
+  }
+
+  /** Tell tabs which mark is current, so the others drop their rectangle. */
+  function broadcastMark(only?: Tab): void {
+    const event: TabMarkEvent = { id: marks.current()?.id ?? null };
+    for (const tab of only ? [only] : tabs.all()) sendEvent(tab, "mark", event);
+  }
+
+  // ---------------------------------------------------------------- marks
+
+  async function markImage(req: IncomingMessage, res: ServerResponse, q: URLSearchParams) {
+    const bytes = await readBody(req, PNG_LIMIT);
+    const id = q.get("id") ?? "";
+    if (!id || !tabs.get(q.get("tabId") ?? "")) {
+      return send(res, 404, fail("bad-request", "Unknown tab or mark."));
+    }
+    const dir = join(root, MARKS_DIR);
+    mkdirSync(dir, { recursive: true });
+    const path = join(dir, markFileName(q.get("composition") ?? "", Number(q.get("frame") ?? 0)));
+    writeFileSync(path, bytes);
+    marks.putImage(id, path);
+    return send(res, 200, { ok: true, data: null });
+  }
+
+  async function postMark(req: IncomingMessage, res: ServerResponse) {
+    const body = await readJson<TabMarkPost>(req);
+    const tab = body && typeof body.tabId === "string" ? tabs.get(body.tabId) : undefined;
+    const mark = body?.mark;
+    if (!tab || !validMark(mark)) {
+      return send(res, 400, fail("bad-request", "A mark needs a known tab and a mark object."));
+    }
+    const accepted = marks.set(mark, drawnBy(tab), new Date(now()).toISOString());
+    // A refused resend: tell only that tab, so it drops the stale rectangle.
+    broadcastMark(accepted ? undefined : tab);
+    return send(res, 200, { ok: true, data: { accepted } });
+  }
+
+  async function clearMark(req: IncomingMessage, res: ServerResponse) {
+    const body = await readJson<TabMarkClear>(req);
+    if (!body || typeof body.id !== "string") {
+      return send(res, 400, fail("bad-request", "A clear needs a mark id."));
+    }
+    if (marks.clear(body.id)) broadcastMark();
+    return send(res, 200, { ok: true, data: null });
   }
 
   // ---------------------------------------------------------------- tabs
@@ -586,6 +644,9 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
           ok ? { ok: true, data: null } : fail("bad-request", "Unknown tab."),
         );
       }
+      if (sub === "tab/mark-image" && method === "POST") return markImage(req, res, q);
+      if (sub === "tab/mark" && method === "POST") return postMark(req, res);
+      if (sub === "tab/mark-clear" && method === "POST") return clearMark(req, res);
       if (sub === "tab/job" && method === "POST") {
         const body = await readJson<TabJobUpdate>(req);
         const ok = body != null && (await jobUpdate(req, body));
@@ -665,6 +726,14 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
       return sendOut(res, await startRender(req, params));
     }
 
+    if (sub === "context" && method === "POST") {
+      await drain(req);
+      const mark = marks.take();
+      if (mark) broadcastMark();
+      const data: ContextData = { mark };
+      return send(res, 200, { ok: true, data });
+    }
+
     if (sub.startsWith("render/") && method === "GET") {
       await drain(req);
       const job = renders.get(decodeURIComponent(sub.slice("render/".length)));
@@ -678,7 +747,7 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
       404,
       fail(
         "bad-request",
-        `No endpoint ${method} ${AGENT_PREFIX}${sub}. The endpoints are GET status, POST seek, POST snapshot, POST sheet, POST timeline, POST render and GET render/<job id>.`,
+        `No endpoint ${method} ${AGENT_PREFIX}${sub}. The endpoints are GET status, POST seek, POST snapshot, POST sheet, POST timeline, POST render, GET render/<job id> and POST context.`,
       ),
     );
   }
@@ -751,6 +820,25 @@ function safeName(name: string): string {
 /** `hello-smoove`, 120, 640 → `hello-smoove-f120-w640.png`. */
 export function snapshotFileName(composition: string, frame: number, width: number): string {
   return `${safeName(composition)}-f${frame}-w${width}.png`;
+}
+
+/** `promo`, 120 → `promo-f120.png`. */
+export function markFileName(composition: string, frame: number): string {
+  return `${safeName(composition)}-f${frame}.png`;
+}
+
+/** Enough shape to hold and print a mark; the tab built it. */
+function validMark(m: unknown): m is MarkInput {
+  const mark = m as MarkInput | null | undefined;
+  return (
+    mark != null &&
+    typeof mark.id === "string" &&
+    mark.id !== "" &&
+    typeof mark.composition === "string" &&
+    Number.isInteger(mark.frame) &&
+    mark.rect != null &&
+    Array.isArray(mark.nodes)
+  );
 }
 
 /** `promo`, `beats`, 5 tiles, 320 → `promo-beats-w320.png`; even sheets add the count. */

@@ -24,6 +24,7 @@ smoove status                        # what the user's tab shows
 smoove snap --comp promo --at hook   # one frame as a PNG
 smoove sheet --comp promo            # one tile per beat, on one PNG
 smoove timeline --comp promo         # beats and sequences, in frames
+smoove context                       # what the user marked on the frame
 smoove seek 90                       # move the user's playhead
 smoove render --comp promo           # render a video, only when the user asks
 smoove stop
@@ -32,6 +33,12 @@ smoove stop
 `smoove start` runs the project's `dev` script in the background, waits for
 the studio, and prints its URL. Give that URL to the user so they can watch.
 Its output goes to `.smoove/dev.log`.
+
+The user points by dragging a rectangle over the frame in the studio.
+`smoove context` prints that mark: the frame and its beat, an image of the
+frame with the rectangle drawn on it, and every node more than 60 percent
+inside, smallest first, each with the file and line that created it. Reading
+the mark clears it.
 
 Images land under `.smoove/snaps/` and `.smoove/sheets/`, and the command
 prints their paths. Snapshots are 640 pixels wide by default and sheet tiles
@@ -80,7 +87,8 @@ curl -s -X POST http://localhost:5190/__smoove/agent/snapshot \
 ```
 
 The endpoints are `GET status`, and `POST seek`, `snapshot`, `sheet`,
-`timeline` and `render`, plus `GET render/<job id>` to follow a render.
+`timeline`, `render` and `context`, plus `GET render/<job id>` to follow a
+render.
 Every answer has the same shape: `ok` set to true with a `data` object, or
 `ok` set to false with an `error` that has a `code` and a `message`. Answers
 a tab produced also say which tab drew them, in `drawnBy`, and may carry
