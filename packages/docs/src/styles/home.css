@@ -171,15 +171,168 @@ body {
   width: 17px;
   height: 17px;
 }
-.hero__install {
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
+/* ---------- start tabs: developer / coding agent ---------- */
+.start {
+  margin: 34px auto 0;
+  max-width: 600px;
   position: relative;
   z-index: 1;
 }
-.hero__install .copy-cmd {
+.start__tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--bg-2);
+}
+.start__tab {
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 999px;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    background-color 0.15s;
+}
+.start__tab:hover {
+  color: var(--ink-1);
+}
+.start__tab[aria-selected="true"] {
+  color: var(--ink-1);
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent-line);
+}
+.start__tab:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+.start__panel {
+  margin-top: 16px;
+}
+.start__panel[hidden] {
+  display: none;
+}
+.start__panel .copy-cmd {
   max-width: 100%;
+}
+.start__panel .hero__cta {
+  margin-top: 20px;
+}
+.ideas {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+.ideas__chip {
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  color: var(--ink-2);
+  background: var(--bg-1);
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background-color 0.15s;
+}
+.ideas__chip:hover {
+  color: var(--ink-1);
+  border-color: var(--accent-line);
+}
+.ideas__chip[aria-pressed="true"] {
+  color: var(--ink-1);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+.ideas__chip:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+.prompt-card {
+  text-align: left;
+  border: 1px solid var(--code-line);
+  border-radius: var(--radius-ui);
+  background: var(--code-bg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+.prompt-card__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 6px 6px 16px;
+  border-bottom: 1px solid var(--code-line);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+.prompt-card__copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 6px 10px;
+  border-radius: var(--radius-control);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.prompt-card__copy:hover {
+  color: var(--ink-1);
+  background: var(--bg-2);
+}
+.prompt-card__copy.is-copied {
+  color: var(--good);
+}
+.prompt-card__copy svg {
+  width: 15px;
+  height: 15px;
+}
+.prompt-card__copy .ic-check,
+.prompt-card__copy.is-copied .ic-copy {
+  display: none;
+}
+.prompt-card__copy.is-copied .ic-check {
+  display: block;
+}
+.prompt-card pre {
+  margin: 0;
+  padding: 14px 16px 16px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--code-ink);
+}
+.prompt-card__fill {
+  color: var(--tok-str);
+}
+.start__hint {
+  margin: 12px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  text-wrap: pretty;
+}
+.start__hint a {
+  font-weight: 600;
+  color: var(--accent-2);
+}
+.start__hint a:hover {
+  text-decoration: underline;
 }
 .shields {
   margin-top: 22px;

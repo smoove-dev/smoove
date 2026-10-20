@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { type KeyboardEvent, useEffect, useId, useRef, useState } from "react";
 import { Link } from "react-router";
 import corePkg from "../../../core/package.json";
 import { ClientOnly } from "../components/client-only";
@@ -21,6 +21,41 @@ import type { Route } from "./+types/home";
 
 const GH_URL = "https://github.com/smoove-dev/smoove";
 const INSTALL_CMD = "npm create smoove";
+// The prompt a visitor pastes into their coding agent: one line that names
+// smoove and the studio, then the video. The agent finds the rest itself
+// (/llms.txt, and the studio's AGENTS.md once it scaffolds).
+const AGENT_PROMPT_LEAD =
+  "Use smoove (https://smoove.dev) to make me a video in the smoove studio.";
+
+// Starter ideas for the video line. Brackets mark the bits to make your own.
+type VideoIdea = { label: string; video: string };
+const VIDEO_IDEAS: [VideoIdea, ...VideoIdea[]] = [
+  {
+    label: "Product launch",
+    video:
+      "A 20-second launch teaser for [my app]: a logo reveal, three feature callouts, and a closing call to action.",
+  },
+  {
+    label: "Explainer",
+    video: "A 30-second explainer of how [a topic] works, built from simple shapes and captions.",
+  },
+  {
+    label: "Data story",
+    video:
+      "A 15-second animated bar chart of [my numbers], with values counting up as the bars grow.",
+  },
+  {
+    label: "Social clip",
+    video: "A 10-second portrait clip with a bold quote in kinetic type, made for social.",
+  },
+  {
+    label: "Code walkthrough",
+    video:
+      "A 25-second walkthrough that types out [a function] and highlights the line that matters.",
+  },
+];
+
+const agentPrompt = (video: string) => `${AGENT_PROMPT_LEAD}\n\n${video}`;
 
 export function loader() {
   // Doc slugs are stable (content/docs/<slug>.mdx); link to them directly.
@@ -32,6 +67,7 @@ export function loader() {
       installation: "/docs/installation",
       concepts: "/docs/layout-and-shapes",
       components: "/docs/components",
+      codingAgents: "/docs/coding-agents",
     },
   };
 }
@@ -103,167 +139,12 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             A timeline-driven animation engine. Animate any node's position, scale, rotation, and
             color, then sequence it, loop it, and play it back smoothly.
           </p>
-          <div className="hero__cta">
-            <Link className="btn btn--primary" to={getStarted}>
-              Get started
-              <IconArrowRight />
-            </Link>
-            <a className="btn btn--ghost" href={GH_URL} target="_blank" rel="noopener noreferrer">
-              <IconGithub />
-              View on GitHub
-            </a>
-          </div>
-
-          <div className="hero__install">
-            <div className="copy-cmd">
-              <span>
-                <span className="prompt">$</span> {INSTALL_CMD}
-              </span>
-              <button type="button" data-copy={INSTALL_CMD} aria-label="Copy install command">
-                <svg
-                  className="ic-copy"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={1.6}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="6" y="6" width="9" height="9" rx="2" />
-                  <path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6" />
-                </svg>
-                <svg
-                  className="ic-check"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={1.8}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M4 9.5l3.2 3L14 5.5" />
-                </svg>
-              </button>
-            </div>
-          </div>
+          <StartTabs codingAgentsUrl={links.codingAgents} getStartedUrl={getStarted} />
 
           <div className="shields">
             <span className="shield">
               license <b>MIT</b>
             </span>
-          </div>
-        </div>
-
-        <div className="hero__code">
-          <div className="code-block">
-            <div className="code-block__bar">
-              <span className="code-block__dots">
-                <i />
-                <i />
-                <i />
-              </span>
-              <span className="code-block__lang">js</span>
-            </div>
-            <pre className="scroll">
-              {/* Hand-highlighted static sample — token spans use the brand
-                  --tok-* colors (.t-* in home.css). Docs pages use Shiki. */}
-              <code className="language-javascript">
-                <span className="t-key">import</span>
-                {" { "}
-                <span className="t-fn">Composition</span>
-                {", "}
-                <span className="t-fn">Sequence</span>
-                {", "}
-                <span className="t-fn">Circle</span>
-                {" } "}
-                <span className="t-key">from</span> <span className="t-str">"@smoove/core"</span>
-                {";\n\n"}
-                <span className="t-key">const</span>
-                {" fps = "}
-                <span className="t-num">60</span>
-                {";\n"}
-                <span className="t-key">const</span>
-                {" comp = "}
-                <span className="t-key">new</span> <span className="t-fn">Composition</span>
-                {"({\n"}
-                {"  fps,\n"}
-                {"  durationInFrames: fps * "}
-                <span className="t-num">30</span>
-                {",\n"}
-                {"  width: "}
-                <span className="t-num">1600</span>
-                {",\n"}
-                {"  height: "}
-                <span className="t-num">900</span>
-                {",\n"}
-                {"});\n"}
-                <span className="t-key">const</span>
-                {" scene = "}
-                <span className="t-key">new</span> <span className="t-fn">Sequence</span>
-                {"();\n"}
-                <span className="t-key">const</span>
-                {" orb = "}
-                <span className="t-key">new</span> <span className="t-fn">Circle</span>
-                {"({ x: "}
-                <span className="t-num">800</span>
-                {", y: "}
-                <span className="t-num">450</span>
-                {", radius: "}
-                <span className="t-num">200</span>
-                {", fill: "}
-                <span className="t-str">"#FF5640"</span>
-                {" });\n"}
-                {"scene."}
-                <span className="t-fn">add</span>
-                {"(orb);\n\n"}
-                {"scene."}
-                <span className="t-fn">register</span>
-                {"((frame) => {\n"}
-                {"  "}
-                <span className="t-key">const</span>
-                {" t = frame / "}
-                <span className="t-num">1800</span>
-                {";\n"}
-                {"  orb."}
-                <span className="t-fn">x</span>
-                {"("}
-                <span className="t-num">800</span>
-                {" + "}
-                <span className="t-num">220</span>
-                {" * "}
-                <span className="t-fn">Math</span>
-                {"."}
-                <span className="t-fn">sin</span>
-                {"(t * "}
-                <span className="t-fn">Math</span>
-                {".PI * "}
-                <span className="t-num">2</span>
-                {"));\n"}
-                {"  orb."}
-                <span className="t-fn">radius</span>
-                {"("}
-                <span className="t-num">200</span>
-                {" + "}
-                <span className="t-num">50</span>
-                {" * "}
-                <span className="t-fn">Math</span>
-                {"."}
-                <span className="t-fn">sin</span>
-                {"(t * "}
-                <span className="t-fn">Math</span>
-                {".PI * "}
-                <span className="t-num">2</span>
-                {"));\n"}
-                {"});\n\n"}
-                {"comp."}
-                <span className="t-fn">add</span>
-                {"(scene);\n"}
-                <span className="t-key">export default</span>
-                {" comp;"}
-              </code>
-            </pre>
           </div>
         </div>
       </section>
@@ -386,6 +267,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               <li>
                 <Link to={links.installation}>Installation</Link>
               </li>
+              <li>
+                <Link to={links.codingAgents}>Coding agents</Link>
+              </li>
             </ul>
           </div>
 
@@ -416,6 +300,300 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <span>© 2026 smoove · Released under the MIT License</span>
         </div>
       </footer>
+    </>
+  );
+}
+
+type Audience = "developer" | "agent";
+
+// Agent first: describing the video to a coding agent is how smoove is meant
+// to be written.
+const AUDIENCES: { id: Audience; label: string }[] = [
+  { id: "agent", label: "Coding agent" },
+  { id: "developer", label: "Developer" },
+];
+
+/**
+ * How to start, for two readers: someone working through a coding agent gets a
+ * prompt to paste (the default), a developer gets the scaffold command. Both
+ * panels render on the server (the inactive one `hidden`), so an agent reading
+ * the page sees both. `/#developer` opens on the developer tab.
+ */
+function StartTabs({
+  codingAgentsUrl,
+  getStartedUrl,
+}: {
+  codingAgentsUrl: string;
+  getStartedUrl: string;
+}) {
+  const [active, setActive] = useState<Audience>("agent");
+  const [ideaIndex, setIdeaIndex] = useState(0);
+  const idea = VIDEO_IDEAS[ideaIndex] ?? VIDEO_IDEAS[0];
+  const tabRefs = useRef<Record<Audience, HTMLButtonElement | null>>({
+    developer: null,
+    agent: null,
+  });
+  const id = useId();
+
+  useEffect(() => {
+    if (window.location.hash === "#developer") setActive("developer");
+  }, []);
+
+  // Arrow keys move between tabs (WAI-ARIA tabs pattern, automatic activation).
+  const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    const i = AUDIENCES.findIndex((a) => a.id === active);
+    let next = i;
+    if (e.key === "ArrowRight") next = (i + 1) % AUDIENCES.length;
+    else if (e.key === "ArrowLeft") next = (i - 1 + AUDIENCES.length) % AUDIENCES.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = AUDIENCES.length - 1;
+    else return;
+    e.preventDefault();
+    const to = AUDIENCES[next]?.id;
+    if (!to) return;
+    setActive(to);
+    tabRefs.current[to]?.focus();
+  };
+
+  return (
+    <div className="start">
+      <div className="start__tabs" role="tablist" aria-label="How you'll build with smoove">
+        {AUDIENCES.map((a) => (
+          <button
+            key={a.id}
+            ref={(el) => {
+              tabRefs.current[a.id] = el;
+            }}
+            type="button"
+            role="tab"
+            id={`${id}-tab-${a.id}`}
+            aria-selected={active === a.id}
+            aria-controls={`${id}-panel-${a.id}`}
+            tabIndex={active === a.id ? 0 : -1}
+            className="start__tab"
+            onClick={() => setActive(a.id)}
+            onKeyDown={onKeyDown}
+          >
+            {a.label}
+          </button>
+        ))}
+      </div>
+
+      <div
+        className="start__panel"
+        role="tabpanel"
+        id={`${id}-panel-agent`}
+        aria-labelledby={`${id}-tab-agent`}
+        hidden={active !== "agent"}
+      >
+        <fieldset className="ideas" aria-label="Video ideas">
+          {VIDEO_IDEAS.map((idea, i) => (
+            <button
+              key={idea.label}
+              type="button"
+              className="ideas__chip"
+              aria-pressed={ideaIndex === i}
+              onClick={() => setIdeaIndex(i)}
+            >
+              {idea.label}
+            </button>
+          ))}
+        </fieldset>
+        <div className="prompt-card">
+          <div className="prompt-card__bar">
+            <span>Paste this into your coding agent</span>
+            <button type="button" className="prompt-card__copy" data-copy={agentPrompt(idea.video)}>
+              <CopyIcons />
+              <span className="copy-label">Copy prompt</span>
+            </button>
+          </div>
+          <pre>
+            {AGENT_PROMPT_LEAD}
+            {"\n\n"}
+            <span className="prompt-card__fill">{idea.video}</span>
+          </pre>
+        </div>
+        <p className="start__hint">
+          Pick an idea or write your own, then paste it into Claude Code, Cursor, Codex or any
+          coding agent, in an empty folder. <Link to={codingAgentsUrl}>How it works</Link>
+        </p>
+      </div>
+
+      <div
+        className="start__panel"
+        role="tabpanel"
+        id={`${id}-panel-developer`}
+        aria-labelledby={`${id}-tab-developer`}
+        hidden={active !== "developer"}
+      >
+        <div className="copy-cmd">
+          <span>
+            <span className="prompt">$</span> {INSTALL_CMD}
+          </span>
+          <button type="button" data-copy={INSTALL_CMD} aria-label="Copy install command">
+            <CopyIcons />
+          </button>
+        </div>
+        <div className="hero__cta">
+          <Link className="btn btn--primary" to={getStartedUrl}>
+            Get started
+            <IconArrowRight />
+          </Link>
+          <a className="btn btn--ghost" href={GH_URL} target="_blank" rel="noopener noreferrer">
+            <IconGithub />
+            View on GitHub
+          </a>
+        </div>
+        <HeroCode />
+      </div>
+    </div>
+  );
+}
+
+/** The static code sample shown on the Developer tab. */
+function HeroCode() {
+  return (
+    <div className="hero__code">
+      <div className="code-block">
+        <div className="code-block__bar">
+          <span className="code-block__dots">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span className="code-block__lang">js</span>
+        </div>
+        <pre className="scroll">
+          {/* Hand-highlighted static sample — token spans use the brand
+              --tok-* colors (.t-* in home.css). Docs pages use Shiki. */}
+          <code className="language-javascript">
+            <span className="t-key">import</span>
+            {" { "}
+            <span className="t-fn">Composition</span>
+            {", "}
+            <span className="t-fn">Sequence</span>
+            {", "}
+            <span className="t-fn">Circle</span>
+            {" } "}
+            <span className="t-key">from</span> <span className="t-str">"@smoove/core"</span>
+            {";\n\n"}
+            <span className="t-key">const</span>
+            {" fps = "}
+            <span className="t-num">60</span>
+            {";\n"}
+            <span className="t-key">const</span>
+            {" comp = "}
+            <span className="t-key">new</span> <span className="t-fn">Composition</span>
+            {"({\n"}
+            {"  fps,\n"}
+            {"  durationInFrames: fps * "}
+            <span className="t-num">30</span>
+            {",\n"}
+            {"  width: "}
+            <span className="t-num">1600</span>
+            {",\n"}
+            {"  height: "}
+            <span className="t-num">900</span>
+            {",\n"}
+            {"});\n"}
+            <span className="t-key">const</span>
+            {" scene = "}
+            <span className="t-key">new</span> <span className="t-fn">Sequence</span>
+            {"();\n"}
+            <span className="t-key">const</span>
+            {" orb = "}
+            <span className="t-key">new</span> <span className="t-fn">Circle</span>
+            {"({ x: "}
+            <span className="t-num">800</span>
+            {", y: "}
+            <span className="t-num">450</span>
+            {", radius: "}
+            <span className="t-num">200</span>
+            {", fill: "}
+            <span className="t-str">"#FF5640"</span>
+            {" });\n"}
+            {"scene."}
+            <span className="t-fn">add</span>
+            {"(orb);\n\n"}
+            {"scene."}
+            <span className="t-fn">register</span>
+            {"((frame) => {\n"}
+            {"  "}
+            <span className="t-key">const</span>
+            {" t = frame / "}
+            <span className="t-num">1800</span>
+            {";\n"}
+            {"  orb."}
+            <span className="t-fn">x</span>
+            {"("}
+            <span className="t-num">800</span>
+            {" + "}
+            <span className="t-num">220</span>
+            {" * "}
+            <span className="t-fn">Math</span>
+            {"."}
+            <span className="t-fn">sin</span>
+            {"(t * "}
+            <span className="t-fn">Math</span>
+            {".PI * "}
+            <span className="t-num">2</span>
+            {"));\n"}
+            {"  orb."}
+            <span className="t-fn">radius</span>
+            {"("}
+            <span className="t-num">200</span>
+            {" + "}
+            <span className="t-num">50</span>
+            {" * "}
+            <span className="t-fn">Math</span>
+            {"."}
+            <span className="t-fn">sin</span>
+            {"(t * "}
+            <span className="t-fn">Math</span>
+            {".PI * "}
+            <span className="t-num">2</span>
+            {"));\n"}
+            {"});\n\n"}
+            {"comp."}
+            <span className="t-fn">add</span>
+            {"(scene);\n"}
+            <span className="t-key">export default</span>
+            {" comp;"}
+          </code>
+        </pre>
+      </div>
+    </div>
+  );
+}
+
+function CopyIcons() {
+  return (
+    <>
+      <svg
+        className="ic-copy"
+        viewBox="0 0 18 18"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <rect x="6" y="6" width="9" height="9" rx="2" />
+        <path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6" />
+      </svg>
+      <svg
+        className="ic-check"
+        viewBox="0 0 18 18"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M4 9.5l3.2 3L14 5.5" />
+      </svg>
     </>
   );
 }

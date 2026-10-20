@@ -20,7 +20,9 @@ npm create smoove
 ```
 
 Pick **studio** for the full timeline and props UI, or **composition** for a
-single scene. The studio template installs the `smoove-video` skill for you,
+single scene. An agent running the command itself gets the studio by default:
+with no terminal to prompt in, `npm create smoove` scaffolds it into
+`./my-smoove-studio`. The studio template installs the `smoove-video` skill for you,
 and the composition template offers to: that's what teaches your agent the
 mental model (frame clock, range-gated sequences, `interpolate`-driven
 updaters) before it writes a line of code. See [Agent skills](/docs/skills)
@@ -112,6 +114,13 @@ Open the printed URL and leave it running. `<smoove-player>` hot-reloads on
 every save, so you'll see each change the agent makes as it makes it. In a
 separate terminal, start your coding agent in the project and describe the
 video; it edits `src/composition.ts`.
+
+## Point an agent at the docs
+
+An agent that reads the site directly should start at
+[/llms.txt](/llms.txt). It opens with the studio workflow above, then lists
+every docs page as Markdown. [/llms-full.txt](/llms-full.txt) has every page
+in one file.
 
 Next: [Installation](/docs/installation) covers the manual setup if you're
 wiring smoove into an existing app instead of scaffolding a new one.

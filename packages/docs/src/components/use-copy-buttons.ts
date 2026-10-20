@@ -57,7 +57,9 @@ export function useCopyButtons(dep?: unknown) {
 
     for (const btn of Array.from(document.querySelectorAll<HTMLElement>("[data-copy]"))) {
       const handler = () => {
-        copyText(btn.getAttribute("data-copy") ?? "").then(() => flash(btn));
+        copyText(btn.getAttribute("data-copy") ?? "").then(() =>
+          flash(btn, btn.querySelector<HTMLElement>(".copy-label")),
+        );
       };
       btn.addEventListener("click", handler);
       cleanups.push(() => btn.removeEventListener("click", handler));

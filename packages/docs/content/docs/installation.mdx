@@ -12,6 +12,9 @@ smoove ships as an ES module with `konva` as a peer dependency. The fastest
 way to a running project is the scaffolding CLI; if you'd rather wire it into
 an existing app, add the package by hand.
 
+Making a video with a coding agent? Scaffold the studio template and read
+[Coding agents](/docs/coding-agents): the project tells your agent the rest.
+
 <Tabs items={["npm create smoove", "Manual install"]}>
 
 <Tab value="npm create smoove">
@@ -21,19 +24,25 @@ an existing app, add the package by hand.
 ```bash
 npm create smoove
 # or, non-interactively
+npm create smoove studio my-video
 npm create smoove composition my-video -- --ts
 ```
 
 You'll be prompted for a template and a target directory. Two templates:
 
+- **studio**: the full studio, browse compositions, scrub the timeline,
+  tweak props, and render MP4s on a built-in server queue. It's also where
+  a coding agent works best.
 - **composition**: a minimal Vite app, one composition, `<smoove-player>`
   preview, autoreload. TypeScript or JavaScript.
-- **studio**: the full studio, browse compositions, scrub the timeline,
-  tweak props, and render MP4s on a built-in server queue.
 
-The CLI installs dependencies, runs `git init`, and offers to add the
-`smoove-video` agent skill so a coding agent can write compositions for you.
-See [Agent skills](/docs/skills) for what that installs and why.
+The CLI installs dependencies and runs `git init`. The studio template also
+installs the `smoove-video` agent skill, and the composition template offers
+to, so a coding agent can write compositions for you. See
+[Agent skills](/docs/skills) for what that installs and why.
+
+When there's no terminal to prompt in, as with a coding agent, a bare
+`npm create smoove` scaffolds the studio into `./my-smoove-studio`.
 
 ## Run it
 
@@ -42,8 +51,10 @@ cd my-video
 npm run dev
 ```
 
-Open the printed URL. The player previews `src/composition.ts`; edit it and
-the preview reloads.
+Open the printed URL. In a studio project that's the studio, listing every
+composition under `compositions/`. In a composition project the player
+previews `src/composition.ts`. Either way, edit a file and the preview
+reloads.
 
 <Callout type="tip" title="Options">
 `--ts` / `--js` (composition template only), `--no-install`, `--no-git`,

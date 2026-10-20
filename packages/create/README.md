@@ -20,6 +20,10 @@ write smoove compositions.
 
 Options: `--ts` / `--js`, `--no-install`, `--no-git`, `--no-skill`.
 
+Run without a terminal (a coding agent, CI) and with no arguments, it
+scaffolds the studio template into `./my-smoove-studio`. The studio ships an
+`AGENTS.md` that walks the agent through the rest.
+
 Templates live in [`templates/`](https://github.com/smoove-dev/smoove/tree/main/templates)
 and are fetched from `main` at run time, so fixes land without a new CLI
 release.
