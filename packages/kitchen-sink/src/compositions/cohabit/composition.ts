@@ -611,7 +611,7 @@ addClip(comp, {
 addClip(comp, { from: S2B, to: S2C, src: s2bUrl, name: "s2b", grade: "bright" });
 addClip(comp, { from: S2C, to: S2_END, src: s2cUrl, name: "s2c", grade: "bright" });
 
-// s2b: app name (prop) slides up; subtitle picks up the accent color.
+// s2b: app name (prop) slides up, with a white subtitle under it.
 {
   const seq = new Sequence({ from: S2B, durationInFrames: S2C - S2B });
   const dur = S2C - S2B;
@@ -634,13 +634,12 @@ addClip(comp, { from: S2C, to: S2_END, src: s2cUrl, name: "s2c", grade: "bright"
       opacity: 0,
     });
   const hero = mkLT(heroY, 92, "800", WHITE, p().appName);
-  const sub = mkLT(heroY + 110, 40, "500", p().accent, "Your building, handled.");
+  const sub = mkLT(heroY + 110, 40, "500", WHITE, "Your building, handled.");
   const heroBaseY = hero.y();
   const subBaseY = sub.y();
   seq.add(hero, sub);
   seq.register((f) => {
     hero.text(p().appName);
-    sub.fill(p().accent);
     const a1 = fadeRise(f, 8, dur - 14);
     hero.opacity(a1.alpha);
     hero.y(heroBaseY + a1.dy);
@@ -651,70 +650,167 @@ addClip(comp, { from: S2C, to: S2_END, src: s2cUrl, name: "s2c", grade: "bright"
   comp.add(seq);
 }
 
-// s2c: a UI feature card slides in from the right.
+// s2c: five "done" cards stack up on the phone's screen, one after another.
+// They're drawn flat, then painted onto the screen in thin strips that follow
+// the phone's perspective, so they sit in the glass instead of over it.
 {
   const seq = new Sequence({ from: S2C, durationInFrames: S2_END - S2C });
   const dur = S2_END - S2C;
-  const card = new Konva.Group({ x: W - 620, y: Math.round(H * 0.34) });
-  const cw = 460;
-  const ch = 150;
-  const bg = new Konva.Rect({
-    width: cw,
-    height: ch,
-    cornerRadius: 28,
-    fill: WHITE,
-    shadowColor: "#000",
-    shadowBlur: 40,
-    shadowOpacity: 0.25,
-    shadowOffset: { x: 0, y: 18 },
+
+  // The screen in the s2c footage, measured from clean frames (pixel scan,
+  // straight-line fits under 1 px of error). Its sides are x = a + k * y; the
+  // line under the app header is y = h + HEADER_SLOPE * (x - 700). Keyed by
+  // absolute frame; the hand drifts the phone left and up as it settles.
+  const SCREEN_KEYS = [428, 440, 479];
+  const LEFT_A = [580.3, 560.5, 538];
+  const RIGHT_A = [1056.4, 1071.5, 1080];
+  const HEADER_H = [284, 277, 254];
+  const LEFT_K = 0.218;
+  const RIGHT_K = 0.298;
+  const HEADER_SLOPE = -0.149;
+  const CONTENT_GAP = 6; // below the header line
+  const DEPTH = 900; // how far down the screen the flat content reaches
+
+  // The flat content: the app's list, in screen pixels.
+  const FW = 530;
+  const FH = DEPTH;
+  const cw = FW - 48;
+  const ch = 136;
+  const gap = 14;
+  const top = 22;
+  const items = [
+    { title: "Dues", sub: "Paid this month" },
+    { title: "Repairs", sub: "Elevator fixed" },
+    { title: "Cleaning", sub: "Stairs done" },
+    { title: "Garden vote", sub: "Budget approved" },
+    { title: "Parking", sub: "Spot 12 is yours" },
+  ];
+  // Per-frame state the updater sets and the draw reads.
+  const rise = items.map(() => 0);
+  const alpha = items.map(() => 0);
+  let quad = { tl: { x: 0, y: 0 }, tr: { x: 0, y: 0 }, bl: { x: 0, y: 0 }, br: { x: 0, y: 0 } };
+
+  const flat = Konva.Util.createCanvasElement();
+  flat.width = FW;
+  flat.height = FH;
+
+  const roundRect = (
+    g: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    r: number,
+  ) => {
+    g.beginPath();
+    g.moveTo(x + r, y);
+    g.arcTo(x + w, y, x + w, y + h, r);
+    g.arcTo(x + w, y + h, x, y + h, r);
+    g.arcTo(x, y + h, x, y, r);
+    g.arcTo(x, y, x + w, y, r);
+    g.closePath();
+  };
+
+  const drawFlat = () => {
+    const g = flat.getContext("2d") as CanvasRenderingContext2D;
+    g.clearRect(0, 0, FW, FH);
+    items.forEach((item, i) => {
+      const a = alpha[i] ?? 0;
+      if (a <= 0) return;
+      const x = 24;
+      const y = top + i * (ch + gap) + (rise[i] ?? 0);
+      g.save();
+      g.globalAlpha = a;
+      // A soft offset plate instead of shadowBlur, which is too slow to animate.
+      g.fillStyle = "rgba(15, 23, 42, 0.07)";
+      roundRect(g, x, y + 6, cw, ch, 24);
+      g.fill();
+      g.fillStyle = WHITE;
+      roundRect(g, x, y, cw, ch, 24);
+      g.fill();
+      g.strokeStyle = "#e2e8f0";
+      g.lineWidth = 2;
+      g.stroke();
+      g.fillStyle = ACCENT;
+      roundRect(g, x + 22, y + ch / 2 - 34, 68, 68, 18);
+      g.fill();
+      g.fillStyle = WHITE;
+      g.font = `700 42px ${FONT}`;
+      g.textAlign = "center";
+      g.textBaseline = "middle";
+      g.fillText("✓", x + 56, y + ch / 2 + 2);
+      g.textAlign = "left";
+      g.textBaseline = "alphabetic";
+      g.fillStyle = INK;
+      g.font = `600 44px ${FONT}`;
+      g.fillText(item.title, x + 112, y + 62);
+      g.fillStyle = "#64748b";
+      g.font = `400 32px ${FONT}`;
+      g.fillText(item.sub, x + 112, y + 106);
+      g.restore();
+    });
+  };
+
+  const screen = new Konva.Shape({
+    name: "phone-screen-cards",
+    listening: false,
+    sceneFunc: (ctx) => {
+      if (!alpha.some((a) => a > 0)) return;
+      drawFlat();
+      const { tl, tr, bl, br } = quad;
+      // Paint the flat content strip by strip, each mapped onto its slice of
+      // the screen (a bilinear warp, close enough to perspective here).
+      const STRIPS = 60;
+      const sh = FH / STRIPS;
+      for (let j = 0; j < STRIPS; j++) {
+        const v0 = j / STRIPS;
+        const v1 = (j + 1) / STRIPS;
+        const p = { x: tl.x + (bl.x - tl.x) * v0, y: tl.y + (bl.y - tl.y) * v0 };
+        const q = { x: tr.x + (br.x - tr.x) * v0, y: tr.y + (br.y - tr.y) * v0 };
+        const r = { x: tl.x + (bl.x - tl.x) * v1, y: tl.y + (bl.y - tl.y) * v1 };
+        ctx.save();
+        ctx.transform(
+          (q.x - p.x) / FW,
+          (q.y - p.y) / FW,
+          (r.x - p.x) / sh,
+          (r.y - p.y) / sh,
+          p.x,
+          p.y,
+        );
+        // One extra source row hides the seams between strips.
+        ctx.drawImage(flat, 0, j * sh, FW, sh + 1, 0, 0, FW, sh + 1);
+        ctx.restore();
+      }
+    },
   });
-  const icon = new Konva.Rect({
-    x: 32,
-    y: ch / 2 - 36,
-    width: 72,
-    height: 72,
-    cornerRadius: 20,
-    fill: ACCENT,
-  });
-  const check = new Konva.Text({
-    x: 32,
-    y: ch / 2 - 36,
-    width: 72,
-    height: 72,
-    text: "✓",
-    fontFamily: FONT,
-    fontSize: 44,
-    fontStyle: "700",
-    fill: WHITE,
-    align: "center",
-    verticalAlign: "middle",
-  });
-  const title = new Konva.Text({
-    x: 130,
-    y: 40,
-    text: "Dues",
-    fontFamily: FONT,
-    fontSize: 34,
-    fontStyle: "600",
-    fill: INK,
-  });
-  const sub = new Konva.Text({
-    x: 130,
-    y: 84,
-    text: "Paid · this month",
-    fontFamily: FONT,
-    fontSize: 26,
-    fontStyle: "400",
-    fill: "#64748b",
-  });
-  card.add(bg, icon, check, title, sub);
-  seq.add(card);
-  const baseX = card.x();
+  seq.add(screen);
+
+  const settle = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
   seq.register((f) => {
-    const e = easeBack(clamp01(f / 16));
-    const tOut = clamp01((f - (dur - 14)) / 14);
-    card.x(baseX + (1 - e) * 260);
-    card.opacity(e * (1 - tOut));
+    const at = S2C + f;
+    const aL = interpolate(at, SCREEN_KEYS, LEFT_A, settle);
+    const aR = interpolate(at, SCREEN_KEYS, RIGHT_A, settle);
+    const h = interpolate(at, SCREEN_KEYS, HEADER_H, settle) + CONTENT_GAP;
+    // Where the header line meets each side of the screen.
+    const corner = (a: number, k: number) => {
+      const x = (a + k * (h - 700 * HEADER_SLOPE)) / (1 - k * HEADER_SLOPE);
+      return { x, y: h + HEADER_SLOPE * (x - 700) };
+    };
+    const tl = corner(aL, LEFT_K);
+    const tr = corner(aR, RIGHT_K);
+    const down = (c: { x: number; y: number }, k: number) => ({
+      x: c.x + k * DEPTH,
+      y: c.y + DEPTH,
+    });
+    quad = { tl, tr, bl: down(tl, LEFT_K), br: down(tr, RIGHT_K) };
+
+    const tOut = clamp01((f - (dur - 10)) / 10);
+    items.forEach((_, i) => {
+      // Staggered: one card every 5 frames, once the app sheet has opened.
+      const e = easeBack(clamp01((f - (28 + i * 5)) / 12));
+      rise[i] = (1 - e) * 36;
+      alpha[i] = clamp01(e) * (1 - tOut);
+    });
   });
   comp.add(seq);
 }
