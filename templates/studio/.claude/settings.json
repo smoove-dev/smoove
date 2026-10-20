@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx smoove start:*)",
+      "Bash(npx smoove stop:*)",
+      "Bash(npx smoove status:*)",
+      "Bash(npx smoove snap:*)",
+      "Bash(npx smoove sheet:*)",
+      "Bash(npx smoove timeline:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm run typecheck:*)"
+    ]
+  }
+}

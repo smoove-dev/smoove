@@ -3,7 +3,7 @@
 // no browser, no render. Run them with `npm test`.
 import { probe } from "@smoove/core/testing";
 import { beforeAll, describe, expect, it } from "vitest";
-import comp from "./composition";
+import comp, { beats } from "./composition";
 
 // Fonts load asynchronously; measure against the real face, not a fallback.
 beforeAll(async () => {
@@ -25,7 +25,8 @@ describe("hello-smoove", () => {
   });
 
   it("settles the wordmark into the lockup by the end", () => {
-    comp.setFrame(3.5 * comp.fps);
+    // Beats have names, so a test can ask for "the last frame of the slogan".
+    comp.setFrame(beats.slogan.end.resolve() - 1);
     const [wordmark] = probe(comp, ".wordmark");
     expect(wordmark?.visible).toBe(true);
     expect(wordmark?.box.x).toBeCloseTo(510, 0);

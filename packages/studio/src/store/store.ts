@@ -14,6 +14,7 @@ import type {
   Toast,
   WritableSignal,
 } from "../types.js";
+import { createLayoutState } from "./layout.js";
 
 export type LoadStatus = "idle" | "loading" | "ready" | "error";
 export type TlMode = "progress" | "layered";
@@ -58,6 +59,8 @@ export function createStore(opts: StudioStoreOptions) {
   const layerOff = new Signal.State<Record<string, Set<number>>>({});
   const jobs = new Signal.State<RenderJob[]>([]);
   const toasts = new Signal.State<Toast[]>([]);
+
+  const layout = createLayoutState();
 
   const queueCount = new Signal.Computed(
     () => jobs.get().filter((j) => j.status === "queued" || j.status === "rendering").length,
@@ -123,6 +126,8 @@ export function createStore(opts: StudioStoreOptions) {
   }
 
   function applySelect(id: string, navigate: boolean): void {
+    // Picking a composition from the library drawer closes it.
+    layout.setLibraryOpen(false);
     if (id === selectedId.get() && composition.get()) return;
     selectedId.set(id);
     region.set({ in: null, out: null });
@@ -263,7 +268,26 @@ export function createStore(opts: StudioStoreOptions) {
     addToast(`Download started · ${job.comp}`, "download");
   };
 
+  // Entering the narrow band starts the timeline in progress mode, and the
+  // drawers start closed: the stage gets the whole column.
+  let lastBand = layout.band.get();
+  const bandWatcher = new Signal.subtle.Watcher(() => queueMicrotask(onBand));
+  function onBand(): void {
+    const band = layout.band.get();
+    bandWatcher.watch();
+    if (band === lastBand) return;
+    lastBand = band;
+    if (band === "narrow") {
+      tlMode.set("progress");
+      layout.setLibraryOpen(false);
+    }
+    if (band !== "wide") panelOpen.set(false);
+  }
+  bandWatcher.watch(layout.band);
+
   return {
+    // layout (size, band, drawers, timeline height)
+    ...layout,
     // config / data
     registry,
     entries,

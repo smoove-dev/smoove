@@ -28,7 +28,8 @@ Options:
   --ts / --js   Language for the composition template (default: ask)
   --no-install  Skip installing dependencies
   --no-git      Skip git init
-  --no-skill    Skip the smoove-video agent-skill install
+  --no-skill    Skip the smoove-video agent-skill install (the studio
+                template installs it by default)
   -h, --help    Show this help
 `;
 
@@ -145,6 +146,9 @@ async function main(): Promise<void> {
   }
 
   let skill = opts.skill;
+  // The studio is where an agent works, and the skill is how it knows the
+  // loop, so the studio template installs it without asking. --no-skill skips.
+  if (skill === undefined && template === "studio") skill = true;
   if (skill === undefined) {
     skill = interactive
       ? guard(
@@ -172,6 +176,9 @@ async function main(): Promise<void> {
       `cd ${dir}`,
       opts.install ? dev : `${pm} install && ${dev}`,
       `${test}   # headless composition tests`,
+      ...(template === "studio"
+        ? ["", "Working with a coding agent? It can run the studio itself: npx smoove start"]
+        : []),
       "",
       ...notes,
     ].join("\n"),

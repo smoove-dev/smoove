@@ -22,5 +22,7 @@ scaffold() {
 scaffold comp-ts composition --ts
 scaffold comp-js composition --js
 scaffold studio studio
+# The studio ships the smoove command for coding agents (from @smoove/agent).
+(cd "$TMP/studio" && npx --no-install smoove --help >/dev/null)
 
 echo "smoke-create: all templates scaffold, install, build, and pass their tests ✔"

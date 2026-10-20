@@ -40,5 +40,11 @@ export function installDeps(pm: PackageManager, cwd: string): boolean {
  * skill list — only the agent choice remains.
  */
 export function installSkill(cwd: string): boolean {
-  return run("npx", ["-y", "skills", "add", "smoove-dev/smoove", "--skill", "smoove-video"], cwd);
+  // `--yes` skips the installer's own prompts, so this also works when an agent
+  // runs `npm create smoove` without a terminal.
+  return run(
+    "npx",
+    ["-y", "skills", "add", "smoove-dev/smoove", "--skill", "smoove-video", "--yes"],
+    cwd,
+  );
 }

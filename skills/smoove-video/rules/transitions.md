@@ -21,18 +21,21 @@ const comp = new Composition({
 });
 
 const series = new TransitionSeries({ composition: comp });
-series.scene({ durationInFrames: sceneFrames }, (seq) => {
+series.scene({ name: "a", durationInFrames: sceneFrames }, (seq) => {
   seq.add(/* scene A nodes */);
 });
 series.transition({
   presentation: fade(),
   timing: linearTiming({ durationInFrames: transitionFrames }), // overlaps the tail of A / head of B
 });
-series.scene({ durationInFrames: sceneFrames }, (seq) => {
+series.scene({ name: "b", durationInFrames: sceneFrames }, (seq) => {
   seq.add(/* scene B nodes */);
 });
 
 comp.add(series); // Composition.add accepts a SequenceProvider directly, same as Series
+// The series needs the composition before it can hand out markers, so name
+// the beats afterwards. The studio and the smoove command use the names.
+comp.setPlan({ a: series.marker("a"), b: series.marker("b") });
 export default comp;
 ```
 
