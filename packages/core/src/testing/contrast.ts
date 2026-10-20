@@ -2,7 +2,7 @@ import type Konva from "konva";
 import { contrastRatio, parseColor, type RGBA } from "../animation/color.js";
 import { measure } from "../layout/measure.js";
 import type { Box, Hit } from "./findings.js";
-import type { SweepContext } from "./purity.js";
+import { goTo, type SweepContext } from "./purity.js";
 
 /** Text this faint is decoration (ghost type), not something to read. */
 const MIN_OPACITY = 0.3;
@@ -10,6 +10,8 @@ const MIN_OPACITY = 0.3;
 const WORST_SHARE = 0.1;
 /** Background pixels read per Text, at most. */
 const MAX_PIXELS = 4096;
+/** An opacity step between neighboring frames this big means a fade. */
+const FADE_STEP = 0.005;
 
 type ProbeText = {
   _kmProbeText(): { fontSize: number; fill: string | null; gradient: (number | string)[] | null };
@@ -124,17 +126,31 @@ function suggest(text: RGBA, background: RGBA, floor: number, palette: string[])
   return best ? hex(best.color) : null;
 }
 
+/** Each Text's opacity on `frame`, to tell a fade from a hold. */
+function opacitiesAt(ctx: SweepContext, frame: number): Map<Konva.Node, number> {
+  goTo(ctx.comp, frame);
+  const out = new Map<Konva.Node, number>();
+  for (const node of ctx.nodes()) {
+    if (hasProbeText(node)) out.set(node, node.isVisible() ? node.getAbsoluteOpacity() : 0);
+  }
+  return out;
+}
+
 /**
  * Contrast of every visible Text against what's really behind it, on the
  * contrast samples. Text under 48 times `u` needs 4.5 to 1, larger text 3 to
- * 1. `palette` is the declared palette, or the colors in use, for the
- * suggestion.
+ * 1. A Text partway through a fade (its opacity changes by the next frame,
+ * and isn't full) is left for the frames where it holds. `palette` is the
+ * declared palette, or the colors in use, for the suggestion.
  */
 export async function contrastSweep(ctx: SweepContext, palette: string[] | null): Promise<Hit[]> {
   const { comp } = ctx;
   const u = Math.min(comp.width(), comp.height()) / 1080;
+  const last = comp.durationInFrames.get() - 1;
   const hits: Hit[] = [];
   for (const frame of ctx.contrastSamples) {
+    const neighbor = frame < last ? frame + 1 : frame - 1;
+    const near = neighbor >= 0 ? opacitiesAt(ctx, neighbor) : null;
     await comp.renderFrame(frame);
     const whole = comp.captureCanvas();
     const painted = whole.getContext("2d")?.getImageData(0, 0, whole.width, whole.height).data;
@@ -143,6 +159,8 @@ export async function contrastSweep(ctx: SweepContext, palette: string[] | null)
       if (!hasProbeText(node) || !node.isVisible()) continue;
       const opacity = node.getAbsoluteOpacity();
       if (opacity < MIN_OPACITY) continue;
+      const fading = Math.abs((near?.get(node) ?? opacity) - opacity) > FADE_STEP;
+      if (fading && opacity < 1 - FADE_STEP) continue;
       const probe = node._kmProbeText();
       const colors = textColors(probe);
       if (colors.length === 0) continue;

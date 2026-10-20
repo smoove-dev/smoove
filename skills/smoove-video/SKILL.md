@@ -1,6 +1,6 @@
 ---
 name: smoove-video
-description: Use when creating, animating, or laying out a smoove (Konva-based) video Composition or Sequence: timeline-driven scenes, Flex/Block layout, interpolate-based animation, or Text/shape authoring, or when checking a composition in the studio with the smoove command (snapshots, contact sheets, the timeline) instead of rendering.
+description: "Use when writing or changing a smoove video: a composition.ts in a smoove project, or any code that builds a Composition with @smoove/core, from a new explainer or promo to a one-line tweak. smoove is a timeline-driven animation engine built on top of Konva, where everything on screen is a function of the frame number. Covers planning the video and its beats, scenes and clips, Flex and Block layout, animating with interpolate, text, fonts and media, and checking the result in the studio with npx smoove agent (check, snapshots, contact sheets) instead of rendering."
 metadata:
   tags: smoove, konva, video, animation, composition, motion
 ---

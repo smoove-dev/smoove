@@ -89,12 +89,18 @@ export interface Finding {
   image?: string;
 }
 
-/** A beat as the checks see it. `end` is exclusive, `sheet` is the contact sheet's frame. */
+/**
+ * A beat as the checks see it. `end` is exclusive, `settled` to `heldTo` is
+ * its held stretch (`heldTo` is the last frame before the next beat comes
+ * in, and `sheet` when it's left out), and `sheet` is the contact sheet's
+ * frame.
+ */
 export interface CheckBeat {
   name: string;
   start: number;
   settled: number;
   end: number;
+  heldTo?: number;
   sheet: number;
 }
 
@@ -237,7 +243,7 @@ export function dropFillers<T extends { box: Box }>(
 export const sweepStride = (fps: number): number => Math.max(1, Math.round(fps / 10));
 
 function inStretch(frame: number, beats: CheckBeat[]): boolean {
-  return beats.some((b) => frame >= b.settled && frame <= b.sheet);
+  return beats.some((b) => frame >= b.settled && frame <= (b.heldTo ?? b.sheet));
 }
 
 /**

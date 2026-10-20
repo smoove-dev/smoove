@@ -18,7 +18,8 @@ export interface StudioDeps {
   /** Serve the built studio until the server exits. */
   serve(root: string, port?: number): Promise<number>;
   build(root: string): Promise<number>;
-  test(root: string): Promise<number>;
+  /** Run the tests, with Vitest's own arguments. */
+  test(root: string, args: string[]): Promise<number>;
   /** Run one of the project's package.json scripts. */
   runScript(root: string, script: string, args: string[]): Promise<number>;
 }
@@ -26,6 +27,8 @@ export interface StudioDeps {
 export interface StudioFlags {
   prod?: boolean;
   port?: number;
+  /** `smoove test` only: arguments for Vitest. */
+  args?: string[];
 }
 
 /** A detached project owns its app, which means it has a React Router config. */
@@ -48,12 +51,12 @@ export async function runStudioCommand(
     if (detached(root)) {
       const port = flags.port !== undefined ? ["--port", String(flags.port)] : [];
       if (name === "start") return await deps.runScript(root, flags.prod ? "start" : "dev", port);
-      return await deps.runScript(root, name, []);
+      return await deps.runScript(root, name, name === "test" ? (flags.args ?? []) : []);
     }
     if (name === "start") {
       return flags.prod ? await deps.serve(root, flags.port) : await deps.start(root, flags.port);
     }
-    return name === "build" ? await deps.build(root) : await deps.test(root);
+    return name === "build" ? await deps.build(root) : await deps.test(root, flags.args ?? []);
   } catch (err) {
     // A refusal from the preset (for example, no build to serve) is a message, not a crash.
     if (err instanceof Error && err.name === "PresetError") {
@@ -88,9 +91,9 @@ const defaultDeps: StudioDeps = {
     await buildPreset({ root });
     return 0;
   },
-  async test(root) {
+  async test(root, args) {
     const { testPreset } = await import("@smoove/studio/preset");
-    return testPreset({ root });
+    return testPreset({ root, args });
   },
   runScript(root, script, args) {
     const pm = packageManager(root);

@@ -4,7 +4,7 @@ import { Signal } from "signal-polyfill";
 import type { IconName } from "../components/icon/paths.js";
 import { makeJobId } from "../lib/ids.js";
 import { createPropsSignal } from "../registry/props-signal.js";
-import { resolveDefaults } from "../schema/kf.js";
+import { keepEdits, resolveDefaults } from "../schema/kf.js";
 import type {
   Registry,
   RegistryEntry,
@@ -82,6 +82,20 @@ export function createStore(opts: StudioStoreOptions) {
       propsSignals.set(id, sig);
     }
     return sig;
+  }
+
+  /**
+   * After a hot reload, fit the props someone edited to the entry's schema as
+   * it is now: a key the schema dropped goes, a new key gets its default, and
+   * an edit to a key that's still there, with the same type, stays.
+   */
+  function reconcileProps(id: string): void {
+    const sig = propsSignals.get(id);
+    if (!sig) return;
+    const entry = getEntry(id);
+    const old = sig.get();
+    const next = keepEdits(resolveDefaults(entry?.propsSchema, entry?.defaultProps), old);
+    if (JSON.stringify(next) !== JSON.stringify(old)) sig.set(next);
   }
 
   function setStatus(id: string, status: LoadStatus): void {
@@ -167,6 +181,7 @@ export function createStore(opts: StudioStoreOptions) {
     await loadActive();
   }
   registry.onChange((id) => {
+    reconcileProps(id);
     if (id === selectedId.get()) void reloadActive(id);
   });
 

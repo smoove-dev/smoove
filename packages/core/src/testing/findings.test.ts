@@ -128,7 +128,9 @@ describe("dropFillers", () => {
 
 describe("groupSamples", () => {
   // One beat: starts at 0, fully revealed at 30, sheet frame 89, ends at 90.
-  const beats: CheckBeat[] = [{ name: "hook", start: 0, settled: 30, end: 90, sheet: 89 }];
+  const beats: CheckBeat[] = [
+    { name: "hook", start: 0, settled: 30, end: 90, heldTo: 89, sheet: 89 },
+  ];
   const samples = [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 89];
   const a = new Konva.Rect();
   const b = new Konva.Rect();

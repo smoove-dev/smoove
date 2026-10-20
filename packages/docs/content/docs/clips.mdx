@@ -29,6 +29,10 @@ Reach for a clip when part of a scene has its own beginning and end: a card
 that flies in and out, a callout that holds for a beat, a logo animation you
 want to drop into any composition.
 
+Clips also keep the layer count down. Every sequence is its own canvas, and
+Konva warns once a stage has more than five, so a caption per beat belongs
+in clips inside one captions sequence, not in a sequence each.
+
 ## The same options as a sequence
 
 `from`, `durationInFrames`, `until`, and `span` mean what they mean on a

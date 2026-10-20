@@ -195,7 +195,11 @@ Point the registry entry at it, the same way it points at the composition:
 
 The four intents:
 
-- `appearsBy(selector, at)`: every match is visible at `at`.
+- `appearsBy(selector, at)`: every match has been visible by `at`, on some
+  frame up to and including it, so a caption that fades out before the
+  beat ends still passes `beats.hook.end`. Every match counts: give a node
+  its own name (`name: "caption hook-caption"`) when a shared one matches
+  captions from later beats.
 - `before(first, second)`: `first` is visible before `second` is.
 - `staysInFrame(selector)`: once visible, the box never leaves the canvas.
 - `keepsMoving({ maxStill, except })`: no stretch longer than `maxStill`

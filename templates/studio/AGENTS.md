@@ -44,6 +44,11 @@ Then loop:
    with a tile per beat, and prints the image's path. Read the image.
 5. Fix what looks wrong, and go back to step 2.
 
+`npm test` hands its arguments to Vitest: `npm test -- compositions/<id>`
+runs one composition's tests. Under a coding agent, Vitest prints only the
+failing tests and their output; add `--reporter=default` to see everything,
+`console.log` included.
+
 For a closer look at one moment, use
 `npx smoove agent snap --comp <id> --at <beat>` (or `--frame <n>`). Use
 `npx smoove agent timeline --comp <id>` to see the beats and sequences in

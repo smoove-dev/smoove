@@ -18,8 +18,9 @@ import { SOURCE_MODULE, SOURCE_MODULE_CODE, tagSources } from "./source-tags.js"
  *
  * Editing a demo's `composition.ts` propagates up through its `index.ts` to the
  * registry boundary; the handler calls `registry.update(entry.id,
- * entry.composition)`, and the studio rebuilds + remounts in place (preserving
- * selection, props and playhead).
+ * entry.composition, entry.checks, entry)`, and the studio rebuilds + remounts
+ * in place (preserving selection, playhead, and the props whose keys the
+ * schema still has).
  *
  * Without the plugin everything still works — you just wire HMR by hand.
  *
@@ -378,7 +379,7 @@ function buildOutput(code: string, specs: string[]): string {
       `  import.meta.hot.accept(${JSON.stringify(specs)}, (__mods) => {`,
       "    for (const __m of __mods) {",
       "      const __e = __m && __m.default;",
-      `      if (__e && __e.id) ${REG}.update(__e.id, __e.composition, __e.checks);`,
+      `      if (__e && __e.id) ${REG}.update(__e.id, __e.composition, __e.checks, __e);`,
       "    }",
       "  });",
       "}",

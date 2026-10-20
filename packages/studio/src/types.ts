@@ -64,8 +64,14 @@ export type Registry = {
   /** The already-loaded instance for an id, if any (sync). */
   peek(id: string): Composition | undefined;
   /** Swap an entry's composition + drop its cached instance, then notify
-      listeners. Used for dev hot-reload of composition source. */
-  update(id: string, composition: CompositionInput, checks?: RegistryEntry["checks"]): void;
+      listeners. Used for dev hot-reload of composition source. Pass the
+      reloaded entry as `props` to take its props schema and defaults too. */
+  update(
+    id: string,
+    composition: CompositionInput,
+    checks?: RegistryEntry["checks"],
+    props?: Pick<RegistryEntry, "propsSchema" | "defaultProps">,
+  ): void;
   /** Subscribe to entry changes (id passed to listener). Returns unsubscribe. */
   onChange(listener: (id: string) => void): () => void;
   /** What's wrong with the compositions the studio found on disk: a folder

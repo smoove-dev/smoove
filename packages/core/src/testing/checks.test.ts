@@ -22,7 +22,12 @@ import {
  * land, and the outro holds still. `hookFrames` retimes the hook.
  */
 function build(
-  opts: { hookFrames?: number; taglineFirst?: boolean; taglineSlides?: boolean } = {},
+  opts: {
+    hookFrames?: number;
+    taglineFirst?: boolean;
+    taglineSlides?: boolean;
+    titleLeaves?: boolean;
+  } = {},
 ) {
   const beats = plan({
     hook: { durationInFrames: opts.hookFrames ?? 60 },
@@ -72,10 +77,12 @@ function build(
   const outroStart = beats.outro.start.resolve();
   seq.register((f) => {
     title.opacity(
-      interpolate(f, [hookStart, hookStart + 10], [0, 1], {
-        extrapolateLeft: "clamp",
-        extrapolateRight: "clamp",
-      }),
+      opts.titleLeaves && f >= landStart
+        ? 0
+        : interpolate(f, [hookStart, hookStart + 10], [0, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          }),
     );
     const tagAt = opts.taglineFirst ? hookStart : landStart;
     tagline.opacity(f >= tagAt ? 1 : 0);
@@ -114,6 +121,29 @@ describe("intents", () => {
     expect(codes(r)).toEqual(["intent/appears-by"]);
     expect(r.findings[0]?.severity).toBe("error");
     expect(r.findings[0]?.node?.name).toBe("tagline");
+  });
+
+  it("passes appearsBy on a node that has already left by then", async () => {
+    // The title is gone once land starts; it still appeared by land's end.
+    const { comp, beats } = build({ titleLeaves: true });
+    const r = await runChecks(
+      comp,
+      defineChecks(comp, { intent: [appearsBy(".title", beats.land.end)] }),
+      { groups: ["intent"] },
+    );
+    expect(codes(r)).toEqual([]);
+  });
+
+  it("asks for a node of its own when a shared selector has a late match", async () => {
+    const { comp, beats } = build();
+    const r = await runChecks(
+      comp,
+      defineChecks(comp, { intent: [appearsBy(".title, .tagline", beats.hook.end.add(-1))] }),
+      { groups: ["intent"] },
+    );
+    expect(codes(r)).toEqual(["intent/appears-by"]);
+    expect(r.findings[0]?.node?.name).toBe("tagline");
+    expect(r.findings[0]?.message).toContain("its own name");
   });
 
   it("fails before when the second node shows first", async () => {
