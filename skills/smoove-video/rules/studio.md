@@ -145,6 +145,28 @@ Open the image only when the names and boxes aren't enough. With no mark,
 the command says so; ask the user to drag a rectangle over the thing they
 mean.
 
+## As MCP tools
+
+A studio project also registers these commands as MCP tools, in its
+`.mcp.json`. When you have them (they show up as `mcp__smoove__snap` and so
+on), use them instead of the shell: they're the same commands, with the same
+results, and two of them save you a step. The tools carry the commands'
+names, and their inputs are the options' full names, such as `composition`
+for `--comp`.
+
+- `snap` and `sheet` return the image itself, along with the path.
+- `context` returns the node list and the image's path. Pass `image: true`
+  to get the marked frame as well, when the names and boxes aren't enough.
+- `check` returns the report as text. With `images`, it lists their paths
+  and never attaches them.
+- `seek` and `render` ask the user's permission each time, as the commands
+  do. A tool call can't wait forever, so a render that runs past about 50
+  seconds comes back with its job id instead of the file; follow it with
+  `render_status`.
+
+With no dev server running, the tools say to call the `start` tool. Give the
+user the URL it returns.
+
 ## Move the user's view, and render
 
 ```sh

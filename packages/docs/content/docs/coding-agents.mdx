@@ -73,6 +73,19 @@ knows which node you mean, down to the line of code that made it:
 npx smoove context
 ```
 
+A studio project also registers these commands as MCP tools, so an agent
+that prefers tools over a shell gets them too, with images handed back
+directly. The project's `.mcp.json` does it. To add the server to a project
+made before it shipped, put this `.mcp.json` in the project folder:
+
+```json
+{
+  "mcpServers": {
+    "smoove": { "command": "npx", "args": ["smoove", "mcp"] }
+  }
+}
+```
+
 Looking never moves your playhead. When you're happy, ask for the video, and
 the agent renders it through the studio's queue:
 
