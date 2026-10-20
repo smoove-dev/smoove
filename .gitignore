@@ -9,8 +9,11 @@ dist
 build
 doc
 package-lock.json
-# smoove agent bridge: discovery file (holds the per-run token) and snapshots
+# smoove agent bridge: discovery file (holds the per-run token), snapshots,
+# sheets, the dev server log and the headless browser's profile
 .smoove/
+# Videos `smoove render` writes in the kitchen sink
+packages/kitchen-sink/out/
 
 # Local demo app (not part of the published workspace)
 demo/

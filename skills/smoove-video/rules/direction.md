@@ -106,6 +106,10 @@ hex to make it "work better", and never swap a brand font for a similar one.
   off-white; a cool one wants cool grays. Avoid pure `#000` and `#fff`.
 - Every frame needs one spot of color strong enough to pull the eye. A quiet
   palette still needs that one spot.
+- Text needs contrast against what's really behind it: a ratio of at least
+  4.5 to 1 under 48 times `u`, and 3 to 1 at 48 times `u` or more.
+  `npx smoove agent check` measures it on the frame and names a palette color that
+  passes. A look's `accent` is meant for large type for this reason.
 
 ## What compression eats
 

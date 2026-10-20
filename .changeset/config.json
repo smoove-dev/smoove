@@ -5,6 +5,7 @@
   "fixed": [
     [
       "@smoove/agent",
+      "@smoove/cli",
       "@smoove/code",
       "@smoove/effects",
       "@smoove/lottie",

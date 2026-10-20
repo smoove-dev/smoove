@@ -15,7 +15,6 @@ import { useScrubSurface } from "./use-scrub-surface.js";
 const ROW = 30;
 const HEADER = 24;
 const NAMES_W = 196;
-const MAX_H = 210;
 const EMPTY = new Set<number>();
 
 /**
@@ -31,6 +30,7 @@ export function LayeredBody() {
   const layerOffMap = useSignalValue(store.layerOff);
   const region = useSignalValue(store.region);
   const zoom = useSignalValue(store.timelineZoom);
+  const maxH = useSignalValue(store.timelineMaxHeight);
   const off = layerOffMap[selectedId] ?? EMPTY;
 
   const layers = useMemo(() => entry?.layers ?? (comp ? deriveLayers(comp) : []), [entry, comp]);
@@ -58,7 +58,7 @@ export function LayeredBody() {
 
   return (
     <div className="flex flex-col min-h-0 border-b border-line">
-      <div ref={scrollRef} className="relative overflow-auto scroll" style={{ maxHeight: MAX_H }}>
+      <div ref={scrollRef} className="relative overflow-auto scroll" style={{ maxHeight: maxH }}>
         <div className="relative" style={{ width: NAMES_W + tracksW }}>
           {/* header: the whole row is sticky-top; the corner is also sticky-left */}
           <div className="flex sticky top-0 z-30" style={{ height: HEADER }}>

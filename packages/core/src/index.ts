@@ -1,3 +1,4 @@
+export { contrastRatio, parseColor, type RGBA, relativeLuminance } from "./animation/color.js";
 export { Easing } from "./animation/easing.js";
 export {
   type ExtrapolateType,
@@ -36,6 +37,7 @@ export {
   type CompositionEventMap,
   type CompositionEventName,
   type CompositionOptions,
+  type CompositionPlan,
   getComposition,
 } from "./engine/composition.js";
 export {

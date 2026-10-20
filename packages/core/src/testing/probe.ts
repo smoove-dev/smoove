@@ -34,7 +34,8 @@ function hasPaintProbe(node: unknown): node is PaintProbe {
   return typeof (node as PaintProbe)._kmProbePaint === "function";
 }
 
-function readPaint(node: Konva.Node): Paint {
+/** @internal The paint a node resolved to. Shared with the checks. */
+export function readPaint(node: Konva.Node): Paint {
   if (hasPaintProbe(node)) return node._kmProbePaint();
   const shape = node as Konva.Node & Partial<Konva.Shape>;
   if (typeof shape.fillLinearGradientColorStops === "function") {

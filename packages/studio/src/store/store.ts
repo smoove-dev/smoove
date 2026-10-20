@@ -14,6 +14,8 @@ import type {
   Toast,
   WritableSignal,
 } from "../types.js";
+import { createLayoutState } from "./layout.js";
+import { createMarkState } from "./mark.js";
 
 export type LoadStatus = "idle" | "loading" | "ready" | "error";
 export type TlMode = "progress" | "layered";
@@ -58,6 +60,9 @@ export function createStore(opts: StudioStoreOptions) {
   const layerOff = new Signal.State<Record<string, Set<number>>>({});
   const jobs = new Signal.State<RenderJob[]>([]);
   const toasts = new Signal.State<Toast[]>([]);
+
+  const layout = createLayoutState();
+  const marks = createMarkState();
 
   const queueCount = new Signal.Computed(
     () => jobs.get().filter((j) => j.status === "queued" || j.status === "rendering").length,
@@ -123,6 +128,8 @@ export function createStore(opts: StudioStoreOptions) {
   }
 
   function applySelect(id: string, navigate: boolean): void {
+    // Picking a composition from the library drawer closes it.
+    layout.setLibraryOpen(false);
     if (id === selectedId.get() && composition.get()) return;
     selectedId.set(id);
     region.set({ in: null, out: null });
@@ -147,8 +154,14 @@ export function createStore(opts: StudioStoreOptions) {
     return r;
   };
   async function reloadActive(id: string): Promise<void> {
+    // One save can fire several updates in a row. Only the first sees the
+    // mounted composition; the later ones would read the emptied player's
+    // frame 0, so they keep the frame the first one saved. The same holds
+    // across a failed build: fix the file and the playhead comes back.
     const api = player.get();
-    pendingRestore = api ? { frame: api.getCurrentFrame(), playing: api.isPlaying() } : null;
+    if (composition.get() && api) {
+      pendingRestore = { frame: api.getCurrentFrame(), playing: api.isPlaying() };
+    }
     wiredProps.delete(id);
     composition.set(null); // force the Stage to remount even if React keeps the ref
     await loadActive();
@@ -263,7 +276,28 @@ export function createStore(opts: StudioStoreOptions) {
     addToast(`Download started · ${job.comp}`, "download");
   };
 
+  // Entering the narrow band starts the timeline in progress mode, and the
+  // drawers start closed: the stage gets the whole column.
+  let lastBand = layout.band.get();
+  const bandWatcher = new Signal.subtle.Watcher(() => queueMicrotask(onBand));
+  function onBand(): void {
+    const band = layout.band.get();
+    bandWatcher.watch();
+    if (band === lastBand) return;
+    lastBand = band;
+    if (band === "narrow") {
+      tlMode.set("progress");
+      layout.setLibraryOpen(false);
+    }
+    if (band !== "wide") panelOpen.set(false);
+  }
+  bandWatcher.watch(layout.band);
+
   return {
+    // layout (size, band, drawers, timeline height)
+    ...layout,
+    // the user's mark for the agent (see agent/mark.ts)
+    ...marks,
     // config / data
     registry,
     entries,
@@ -307,6 +341,8 @@ export function createStore(opts: StudioStoreOptions) {
     clearRegion,
     isLayerOff,
     toggleLayer,
+    /** A render backend was given: the studio can render and export frames on a server. */
+    canRender: render != null,
     addToast,
     dismissToast,
     updateJob,

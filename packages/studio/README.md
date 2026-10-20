@@ -51,6 +51,35 @@ are exported for building your own panels on the same state.
 Pair with [`@smoove/vite`](https://www.npmjs.com/package/@smoove/vite) for
 invisible hot-reload of registry compositions.
 
+## The ready-made studio
+
+A project made with `npm create smoove` doesn't build its own studio: this
+package ships one, and the `smoove` command from `@smoove/cli` runs it. The
+project holds only its `compositions/` folder, a `smoove.config.ts`, and a
+`package.json`:
+
+```sh
+npx smoove start      # the studio, on port 5174
+npx smoove build      # the production build
+npx smoove new        # a new composition folder
+```
+
+The studio finds every `compositions/<folder>/index.ts` that default-exports
+a registry entry, so there's no `defineRegistry()` call to keep in sync.
+`smoove.config.ts` sets the studio's name, logo, accent color, and whether
+it renders:
+
+```ts
+import { defineConfig } from "@smoove/studio";
+
+export default defineConfig({ name: "Acme Videos", primaryColor: "#15cda8" });
+```
+
+To change the app itself, `npx smoove studio detach` copies it into the
+project's `studio/` folder, with its Vite and React Router configs. The
+copy keeps using `smooveStudio()` from `@smoove/studio/vite`, so the
+compositions folder and `smoove.config.ts` work the same afterwards.
+
 ## Docs
 
 Full documentation lives at [smoove.dev](https://smoove.dev).

@@ -4,18 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "react-router dev",
-    "build": "react-router build",
-    "start": "react-router-serve ./build/server/index.js",
-    "preview": "vite preview",
-    "typecheck": "react-router typegen && tsc",
-    "test": "vitest run"
+    "dev": "smoove start",
+    "build": "smoove build",
+    "start": "smoove start --prod",
+    "test": "smoove test",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@react-router/node": "^8.1.0",
     "@react-router/serve": "^8.1.0",
+    "@smoove/code": "^0.4.2",
     "@smoove/core": "^0.4.2",
+    "@smoove/effects": "^0.4.2",
     "@smoove/google-fonts": "^0.4.2",
+    "@smoove/lottie": "^0.4.2",
     "@smoove/media": "^0.4.2",
     "@smoove/player": "^0.4.2",
     "@smoove/renderer": "^0.4.2",
@@ -29,6 +31,8 @@
   },
   "devDependencies": {
     "@react-router/dev": "^8.1.0",
+    "@smoove/agent": "^0.4.2",
+    "@smoove/cli": "^0.4.2",
     "@smoove/vite": "^0.4.2",
     "@types/node": "^26.1.0",
     "@types/react": "^19.2.17",

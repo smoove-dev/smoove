@@ -65,6 +65,17 @@ function whenFontFamilyReady(
   }
 }
 
+/** Whether a bare `fontFamily` has a loaded face, or null off the browser. */
+function fontFamilyLoaded(fontStyle: string, fontSize: number, fontFamily: string): boolean | null {
+  const fonts = (globalThis as { document?: { fonts?: FontFaceSet } }).document?.fonts;
+  if (!fonts?.check) return null;
+  try {
+    return fonts.check(`${fontStyle || "normal"} ${fontSize || 16}px ${fontFamily}`);
+  } catch {
+    return null;
+  }
+}
+
 /** Konva.Text internals we rely on for measurement (same pattern as flex-engine). */
 type KonvaTextInternal = Konva.Text & {
   _setTextData: () => void;
@@ -112,6 +123,8 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
   private _charWord: number[];
 
   private _resolvedFontSize: number;
+  /** The face from a declarative `font`, or null for a bare `fontFamily`. */
+  private _fontRef: FontFaceRef | null;
   private _localFrame = 0;
   private _geo: Geometry | null = null;
   private _inLayout = false;
@@ -138,6 +151,7 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
         ? config.font.face()
         : config.font
       : null;
+    this._fontRef = fontRef;
     this._text = new Konva.Text({
       text: this._fullText,
       fontSize: config.fontSize,
@@ -266,6 +280,52 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
   }
 
   /**
+   * @internal What `@smoove/core/testing` reads to check this Text: the full
+   * and shown text (the shown one is cut when fit, `maxLines` or a fixed box
+   * trimmed it), the size it renders at, and its face. `font.loaded` is null
+   * when nothing can tell (a bare `fontFamily` off the browser).
+   */
+  _kmProbeText(): {
+    full: string;
+    shown: string;
+    cut: boolean;
+    ellipsis: boolean;
+    fontSize: number;
+    font: { family: string; weight: string; style: string; loaded: boolean | null };
+    fill: string | null;
+    gradient: (number | string)[] | null;
+  } {
+    const shown = this._text.text();
+    const cut = shown !== this._fullText;
+    const fill = this._text.fill();
+    const stops =
+      this._text.fillLinearGradientColorStops() ?? this._text.fillRadialGradientColorStops();
+    const ref = this._fontRef;
+    const font = ref
+      ? { family: ref.family, weight: ref.weight, style: ref.style, loaded: ref.isLoaded }
+      : {
+          family: this._text.fontFamily(),
+          weight: /\bbold\b/.test(this._text.fontStyle()) ? "700" : "400",
+          style: /\bitalic\b/.test(this._text.fontStyle()) ? "italic" : "normal",
+          loaded: fontFamilyLoaded(
+            this._text.fontStyle(),
+            this._text.fontSize(),
+            this._text.fontFamily(),
+          ),
+        };
+    return {
+      full: this._fullText,
+      shown,
+      cut,
+      ellipsis: cut && shown.endsWith(ELLIPSIS),
+      fontSize: this._resolvedFontSize,
+      font,
+      fill: typeof fill === "string" && fill ? fill : null,
+      gradient: stops && stops.length > 0 ? stops : null,
+    };
+  }
+
+  /**
    * Swap the font face after construction. Accepts a declarative {@link Font}
    * (uses its preferred face) or a specific `font.face(selector)`, mirroring the
    * `font` config. Unlike {@link setFill} the font DOES change metrics, so this
@@ -274,6 +334,7 @@ export class Text extends Sized(Konva.Group) implements KMLayoutNode {
    */
   setFont(font: Font | FontFaceRef): this {
     const fontRef: FontFaceRef = font instanceof Font ? font.face() : font;
+    this._fontRef = fontRef;
     this._text.fontFamily(fontRef.family);
     this._text.fontStyle(konvaFontStyle(fontRef.weight, fontRef.style));
     this._remeasure();

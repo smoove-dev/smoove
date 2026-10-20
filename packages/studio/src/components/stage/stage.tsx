@@ -8,8 +8,11 @@ import { useStudio } from "../../hooks/use-studio.js";
 import { cn } from "../../lib/cn.js";
 import { fpsHealth } from "../../lib/format.js";
 import { usePlayerSignal, useSignalValue } from "../../signals/signal-bridge.js";
+import { MarkOverlay } from "./mark-overlay.js";
 
 const PAD = 40;
+/** The margin in a narrow studio (`p-3`). */
+const PAD_NARROW = 12;
 const ZERO_SIGNAL: ReadonlySignal<number> = { get: () => 0, subscribe: () => () => {} };
 
 export type StageProps = {
@@ -29,6 +32,7 @@ export function Stage({ className, showStatus = false }: StageProps) {
   const zoom = useSignalValue(store.zoom);
   const layerOffMap = useSignalValue(store.layerOff);
   const selectedId = useSignalValue(store.selectedId);
+  const narrow = useSignalValue(store.band) === "narrow";
   useShortcuts();
 
   const wrapRef = useRef<HTMLDivElement | null>(null);
@@ -90,8 +94,10 @@ export function Stage({ className, showStatus = false }: StageProps) {
   const w = comp ? comp.width() : 1280;
   const h = comp ? comp.height() : 720;
   const fit = zoom === "fit";
+  // A narrow studio can't spare the full margin around the frame.
+  const pad = narrow ? PAD_NARROW : PAD;
   const fitScale = box.w
-    ? Math.max(0.05, Math.min((box.w - PAD * 2) / w, (box.h - PAD * 2) / h))
+    ? Math.max(0.05, Math.min((box.w - pad * 2) / w, (box.h - pad * 2) / h))
     : 0.5;
   useEffect(() => {
     store.setFitScale(fitScale);
@@ -110,7 +116,8 @@ export function Stage({ className, showStatus = false }: StageProps) {
     >
       <div
         className={cn(
-          "absolute inset-0 flex p-10",
+          "absolute inset-0 flex",
+          narrow ? "p-3" : "p-10",
           overflow ? "overflow-auto scroll" : "items-center justify-center",
         )}
       >
@@ -119,6 +126,7 @@ export function Stage({ className, showStatus = false }: StageProps) {
           style={{ width: w * scale, height: h * scale }}
         >
           <smoove-player ref={playerRef} style={{ position: "absolute", inset: 0 }} />
+          {comp && <MarkOverlay scale={scale} w={w} h={h} />}
         </div>
       </div>
 

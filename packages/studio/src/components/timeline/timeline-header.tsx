@@ -16,18 +16,23 @@ function ModeButton({
   icon,
   label,
   active,
+  compact,
   onClick,
 }: {
   id: TlMode;
   icon: IconName;
   label: string;
   active: boolean;
+  /** Icon only, with the label kept for screen readers and the tooltip. */
+  compact: boolean;
   onClick: (id: TlMode) => void;
 }) {
   return (
     <button
       type="button"
       onClick={() => onClick(id)}
+      aria-label={compact ? label : undefined}
+      title={compact ? label : undefined}
       className={cn(
         "flex items-center gap-1.5 text-[12px] font-semibold px-2.5 py-[5px] rounded-[6px]",
         active
@@ -35,7 +40,8 @@ function ModeButton({
           : "text-ink-3 hover:text-ink-1",
       )}
     >
-      <Icon name={icon} size={14} className={active ? "text-accent-2" : ""} /> {label}
+      <Icon name={icon} size={14} className={active ? "text-accent-2" : ""} />
+      {!compact && ` ${label}`}
     </button>
   );
 }
@@ -49,6 +55,7 @@ export function TimelineHeader() {
   const { player, frame, total, fps } = usePlayback();
   const realFps = useRealFps();
   const { composition } = useComposition();
+  const narrow = useSignalValue(store.band) === "narrow";
 
   const w = composition?.width() ?? 1280;
   const h = composition?.height() ?? 720;
@@ -60,13 +67,15 @@ export function TimelineHeader() {
   const curFps = realFps ? Math.min(realFps, fps) : null;
 
   return (
-    <div className="flex items-center gap-3.5 h-[42px] flex-none px-3 border-b border-line">
+    // Wraps onto a second row when it can't fit one; the frame readout always stays.
+    <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 min-h-[42px] py-[3.5px] flex-none px-3 border-b border-line">
       <div className="flex bg-bg-2 border border-line rounded-ui p-[3px] gap-0.5">
         <ModeButton
           id="progress"
           icon="progress"
           label="Progress"
           active={tlMode === "progress"}
+          compact={narrow}
           onClick={store.setTlMode}
         />
         <ModeButton
@@ -74,6 +83,7 @@ export function TimelineHeader() {
           icon="layers"
           label="Timeline"
           active={tlMode === "layered"}
+          compact={narrow}
           onClick={store.setTlMode}
         />
       </div>
@@ -111,8 +121,8 @@ export function TimelineHeader() {
               <Icon name="close" size={12} />
             </button>
           </span>
-        ) : (
-          <span className="text-[11.5px] text-ink-3 italic">No loop region</span>
+        ) : narrow ? null : (
+          <span className="text-[11.5px] text-ink-3 italic whitespace-nowrap">No loop region</span>
         )}
       </div>
 
@@ -150,30 +160,34 @@ export function TimelineHeader() {
         </>
       )}
 
-      <div className="flex items-center gap-2.5 font-mono text-[11.5px] text-ink-2 tabular-nums">
-        <span className="inline-flex items-center gap-1.5">
-          <Icon name="layout" size={12} className="text-ink-3" />
-          {w}
-          <span className="text-ink-3">×</span>
-          {h}
-        </span>
-        <span className="w-px h-[15px] bg-line-2" />
-        <span
-          className={cn(
-            "inline-flex items-center gap-1 font-semibold",
-            health === "good" && "text-good",
-            health === "ok" && "text-warn",
-            health === "low" && "text-danger",
-          )}
-        >
-          <span className="inline-block text-right" style={{ minWidth: "2ch" }}>
-            {curFps == null ? "—" : curFps}
-          </span>
-          <span className="text-ink-3">/</span>
-          <span className="text-ink-2">{fps}</span>
-          <i className="not-italic text-[9.5px] text-ink-3 ml-0.5">fps</i>
-        </span>
-        <span className="w-px h-[15px] bg-line-2" />
+      <div className="flex items-center gap-2.5 font-mono text-[11.5px] text-ink-2 tabular-nums ml-auto whitespace-nowrap">
+        {!narrow && (
+          <>
+            <span className="inline-flex items-center gap-1.5">
+              <Icon name="layout" size={12} className="text-ink-3" />
+              {w}
+              <span className="text-ink-3">×</span>
+              {h}
+            </span>
+            <span className="w-px h-[15px] bg-line-2" />
+            <span
+              className={cn(
+                "inline-flex items-center gap-1 font-semibold",
+                health === "good" && "text-good",
+                health === "ok" && "text-warn",
+                health === "low" && "text-danger",
+              )}
+            >
+              <span className="inline-block text-right" style={{ minWidth: "2ch" }}>
+                {curFps == null ? "—" : curFps}
+              </span>
+              <span className="text-ink-3">/</span>
+              <span className="text-ink-2">{fps}</span>
+              <i className="not-italic text-[9.5px] text-ink-3 ml-0.5">fps</i>
+            </span>
+            <span className="w-px h-[15px] bg-line-2" />
+          </>
+        )}
         <span className="inline-flex items-center gap-1">
           <Icon name="camera" size={12} className="text-ink-3" />
           <span

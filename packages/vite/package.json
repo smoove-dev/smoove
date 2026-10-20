@@ -27,18 +27,22 @@
     "build": "tsc -b",
     "dev": "tsc -b --watch",
     "clean": "rm -rf dist *.tsbuildinfo",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "test": "vitest run"
   },
   "dependencies": {
+    "@babel/parser": "^7.29.0",
     "@smoove/agent": "workspace:^",
-    "esbuild": "^0.25.0"
+    "esbuild": "^0.25.0",
+    "magic-string": "^0.30.21"
   },
   "peerDependencies": {
     "vite": ">=5"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
-    "vite": "^6.3.6"
+    "vite": "^6.3.6",
+    "vitest": "^3.2.4"
   },
   "publishConfig": {
     "access": "public"

@@ -1,9 +1,10 @@
 // Headless tests for the sample composition. A composition is a pure function
 // of the frame, so you can drive it to any frame and assert what is on screen:
 // no browser, no render. Run them with `npm test`.
-import { probe } from "@smoove/core/testing";
+import { probe, runChecks } from "@smoove/core/testing";
 import { beforeAll, describe, expect, it } from "vitest";
-import comp from "./composition";
+import comp, { beats } from "./composition";
+import checks from "./composition.check";
 
 // Fonts load asynchronously; measure against the real face, not a fallback.
 beforeAll(async () => {
@@ -25,9 +26,17 @@ describe("hello-smoove", () => {
   });
 
   it("settles the wordmark into the lockup by the end", () => {
-    comp.setFrame(3.5 * comp.fps);
+    // Beats have names, so a test can ask for "the last frame of the slogan".
+    comp.setFrame(beats.slogan.end.resolve() - 1);
     const [wordmark] = probe(comp, ".wordmark");
     expect(wordmark?.visible).toBe(true);
     expect(wordmark?.box.x).toBeCloseTo(510, 0);
+  });
+
+  it("passes its checks", async () => {
+    // The same checks `npx smoove agent check` runs. Errors fail the test; warnings
+    // are left to the command's report.
+    const report = await runChecks(comp, checks);
+    expect(report.findings.filter((f) => f.severity === "error")).toEqual([]);
   });
 });

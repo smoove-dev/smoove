@@ -1,45 +1,32 @@
 # @smoove/agent
 
-Lets a coding agent see the [smoove](https://smoove.dev) studio. While the
-studio dev server runs, an agent can ask the open studio tab what it shows,
-move it to a frame, and get a frame back as a PNG file, drawn by the real tab
-with the real fonts.
+The bridge between a coding agent and the [smoove](https://smoove.dev)
+studio. `@smoove/vite` mounts its server half on the studio's dev server,
+and `@smoove/studio` connects each studio tab with its client half. The
+`smoove` command in [`@smoove/cli`](https://github.com/smoove-dev/smoove/tree/main/packages/cli)
+talks to it; most projects never import this package themselves.
 
-You don't install or call this package yourself yet. `@smoove/vite` mounts
-the bridge on the dev server, and `@smoove/studio` connects each studio tab
-to it. A `smoove` command line tool that wraps the endpoints is coming.
+## The endpoints underneath
 
-## How an agent talks to it
-
-When the dev server starts, the bridge writes `.smoove/agent.json` in the
-project. It holds the server's URL and a token that changes on every start.
-Every request sends that token as a bearer token.
+The command wraps HTTP endpoints under `/__smoove/agent/` on the dev server.
+When the server starts, the bridge writes `.smoove/agent.json` with its URL
+and a token that changes on every start. Every request sends that token as a
+bearer token.
 
 ```sh
-TOKEN=$(jq -r .token .smoove/agent.json)
-
-# What's open, and which frame it's on
-curl -s http://localhost:5190/__smoove/agent/status \
-  -H "Authorization: Bearer $TOKEN"
-
-# Open a composition and move the playhead
-curl -s -X POST http://localhost:5190/__smoove/agent/seek \
-  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  -d '{"composition": "hello-smoove", "frame": 90}'
-
-# Draw frame 120 to a PNG (640 pixels wide by default)
 curl -s -X POST http://localhost:5190/__smoove/agent/snapshot \
-  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  -d '{"frame": 120}'
+  -H "Authorization: Bearer $(jq -r .token .smoove/agent.json)" \
+  -H "Content-Type: application/json" \
+  -d '{"composition": "promo", "at": "hook"}'
 ```
 
-A snapshot never moves what the user sees. The tab draws the frame, captures
-it, and puts the playhead back. The answer carries the absolute path of the
-file under `.smoove/snaps/`, never the image itself.
-
+The endpoints are `GET status`, and `POST seek`, `snapshot`, `sheet`,
+`timeline`, `render` and `context`, plus `GET render/<job id>` to follow a
+render.
 Every answer has the same shape: `ok` set to true with a `data` object, or
 `ok` set to false with an `error` that has a `code` and a `message`. Answers
-a tab produced also say which tab drew them, in `drawnBy`.
+a tab produced also say which tab drew them, in `drawnBy`, and may carry
+`warnings`.
 
 ## Safety
 

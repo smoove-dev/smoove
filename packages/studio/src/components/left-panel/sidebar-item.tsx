@@ -1,3 +1,4 @@
+import { useStudio } from "../../hooks/use-studio.js";
 import { cn } from "../../lib/cn.js";
 import { Icon } from "../icon/icon.js";
 import type { IconName } from "../icon/paths.js";
@@ -25,10 +26,15 @@ export function SidebarItem({
   loading,
   onClick,
 }: SidebarItemProps) {
+  const store = useStudio();
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={() => {
+        onClick?.();
+        // In a narrow studio the library is a drawer: going somewhere closes it.
+        store.setLibraryOpen(false);
+      }}
       className={cn(
         "group relative flex w-full items-center gap-2.5 rounded-control px-2 py-1.5 text-left transition-colors",
         active ? "bg-accent-soft text-ink-1" : "text-ink-2 hover:bg-bg-2 hover:text-ink-1",

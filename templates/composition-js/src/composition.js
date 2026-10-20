@@ -1,16 +1,47 @@
-import { Circle, Composition, Easing, interpolate, Line, Rect, Sequence, Text } from "@smoove/core";
+import {
+  Circle,
+  Composition,
+  Easing,
+  interpolate,
+  Line,
+  plan,
+  Rect,
+  Sequence,
+  Text,
+} from "@smoove/core";
 import Comfortaa from "@smoove/google-fonts/comfortaa";
 import Konva from "konva";
 
 const fps = 60;
-const durationInFrames = fps * 4;
 const width = 1280;
 const height = 720;
+
+// Every color in the video, decided once. The checks file declares the same
+// palette, so `npx smoove agent check` warns about any color outside it.
+export const palette = {
+  bg: "#0d1117",
+  fg: "#e6edf3",
+  muted: "#8b949e",
+  accent: "#FFC23C",
+  coral: "#FF5640",
+  teal: "#15CDA8",
+};
+
+// The beats, back to back. Registering them on the composition names them for
+// tools: `npx smoove agent sheet` shows one tile per beat, and
+// `npx smoove agent snap --at lockup` jumps to one.
+export const beats = plan({
+  mark: { durationInFrames: 34 }, // the dot pops in and blinks
+  sweep: { durationInFrames: 48 }, // it glides left, then sweeps the bars in
+  lockup: { durationInFrames: 38 }, // the logo makes room for the wordmark
+  slogan: { durationInFrames: 120 }, // the slogan types itself, then holds
+});
 
 const comp = new Composition({
   id: "hello-smoove",
   fps,
-  durationInFrames,
+  durationInFrames: beats.slogan.end,
+  plan: beats,
   width,
   height,
   loop: true,
@@ -22,13 +53,13 @@ const p = () => comp.props.get();
 
 // The wordmark font. Registered on the sequence below so the composition
 // buffers until the faces are loaded.
-const comfortaa = new Comfortaa({ weights: ["400", "700"] });
+export const comfortaa = new Comfortaa({ weights: ["400", "700"] });
 
 // No `from`/`durationInFrames` given: the sequence spans the whole composition.
 const main = new Sequence();
 // Full-size background. Keep one — exports and renders composite onto it;
 // without it the output background differs from the page behind the player.
-main.add(new Rect({ x: 0, y: 0, width, height, fill: "#0d1117" }));
+main.add(new Rect({ x: 0, y: 0, width, height, fill: palette.bg }));
 main.add(comfortaa);
 
 // ---------------------------------------------------------------------------
@@ -78,12 +109,13 @@ main.add(logo);
 const gradient = {
   strokeLinearGradientStartPoint: { x: 40 * S, y: MID },
   strokeLinearGradientEndPoint: { x: 84 * S, y: MID },
-  strokeLinearGradientColorStops: [0, "#FF5640", 1, "#15CDA8"],
+  strokeLinearGradientColorStops: [0, palette.coral, 1, palette.teal],
 };
 
 const bars = BARS.map(({ x, half }) => {
   const X = x * S;
   const node = new Line({
+    name: "bar",
     points: [X, MID, X, MID],
     strokeWidth: 9 * S,
     lineCap: "round",
@@ -99,7 +131,7 @@ const dot = new Circle({
   x: DOT_HOME * S,
   y: MID,
   radius: 3.5 * S,
-  fill: "#FFC23C",
+  fill: palette.accent,
   scaleX: 0,
   scaleY: 0,
 });
@@ -120,7 +152,7 @@ const wordmark = new Text({
   font: comfortaa.face("700"),
   text: "smoove",
   fontSize: 108,
-  fill: "#e6edf3",
+  fill: palette.fg,
   wrap: "none",
   x: 0,
   y: -74,
@@ -138,7 +170,7 @@ const slogan = new Text({
   y: SLOGAN_Y,
   text: p().slogan,
   font: comfortaa.face("400"),
-  fill: "#8b949e",
+  fill: palette.muted,
   width: wordmark.getClientRect().width,
   wrap: "none",
   fitText: { min: 12, max: 100, step: 0.5 },
@@ -146,7 +178,7 @@ const slogan = new Text({
     mode: "letter",
     startFrame: SLOGAN_START,
     durationInFrames: 55,
-    cursor: { color: "#FFC23C" },
+    cursor: { color: palette.accent },
     fade: true,
   },
 });

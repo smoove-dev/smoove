@@ -209,6 +209,10 @@ series.scene({ durationInFrames: SCENE.mixer, name: "mixer" }, (seq) =>
 series.scene({ durationInFrames: SCENE.outro, name: "outro" }, outro);
 
 comp.add(series);
+// Name the beats, so the studio and the agent's contact sheet can find them.
+comp.setPlan(
+  Object.fromEntries((Object.keys(SCENE) as Array<keyof typeof SCENE>).map((k) => [k, at(k)])),
+);
 
 // ---------------------------------------------------------------------------
 // Audio, mounted last — every window is anchored to a scene that now exists

@@ -145,6 +145,39 @@
     background: transparent;
   }
 
+  /* Drawers (the library and the inspector in a narrow studio). */
+  @keyframes smoove-drawer-left {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes smoove-drawer-right {
+    from {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes smoove-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+  .smoove-studio .drawer-left {
+    animation: smoove-drawer-left 160ms ease-out;
+  }
+  .smoove-studio .drawer-right {
+    animation: smoove-drawer-right 160ms ease-out;
+  }
+  .smoove-studio .drawer-backdrop {
+    animation: smoove-fade-in 160ms ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .smoove-studio .drawer-left,
+    .smoove-studio .drawer-right,
+    .smoove-studio .drawer-backdrop {
+      animation: none;
+    }
+  }
+
   @keyframes smoove-spin {
     to {
       transform: rotate(360deg);

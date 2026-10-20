@@ -1,7 +1,7 @@
 {
   "name": "@smoove/agent",
   "version": "0.4.2",
-  "description": "Lets a coding agent see the smoove studio: a dev-server bridge for status, seek and snapshots of the open composition.",
+  "description": "The bridge between a coding agent and the smoove studio: the dev-server half behind the smoove command's status, seeking, snapshots, contact sheets, the timeline and renders, and the studio tab's half that answers it.",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -45,5 +45,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

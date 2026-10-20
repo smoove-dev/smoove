@@ -19,14 +19,89 @@ autocomplete.
 npm create smoove
 ```
 
-Pick the **composition** template for a single scene, or **studio** for the
-full timeline and props UI. Say yes when it offers to install the
-`smoove-video` skill: that's what teaches your agent the mental model
-(frame clock, range-gated sequences, `interpolate`-driven updaters) before it
-writes a line of code. See [Agent skills](/docs/skills) for what the skill
-covers and how to add it later if you skipped it.
+Pick **studio** for the full timeline and props UI, or **composition** for a
+single scene. The studio template installs the `smoove-video` skill for you,
+and the composition template offers to: that's what teaches your agent the
+mental model (frame clock, range-gated sequences, `interpolate`-driven
+updaters) before it writes a line of code. See [Agent skills](/docs/skills)
+for what the skill covers and how to add it later.
 
-## Start the preview
+## Work in the studio
+
+A studio project ships the `smoove` command, and its `AGENTS.md` tells your
+agent how to use it. Start your agent in the project folder and describe the
+video in plain language: what's on screen, what moves, how long it runs.
+
+The agent starts the studio itself and gives you the URL:
+
+```bash
+npx smoove agent start
+```
+
+Open it beside your terminal. The studio fits a narrow window: below about
+640 pixels wide, the library and the inspector fold into drawers, and the
+stage takes the column.
+
+While it works, the agent looks at its own frames instead of rendering a
+video. Each command writes a PNG and prints its path:
+
+```bash
+npx smoove agent sheet --comp my-video          # one tile per beat
+npx smoove agent snap --comp my-video --at hook # one moment, by beat name
+```
+
+A new video starts as a folder of its own. The agent creates one, title card
+and all, and the studio lists it as soon as it's written:
+
+```bash
+npx smoove new --title "My video" --format portrait
+```
+
+Before it looks, the agent checks. One command sweeps the video for the
+problems you'd otherwise catch by watching: text cut off by an ellipsis or
+running off the frame, text too faint to read against what's behind it,
+colors outside the palette, a stretch where nothing moves, and code that
+looks fine in playback but breaks when you scrub:
+
+```bash
+npx smoove agent check --comp my-video
+```
+
+Each finding names the node, the frames and the line of code, so the agent
+goes straight to the fix. The composition's checks file says what the video
+promises, such as "the title is on screen by the end of the hook", and the
+check holds it to that.
+
+To point at something, drag a rectangle over it on the frame, then tell the
+agent what to change: "make this bigger". The agent reads your mark and
+knows which node you mean, down to the line of code that made it:
+
+```bash
+npx smoove agent context
+```
+
+A studio project also registers these commands as MCP tools, so an agent
+that prefers tools over a shell gets them too, with images handed back
+directly. The project's `.mcp.json` does it. To add the server to a project
+made before it shipped, install `@smoove/cli` as a dev dependency and put this
+`.mcp.json` in the project folder:
+
+```json
+{
+  "mcpServers": {
+    "smoove": { "command": "npx", "args": ["smoove", "agent", "mcp"] }
+  }
+}
+```
+
+Looking never moves your playhead. When you're happy, ask for the video, and
+the agent renders it through the studio's queue:
+
+```bash
+npx smoove render --comp my-video
+```
+
+## Work with the composition template
 
 ```bash
 cd my-video
@@ -34,16 +109,9 @@ npm run dev
 ```
 
 Open the printed URL and leave it running. `<smoove-player>` hot-reloads on
-every save, so you'll see each change the agent makes as it makes it.
-
-## Prompt your agent
-
-In a separate terminal, start your coding agent in the same project
-directory, then describe the video in plain language: what's on screen, what
-moves, how long it runs. The agent edits `src/composition.ts` (or a
-`src/compositions/<name>/composition.ts` file in the studio template), you
-watch the preview update, and you keep iterating in conversation instead of
-by hand.
+every save, so you'll see each change the agent makes as it makes it. In a
+separate terminal, start your coding agent in the project and describe the
+video; it edits `src/composition.ts`.
 
 Next: [Installation](/docs/installation) covers the manual setup if you're
 wiring smoove into an existing app instead of scaffolding a new one.

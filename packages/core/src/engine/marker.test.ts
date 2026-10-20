@@ -111,6 +111,33 @@ describe("plan()", () => {
     expect(main.start.resolve()).toBe(60);
   });
 
+  it("names each marker after its key", () => {
+    const beats = plan({ intro: { durationInFrames: 30 }, outro: { durationInFrames: 30 } });
+    expect(beats.intro.name).toBe("intro");
+    expect(beats.outro.name).toBe("outro");
+    expect(new Marker({ start: 0, durationInFrames: 10 }).name).toBeUndefined();
+  });
+
+  it("is readable back from the composition it was passed to", () => {
+    const beats = plan({ intro: { durationInFrames: 30 }, outro: { durationInFrames: 60 } });
+    const comp = new Composition({ ...compOpts(), durationInFrames: beats.outro.end, plan: beats });
+    expect(Object.keys(comp.plan ?? {})).toEqual(["intro", "outro"]);
+    expect(comp.plan?.outro).toBe(beats.outro);
+    expect(comp.durationInFrames.get()).toBe(90);
+    expect(new Composition({ ...compOpts(), durationInFrames: 10 }).plan).toBeNull();
+  });
+
+  it("takes series markers through setPlan, named after their scenes", () => {
+    const comp = new Composition({ ...compOpts(), durationInFrames: 200 });
+    const series = new Series()
+      .add({ name: "intro", durationInFrames: 80 }, () => {})
+      .add({ name: "outro", durationInFrames: 120, offset: -10 }, () => {});
+    comp.add(series);
+    comp.setPlan({ intro: series.marker("intro"), outro: series.marker("outro") });
+    expect(comp.plan?.outro?.name).toBe("outro");
+    expect(comp.plan?.outro?.start.resolve()).toBe(70);
+  });
+
   it("throws on an empty plan and on non-integer offsets", () => {
     expect(() => plan({})).toThrow(/at least one/);
     expect(() => plan({ a: { durationInFrames: 10, offset: 0.5 } })).toThrow(/integer/);

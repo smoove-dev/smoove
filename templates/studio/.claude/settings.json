@@ -1,0 +1,32 @@
+{
+  "enabledMcpjsonServers": [
+    "smoove"
+  ],
+  "permissions": {
+    "allow": [
+      "Bash(npx smoove agent start:*)",
+      "Bash(npx smoove agent stop:*)",
+      "Bash(npx smoove agent status:*)",
+      "Bash(npx smoove agent snap:*)",
+      "Bash(npx smoove agent sheet:*)",
+      "Bash(npx smoove agent timeline:*)",
+      "Bash(npx smoove agent context:*)",
+      "Bash(npx smoove agent check:*)",
+      "Bash(npx smoove agent render_status:*)",
+      "Bash(npx smoove new:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm run typecheck:*)",
+      "mcp__smoove__status",
+      "mcp__smoove__start",
+      "mcp__smoove__stop",
+      "mcp__smoove__snap",
+      "mcp__smoove__sheet",
+      "mcp__smoove__timeline",
+      "mcp__smoove__context",
+      "mcp__smoove__check",
+      "mcp__smoove__render_status",
+      "mcp__smoove__new"
+    ]
+  }
+}

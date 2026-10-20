@@ -1,4 +1,5 @@
-import type { Composition } from "@smoove/core";
+import { type Composition, VIDEO_MARK } from "@smoove/core";
+import type Konva from "konva";
 
 /**
  * Make sure every layer's backing canvas holds at least `ratio` pixels per
@@ -76,4 +77,39 @@ function draw(target: HTMLCanvasElement, source: HTMLCanvasElement): void {
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = "high";
   ctx.drawImage(source, 0, 0, target.width, target.height);
+}
+
+/**
+ * Draw each frame, hand the full-size capture to `use` (it's a reused
+ * scratch canvas: copy it before returning), then put back the frame and
+ * playback the user had. Returns the video nodes visible in any frame.
+ */
+export async function captureFrames(
+  comp: Composition,
+  frames: number[],
+  ratio: number,
+  use: (canvas: HTMLCanvasElement, index: number) => void,
+): Promise<Konva.Node[]> {
+  const original = comp.frame.get();
+  const wasPlaying = comp.isPlaying.get();
+  if (wasPlaying) comp.pause();
+  const videos = new Set<Konva.Node>();
+  const restoreRatio = ensurePixelRatio(comp, ratio);
+  try {
+    for (let i = 0; i < frames.length; i++) {
+      // Microtasks only when nothing gates the frame, so the browser gets
+      // no chance to paint a captured frame on screen.
+      await comp.renderFrame(frames[i] as number);
+      for (const v of comp.find((n: Konva.Node) => n.getAttr(VIDEO_MARK) === true)) {
+        if (v.isVisible()) videos.add(v);
+      }
+      use(comp.captureCanvas(), i);
+    }
+  } finally {
+    restoreRatio();
+    comp.setFrame(original);
+    redrawVisible(comp);
+    if (wasPlaying) comp.play();
+  }
+  return [...videos];
 }
