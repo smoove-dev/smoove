@@ -180,3 +180,19 @@ Declared and derived markers mix freely. A plan can hang off a series beat,
 a `Series` can start at a declared beat, and a cue can anchor to either. To
 size a beat from a real clip's length, probe the file first with
 [`probeMedia`](/docs/video#probe-metadata).
+
+## Register the plan
+
+Hand the plan to the composition too, and tools can name and find each beat:
+the `smoove` command's contact sheet shows one tile per beat, and `--at hook`
+seeks to one. Keep the object `plan()` returns, and pass it as `plan`:
+
+```ts
+const beats = plan({ intro: { durationInFrames: 5 * fps }, outro: { durationInFrames: 5 * fps } });
+const comp = new Composition({ id: "planned", fps, durationInFrames: beats.outro.end, width: 1280, height: 720, plan: beats });
+```
+
+Each marker `plan()` returns knows its key, as `marker.name`. The engine
+never reads the plan. For markers that need the composition first, such as
+a `TransitionSeries`'s `series.marker("hero")`, register them afterwards with
+`comp.setPlan({ hero: series.marker("hero") })`.

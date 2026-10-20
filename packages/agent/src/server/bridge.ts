@@ -1,27 +1,49 @@
 import { randomBytes, randomUUID, timingSafeEqual } from "node:crypto";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { createWriteStream, mkdirSync, writeFileSync } from "node:fs";
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { join } from "node:path";
+import { isAbsolute, join, relative, resolve as resolvePath } from "node:path";
+import { Readable } from "node:stream";
+import { pipeline } from "node:stream/promises";
 import {
   AGENT_PREFIX,
+  AGENT_TAB_PARAM,
   type AgentErrorBody,
   type AgentResponse,
   type BridgeHello,
   DEFAULT_SNAPSHOT_WIDTH,
+  DEFAULT_TILE_WIDTH,
   type DiscoveryInfo,
   type ErrorCode,
+  HEADLESS_CONNECT_MS,
+  MAX_SHEET_FRAMES,
+  MIN_SHEET_FRAMES,
+  type RenderData,
+  type RenderFormat,
+  type RenderParams,
+  type RenderQueued,
   type SeekParams,
+  SHEETS_DIR,
+  type SheetData,
+  type SheetParams,
   SNAPS_DIR,
   type SnapshotData,
   type SnapshotParams,
   type StatusData,
   type StudioStatus,
   TAB_TIMEOUT_MS,
+  type TabJobUpdate,
   type TabPresence,
   type TabRequest,
   type TabRequestType,
+  type TimelineParams,
 } from "../index.js";
 import { removeDiscovery, writeDiscovery } from "./discovery.js";
+import {
+  type BrowserLauncher,
+  chromeLauncher,
+  type LaunchedBrowser,
+  NoBrowserError,
+} from "./headless.js";
 import { drawnBy, summarize, type Tab, TabList } from "./tabs.js";
 
 export interface AgentBridgeOptions {
@@ -41,6 +63,14 @@ export interface AgentBridgeOptions {
   pingMs?: number;
   /** Clock, for tests. */
   now?: () => number;
+  /**
+   * Opens the studio in a headless browser when a request needs a tab nobody
+   * is watching. Default: an installed Chrome, Chromium or Edge. `false`
+   * turns headless tabs off, so such requests answer `no-tab`.
+   */
+  launchBrowser?: BrowserLauncher | false;
+  /** How long to wait for the headless tab to connect. Default 30 seconds. */
+  headlessConnectMs?: number;
 }
 
 type Next = (err?: unknown) => void;
@@ -67,14 +97,26 @@ interface Pending {
   timer: ReturnType<typeof setTimeout>;
 }
 
+interface RenderRecord extends RenderData {
+  tab: Tab;
+}
+
+type Out = { status: number; body: AgentResponse<unknown> };
+
 const JSON_LIMIT = 1 << 20;
 const PNG_LIMIT = 64 << 20;
 const MAX_SNAPSHOT_WIDTH = 8192;
+const MAX_TILE_WIDTH = 1920;
 
 /**
- * The dev-server half of the bridge. Agent-facing endpoints (`status`, `seek`,
- * `snapshot`) need the per-run bearer token; tab-facing ones (`tab/*`) are
- * same-origin only. Everything refuses a remote address that isn't this machine.
+ * The dev-server half of the bridge. Agent-facing endpoints need the per-run
+ * bearer token; tab-facing ones (`tab/*`) are same-origin only. Everything
+ * refuses a remote address that isn't this machine.
+ *
+ * Which tab answers: a request about a composition goes to a user tab already
+ * showing it, else to the bridge's own headless tab, which switches to it.
+ * Nothing the agent asks for changes what a user sees, except `seek`, which
+ * only ever goes to a user tab.
  */
 export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
   const root = options.root;
@@ -82,15 +124,30 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
   const settleMs = options.settleMs ?? 300;
   const pingMs = options.pingMs ?? 15_000;
   const now = options.now ?? Date.now;
+  const headlessConnectMs = options.headlessConnectMs ?? HEADLESS_CONNECT_MS;
+  const launcher =
+    options.launchBrowser === false
+      ? null
+      : (options.launchBrowser ?? chromeLauncher(join(root, ".smoove", "browser-profile")));
   const token = options.token ?? randomBytes(24).toString("base64url");
+  // Marks the tab this bridge launches, so it never counts as a user's tab.
+  const ownTabSecret = randomBytes(12).toString("base64url");
   const startedAt = new Date(now()).toISOString();
   const tabs = new TabList(now);
   const pending = new Map<string, Pending>();
+  const renders = new Map<string, RenderRecord>();
   let url: string | null = null;
   let lastChangeAt = Number.NEGATIVE_INFINITY;
   let closed = false;
 
-  const onExit = (): void => removeDiscovery(root, token);
+  let browser: LaunchedBrowser | null = null;
+  let ownedWaiters: Array<(tab: Tab) => void> = [];
+
+  const onExit = (): void => {
+    browser?.close();
+    removeDiscovery(root, token);
+  };
+  process.on("exit", onExit);
 
   const ping = setInterval(() => {
     for (const tab of tabs.all()) tab.stream.write(": ping\n\n");
@@ -101,6 +158,13 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
     if (url) return url;
     const host = req?.headers.host;
     return host ? `http://${host}/` : "the studio dev server URL";
+  }
+
+  /** An absolute base URL for this server, for fetching from itself. */
+  function baseUrl(req?: IncomingMessage): string | null {
+    if (url) return url;
+    const host = req?.headers.host;
+    return host ? `http://${host}/` : null;
   }
 
   function serverStatus(req?: IncomingMessage): StatusData["server"] {
@@ -121,15 +185,23 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
       Connection: "keep-alive",
       "X-Accel-Buffering": "no",
     });
+    const owned = query.get(AGENT_TAB_PARAM) === ownTabSecret;
     const tab = tabs.add({
       id: randomUUID(),
       path: query.get("path") || "/",
       visible: query.get("visible") !== "0",
       focused: query.get("focused") === "1",
-      headless: query.get("headless") === "1",
+      headless: owned || query.get("headless") === "1",
+      owned,
+      composition: query.get("composition") || null,
       stream: res,
     });
     sendEvent(tab, "hello", { tabId: tab.id });
+    if (owned) {
+      const waiters = ownedWaiters;
+      ownedWaiters = [];
+      for (const w of waiters) w(tab);
+    }
     req.on("close", () => {
       if (!tabs.remove(tab.id)) return;
       for (const [id, p] of pending) {
@@ -144,6 +216,12 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
           },
         });
       }
+      for (const job of renders.values()) {
+        if (job.tab !== tab || !unfinished(job)) continue;
+        job.status = "error";
+        job.error =
+          "The studio tab that queued this render closed, so its progress can't be followed. The render may still finish on the dev server; check the studio's render queue.";
+      }
     });
   }
 
@@ -151,18 +229,13 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
     tab.stream.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`);
   }
 
-  async function forward(
-    req: IncomingMessage,
-    type: TabRequestType,
-    params: TabRequest["params"],
-  ): Promise<{ status: number; body: AgentResponse<unknown> }> {
-    // Right after an edit, give the hot update a moment to reach the tab.
+  /** Hold requests briefly after a source edit, so the tab has the hot update. */
+  async function settleAfterEdit(): Promise<void> {
     const wait = lastChangeAt + settleMs - now();
     if (wait > 0) await new Promise((r) => setTimeout(r, wait));
+  }
 
-    const tab = tabs.pick();
-    if (!tab) return noTab(req);
-
+  function forward(tab: Tab, type: TabRequestType, params: TabRequest["params"]): Promise<Out> {
     const id = randomUUID();
     return new Promise((resolve) => {
       const timer = setTimeout(() => {
@@ -191,18 +264,91 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
     });
   }
 
-  function noTab(req: IncomingMessage): { status: number; body: AgentResponse<unknown> } {
+  function noTab(req: IncomingMessage, what = "No studio tab is connected."): Out {
     return {
       status: 409,
-      body: {
-        ok: false,
-        error: {
-          code: "no-tab",
-          message: `No studio tab is connected. Open ${openUrl(req)} in a browser, then try again.`,
-        },
-      },
+      body: fail("no-tab", `${what} Open ${openUrl(req)} in a browser, then try again.`),
     };
   }
+
+  // ---------------------------------------------------------------- headless
+
+  /**
+   * The bridge's own headless tab, launching the browser if it isn't running.
+   * Waits for the page to connect. Throws `NoBrowserError` or a timeout.
+   */
+  async function ownedTab(req: IncomingMessage): Promise<Tab> {
+    const existing = tabs.owned();
+    if (existing) return existing;
+    if (!launcher) {
+      throw new NoBrowserError("Headless tabs are turned off for this dev server.");
+    }
+    const base = baseUrl(req);
+    if (!base) throw new NoBrowserError("The dev server's URL isn't known yet.");
+
+    const connected = new Promise<Tab>((resolve, reject) => {
+      const timer = setTimeout(() => {
+        ownedWaiters = ownedWaiters.filter((w) => w !== onTab);
+        reject(
+          new NoBrowserError(
+            `The headless browser didn't connect within ${Math.round(headlessConnectMs / 1000)} seconds.`,
+          ),
+        );
+      }, headlessConnectMs);
+      const onTab = (tab: Tab): void => {
+        clearTimeout(timer);
+        resolve(tab);
+      };
+      ownedWaiters.push(onTab);
+    });
+
+    if (!browser) {
+      const target = new URL(base);
+      target.searchParams.set(AGENT_TAB_PARAM, ownTabSecret);
+      const launched = launcher(target.toString());
+      browser = launched;
+      void launched.exited.then(() => {
+        if (browser === launched) browser = null;
+      });
+    }
+    return connected;
+  }
+
+  /**
+   * Which tab answers a request, and whether it may switch compositions.
+   * `composition` is the one the request names, if any.
+   */
+  async function target(
+    req: IncomingMessage,
+    type: "snapshot" | "sheet" | "timeline" | "render",
+    composition: string | undefined,
+  ): Promise<{ tab: Tab; maySwitch: boolean } | Out> {
+    const users = tabs.users();
+    if (type === "render") {
+      const user = tabs.pick(users);
+      if (user) return { tab: user, maySwitch: false };
+    } else if (composition) {
+      const showing = tabs.pick(users.filter((t) => t.composition === composition));
+      if (showing) return { tab: showing, maySwitch: false };
+    } else {
+      const user = tabs.pick(users);
+      if (user) return { tab: user, maySwitch: false };
+    }
+    try {
+      return { tab: await ownedTab(req), maySwitch: true };
+    } catch (err) {
+      const why = err instanceof Error ? err.message : String(err);
+      return {
+        status: 503,
+        body: fail(
+          "no-browser",
+          `${why} No studio tab can answer this without changing what the user sees. Ask the user to open ${openUrl(req)}, or set SMOOVE_BROWSER to the path of a Chrome, Chromium or Edge binary.`,
+        ),
+      };
+    }
+  }
+
+  // ---------------------------------------------------------------- replies
 
   async function reply(req: IncomingMessage, res: ServerResponse, query: URLSearchParams) {
     const id = query.get("req") ?? "";
@@ -220,8 +366,10 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
       const bytes = await readBody(req, PNG_LIMIT);
       if (!pending.delete(id)) return send(res, 404, fail("bad-request", "Request expired."));
       clearTimeout(p.timer);
-      const data = writeSnapshot(query, bytes);
-      p.settle(200, { ok: true, data });
+      const warnings = parseWarnings(query.get("warnings"));
+      const data =
+        query.get("kind") === "sheet" ? writeSheet(query, bytes) : writeSnapshot(query, bytes);
+      p.settle(200, { ok: true, data, ...(warnings.length > 0 ? { warnings } : {}) });
       return send(res, 200, { ok: true, data: null });
     }
 
@@ -262,6 +410,94 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
     return { path, composition, frame, width, height };
   }
 
+  function writeSheet(query: URLSearchParams, bytes: Buffer): SheetData {
+    const meta = JSON.parse(query.get("meta") ?? "{}") as Omit<SheetData, "path">;
+    const dir = join(root, SHEETS_DIR);
+    mkdirSync(dir, { recursive: true });
+    const path = join(
+      dir,
+      sheetFileName(meta.composition, meta.mode, meta.tiles.length, meta.tileWidth),
+    );
+    writeFileSync(path, bytes);
+    return { path, ...meta };
+  }
+
+  // ---------------------------------------------------------------- renders
+
+  function unfinished(job: RenderData): boolean {
+    return job.status === "queued" || job.status === "rendering" || job.status === "saving";
+  }
+
+  function renderData(job: RenderRecord): RenderData {
+    const { tab: _tab, ...data } = job;
+    return data;
+  }
+
+  async function startRender(req: IncomingMessage, params: RenderParams): Promise<Out> {
+    const picked = await target(req, "render", params.composition);
+    if ("status" in picked) return picked;
+    const { tab } = picked;
+    const composition = params.composition ?? tab.composition ?? undefined;
+    const format: RenderFormat = params.format ?? "mp4";
+    const out = await forward(tab, "render", {
+      ...params,
+      format,
+      ...(composition ? { composition } : {}),
+    } as TabRequest["params"]);
+    if (!out.body.ok) return out;
+    const queued = out.body.data as RenderQueued;
+    const job: RenderRecord = {
+      jobId: queued.jobId,
+      composition: queued.composition,
+      format: queued.format,
+      status: "queued",
+      progress: 0,
+      out: params.out ?? join(root, "out", `${safeName(queued.composition)}.${queued.format}`),
+      error: null,
+      tab,
+    };
+    renders.set(job.jobId, job);
+    return { status: 202, body: { ok: true, data: renderData(job), drawnBy: drawnBy(tab) } };
+  }
+
+  async function jobUpdate(req: IncomingMessage, update: TabJobUpdate): Promise<boolean> {
+    const job = renders.get(update.jobId);
+    const tab = tabs.get(update.tabId);
+    if (!job || !tab || job.tab !== tab || !unfinished(job)) return false;
+    if (job.status === "saving") return true;
+    if (update.status === "done") {
+      if (!update.result) {
+        job.status = "error";
+        job.error = "The render finished, but the studio gave no download URL for the file.";
+        return true;
+      }
+      job.status = "saving";
+      job.progress = 1;
+      void save(req, job, update.result);
+      return true;
+    }
+    job.status = update.status;
+    job.progress = Math.max(0, Math.min(1, Number(update.progress) || 0));
+    if (update.status === "error") job.error = update.error ?? "The render failed.";
+    return true;
+  }
+
+  /** Fetch the finished file from the host's download URL and write it to `job.out`. */
+  async function save(req: IncomingMessage, job: RenderRecord, result: string): Promise<void> {
+    try {
+      const base = baseUrl(req);
+      if (!base) throw new Error("The dev server's URL isn't known.");
+      const res = await fetch(new URL(result, base));
+      if (!res.ok || !res.body) throw new Error(`Downloading the render failed (${res.status}).`);
+      mkdirSync(join(job.out, ".."), { recursive: true });
+      await pipeline(Readable.fromWeb(res.body as never), createWriteStream(job.out));
+      job.status = "done";
+    } catch (err) {
+      job.status = "error";
+      job.error = err instanceof Error ? err.message : String(err);
+    }
+  }
+
   // ---------------------------------------------------------------- routing
 
   async function route(req: IncomingMessage, res: ServerResponse, sub: string, q: URLSearchParams) {
@@ -288,11 +524,24 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
             visible: body.visible !== false,
             focused: body.focused === true,
             path: typeof body.path === "string" ? body.path : undefined,
+            composition:
+              body.composition === null || typeof body.composition === "string"
+                ? body.composition || null
+                : undefined,
           });
         return send(
           res,
           ok ? 200 : 404,
           ok ? { ok: true, data: null } : fail("bad-request", "Unknown tab."),
+        );
+      }
+      if (sub === "tab/job" && method === "POST") {
+        const body = await readJson<TabJobUpdate>(req);
+        const ok = body != null && (await jobUpdate(req, body));
+        return send(
+          res,
+          ok ? 200 : 404,
+          ok ? { ok: true, data: null } : fail("bad-request", "Unknown render job."),
         );
       }
       await drain(req);
@@ -312,28 +561,59 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
     }
 
     if (sub === "status" && method === "GET") {
-      if (tabs.size === 0) {
+      await settleAfterEdit();
+      const user = tabs.pick(tabs.users());
+      if (!user) {
         const data: StatusData = { server: serverStatus(req), studio: null, openUrl: openUrl(req) };
         return send(res, 200, { ok: true, data });
       }
-      const out = await forward(req, "status", {});
-      return send(res, out.status, out.body);
+      return sendOut(res, await forward(user, "status", {}));
     }
 
     if (sub === "seek" && method === "POST") {
-      const body = await readJson<Record<string, unknown>>(req);
-      const params = parseSeek(body);
+      const params = parseSeek(await readJson<Record<string, unknown>>(req));
       if (typeof params === "string") return send(res, 400, fail("bad-request", params));
-      if (tabs.size === 0) return sendOut(res, noTab(req));
-      return sendOut(res, await forward(req, "seek", params));
+      await settleAfterEdit();
+      const user = tabs.pick(tabs.users());
+      if (!user) {
+        return sendOut(
+          res,
+          noTab(req, "Seek moves the user's view, and no user has a studio tab open."),
+        );
+      }
+      return sendOut(res, await forward(user, "seek", params));
     }
 
-    if (sub === "snapshot" && method === "POST") {
+    if ((sub === "snapshot" || sub === "sheet" || sub === "timeline") && method === "POST") {
       const body = await readJson<Record<string, unknown>>(req);
-      const params = parseSnapshot(body);
+      const params =
+        sub === "snapshot"
+          ? parseSnapshot(body)
+          : sub === "sheet"
+            ? parseSheet(body)
+            : parseTimeline(body);
       if (typeof params === "string") return send(res, 400, fail("bad-request", params));
-      if (tabs.size === 0) return sendOut(res, noTab(req));
-      return sendOut(res, await forward(req, "snapshot", params));
+      await settleAfterEdit();
+      const picked = await target(req, sub, params.composition);
+      if ("status" in picked) return sendOut(res, picked);
+      return sendOut(
+        res,
+        await forward(picked.tab, sub, { ...params, maySwitch: picked.maySwitch }),
+      );
+    }
+
+    if (sub === "render" && method === "POST") {
+      const params = parseRender(await readJson<Record<string, unknown>>(req), root);
+      if (typeof params === "string") return send(res, 400, fail("bad-request", params));
+      await settleAfterEdit();
+      return sendOut(res, await startRender(req, params));
+    }
+
+    if (sub.startsWith("render/") && method === "GET") {
+      await drain(req);
+      const job = renders.get(decodeURIComponent(sub.slice("render/".length)));
+      if (!job) return send(res, 404, fail("bad-request", "No render job with that id."));
+      return send(res, 200, { ok: true, data: renderData(job), drawnBy: drawnBy(job.tab) });
     }
 
     await drain(req);
@@ -342,7 +622,7 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
       404,
       fail(
         "bad-request",
-        `No endpoint ${method} ${AGENT_PREFIX}${sub}. The endpoints are GET status, POST seek and POST snapshot.`,
+        `No endpoint ${method} ${AGENT_PREFIX}${sub}. The endpoints are GET status, POST seek, POST snapshot, POST sheet, POST timeline, POST render and GET render/<job id>.`,
       ),
     );
   }
@@ -379,10 +659,7 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
     listening(nextUrl) {
       url = nextUrl.endsWith("/") ? nextUrl : `${nextUrl}/`;
       const info: DiscoveryInfo = { url, token, pid: process.pid, startedAt };
-      const file = writeDiscovery(root, info);
-      process.off("exit", onExit);
-      process.on("exit", onExit);
-      return file;
+      return writeDiscovery(root, info);
     },
     fileChanged() {
       lastChangeAt = now();
@@ -400,6 +677,8 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
         tabs.remove(tab.id);
         tab.stream.end();
       }
+      browser?.close();
+      browser = null;
       process.off("exit", onExit);
       removeDiscovery(root, token);
     },
@@ -409,11 +688,24 @@ export function createAgentBridge(options: AgentBridgeOptions): AgentBridge {
 
 // ---------------------------------------------------------------- helpers
 
+function safeName(name: string): string {
+  return name.replace(/[^a-zA-Z0-9._-]+/g, "-").replace(/^-+|-+$/g, "") || "composition";
+}
+
 /** `hello-smoove`, 120, 640 → `hello-smoove-f120-w640.png`. */
 export function snapshotFileName(composition: string, frame: number, width: number): string {
-  const safe =
-    composition.replace(/[^a-zA-Z0-9._-]+/g, "-").replace(/^-+|-+$/g, "") || "composition";
-  return `${safe}-f${frame}-w${width}.png`;
+  return `${safeName(composition)}-f${frame}-w${width}.png`;
+}
+
+/** `promo`, `beats`, 5 tiles, 320 → `promo-beats-w320.png`; even sheets add the count. */
+export function sheetFileName(
+  composition: string,
+  mode: "beats" | "even",
+  tiles: number,
+  tileWidth: number,
+): string {
+  const how = mode === "beats" ? "beats" : `even${tiles}`;
+  return `${safeName(composition)}-${how}-w${tileWidth}.png`;
 }
 
 export function isLoopbackAddress(address: string | undefined): boolean {
@@ -449,15 +741,41 @@ function originHost(origin: string): string | null {
   }
 }
 
-function parseSeek(body: Record<string, unknown> | null): SeekParams | string {
-  if (!body) return 'Send a JSON body like {"frame": 90}.';
-  const frame = body.frame;
-  if (!isFrame(frame)) return '"frame" must be a whole number, 0 or more.';
-  const composition = body.composition;
-  if (composition !== undefined && (typeof composition !== "string" || composition === "")) {
-    return '"composition" must be a composition id.';
+function parseWarnings(raw: string | null): string[] {
+  if (!raw) return [];
+  try {
+    const value = JSON.parse(raw);
+    return Array.isArray(value) ? value.filter((w): w is string => typeof w === "string") : [];
+  } catch {
+    return [];
   }
-  return composition === undefined ? { frame } : { frame, composition };
+}
+
+function parseComposition(b: Record<string, unknown>): string | undefined | false {
+  if (b.composition === undefined) return undefined;
+  if (typeof b.composition !== "string" || b.composition === "") return false;
+  return b.composition;
+}
+
+function parseAtField(b: Record<string, unknown>): string | undefined | false {
+  if (b.at === undefined) return undefined;
+  if (typeof b.at !== "string" || b.at === "") return false;
+  return b.at;
+}
+
+function parseSeek(body: Record<string, unknown> | null): SeekParams | string {
+  if (!body) return 'Send a JSON body like {"frame": 90} or {"at": "hook"}.';
+  const at = parseAtField(body);
+  if (at === false) return '"at" must be a beat name, like "hook" or "hook.start".';
+  const frame = body.frame ?? (at ? 0 : undefined);
+  if (!isFrame(frame)) return '"frame" must be a whole number, 0 or more.';
+  const composition = parseComposition(body);
+  if (composition === false) return '"composition" must be a composition id.';
+  return {
+    frame,
+    ...(at ? { at } : {}),
+    ...(composition ? { composition } : {}),
+  };
 }
 
 function parseSnapshot(body: Record<string, unknown> | null): SnapshotParams | string {
@@ -467,6 +785,9 @@ function parseSnapshot(body: Record<string, unknown> | null): SnapshotParams | s
     if (!isFrame(b.frame)) return '"frame" must be a whole number, 0 or more.';
     out.frame = b.frame;
   }
+  const at = parseAtField(b);
+  if (at === false) return '"at" must be a beat name, like "hook" or "hook.start".';
+  if (at) out.at = at;
   if (b.width !== undefined) {
     const w = b.width;
     if (typeof w !== "number" || !Number.isInteger(w) || w < 1 || w > MAX_SNAPSHOT_WIDTH) {
@@ -476,11 +797,76 @@ function parseSnapshot(body: Record<string, unknown> | null): SnapshotParams | s
   } else {
     out.width = DEFAULT_SNAPSHOT_WIDTH;
   }
-  if (b.composition !== undefined) {
-    if (typeof b.composition !== "string" || b.composition === "") {
-      return '"composition" must be a composition id.';
+  const composition = parseComposition(b);
+  if (composition === false) return '"composition" must be a composition id.';
+  if (composition) out.composition = composition;
+  return out;
+}
+
+function parseSheet(body: Record<string, unknown> | null): SheetParams | string {
+  const b = body ?? {};
+  const out: SheetParams = {};
+  const composition = parseComposition(b);
+  if (composition === false) return '"composition" must be a composition id.';
+  if (composition) out.composition = composition;
+  if (b.frames !== undefined) {
+    const n = b.frames;
+    if (
+      typeof n !== "number" ||
+      !Number.isInteger(n) ||
+      n < MIN_SHEET_FRAMES ||
+      n > MAX_SHEET_FRAMES
+    ) {
+      return `"frames" must be a whole number from ${MIN_SHEET_FRAMES} to ${MAX_SHEET_FRAMES}.`;
     }
-    out.composition = b.composition;
+    out.frames = n;
+  }
+  if (b.width !== undefined) {
+    const w = b.width;
+    if (typeof w !== "number" || !Number.isInteger(w) || w < 32 || w > MAX_TILE_WIDTH) {
+      return `"width" must be a whole number of pixels from 32 to ${MAX_TILE_WIDTH}.`;
+    }
+    out.width = w;
+  } else {
+    out.width = DEFAULT_TILE_WIDTH;
+  }
+  return out;
+}
+
+function parseTimeline(body: Record<string, unknown> | null): TimelineParams | string {
+  const composition = parseComposition(body ?? {});
+  if (composition === false) return '"composition" must be a composition id.';
+  return composition ? { composition } : {};
+}
+
+function parseRender(body: Record<string, unknown> | null, root: string): RenderParams | string {
+  const b = body ?? {};
+  const out: RenderParams = {};
+  const composition = parseComposition(b);
+  if (composition === false) return '"composition" must be a composition id.';
+  if (composition) out.composition = composition;
+  if (b.format !== undefined) {
+    if (b.format !== "mp4" && b.format !== "webm") return '"format" must be "mp4" or "webm".';
+    out.format = b.format;
+  }
+  if ((b.from === undefined) !== (b.to === undefined)) {
+    return 'Give both "from" and "to" for a range, or neither.';
+  }
+  if (b.from !== undefined) {
+    if (!isFrame(b.from) || !isFrame(b.to) || b.to < b.from) {
+      return '"from" and "to" must be whole frames, with "to" at or after "from".';
+    }
+    out.from = b.from;
+    out.to = b.to;
+  }
+  if (b.out !== undefined) {
+    if (typeof b.out !== "string" || b.out === "") return '"out" must be a file path.';
+    const abs = isAbsolute(b.out) ? b.out : resolvePath(root, b.out);
+    const rel = relative(root, abs);
+    if (rel.startsWith("..") || isAbsolute(rel)) {
+      return '"out" must be inside the project folder.';
+    }
+    out.out = abs;
   }
   return out;
 }
@@ -499,12 +885,15 @@ function statusFor(code: ErrorCode): number {
     case "frame-out-of-range":
       return 400;
     case "unknown-composition":
+    case "unknown-beat":
       return 404;
     case "no-tab":
     case "not-active":
       return 409;
     case "composition-error":
       return 422;
+    case "no-browser":
+      return 503;
     case "tab-timeout":
       return 504;
     default:
@@ -527,7 +916,7 @@ function send(res: ServerResponse, status: number, body: unknown): void {
   res.end(text);
 }
 
-function sendOut(res: ServerResponse, out: { status: number; body: unknown }): void {
+function sendOut(res: ServerResponse, out: Out): void {
   send(res, out.status, out.body);
 }
 

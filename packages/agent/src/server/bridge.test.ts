@@ -4,14 +4,23 @@ import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import type { AgentResponse, SnapshotData, StatusData, TabRequest } from "../index.js";
+import type {
+  AgentResponse,
+  RenderData,
+  SheetData,
+  SnapshotData,
+  StatusData,
+  TabRequest,
+} from "../index.js";
 import {
   type AgentBridge,
   createAgentBridge,
   isLoopbackAddress,
+  sheetFileName,
   snapshotFileName,
 } from "./bridge.js";
 import { readDiscovery } from "./discovery.js";
+import { type BrowserLauncher, NoBrowserError } from "./headless.js";
 
 const TOKEN = "test-token";
 
@@ -20,10 +29,18 @@ let bridge: AgentBridge;
 let server: Server;
 let origin: string;
 
-async function start(opts: { timeoutMs?: number; settleMs?: number } = {}) {
-  bridge = createAgentBridge({ root, token: TOKEN, settleMs: 0, ...opts });
+async function start(
+  opts: { timeoutMs?: number; settleMs?: number; launchBrowser?: BrowserLauncher | false } = {},
+) {
+  bridge = createAgentBridge({ root, token: TOKEN, settleMs: 0, launchBrowser: false, ...opts });
   server = createServer((req, res) =>
     bridge.handle(req, res, () => {
+      // Stands in for a host's render download route.
+      if (req.url === "/download/clip.mp4") {
+        res.writeHead(200, { "Content-Type": "video/mp4" });
+        res.end(Buffer.from("fake mp4 bytes"));
+        return;
+      }
       res.statusCode = 404;
       res.end("not the bridge");
     }),
@@ -304,16 +321,24 @@ describe("with no tab", () => {
     expect(body.data.openUrl).toBe("http://localhost:5190/");
   });
 
-  it("seek and snapshot fail at once with no-tab, naming the URL", async () => {
+  it("seek fails at once with no-tab, naming the URL", async () => {
     await start();
     bridge.listening("http://localhost:5190/");
-    for (const path of ["seek", "snapshot"]) {
-      const res = await agent(path, { json: { frame: 1 } });
-      expect(res.status).toBe(409);
-      const body = await res.json();
-      expect(body.error.code).toBe("no-tab");
-      expect(body.error.message).toContain("http://localhost:5190/");
-    }
+    const res = await agent("seek", { json: { frame: 1 } });
+    expect(res.status).toBe(409);
+    const body = await res.json();
+    expect(body.error.code).toBe("no-tab");
+    expect(body.error.message).toContain("http://localhost:5190/");
+  });
+
+  it("snapshot without a headless browser fails with no-browser, naming the URL", async () => {
+    await start();
+    bridge.listening("http://localhost:5190/");
+    const res = await agent("snapshot", { json: { frame: 1 } });
+    expect(res.status).toBe(503);
+    const body = await res.json();
+    expect(body.error.code).toBe("no-browser");
+    expect(body.error.message).toContain("http://localhost:5190/");
   });
 });
 
@@ -517,5 +542,260 @@ describe("snapshots", () => {
     expect(snapshotFileName("hello-smoove", 120, 640)).toBe("hello-smoove-f120-w640.png");
     expect(snapshotFileName("../../etc/passwd", 0, 1)).toBe("..-..-etc-passwd-f0-w1.png");
     expect(snapshotFileName("a b/c", 3, 10)).toBe("a-b-c-f3-w10.png");
+  });
+});
+
+/** A fake headless browser: records the URL and lets the test connect its tab. */
+function fakeLauncher() {
+  const launched: string[] = [];
+  let closed = 0;
+  const launcher: BrowserLauncher = (url) => {
+    launched.push(url);
+    return {
+      exited: new Promise<void>(() => {}),
+      close: () => {
+        closed++;
+      },
+    };
+  };
+  return {
+    launcher,
+    launched,
+    closed: () => closed,
+    /** Connect the page the browser opened, as the studio would. */
+    async connectOwned(query: Record<string, string> = {}) {
+      const at = launched.at(-1);
+      if (!at) throw new Error("nothing launched");
+      const secret = new URL(at).searchParams.get("smoove-agent-tab") ?? "";
+      return FakeTab.connect({ "smoove-agent-tab": secret, ...query });
+    },
+  };
+}
+
+describe("routing by composition", () => {
+  it("sends a request about the composition a user tab shows to that tab", async () => {
+    await start();
+    const user = await FakeTab.connect({ composition: "intro" });
+    const pending = agent("snapshot", { json: { composition: "intro" } });
+    const req = await user.nextRequest();
+    expect(req.type).toBe("snapshot");
+    expect(req.params).toMatchObject({ composition: "intro", maySwitch: false });
+    await user.reply(req.id, { ok: false, error: { code: "tab-error", message: "x" } });
+    await pending;
+    user.close();
+  });
+
+  it("opens the headless tab for a composition no user tab shows, and leaves the user's tab alone", async () => {
+    const fake = fakeLauncher();
+    await start({ launchBrowser: fake.launcher });
+    bridge.listening(origin);
+    const user = await FakeTab.connect({ composition: "intro" });
+    const pending = agent("sheet", { json: { composition: "outro" } });
+    await new Promise<void>((r) => {
+      const wait = () => (fake.launched.length > 0 ? r() : setTimeout(wait, 5));
+      wait();
+    });
+    expect(fake.launched[0]).toMatch(/smoove-agent-tab=/);
+    const owned = await fake.connectOwned();
+    // The request may already be in by now, so ask for the first one by number.
+    const req = await owned.nextRequest(1);
+    expect(req.type).toBe("sheet");
+    expect(req.params).toMatchObject({ composition: "outro", maySwitch: true, width: 320 });
+    await owned.reply(req.id, { ok: false, error: { code: "tab-error", message: "x" } });
+    const body = await (await pending).json();
+    expect(body.drawnBy.headless).toBe(true);
+    expect(user.requests).toHaveLength(0);
+
+    // The headless tab stays: the next request reuses it, with no second launch.
+    const again = agent("timeline", { json: { composition: "outro" } });
+    const req2 = await owned.nextRequest(2);
+    expect(req2.type).toBe("timeline");
+    await owned.reply(req2.id, { ok: false, error: { code: "tab-error", message: "x" } });
+    await again;
+    expect(fake.launched).toHaveLength(1);
+
+    bridge.close();
+    expect(fake.closed()).toBe(1);
+    user.close();
+    owned.close();
+  });
+
+  it("follows a user tab that switches compositions", async () => {
+    await start();
+    const user = await FakeTab.connect({ composition: "intro" });
+    await fetch(`${origin}/__smoove/agent/tab/presence`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        tabId: user.id,
+        visible: true,
+        focused: false,
+        path: "/c/outro",
+        composition: "outro",
+      }),
+    });
+    expect(bridge.tabs()[0]?.composition).toBe("outro");
+    const pending = agent("snapshot", { json: { composition: "outro" } });
+    const req = await user.nextRequest();
+    await user.reply(req.id, { ok: false, error: { code: "tab-error", message: "x" } });
+    await pending;
+    user.close();
+  });
+
+  it("never seeks the headless tab, and status ignores it", async () => {
+    const fake = fakeLauncher();
+    await start({ launchBrowser: fake.launcher });
+    bridge.listening(origin);
+    const pending = agent("snapshot", { json: {} });
+    await new Promise<void>((r) => {
+      const wait = () => (fake.launched.length > 0 ? r() : setTimeout(wait, 5));
+      wait();
+    });
+    const owned = await fake.connectOwned();
+    const req = await owned.nextRequest(1);
+    expect(req.params).toMatchObject({ maySwitch: true });
+    await owned.reply(req.id, { ok: false, error: { code: "tab-error", message: "x" } });
+    await pending;
+
+    const seek = await agent("seek", { json: { frame: 3 } });
+    expect(seek.status).toBe(409);
+    expect((await seek.json()).error.code).toBe("no-tab");
+
+    const status = (await (await agent("status")).json()) as AgentResponse<StatusData>;
+    expect(status.ok && status.data.studio).toBeNull();
+    expect(status.ok && status.data.server.tabs[0]?.owned).toBe(true);
+    expect(owned.requests).toHaveLength(1);
+    owned.close();
+  });
+
+  it("answers no-browser when no browser can be launched", async () => {
+    await start({
+      launchBrowser: () => {
+        throw new NoBrowserError("No Chrome here.");
+      },
+    });
+    bridge.listening("http://localhost:5190/");
+    const res = await agent("timeline", { json: {} });
+    expect(res.status).toBe(503);
+    const body = await res.json();
+    expect(body.error.code).toBe("no-browser");
+    expect(body.error.message).toContain("No Chrome here.");
+    expect(body.error.message).toContain("SMOOVE_BROWSER");
+  });
+});
+
+describe("sheets", () => {
+  it("writes the sheet under .smoove/sheets and passes warnings through", async () => {
+    await start();
+    const tab = await FakeTab.connect();
+    const pending = agent("sheet", { json: {} });
+    const req = await tab.nextRequest();
+    const meta = {
+      composition: "promo",
+      mode: "beats",
+      tileWidth: 320,
+      tileHeight: 180,
+      width: 1000,
+      height: 400,
+      tiles: [
+        { frame: 74, beat: "hook" },
+        { frame: 149, beat: "land" },
+      ],
+    };
+    await tab.replyPng(req.id, new Uint8Array([1, 2]), {
+      kind: "sheet",
+      meta: JSON.stringify(meta),
+      warnings: JSON.stringify(["video left out"]),
+    });
+    const body = (await (await pending).json()) as AgentResponse<SheetData>;
+    expect(body.ok).toBe(true);
+    if (!body.ok) return;
+    const want = join(root, ".smoove", "sheets", "promo-beats-w320.png");
+    expect(body.data).toEqual({ path: want, ...meta });
+    expect(body.warnings).toEqual(["video left out"]);
+    expect(existsSync(want)).toBe(true);
+    tab.close();
+  });
+
+  it("validates frames and width", async () => {
+    await start();
+    for (const json of [{ frames: 1 }, { frames: 25 }, { width: 10 }, { composition: "" }]) {
+      const res = await agent("sheet", { json });
+      expect(res.status).toBe(400);
+    }
+    expect(sheetFileName("promo", "even", 6, 320)).toBe("promo-even6-w320.png");
+  });
+});
+
+describe("renders", () => {
+  it("queues through a user tab, follows progress, and saves the file", async () => {
+    await start();
+    bridge.listening(origin);
+    const tab = await FakeTab.connect({ composition: "clip" });
+    const pending = agent("render", { json: { composition: "clip" } });
+    const req = await tab.nextRequest();
+    expect(req.type).toBe("render");
+    expect(req.params).toMatchObject({ composition: "clip", format: "mp4" });
+    await tab.reply(req.id, {
+      ok: true,
+      data: { jobId: "job-1", composition: "clip", format: "mp4" },
+    });
+    const queued = (await (await pending).json()) as AgentResponse<RenderData>;
+    expect(queued.ok && queued.data.status).toBe("queued");
+    const out = join(root, "out", "clip.mp4");
+    expect(queued.ok && queued.data.out).toBe(out);
+
+    const job = (update: Record<string, unknown>) =>
+      fetch(`${origin}/__smoove/agent/tab/job`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tabId: tab.id, jobId: "job-1", ...update }),
+      });
+    expect((await job({ status: "rendering", progress: 0.5 })).status).toBe(200);
+    let state = (await (await agent("render/job-1")).json()) as AgentResponse<RenderData>;
+    expect(state.ok && state.data).toMatchObject({ status: "rendering", progress: 0.5 });
+
+    await job({ status: "done", progress: 1, result: "/download/clip.mp4" });
+    for (let i = 0; i < 50; i++) {
+      state = (await (await agent("render/job-1")).json()) as AgentResponse<RenderData>;
+      if (state.ok && state.data.status === "done") break;
+      await new Promise((r) => setTimeout(r, 10));
+    }
+    expect(state.ok && state.data.status).toBe("done");
+    expect(readFileSync(out, "utf8")).toBe("fake mp4 bytes");
+    tab.close();
+  });
+
+  it("marks a job failed when its tab closes mid-render", async () => {
+    await start();
+    const tab = await FakeTab.connect();
+    const pending = agent("render", { json: {} });
+    const req = await tab.nextRequest();
+    await tab.reply(req.id, {
+      ok: true,
+      data: { jobId: "job-2", composition: "c", format: "webm" },
+    });
+    await pending;
+    tab.close();
+    let state: AgentResponse<RenderData> | null = null;
+    for (let i = 0; i < 50; i++) {
+      state = (await (await agent("render/job-2")).json()) as AgentResponse<RenderData>;
+      if (state.ok && state.data.status === "error") break;
+      await new Promise((r) => setTimeout(r, 10));
+    }
+    expect(state?.ok && state.data.status).toBe("error");
+  });
+
+  it("refuses an output path outside the project and a half range", async () => {
+    await start();
+    for (const json of [
+      { out: "/etc/x.mp4" },
+      { out: "../x.mp4" },
+      { from: 3 },
+      { format: "gif" },
+    ]) {
+      const res = await agent("render", { json });
+      expect(res.status).toBe(400);
+    }
   });
 });

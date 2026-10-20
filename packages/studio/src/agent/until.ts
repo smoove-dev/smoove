@@ -68,3 +68,24 @@ export function abortable<T>(promise: Promise<T>, abort: AbortSignal): Promise<T
 function reason(abort: AbortSignal): unknown {
   return abort.reason ?? new AgentError("tab-timeout", "The request was canceled.");
 }
+
+/**
+ * Call `onChange` with `read()` now and whenever a signal it reads changes,
+ * until the returned stop function runs. Microtasks only, like {@link until}.
+ */
+export function watch<T>(read: () => T, onChange: (value: T) => void): () => void {
+  const computed = new Signal.Computed(read);
+  let stopped = false;
+  const check = (): void => {
+    if (stopped) return;
+    onChange(computed.get());
+    if (!stopped) watcher.watch();
+  };
+  const watcher = new Signal.subtle.Watcher(() => queueMicrotask(check));
+  watcher.watch(computed);
+  check();
+  return () => {
+    stopped = true;
+    watcher.unwatch(computed);
+  };
+}

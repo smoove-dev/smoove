@@ -1,45 +1,90 @@
 # @smoove/agent
 
-Lets a coding agent see the [smoove](https://smoove.dev) studio. While the
-studio dev server runs, an agent can ask the open studio tab what it shows,
-move it to a frame, and get a frame back as a PNG file, drawn by the real tab
-with the real fonts.
-
-You don't install or call this package yourself yet. `@smoove/vite` mounts
-the bridge on the dev server, and `@smoove/studio` connects each studio tab
-to it. A `smoove` command line tool that wraps the endpoints is coming.
-
-## How an agent talks to it
-
-When the dev server starts, the bridge writes `.smoove/agent.json` in the
-project. It holds the server's URL and a token that changes on every start.
-Every request sends that token as a bearer token.
+Lets a coding agent see the [smoove](https://smoove.dev) studio. The agent
+runs the `smoove` command from its shell, and gets back PNG files and plain
+text: a frame, a contact sheet of every beat, the timeline in frames. The
+images are drawn by a real browser with the real fonts, and looking never
+changes what the user sees.
 
 ```sh
-TOKEN=$(jq -r .token .smoove/agent.json)
-
-# What's open, and which frame it's on
-curl -s http://localhost:5190/__smoove/agent/status \
-  -H "Authorization: Bearer $TOKEN"
-
-# Open a composition and move the playhead
-curl -s -X POST http://localhost:5190/__smoove/agent/seek \
-  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  -d '{"composition": "hello-smoove", "frame": 90}'
-
-# Draw frame 120 to a PNG (640 pixels wide by default)
-curl -s -X POST http://localhost:5190/__smoove/agent/snapshot \
-  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  -d '{"frame": 120}'
+npm i -D @smoove/agent
 ```
 
-A snapshot never moves what the user sees. The tab draws the frame, captures
-it, and puts the playhead back. The answer carries the absolute path of the
-file under `.smoove/snaps/`, never the image itself.
+`@smoove/vite` mounts the bridge on the studio's dev server, and
+`@smoove/studio` connects each studio tab to it. There's nothing to wire.
 
+## The smoove command
+
+Run it from inside the project. Every command takes `--json` for the raw
+answer, and exits with 1 when something went wrong.
+
+```sh
+smoove start                         # run the dev server, print the URL for the user
+smoove status                        # what the user's tab shows
+smoove snap --comp promo --at hook   # one frame as a PNG
+smoove sheet --comp promo            # one tile per beat, on one PNG
+smoove timeline --comp promo         # beats and sequences, in frames
+smoove seek 90                       # move the user's playhead
+smoove render --comp promo           # render a video, only when the user asks
+smoove stop
+```
+
+`smoove start` runs the project's `dev` script in the background, waits for
+the studio, and prints its URL. Give that URL to the user so they can watch.
+Its output goes to `.smoove/dev.log`.
+
+Images land under `.smoove/snaps/` and `.smoove/sheets/`, and the command
+prints their paths. Snapshots are 640 pixels wide by default and sheet tiles
+320, because every image an agent reads costs it context. `--width` changes
+both.
+
+### Beats
+
+A sheet shows one tile per beat, and `--at` names a point in a beat. Beats
+come from the composition's plan, so register it:
+
+```ts
+const beats = plan({ hook: { durationInFrames: 75 }, land: { durationInFrames: 60 } });
+const comp = new Composition({ id: "promo", fps, width, height, durationInFrames: beats.land.end, plan: beats });
+```
+
+A composition without a plan uses its top-level sequences instead. `--at
+hook` is the frame the sheet shows for that beat: its last frame before the
+next beat comes in. `hook.start`, `hook.settled`, `hook.last` and `hook.end`
+name the other points.
+
+### Which tab draws
+
+A request about the composition the user has open is drawn by the user's
+tab, which puts its playhead back afterwards. Anything else goes to a
+headless Chrome the dev server starts on its own and keeps until it stops.
+The command says which one drew each image. The headless browser is an
+installed Chrome, Chromium or Edge; point `SMOOVE_BROWSER` at a binary to
+pick one.
+
+`smoove seek` is the one command that changes the user's view, and it only
+ever talks to the user's tab.
+
+## The endpoints underneath
+
+The command wraps HTTP endpoints under `/__smoove/agent/` on the dev server.
+When the server starts, the bridge writes `.smoove/agent.json` with its URL
+and a token that changes on every start. Every request sends that token as a
+bearer token.
+
+```sh
+curl -s -X POST http://localhost:5190/__smoove/agent/snapshot \
+  -H "Authorization: Bearer $(jq -r .token .smoove/agent.json)" \
+  -H "Content-Type: application/json" \
+  -d '{"composition": "promo", "at": "hook"}'
+```
+
+The endpoints are `GET status`, and `POST seek`, `snapshot`, `sheet`,
+`timeline` and `render`, plus `GET render/<job id>` to follow a render.
 Every answer has the same shape: `ok` set to true with a `data` object, or
 `ok` set to false with an `error` that has a `code` and a `message`. Answers
-a tab produced also say which tab drew them, in `drawnBy`.
+a tab produced also say which tab drew them, in `drawnBy`, and may carry
+`warnings`.
 
 ## Safety
 

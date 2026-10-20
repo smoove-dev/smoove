@@ -188,6 +188,15 @@ export class Marker {
     }
   }
 
+  /**
+   * The marker's name: its key in the object {@link plan} returned, or the
+   * scene name of a `series.marker(name)`. `undefined` for a marker declared
+   * with `new Marker({...})` and for `sequence.marker()`.
+   */
+  get name(): string | undefined {
+    return this._name;
+  }
+
   /** The scene's window-open frame (under a transition: the transition begins). */
   get start(): MarkerPoint {
     return new MarkerPoint(this._source, this._name, "start", 0);
@@ -231,7 +240,8 @@ function shiftAnchor(anchor: FrameAnchor, n: number): FrameAnchor {
 
 /**
  * Lay out named beats back to back and return a `Marker` per key, in insertion
- * order. Sugar over chained `new Marker({...})`: the first beat starts at
+ * order. Each marker's `name` is its key. Pass the whole object to
+ * `new Composition({ plan })` so tools can read the beats. Sugar over chained `new Marker({...})`: the first beat starts at
  * `opts.from` (default `0`, any anchor), each next beat at the previous end
  * shifted by its `offset`. With a negative `offset` the beat's `settled` is
  * `start + |offset|`, mirroring `Series`.
@@ -265,6 +275,7 @@ export function plan<T extends Record<string, PlanStep>>(
         { start: shiftAnchor(prevEnd, offset), durationInFrames: step.durationInFrames },
         Math.max(0, -offset),
       ),
+      name,
     );
     out[name] = marker;
     prevEnd = marker.end;
