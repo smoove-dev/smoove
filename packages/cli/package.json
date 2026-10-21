@@ -1,6 +1,6 @@
 {
   "name": "@smoove/cli",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "The smoove command: run and build the studio, create compositions, and give coding agents their view of the studio.",
   "license": "MIT",
   "repository": {
