@@ -1,5 +1,13 @@
 # @smoove/cli
 
+## 0.5.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @smoove/agent@0.5.2
+  - @smoove/studio@0.5.2
+
 ## 0.5.1
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @smoove/renderer
 
+## 0.5.2
+
+### Patch Changes
+
+- [#52](https://github.com/smoove-dev/smoove/pull/52) [`9ebd2b3`](https://github.com/smoove-dev/smoove/commit/9ebd2b3a0f3b574d177682fc9d5adfc08d695148) Thanks [@shemi](https://github.com/shemi)! - Server renders and composition tests no longer run out of memory on compositions with video.
+
+  skia-canvas records every draw and replays the whole recording on each pixel read, and `clearRect` only adds to that recording. The Node video source, every Sequence layer and `captureCanvas()` cleared that way each frame, so they kept every frame they ever drew. A one-minute 1080p `Video` grew a `smoove test` run past 6 GB within a minute, and rendering it slowed from 16 fps to 8 fps before running out of memory. These canvases now `reset()` instead, which drops the recording. The same composition now renders all 1,817 frames at about 62 fps with memory flat under 1 GB.
+
+- Updated dependencies [[`9ebd2b3`](https://github.com/smoove-dev/smoove/commit/9ebd2b3a0f3b574d177682fc9d5adfc08d695148)]:
+  - @smoove/core@0.5.2
+  - @smoove/transitions@0.5.2
+
 ## 0.5.1
 
 ### Patch Changes
