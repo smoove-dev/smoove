@@ -11,7 +11,7 @@ const SAME_FRAME_EPS = 1 / 240;
 const BIGGEST_FORWARD_JUMP = 3;
 
 // Optional decode-resolution cap (0 = uncapped). Mediabunny decode is memory-
-// bounded (one reused canvas, cleared each frame), so this is now purely a
+// bounded (one reused canvas, reset each frame), so this is now purely a
 // throughput/size knob for large background clips, not a leak workaround.
 let DECODE_MAX_W = 0;
 let DECODE_MAX_H = 0;
@@ -206,10 +206,12 @@ export class MediabunnyVideoSource implements VideoSource {
     const sctx = this._scratchCtx;
     const ctx = this._ctx;
     if (!sctx || !ctx) return;
+    // reset(), not clearRect: skia-canvas records every draw and clearRect only
+    // appends to the recording, so each canvas would keep every decoded frame
+    // (8 MB apiece at 1080p) for the life of the source.
+    sctx.reset();
     sctx.putImageData(this._imageData, 0, 0);
-    // Clear before blit: skia retains a native snapshot of prior content, so an
-    // uncleared draw leaks ~1 frame of RSS per frame for the process lifetime.
-    ctx.clearRect(0, 0, this._w, this._h);
+    ctx.reset();
     if (this._scratch) ctx.drawImage(this._scratch, 0, 0, this._w, this._h);
     for (const cb of this._frameCbs) cb();
   }
