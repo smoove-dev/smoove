@@ -279,7 +279,9 @@ seq.register((frame) => {
   root.scaleY(s);
 
   // 4. Box the spoken word, sweeping the box on with `progress`.
-  const wi = g.words.findLastIndex((w) => frame >= w.from);
+  // (A loop, not findLastIndex: studio projects compile against ES2022.)
+  let wi = 0;
+  for (let i = 0; i < g.words.length; i++) if (frame >= g.words[i].from) wi = i;
   spoken.start = g.ranges[wi][0];
   spoken.end = g.ranges[wi][1];
   spoken.progress = interpolate(frame, [g.words[wi].from, g.words[wi].from + 2], [0, 1], { extrapolateRight: "clamp" });
