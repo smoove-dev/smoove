@@ -12,7 +12,7 @@ import {
 } from "./test/fake-bridge.js";
 
 describe("the command table", () => {
-  it("holds the twelve commands, in order", () => {
+  it("holds the twenty-six commands, in order", () => {
     expect(COMMANDS.map((c) => c.name)).toEqual([
       "status",
       "start",
@@ -26,6 +26,20 @@ describe("the command table", () => {
       "render",
       "render_status",
       "new",
+      "footage_add",
+      "media_info",
+      "media_audio",
+      "extract_audio",
+      "media_sheet",
+      "media_video",
+      "transcribe",
+      "models",
+      "media_status",
+      "cut_plan",
+      "asset_search",
+      "asset_add",
+      "assets",
+      "page_shot",
     ]);
   });
 
@@ -40,7 +54,21 @@ describe("the command table", () => {
 
   it("marks only the looking commands read-only", () => {
     const readOnly = COMMANDS.filter((c) => c.annotations.readOnlyHint === true).map((c) => c.name);
-    expect(readOnly).toEqual(["status", "snap", "sheet", "timeline", "check", "render_status"]);
+    expect(readOnly).toEqual([
+      "status",
+      "snap",
+      "sheet",
+      "timeline",
+      "check",
+      "render_status",
+      "media_info",
+      "media_audio",
+      "media_sheet",
+      "media_video",
+      "media_status",
+      "asset_search",
+      "assets",
+    ]);
     expect(commandNamed("render")?.annotations.openWorldHint).toBe(true);
   });
 
@@ -247,6 +275,161 @@ describe("long renders", () => {
 });
 
 describe("argsToInput", () => {
+  it("maps media flags, with decimal seconds", () => {
+    expect(argsToInput("footage_add", {}, ["~/talk.mp4"])).toEqual({ path: "~/talk.mp4" });
+    expect(
+      argsToInput("media_audio", { threshold: "25", "min-quiet": "0.8", peaks: "5" }, ["a.wav"]),
+    ).toEqual({ source: "a.wav", thresholdDb: 25, minQuiet: 0.8, peaks: 5 });
+  });
+
+  it("maps extract_audio's preset and range", () => {
+    expect(
+      argsToInput("extract_audio", { preset: "transcribe", from: "1.5", to: "9" }, ["a.mp4"]),
+    ).toEqual({ source: "a.mp4", preset: "transcribe", from: 1.5, to: 9 });
+    expect(() => argsToInput("extract_audio", { preset: "flac" }, ["a.mp4"])).toThrow(
+      "--preset must be transcribe or m4a.",
+    );
+  });
+
+  it("maps media_sheet's tiles, times and exact flag", () => {
+    expect(
+      argsToInput("media_sheet", { tiles: "6", at: "1.5, 30,61", width: "200", exact: true }, [
+        "a.mp4",
+      ]),
+    ).toEqual({ source: "a.mp4", tiles: 6, at: [1.5, 30, 61], width: 200, exact: true });
+    expect(() => argsToInput("media_sheet", { at: "1,x" }, ["a.mp4"])).toThrow(
+      "--at must be seconds separated by commas, like 1.5,30,61.",
+    );
+  });
+
+  it("refuses a media range that runs backwards", () => {
+    for (const name of ["media_sheet", "media_video", "extract_audio"]) {
+      const parsed = commandNamed(name)?.input.safeParse({ source: "a.mp4", from: 90, to: 60 });
+      expect(parsed?.success, name).toBe(false);
+    }
+  });
+
+  it("maps media_video's range and rate", () => {
+    expect(argsToInput("media_video", { from: "60", to: "90.5", rate: "2" }, ["a.mp4"])).toEqual({
+      source: "a.mp4",
+      from: 60,
+      to: 90.5,
+      rate: 2,
+    });
+  });
+
+  it("maps transcribe's engine, language and fresh", () => {
+    expect(
+      argsToInput("transcribe", { engine: "api", language: "en", fresh: true }, ["a.mp4"]),
+    ).toEqual({ source: "a.mp4", engine: "api", language: "en", fresh: true });
+    expect(() => argsToInput("transcribe", { engine: "whisper" }, ["a.mp4"])).toThrow(
+      "--engine must be auto, import, local or api.",
+    );
+  });
+
+  it("maps models list and install", () => {
+    expect(argsToInput("media_status", {}, ["transcribe.talk-0123456789"])).toEqual({
+      job: "transcribe.talk-0123456789",
+    });
+    expect(argsToInput("models", {}, [])).toEqual({});
+    expect(argsToInput("models", {}, ["list"])).toEqual({});
+    expect(argsToInput("models", {}, ["install", "parakeet"])).toEqual({ install: "parakeet" });
+    expect(() => argsToInput("models", {}, ["remove"])).toThrow(
+      "models takes list, or install parakeet.",
+    );
+  });
+
+  it("tells the agent to ask before installing a model", () => {
+    expect(commandNamed("models")?.description).toContain("Install only after the user agrees");
+  });
+
+  it("maps cut_plan's ranges and lists", () => {
+    expect(
+      argsToInput(
+        "cut_plan",
+        {
+          comp: "short",
+          keep: "192.4-211, 264.2-290.6",
+          fillers: "um,uh",
+          "max-pause": "0.8",
+          target: "60",
+        },
+        [],
+      ),
+    ).toEqual({
+      composition: "short",
+      keep: [
+        { start: 192.4, end: 211 },
+        { start: 264.2, end: 290.6 },
+      ],
+      fillers: ["um", "uh"],
+      maxPause: 0.8,
+      target: 60,
+    });
+    expect(() => argsToInput("cut_plan", { comp: "short", keep: "5-2" }, [])).toThrow(
+      "--keep takes start-end pairs in seconds separated by commas, like 192.4-211,264.2-290.6.",
+    );
+  });
+
+  it("maps new's template and source", () => {
+    expect(
+      argsToInput("new", { title: "Short", template: "recut", source: "footage/talk.mp4" }, []),
+    ).toEqual({ title: "Short", template: "recut", source: "footage/talk.mp4" });
+    expect(() => argsToInput("new", { title: "Short", template: "reel" }, [])).toThrow(
+      "--template must be title or recut.",
+    );
+  });
+
+  it("maps the asset commands", () => {
+    expect(
+      argsToInput("asset_search", { type: "audio", count: "5", "any-license": true }, [
+        "rain",
+        "on",
+        "glass",
+      ]),
+    ).toEqual({
+      query: "rain on glass",
+      type: "audio",
+      count: 5,
+      anyLicense: true,
+    });
+    expect(
+      argsToInput(
+        "asset_add",
+        { openverse: "image:abc", name: "Heat pump", license: "CC BY 4.0" },
+        [],
+      ),
+    ).toEqual({ openverse: "image:abc", name: "Heat pump", license: "CC BY 4.0" });
+    expect(argsToInput("asset_add", {}, ["https://x.example/a.png"])).toEqual({
+      from: "https://x.example/a.png",
+    });
+  });
+
+  it("tells the agent to use its own tools first for assets", () => {
+    for (const name of ["asset_search", "asset_add", "page_shot"]) {
+      expect(commandNamed(name)?.description, name).toMatch(/^If your own tools can/);
+    }
+  });
+
+  it("maps page_shot's size and name", () => {
+    expect(
+      argsToInput("page_shot", { width: "1440", height: "900", name: "docs" }, [
+        "https://smoove.dev",
+      ]),
+    ).toEqual({
+      url: "https://smoove.dev",
+      width: 1440,
+      height: 900,
+      name: "docs",
+    });
+  });
+
+  it("refuses a decimal flag that isn't a number", () => {
+    expect(() => argsToInput("media_audio", { "min-quiet": "soon" }, ["a.wav"])).toThrow(
+      "--min-quiet must be a number of seconds.",
+    );
+  });
+
   it("maps flags and positionals onto a command's input", () => {
     expect(argsToInput("seek", {}, ["120"])).toEqual({ frame: 120 });
     expect(argsToInput("render_status", {}, ["j9"])).toEqual({ job: "j9" });
@@ -315,6 +498,20 @@ describe("command groups", () => {
       "check",
       "render",
       "render_status",
+      "footage_add",
+      "media_info",
+      "media_audio",
+      "extract_audio",
+      "media_sheet",
+      "media_video",
+      "transcribe",
+      "models",
+      "media_status",
+      "cut_plan",
+      "asset_search",
+      "asset_add",
+      "assets",
+      "page_shot",
     ]);
   });
 
@@ -331,6 +528,20 @@ describe("command groups", () => {
       "context",
       "check",
       "render_status",
+      "footage_add",
+      "media_info",
+      "media_audio",
+      "extract_audio",
+      "media_sheet",
+      "media_video",
+      "transcribe",
+      "models",
+      "media_status",
+      "cut_plan",
+      "asset_search",
+      "asset_add",
+      "assets",
+      "page_shot",
     ]) {
       expect(commandNamed(name)?.group, name).toBe("agent");
     }

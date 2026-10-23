@@ -37,6 +37,19 @@ const ARGS: Record<string, string> = {
   start: "[--port <n>]",
   seek: "<frame>",
   render_status: "<job>",
+  footage_add: "<file>",
+  media_info: "<source>",
+  media_audio: "<source>",
+  extract_audio: "<source>",
+  media_sheet: "<source>",
+  media_video: "<source>",
+  transcribe: "<source>",
+  models: "[list | install parakeet]",
+  media_status: "<job>",
+  cut_plan: "--comp <id>",
+  asset_search: "<words>",
+  asset_add: "<address or file>",
+  page_shot: "<address>",
 };
 
 /**
@@ -86,8 +99,35 @@ const USAGE = [
   "  --all              Check: every composition in the catalog",
   "  --only <groups>    Check: some of purity, layout, intent, motion, style (comma-separated)",
   "  --images           Check: write an image for each error and held warning",
+  "  --template recut --source <file>",
+  "                     New: a recut of footage, played from the original file",
   "  --title, --id, --group, --description, --format, --seconds",
   "                     New: the answers, for running it without questions",
+  "  --threshold <dB>   Audio: quiet is this many dB under the typical level (default 20)",
+  "  --min-quiet <s>    Audio: shortest quiet stretch, in seconds (default 0.5)",
+  "  --peaks <n>        Audio: how many loud moments to list (default 10)",
+  "  --tiles <n>        Footage sheet: n evenly spaced tiles (2 to 24, default 12)",
+  "  --at <seconds>     Footage sheet: tiles at these times, like 1.5,30,61",
+  "  --exact            Footage sheet: exact times instead of the keyframe before each",
+  "  --rate <n>         Video scan: samples a second (default 4)",
+  "  --engine <e>       Transcribe: auto (default), import, local or api",
+  "  --language <code>  Transcribe: the spoken language, like en",
+  "  --fresh            Transcribe: replace an existing transcript",
+  "  --keep, --remove <ranges>  Cut plan: start-end seconds, like 192.4-211,264.2-290.6",
+  "  --fillers <words>  Cut plan: filler words to drop, like um,uh",
+  "  --max-pause <s>    Cut plan: shorten pauses longer than this",
+  "  --pad <s>          Cut plan: seconds kept around each cut it makes (default 0.1)",
+  "  --target <s>       Cut plan: warn when the cut misses this length",
+  "  --type <t>         Asset search: image (default) or audio",
+  "  --count <n>        Asset search: how many results (default 10)",
+  "  --any-license      Asset search: include licences that don't allow commercial use",
+  "  --openverse <type:id>  Asset add: an asset_search result, credit filled in",
+  "  --name, --license, --author, --page, --title",
+  "                     Asset add: what to call the file and how to credit it",
+  "  --width --height   Page shot: the window size (default 1280 by 800)",
+  "  --overwrite        Extract audio: replace a file already at --out",
+  "  --preset <p>       Extract audio: m4a for the user (default) or transcribe (16 kHz WAV)",
+  "  --from <s> --to <s>  Media tools: a range of the source, in seconds",
   "  --json             Print the bridge's JSON answer",
 ].join("\n");
 
@@ -115,6 +155,34 @@ export type Values = {
   group?: string;
   description?: string;
   seconds?: string;
+  threshold?: string;
+  "min-quiet"?: string;
+  peaks?: string;
+  preset?: string;
+  tiles?: string;
+  exact?: boolean;
+  rate?: string;
+  engine?: string;
+  language?: string;
+  fresh?: boolean;
+  keep?: string;
+  remove?: string;
+  fillers?: string;
+  "max-pause"?: string;
+  pad?: string;
+  target?: string;
+  template?: string;
+  source?: string;
+  type?: string;
+  count?: string;
+  "any-license"?: boolean;
+  openverse?: string;
+  name?: string;
+  license?: string;
+  author?: string;
+  page?: string;
+  height?: string;
+  overwrite?: boolean;
 };
 
 const CHECK_GROUPS = ["purity", "layout", "intent", "motion", "style"];
@@ -124,6 +192,50 @@ function int(name: string, value: string | undefined): number | undefined {
   const n = Number(value);
   if (!Number.isInteger(n) || n < 0) throw new UsageError(`--${name} must be a whole number.`);
   return n;
+}
+
+/** A decimal flag: any finite number of 0 or more. */
+function num(
+  name: string,
+  value: string | undefined,
+  what = "a number of seconds",
+): number | undefined {
+  if (value === undefined) return undefined;
+  const n = Number(value);
+  if (value.trim() === "" || !Number.isFinite(n) || n < 0) {
+    throw new UsageError(`--${name} must be ${what}.`);
+  }
+  return n;
+}
+
+/** A comma-separated list of seconds. */
+function secondsList(name: string, value: string | undefined): number[] | undefined {
+  if (value === undefined) return undefined;
+  const list = value.split(",").map((v) => Number(v.trim()));
+  if (list.some((n) => !Number.isFinite(n) || n < 0) || list.length === 0) {
+    throw new UsageError(`--${name} must be seconds separated by commas, like 1.5,30,61.`);
+  }
+  return list;
+}
+
+/** Comma-separated `start-end` pairs of seconds. */
+function ranges(
+  name: string,
+  value: string | undefined,
+): { start: number; end: number }[] | undefined {
+  if (value === undefined) return undefined;
+  const pairs = value.split(",").map((pair) => {
+    const m = /^\s*(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*$/.exec(pair);
+    const start = Number(m?.[1]);
+    const end = Number(m?.[2]);
+    return m && end > start ? { start, end } : null;
+  });
+  if (pairs.some((p) => p === null)) {
+    throw new UsageError(
+      `--${name} takes start-end pairs in seconds separated by commas, like 192.4-211,264.2-290.6.`,
+    );
+  }
+  return pairs as { start: number; end: number }[];
 }
 
 /** Copy the defined fields only. */
@@ -164,6 +276,106 @@ export function argsToInput(
       return defined({ composition });
     case "render_status":
       return defined({ job: positionals[0] });
+    case "footage_add":
+      return defined({ path: positionals[0] });
+    case "media_info":
+      return defined({ source: positionals[0] });
+    case "media_audio":
+      return defined({
+        source: positionals[0],
+        thresholdDb: num("threshold", values.threshold, "a number of decibels"),
+        minQuiet: num("min-quiet", values["min-quiet"]),
+        peaks: int("peaks", values.peaks),
+      });
+    case "media_sheet":
+      return defined({
+        source: positionals[0],
+        tiles: int("tiles", values.tiles),
+        from: num("from", values.from),
+        to: num("to", values.to),
+        at: secondsList("at", values.at),
+        width: int("width", values.width),
+        exact: values.exact,
+      });
+    case "media_video":
+      return defined({
+        source: positionals[0],
+        from: num("from", values.from),
+        to: num("to", values.to),
+        rate: num("rate", values.rate, "a number of samples a second"),
+      });
+    case "transcribe":
+      if (values.engine && !["auto", "import", "local", "api"].includes(values.engine)) {
+        throw new UsageError("--engine must be auto, import, local or api.");
+      }
+      return defined({
+        source: positionals[0],
+        engine: values.engine,
+        language: values.language,
+        fresh: values.fresh,
+      });
+    case "cut_plan":
+      return defined({
+        composition,
+        keep: ranges("keep", values.keep),
+        remove: ranges("remove", values.remove),
+        fillers: values.fillers
+          ?.split(",")
+          .map((f) => f.trim())
+          .filter(Boolean),
+        maxPause: num("max-pause", values["max-pause"]),
+        pad: num("pad", values.pad),
+        target: num("target", values.target),
+      });
+    case "asset_search":
+      if (values.type && values.type !== "image" && values.type !== "audio") {
+        throw new UsageError("--type must be image or audio.");
+      }
+      return defined({
+        query: positionals.join(" ") || undefined,
+        type: values.type,
+        count: int("count", values.count),
+        anyLicense: values["any-license"],
+      });
+    case "asset_add":
+      return defined({
+        from: positionals[0],
+        openverse: values.openverse,
+        name: values.name,
+        license: values.license,
+        author: values.author,
+        page: values.page,
+        title: values.title,
+      });
+    case "assets":
+      return {};
+    case "page_shot":
+      return defined({
+        url: positionals[0],
+        width: int("width", values.width),
+        height: int("height", values.height),
+        name: values.name,
+      });
+    case "media_status":
+      return defined({ job: positionals[0] });
+    case "models": {
+      const [action, name] = positionals;
+      if (action === undefined || action === "list") return {};
+      if (action === "install" && name === "parakeet") return { install: name };
+      throw new UsageError("models takes list, or install parakeet.");
+    }
+    case "extract_audio":
+      if (values.preset && values.preset !== "transcribe" && values.preset !== "m4a") {
+        throw new UsageError("--preset must be transcribe or m4a.");
+      }
+      return defined({
+        source: positionals[0],
+        preset: values.preset,
+        from: num("from", values.from),
+        to: num("to", values.to),
+        out: values.out,
+        overwrite: values.overwrite,
+      });
     case "check": {
       let groups: string[] | undefined;
       if (values.only !== undefined) {
@@ -203,6 +415,9 @@ export function argsToInput(
       if (seconds !== undefined && !(seconds > 0)) {
         throw new UsageError("--seconds must be a number above 0.");
       }
+      if (values.template && values.template !== "title" && values.template !== "recut") {
+        throw new UsageError("--template must be title or recut.");
+      }
       return defined({
         title: values.title,
         id: values.id,
@@ -210,6 +425,8 @@ export function argsToInput(
         description: values.description,
         format: values.format,
         seconds,
+        template: values.template,
+        source: values.source,
       });
     }
     default:
@@ -265,6 +482,34 @@ export async function main(argv: string[], io: Io = defaultIo): Promise<number> 
         group: { type: "string" },
         description: { type: "string" },
         seconds: { type: "string" },
+        threshold: { type: "string" },
+        "min-quiet": { type: "string" },
+        peaks: { type: "string" },
+        preset: { type: "string" },
+        tiles: { type: "string" },
+        exact: { type: "boolean" },
+        rate: { type: "string" },
+        engine: { type: "string" },
+        language: { type: "string" },
+        fresh: { type: "boolean" },
+        keep: { type: "string" },
+        remove: { type: "string" },
+        fillers: { type: "string" },
+        "max-pause": { type: "string" },
+        pad: { type: "string" },
+        target: { type: "string" },
+        template: { type: "string" },
+        source: { type: "string" },
+        type: { type: "string" },
+        count: { type: "string" },
+        "any-license": { type: "boolean" },
+        openverse: { type: "string" },
+        name: { type: "string" },
+        license: { type: "string" },
+        author: { type: "string" },
+        page: { type: "string" },
+        height: { type: "string" },
+        overwrite: { type: "boolean" },
       },
     });
     values = parsed.values as Values;

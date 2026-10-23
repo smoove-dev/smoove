@@ -161,7 +161,8 @@ real sound into frame-pure signals — `rmsAt`/`peakAt`/`bandsAt`/`noveltyAt`/
 `waveform` — for meters, EQ bars, waveforms, and beat-synced motion that
 scrub and server-render deterministically. Editing real footage (cutting
 silences, reframing 16:9 to 9:16, covering the speaker with a graphic) has
-its own section. Details: [rules/media.md](rules/media.md).
+its own section, and long recordings have their own workflow (see "Long
+footage and research" below). Details: [rules/media.md](rules/media.md).
 
 ## Performance
 
@@ -230,6 +231,28 @@ above, and the running preview. Either way, check this skill is installed in
 the project: look for `.agents/skills/smoove-video`, and if it's missing run
 `npx skills add smoove-dev/smoove -s smoove-video`.
 
+## Long footage and research
+
+When the user hands you a recording to edit (a lecture into a TikTok, the
+quiet parts out), map it with the `smoove agent` media tools before editing,
+and never cut the footage: a recut composition plays ranges of the original
+file from its `cuts.json`, so every adjustment is a change to a number.
+Bring it in with `footage_add`, then `media_info`, `media_audio`,
+`media_sheet` and `transcribe`; shortlist the highlights with the user;
+build with `smoove new --template recut` and `cut_plan`. Details:
+[rules/footage.md](rules/footage.md), and for the words on screen,
+[rules/captions.md](rules/captions.md).
+
+For an explainer, research first, plan the beats from what you found, and
+bring every picture in with `asset_add` so it's credited. Details:
+[rules/research.md](rules/research.md).
+
+Your own tools come first. If you can transcribe, search the web, find
+images or take a screenshot yourself, do that, then hand the result to
+smoove (`transcribe` imports a transcript, `asset_add` credits a file). Use
+smoove's own `transcribe`, `asset_search` and `page_shot` when you have
+nothing better, and never install a model without asking the user first.
+
 ## Effects (optional)
 
 `@smoove/effects` is its own package: `npm i @smoove/effects`. As of 0.4 the
@@ -291,5 +314,7 @@ seq.register((frame) => {
 [animation](rules/animation.md) · [text](rules/text.md) ·
 [shapes](rules/shapes.md) · [media](rules/media.md) ·
 [performance](rules/performance.md) · [testing](rules/testing.md) ·
+[footage](rules/footage.md) · [captions](rules/captions.md) ·
+[research](rules/research.md) ·
 [transitions](rules/transitions.md) (optional) · [fonts](rules/fonts.md)
 (optional)

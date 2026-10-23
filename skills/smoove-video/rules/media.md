@@ -213,18 +213,24 @@ transcript.
 
 ### Cutting
 
-Two ways, with different costs:
+Never cut the footage itself. A cut is one `Video` per kept range, each in
+its own `Sequence` with `trimBefore`/`trimAfter` on the original file, back
+to back. The whole recording stays in the project, so giving ten seconds back
+is a change to a number, not a new export.
 
-- One `Video` per kept segment, each in its own `Sequence` with
-  `trimBefore`/`trimAfter`. Everything stays in smoove, but every segment is
-  its own decoder. Fine for a handful of cuts.
-- Pre-cut the footage outside smoove (ffmpeg, from the same segment list) and
-  play one `Video`. One decoder however many cuts, so it scales to dozens.
-  Keep the segment list as data next to the comp so cues can still map
-  source time to output frames.
+For a recording you're editing down, start from the recut template and let
+`cut_plan` write the ranges (see [footage.md](footage.md)):
+
+```sh
+npx smoove new --title "Lecture short" --template recut --source footage/lecture.mp4
+npx smoove agent cut_plan --comp lecture-short --keep 192.4-211,264.2-290.6
+```
+
+The template reads `compositions/<id>/cuts.json` and builds the `Series`
+below for you. By hand, the pattern is:
 
 ```ts
-// a few cuts: one Video per segment, back to back
+// one Video per kept range, back to back
 const keep = [[0, 212], [260, 431], [470, 618]]; // source frames, comp fps
 const edit = new Series();
 for (const [a, b] of keep) {
@@ -238,13 +244,15 @@ for (const [a, b] of keep) {
 comp.add(edit);
 ```
 
-Either way, snap every boundary to the composition's frame grid. Convert
-transcript seconds once with `Math.round(t * fps)` and use those integers
-for the trims, the pre-cut (as times `k / fps`, encoded at the comp's fps)
+Snap every boundary to the composition's frame grid. Convert transcript
+seconds once with `Math.round(t * fps)` and use those integers for the trims
 and the cue table alike. Sub-frame leftovers add up across many cuts, and
-audio and video drift apart. With one pre-cut `Video`, put the fades in the
-cut itself (`afade`) or drive `setVolume()` from the segment list the same
-way.
+audio and video drift apart. `cut_plan` writes its ranges already snapped.
+
+Keep a recut to 48 ranges or fewer. Every `Video` opens its file when it's
+created, and in testing the studio preview drew every cut at 50 and lost
+some at 60 (the server render was fine). Past 48, split the edit into more
+than one composition; `cut_plan` warns when a plan goes over.
 
 ### Reframing 16:9 to 9:16
 

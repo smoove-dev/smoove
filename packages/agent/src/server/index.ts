@@ -12,6 +12,7 @@ export { discoveryPath, readDiscovery, removeDiscovery, writeDiscovery } from ".
 export {
   BROWSER_ENV,
   type BrowserLauncher,
+  captureScreenshot,
   chromeLauncher,
   findBrowser,
   type LaunchedBrowser,

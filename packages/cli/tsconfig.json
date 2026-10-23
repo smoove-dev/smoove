@@ -8,5 +8,5 @@
   },
   "include": ["src"],
   "exclude": ["src/**/*.test.ts", "src/test"],
-  "references": [{ "path": "../agent" }, { "path": "../studio" }]
+  "references": [{ "path": "../agent" }, { "path": "../media" }, { "path": "../studio" }]
 }
