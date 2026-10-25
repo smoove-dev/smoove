@@ -1,5 +1,16 @@
 # @smoove/studio
 
+## 0.5.3
+
+### Patch Changes
+
+- Updated dependencies [[`54a320b`](https://github.com/smoove-dev/smoove/commit/54a320b2552e1eaa00b622647c70c895d926dec7), [`54a320b`](https://github.com/smoove-dev/smoove/commit/54a320b2552e1eaa00b622647c70c895d926dec7)]:
+  - @smoove/agent@0.5.3
+  - @smoove/core@0.5.3
+  - @smoove/player@0.5.3
+  - @smoove/renderer@0.5.3
+  - @smoove/vite@0.5.3
+
 ## 0.5.2
 
 ### Patch Changes

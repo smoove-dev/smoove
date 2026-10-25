@@ -1,5 +1,22 @@
 # @smoove/cli
 
+## 0.5.3
+
+### Patch Changes
+
+- [#54](https://github.com/smoove-dev/smoove/pull/54) [`54a320b`](https://github.com/smoove-dev/smoove/commit/54a320b2552e1eaa00b622647c70c895d926dec7) Thanks [@shemi](https://github.com/shemi)! - Media tools for coding agents: bring footage into a project whole, map its audio and picture, see it as contact sheets, transcribe it (locally or through an API), and plan a recut that plays ranges of the original file, with `smoove new --template recut` and `cut_plan`. Asset tools search Openverse, add images and sounds with their credits, and take screenshots of pages.
+
+  The agent package gains the media tools' result types and paths, and `captureScreenshot` in its server entry.
+
+- [#54](https://github.com/smoove-dev/smoove/pull/54) [`54a320b`](https://github.com/smoove-dev/smoove/commit/54a320b2552e1eaa00b622647c70c895d926dec7) Thanks [@shemi](https://github.com/shemi)! - Photos keep their shape. `npx smoove agent check` has a new `layout/stretched` finding for a picture or video drawn at a different shape from its source, by `objectFit: "fill"` in a box of another shape or by scaling one axis more than the other. It's an error once it holds. Scale on a scene's own layer, like a `flip` transition, doesn't count.
+
+  `media_info` now reads still images too, and reports a photo's size and shape as it draws, with a phone's rotation tag applied. Videos report their shape as well, and `asset_add` names it when it adds a picture.
+
+- Updated dependencies [[`54a320b`](https://github.com/smoove-dev/smoove/commit/54a320b2552e1eaa00b622647c70c895d926dec7), [`54a320b`](https://github.com/smoove-dev/smoove/commit/54a320b2552e1eaa00b622647c70c895d926dec7)]:
+  - @smoove/agent@0.5.3
+  - @smoove/media@0.5.3
+  - @smoove/studio@0.5.3
+
 ## 0.5.2
 
 ### Patch Changes
