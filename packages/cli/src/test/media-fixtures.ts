@@ -125,3 +125,57 @@ export async function writeMp4(path: string, opts: Mp4Options): Promise<void> {
 
 /** A solid color for {@link Mp4Options.color}. */
 export const solid = (rgb: [number, number, number]) => (): [number, number, number] => rgb;
+
+/**
+ * A JPEG photo stored `width` by `height`, with an EXIF orientation tag the
+ * way phones save a picture taken sideways (6 means "turn 90 degrees
+ * clockwise to show it"), so it displays `height` by `width`.
+ */
+export async function writeJpeg(
+  path: string,
+  opts: { width: number; height: number; orientation?: number },
+): Promise<void> {
+  const { Canvas } = await import("skia-canvas");
+  const canvas = new Canvas(opts.width, opts.height);
+  const g = canvas.getContext("2d");
+  g.fillStyle = "#c83232";
+  g.fillRect(0, 0, opts.width, opts.height);
+  const jpeg = await canvas.toBuffer("jpeg");
+  if (!opts.orientation) {
+    writeFileSync(path, jpeg);
+    return;
+  }
+  // A big-endian TIFF block with one IFD entry: Orientation (0x0112), SHORT.
+  const tiff = Buffer.from([
+    0x4d,
+    0x4d,
+    0,
+    0x2a,
+    0,
+    0,
+    0,
+    8,
+    0,
+    1,
+    0x01,
+    0x12,
+    0,
+    3,
+    0,
+    0,
+    0,
+    1,
+    0,
+    opts.orientation,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+  ]);
+  const body = Buffer.concat([Buffer.from("Exif\0\0", "binary"), tiff]);
+  const size = body.length + 2;
+  const app1 = Buffer.concat([Buffer.from([0xff, 0xe1, size >> 8, size & 0xff]), body]);
+  writeFileSync(path, Buffer.concat([jpeg.subarray(0, 2), app1, jpeg.subarray(2)]));
+}

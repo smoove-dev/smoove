@@ -1,10 +1,46 @@
 /** `media_info`: what's in a file, from its container, without decoding frames. */
-import { join } from "node:path";
+import { extname, join } from "node:path";
 import type { MediaInfo } from "@smoove/agent";
 import type { CommandResult, RunContext } from "../commands.js";
 import { done } from "../run.js";
 import { MediaError, mediaKey, projectSource, readCached, writeAtomic } from "./cache.js";
-import { clock, openInput, runMedia } from "./runtime.js";
+import { clock, loadMedia, openInput, runMedia } from "./runtime.js";
+
+const IMAGE_EXTS = new Set([".png", ".jpg", ".jpeg", ".webp", ".gif", ".avif", ".bmp", ".svg"]);
+
+/** Portrait, landscape or square, with a little give for square. */
+export function shapeOf(width: number, height: number): NonNullable<MediaInfo["shape"]> {
+  if (Math.abs(Math.log(width / height)) <= Math.log(1.02)) return "square";
+  return width > height ? "landscape" : "portrait";
+}
+
+/**
+ * A still image's size as it draws. skia-canvas applies the EXIF orientation
+ * a phone writes, as the browser does, so a photo taken sideways reports its
+ * upright size here (raw pixel readers like `sips` report it sideways).
+ */
+async function readImageInfo(root: string, source: string): Promise<MediaInfo> {
+  const { skia } = await loadMedia();
+  let img: Awaited<ReturnType<typeof skia.loadImage>>;
+  try {
+    img = await skia.loadImage(join(root, source));
+  } catch (err) {
+    throw new MediaError(
+      "media-error",
+      `${source} isn't an image smoove can read (${err instanceof Error ? err.message : String(err)}).`,
+    );
+  }
+  return {
+    source,
+    kind: "image",
+    duration: 0,
+    hasVideo: false,
+    hasAudio: false,
+    width: img.width,
+    height: img.height,
+    shape: shapeOf(img.width, img.height),
+  };
+}
 
 /**
  * Read a source's metadata. Reads Mediabunny's tracks directly rather than
@@ -12,6 +48,7 @@ import { clock, openInput, runMedia } from "./runtime.js";
  * long-running MCP server.
  */
 export async function readInfo(root: string, source: string): Promise<MediaInfo> {
+  if (IMAGE_EXTS.has(extname(source).toLowerCase())) return readImageInfo(root, source);
   const input = await openInput(root, source);
   try {
     let video: Awaited<ReturnType<typeof input.getPrimaryVideoTrack>>;
@@ -31,6 +68,7 @@ export async function readInfo(root: string, source: string): Promise<MediaInfo>
       throw new MediaError("media-error", `${source} has no video or audio track.`);
     const info: MediaInfo = {
       source,
+      kind: video ? "video" : "audio",
       duration: await input.computeDuration(),
       hasVideo: video !== null,
       hasAudio: audio !== null,
@@ -39,6 +77,7 @@ export async function readInfo(root: string, source: string): Promise<MediaInfo>
       const stats = await video.computePacketStats(100);
       info.width = video.displayWidth;
       info.height = video.displayHeight;
+      info.shape = shapeOf(video.displayWidth, video.displayHeight);
       info.fps = Math.round(stats.averagePacketRate * 1000) / 1000;
       info.rotation = video.rotation;
       if (video.codec) info.videoCodec = video.codec;
@@ -65,10 +104,16 @@ export async function cachedInfo(root: string, source: string): Promise<MediaInf
 }
 
 export function describeInfo(info: MediaInfo): string[] {
+  if (info.kind === "image") {
+    return [
+      `${info.source}: a still image, ${info.width} by ${info.height}, ${info.shape}, as it draws.`,
+      `Lay it out at this shape. In a box of another shape use objectFit "cover" or "contain", never "fill".`,
+    ];
+  }
   const lines = [`${info.source}: ${clock(info.duration)} long.`];
   if (info.hasVideo) {
     lines.push(
-      `Video: ${info.width} by ${info.height} at ${info.fps} fps${info.rotation ? `, rotated ${info.rotation} degrees` : ""}, ${info.videoCodec ?? "unknown codec"}.`,
+      `Video: ${info.width} by ${info.height}${info.shape ? `, ${info.shape},` : ""} at ${info.fps} fps${info.rotation ? `, rotated ${info.rotation} degrees` : ""}, ${info.videoCodec ?? "unknown codec"}.`,
     );
   } else lines.push("No video track.");
   if (info.hasAudio) {

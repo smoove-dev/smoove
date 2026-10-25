@@ -4,6 +4,7 @@ import { interpolate } from "../animation/interpolate.js";
 import { Composition } from "../engine/composition.js";
 import { plan } from "../engine/marker.js";
 import { Sequence } from "../engine/sequence.js";
+import { Image } from "../layout/image.js";
 import { Text } from "../layout/text/text.js";
 import {
   appearsBy,
@@ -281,6 +282,41 @@ describe("runChecks", () => {
       r.findings.every((f) => f.composition === "checks-promo" && f.node?.type === "Text"),
     ).toBe(true);
     expect(comp.frame.get()).toBe(5);
+  });
+});
+
+describe("stretched pictures", () => {
+  it("fail the check when held, and say how to keep the shape", async () => {
+    const comp = new Composition({
+      id: "checks-stretched",
+      fps: 30,
+      width: 1080,
+      height: 1920,
+      durationInFrames: 60,
+    });
+    const seq = new Sequence({ from: 0, durationInFrames: 60 });
+    const canvas = Konva.Util.createCanvasElement();
+    canvas.width = 400;
+    canvas.height = 300;
+    const src = Object.assign(canvas, { naturalWidth: 400, naturalHeight: 300 });
+    seq.add(
+      new Image({
+        name: "couple",
+        src,
+        objectFit: "fill",
+        x: 140,
+        y: 400,
+        width: 400,
+        height: 600,
+      }),
+    );
+    comp.add(seq);
+    const r = await runChecks(comp, null, { groups: ["layout"] });
+    const f = r.findings.find((x) => x.code === "layout/stretched");
+    expect(f?.severity).toBe("error");
+    expect(f?.message).toBe(
+      'This picture is drawn 50 percent narrower than its source (400 by 300), so it looks squashed. Use objectFit "cover" to crop it to its box or "contain" to fit it inside, and scale it the same on both axes.',
+    );
   });
 });
 

@@ -105,6 +105,58 @@ describe("layoutSweep", () => {
   });
 });
 
+/** A loaded 400 by 300 picture, the shape `Image` gets from its loader. */
+function photo(width = 400, height = 300) {
+  const canvas = Konva.Util.createCanvasElement();
+  canvas.width = width;
+  canvas.height = height;
+  return Object.assign(canvas, { naturalWidth: width, naturalHeight: height });
+}
+
+describe("stretched pictures", () => {
+  const stretched = (comp: Composition) =>
+    layoutSweep(sweepContext(comp)).filter((h) => h.code === "layout/stretched");
+
+  it("finds a picture filled into a box of another shape", () => {
+    const { comp, seq } = makeComp();
+    seq.add(new Image({ src: photo(), objectFit: "fill", x: 20, y: 20, width: 150, height: 300 }));
+    const hits = stretched(comp);
+    expect(hits.length).toBeGreaterThan(0);
+    expect(hits[0]?.details).toMatchObject({ source: { width: 400, height: 300 } });
+  });
+
+  it("leaves cover, contain, and a fill that keeps the shape alone", () => {
+    const { comp, seq } = makeComp();
+    seq.add(new Image({ src: photo(), objectFit: "cover", x: 20, y: 20, width: 150, height: 300 }));
+    seq.add(
+      new Image({ src: photo(), objectFit: "contain", x: 200, y: 20, width: 150, height: 300 }),
+    );
+    seq.add(new Image({ src: photo(), objectFit: "fill", x: 400, y: 20, width: 200, height: 150 }));
+    expect(stretched(comp)).toEqual([]);
+  });
+
+  it("finds a picture scaled more on one side than the other", () => {
+    const { comp, seq } = makeComp();
+    const group = new Konva.Group({ x: 20, y: 20, scaleX: 1, scaleY: 1.4 });
+    group.add(new Image({ src: photo(), width: 200, height: 150 }));
+    seq.add(group);
+    expect(stretched(comp).length).toBeGreaterThan(0);
+  });
+
+  it("leaves a scene squeezed by a transition on its layer alone", () => {
+    const { comp, seq } = makeComp();
+    seq.add(new Image({ src: photo(), x: 20, y: 20, width: 200, height: 150 }));
+    seq.scaleX(0.3);
+    expect(stretched(comp)).toEqual([]);
+  });
+
+  it("finds a raw Konva.Image sized off its source's shape", () => {
+    const { comp, seq } = makeComp();
+    seq.add(new Konva.Image({ image: photo(), x: 20, y: 20, width: 100, height: 300 }));
+    expect(stretched(comp).length).toBeGreaterThan(0);
+  });
+});
+
 describe("isContentNode", () => {
   class Caption extends Text {}
   it("knows content from decoration", () => {

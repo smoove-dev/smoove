@@ -328,9 +328,9 @@ COMMANDS.push(
   define({
     name: "media_info",
     group: "agent",
-    summary: "What's in a media file: length, size, frame rate, tracks",
+    summary: "What's in a media file or photo: length, size, shape, frame rate, tracks",
     description:
-      "A media file's length, picture size, frame rate, rotation, codecs, and whether it has video and audio, read from its container without decoding. Call it first on any footage.",
+      "A media file's length, picture size and shape, frame rate, rotation, codecs, and whether it has video and audio, read from its container without decoding. For a photo, its size and shape as it draws, with a phone's rotation tag applied. Call it first on any footage, and on any photo before you lay it out.",
     input: z.object({ source }),
     annotations: { readOnlyHint: true },
     run: runMediaInfo,

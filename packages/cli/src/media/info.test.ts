@@ -4,7 +4,7 @@ import type { MediaInfo } from "@smoove/agent";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { RunContext } from "../commands.js";
 import { tempProject } from "../test/fake-bridge.js";
-import { solid, writeMp4, writeWav } from "../test/media-fixtures.js";
+import { solid, writeJpeg, writeMp4, writeWav } from "../test/media-fixtures.js";
 import { mediaKey } from "./cache.js";
 import { readInfo, runMediaInfo } from "./info.js";
 
@@ -66,6 +66,34 @@ describe("media_info", () => {
     const info = await readInfo(project.root, "footage/silent.mp4");
     expect(info.hasAudio).toBe(false);
     expect(info.audioCodec).toBeUndefined();
+  });
+
+  it("reads a photo at the size it draws, after its rotation tag", async () => {
+    mkdirSync(join(project.root, "assets"), { recursive: true });
+    await writeJpeg(join(project.root, "assets/couple.jpg"), {
+      width: 400,
+      height: 300,
+      orientation: 6,
+    });
+    const info = await readInfo(project.root, "assets/couple.jpg");
+    expect(info).toMatchObject({
+      source: "assets/couple.jpg",
+      kind: "image",
+      width: 300,
+      height: 400,
+      shape: "portrait",
+      hasVideo: false,
+      hasAudio: false,
+    });
+  });
+
+  it("names a photo's shape in the text", async () => {
+    mkdirSync(join(project.root, "assets"), { recursive: true });
+    await writeJpeg(join(project.root, "assets/venue.jpg"), { width: 400, height: 300 });
+    const result = await runMediaInfo(ctx(), { source: "assets/venue.jpg" });
+    expect(result.code).toBe(0);
+    expect(result.text).toContain("400 by 300");
+    expect(result.text).toContain("landscape");
   });
 
   it("answers from the cache the second time", async () => {

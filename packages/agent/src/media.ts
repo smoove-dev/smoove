@@ -26,12 +26,16 @@ export interface TimeRange {
 
 export interface MediaInfo {
   source: string;
+  /** What the file is. A still image has no tracks and no duration. */
+  kind?: "video" | "audio" | "image";
   duration: number;
   hasVideo: boolean;
   hasAudio: boolean;
-  /** Display size, after rotation. */
+  /** Display size, after rotation (a video's rotation, a photo's EXIF orientation). */
   width?: number;
   height?: number;
+  /** The picture's shape at its display size. */
+  shape?: "portrait" | "landscape" | "square";
   fps?: number;
   rotation?: 0 | 90 | 180 | 270;
   videoCodec?: string;

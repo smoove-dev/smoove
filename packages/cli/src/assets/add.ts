@@ -9,7 +9,7 @@ import { basename, extname, isAbsolute, join, relative, resolve, sep } from "nod
 import { ASSETS_DIR, type AssetRecord } from "@smoove/agent";
 import { type CommandResult, type RunContext, UsageError } from "../commands.js";
 import { MediaError } from "../media/cache.js";
-import { readInfo } from "../media/info.js";
+import { readInfo, shapeOf } from "../media/info.js";
 import { loadMedia, runMedia } from "../media/runtime.js";
 import { done } from "../run.js";
 import { addCredit } from "./ledger.js";
@@ -255,7 +255,7 @@ export function runAssetAdd(
     const r = added.record;
     return done(added, [
       r.file,
-      `Added ${r.kind}${added.width ? `, ${added.width} by ${added.height}` : ""}. Credit: ${r.license ?? "licence unknown"}${r.author ? `, by ${r.author}` : ""}${r.page ? `, from ${r.page}` : ""}.`,
+      `Added ${r.kind}${added.width && added.height ? `, ${added.width} by ${added.height}, ${shapeOf(added.width, added.height)}` : ""}. Credit: ${r.license ?? "licence unknown"}${r.author ? `, by ${r.author}` : ""}${r.page ? `, from ${r.page}` : ""}.`,
       `In a composition: ${added.importLine}`,
     ]);
   });

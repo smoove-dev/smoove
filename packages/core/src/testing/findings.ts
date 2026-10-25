@@ -26,6 +26,7 @@ export type CheckCode =
   | "layout/off-canvas"
   | "layout/safe-zone"
   | "layout/contrast"
+  | "layout/stretched"
   | "motion/frozen"
   | "style/color"
   | "style/font"
