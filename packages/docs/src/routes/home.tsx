@@ -53,6 +53,15 @@ const VIDEO_IDEAS: [VideoIdea, ...VideoIdea[]] = [
     video:
       "A 25-second walkthrough that types out [a function] and highlights the line that matters.",
   },
+  // The wedding kit asks for the date, venues and photos itself.
+  {
+    label: "Save the date",
+    video: "A save the date for the wedding of [our names], to send on WhatsApp.",
+  },
+  {
+    label: "Wedding invite",
+    video: "A wedding invitation for [our names], to send on WhatsApp.",
+  },
 ];
 
 const agentPrompt = (video: string) => `${AGENT_PROMPT_LEAD}\n\n${video}`;

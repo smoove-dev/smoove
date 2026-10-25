@@ -156,11 +156,22 @@ A viewer gets a few seconds with a figure, not a minute.
 
 ## Photos and footage
 
-A still dropped flat onto the canvas reads as a slide. Give it some life:
+Read a photo's shape before you place it ("Keep a photo's shape" in
+[media.md](media.md)). A still dropped flat onto the canvas, or boxed in a
+small framed rectangle, reads as a slide. Pick a treatment that suits the
+photo:
+
+- Full bleed: the photo fills the frame, with a gradient into the backdrop
+  color on the side where the text sits. The strongest choice for people.
+- Set into the design: a shape (an arch, a circle, a soft edge) with
+  decoration or type overlapping its edge, so it belongs to the page instead
+  of sitting on it.
+- A device frame, for screenshots and app UI only: a `Block` with
+  `cornerRadius`, a `borderSize` of 2 to 4 times `u`, and the image inside.
+
+Then give it some life:
 
 - A slow push: scale from 1 to 1.04 across the whole beat.
-- A device frame: a `Block` with `cornerRadius`, a `borderSize` of 2 to 4
-  times `u`, and the image inside.
 - Depth: a cut-out subject moving slightly faster than the plate behind it.
 
 If the entrance animates a wrapper, put the slow push on the child inside

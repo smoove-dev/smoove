@@ -44,6 +44,15 @@ becomes a `plan()` call, one marker per beat, so retiming is a one-number
 change. Skip all of this for edits to an existing composition. Details:
 [rules/planning.md](rules/planning.md).
 
+## Concept videos
+
+Some kinds of video come with their own kit: the questions to ask, the
+scenes and their timing, the look, and a reference composition that already
+passes the checks. When the request is one of them, read its kit first. It
+replaces the generic brief and the empty template. Weddings (save the dates
+and invitations): [rules/concepts/wedding.md](rules/concepts/wedding.md).
+All kits, and how to add one: [rules/concepts.md](rules/concepts.md).
+
 ## Design for video
 
 Frames are seen once, at speed, often on a phone. Size everything from the
@@ -156,7 +165,10 @@ for installable Google Fonts, [rules/fonts.md](rules/fonts.md).
 ## Media
 
 `Image` comes from `@smoove/core`; `Audio`/`Video` ship in `@smoove/media`
-(add it as a dependency). Passing `introspect` to `Audio` turns the clip's
+(add it as a dependency). Never stretch a photo the user gave you: run
+`npx smoove agent media_info <file>` on it before planning, design the
+scene around the shape it reports, and keep `objectFit` on `"cover"` or
+`"contain"`. Passing `introspect` to `Audio` turns the clip's
 real sound into frame-pure signals — `rmsAt`/`peakAt`/`bandsAt`/`noveltyAt`/
 `waveform` — for meters, EQ bars, waveforms, and beat-synced motion that
 scrub and server-render deterministically. Editing real footage (cutting
@@ -308,7 +320,7 @@ seq.register((frame) => {
 
 ## Topic index
 
-[planning](rules/planning.md) · [studio](rules/studio.md) · [direction](rules/direction.md) ·
+[planning](rules/planning.md) · [concepts](rules/concepts.md) · [studio](rules/studio.md) · [direction](rules/direction.md) ·
 [looks](rules/looks.md) · [sequencing](rules/sequencing.md) · [components](rules/components.md) ·
 [layout](rules/layout.md) ·
 [animation](rules/animation.md) · [text](rules/text.md) ·

@@ -114,7 +114,7 @@ It reads the project's files for code that breaks scrubbing (`Math.random()`,
 the clock, a `random(seed)` generator advanced inside an updater), then
 sweeps the composition in the headless tab, never the user's.
 
-Four kinds of finding are errors, and the command exits with 1 while any is
+Five kinds of finding are errors, and the command exits with 1 while any is
 left:
 
 - `purity/seek-mismatch`: a node comes out different when you jump to a
@@ -127,6 +127,11 @@ left:
   matches nothing.
 - `layout/text-ellipsis` and `layout/text-overflow`, when held: text cut or
   trimmed through a beat's settled stretch.
+- `layout/stretched`, when held: a picture or video drawn at a different
+  shape from its source, by `objectFit: "fill"` in a box of another shape or
+  by scaling one axis more than the other. Use `"cover"` or `"contain"`.
+  Scale on the scene's own layer doesn't count, so a `flip` transition
+  passes.
 
 Everything else is a warning: text off the canvas (`layout/off-canvas`) or,
 on a vertical canvas, outside the safe zone (`layout/safe-zone`), contrast
