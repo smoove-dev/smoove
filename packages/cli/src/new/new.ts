@@ -5,7 +5,8 @@
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { type CommandResult, type RunContext, UsageError } from "../commands.js";
+import { type CommandResult, type RunContext, spell, UsageError } from "../commands.js";
+import { MediaError } from "../media/cache.js";
 import { findProject, liveServer } from "../project.js";
 import { done, fail } from "../run.js";
 import { KEBAB, kebab } from "./ids.js";
@@ -26,6 +27,10 @@ export interface NewInput {
   description?: string;
   format?: Format;
   seconds?: number;
+  /** "title" (default) or "recut". */
+  template?: "title" | "recut";
+  /** Recut only: the footage, a path inside the project. */
+  source?: string;
 }
 
 export const DEFAULT_GROUP = "Compositions";
@@ -59,8 +64,11 @@ export function existingGroups(root: string): string[] {
   return groups;
 }
 
-/** Write `compositions/<id>/`. Refuses a folder or an id that's already taken. */
-export function createComposition(root: string, input: NewInput): { dir: string; files: string[] } {
+/** The id and folder for a new composition. Refuses a folder or an id that's already taken. */
+export function claimId(
+  root: string,
+  input: Pick<NewInput, "title" | "id">,
+): { id: string; dir: string } {
   const id = input.id ?? kebab(input.title);
   if (!id)
     throw new UsageError(`"${input.title}" makes no id. Give one with --id, like --id intro.`);
@@ -79,6 +87,12 @@ export function createComposition(root: string, input: NewInput): { dir: string;
       `compositions/${taken.folder} already uses the id "${id}". Pick another id.`,
     );
   }
+  return { id, dir };
+}
+
+/** Write `compositions/<id>/` as a title card. Refuses a folder or an id that's already taken. */
+export function createComposition(root: string, input: NewInput): { dir: string; files: string[] } {
+  const { id, dir } = claimId(root, input);
 
   const { width, height } = FORMATS[input.format ?? "landscape"];
   const f: NewFiles = {
@@ -107,9 +121,24 @@ export function createComposition(root: string, input: NewInput): { dir: string;
 export async function runNew(ctx: RunContext, input: NewInput): Promise<CommandResult> {
   const root = findProject(ctx.cwd);
   if (!root) return fail("no-project", "There's no smoove project here or above.");
-  const { dir, files } = createComposition(root, input);
+  let made: { dir: string; files: string[] };
+  try {
+    made =
+      input.template === "recut"
+        ? await (await import("./recut.js")).createRecut(root, input, ctx)
+        : createComposition(root, input);
+  } catch (err) {
+    if (err instanceof MediaError) return fail(err.code, err.message);
+    throw err;
+  }
+  const { dir, files } = made;
   const id = dir.slice(dir.lastIndexOf("/") + 1);
   const lines = [`Created compositions/${id}/ with ${files.join(", ")}.`];
+  if (input.template === "recut") {
+    lines.push(
+      `It plays the whole of ${input.source} for now. Write the edit with ${spell(ctx, "cut_plan")} for ${id}.`,
+    );
+  }
   const server = liveServer(root);
   if (server) lines.push(`It's in the studio: ${server.url}c/${id}`);
   else if (ctx.door === "mcp") lines.push("Call the start tool to see it in the studio.");

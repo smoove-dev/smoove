@@ -8,6 +8,10 @@ composition code.
 
 ## When to plan
 
+- A request a concept kit covers (a wedding invitation, a save the date):
+  read the kit in [concepts.md](concepts.md) first. Its questions replace
+  the ones in "The brief" below, and its scene list is the beat list. Still
+  write the brief, and show the scenes with their lengths before building.
 - A new video, or a new scene with more than one beat: plan first.
 - An edit to an existing composition ("make the title bigger", "swap the
   second clip"): skip all of this and make the edit.
@@ -25,6 +29,9 @@ Six lines, written before anything else:
    small in a feed needs bigger type than a landscape video watched full
    screen.
 5. Must-haves: the logo, a line of copy, a clip, a color, anything fixed.
+   For every photo or clip the user gives you, run `npx smoove agent
+   media_info` and write its shape here ("couple.jpg, 3024 by 4032,
+   portrait"), so the beats are designed around the real pictures.
 6. The feel, in two or three words ("precise, quick", "warm, homemade").
    It picks the starting look in [looks.md](looks.md). If the user doesn't
    say, choose one that suits the subject and put it in the assumptions line.

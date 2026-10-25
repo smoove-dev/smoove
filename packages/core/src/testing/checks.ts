@@ -169,7 +169,11 @@ const inside = (b: Box, w: number, h: number): boolean =>
 
 function severityOf(code: CheckCode, held: boolean): Finding["severity"] {
   if (code.startsWith("intent/") || UNALLOWABLE.has(code)) return "error";
-  if (code === "layout/text-ellipsis" || code === "layout/text-overflow")
+  if (
+    code === "layout/text-ellipsis" ||
+    code === "layout/text-overflow" ||
+    code === "layout/stretched"
+  )
     return held ? "error" : "warning";
   return "warning";
 }
@@ -212,6 +216,14 @@ function messageFor(code: CheckCode, d: Record<string, unknown> = {}, fps = 30):
           ? ` The palette's ${String(d.suggestionName)}, ${String(d.suggestion)}, passes.`
           : ` ${String(d.suggestion)}, a color already in use, passes.`;
       return `Contrast ${Number(d.ratio).toFixed(1)} to 1, ${String(d.text)} on ${String(d.background)}, under the floor of ${String(d.floor)} to 1.${fix}`;
+    }
+    case "layout/stretched": {
+      const ratio = Number(d.ratio);
+      const src = d.source as { width: number; height: number } | undefined;
+      const percent = Math.round(Math.abs(ratio - 1) * 100);
+      const way = ratio > 1 ? "wider" : "narrower";
+      const looks = ratio > 1 ? "stretched" : "squashed";
+      return `This picture is drawn ${percent} percent ${way} than its source (${src?.width} by ${src?.height}), so it looks ${looks}. Use objectFit "cover" to crop it to its box or "contain" to fit it inside, and scale it the same on both axes.`;
     }
     case "motion/frozen":
       return `Nothing moves for ${fmtFrames(Number(d.length) / fps)}. Add motion, or say in the checks file that this beat may hold.`;

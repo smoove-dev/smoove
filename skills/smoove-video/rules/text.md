@@ -56,9 +56,7 @@ control. A few adjustments from web habits:
   times the canvas factor `u`.
 - Pull large type tighter, by about 3 to 5 percent of the font size.
   `letterSpacing` is in pixels, so compute it from the size.
-- Give every line enough time. Someone should finish reading it with about a
-  third of its screen time to spare. If they can't, cut words before you
-  extend the hold.
+- Give every line enough time to read: see "Time to read" below.
 - What appears first reads as what matters most. Reveal text in order of
   importance, not in the order you added the nodes.
 - Light text on a dark background looks bolder and more crowded than the
@@ -77,6 +75,28 @@ const title = new Text({
   ellipsis: false,
 });
 ```
+
+## Time to read
+
+A scene's length comes from its words, not from the running time you'd like.
+Once the last line has finished revealing, hold the scene for 2 seconds to
+find the text, plus 1 second for every 4 words on screen. Ten words hold for
+4.5 seconds, thirty for 9.5. Compute it in the plan, so changing the copy
+retimes the scene:
+
+```ts
+const words = (...lines: string[]) => lines.join(" ").split(/\s+/).filter(Boolean).length;
+const hold = (...lines: string[]) => Math.round(fps * (2 + words(...lines) / 4));
+
+const beats = plan({
+  promise: { durationInFrames: REVEAL + hold(headline, subline) },
+});
+```
+
+When a scene can't hold that long, cut words or split it in two. Never
+shorten the hold to fit a length: if the brief's length can't carry the
+words, tell the user the length they need. Scripts, all-caps and light text
+on dark read slower, so keep each of them to a few words a line.
 
 ### Numbers that change
 
@@ -279,7 +299,9 @@ seq.register((frame) => {
   root.scaleY(s);
 
   // 4. Box the spoken word, sweeping the box on with `progress`.
-  const wi = g.words.findLastIndex((w) => frame >= w.from);
+  // (A loop, not findLastIndex: studio projects compile against ES2022.)
+  let wi = 0;
+  for (let i = 0; i < g.words.length; i++) if (frame >= g.words[i].from) wi = i;
   spoken.start = g.ranges[wi][0];
   spoken.end = g.ranges[wi][1];
   spoken.progress = interpolate(frame, [g.words[wi].from, g.words[wi].from + 2], [0, 1], { extrapolateRight: "clamp" });

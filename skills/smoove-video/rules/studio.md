@@ -16,7 +16,8 @@ npx smoove new --title "Product launch" --format portrait --seconds 8
 
 It writes `compositions/product-launch/`: an `index.ts` entry, the
 composition (a title card to build from), its props schema, checks and
-tests. `--id`, `--group` and `--description` are optional. Every
+tests. `--template recut --source footage/talk.mp4` makes a recut of
+footage instead (see [footage.md](footage.md)). `--id`, `--group` and `--description` are optional. Every
 composition lives in its own folder under `compositions/`, and its
 `index.ts` is required: the studio lists every folder that has one, with no
 registry file to edit.
@@ -50,6 +51,28 @@ you read costs context, so the defaults (640 pixels for a snap, 320 per
 sheet tile) are usually right.
 
 Without `--comp`, a command uses the composition the user has open.
+
+## Footage and assets
+
+```sh
+npx smoove agent footage_add ~/Downloads/talk.mp4          # copy a recording into footage/, whole
+npx smoove agent media_info footage/talk.mp4               # length, size, frame rate, tracks
+npx smoove agent media_audio footage/talk.mp4              # quiet, speech, loudest moments
+npx smoove agent media_sheet footage/talk.mp4 --tiles 12   # a contact sheet of the raw footage
+npx smoove agent media_video footage/talk.mp4 --from 60 --to 120   # black, white, frozen, cuts
+npx smoove agent transcribe footage/talk.mp4               # every word with its time, in transcripts/
+npx smoove agent models                                    # the local transcription model; install only when asked
+npx smoove agent extract_audio footage/talk.mp4            # the audio as its own file
+npx smoove agent cut_plan --comp short --keep 12-20,61-70  # the ranges a recut plays
+npx smoove agent media_status <job>                        # a long media job's progress
+npx smoove agent asset_search "heat pump"                  # Creative Commons images and sounds
+npx smoove agent asset_add <address or file>               # into assets/, credited
+npx smoove agent page_shot https://example.org             # a screenshot of a page, credited
+npx smoove agent assets                                    # what's in assets/ and its credits
+```
+
+None of them change the footage. The workflow they serve is in
+[footage.md](footage.md) and [research.md](research.md).
 
 ## Points in time
 
@@ -91,7 +114,7 @@ It reads the project's files for code that breaks scrubbing (`Math.random()`,
 the clock, a `random(seed)` generator advanced inside an updater), then
 sweeps the composition in the headless tab, never the user's.
 
-Four kinds of finding are errors, and the command exits with 1 while any is
+Five kinds of finding are errors, and the command exits with 1 while any is
 left:
 
 - `purity/seek-mismatch`: a node comes out different when you jump to a
@@ -104,6 +127,11 @@ left:
   matches nothing.
 - `layout/text-ellipsis` and `layout/text-overflow`, when held: text cut or
   trimmed through a beat's settled stretch.
+- `layout/stretched`, when held: a picture or video drawn at a different
+  shape from its source, by `objectFit: "fill"` in a box of another shape or
+  by scaling one axis more than the other. Use `"cover"` or `"contain"`.
+  Scale on the scene's own layer doesn't count, so a `flip` transition
+  passes.
 
 Everything else is a warning: text off the canvas (`layout/off-canvas`) or,
 on a vertical canvas, outside the safe zone (`layout/safe-zone`), contrast

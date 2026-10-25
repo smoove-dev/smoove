@@ -58,7 +58,14 @@ export type ErrorCode =
   | "render-off"
   | "render-error"
   | "no-server"
-  | "checks-error";
+  | "checks-error"
+  | "no-project"
+  | "not-found"
+  | "no-audio-track"
+  | "no-video-track"
+  | "unsupported-codec"
+  | "model-missing"
+  | "media-error";
 
 export interface AgentErrorBody {
   code: ErrorCode;
@@ -692,3 +699,7 @@ export interface TabPresence {
   /** The composition the tab shows, or null. */
   composition?: string | null;
 }
+
+/* ============================================================ media tools */
+
+export * from "./media.js";

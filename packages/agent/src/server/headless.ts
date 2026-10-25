@@ -129,3 +129,77 @@ export function chromeLauncher(profileDir: string): BrowserLauncher {
     };
   };
 }
+
+/**
+ * A screenshot of `url` at a window size, from the installed browser's own
+ * screenshot flag: no remote control, no dev server. Resolves once the file is
+ * written; the profile folder is removed either way.
+ */
+export function captureScreenshot(
+  url: string,
+  opts: {
+    out: string;
+    width: number;
+    height: number;
+    profileDir: string;
+    /** How long the page gets to load and settle. Default 5 seconds. */
+    waitMs?: number;
+    /** Give up after this long. Default 30 seconds. */
+    timeoutMs?: number;
+  },
+): Promise<void> {
+  const binary = findBrowser();
+  if (!binary) {
+    return Promise.reject(
+      new NoBrowserError(
+        process.env[BROWSER_ENV]
+          ? `${BROWSER_ENV} is set to "${process.env[BROWSER_ENV]}", which isn't a browser that can run.`
+          : "No Chrome, Chromium or Edge is installed where smoove looks for one.",
+      ),
+    );
+  }
+  rmSync(opts.profileDir, { recursive: true, force: true });
+  mkdirSync(opts.profileDir, { recursive: true });
+  rmSync(opts.out, { force: true });
+  const child = spawn(
+    binary,
+    [
+      "--headless=new",
+      `--user-data-dir=${opts.profileDir}`,
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-extensions",
+      "--hide-scrollbars",
+      "--mute-audio",
+      `--window-size=${opts.width},${opts.height}`,
+      `--virtual-time-budget=${opts.waitMs ?? 5000}`,
+      `--screenshot=${opts.out}`,
+      url,
+    ],
+    { stdio: "ignore" },
+  );
+  return new Promise<void>((resolve, reject) => {
+    const timer = setTimeout(() => {
+      child.kill("SIGKILL");
+      finish(new Error(`The browser didn't finish the screenshot of ${url} in time.`));
+    }, opts.timeoutMs ?? 30_000);
+    let settled = false;
+    const finish = (err?: Error) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      removeProfile(opts.profileDir);
+      if (err) reject(err);
+      else resolve();
+    };
+    child.once("error", (err) => finish(err));
+    child.once("exit", () => {
+      try {
+        accessSync(opts.out, constants.R_OK);
+        finish();
+      } catch {
+        finish(new Error(`The browser closed without writing a screenshot of ${url}.`));
+      }
+    });
+  });
+}

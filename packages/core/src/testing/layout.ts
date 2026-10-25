@@ -57,6 +57,55 @@ function contentBoxOf(parent: Konva.Node): Box | null {
   };
 }
 
+/** How far a picture may be drawn off its source's shape before it reads as stretched. */
+const STRETCH_TOLERANCE = 0.02;
+
+type Bitmap = CanvasImageSource & {
+  naturalWidth?: number;
+  naturalHeight?: number;
+  videoWidth?: number;
+  videoHeight?: number;
+  displayWidth?: number;
+  displayHeight?: number;
+  width?: number;
+  height?: number;
+};
+
+/** The bitmap node a node draws: itself for a raw Konva.Image, the one inside a smoove Image or Video. */
+function drawnImage(node: Konva.Node): Konva.Image | null {
+  if (node.getClassName() === "Image") return node as Konva.Image;
+  if ((node as { _kmRole?: string })._kmRole !== "leaf") return null;
+  const child = (node as Konva.Container).getChildren?.().find((c) => c.getClassName() === "Image");
+  return (child as Konva.Image | undefined) ?? null;
+}
+
+/** The part of the source a Konva.Image draws: its crop, or the whole bitmap. */
+function sourceSize(img: Konva.Image): { width: number; height: number } | null {
+  const src = img.image() as Bitmap | undefined;
+  if (!src) return null;
+  const crop = img.crop();
+  if (crop.width > 0 && crop.height > 0) return { width: crop.width, height: crop.height };
+  const width = src.naturalWidth || src.videoWidth || src.displayWidth || src.width || 0;
+  const height = src.naturalHeight || src.videoHeight || src.displayHeight || src.height || 0;
+  return width > 0 && height > 0 ? { width, height } : null;
+}
+
+/** A stretched-picture hit's details, or null when the picture keeps its shape. */
+function stretchOf(node: Konva.Node): Record<string, unknown> | null {
+  const img = drawnImage(node);
+  if (!img) return null;
+  const source = sourceSize(img);
+  if (!source) return null;
+  // Scale up to the layer only: a transition squeezing a whole scene's layer
+  // (`flip`) is a deliberate move, not a stretched picture.
+  const s = img.getAbsoluteScale(img.getLayer() ?? undefined);
+  const drawn = { width: Math.abs(img.width() * s.x), height: Math.abs(img.height() * s.y) };
+  if (!(drawn.width > 0 && drawn.height > 0)) return null;
+  const ratio = drawn.width / drawn.height / (source.width / source.height);
+  if (Math.abs(Math.log(ratio)) <= Math.log(1 + STRETCH_TOLERANCE)) return null;
+  return { source, drawn, ratio };
+}
+
 const outside = (inner: Box, outer: Box): boolean =>
   inner.x < outer.x - EPS ||
   inner.y < outer.y - EPS ||
@@ -112,6 +161,9 @@ export function layoutSweep(ctx: SweepContext): Hit[] {
           }
         }
       }
+
+      const stretch = stretchOf(node);
+      if (stretch) hits.push({ node, code: "layout/stretched", frame, details: stretch });
 
       if (isContentNode(node)) {
         if (outside(box, canvas)) {

@@ -27,6 +27,38 @@ bottomLeft]`, and clamps the way CSS does: radii that overflow an edge scale
 down together, so `cornerRadius: 9999` on a square box is a disc rather than
 a squircle.
 
+### Keep a photo's shape
+
+A stretched face makes a video look cheap, and the viewer sees it at once.
+Before you plan a scene around a photo, read its shape:
+
+```bash
+npx smoove agent media_info assets/couple.jpg
+# assets/couple.jpg: a still image, 3024 by 4032, portrait, as it draws.
+```
+
+Take the size from `media_info`, or from the line `asset_add` prints, not
+from `sips` or `file`. Phones save an upright photo as a sideways bitmap
+plus a rotation tag, and those tools report the sideways size. The browser
+and the renderer both apply the tag, so `media_info` reports what will
+actually draw.
+
+The photo the user hands you is often not the shape you'd guess: a "couple
+photo" can be landscape, square or a tall phone shot. Plan the scene after
+reading it, then:
+
+- When the photo is the subject, build its box at the photo's shape. Fix
+  one side and derive the other: `height: w * 4032 / 3024`.
+- When the box has to be another shape (a full-bleed background, a circle,
+  an arch), keep the default `objectFit: "cover"` and aim the crop with
+  `objectPosition` so the faces stay in. `"top"` usually keeps them when a
+  tall photo goes into a wide box.
+- Use `"contain"` when nothing may be cut, like a poster or a document, and
+  give the empty bands a backdrop.
+- Never `"fill"` a box of another shape, and never scale one axis more than
+  the other. `npx smoove agent check` reports both as `layout/stretched`,
+  an error once it holds.
+
 It registers itself with the composition's asset-buffering gate, so
 playback/rendering waits for the image to load before painting — drop it
 into a `Flex`/`Block` like any other child, no manual readiness handling
@@ -213,18 +245,24 @@ transcript.
 
 ### Cutting
 
-Two ways, with different costs:
+Never cut the footage itself. A cut is one `Video` per kept range, each in
+its own `Sequence` with `trimBefore`/`trimAfter` on the original file, back
+to back. The whole recording stays in the project, so giving ten seconds back
+is a change to a number, not a new export.
 
-- One `Video` per kept segment, each in its own `Sequence` with
-  `trimBefore`/`trimAfter`. Everything stays in smoove, but every segment is
-  its own decoder. Fine for a handful of cuts.
-- Pre-cut the footage outside smoove (ffmpeg, from the same segment list) and
-  play one `Video`. One decoder however many cuts, so it scales to dozens.
-  Keep the segment list as data next to the comp so cues can still map
-  source time to output frames.
+For a recording you're editing down, start from the recut template and let
+`cut_plan` write the ranges (see [footage.md](footage.md)):
+
+```sh
+npx smoove new --title "Lecture short" --template recut --source footage/lecture.mp4
+npx smoove agent cut_plan --comp lecture-short --keep 192.4-211,264.2-290.6
+```
+
+The template reads `compositions/<id>/cuts.json` and builds the `Series`
+below for you. By hand, the pattern is:
 
 ```ts
-// a few cuts: one Video per segment, back to back
+// one Video per kept range, back to back
 const keep = [[0, 212], [260, 431], [470, 618]]; // source frames, comp fps
 const edit = new Series();
 for (const [a, b] of keep) {
@@ -238,13 +276,15 @@ for (const [a, b] of keep) {
 comp.add(edit);
 ```
 
-Either way, snap every boundary to the composition's frame grid. Convert
-transcript seconds once with `Math.round(t * fps)` and use those integers
-for the trims, the pre-cut (as times `k / fps`, encoded at the comp's fps)
+Snap every boundary to the composition's frame grid. Convert transcript
+seconds once with `Math.round(t * fps)` and use those integers for the trims
 and the cue table alike. Sub-frame leftovers add up across many cuts, and
-audio and video drift apart. With one pre-cut `Video`, put the fades in the
-cut itself (`afade`) or drive `setVolume()` from the segment list the same
-way.
+audio and video drift apart. `cut_plan` writes its ranges already snapped.
+
+Keep a recut to 48 ranges or fewer. Every `Video` opens its file when it's
+created, and in testing the studio preview drew every cut at 50 and lost
+some at 60 (the server render was fine). Past 48, split the edit into more
+than one composition; `cut_plan` warns when a plan goes over.
 
 ### Reframing 16:9 to 9:16
 
