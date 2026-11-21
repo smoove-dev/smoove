@@ -25,11 +25,11 @@ The scaffold installs the dependencies and the smoove-video skill. Load that ski
 
 AGENTS.md covers the loop. In short: start the studio with \`npx smoove agent start\` and give the user the URL it prints, so they can watch. Add a video with \`npx smoove new --title "My video"\`. Check your work with \`npx smoove agent check --comp <id>\` and look at \`npx smoove agent sheet --comp <id>\` instead of rendering. Run \`npx smoove render --comp <id>\` only when the user asks for the video. The project's .mcp.json exposes the same commands as MCP tools.
 
-Full guide: [Coding agents](/llms.mdx/docs/coding-agents). Every page below is Markdown, and [/llms-full.txt](/llms-full.txt) has all of them in one file.`;
+Full guide: [Coding agents](/llms.mdx/docs/coding-agents.md). Every page below is Markdown, and [/llms-full.txt](/llms-full.txt) has all of them in one file.`;
 
-/** The Markdown URL for a page: /docs/foo/bar is served at /llms.mdx/docs/foo/bar. */
+/** The Markdown URL for a page: /docs/foo/bar is served at /llms.mdx/docs/foo/bar.md. */
 export function markdownUrl(page: Page): string {
-  return `/llms.mdx${page.url}`;
+  return `/llms.mdx${page.url}.md`;
 }
 
 /** One page as Markdown: title, description, link to the rendered page, body. */

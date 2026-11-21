@@ -1,13 +1,13 @@
 import { createFromSource } from "fumadocs-core/search/server";
 import { source } from "../lib/source";
-import type { Route } from "./+types/search";
 
-// Static search index built from the docs source. The Fumadocs SearchDialog
-// (provided by RootProvider) queries this endpoint at /api/search.
+// The search index, pre-rendered to a static JSON file at /api/search. The
+// browser downloads it and searches locally (see components/search-dialog.tsx),
+// so no server answers queries.
 const server = createFromSource(source, {
   language: "english",
 });
 
-export async function loader({ request }: Route.LoaderArgs) {
-  return server.GET(request);
+export async function loader() {
+  return server.staticGET();
 }

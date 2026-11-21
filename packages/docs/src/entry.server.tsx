@@ -15,15 +15,13 @@ export default function handleRequest(
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     let status = responseStatusCode;
-    const userAgent = request.headers.get("user-agent");
-
-    // For bots wait for the full tree (good SEO); for browsers stream the shell.
-    const readyOption = userAgent && isbot(userAgent) ? "onAllReady" : "onShellReady";
 
     const { pipe, abort } = renderToPipeableStream(
       <ServerRouter context={routerContext} url={request.url} />,
       {
-        [readyOption]() {
+        // This only runs at build time, to pre-render each page to a file, so
+        // always wait for the whole tree: the file should hold the full page.
+        onAllReady() {
           shellRendered = true;
           const body = new PassThrough();
           const stream = createReadableStreamFromReadable(body);
@@ -43,9 +41,4 @@ export default function handleRequest(
 
     setTimeout(abort, ABORT_DELAY);
   });
-}
-
-// Minimal inline bot check — avoids pulling in the `isbot` dependency.
-function isbot(ua: string): boolean {
-  return /bot|crawler|spider|crawling|facebookexternalhit|slurp|bingpreview/i.test(ua);
 }

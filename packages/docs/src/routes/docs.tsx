@@ -1,4 +1,5 @@
 import browserCollections from "collections/browser";
+import type { Node } from "fumadocs-core/page-tree";
 import { useFumadocsLoader } from "fumadocs-core/source/client";
 import { Banner } from "fumadocs-ui/components/banner";
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
@@ -13,10 +14,11 @@ export async function loader({ params }: Route.LoaderArgs) {
   const slugs = params["*"].split("/").filter((v) => v.length > 0);
   const page = source.getPage(slugs);
   if (!page) {
-    // Bare `/docs` (no slug) → send the reader to the first page in the tree.
+    // Bare `/docs` (no slug) → send the reader to the first page in the
+    // sidebar (getPages() is alphabetical, which would land on "Audio").
     if (slugs.length === 0) {
-      const first = source.getPages()[0];
-      if (first) throw redirect(first.url);
+      const first = firstPageUrl(source.getPageTree().children);
+      if (first) throw redirect(first);
     }
     throw new Response("Not found", { status: 404 });
   }
@@ -25,6 +27,18 @@ export async function loader({ params }: Route.LoaderArgs) {
     url: page.url,
     pageTree: await source.serializePageTree(source.getPageTree()),
   };
+}
+
+/** The URL of the first page in sidebar order. */
+function firstPageUrl(nodes: Node[]): string | undefined {
+  for (const node of nodes) {
+    if (node.type === "page") return node.url;
+    if (node.type === "folder") {
+      const url = node.index?.url ?? firstPageUrl(node.children);
+      if (url) return url;
+    }
+  }
+  return undefined;
 }
 
 // MDX bodies are rendered client-side (the documented Fumadocs RR path): the
@@ -66,7 +80,11 @@ export default function Page({ loaderData }: Route.ComponentProps) {
 
 export function ErrorBoundary() {
   const error = useRouteError();
-  const is404 = isRouteErrorResponse(error) && error.status === 404;
+  // The site is pre-rendered: a URL with no page also has no data file, so the
+  // router reports a missing loader result instead of a 404 response.
+  const is404 =
+    (isRouteErrorResponse(error) && error.status === 404) ||
+    (error instanceof Error && error.message.startsWith("No result found for routeId"));
   return (
     <div className="mx-auto max-w-xl px-6 py-24 text-center">
       <h1 className="font-semibold text-2xl">

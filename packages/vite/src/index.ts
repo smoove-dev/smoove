@@ -43,8 +43,10 @@ import { SOURCE_MODULE, SOURCE_MODULE_CODE, tagSources } from "./source-tags.js"
  * `/assets/orbit-HASH.ts`, which the server labels `video/mp2t` (the MPEG
  * transport-stream extension) so the browser refuses it as a module — and even
  * with the right MIME it's untranspiled TS with bare `@smoove/core` imports.
- * `?comp-url` esbuild-bundles the demo instead (pulling in `@smoove/transitions`,
- * fonts, media and helpers) and emits real `.js`. `@smoove/core` and `konva`
+ * `?comp-url` esbuild-bundles the demo instead (pulling in `@smoove/transitions`
+ * and helpers) and emits real `.js`. Media, image and font imports are emitted
+ * as their own hashed files in the assets folder, and the module points at them
+ * (or at `compAssetBase`, when set). `@smoove/core` and `konva`
  * stay *external*, rewritten to `window.Smoove` / `window.Konva` — the globals
  * the standalone player pins — so the composition shares the player's single
  * core/konva instance rather than instantiating a second copy. In dev the query
@@ -77,6 +79,15 @@ export interface SmooveOptions {
    * source tags are relative to it. Default: Vite's resolved `root`.
    */
   root?: string;
+  /**
+   * Where `?comp-url` modules load their media from in a production build.
+   * The media files a composition imports are always written to the build's
+   * assets folder; by default the module requests them from Vite's `base`
+   * (`/assets/clip-HASH.mp4`). Set this to a URL that mirrors the build output,
+   * such as a storage bucket, and the module requests
+   * `<compAssetBase>/assets/clip-HASH.mp4` instead. Dev is unaffected.
+   */
+  compAssetBase?: string;
 }
 
 const DEFAULT_SERVER_ASSETS =
@@ -93,6 +104,8 @@ export function smoove(options: SmooveOptions = {}): Plugin {
   let root = process.cwd();
   let base = "/";
   let assetsDir = "assets";
+  // Media files already emitted this build: demos that share a file emit it once.
+  const emittedMedia = new Set<string>();
 
   return {
     name: "smoove",
@@ -102,6 +115,9 @@ export function smoove(options: SmooveOptions = {}): Plugin {
       root = options.root ?? config.root;
       base = config.base;
       assetsDir = config.build.assetsDir;
+    },
+    buildStart() {
+      emittedMedia.clear();
     },
     configureServer(server) {
       if (options.agent !== false) mountAgentBridge(server, root);
@@ -127,11 +143,25 @@ export function smoove(options: SmooveOptions = {}): Plugin {
         // filename from a content hash we compute ourselves (not Rollup's
         // `import.meta.ROLLUP_FILE_URL`, which points at a `file://` path in the
         // server build) — and only *emit* the file from the client pass.
-        const source = await compileComposition(compFile);
+        const assetBase = options.compAssetBase
+          ? `${options.compAssetBase.replace(/\/+$/, "")}/`
+          : base;
+        const { code: source, media } = await compileComposition(
+          compFile,
+          `${assetBase}${assetsDir}/`,
+        );
         const fileName = `${assetsDir}/${baseName(compFile)}-${contentHash(source)}.js`;
         const envName = (this as { environment?: { name?: string } }).environment?.name;
         const isSsr = loadOptions?.ssr === true || (envName != null && envName !== "client");
-        if (!isSsr) this.emitFile({ type: "asset", fileName, source });
+        if (!isSsr) {
+          this.emitFile({ type: "asset", fileName, source });
+          for (const file of media) {
+            const mediaName = `${assetsDir}/${file.name}`;
+            if (emittedMedia.has(mediaName)) continue;
+            emittedMedia.add(mediaName);
+            this.emitFile({ type: "asset", fileName: mediaName, source: file.contents });
+          }
+        }
         return `export default ${JSON.stringify(base + fileName)};`;
       }
 
@@ -238,32 +268,42 @@ function baseName(file: string): string {
   return dot > 0 ? stem.slice(0, dot) : stem;
 }
 
-/** Media/font/image extensions esbuild inlines as data URLs so the compiled
-    composition module is self-contained (no sibling asset requests to wire up). */
-const COMP_DATAURL_LOADERS = {
-  ".mp4": "dataurl",
-  ".webm": "dataurl",
-  ".mov": "dataurl",
-  ".m4v": "dataurl",
-  ".mkv": "dataurl",
-  ".mp3": "dataurl",
-  ".wav": "dataurl",
-  ".ogg": "dataurl",
-  ".m4a": "dataurl",
-  ".aac": "dataurl",
-  ".flac": "dataurl",
-  ".png": "dataurl",
-  ".jpg": "dataurl",
-  ".jpeg": "dataurl",
-  ".webp": "dataurl",
-  ".avif": "dataurl",
-  ".gif": "dataurl",
-  ".svg": "dataurl",
-  ".woff2": "dataurl",
-  ".woff": "dataurl",
-  ".ttf": "dataurl",
-  ".otf": "dataurl",
-} as const;
+/** Media/font/image extensions esbuild copies out as hashed files. Inlining
+    them as data URLs made the module a third bigger than the media itself,
+    defeated caching, and blocked the byte-range requests video playback uses. */
+const COMP_MEDIA_EXTENSIONS = [
+  ".mp4",
+  ".webm",
+  ".mov",
+  ".m4v",
+  ".mkv",
+  ".mp3",
+  ".wav",
+  ".ogg",
+  ".m4a",
+  ".aac",
+  ".flac",
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".webp",
+  ".avif",
+  ".gif",
+  ".svg",
+  ".woff2",
+  ".woff",
+  ".ttf",
+  ".otf",
+];
+const COMP_FILE_LOADERS = Object.fromEntries(
+  COMP_MEDIA_EXTENSIONS.map((ext) => [ext, "file" as const]),
+);
+
+/** A compiled composition module and the media files it references. */
+interface CompiledComposition {
+  code: string;
+  media: { name: string; contents: Uint8Array }[];
+}
 
 /**
  * Rewrites `@smoove/core` and `konva` to the globals the standalone player pins
@@ -286,8 +326,15 @@ const smooveGlobals: EsbuildPlugin = {
   },
 };
 
-/** esbuild-bundle a demo into a self-contained ESM module (see `?comp-url`). */
-async function compileComposition(file: string): Promise<string> {
+/**
+ * esbuild-bundle a demo into a standalone ESM module (see `?comp-url`). Media
+ * imports become `<publicPath><name>-<hash>.<ext>` URLs; the files themselves
+ * come back in `media` for the caller to emit.
+ */
+async function compileComposition(file: string, publicPath: string): Promise<CompiledComposition> {
+  // esbuild needs an output folder to lay out the copied files; with
+  // `write: false` nothing is written, and only the basenames are used.
+  const outdir = "/__smoove_comp__";
   const result = await esbuildBuild({
     entryPoints: [file],
     bundle: true,
@@ -296,12 +343,20 @@ async function compileComposition(file: string): Promise<string> {
     platform: "browser",
     write: false,
     logLevel: "silent",
-    loader: COMP_DATAURL_LOADERS,
+    loader: COMP_FILE_LOADERS,
+    outdir,
+    entryNames: "[name]",
+    assetNames: "[name]-[hash]",
+    publicPath,
     plugins: [smooveGlobals],
   });
-  const out = result.outputFiles?.[0]?.text;
-  if (out == null) throw new Error(`[smoove] ?comp-url produced no output for ${file}`);
-  return out;
+  const files = result.outputFiles ?? [];
+  const entry = files.find((f) => f.path.endsWith(".js"));
+  if (entry == null) throw new Error(`[smoove] ?comp-url produced no output for ${file}`);
+  const media = files
+    .filter((f) => f !== entry)
+    .map((f) => ({ name: f.path.slice(f.path.lastIndexOf("/") + 1), contents: f.contents }));
+  return { code: entry.text, media };
 }
 
 async function toJs(code: string, filename: string): Promise<string> {

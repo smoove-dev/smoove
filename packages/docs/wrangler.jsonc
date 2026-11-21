@@ -1,0 +1,17 @@
+// Cloudflare Workers static assets: the docs site is plain files, with no
+// Worker script (no `main`), so every request is served from the edge as a
+// static asset and nothing runs per request.
+// Deploy: `react-router build`, then `node scripts/upload-media.mjs` (moves the
+// demo media to R2), then `npx wrangler deploy`. CI does this on push to main.
+{
+  "name": "smoove-docs",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./build/client",
+    // Pages are written as docs/foo/index.html; serve them at /docs/foo (the
+    // URLs the site has always used) rather than redirecting to /docs/foo/.
+    "html_handling": "drop-trailing-slash",
+    // Unknown URLs get build/client/404.html with a 404 status.
+    "not_found_handling": "404-page"
+  }
+}

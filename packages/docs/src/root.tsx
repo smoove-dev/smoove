@@ -8,6 +8,7 @@ import "./app.css";
 // plain <script>/<link> — exactly the way a CDN consumer would.
 import playerScriptUrl from "@smoove/player/standalone?url";
 import playerStylesUrl from "@smoove/player/styles.css?url";
+import { StaticSearchDialog } from "./components/search-dialog";
 
 const GA_MEASUREMENT_ID = "G-J3MQYHTLYE";
 
@@ -61,7 +62,12 @@ gtag('config', '${GA_MEASUREMENT_ID}');`,
         )}
       </head>
       <body>
-        <RootProvider theme={{ defaultTheme: "dark" }}>{children}</RootProvider>
+        <RootProvider
+          theme={{ defaultTheme: "dark" }}
+          search={{ SearchDialog: StaticSearchDialog }}
+        >
+          {children}
+        </RootProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
