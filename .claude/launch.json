@@ -135,9 +135,9 @@
     },
     {
       "name": "docs-prod",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@smoove/docs", "start"],
-      "port": 3000
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "wrangler@4", "dev", "--config", "packages/docs/wrangler.jsonc", "--port", "8788", "--ip", "127.0.0.1"],
+      "port": 8788
     }
   ]
 }

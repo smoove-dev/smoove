@@ -4,8 +4,12 @@ on:
   pull_request:
     paths:
       - "packages/docs/**"
+      - "packages/code/**"
       - "packages/core/**"
+      - "packages/effects/**"
       - "packages/google-fonts/**"
+      - "packages/lottie/**"
+      - "packages/media/**"
       - "packages/player/**"
       - "packages/transitions/**"
       - "packages/vite/**"
@@ -17,8 +21,12 @@ on:
     branches: [main]
     paths:
       - "packages/docs/**"
+      - "packages/code/**"
       - "packages/core/**"
+      - "packages/effects/**"
       - "packages/google-fonts/**"
+      - "packages/lottie/**"
+      - "packages/media/**"
       - "packages/player/**"
       - "packages/transitions/**"
       - "packages/vite/**"
@@ -42,30 +50,31 @@ jobs:
       - run: pnpm --filter "@smoove/docs..." run build
       - run: pnpm --filter @smoove/docs run typecheck
 
+  # The site is fully static: build it with the demo media pointed at R2,
+  # move that media into the R2 bucket, and upload the rest as Workers static
+  # assets (no Worker script, so nothing runs per request).
   deploy:
     needs: ci
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: Prod
+    env:
+      # Public URL of the R2 bucket (its custom domain), e.g. https://media.smoove.dev
+      MEDIA_BASE_URL: ${{ vars.MEDIA_BASE_URL }}
+      R2_BUCKET: ${{ vars.R2_BUCKET }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
-      - name: Trigger Coolify deploy
-        run: |
-          # Fail on any non-2xx. Without this, a Cloudflare Access bounce
-          # (302 -> login) reads as success and the deploy silently no-ops.
-          code=$(curl -sS -o /tmp/deploy-body -w '%{http_code}' -X POST \
-            "${COOLIFY_BASE_URL}/api/v1/deploy?uuid=${COOLIFY_APP_UUID}" \
-            -H "Authorization: Bearer ${COOLIFY_API_TOKEN}" \
-            -H "CF-Access-Client-Id: ${CF_ACCESS_CLIENT_ID}" \
-            -H "CF-Access-Client-Secret: ${CF_ACCESS_CLIENT_SECRET}")
-          echo "HTTP $code"
-          cat /tmp/deploy-body
-          case "$code" in
-            2*) ;;
-            *) echo "::error::Coolify deploy returned HTTP $code (CF Access token likely not accepted)"; exit 1 ;;
-          esac
-        env:
-          COOLIFY_BASE_URL: ${{ secrets.COOLIFY_BASE_URL }}
-          COOLIFY_APP_UUID: ${{ secrets.COOLIFY_APP_UUID }}
-          COOLIFY_API_TOKEN: ${{ secrets.COOLIFY_API_TOKEN }}
-          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
-          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --filter "@smoove/docs..." --frozen-lockfile
+      - run: pnpm --filter "@smoove/docs..." run build
+      - name: Move demo media to R2
+        run: node packages/docs/scripts/upload-media.mjs
+      - name: Deploy static assets
+        working-directory: packages/docs
+        run: npx --yes wrangler@4 deploy

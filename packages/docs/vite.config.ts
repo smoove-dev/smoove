@@ -19,7 +19,10 @@ export default defineConfig({
     // (devDep); this package runs on Vite 7. The two `Plugin` types differ only
     // cosmetically (a `HotUpdateOptions` field), so the runtime plugin is fine —
     // cast past the structural d.ts mismatch.
-    smoove() as unknown as Plugin,
+    // Demo media (video, audio, images) is written to build/client/assets. In
+    // CI, MEDIA_BASE_URL points the demos at the R2 bucket those files are
+    // uploaded to; unset (local builds), they load from the site itself.
+    smoove({ compAssetBase: process.env.MEDIA_BASE_URL || undefined }) as unknown as Plugin,
     reactRouter(),
   ],
   // Default dev port is 5176; honor an externally assigned PORT (e.g. from a

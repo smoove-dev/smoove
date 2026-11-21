@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "react-router dev",
     "build": "react-router build",
-    "start": "react-router-serve ./build/server/index.js",
     "preview": "vite preview",
     "typecheck": "react-router typegen && tsc -b"
   },
@@ -14,7 +13,6 @@
     "@lezer/javascript": "^1.4.21",
     "@lezer/python": "^1.1.14",
     "@react-router/node": "8.1.0",
-    "@react-router/serve": "8.1.0",
     "@smoove/code": "workspace:*",
     "@smoove/core": "workspace:*",
     "@smoove/effects": "workspace:*",

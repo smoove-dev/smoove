@@ -8,6 +8,8 @@ dist
 .env.local
 build
 doc
+# wrangler dev's local state (serving the static docs build)
+.wrangler/
 package-lock.json
 # smoove agent bridge: discovery file (holds the per-run token), snapshots,
 # sheets, the dev server log and the headless browser's profile
