@@ -1,6 +1,4 @@
-import { existsSync } from "node:fs";
 import { basename, dirname, join, relative, sep } from "node:path";
-import { fileURLToPath } from "node:url";
 import { smoove } from "@smoove/vite";
 import { type Plugin, searchForWorkspaceRoot, type ViteDevServer } from "vite";
 import { discoverCompositions, registryModuleCode } from "./discovery.js";
@@ -42,12 +40,6 @@ const OPTIMIZE = [
   ].map((part) => `@smoove/studio > @base-ui/react/${part}`),
 ];
 
-/** The `node:module` stub for the browser bundle (built `.js`, or `.ts` when run from source). */
-function nodeModuleShim(): string {
-  const js = fileURLToPath(new URL("./node-module-shim.js", import.meta.url));
-  return existsSync(js) ? js : js.replace(/\.js$/, ".ts");
-}
-
 /**
  * The smoove studio under Vite: finds the compositions, serves the project's
  * `smoove.config.ts`, and carries the settings the studio app needs. The
@@ -80,9 +72,6 @@ export function smooveStudio(options: SmooveStudioOptions = {}): Plugin[] {
         },
         resolve: {
           dedupe: ["react", "react-dom"],
-          // `node:module` can't exist in the browser. Only the exact id, so the
-          // SSR renderer's `createRequire` (from "module") is untouched.
-          alias: [{ find: /^node:module$/, replacement: nodeModuleShim() }],
         },
         optimizeDeps: {
           // The compositions sit outside Vite's root, so name them for the scan;

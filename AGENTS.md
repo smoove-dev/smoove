@@ -113,6 +113,7 @@ consumers never deep-import; internal moves just need the barrel repointed.
 | `pnpm check` | Biome lint + format check |
 | `pnpm format` | Biome auto-format |
 | `pnpm --filter @smoove/studio dev` | tsc watch for one package (swap the package name) |
+| `node scripts/smoke-browser.mjs` | Pack core, build it into a config-free Vite 6, 7 and 8 app, and run each in headless Chrome (needs `pnpm build` first; CI runs it) |
 | `./scripts/smoke-create.sh` | Scaffold + install + build every create-smoove template (slow) |
 
 The `kitchen-sink` app imports each package's **built** entry (not source), so
@@ -125,5 +126,8 @@ running in the package) before the change is visible in the app.
   `resolve.alias` is needed. Don't add one.
 - The kitchen-sink `tsconfig.json` uses `noEmit: true` and `composite: false`;
   it's for typechecking only. Vite handles the actual build.
+- `flexily` is pinned exactly in core. Below 0.8.1 it imports `node:module` and
+  breaks browser bundles; from 0.8.3 it rounds measured text to whole pixels and
+  re-wraps labels (`layout/hug-text.test.ts`). Don't loosen the range.
 - If you change package public API, update `doc/README.md` so the target API
   example stays accurate.
