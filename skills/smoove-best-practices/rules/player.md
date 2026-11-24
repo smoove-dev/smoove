@@ -139,7 +139,7 @@ per frame. Also honor `prefers-reduced-motion` by calling `player.pause()`.
 - **`konva` is a peer dependency.** The consuming app pins the `konva` version;
   the player does not bundle it (except the standalone build). Mismatched or
   missing `konva` shows up as construction/render errors.
-- **Plain Vite app throws on the composition module → `node:module` shim.**
-  Core (via flexily) calls `createRequire` at module eval; Vite's browser stub
-  makes it `undefined`. Alias `/^node:module$/` to a shim returning a lazily
-  throwing `require`. The `create-smoove` templates ship this.
+- **`createRequire` error from a Vite build, or on page load: update
+  `@smoove/core`.** Versions up to 0.5.3 pulled a `node:module` import into the
+  browser bundle and needed a stub aliased to `/^node:module$/`. Newer versions
+  need no stub, so delete it after updating.

@@ -2,8 +2,6 @@ import { reactRouter } from "@react-router/dev/vite";
 import { smoove } from "@smoove/vite";
 import { defineConfig } from "vite";
 
-const shim = new URL("./src/node-module-shim.ts", import.meta.url).pathname;
-
 export default defineConfig({
   plugins: [smoove(), reactRouter()],
   server: { port: 5174 },
@@ -20,11 +18,6 @@ export default defineConfig({
     // single React instance across demo2 + the workspace-linked studio package
     // + Base UI (avoids "Invalid hook call" / null-React).
     dedupe: ["react", "react-dom"],
-    // `node:module` can't exist in the browser; stub it in the CLIENT bundle.
-    // This matches only `node:module` (not bare `module` or other `node:*`), so
-    // the SSR renderer's `createRequire` (imported from `"module"`) is untouched
-    // and shader transitions still render server-side.
-    alias: [{ find: /^node:module$/, replacement: shim }],
   },
   optimizeDeps: {
     // Force-bundle Base UI (pulled in via the linked studio package) with the

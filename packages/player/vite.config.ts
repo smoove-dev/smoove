@@ -1,10 +1,5 @@
-import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
-
-// Browser stub for `node:module` — flexily's logger detection reaches for
-// `createRequire`, which can't exist in the standalone (browser) bundle.
-const nodeModuleShim = fileURLToPath(new URL("./src/node-module-shim.ts", import.meta.url));
 
 /**
  * Two builds from one config, selected by `--mode`:
@@ -15,8 +10,7 @@ const nodeModuleShim = fileURLToPath(new URL("./src/node-module-shim.ts", import
  * - `--mode standalone` → self-contained **ESM** (`dist/player.global.js`) for
  *   a `<script type="module">` tag. Everything is bundled (konva, core,
  *   flexily, lit) and the entry also pins `window.Smoove` (core) +
- *   `window.Konva`. (Classic-IIFE output isn't possible — flexily uses
- *   top-level await, which only an ES module can carry.)
+ *   `window.Konva`.
  *
  * Both extract `dist/player.css` (for `<link>` / `?styles.css` import).
  */
@@ -37,9 +31,6 @@ export default defineConfig(({ mode }) => {
   const standalone = mode === "standalone";
 
   return {
-    resolve: standalone
-      ? { alias: [{ find: /^node:module$/, replacement: nodeModuleShim }] }
-      : undefined,
     build: {
       target: "es2022",
       sourcemap: true,

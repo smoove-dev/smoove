@@ -58,7 +58,7 @@ importers:
         version: 1.49.0
       skia-canvas:
         specifier: ^3.0.8
-        version: 3.0.8
+        version: 3.0.8(debug@4.4.3)
       zod:
         specifier: ^4.2.0
         version: 4.4.3
@@ -104,8 +104,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       flexily:
-        specifier: ^0.7.1
-        version: 0.7.1
+        specifier: 0.8.1
+        version: 0.8.1(debug@4.4.3)
       konva:
         specifier: '>=10'
         version: 10.3.0
@@ -115,7 +115,7 @@ importers:
         version: 26.2.0
       skia-canvas:
         specifier: ^3.0.8
-        version: 3.0.8
+        version: 3.0.8(debug@4.4.3)
       vitest:
         specifier: ^3.2.4
         version: 3.2.7(@types/debug@4.1.13)(@types/node@26.2.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
@@ -238,7 +238,7 @@ importers:
     devDependencies:
       skia-canvas:
         specifier: ^3.0.8
-        version: 3.0.8
+        version: 3.0.8(debug@4.4.3)
       vitest:
         specifier: ^3.2.4
         version: 3.2.7(@types/debug@4.1.13)(@types/node@26.2.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
@@ -343,7 +343,7 @@ importers:
     devDependencies:
       skia-canvas:
         specifier: ^3.0.8
-        version: 3.0.8
+        version: 3.0.8(debug@4.4.3)
       vitest:
         specifier: ^3.2.4
         version: 3.2.7(@types/debug@4.1.13)(@types/node@26.2.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
@@ -362,7 +362,7 @@ importers:
     devDependencies:
       skia-canvas:
         specifier: ^3.0.8
-        version: 3.0.8
+        version: 3.0.8(debug@4.4.3)
       vitest:
         specifier: ^3.2.4
         version: 3.2.7(@types/debug@4.1.13)(@types/node@26.2.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
@@ -408,7 +408,7 @@ importers:
         version: 1.49.0
       skia-canvas:
         specifier: ^3.0.8
-        version: 3.0.8
+        version: 3.0.8(debug@4.4.3)
     devDependencies:
       '@smoove/effects':
         specifier: workspace:^
@@ -508,7 +508,7 @@ importers:
     devDependencies:
       skia-canvas:
         specifier: ^3.0.8
-        version: 3.0.8
+        version: 3.0.8(debug@4.4.3)
       vitest:
         specifier: ^3.2.4
         version: 3.2.7(@types/debug@4.1.13)(@types/node@26.2.0)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)
@@ -3185,9 +3185,17 @@ packages:
     resolution: {integrity: sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==}
     engines: {node: '>=8'}
 
-  flexily@0.7.1:
-    resolution: {integrity: sha512-IaDk1VUoPlp1oJUyB+smoKFsik98Rmls8oYsVWlmKxiM3eU47vF9Qvxm9t1vWs9VIW/2KQxBARPya0SYzRrxkA==}
+  flexily@0.8.1:
+    resolution: {integrity: sha512-grJHQ6EfxHCaND+4wfnwgV9up/E3OwfeQQqT2J2hpEqRxPw7YGfvNx7HTlE7t5/qERj4pCtMFInMuVMqHeX4TA==}
     engines: {bun: '>=1.0', node: '>=18.0.0'}
+    peerDependencies:
+      debug: ^4.4.3
+      loggily: ^0.10.0 || ^0.11.0
+    peerDependenciesMeta:
+      debug:
+        optional: true
+      loggily:
+        optional: true
 
   follow-redirects@1.16.0:
     resolution: {integrity: sha512-y5rN/uOsadFT/JfYwhxRS5R7Qce+g3zG97+JrtFZlC9klX/W5hD7iiLzScI4nZqUS7DNUdhPgw4xI8W2LuXlUw==}
@@ -7958,9 +7966,13 @@ snapshots:
       locate-path: 5.0.0
       path-exists: 4.0.0
 
-  flexily@0.7.1: {}
+  flexily@0.8.1(debug@4.4.3):
+    optionalDependencies:
+      debug: 4.4.3
 
-  follow-redirects@1.16.0: {}
+  follow-redirects@1.16.0(debug@4.4.3):
+    optionalDependencies:
+      debug: 4.4.3
 
   foreground-child@3.3.1:
     dependencies:
@@ -9857,10 +9869,10 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  skia-canvas@3.0.8:
+  skia-canvas@3.0.8(debug@4.4.3):
     dependencies:
       detect-libc: 2.1.2
-      follow-redirects: 1.16.0
+      follow-redirects: 1.16.0(debug@4.4.3)
       https-proxy-agent: 7.0.6
       string-split-by: 1.0.0
     transitivePeerDependencies:
