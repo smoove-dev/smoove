@@ -1,5 +1,18 @@
 # @smoove/vite
 
+## 0.5.4
+
+### Patch Changes
+
+- [#56](https://github.com/smoove-dev/smoove/pull/56) [`8b48b8f`](https://github.com/smoove-dev/smoove/commit/8b48b8fbb5e9c035f8556ac747ae53ab6c60409d) Thanks [@shemi](https://github.com/shemi)! - `?comp-url` modules now load their video, audio, images and fonts from separate hashed files in the build's assets folder, instead of carrying them inline as base64. Modules are smaller, media caches on its own, and video can stream with byte-range requests. A new `compAssetBase` option points those files at another origin, such as a storage bucket that mirrors the assets folder:
+
+  ```ts
+  smoove({ compAssetBase: "https://media.example.com" });
+  ```
+
+- Updated dependencies []:
+  - @smoove/agent@0.5.4
+
 ## 0.5.3
 
 ### Patch Changes
