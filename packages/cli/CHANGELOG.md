@@ -1,5 +1,14 @@
 # @smoove/cli
 
+## 0.5.4
+
+### Patch Changes
+
+- Updated dependencies [[`cc01582`](https://github.com/smoove-dev/smoove/commit/cc0158228a8d2e2693c7b19c9146721240425c07)]:
+  - @smoove/studio@0.5.4
+  - @smoove/agent@0.5.4
+  - @smoove/media@0.5.4
+
 ## 0.5.3
 
 ### Patch Changes

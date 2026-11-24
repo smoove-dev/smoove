@@ -1,5 +1,24 @@
 # @smoove/studio
 
+## 0.5.4
+
+### Patch Changes
+
+- [#59](https://github.com/smoove-dev/smoove/pull/59) [`cc01582`](https://github.com/smoove-dev/smoove/commit/cc0158228a8d2e2693c7b19c9146721240425c07) Thanks [@shemi](https://github.com/shemi)! - `@smoove/core` bundles for the browser with no setup. A plain Vite app that imports it used to fail with `"createRequire" is not exported by "__vite-browser-external"`, or build and then throw on load in Vite 8, because the layout engine it depends on (flexily) imported `node:module`. If you stubbed `node:module` to get past that, you can delete the stub and write only this:
+
+  ```ts
+  import { Sequence } from "@smoove/core";
+  ```
+
+  flexily is now pinned to 0.8.1. Layouts don't move: later versions round text widths to whole pixels, which can break a label onto a second line.
+
+- Updated dependencies [[`cc01582`](https://github.com/smoove-dev/smoove/commit/cc0158228a8d2e2693c7b19c9146721240425c07), [`8b48b8f`](https://github.com/smoove-dev/smoove/commit/8b48b8fbb5e9c035f8556ac747ae53ab6c60409d)]:
+  - @smoove/core@0.5.4
+  - @smoove/player@0.5.4
+  - @smoove/vite@0.5.4
+  - @smoove/agent@0.5.4
+  - @smoove/renderer@0.5.4
+
 ## 0.5.3
 
 ### Patch Changes
